@@ -131,8 +131,9 @@
         }
     },
     "collection": {
-        "orderBy": "priority",
-        "order": "desc"
+        "orderBy": "createdAt",
+        "order": "desc",
+        "textFilterFields": ["name", "description"]
     },
     "indexes": {
         "status": {

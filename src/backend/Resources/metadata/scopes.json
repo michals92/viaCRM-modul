@@ -1,0 +1,40 @@
+{
+    "Alert": {
+        "disabled": false,
+        "acl": "record",
+        "aclPortal": "not-set",
+        "entity": true,
+        "importable": true,
+        "exportable": true,
+        "type": "Base",
+        "module": "ViaCrm",
+        "object": true,
+        "isCustom": false,
+        "layouts": true,
+        "tab": true,
+        "customizable": true,
+        "searchable": true,
+        "stream": false,
+        "color": "#edc755",
+        "iconClass": "fas fa-exclamation-triangle"
+    },
+    "RecordTemplate": {
+        "disabled": false,
+        "acl": "record", 
+        "aclPortal": "not-set",
+        "entity": true,
+        "importable": true,
+        "exportable": true,
+        "type": "Base",
+        "module": "ViaCrm",
+        "object": true,
+        "isCustom": false,
+        "layouts": true,
+        "tab": true,
+        "customizable": true,
+        "searchable": true,
+        "stream": false,
+        "color": "#28a745",
+        "iconClass": "fas fa-copy"
+    }
+}
