@@ -2,4 +2,8 @@
 
 namespace Espo\Modules\ViaCrm\Controllers;
 
-class Test extends \Espo\Core\Templates\Controllers\Base {}
+use Espo\Core\Templates\Controllers\Base;
+
+class Test extends Base
+{
+}

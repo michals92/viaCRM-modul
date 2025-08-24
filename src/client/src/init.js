@@ -8,7 +8,7 @@
     }
     
     // Set up module info
-    window.ViaCRM.version = '2.3.7';
+    window.ViaCRM.version = '2.4.2';
     window.ViaCRM.initialized = true;
     
     console.log('ViaCRM Module initialized v' + window.ViaCRM.version);

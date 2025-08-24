@@ -33,7 +33,7 @@ class V1_0_0
         }
 
         $sql = "
-        CREATE TABLE `{$tableName}` (
+        CREATE TABLE `alert` (
             `id` varchar(24) NOT NULL,
             `name` varchar(255) NOT NULL,
             `description` longtext,
@@ -77,7 +77,7 @@ class V1_0_0
         }
 
         $sql = "
-        CREATE TABLE `{$tableName}` (
+        CREATE TABLE `record_template` (
             `id` varchar(24) NOT NULL,
             `name` varchar(150) NOT NULL,
             `entity_type` varchar(255) NOT NULL,

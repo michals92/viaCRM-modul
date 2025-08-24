@@ -2,4 +2,8 @@
 
 namespace Espo\Modules\ViaCrm\Entities;
 
-class Alert extends \Espo\Core\Templates\Entities\Base {}
+use Espo\Core\Templates\Entities\Base;
+
+class Alert extends Base
+{
+}
