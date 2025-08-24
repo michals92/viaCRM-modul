@@ -50,7 +50,8 @@
             "default": "fas fa-info-circle"
         },
         "color": {
-            "type": "colorpicker",
+            "type": "varchar",
+            "maxLength": 7,
             "default": "#17a2b8"
         },
         "dateStart": {

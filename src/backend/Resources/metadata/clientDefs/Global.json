@@ -1,16 +1,13 @@
 {
     "viewSetupHandlers": {
         "detail": [
-            "viacrm:handlers/view-setup/admin-buttons",
-            "viacrm:handlers/view-setup/template-buttons"
+            "viacrm:handlers/view-setup/admin-buttons"
         ],
         "list": [
-            "viacrm:handlers/view-setup/admin-buttons",
-            "viacrm:handlers/view-setup/template-buttons"
+            "viacrm:handlers/view-setup/admin-buttons"
         ],
         "edit": [
-            "viacrm:handlers/view-setup/admin-buttons",
-            "viacrm:handlers/view-setup/template-buttons"
+            "viacrm:handlers/view-setup/admin-buttons"
         ]
     }
 }

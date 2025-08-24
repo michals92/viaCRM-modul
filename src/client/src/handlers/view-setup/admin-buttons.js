@@ -1,201 +1,141 @@
-/**
- * VIA CRM Admin Buttons Handler
- * Adds quick admin buttons to views using EspoCRM standard methods
- */
-
-define('viacrm:handlers/view-setup/admin-buttons', [], function () {
-    'use strict';
-
+define(() => {
     class AdminButtonsHandler {
-        
         constructor(view) {
             this.view = view;
-            this.scope = view.entityType || view.scope;
+            this.scope = this.view.scope;
         }
-        
+
         process() {
-            // Only add for admin users
-            if (!this.checkAdminRights()) {
+            console.log('ViaCRM AdminButtons: Processing for scope:', this.scope);
+            
+            if (!this.scope) {
+                console.log('ViaCRM AdminButtons: No scope, skipping');
                 return;
             }
-            
-            console.log('VIA CRM: Adding admin buttons for', this.scope, 'view:', this.getViewType());
-            
-            this.addEntityManagementButtons();
-            this.addLayoutManagementButtons();
-            this.addQuickToolButtons();
-        }
-        
-        checkAdminRights() {
-            // Check if user has admin permissions
-            if (this.view.getUser && this.view.getUser().isAdmin && this.view.getUser().isAdmin()) {
-                return true;
+
+            const isAdmin = this.view.getUser().isAdmin();
+            console.log('ViaCRM AdminButtons: User is admin:', isAdmin);
+
+            if (!isAdmin) {
+                console.log('ViaCRM AdminButtons: User not admin, skipping');
+                return;
             }
-            
-            // Fallback check
-            if (this.view.getAcl && this.view.getAcl().checkScope('Admin')) {
-                return true;
+
+            console.log('ViaCRM AdminButtons: Adding admin buttons');
+            this.addAdminButtons();
+        }
+
+        addAdminButtons() {
+            this.addEditEntityButton();
+            this.addEditLayoutButton();
+            this.addEditLabelsButton();
+            this.addRebuildButton();
+            this.addClearCacheButton();
+        }
+
+        addEditEntityButton() {
+            console.log('ViaCRM AdminButtons: Adding Edit Entity button');
+            try {
+                this.view.addMenuItem('buttons', {
+                    name: 'editEntity',
+                    label: 'Edit Entity',
+                    iconClass: 'fas fa-tools fa-sm',
+                    link: '#Admin/entityManager/scope=' + this.scope
+                });
+                console.log('ViaCRM AdminButtons: Edit Entity button added successfully');
+            } catch(e) {
+                console.error('ViaCRM AdminButtons: Error adding Edit Entity button:', e);
             }
-            
-            return false;
         }
-        
-        getViewType() {
-            if (this.view.type) return this.view.type;
-            if (this.view.name && this.view.name.includes('list')) return 'list';
-            if (this.view.name && this.view.name.includes('detail')) return 'detail';
-            if (this.view.name && this.view.name.includes('edit')) return 'edit';
-            return 'unknown';
+
+        addEditLayoutButton() {
+            if (!this.view.name) return;
+            
+            const layoutType = this.view.name.toLowerCase();
+            console.log('ViaCRM AdminButtons: Adding Edit Layout button for type:', layoutType);
+            
+            this.view.addMenuItem('buttons', {
+                name: 'editLayout',
+                label: 'Edit Layout',
+                iconClass: 'fas fa-table fa-sm',
+                link: '#Admin/layouts/scope=' + this.scope + '&type=' + layoutType
+            });
         }
-        
-        addEntityManagementButtons() {
-            if (!this.scope || this.scope === 'Global') return;
+
+        addEditLabelsButton() {
+            const language = this.view.getConfig().get('language') || 'en_US';
             
-            // Edit Entity Manager button
             this.view.addMenuItem('buttons', {
-                name: 'editEntity',
-                label: 'Edit Entity',
-                style: 'default',
-                iconHtml: '<i class="fas fa-cogs fa-sm"></i>',
-                link: '#Admin/entityManager/scope=' + this.scope,
-                title: 'Edit Entity Manager for ' + this.scope
+                name: 'editLabels',
+                label: 'Edit Labels',
+                iconClass: 'fas fa-tags fa-sm',
+                link: '#Admin/labelManager/scope=' + this.scope + '&language=' + language
             });
+        }
+
+        addRebuildButton() {
+            console.log('ViaCRM AdminButtons: Adding Rebuild button');
             
-            // Edit Fields button
             this.view.addMenuItem('buttons', {
-                name: 'editFields', 
-                label: 'Edit Fields',
-                style: 'default',
-                iconHtml: '<i class="fas fa-list fa-sm"></i>',
-                link: '#Admin/fieldManager/scope=' + this.scope,
-                title: 'Edit Fields for ' + this.scope
+                name: 'rebuild',
+                label: 'Rebuild',
+                iconClass: 'fas fa-hammer fa-sm',
+                action: 'rebuild'
             });
-            
-            // Edit Relationships button
-            this.view.addMenuItem('buttons', {
-                name: 'editRelationships',
-                label: 'Edit Relations',
-                style: 'default', 
-                iconHtml: '<i class="fas fa-link fa-sm"></i>',
-                action: 'editRelationships',
-                title: 'Edit Relationships for ' + this.scope
-            });
-            
-            // Attach action method
-            this.view.actionEditRelationships = () => {
-                window.location.hash = '#Admin/linkManager/scope=' + this.scope;
+
+            // Add action handler
+            this.view.actionRebuild = () => {
+                this.doRebuild();
             };
         }
-        
-        addLayoutManagementButtons() {
-            if (!this.scope || this.scope === 'Global') return;
+
+        addClearCacheButton() {
+            console.log('ViaCRM AdminButtons: Adding Clear Cache button');
             
-            const viewType = this.getViewType();
-            
-            // Main layout button based on current view
-            if (viewType !== 'unknown') {
-                this.view.addMenuItem('buttons', {
-                    name: 'editLayout',
-                    label: 'Edit Layout',
-                    style: 'primary',
-                    iconHtml: '<i class="fas fa-th-large fa-sm"></i>',
-                    link: '#Admin/layoutManager/scope=' + this.scope + '&type=' + viewType,
-                    title: 'Edit ' + viewType + ' layout for ' + this.scope
-                });
-            }
-            
-            // View-specific additional buttons
-            if (viewType === 'list') {
-                this.view.addMenuItem('buttons', {
-                    name: 'editListLayout',
-                    label: 'List Columns',
-                    style: 'info',
-                    iconHtml: '<i class="fas fa-columns fa-sm"></i>',
-                    link: '#Admin/layoutManager/scope=' + this.scope + '&type=list',
-                    title: 'Edit List Layout'
-                });
-                
-                this.view.addMenuItem('buttons', {
-                    name: 'editSearchFilters',
-                    label: 'Search Filters', 
-                    style: 'info',
-                    iconHtml: '<i class="fas fa-filter fa-sm"></i>',
-                    link: '#Admin/layoutManager/scope=' + this.scope + '&type=filters',
-                    title: 'Edit Search Filters'
-                });
-            }
-            
-            if (viewType === 'detail') {
-                this.view.addMenuItem('buttons', {
-                    name: 'editDetailLayout',
-                    label: 'Detail Panels',
-                    style: 'info', 
-                    iconHtml: '<i class="fas fa-list-alt fa-sm"></i>',
-                    link: '#Admin/layoutManager/scope=' + this.scope + '&type=detail',
-                    title: 'Edit Detail Layout'
-                });
-                
-                this.view.addMenuItem('buttons', {
-                    name: 'editSidePanels',
-                    label: 'Side Panels',
-                    style: 'info',
-                    iconHtml: '<i class="fas fa-columns fa-sm"></i>', 
-                    link: '#Admin/layoutManager/scope=' + this.scope + '&type=sidePanelsDetail',
-                    title: 'Edit Side Panels'
-                });
-            }
-        }
-        
-        addQuickToolButtons() {
-            // Clear Cache button
             this.view.addMenuItem('buttons', {
                 name: 'clearCache',
                 label: 'Clear Cache',
-                style: 'warning',
-                iconHtml: '<i class="fas fa-broom fa-sm"></i>',
-                action: 'clearCache',
-                title: 'Clear Application Cache'
+                iconClass: 'fas fa-broom fa-sm',
+                action: 'clearCache'
             });
-            
-            // Admin Panel button  
-            this.view.addMenuItem('buttons', {
-                name: 'adminPanel',
-                label: 'Admin Panel',
-                style: 'default',
-                iconHtml: '<i class="fas fa-user-shield fa-sm"></i>',
-                link: '#Admin',
-                title: 'Go to Admin Panel'
-            });
-            
-            // Attach action methods
+
+            // Add action handler
             this.view.actionClearCache = () => {
-                this.clearCache();
+                this.doClearCache();
             };
         }
-        
-        clearCache() {
-            if (!confirm('Clear application cache? This will reload the page.')) {
-                return;
-            }
+
+        doRebuild() {
+            console.log('ViaCRM AdminButtons: Executing rebuild');
             
-            console.log('VIA CRM: Clearing cache...');
+            Espo.Ui.notify('Rebuilding...');
             
-            // Show notification
-            if (this.view.notify) {
-                this.view.notify('Clearing cache...', 'info');
-            }
+            Espo.Ajax.postRequest('Admin/rebuild')
+                .then(() => {
+                    Espo.Ui.success('Rebuild completed');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                })
+                .catch((error) => {
+                    console.error('Rebuild failed:', error);
+                    Espo.Ui.error('Rebuild failed');
+                });
+        }
+
+        doClearCache() {
+            console.log('ViaCRM AdminButtons: Executing clear cache');
             
-            // Simulate cache clear - in real implementation would call API
-            setTimeout(() => {
-                if (this.view.notify) {
-                    this.view.notify('Cache cleared successfully!', 'success');
-                }
-                
-                // Reload page after short delay
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
-            }, 1500);
+            Espo.Ui.notify('Clearing cache...');
+            
+            Espo.Ajax.postRequest('Admin/clearCache')
+                .then(() => {
+                    Espo.Ui.success('Cache cleared');
+                })
+                .catch((error) => {
+                    console.error('Clear cache failed:', error);
+                    Espo.Ui.error('Clear cache failed');
+                });
         }
     }
 

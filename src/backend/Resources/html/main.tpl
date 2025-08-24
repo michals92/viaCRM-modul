@@ -5,7 +5,7 @@
     <style type="text/css">{{variableCss}}</style>
     <script type="application/json" data-name="loader-params">{{loaderParams}}</script>
     <script type="application/json" data-name="extension-views">{{extensionViews}}</script>
-	{{scriptsHtml}}
+    {{scriptsHtml}}
     <link rel="stylesheet" href="{{basePath}}{{stylesheet}}?r={{cacheTimestamp}}" id='main-stylesheet'>
         {{additionalStyleSheetsHtml}}
         {{additionalThemeStyleSheetsHtml}}
@@ -61,7 +61,7 @@
 <body data-id="{{applicationId}}">
     <div class="container content"></div>
     <footer>
-        <p class="credit small">viaCRM</p>
+        <p class="credit small">&copy; 2025
+        <a href="https://viacrm.cz" title="Powered by ViaCRM" rel="noopener" target="_blank">Via CRM</a></p>
     </footer>
 </body>
-</html>

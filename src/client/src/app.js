@@ -1,15 +1,34 @@
-/**
- * VIA CRM Module - Main application file
- */
-
-define('viacrm:app', [], function () {
+// ViaCRM Module Client Extension
+// Main app entry point
+(function() {
+    'use strict';
     
-    console.log('VIA CRM Module app.js loaded');
+    console.log('ViaCRM app.js loaded');
     
-    // Load view extensions system
-    require(['viacrm:extensions/view-helper', 'viacrm:extensions/controller'], function() {
-        console.log('VIA CRM Extensions loaded successfully');
-    });
-    
-    return true;
-});
+    // Extend ViaCRM namespace with app functionality
+    if (typeof window.ViaCRM !== 'undefined') {
+        window.ViaCRM.app = {
+            initialized: false,
+            
+            init: function() {
+                if (this.initialized) return;
+                
+                console.log('ViaCRM app initialized');
+                this.initialized = true;
+                
+                // Any additional app initialization
+                this.setupGlobalExtensions();
+            },
+            
+            setupGlobalExtensions: function() {
+                // Setup any global app extensions
+                if (typeof window.Espo !== 'undefined') {
+                    console.log('ViaCRM app extensions ready');
+                }
+            }
+        };
+        
+        // Auto-initialize
+        window.ViaCRM.app.init();
+    }
+})();
