@@ -1,0 +1,16 @@
+{
+    "recordViews": {
+        "compose": "viacrm:views/email/record/compose-with-easy-email"
+    },
+    "fields": {
+        "bodyMjml": {
+            "type": "jsonObject",
+            "notStorable": false,
+            "readOnly": true
+        },
+        "usedEasyEmailEditor": {
+            "type": "bool",
+            "readOnly": true
+        }
+    }
+}

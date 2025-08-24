@@ -1,6 +1,6 @@
 {
   "name": "viacrm",
-  "version": "2.4.2",
+  "version": "2.5.0",
   "description": "VIA CRM module for EspoCRM",
   "author": "VIA Development Team",
   "scripts": {
@@ -18,7 +18,8 @@
     "lint:js": "eslint \"src/**/*.js\"",
     "lint:js:fix": "eslint \"src/**/*.js\" --fix",
     "lint": "npm run lint:css && npm run lint:js",
-    "lint:fix": "npm run lint:css:fix && npm run lint:js:fix"
+    "lint:fix": "npm run lint:css:fix && npm run lint:js:fix",
+    "build:easy-email": "node tasks/build/easy-email.js build/client/modules/viacrm/lib/easy-email-editor.js"
   },
   "type": "module",
   "keywords": [
@@ -36,11 +37,11 @@
     "@clack/prompts": "^0.7.0",
     "@types/fs-extra": "^11.0.2",
     "@types/node": "^20.8.6",
+    "adm-zip": "^0.5.10",
     "chokidar": "^3.5.3",
     "cpy": "^10.1.0",
     "del": "^7.1.0",
     "del-cli": "^6.0.0",
-    "adm-zip": "^0.5.10",
     "dotenv": "^16.3.1",
     "esbuild": "^0.19.4",
     "eslint": "^9.17.0",
@@ -51,11 +52,20 @@
     "pkg-dir": "^7.0.0",
     "postcss": "^8.4.31",
     "postcss-import": "^16.1.0",
+    "postcss-prefix-selector": "^1.16.1",
     "prettier": "3.0.3",
     "slash": "^5.1.0",
     "stylelint": "^16.19.1",
     "stylelint-config-standard": "^38.0.0",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "easy-email-core": "^4.16.4",
+    "easy-email-editor": "^4.16.3",
+    "easy-email-extensions": "^4.16.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-final-form": "^6.5.9"
   },
   "espocrm": {
     "extensionName": "ViaCrm",

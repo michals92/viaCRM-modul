@@ -1,0 +1,18 @@
+{
+    "recordViews": {
+        "edit": "viacrm:views/email-template/record/edit-with-easy-email"
+    },
+    "views": {
+        "edit": "viacrm:views/email-template/edit"
+    },
+    "sidePanels": {
+        "edit": [
+            {
+                "name": "easyEmailOptions",
+                "label": "Easy Email Options",
+                "view": "viacrm:views/email-template/panels/easy-email-options",
+                "isForm": true
+            }
+        ]
+    }
+}

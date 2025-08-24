@@ -1,0 +1,14 @@
+{
+    "fields": {
+        "bodyMjml": {
+            "type": "jsonObject",
+            "notStorable": false,
+            "tooltip": "MJML data for Easy Email Editor"
+        },
+        "useEasyEmailEditor": {
+            "type": "bool",
+            "default": false,
+            "tooltip": "Use Easy Email Editor for this template"
+        }
+    }
+}
