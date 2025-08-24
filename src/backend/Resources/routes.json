@@ -1,0 +1,74 @@
+[
+    {
+        "method": "GET",
+        "route": "/ViaCrm/Test/hello",
+        "params": {
+            "controller": "Test",
+            "action": "hello"
+        }
+    },
+    {
+        "method": "GET", 
+        "route": "/ViaCrm/Test/extensions",
+        "params": {
+            "controller": "Test",
+            "action": "extensions"
+        }
+    },
+    {
+        "method": "GET",
+        "route": "/ViaCrm/RecordTemplate/templates/:entityType",
+        "params": {
+            "controller": "RecordTemplate",
+            "action": "getTemplatesForEntity"
+        }
+    },
+    {
+        "method": "POST",
+        "route": "/ViaCrm/RecordTemplate/createFromTemplate",
+        "params": {
+            "controller": "RecordTemplate",
+            "action": "createFromTemplate"
+        }
+    },
+    {
+        "method": "POST",
+        "route": "/ViaCrm/RecordTemplate/saveAsTemplate", 
+        "params": {
+            "controller": "RecordTemplate",
+            "action": "saveAsTemplate"
+        }
+    },
+    {
+        "method": "GET",
+        "route": "/ViaCrm/Alert/userAlerts",
+        "params": {
+            "controller": "Alert",
+            "action": "userAlerts"
+        }
+    },
+    {
+        "method": "POST",
+        "route": "/ViaCrm/Alert/markViewed",
+        "params": {
+            "controller": "Alert",
+            "action": "markViewed"
+        }
+    },
+    {
+        "method": "POST",
+        "route": "/ViaCrm/Alert/close",
+        "params": {
+            "controller": "Alert",
+            "action": "close"
+        }
+    },
+    {
+        "method": "POST",
+        "route": "/ViaCrm/Alert/toggle",
+        "params": {
+            "controller": "Alert",
+            "action": "toggle"
+        }
+    }
+]

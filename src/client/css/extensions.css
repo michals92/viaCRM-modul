@@ -1,0 +1,82 @@
+/**
+ * VIA CRM Extensions CSS
+ * Styles for view extensions and enhanced functionality
+ */
+
+/* View Extension Markers */
+.viacrm-detail-view {
+    /* Detail view enhancements */
+}
+
+.viacrm-list-view {
+    /* List view enhancements */
+}
+
+.viacrm-edit-view {
+    /* Edit view enhancements */
+}
+
+/* List View Enhancements */
+.viacrm-list-header {
+    position: relative;
+}
+
+.viacrm-list-header::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 4px;
+    height: 4px;
+    background-color: #3498db;
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.viacrm-list-row:hover {
+    background-color: #f8f9fa;
+}
+
+.viacrm-edit-field {
+    /* Field enhancements for edit views */
+}
+
+/* Related Fields (準備) */
+.viacrm-related-field {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.viacrm-related-field-label::before {
+    content: "🔗 ";
+    opacity: 0.7;
+}
+
+/* Formula Fields (準備) */
+.viacrm-formula-field {
+    background-color: #fff3cd;
+    border-left: 3px solid #ffc107;
+    padding-left: 8px;
+}
+
+.viacrm-formula-field-label::before {
+    content: "ƒ ";
+    font-weight: bold;
+    color: #e67e22;
+}
+
+/* Extension Status Indicator */
+.viacrm-extension-active::after {
+    content: "VIA";
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: #28a745;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 1000;
+    opacity: 0.8;
+}

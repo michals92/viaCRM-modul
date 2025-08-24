@@ -1,0 +1,36 @@
+{
+    "labels": {
+        "Record Templates": "Šablony záznamů",
+        "Create RecordTemplate": "Vytvořit šablonu",
+        "From Template": "Ze šablony",
+        "Save as Template": "Uložit jako šablonu", 
+        "Select Template": "Vybrat šablonu",
+        "Create Template": "Vytvořit šablonu",
+        "Template Name": "Název šablony",
+        "Entity Type": "Typ entity",
+        "Description": "Popis",
+        "Template Data": "Data šablony",
+        "Is Active": "Je aktivní",
+        "Is Global": "Je globální",
+        "Assigned User": "Přiřazený uživatel"
+    },
+    "fields": {
+        "name": "Název",
+        "entityType": "Typ entity",
+        "description": "Popis",
+        "data": "Data šablony",
+        "isActive": "Aktivní",
+        "isGlobal": "Globální",
+        "assignedUser": "Přiřazený uživatel",
+        "teams": "Týmy"
+    },
+    "tooltips": {
+        "isGlobal": "Pokud je zaškrtnuto, tato šablona bude dostupná všem uživatelům. Jinak pouze přiřazenému uživateli a týmům."
+    },
+    "messages": {
+        "templateCreated": "Šablona byla úspěšně vytvořena",
+        "recordCreatedFromTemplate": "Záznam byl vytvořen ze šablony",
+        "noTemplatesFound": "Pro tento typ entity nebyly nalezeny žádné šablony",
+        "templateNameRequired": "Název šablony je povinný"
+    }
+}

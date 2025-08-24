@@ -1,0 +1,10 @@
+{
+    "links": {
+        "alerts": {
+            "type": "hasMany",
+            "entity": "Alert",
+            "relationName": "AlertUser",
+            "foreign": "users"
+        }
+    }
+}

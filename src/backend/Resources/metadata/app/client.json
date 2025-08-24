@@ -1,0 +1,7 @@
+{
+    "scriptList": [
+        "__APPEND__",
+        "client/modules/viacrm/src/init.js",
+        "client/modules/viacrm/custom/modules/viacrm/src/alert-system.js"
+    ]
+}

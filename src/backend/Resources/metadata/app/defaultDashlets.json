@@ -1,0 +1,10 @@
+[
+    "__APPEND__",
+    {
+        "name": "Alert",
+        "options": {
+            "title": "My Alerts",
+            "autorefreshInterval": "2"
+        }
+    }
+]

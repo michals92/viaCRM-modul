@@ -1,0 +1,178 @@
+/**
+ * VIA CRM Related Panels Styles
+ */
+
+.viacrm-related-panel {
+    border: 1px solid #e3e6f0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.viacrm-related-panel:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Panel Header Enhancements */
+.viacrm-related-panel .panel-heading {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px 20px;
+}
+
+.viacrm-panel-icon {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.viacrm-related-panel .panel-title {
+    font-weight: 600;
+    color: #495057;
+    margin: 0;
+}
+
+.viacrm-related-panel .panel-actions .btn {
+    margin-left: 5px;
+}
+
+/* Panel Stats */
+.viacrm-panel-stats {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #dee2e6;
+    background: rgba(255,255,255,0.7);
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.viacrm-panel-stats .stat-label {
+    font-size: 11px;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.viacrm-panel-stats .stat-value {
+    font-weight: bold;
+    color: #495057;
+    margin-left: 4px;
+}
+
+/* Panel Body */
+.viacrm-panel-body {
+    padding: 20px;
+    min-height: 100px;
+}
+
+/* Empty State */
+.viacrm-panel-empty {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.viacrm-empty-icon {
+    font-size: 48px;
+    color: #dee2e6;
+    margin-bottom: 15px;
+}
+
+.viacrm-panel-empty p {
+    font-size: 16px;
+    color: #6c757d;
+    margin: 0;
+}
+
+.viacrm-panel-empty small {
+    color: #adb5bd;
+}
+
+/* Enhanced Row Interactions */
+.viacrm-related-panel .list-row {
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    cursor: pointer;
+}
+
+.viacrm-related-panel .list-row:hover,
+.viacrm-related-panel .viacrm-row-hover {
+    background-color: #f8f9fa;
+    transform: translateX(2px);
+}
+
+.viacrm-related-panel .list-row:active {
+    transform: translateX(1px);
+}
+
+/* Show More Button */
+.viacrm-show-more {
+    padding: 15px 0;
+    border-top: 1px solid #f1f3f4;
+    margin-top: 15px;
+}
+
+.viacrm-show-more .btn {
+    border-radius: 20px;
+    padding: 6px 20px;
+}
+
+/* Panel Footer */
+.viacrm-panel-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 12px 20px;
+    border-radius: 0 0 8px 8px;
+}
+
+.viacrm-panel-footer .footer-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.viacrm-panel-footer .footer-info {
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* Custom Panel Types */
+.viacrm-related-panel.contacts {
+    border-left: 4px solid #28a745;
+}
+
+.viacrm-related-panel.opportunities {
+    border-left: 4px solid #ffc107;
+}
+
+.viacrm-related-panel.tasks {
+    border-left: 4px solid #dc3545;
+}
+
+.viacrm-related-panel.meetings {
+    border-left: 4px solid #17a2b8;
+}
+
+.viacrm-related-panel.calls {
+    border-left: 4px solid #6f42c1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .viacrm-related-panel .panel-heading {
+        padding: 10px 15px;
+    }
+    
+    .viacrm-panel-body {
+        padding: 15px;
+    }
+    
+    .viacrm-panel-stats .row > div {
+        margin-bottom: 5px;
+    }
+    
+    .viacrm-related-panel .panel-actions {
+        margin-top: 10px;
+    }
+    
+    .viacrm-related-panel .panel-actions .btn {
+        margin: 2px;
+        font-size: 12px;
+    }
+}

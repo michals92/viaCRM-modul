@@ -1,0 +1,57 @@
+{
+    "labels": {
+        "Alerts": "Alerts",
+        "Create Alert": "Create Alert",
+        "Alert System": "Alert System",
+        "User Alerts": "User Alerts",
+        "Active Alerts": "Active Alerts",
+        "My Alerts": "My Alerts"
+    },
+    "fields": {
+        "name": "Title",
+        "description": "Description",
+        "type": "Type", 
+        "priority": "Priority",
+        "status": "Status",
+        "iconClass": "Icon Class",
+        "color": "Color",
+        "dateStart": "Start Date",
+        "dateEnd": "End Date", 
+        "url": "URL",
+        "isClosable": "Closable",
+        "isGlobal": "Global",
+        "showInDashboard": "Show in Dashboard",
+        "showAsPopup": "Show as Popup",
+        "autoCloseAfter": "Auto Close After (seconds)",
+        "assignedUser": "Assigned User",
+        "users": "Users",
+        "teams": "Teams"
+    },
+    "options": {
+        "type": {
+            "Info": "Info",
+            "Warning": "Warning",
+            "Success": "Success", 
+            "Danger": "Danger",
+            "Primary": "Primary"
+        },
+        "priority": {
+            "Low": "Low",
+            "Normal": "Normal",
+            "High": "High",
+            "Urgent": "Urgent"
+        },
+        "status": {
+            "Draft": "Draft",
+            "Active": "Active",
+            "Resolved": "Resolved",
+            "Archived": "Archived"
+        }
+    },
+    "tooltips": {
+        "isGlobal": "If checked, this alert will be shown to all users",
+        "isClosable": "Allow users to manually close this alert",
+        "autoCloseAfter": "Automatically close alert after specified seconds (0 = no auto close)",
+        "showAsPopup": "Show alert as popup notification"
+    }
+}

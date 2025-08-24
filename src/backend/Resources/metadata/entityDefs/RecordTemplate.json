@@ -1,0 +1,95 @@
+{
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": true,
+            "maxLength": 150,
+            "index": true
+        },
+        "entityType": {
+            "type": "enum",
+            "required": true,
+            "options": [
+                "Account",
+                "Contact", 
+                "Lead",
+                "Opportunity",
+                "Case",
+                "Task",
+                "Call",
+                "Meeting",
+                "Email"
+            ],
+            "index": true
+        },
+        "description": {
+            "type": "text"
+        },
+        "data": {
+            "type": "jsonObject",
+            "required": true
+        },
+        "isActive": {
+            "type": "bool",
+            "default": true
+        },
+        "isGlobal": {
+            "type": "bool",
+            "default": false,
+            "tooltip": "Available to all users"
+        },
+        "createdAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "modifiedAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "createdBy": {
+            "type": "link",
+            "readOnly": true
+        },
+        "modifiedBy": {
+            "type": "link", 
+            "readOnly": true
+        },
+        "assignedUser": {
+            "type": "link"
+        },
+        "teams": {
+            "type": "linkMultiple"
+        }
+    },
+    "links": {
+        "createdBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "modifiedBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "assignedUser": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "teams": {
+            "type": "hasMany",
+            "entity": "Team",
+            "relationName": "EntityTeam"
+        }
+    },
+    "collection": {
+        "orderBy": "name",
+        "order": "asc"
+    },
+    "indexes": {
+        "entityType": {
+            "columns": ["entityType"]
+        },
+        "entityTypeActive": {
+            "columns": ["entityType", "isActive"]
+        }
+    }
+}

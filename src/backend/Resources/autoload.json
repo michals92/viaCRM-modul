@@ -1,0 +1,5 @@
+{
+    "psr-4": {
+        "Espo\\Modules\\ViaCrm\\": "src/files/application/Espo/Modules/ViaCrm/"
+    }
+}

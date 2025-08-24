@@ -1,0 +1,27 @@
+[
+    {
+        "name": "name",
+        "link": true
+    },
+    {
+        "name": "type"
+    },
+    {
+        "name": "priority"
+    },
+    {
+        "name": "status"
+    },
+    {
+        "name": "isGlobal"
+    },
+    {
+        "name": "assignedUser"
+    },
+    {
+        "name": "dateStart"
+    },
+    {
+        "name": "dateEnd"
+    }
+]

@@ -1,0 +1,48 @@
+/**
+ * VIA CRM Module - Main styles
+ */
+
+@import url('./extensions.css');
+@import url('./layout-manager.css');
+@import url('./related-panels.css');
+
+.viacrm-module {
+    /* Base styles for VIA CRM module */
+}
+
+/* Global VIA CRM styles */
+body.viacrm-loaded {
+    /* Applied when VIA CRM is fully loaded */
+}
+
+/* VIA CRM branding */
+.viacrm-brand {
+    color: #2c5aa0;
+    font-weight: 600;
+}
+
+/* Footer customization - Hide default EspoCRM footer and replace with viaCRM */
+footer p.credit.small {
+    display: none !important;
+}
+
+footer::after {
+    content: "viaCRM";
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: #999;
+    padding: 10px;
+}
+
+/* Alternative approach - target the link directly */
+footer a[title*="EspoCRM"] {
+    visibility: hidden;
+    font-size: 0;
+}
+
+footer a[title*="EspoCRM"]::after {
+    content: "viaCRM";
+    visibility: visible;
+    font-size: 11px;
+}

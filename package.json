@@ -1,0 +1,65 @@
+{
+  "name": "viacrm",
+  "version": "2.3.3",
+  "description": "VIA CRM module for EspoCRM",
+  "author": "VIA Development Team",
+  "scripts": {
+    "init": "node tasks/init",
+    "build": "npm run clean-build && node tasks/build",
+    "watch": "npm run clean-build && node tasks/watch",
+    "deploy": "npm update && npm run clean-build && node tasks/deploy",
+    "clean-build": "npx del-cli build",
+    "clean-dist": "npx del-cli dist",
+    "clean": "npm run clean-build && npm run clean-dist",
+    "prepare": "echo viaCRM ready",
+    "lint:css": "stylelint \"src/client/css/**/*.css\"",
+    "lint:css:fix": "stylelint \"src/client/css/**/*.css\" --fix",
+    "lint:js": "eslint \"src/**/*.js\"",
+    "lint:js:fix": "eslint \"src/**/*.js\" --fix",
+    "lint": "npm run lint:css && npm run lint:js",
+    "lint:fix": "npm run lint:css:fix && npm run lint:js:fix"
+  },
+  "type": "module",
+  "keywords": [
+    "crm",
+    "espocrm",
+    "module",
+    "viacrm"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "devDependencies": {
+    "@clack/prompts": "^0.7.0",
+    "@types/fs-extra": "^11.0.2",
+    "@types/node": "^20.8.6",
+    "chokidar": "^3.5.3",
+    "cpy": "^10.1.0",
+    "del": "^7.1.0",
+    "del-cli": "^6.0.0",
+    "adm-zip": "^0.5.10",
+    "dotenv": "^16.3.1",
+    "esbuild": "^0.19.4",
+    "eslint": "^9.17.0",
+    "fs-extra": "^11.1.1",
+    "globby": "^14.0.0",
+    "luxon": "^3.4.3",
+    "make-dir": "^4.0.0",
+    "pkg-dir": "^7.0.0",
+    "postcss": "^8.4.31",
+    "postcss-import": "^16.1.0",
+    "prettier": "3.0.3",
+    "slash": "^5.1.0",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard": "^38.0.0",
+    "typescript": "^5.7.2"
+  },
+  "espocrm": {
+    "extensionName": "ViaCrm",
+    "phpVersion": "8.0",
+    "espocrmVersion": "8.0.0",
+    "isCustom": false
+  }
+}

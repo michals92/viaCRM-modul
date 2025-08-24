@@ -1,0 +1,24 @@
+{
+    "controller": "controllers/record",
+    "iconClass": "fas fa-clipboard-list",
+    "color": "#3498db",
+    "searchPanelDisabled": false,
+    "views": {
+        "list": "views/list",
+        "detail": "views/detail"
+    },
+    "menu": {
+        "list": {
+            "buttons": [
+                {
+                    "label": "Create Template",
+                    "action": "quickCreate",
+                    "style": "primary",
+                    "acl": "create",
+                    "iconClass": "fas fa-plus"
+                }
+            ]
+        }
+    },
+    "checkForDuplicatesInCreate": true
+}

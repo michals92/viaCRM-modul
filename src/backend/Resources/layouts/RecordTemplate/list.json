@@ -1,0 +1,24 @@
+[
+    {
+        "name": "name",
+        "link": true
+    },
+    {
+        "name": "entityType"
+    },
+    {
+        "name": "isActive"
+    },
+    {
+        "name": "isGlobal"
+    },
+    {
+        "name": "assignedUser"
+    },
+    {
+        "name": "createdAt"
+    },
+    {
+        "name": "modifiedAt"
+    }
+]

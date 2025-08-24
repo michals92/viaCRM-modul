@@ -1,0 +1,48 @@
+[
+    {
+        "label": "Template Details",
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "entityType"
+                }
+            ],
+            [
+                {
+                    "name": "isActive"
+                },
+                {
+                    "name": "isGlobal"
+                }
+            ],
+            [
+                {
+                    "name": "description",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
+                    "name": "assignedUser"
+                },
+                {
+                    "name": "teams"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Template Data",
+        "rows": [
+            [
+                {
+                    "name": "data",
+                    "fullWidth": true
+                }
+            ]
+        ]
+    }
+]

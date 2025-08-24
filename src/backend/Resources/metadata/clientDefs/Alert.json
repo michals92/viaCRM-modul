@@ -1,0 +1,33 @@
+{
+    "controller": "controllers/record",
+    "iconClass": "fas fa-exclamation-triangle",
+    "color": "#e74c3c",
+    "views": {
+        "list": "views/list",
+        "detail": "views/detail"
+    },
+    "menu": {
+        "list": {
+            "buttons": [
+                {
+                    "label": "Create Alert",
+                    "action": "quickCreate", 
+                    "style": "primary",
+                    "acl": "create",
+                    "iconClass": "fas fa-plus"
+                }
+            ]
+        }
+    },
+    "filterList": [
+        "active",
+        "byPriority",
+        "myAlerts"
+    ],
+    "boolFilterList": [
+        "active",
+        "global", 
+        "closable"
+    ],
+    "checkForDuplicatesInCreate": true
+}
