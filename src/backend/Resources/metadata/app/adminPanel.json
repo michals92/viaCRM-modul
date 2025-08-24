@@ -1,19 +1,7 @@
 {
     "system": {
         "itemList": [
-            "__APPEND__",
-            {
-                "url": "#Alert",
-                "label": "Alerts",
-                "description": "Manage system alerts and notifications",
-                "iconClass": "fas fa-exclamation-triangle"
-            },
-            {
-                "url": "#RecordTemplate", 
-                "label": "Record Templates",
-                "description": "Manage record templates for quick creation",
-                "iconClass": "fas fa-clipboard-list"
-            }
+            "__APPEND__"
         ]
     }
 }

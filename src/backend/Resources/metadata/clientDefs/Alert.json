@@ -1,9 +1,0 @@
-{
-    "controller": "controllers/record",
-    "iconClass": "fas fa-exclamation-triangle",
-    "color": "#e74c3c",
-    "views": {
-        "list": "viacrm:views/alert/list",
-        "detail": "viacrm:views/alert/detail"
-    }
-}

@@ -1,10 +1,1 @@
-[
-    {
-        "method": "POST",
-        "route": "/ViaCrm/Alert/createSample",
-        "params": {
-            "controller": "Alert",
-            "action": "createSample"
-        }
-    }
-]
+[]

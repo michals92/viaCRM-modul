@@ -1,9 +1,0 @@
-{
-    "controller": "controllers/record",
-    "iconClass": "fas fa-clipboard-list",
-    "color": "#3498db",
-    "views": {
-        "list": "viacrm:views/record-template/list",
-        "detail": "viacrm:views/record-template/detail"
-    }
-}

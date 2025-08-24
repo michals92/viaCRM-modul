@@ -1,6 +1,6 @@
 {
   "name": "viacrm",
-  "version": "2.3.7",
+  "version": "2.4.0",
   "description": "VIA CRM module for EspoCRM",
   "author": "VIA Development Team",
   "scripts": {

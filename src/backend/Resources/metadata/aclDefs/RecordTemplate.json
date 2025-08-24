@@ -1,9 +1,0 @@
-{
-    "mandatory": {
-        "read": "yes", 
-        "stream": "yes",
-        "edit": "yes",
-        "delete": "yes",
-        "create": "yes"
-    }
-}
