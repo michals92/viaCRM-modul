@@ -1,1 +1,34 @@
-[]
+[
+    {
+        "route": "/EasyEmailEditor/action/saveTemplate",
+        "method": "POST",
+        "params": {
+            "controller": "EasyEmailEditor",
+            "action": "saveTemplate"
+        }
+    },
+    {
+        "route": "/EasyEmailEditor/action/saveEmail",
+        "method": "POST",
+        "params": {
+            "controller": "EasyEmailEditor",
+            "action": "saveEmail"
+        }
+    },
+    {
+        "route": "/EasyEmailEditor/:id",
+        "method": "GET",
+        "params": {
+            "controller": "EasyEmailEditor",
+            "action": "loadTemplate"
+        }
+    },
+    {
+        "route": "/EasyEmailEditor/action/uploadImage",
+        "method": "POST",
+        "params": {
+            "controller": "EasyEmailEditor",
+            "action": "uploadImage"
+        }
+    }
+]

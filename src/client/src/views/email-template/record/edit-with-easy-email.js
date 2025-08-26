@@ -49,57 +49,49 @@ define(['views/record/edit'], function (RecordEditView) {
 
         actionOpenEasyEmailEditor() {
             const templateId = this.model.id || 'new';
-            const url = `${this.getConfig().get('siteUrl')}/?entryPoint=EasyEmailEditor&templateId=${templateId}&entityType=EmailTemplate&mode=edit`;
+            const authToken = this.getUser().get('token') || '';
+            const editorUrl = `${this.getConfig().get('siteUrl')}/?entryPoint=EasyEmailEditor&templateId=${encodeURIComponent(templateId)}&authToken=${encodeURIComponent(authToken)}&timestamp=${Date.now()}`;
             
-            // Create modal with iframe
-            this.createView('easyEmailModal', 'views/modal', {
-                templateContent: `
-                    <div class="easy-email-container" style="padding: 0; height: 80vh;">
-                        <iframe src="${url}" 
-                                style="width: 100%; height: 100%; border: none;" 
-                                id="easyEmailFrame"></iframe>
-                    </div>
-                `,
-                backdrop: true,
-                className: 'dialog dialog-record easy-email-modal',
-                header: 'Easy Email Editor',
-                style: 'width: 95%; max-width: 1400px;',
-                buttonList: [
-                    {
-                        name: 'close',
-                        label: 'Close'
+            console.log('🚀 Opening Legendary Email Editor in new window:', editorUrl);
+            
+            // Open editor in new window/tab for full-screen experience
+            const editorWindow = window.open(
+                editorUrl, 
+                'legendary-email-editor', 
+                'width=' + screen.width + ',height=' + screen.height + ',scrollbars=yes,resizable=yes,toolbar=no,location=no,directories=no,status=no,menubar=no'
+            );
+            
+            if (editorWindow) {
+                editorWindow.focus();
+                
+                // Listen for messages from the editor window
+                const messageHandler = (event) => {
+                    if (event.source !== editorWindow) return;
+                    
+                    switch(event.data.type) {
+                        case 'EASY_EMAIL_SAVE':
+                            this.handleEasyEmailSave(event.data.data);
+                            break;
+                            
+                        case 'EASY_EMAIL_CLOSE':
+                            editorWindow.close();
+                            break;
                     }
-                ]
-            }, (view) => {
-                view.render(() => {
-                    // Listen for messages from iframe
-                    const messageHandler = (event) => {
-                        console.log('Received message from Easy Email Editor:', event.data);
-                        
-                        switch(event.data.type) {
-                            case 'EASY_EMAIL_SAVE':
-                                this.handleEasyEmailSave(event.data.data);
-                                break;
-                                
-                            case 'EASY_EMAIL_CLOSE':
-                                view.close();
-                                break;
-                                
-                            case 'EASY_EMAIL_READY':
-                                console.log('Easy Email Editor is ready');
-                                Espo.Ui.success('Easy Email Editor loaded successfully');
-                                break;
-                        }
-                    };
-                    
-                    window.addEventListener('message', messageHandler);
-                    
-                    // Clean up listener when modal is closed
-                    view.on('remove', () => {
+                };
+                
+                window.addEventListener('message', messageHandler);
+                
+                // Clean up listener when window closes
+                const checkClosed = setInterval(() => {
+                    if (editorWindow.closed) {
                         window.removeEventListener('message', messageHandler);
-                    });
-                });
-            });
+                        clearInterval(checkClosed);
+                    }
+                }, 1000);
+                
+            } else {
+                this.notify('Please allow popups for the legendary email editor', 'warning');
+            }
         }
         
         handleEasyEmailSave(data) {

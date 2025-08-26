@@ -86,6 +86,8 @@ class EasyEmailEditor implements EntryPoint
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             overflow: hidden;
+            margin: 0;
+            padding: 0;
         }
 
         /* Header */
@@ -193,20 +195,20 @@ class EasyEmailEditor implements EntryPoint
             height: calc(100vh - 76px);
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
-            margin: 8px;
-            border-radius: 16px;
+            margin: 0;
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: var(--shadow-lg);
         }
 
         /* Sidebar */
         .mighty-sidebar {
-            width: 300px;
+            width: 420px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-right: 1px solid rgba(255, 255, 255, 0.2);
             overflow-y: auto;
             padding: 24px;
+            min-width: 420px;
         }
 
         .sidebar-section {
@@ -239,20 +241,25 @@ class EasyEmailEditor implements EntryPoint
 
         .component-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
         }
 
         .mighty-component {
             background: rgba(255, 255, 255, 0.8);
             border: 2px solid transparent;
             border-radius: 12px;
-            padding: 16px;
+            padding: 20px;
             cursor: pointer;
             text-align: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .mighty-component::before {
@@ -278,19 +285,20 @@ class EasyEmailEditor implements EntryPoint
         }
 
         .component-icon {
-            font-size: 24px;
+            font-size: 32px;
             color: var(--primary);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             position: relative;
             z-index: 1;
         }
 
         .component-label {
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
             color: var(--text);
             position: relative;
             z-index: 1;
+            line-height: 1.3;
         }
 
         /* Canvas */
@@ -341,10 +349,13 @@ class EasyEmailEditor implements EntryPoint
         .canvas-workspace {
             flex: 1;
             overflow-y: auto;
+            overflow-x: hidden;
             padding: 32px;
             display: flex;
             justify-content: center;
             background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            height: calc(100vh - 152px);
+            max-height: calc(100vh - 152px);
         }
 
         .email-artboard {
@@ -353,10 +364,11 @@ class EasyEmailEditor implements EntryPoint
             background: white;
             border-radius: 16px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            overflow: hidden;
+            overflow: visible;
             min-height: 800px;
             margin-bottom: 40px;
             position: relative;
+            flex-shrink: 0;
         }
 
         .email-subject {
@@ -381,6 +393,7 @@ class EasyEmailEditor implements EntryPoint
             padding: 32px;
             min-height: 600px;
             position: relative;
+            overflow: visible;
         }
 
         /* Email Components */
@@ -450,13 +463,14 @@ class EasyEmailEditor implements EntryPoint
 
         /* Properties Panel */
         .legendary-properties {
-            width: 360px;
+            width: 480px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-left: 1px solid rgba(255, 255, 255, 0.2);
             padding: 24px;
             overflow-y: auto;
             display: none;
+            min-width: 480px;
         }
 
         .legendary-properties.active {
@@ -645,18 +659,91 @@ class EasyEmailEditor implements EntryPoint
             background: rgba(102, 126, 234, 0.5);
         }
 
-        /* Mobile Responsive */
+        /* Mobile Responsive & Modal Optimization */
+        @media (max-width: 1600px) {
+            .mighty-sidebar {
+                width: 380px;
+            }
+            
+            .legendary-properties {
+                width: 420px;
+            }
+            
+            .component-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+        
+        @media (max-width: 1200px) {
+            .mighty-sidebar {
+                width: 320px;
+            }
+            
+            .legendary-properties {
+                width: 360px;
+            }
+            
+            .component-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .legendary-container {
                 flex-direction: column;
                 margin: 4px;
+                height: auto;
+                min-height: calc(100vh - 76px);
             }
             
             .mighty-sidebar,
             .legendary-properties {
                 width: 100%;
                 height: auto;
-                max-height: 200px;
+                max-height: 250px;
+                order: 2;
+            }
+            
+            .powerful-canvas {
+                order: 1;
+                min-height: 60vh;
+            }
+            
+            .canvas-workspace {
+                padding: 16px;
+            }
+            
+            .email-artboard {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .header-actions {
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+            
+            .legendary-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+        
+        /* Extra wide screen optimization */
+        @media (min-width: 1800px) {
+            .mighty-sidebar {
+                width: 500px;
+            }
+            
+            .legendary-properties {
+                width: 550px;
+            }
+            
+            .component-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
             }
         }';
     }
@@ -677,6 +764,9 @@ class EasyEmailEditor implements EntryPoint
                 </div>
             </div>
             <div class="header-actions">
+                <button class="legendary-btn btn-secondary" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
                 <button class="legendary-btn btn-secondary" onclick="insertVariable()">
                     <i class="fas fa-code"></i> Variables
                 </button>
@@ -773,16 +863,20 @@ class EasyEmailEditor implements EntryPoint
                     </div>
                 </div>
 
-                <div class="sidebar-section" style="background: rgba(102, 126, 234, 0.1); padding: 16px; border-radius: 12px;">
+                <div class="sidebar-section" style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 12px;">
                     <div class="section-title">
                         <div class="section-icon"><i class="fas fa-code"></i></div>
                         Quick Variables
                     </div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
                         <span class="variable-tag" onclick="insertQuickVariable(\'{{name}}\')">{{name}}</span>
                         <span class="variable-tag" onclick="insertQuickVariable(\'{{email}}\')">{{email}}</span>
                         <span class="variable-tag" onclick="insertQuickVariable(\'{{company}}\')">{{company}}</span>
                         <span class="variable-tag" onclick="insertQuickVariable(\'{{date}}\')">{{date}}</span>
+                        <span class="variable-tag" onclick="insertQuickVariable(\'{{firstName}}\')">{{firstName}}</span>
+                        <span class="variable-tag" onclick="insertQuickVariable(\'{{lastName}}\')">{{lastName}}</span>
+                        <span class="variable-tag" onclick="insertQuickVariable(\'{{phone}}\')">{{phone}}</span>
+                        <span class="variable-tag" onclick="insertQuickVariable(\'{{website}}\')">{{website}}</span>
                     </div>
                 </div>
             </div>
@@ -806,6 +900,9 @@ class EasyEmailEditor implements EntryPoint
                     </button>
                     <button class="legendary-btn btn-secondary" onclick="clearAll()">
                         <i class="fas fa-trash"></i> Clear All
+                    </button>
+                    <button class="legendary-btn btn-secondary" onclick="toggleProperties()">
+                        <i class="fas fa-cog"></i> Properties
                     </button>
                 </div>
 
@@ -842,16 +939,20 @@ class EasyEmailEditor implements EntryPoint
 
         <style>
         .variable-tag {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: rgba(255, 255, 255, 0.8);
             border: 1px solid rgba(102, 126, 234, 0.3);
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
             color: var(--primary);
+            min-height: 40px;
+            text-align: center;
         }
 
         .variable-tag:hover {
@@ -943,9 +1044,22 @@ class EasyEmailEditor implements EntryPoint
             emailCanvas.appendChild(component);
             selectComponent(componentId);
             saveHistory();
+            updateArtboardHeight();
             
             // Show success notification
             showNotification("Component added successfully! ✨", "success");
+        }
+        
+        function updateArtboardHeight() {
+            const emailCanvas = document.getElementById("email-canvas");
+            const emailArtboard = document.getElementById("email-artboard");
+            
+            // Calculate the actual content height
+            const contentHeight = emailCanvas.scrollHeight + 100; // Add some padding
+            const minHeight = 800; // Minimum height
+            
+            const newHeight = Math.max(contentHeight, minHeight);
+            emailArtboard.style.minHeight = newHeight + "px";
         }
 
         function generateComponentContent(type, componentId) {
@@ -1382,6 +1496,7 @@ class EasyEmailEditor implements EntryPoint
                     component.remove();
                     checkEmptyState();
                     saveHistory();
+                    updateArtboardHeight();
                     showNotification("Component deleted", "info");
                 }, 200);
             }
@@ -1419,6 +1534,7 @@ class EasyEmailEditor implements EntryPoint
                 component.parentNode.insertBefore(newComponent, component.nextSibling);
                 selectComponent(newId);
                 saveHistory();
+                updateArtboardHeight();
                 showNotification("Component duplicated! ✨", "success");
             }
         }
@@ -1443,6 +1559,7 @@ class EasyEmailEditor implements EntryPoint
                 const emailCanvas = document.getElementById("email-canvas");
                 emailCanvas.innerHTML = emailHistory[historyIndex];
                 checkEmptyState();
+                updateArtboardHeight();
                 showNotification("Undo successful", "info");
             }
         }
@@ -1453,6 +1570,7 @@ class EasyEmailEditor implements EntryPoint
                 const emailCanvas = document.getElementById("email-canvas");
                 emailCanvas.innerHTML = emailHistory[historyIndex];
                 checkEmptyState();
+                updateArtboardHeight();
                 showNotification("Redo successful", "info");
             }
         }
@@ -1579,30 +1697,66 @@ class EasyEmailEditor implements EntryPoint
             });
             
             const saveData = {
-                type: "EASY_EMAIL_SAVE",
-                data: {
-                    html: tempCanvas.innerHTML,
-                    subject: emailSubject.value,
-                    mjml: JSON.stringify({
-                        type: "legendary_editor",
-                        version: "2.0",
-                        components: Array.from(emailCanvas.querySelectorAll(".email-component")).map(c => ({
-                            type: c.getAttribute("data-type"),
-                            id: c.getAttribute("data-id"),
-                            content: c.innerHTML
-                        }))
-                    })
-                }
+                templateId: "' . htmlspecialchars($templateId) . '",
+                html: tempCanvas.innerHTML,
+                subject: emailSubject.value,
+                mjml: JSON.stringify({
+                    type: "legendary_editor",
+                    version: "2.0",
+                    components: Array.from(emailCanvas.querySelectorAll(".email-component")).map(c => ({
+                        type: c.getAttribute("data-type"),
+                        id: c.getAttribute("data-id"),
+                        content: c.innerHTML
+                    }))
+                })
             };
             
-            // Send to parent
-            if (window.parent !== window) {
-                window.parent.postMessage(saveData, "*");
-                showNotification("Email saved successfully! 🎉", "success");
-            } else {
-                console.log("Save data:", saveData);
-                showNotification("Save simulation complete! 💾", "success");
+            showNotification("Saving template... 💾", "info");
+            
+            // Get auth token from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const authToken = urlParams.get("authToken");
+            
+            // Save directly to backend with proper authentication
+            const headers = {
+                "Content-Type": "application/json",
+                "X-Requested-With": "XMLHttpRequest"
+            };
+            
+            if (authToken) {
+                headers["Authorization"] = "Bearer " + authToken;
             }
+            
+            fetch(window.location.origin + "/api/v1/EasyEmailEditor/action/saveTemplate", {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(saveData),
+                credentials: "include"
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification("Template saved successfully! 🎉", "success");
+                    
+                    // Send message to parent window if it exists
+                    if (window.opener) {
+                        window.opener.postMessage({
+                            type: "EASY_EMAIL_SAVE",
+                            data: {
+                                html: tempCanvas.innerHTML,
+                                subject: emailSubject.value,
+                                mjml: saveData.mjml
+                            }
+                        }, "*");
+                    }
+                } else {
+                    throw new Error(data.message || "Save failed");
+                }
+            })
+            .catch(error => {
+                console.error("Save error:", error);
+                showNotification("Failed to save template: " + error.message, "error");
+            });
         }
 
         function closeEditor() {
@@ -1611,6 +1765,21 @@ class EasyEmailEditor implements EntryPoint
                     window.parent.postMessage({ type: "EASY_EMAIL_CLOSE" }, "*");
                 } else {
                     window.close();
+                }
+            }
+        }
+        
+        function goBack() {
+            if (confirm("Are you sure you want to go back? Any unsaved changes will be lost.")) {
+                if (window.parent !== window) {
+                    window.parent.postMessage({ type: "EASY_EMAIL_CLOSE" }, "*");
+                } else {
+                    // Try to go back in history, or close if that fails
+                    if (window.history.length > 1) {
+                        window.history.back();
+                    } else {
+                        window.close();
+                    }
                 }
             }
         }
@@ -1805,6 +1974,31 @@ class EasyEmailEditor implements EntryPoint
                     imageContainer.innerHTML = `<img src="${imageUrl}" alt="Email Image" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">`;
                     saveHistory();
                     showNotification("Image added! 🖼️", "success");
+                }
+            }
+        }
+        
+        function toggleProperties() {
+            const panel = document.getElementById("properties-panel");
+            const button = event.target.closest(".legendary-btn");
+            
+            if (panel.classList.contains("active")) {
+                panel.classList.remove("active");
+                button.innerHTML = \'<i class="fas fa-cog"></i> Properties\';
+                showNotification("Properties panel hidden", "info");
+            } else {
+                panel.classList.add("active");
+                button.innerHTML = \'<i class="fas fa-times"></i> Hide\';
+                showNotification("Properties panel shown", "info");
+                
+                // If no component is selected, show helper
+                if (!selectedComponent) {
+                    document.getElementById("properties-content").innerHTML = `
+                        <div style="text-align: center; padding: 40px 20px; color: #6b7280;">
+                            <i class="fas fa-mouse-pointer" style="font-size: 48px; margin-bottom: 16px; opacity: 0.3;"></i>
+                            <p>Select a component to edit its properties</p>
+                        </div>
+                    `;
                 }
             }
         }';

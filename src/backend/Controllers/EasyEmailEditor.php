@@ -12,42 +12,46 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
 {
     public function postActionSaveTemplate(Request $request, Response $response): bool
     {
-        if (!$this->getUser()->isAdmin()) {
-            throw new Forbidden();
-        }
-
         $data = $request->getParsedBody();
-        
-        if (empty($data->templateId)) {
-            throw new BadRequest('Template ID is required');
-        }
-
         $entityManager = $this->getEntityManager();
-        $template = $entityManager->getEntity('EmailTemplate', $data->templateId);
         
-        if (!$template) {
-            throw new NotFound();
-        }
+        // Create new template if templateId is null or 'new'
+        if (empty($data->templateId) || $data->templateId === 'new') {
+            $template = $entityManager->createEntity('EmailTemplate', [
+                'name' => $data->subject ?? 'New Email Template',
+                'subject' => $data->subject ?? '',
+                'body' => $data->html ?? '',
+                'bodyMjml' => $data->mjml ?? '',
+                'useEasyEmailEditor' => true
+            ]);
+        } else {
+            // Update existing template
+            $template = $entityManager->getEntity('EmailTemplate', $data->templateId);
+            
+            if (!$template) {
+                throw new NotFound('Template not found');
+            }
 
-        // Save MJML data
-        if (isset($data->mjml)) {
-            $template->set('bodyMjml', $data->mjml);
-        }
-        
-        // Save HTML body
-        if (isset($data->html)) {
-            $template->set('body', $data->html);
-        }
-        
-        // Save subject
-        if (isset($data->subject)) {
-            $template->set('subject', $data->subject);
-        }
+            // Save MJML data
+            if (isset($data->mjml)) {
+                $template->set('bodyMjml', $data->mjml);
+            }
+            
+            // Save HTML body
+            if (isset($data->html)) {
+                $template->set('body', $data->html);
+            }
+            
+            // Save subject
+            if (isset($data->subject)) {
+                $template->set('subject', $data->subject);
+            }
 
-        // Mark as using Easy Email Editor
-        $template->set('useEasyEmailEditor', true);
-        
-        $entityManager->saveEntity($template);
+            // Mark as using Easy Email Editor
+            $template->set('useEasyEmailEditor', true);
+            
+            $entityManager->saveEntity($template);
+        }
         
         $response->writeBody(json_encode([
             'success' => true,
