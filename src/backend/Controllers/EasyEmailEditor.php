@@ -10,58 +10,93 @@ use Espo\Core\Exceptions\NotFound;
 
 class EasyEmailEditor extends \Espo\Core\Controllers\Record
 {
-    public function postActionSaveTemplate(Request $request, Response $response): bool
+    public function postActionSaveTemplate(Request $request, Response $response): void
     {
-        $data = $request->getParsedBody();
-        $entityManager = $this->getEntityManager();
-        
-        // Create new template if templateId is null or 'new'
-        if (empty($data->templateId) || $data->templateId === 'new') {
-            $template = $entityManager->createEntity('EmailTemplate', [
-                'name' => $data->subject ?? 'New Email Template',
-                'subject' => $data->subject ?? '',
-                'body' => $data->html ?? '',
-                'bodyMjml' => $data->mjml ?? '',
-                'useEasyEmailEditor' => true
-            ]);
-        } else {
-            // Update existing template
-            $template = $entityManager->getEntity('EmailTemplate', $data->templateId);
+        try {
+            // Set proper response headers
+            $response->setHeader('Content-Type', 'application/json');
+            $response->setHeader('Cache-Control', 'no-cache');
             
-            if (!$template) {
-                throw new NotFound('Template not found');
+            $data = $request->getParsedBody();
+            $entityManager = $this->getEntityManager();
+            
+            // Convert to array if it's an object
+            if (is_object($data)) {
+                $data = (array) $data;
             }
+            
+            error_log('SaveTemplate - Received data: ' . json_encode($data));
+            
+            // Create new template if templateId is null or 'new'
+            if (empty($data['templateId']) || $data['templateId'] === 'new') {
+                $template = $entityManager->createEntity('EmailTemplate', [
+                    'name' => $data['subject'] ?? 'New Email Template',
+                    'subject' => $data['subject'] ?? '',
+                    'body' => $data['html'] ?? '',
+                    'bodyMjml' => $data['mjml'] ?? '',
+                    'useEasyEmailEditor' => true
+                ]);
+                
+                error_log('SaveTemplate - Created new template with ID: ' . $template->getId());
+            } else {
+                // Update existing template
+                $template = $entityManager->getEntity('EmailTemplate', $data['templateId']);
+                
+                if (!$template) {
+                    throw new NotFound('Template not found');
+                }
 
-            // Save MJML data
-            if (isset($data->mjml)) {
-                $template->set('bodyMjml', $data->mjml);
-            }
-            
-            // Save HTML body
-            if (isset($data->html)) {
-                $template->set('body', $data->html);
-            }
-            
-            // Save subject
-            if (isset($data->subject)) {
-                $template->set('subject', $data->subject);
-            }
+                // Save MJML data
+                if (isset($data['mjml'])) {
+                    $template->set('bodyMjml', $data['mjml']);
+                }
+                
+                // Save HTML body
+                if (isset($data['html'])) {
+                    $template->set('body', $data['html']);
+                }
+                
+                // Save subject
+                if (isset($data['subject'])) {
+                    $template->set('subject', $data['subject']);
+                }
 
-            // Mark as using Easy Email Editor
-            $template->set('useEasyEmailEditor', true);
+                // Mark as using Easy Email Editor
+                $template->set('useEasyEmailEditor', true);
+                
+                $entityManager->saveEntity($template);
+                
+                error_log('SaveTemplate - Updated existing template with ID: ' . $template->getId());
+            }
             
-            $entityManager->saveEntity($template);
+            $responseData = [
+                'success' => true,
+                'id' => $template->getId(),
+                'message' => 'Template saved successfully'
+            ];
+            
+            error_log('SaveTemplate - Sending response: ' . json_encode($responseData));
+            
+            $response->writeBody(json_encode($responseData));
+            
+        } catch (\Exception $e) {
+            error_log('SaveTemplate - Error: ' . $e->getMessage());
+            error_log('SaveTemplate - Stack trace: ' . $e->getTraceAsString());
+            
+            $response->setHeader('Content-Type', 'application/json');
+            $response->setStatus(500);
+            
+            $errorData = [
+                'success' => false,
+                'message' => $e->getMessage(),
+                'error' => 'Save failed'
+            ];
+            
+            $response->writeBody(json_encode($errorData));
         }
-        
-        $response->writeBody(json_encode([
-            'success' => true,
-            'id' => $template->getId()
-        ]));
-        
-        return true;
     }
 
-    public function postActionSaveEmail(Request $request, Response $response): bool
+    public function postActionSaveEmail(Request $request, Response $response): void
     {
         $data = $request->getParsedBody();
         
@@ -100,11 +135,9 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
             'success' => true,
             'id' => $email->getId()
         ]));
-        
-        return true;
     }
 
-    public function getActionLoadTemplate(Request $request, Response $response): bool
+    public function getActionLoadTemplate(Request $request, Response $response): void
     {
         $templateId = $request->getRouteParam('id');
         
@@ -129,11 +162,9 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
         ];
         
         $response->writeBody(json_encode($responseData));
-        
-        return true;
     }
 
-    public function postActionUploadImage(Request $request, Response $response): bool
+    public function postActionUploadImage(Request $request, Response $response): void
     {
         $attachment = $request->getBodyContents();
         
@@ -158,7 +189,5 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
             'url' => $url,
             'name' => $attachmentEntity->get('name')
         ]));
-        
-        return true;
     }
 }

@@ -1733,8 +1733,30 @@ class EasyEmailEditor implements EntryPoint
                 body: JSON.stringify(saveData),
                 credentials: "include"
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log("Save response status:", response.status);
+                
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        console.error("Non-OK response:", text);
+                        throw new Error(`HTTP ${response.status}: ${text}`);
+                    });
+                }
+                
+                return response.text().then(text => {
+                    console.log("Raw response text:", text);
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        console.error("JSON parse error:", e);
+                        console.error("Response text that failed to parse:", text);
+                        throw new Error("Invalid JSON response: " + text.substring(0, 100));
+                    }
+                });
+            })
             .then(data => {
+                console.log("Parsed response data:", data);
+                
                 if (data.success) {
                     showNotification("Template saved successfully! 🎉", "success");
                     
@@ -1745,7 +1767,8 @@ class EasyEmailEditor implements EntryPoint
                             data: {
                                 html: tempCanvas.innerHTML,
                                 subject: emailSubject.value,
-                                mjml: saveData.mjml
+                                mjml: saveData.mjml,
+                                templateId: data.id || saveData.templateId
                             }
                         }, "*");
                     }
