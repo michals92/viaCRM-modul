@@ -6,6 +6,9 @@ vendor/
 build/
 dist/
 
+# Claude Code
+.claude/
+
 # Environment
 .env
 
