@@ -1,0 +1,97 @@
+{
+    "fields": {
+        "name": "Název",
+        "type": "Typ absence",
+        "status": "Stav",
+        "startDate": "Datum začátku",
+        "endDate": "Datum konce",
+        "days": "Počet dnů",
+        "reason": "Důvod",
+        "approverComment": "Komentář schvalovatele",
+        "requestedBy": "Žadatel",
+        "approvedBy": "Schválil",
+        "approvedAt": "Datum schválení",
+        "hrRecord": "HR záznam",
+        "attachments": "Přílohy",
+        "priority": "Priorita",
+        "substitute": "Zastupující osoba",
+        "substituteInstructions": "Instrukce pro zastupování",
+        "createdAt": "Vytvořeno",
+        "modifiedAt": "Upraveno",
+        "createdBy": "Vytvořil",
+        "modifiedBy": "Upravil",
+        "assignedUser": "Přiřazený uživatel",
+        "teams": "Týmy"
+    },
+    "links": {
+        "requestedBy": "Žadatel",
+        "approvedBy": "Schválil",
+        "hrRecord": "HR záznam",
+        "substitute": "Zastupující osoba",
+        "assignedUser": "Přiřazený uživatel",
+        "teams": "Týmy",
+        "createdBy": "Vytvořil",
+        "modifiedBy": "Upravil"
+    },
+    "labels": {
+        "Create Absence": "Vytvořit žádost o dovolenou",
+        "My Requests": "Mé žádosti",
+        "Pending Approvals": "Čekající schválení",
+        "Calendar View": "Kalendářní pohled",
+        "Approve": "Schválit",
+        "Reject": "Zamítnout",
+        "Cancel": "Zrušit",
+        "Approval": "Schválení",
+        "Substitute Information": "Informace o zastupování",
+        "Calculate Days": "Spočítat dny"
+    },
+    "options": {
+        "type": {
+            "vacation": "Dovolená",
+            "sick_leave": "Nemocenská",
+            "personal_leave": "Osobní volno",
+            "maternity_leave": "Mateřská/rodičovská",
+            "unpaid_leave": "Neplacené volno"
+        },
+        "status": {
+            "pending": "Čeká na schválení",
+            "approved": "Schváleno",
+            "rejected": "Zamítnuto",
+            "cancelled": "Zrušeno"
+        },
+        "priority": {
+            "low": "Nízká",
+            "normal": "Normální", 
+            "high": "Vysoká",
+            "urgent": "Urgentní"
+        }
+    },
+    "presetFilters": {
+        "pending": "Čeká na schválení",
+        "approved": "Schváleno",
+        "rejected": "Zamítnuto",
+        "cancelled": "Zrušeno"
+    },
+    "messages": {
+        "confirmApprove": "Opravdu chcete schválit tuto žádost?",
+        "confirmReject": "Opravdu chcete zamítnout tuto žádost?",
+        "confirmCancel": "Opravdu chcete zrušit tuto žádost?",
+        "approvedSuccessfully": "Žádost byla úspěšně schválena",
+        "rejectedSuccessfully": "Žádost byla zamítnuta",
+        "cancelledSuccessfully": "Žádost byla zrušena",
+        "overlappingDates": "Již máte žádost pro překrývající se termín",
+        "pastDateNotAllowed": "Nelze požádat o dovolenou v minulosti (kromě nemocenské)",
+        "endDateBeforeStart": "Datum konce musí být po datu začátku",
+        "commentRequiredForRejection": "Komentář je povinný při zamítnutí žádosti",
+        "cannotApproveOwnRequest": "Nemůžete schválit vlastní žádost",
+        "onlyPendingCanBeApproved": "Pouze čekající žádosti mohou být schváleny",
+        "onlyOwnRequestsCanBeCancelled": "Můžete zrušit pouze vlastní žádosti"
+    },
+    "tooltips": {
+        "type": "Vyberte typ absence - dovolená, nemocenská, osobní volno atd.",
+        "days": "Automaticky vypočítané pracovní dny (bez víkendů)",
+        "substitute": "Osoba, která vás bude zastupovat během vaší absence",
+        "substituteInstructions": "Detailní instrukce pro zastupující osobu",
+        "attachments": "Přiložte relevantní dokumenty (potvrzení od lékaře, atd.)"
+    }
+}

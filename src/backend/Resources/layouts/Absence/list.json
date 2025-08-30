@@ -1,0 +1,34 @@
+[
+    {
+        "name": "name",
+        "link": true
+    },
+    {
+        "name": "type",
+        "width": 10
+    },
+    {
+        "name": "status",
+        "width": 10
+    },
+    {
+        "name": "startDate",
+        "width": 12
+    },
+    {
+        "name": "endDate", 
+        "width": 12
+    },
+    {
+        "name": "days",
+        "width": 8
+    },
+    {
+        "name": "requestedBy",
+        "width": 15
+    },
+    {
+        "name": "createdAt",
+        "width": 12
+    }
+]

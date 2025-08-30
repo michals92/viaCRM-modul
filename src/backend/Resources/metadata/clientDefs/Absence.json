@@ -1,0 +1,15 @@
+{
+    "controller": "controllers/record",
+    "iconClass": "fas fa-calendar-times",
+    "color": "#FF6B6B",
+    "quickCreate": true,
+    "filterList": [
+        "pending",
+        "approved", 
+        "rejected",
+        "cancelled"
+    ],
+    "defaultFilterData": {
+        "primary": "pending"
+    }
+}

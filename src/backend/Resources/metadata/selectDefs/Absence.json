@@ -1,0 +1,24 @@
+{
+    "primaryFilters": {
+        "pending": {
+            "where": {
+                "status": "pending"
+            }
+        },
+        "approved": {
+            "where": {
+                "status": "approved"
+            }
+        },
+        "rejected": {
+            "where": {
+                "status": "rejected"
+            }
+        },
+        "cancelled": {
+            "where": {
+                "status": "cancelled"
+            }
+        }
+    }
+}

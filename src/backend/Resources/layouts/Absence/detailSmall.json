@@ -1,0 +1,38 @@
+[
+    {
+        "rows": [
+            [
+                {
+                    "name": "name",
+                    "span": 12
+                }
+            ],
+            [
+                {
+                    "name": "type",
+                    "span": 6
+                },
+                {
+                    "name": "status",
+                    "span": 6
+                }
+            ],
+            [
+                {
+                    "name": "startDate",
+                    "span": 6
+                },
+                {
+                    "name": "endDate",
+                    "span": 6
+                }
+            ],
+            [
+                {
+                    "name": "requestedBy",
+                    "span": 12
+                }
+            ]
+        ]
+    }
+]

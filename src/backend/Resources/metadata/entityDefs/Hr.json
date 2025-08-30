@@ -70,6 +70,10 @@
         "modifiedBy": {
             "type": "link",
             "readOnly": true
+        },
+        "absences": {
+            "type": "linkMultiple",
+            "entity": "Absence"
         }
     },
     "links": {
@@ -88,6 +92,11 @@
         "modifiedBy": {
             "type": "belongsTo",
             "entity": "User"
+        },
+        "absences": {
+            "type": "hasMany",
+            "entity": "Absence",
+            "foreign": "hrRecord"
         }
     },
     "collection": {

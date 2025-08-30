@@ -1,0 +1,157 @@
+{
+    "table": "absence",
+    "languageCategory": "Absence",
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": true,
+            "maxLength": 255
+        },
+        "type": {
+            "type": "enum",
+            "options": ["vacation", "sick_leave", "personal_leave", "maternity_leave", "unpaid_leave"],
+            "default": "vacation",
+            "required": true
+        },
+        "status": {
+            "type": "enum",
+            "options": ["pending", "approved", "rejected", "cancelled"],
+            "default": "pending",
+            "required": true
+        },
+        "startDate": {
+            "type": "date",
+            "required": true
+        },
+        "endDate": {
+            "type": "date",
+            "required": true
+        },
+        "days": {
+            "type": "int",
+            "min": 1,
+            "readOnly": true
+        },
+        "reason": {
+            "type": "text",
+            "maxLength": 1000
+        },
+        "approverComment": {
+            "type": "text",
+            "maxLength": 1000
+        },
+        "requestedBy": {
+            "type": "link",
+            "entity": "User",
+            "required": true
+        },
+        "approvedBy": {
+            "type": "link",
+            "entity": "User"
+        },
+        "approvedAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "hrRecord": {
+            "type": "link",
+            "entity": "Hr"
+        },
+        "attachments": {
+            "type": "attachmentMultiple"
+        },
+        "priority": {
+            "type": "enum",
+            "options": ["low", "normal", "high", "urgent"],
+            "default": "normal"
+        },
+        "substitute": {
+            "type": "link",
+            "entity": "User"
+        },
+        "substituteInstructions": {
+            "type": "text",
+            "maxLength": 2000
+        },
+        "createdAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "modifiedAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "createdBy": {
+            "type": "link",
+            "entity": "User",
+            "readOnly": true
+        },
+        "modifiedBy": {
+            "type": "link",
+            "entity": "User",
+            "readOnly": true
+        },
+        "assignedUser": {
+            "type": "link",
+            "entity": "User"
+        },
+        "teams": {
+            "type": "linkMultiple",
+            "entity": "Team"
+        }
+    },
+    "links": {
+        "requestedBy": {
+            "type": "belongsTo",
+            "entity": "User",
+            "foreign": "absenceRequests"
+        },
+        "approvedBy": {
+            "type": "belongsTo",
+            "entity": "User",
+            "foreign": "approvedAbsences"
+        },
+        "hrRecord": {
+            "type": "belongsTo",
+            "entity": "Hr",
+            "foreign": "absences"
+        },
+        "substitute": {
+            "type": "belongsTo",
+            "entity": "User",
+            "foreign": "substitutedAbsences"
+        },
+        "assignedUser": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "teams": {
+            "type": "hasMany",
+            "entity": "Team",
+            "foreign": "absences"
+        },
+        "createdBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "modifiedBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        }
+    },
+    "collection": {
+        "sortBy": "createdAt",
+        "asc": false
+    },
+    "indexes": {
+        "requestedBy": {
+            "columns": ["requestedById", "deleted"]
+        },
+        "status": {
+            "columns": ["status", "deleted"]
+        },
+        "startDate": {
+            "columns": ["startDate", "deleted"]
+        }
+    }
+}

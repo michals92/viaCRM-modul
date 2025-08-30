@@ -1,0 +1,60 @@
+[
+    {
+        "rows": [
+            [
+                {
+                    "name": "name",
+                    "span": 12
+                }
+            ],
+            [
+                {
+                    "name": "type",
+                    "span": 6
+                },
+                {
+                    "name": "priority",
+                    "span": 6
+                }
+            ],
+            [
+                {
+                    "name": "startDate",
+                    "span": 6
+                },
+                {
+                    "name": "endDate",
+                    "span": 6
+                }
+            ],
+            [
+                {
+                    "name": "hrRecord",
+                    "span": 6
+                },
+                {
+                    "name": "substitute",
+                    "span": 6
+                }
+            ],
+            [
+                {
+                    "name": "reason",
+                    "span": 12
+                }
+            ],
+            [
+                {
+                    "name": "substituteInstructions",
+                    "span": 12
+                }
+            ],
+            [
+                {
+                    "name": "attachments",
+                    "span": 12
+                }
+            ]
+        ]
+    }
+]

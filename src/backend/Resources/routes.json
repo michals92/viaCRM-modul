@@ -40,6 +40,94 @@
         }
     },
     {
+        "route": "/Absence",
+        "method": "GET",
+        "params": {
+            "controller": "Absence",
+            "action": "list"
+        }
+    },
+    {
+        "route": "/Absence/:id",
+        "method": "GET",
+        "params": {
+            "controller": "Absence",
+            "action": "read"
+        }
+    },
+    {
+        "route": "/Absence",
+        "method": "POST",
+        "params": {
+            "controller": "Absence",
+            "action": "create"
+        }
+    },
+    {
+        "route": "/Absence/:id",
+        "method": "PUT",
+        "params": {
+            "controller": "Absence",
+            "action": "update"
+        }
+    },
+    {
+        "route": "/Absence/:id",
+        "method": "DELETE",
+        "params": {
+            "controller": "Absence",
+            "action": "delete"
+        }
+    },
+    {
+        "route": "/Absence/action/approve",
+        "method": "POST",
+        "params": {
+            "controller": "Absence",
+            "action": "approve"
+        }
+    },
+    {
+        "route": "/Absence/action/reject",
+        "method": "POST",
+        "params": {
+            "controller": "Absence",
+            "action": "reject"
+        }
+    },
+    {
+        "route": "/Absence/action/cancel",
+        "method": "POST",
+        "params": {
+            "controller": "Absence",
+            "action": "cancel"
+        }
+    },
+    {
+        "route": "/Absence/action/myRequests",
+        "method": "GET",
+        "params": {
+            "controller": "Absence",
+            "action": "myRequests"
+        }
+    },
+    {
+        "route": "/Absence/action/pendingApprovals",
+        "method": "GET",
+        "params": {
+            "controller": "Absence",
+            "action": "pendingApprovals"
+        }
+    },
+    {
+        "route": "/Absence/action/calculateDays",
+        "method": "POST",
+        "params": {
+            "controller": "Absence",
+            "action": "calculateDays"
+        }
+    },
+    {
         "route": "/EasyEmailEditor/action/saveTemplate",
         "method": "POST",
         "params": {
