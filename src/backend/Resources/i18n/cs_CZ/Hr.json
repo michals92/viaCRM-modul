@@ -38,6 +38,7 @@
     },
     "labels": {
         "Create Hr": "Nový zaměstnanec",
+        "Create from User": "Vytvořit z uživatele",
         "List View": "Seznam",
         "Detail View": "Detail"
     }

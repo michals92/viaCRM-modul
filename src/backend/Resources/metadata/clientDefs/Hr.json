@@ -1,3 +1,18 @@
 {
-    "controller": "controllers/record"
+    "controller": "controllers/record",
+    "views": {
+        "list": "viacrm:views/hr/list"
+    },
+    "menu": {
+        "list": {
+            "buttons": [
+                {
+                    "label": "Create from User",
+                    "action": "createFromUser",
+                    "style": "default",
+                    "acl": "create"
+                }
+            ]
+        }
+    }
 }
