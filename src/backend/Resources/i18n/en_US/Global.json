@@ -19,7 +19,14 @@
         "hireDate": "Hire Date",
         "salary": "Salary",
         "manager": "Manager",
-        "notes": "Notes"
+        "notes": "Notes",
+        "workingHours": "Working Hours",
+        "workingHoursType": "Working Hours Type",
+        "workingSchedule": "Working Schedule",
+        "fte": "FTE",
+        "workingDays": "Working Days",
+        "partTimeStartDate": "Part-time Start Date",
+        "partTimeEndDate": "Part-time End Date"
     },
     "options": {
         "department": {
@@ -36,6 +43,19 @@
             "Inactive": "Inactive",
             "Terminated": "Terminated",
             "On Leave": "On Leave"
+        },
+        "workingHoursType": {
+            "Full-time": "Full-time",
+            "Part-time": "Part-time"
+        },
+        "workingDays": {
+            "Monday": "Monday",
+            "Tuesday": "Tuesday",
+            "Wednesday": "Wednesday",
+            "Thursday": "Thursday",
+            "Friday": "Friday",
+            "Saturday": "Saturday",
+            "Sunday": "Sunday"
         }
     }
 }

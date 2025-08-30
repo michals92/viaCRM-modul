@@ -17,7 +17,14 @@
         "createdAt": "Vytvořeno",
         "modifiedAt": "Upraveno",
         "createdBy": "Vytvořil",
-        "modifiedBy": "Upravil"
+        "modifiedBy": "Upravil",
+        "workingHours": "Pracovní hodiny",
+        "workingHoursType": "Typ úvazku",
+        "workingSchedule": "Pracovní rozvrh",
+        "fte": "FTE",
+        "workingDays": "Pracovní dny",
+        "partTimeStartDate": "Začátek částečného úvazku",
+        "partTimeEndDate": "Konec částečného úvazku"
     },
     "options": {
         "department": {
@@ -34,6 +41,19 @@
             "Inactive": "Neaktivní",
             "Terminated": "Ukončen",
             "On Leave": "Na dovolené"
+        },
+        "workingHoursType": {
+            "Full-time": "Plný úvazek",
+            "Part-time": "Částečný úvazek"
+        },
+        "workingDays": {
+            "Monday": "Pondělí",
+            "Tuesday": "Úterý",
+            "Wednesday": "Středa",
+            "Thursday": "Čtvrtek",
+            "Friday": "Pátek",
+            "Saturday": "Sobota",
+            "Sunday": "Neděle"
         }
     },
     "labels": {

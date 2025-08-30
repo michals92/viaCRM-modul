@@ -57,6 +57,36 @@
             ],
             [
                 {
+                    "name": "workingHoursType"
+                },
+                {
+                    "name": "workingHours"
+                }
+            ],
+            [
+                {
+                    "name": "fte"
+                },
+                {
+                    "name": "workingDays"
+                }
+            ],
+            [
+                {
+                    "name": "partTimeStartDate"
+                },
+                {
+                    "name": "partTimeEndDate"
+                }
+            ],
+            [
+                {
+                    "name": "workingSchedule",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
                     "name": "notes",
                     "fullWidth": true
                 }

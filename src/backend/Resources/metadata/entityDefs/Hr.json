@@ -74,6 +74,43 @@
         "absences": {
             "type": "linkMultiple",
             "entity": "Absence"
+        },
+        "workingHours": {
+            "type": "float",
+            "min": 0,
+            "max": 40,
+            "default": 40,
+            "tooltip": "Weekly working hours"
+        },
+        "workingHoursType": {
+            "type": "enum",
+            "options": ["Full-time", "Part-time"],
+            "default": "Full-time"
+        },
+        "workingSchedule": {
+            "type": "text",
+            "maxLength": 500,
+            "tooltip": "Detailed working schedule (days, hours)"
+        },
+        "fte": {
+            "type": "float",
+            "min": 0,
+            "max": 1,
+            "decimalPlaces": 2,
+            "tooltip": "Full Time Equivalent (0.5 = 50%, 1.0 = 100%)"
+        },
+        "workingDays": {
+            "type": "multiEnum",
+            "options": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "default": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+        },
+        "partTimeStartDate": {
+            "type": "date",
+            "tooltip": "Start date of part-time arrangement"
+        },
+        "partTimeEndDate": {
+            "type": "date",
+            "tooltip": "End date of part-time arrangement (if temporary)"
         }
     },
     "links": {
@@ -97,6 +134,61 @@
             "type": "hasMany",
             "entity": "Absence",
             "foreign": "hrRecord"
+        }
+    },
+    "dynamicLogic": {
+        "fields": {
+            "partTimeStartDate": {
+                "visible": {
+                    "conditionGroup": [
+                        {
+                            "type": "equals",
+                            "attribute": "workingHoursType",
+                            "value": "Part-time"
+                        }
+                    ]
+                }
+            },
+            "partTimeEndDate": {
+                "visible": {
+                    "conditionGroup": [
+                        {
+                            "type": "equals",
+                            "attribute": "workingHoursType", 
+                            "value": "Part-time"
+                        }
+                    ]
+                }
+            },
+            "workingHours": {
+                "required": {
+                    "conditionGroup": [
+                        {
+                            "type": "equals",
+                            "attribute": "workingHoursType",
+                            "value": "Part-time"
+                        }
+                    ]
+                }
+            }
+        },
+        "options": {
+            "workingHours": {
+                "conditionGroup": [
+                    {
+                        "type": "equals",
+                        "attribute": "workingHoursType",
+                        "value": "Full-time"
+                    }
+                ],
+                "actions": [
+                    {
+                        "type": "setValue",
+                        "attribute": "workingHours",
+                        "value": 40
+                    }
+                ]
+            }
         }
     },
     "collection": {

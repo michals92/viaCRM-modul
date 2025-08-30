@@ -10,6 +10,12 @@
         "name": "department"
     },
     {
+        "name": "workingHoursType"
+    },
+    {
+        "name": "workingHours"
+    },
+    {
         "name": "status"
     },
     {
