@@ -87,6 +87,12 @@
             ],
             [
                 {
+                    "name": "documents",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
                     "name": "notes",
                     "fullWidth": true
                 }

@@ -26,7 +26,8 @@
         "fte": "FTE",
         "workingDays": "Working Days",
         "partTimeStartDate": "Part-time Start Date",
-        "partTimeEndDate": "Part-time End Date"
+        "partTimeEndDate": "Part-time End Date",
+        "documents": "Documents"
     },
     "options": {
         "department": {

@@ -111,6 +111,12 @@
         "partTimeEndDate": {
             "type": "date",
             "tooltip": "End date of part-time arrangement (if temporary)"
+        },
+        "documents": {
+            "type": "attachmentMultiple",
+            "maxFileSize": 20,
+            "accept": [".pdf", ".doc", ".docx", ".xls", ".xlsx", ".png", ".jpg", ".jpeg"],
+            "tooltip": "Employee documents and files"
         }
     },
     "links": {

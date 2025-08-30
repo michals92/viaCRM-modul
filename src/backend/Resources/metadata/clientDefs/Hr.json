@@ -1,7 +1,10 @@
 {
-    "controller": "controllers/record",
+    "controller": "viacrm:controllers/hr",
     "iconClass": "fas fa-users",
     "color": "#3498DB",
+    "views": {
+        "list": "viacrm:views/hr/list"
+    },
     "menu": {
         "list": {
             "buttons": [

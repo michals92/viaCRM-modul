@@ -24,7 +24,8 @@
         "fte": "FTE",
         "workingDays": "Pracovní dny",
         "partTimeStartDate": "Začátek částečného úvazku",
-        "partTimeEndDate": "Konec částečného úvazku"
+        "partTimeEndDate": "Konec částečného úvazku",
+        "documents": "Dokumenty"
     },
     "options": {
         "department": {
