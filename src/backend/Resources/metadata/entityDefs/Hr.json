@@ -1,0 +1,108 @@
+{
+    "table": "hr",
+    "languageCategory": "Hr",
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": true,
+            "maxLength": 255
+        },
+        "firstName": {
+            "type": "varchar",
+            "maxLength": 100,
+            "tooltip": false
+        },
+        "lastName": {
+            "type": "varchar", 
+            "maxLength": 100,
+            "tooltip": false
+        },
+        "email": {
+            "type": "email"
+        },
+        "phone": {
+            "type": "phone"
+        },
+        "position": {
+            "type": "varchar",
+            "maxLength": 150
+        },
+        "department": {
+            "type": "enum",
+            "options": ["HR", "IT", "Finance", "Sales", "Marketing", "Operations", "Management"]
+        },
+        "employeeId": {
+            "type": "varchar",
+            "maxLength": 50
+        },
+        "hireDate": {
+            "type": "date"
+        },
+        "salary": {
+            "type": "currency"
+        },
+        "status": {
+            "type": "enum",
+            "options": ["Active", "Inactive", "Terminated", "On Leave"],
+            "default": "Active"
+        },
+        "manager": {
+            "type": "link"
+        },
+        "notes": {
+            "type": "text"
+        },
+        "assignedUser": {
+            "type": "link"
+        },
+        "createdAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "modifiedAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "createdBy": {
+            "type": "link",
+            "readOnly": true
+        },
+        "modifiedBy": {
+            "type": "link",
+            "readOnly": true
+        }
+    },
+    "links": {
+        "manager": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "assignedUser": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "createdBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "modifiedBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        }
+    },
+    "collection": {
+        "orderBy": "name",
+        "order": "asc"
+    },
+    "indexes": {
+        "name": {
+            "columns": ["name", "deleted"]
+        },
+        "employeeId": {
+            "columns": ["employeeId", "deleted"]
+        },
+        "department": {
+            "columns": ["department", "deleted"]
+        }
+    }
+}

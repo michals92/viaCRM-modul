@@ -55,7 +55,7 @@
                 }
                 
                 // Also watch for dynamic content changes
-                if (typeof MutationObserver !== 'undefined') {
+                if (typeof MutationObserver !== 'undefined' && document.body) {
                     const observer = new MutationObserver(() => {
                         replaceFooter();
                     });

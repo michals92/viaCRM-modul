@@ -1,0 +1,46 @@
+[
+    {
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "status"
+                }
+            ],
+            [
+                {
+                    "name": "firstName"
+                },
+                {
+                    "name": "lastName"
+                }
+            ],
+            [
+                {
+                    "name": "email"
+                },
+                {
+                    "name": "phone"
+                }
+            ],
+            [
+                {
+                    "name": "position"
+                },
+                {
+                    "name": "department"
+                }
+            ],
+            [
+                {
+                    "name": "employeeId"
+                },
+                {
+                    "name": "assignedUser"
+                }
+            ]
+        ]
+    }
+]

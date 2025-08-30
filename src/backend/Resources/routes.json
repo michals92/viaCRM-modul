@@ -1,5 +1,45 @@
 [
     {
+        "route": "/Hr",
+        "method": "GET",
+        "params": {
+            "controller": "Hr",
+            "action": "list"
+        }
+    },
+    {
+        "route": "/Hr/:id",
+        "method": "GET",
+        "params": {
+            "controller": "Hr",
+            "action": "read"
+        }
+    },
+    {
+        "route": "/Hr",
+        "method": "POST",
+        "params": {
+            "controller": "Hr",
+            "action": "create"
+        }
+    },
+    {
+        "route": "/Hr/:id",
+        "method": "PUT",
+        "params": {
+            "controller": "Hr",
+            "action": "update"
+        }
+    },
+    {
+        "route": "/Hr/:id",
+        "method": "DELETE",
+        "params": {
+            "controller": "Hr",
+            "action": "delete"
+        }
+    },
+    {
         "route": "/EasyEmailEditor/action/saveTemplate",
         "method": "POST",
         "params": {

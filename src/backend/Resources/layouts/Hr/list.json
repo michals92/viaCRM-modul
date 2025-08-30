@@ -1,0 +1,21 @@
+[
+    {
+        "name": "name",
+        "link": true
+    },
+    {
+        "name": "position"
+    },
+    {
+        "name": "department"
+    },
+    {
+        "name": "status"
+    },
+    {
+        "name": "assignedUser"
+    },
+    {
+        "name": "createdAt"
+    }
+]

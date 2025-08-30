@@ -1,0 +1,1 @@
+<!-- Czech translations for HR entity -->
