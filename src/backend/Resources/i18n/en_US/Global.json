@@ -57,6 +57,28 @@
             "Friday": "Friday",
             "Saturday": "Saturday",
             "Sunday": "Sunday"
+        },
+        "codeType": {
+            "CODE128": "CODE128",
+            "CODE128A": "CODE128A",
+            "CODE128B": "CODE128B",
+            "CODE128C": "CODE128C",
+            "EAN13": "EAN-13",
+            "EAN8": "EAN-8",
+            "EAN5": "EAN-5",
+            "EAN2": "EAN-2",
+            "UPC": "UPC",
+            "UPCE": "UPC-E",
+            "ITF14": "ITF-14",
+            "ITF": "ITF",
+            "MSI": "MSI",
+            "MSI10": "MSI10",
+            "MSI11": "MSI11",
+            "MSI1010": "MSI1010",
+            "MSI1110": "MSI1110",
+            "pharmacode": "Pharmacode",
+            "codabar": "Codabar",
+            "QRcode": "QR Code"
         }
     }
 }
