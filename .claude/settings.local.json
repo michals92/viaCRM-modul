@@ -12,7 +12,9 @@
       "Bash(zip:*)",
       "Bash(wget:*)",
       "Bash(cp:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(git add:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }
