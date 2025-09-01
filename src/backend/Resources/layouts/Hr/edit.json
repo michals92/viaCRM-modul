@@ -87,6 +87,20 @@
             ],
             [
                 {
+                    "name": "vacationHoursTotal"
+                },
+                {
+                    "name": "vacationHoursUsed"
+                }
+            ],
+            [
+                {
+                    "name": "sickLeaveHours"
+                },
+                false
+            ],
+            [
+                {
                     "name": "documents",
                     "fullWidth": true
                 }

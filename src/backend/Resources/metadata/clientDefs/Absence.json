@@ -11,5 +11,23 @@
     ],
     "defaultFilterData": {
         "primary": "pending"
+    },
+    "dynamicLogic": {
+        "fields": {
+            "hours": {
+                "readOnly": {
+                    "conditionGroup": [
+                        {
+                            "type": "isNotEmpty",
+                            "attribute": "startDate"
+                        },
+                        {
+                            "type": "isNotEmpty",
+                            "attribute": "endDate"
+                        }
+                    ]
+                }
+            }
+        }
     }
 }

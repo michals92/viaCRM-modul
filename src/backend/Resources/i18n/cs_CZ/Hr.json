@@ -25,7 +25,11 @@
         "workingDays": "Pracovní dny",
         "partTimeStartDate": "Začátek částečného úvazku",
         "partTimeEndDate": "Konec částečného úvazku",
-        "documents": "Dokumenty"
+        "documents": "Dokumenty",
+        "vacationHoursTotal": "Celkový počet hodin dovolené",
+        "vacationHoursUsed": "Vyčerpané hodiny dovolené",
+        "vacationHoursRemaining": "Zbývající hodiny dovolené",
+        "sickLeaveHours": "Hodiny nemocenské"
     },
     "options": {
         "department": {

@@ -112,6 +112,30 @@
             "type": "date",
             "tooltip": "End date of part-time arrangement (if temporary)"
         },
+        "vacationHoursTotal": {
+            "type": "float",
+            "min": 0,
+            "default": 160,
+            "tooltip": "Celkový počet hodin dovolené na rok"
+        },
+        "vacationHoursUsed": {
+            "type": "float",
+            "min": 0,
+            "default": 0,
+            "tooltip": "Počet vyčerpaných hodin dovolené"
+        },
+        "vacationHoursRemaining": {
+            "type": "float",
+            "min": 0,
+            "readOnly": true,
+            "tooltip": "Zbývající hodiny dovolené"
+        },
+        "sickLeaveHours": {
+            "type": "float",
+            "min": 0,
+            "default": 0,
+            "tooltip": "Počet hodin nemocenské"
+        },
         "documents": {
             "type": "attachmentMultiple",
             "maxFileSize": 20,
@@ -211,5 +235,8 @@
         "department": {
             "columns": ["department", "deleted"]
         }
+    },
+    "formula": {
+        "beforeSaveCustomScript": "vacationHoursRemaining = vacationHoursTotal - vacationHoursUsed;\n\nif (vacationHoursRemaining < 0) {\n    vacationHoursRemaining = 0;\n}"
     }
 }

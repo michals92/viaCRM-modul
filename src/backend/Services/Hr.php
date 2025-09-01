@@ -43,4 +43,63 @@ class Hr extends Base
         
         return $hrEntity;
     }
+
+    /**
+     * Recalculate vacation hours for a specific HR record
+     */
+    public function recalculateVacationHours(string $hrRecordId): void
+    {
+        $entityManager = $this->getEntityManager();
+        
+        // Get HR record
+        $hrRecord = $entityManager->getEntityById('Hr', $hrRecordId);
+        if (!$hrRecord) {
+            throw new BadRequest('HR record not found');
+        }
+
+        // Calculate total used vacation hours from approved absences
+        $totalUsedHours = $entityManager
+            ->getRDBRepository('Absence')
+            ->where([
+                'hrRecordId' => $hrRecordId,
+                'status' => 'approved',
+                'type' => 'vacation',
+                'deleted' => false
+            ])
+            ->select(['hours'])
+            ->find()
+            ->toArray();
+
+        $usedHours = 0;
+        foreach ($totalUsedHours as $absence) {
+            $hours = $absence->get('hours');
+            if ($hours === null || $hours === '') {
+                $hours = 8; // Default to 8 hours if not set
+            }
+            $usedHours += (float)$hours;
+        }
+
+        // Update HR record
+        $hrRecord->set('vacationHoursUsed', $usedHours);
+        
+        // Save with hooks to calculate remaining hours
+        $entityManager->saveEntity($hrRecord, [
+            'skipHooks' => false,
+            'silent' => false
+        ]);
+    }
+
+    /**
+     * Recalculate vacation hours for all HR records
+     */
+    public function recalculateAllVacationHours(): void
+    {
+        $hrRecords = $this->getRepository()
+            ->where(['deleted' => false])
+            ->find();
+
+        foreach ($hrRecords as $hrRecord) {
+            $this->recalculateVacationHours($hrRecord->getId());
+        }
+    }
 }

@@ -32,6 +32,18 @@
             "min": 1,
             "readOnly": true
         },
+        "hours": {
+            "type": "float",
+            "min": 0,
+            "required": false,
+            "tooltip": "Počet hodin absence (automaticky vypočítáno)"
+        },
+        "dailyHours": {
+            "type": "float",
+            "readOnly": true,
+            "notStorable": true,
+            "tooltip": "Denní pracovní doba zaměstnance"
+        },
         "reason": {
             "type": "text",
             "maxLength": 1000
@@ -153,5 +165,8 @@
         "startDate": {
             "columns": ["startDate", "deleted"]
         }
+    },
+    "formula": {
+        "beforeSaveCustomScript": "// Calculate working days based on HR record working days\nif (startDate && endDate && startDate <= endDate && hrRecordId) {\n    // Get employee working days from HR record\n    hrWorkingDays = record\\attribute('Hr', hrRecordId, 'workingDays');\n    hrWorkingHours = record\\attribute('Hr', hrRecordId, 'workingHours');\n    \n    if (!hrWorkingHours || hrWorkingHours == 0) {\n        hrWorkingHours = 40;\n    }\n    \n    // Count working days for this employee\n    workingDaysCount = 0;\n    if (hrWorkingDays && array\\length(hrWorkingDays) > 0) {\n        // Map days to numbers for checking\n        currentDate = startDate;\n        while (currentDate <= endDate) {\n            dayName = datetime\\format(currentDate, 'l'); // Full day name\n            if (array\\includes(hrWorkingDays, dayName)) {\n                workingDaysCount = workingDaysCount + 1;\n            }\n            currentDate = datetime\\addDays(currentDate, 1);\n        }\n        \n        // Calculate daily hours based on actual working days per week\n        weeklyWorkingDays = array\\length(hrWorkingDays);\n        dailyHours = hrWorkingHours / weeklyWorkingDays;\n    } else {\n        // Fallback to standard calculation (skip weekends)\n        totalDays = datetime\\diff(startDate, endDate, 'days') + 1;\n        weekendDays = 0;\n        currentDate = startDate;\n        \n        while (currentDate <= endDate) {\n            dayOfWeek = datetime\\dayOfWeek(currentDate);\n            if (dayOfWeek == 0 || dayOfWeek == 6) {\n                weekendDays = weekendDays + 1;\n            }\n            currentDate = datetime\\addDays(currentDate, 1);\n        }\n        \n        workingDaysCount = totalDays - weekendDays;\n        dailyHours = hrWorkingHours / 5;\n    }\n    \n    days = workingDaysCount;\n    \n    // Only auto-calculate hours if field is empty or dates changed\n    if (!hours || entity\\isAttributeChanged('startDate') || entity\\isAttributeChanged('endDate') || entity\\isAttributeChanged('hrRecordId')) {\n        hours = workingDaysCount * dailyHours;\n    }\n}"
     }
 }

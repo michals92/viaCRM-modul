@@ -30,11 +30,15 @@
             [
                 {
                     "name": "days",
-                    "span": 6
+                    "span": 4
+                },
+                {
+                    "name": "hours",
+                    "span": 4
                 },
                 {
                     "name": "priority",
-                    "span": 6
+                    "span": 4
                 }
             ],
             [
