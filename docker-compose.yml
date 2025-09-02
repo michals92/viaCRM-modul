@@ -1,0 +1,32 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: espo-db
+    environment:
+      MYSQL_ROOT_PASSWORD: heslo
+      MYSQL_DATABASE: espo
+      MYSQL_USER: espo
+      MYSQL_PASSWORD: heslo
+    volumes:
+      - db_data:/var/lib/mysql
+
+  espocrm:
+    image: espocrm/espocrm:latest
+    container_name: espo
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_NAME=espo
+      - DB_USER=espo
+      - DB_PASSWORD=heslo
+    volumes:
+      - espo_data:/var/www/html
+      - ./viacrm.zip:/var/www/html/viacrm.zip
+    pull_policy: always
+
+volumes:
+  db_data:
+  espo_data:
