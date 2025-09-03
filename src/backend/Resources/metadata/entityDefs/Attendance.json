@@ -1,0 +1,84 @@
+{
+    "table": "attendance",
+    "languageCategory": "Attendance",
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": false,
+            "maxLength": 255,
+            "readOnly": true
+        },
+        "user": {
+            "type": "link",
+            "required": true
+        },
+        "arrivalDate": {
+            "type": "datetime",
+            "required": true
+        },
+        "departureDate": {
+            "type": "datetime"
+        },
+        "workingHours": {
+            "type": "float",
+            "min": 0,
+            "max": 24,
+            "readOnly": true,
+            "tooltip": "Automatically calculated working hours"
+        },
+        "status": {
+            "type": "enum",
+            "options": ["Present", "Absent", "Late", "Left Early"],
+            "default": "Present"
+        },
+        "notes": {
+            "type": "text",
+            "maxLength": 500
+        },
+        "createdAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "modifiedAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "createdBy": {
+            "type": "link",
+            "readOnly": true
+        },
+        "modifiedBy": {
+            "type": "link",
+            "readOnly": true
+        }
+    },
+    "links": {
+        "user": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "createdBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "modifiedBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        }
+    },
+    "collection": {
+        "orderBy": "arrivalDate",
+        "order": "desc"
+    },
+    "indexes": {
+        "user": {
+            "columns": ["user_id", "deleted"]
+        },
+        "arrivalDate": {
+            "columns": ["arrival_date", "deleted"]
+        },
+        "userDate": {
+            "columns": ["user_id", "arrival_date", "deleted"]
+        }
+    }
+}

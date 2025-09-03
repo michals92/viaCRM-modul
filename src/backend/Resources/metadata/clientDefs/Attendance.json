@@ -1,0 +1,18 @@
+{
+    "controller": "controllers/record",
+    "iconClass": "fas fa-clock",
+    "color": "#28a745",
+    "quickCreate": true,
+    "filterList": [
+        "today",
+        "thisWeek",
+        "thisMonth"
+    ],
+    "defaultFilterData": {},
+    "boolFilterList": [
+        "onlyMy"
+    ],
+    "recordViews": {
+        "edit": "viacrm:views/attendance/record/edit"
+    }
+}

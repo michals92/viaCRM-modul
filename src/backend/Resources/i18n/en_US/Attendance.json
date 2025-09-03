@@ -1,0 +1,31 @@
+{
+    "fields": {
+        "name": "Name",
+        "user": "User",
+        "arrivalDate": "Arrival Date",
+        "departureDate": "Departure Date",
+        "workingHours": "Working Hours",
+        "status": "Status",
+        "notes": "Notes"
+    },
+    "links": {
+        "user": "User"
+    },
+    "labels": {
+        "Create Attendance": "Create Attendance",
+        "Attendance": "Attendance"
+    },
+    "options": {
+        "status": {
+            "Present": "Present",
+            "Absent": "Absent",
+            "Late": "Late",
+            "Left Early": "Left Early"
+        }
+    },
+    "tooltips": {
+        "workingHours": "Automatically calculated working hours",
+        "arrivalDate": "Date and time of arrival",
+        "departureDate": "Date and time of departure"
+    }
+}

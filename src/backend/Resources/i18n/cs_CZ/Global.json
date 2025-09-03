@@ -1,9 +1,11 @@
 {
     "scopeNames": {
-        "Hr": "Zaměstnanec"
+        "Hr": "Zaměstnanec",
+        "Attendance": "Docházka"
     },
     "scopeNamesPlural": {
-        "Hr": "Zaměstnanci"
+        "Hr": "Zaměstnanci",
+        "Attendance": "Docházka"
     },
     "options": {
         "codeType": {

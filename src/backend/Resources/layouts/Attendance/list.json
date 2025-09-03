@@ -1,0 +1,26 @@
+[
+    {
+        "name": "name",
+        "link": true
+    },
+    {
+        "name": "user",
+        "width": 15
+    },
+    {
+        "name": "arrivalDate",
+        "width": 20
+    },
+    {
+        "name": "departureDate",
+        "width": 20
+    },
+    {
+        "name": "workingHours",
+        "width": 10
+    },
+    {
+        "name": "status",
+        "width": 10
+    }
+]

@@ -1,0 +1,14 @@
+{
+    "primaryFilterClassNameMap": {
+        "today": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Attendance\\PrimaryFilters\\Today",
+        "thisWeek": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Attendance\\PrimaryFilters\\ThisWeek",
+        "thisMonth": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Attendance\\PrimaryFilters\\ThisMonth"
+    },
+    "boolFilters": {
+        "onlyMy": {
+            "where": {
+                "user.id": "{userId}"
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+[
+    {
+        "tabLabel": null,
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "status"
+                }
+            ],
+            [
+                {
+                    "name": "user"
+                },
+                false
+            ],
+            [
+                {
+                    "name": "arrivalDate"
+                },
+                {
+                    "name": "departureDate"
+                }
+            ],
+            [
+                {
+                    "name": "workingHours"
+                },
+                false
+            ],
+            [
+                {
+                    "name": "notes",
+                    "span": 2
+                }
+            ]
+        ]
+    }
+]

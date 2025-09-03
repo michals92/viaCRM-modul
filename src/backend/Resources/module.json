@@ -1,9 +1,12 @@
 {
     "name": "ViaCrm",
-    "version": "2.5.0",
-    "description": "VIA CRM Extension Module with Easy Email Editor integration",
+    "version": "2.6.0",
+    "description": "VIA CRM Extension Module with Easy Email Editor integration and Attendance tracking",
     "author": "VIA CRM Team",
     "php": [">=7.4"],
     "dependencies": [],
-    "order": 20
+    "order": 20,
+    "scripts": {
+        "afterInstall": "Espo\\Modules\\ViaCrm\\Scripts\\AfterInstall"
+    }
 }

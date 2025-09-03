@@ -1,0 +1,48 @@
+{
+    "fields": {
+        "name": "Název",
+        "user": "Uživatel",
+        "arrivalDate": "Příchod",
+        "departureDate": "Odchod", 
+        "workingHours": "Odpracované hodiny",
+        "status": "Stav",
+        "notes": "Poznámky"
+    },
+    "links": {
+        "user": "Uživatel"
+    },
+    "labels": {
+        "Create Attendance": "Nová docházka",
+        "Edit Attendance": "Upravit docházku",
+        "View Attendance": "Zobrazit docházku",
+        "Attendance": "Docházka",
+        "Attendances": "Docházka"
+    },
+    "options": {
+        "status": {
+            "Present": "Přítomen",
+            "Absent": "Nepřítomen", 
+            "Late": "Pozdní příchod",
+            "Left Early": "Předčasný odchod"
+        }
+    },
+    "tooltips": {
+        "workingHours": "Automaticky vypočítané odpracované hodiny",
+        "arrivalDate": "Datum a čas příchodu do práce",
+        "departureDate": "Datum a čas odchodu z práce",
+        "name": "Název se generuje automaticky z uživatele a data"
+    },
+    "presetFilters": {
+        "today": "Dnes",
+        "thisWeek": "Tento týden", 
+        "thisMonth": "Tento měsíc"
+    },
+    "boolFilters": {
+        "onlyMy": "Pouze moje"
+    },
+    "massActions": {
+        "delete": "Smazat",
+        "massUpdate": "Hromadná úprava",
+        "export": "Exportovat"
+    }
+}
