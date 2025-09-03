@@ -7,7 +7,7 @@
     "init": "echo 'ViaCRM module initialized'",
     "build": "npm run clean-build && node tasks/build/simple-build.js",
     "build:zip": "npm run build && node tasks/build/zip.js",
-    "watch": "npm run clean-build && node tasks/watch",
+    "watch": "nodemon --watch src --ext js,ts,jsx,tsx --exec \"npm run build:zip\"",
     "deploy": "npm run build:zip",
     "clean-build": "npx del-cli build",
     "clean-dist": "npx del-cli dist",
@@ -60,6 +60,8 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@types/archiver": "^6.0.3",
+    "archiver": "^7.0.1",
     "easy-email-core": "^4.16.4",
     "easy-email-editor": "^4.16.3",
     "easy-email-extensions": "^4.16.3",
