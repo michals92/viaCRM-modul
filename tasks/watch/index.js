@@ -3,6 +3,7 @@ import { exec } from "child_process";
 import fs from "fs";
 import archiver from "archiver";
 import chokidar from "chokidar";
+import path from "path";
 
 /**
  * @returns {Promise<void>}
@@ -68,9 +69,11 @@ function createZip(zipName = "build.zip") {
  */
 function installToEspoDocker(zipName = "build.zip") {
   return new Promise((resolve, reject) => {
-    const copyCmd = `docker cp ${zipName} espo:/var/www/html/${zipName}`;
+    // OPRAVA: Cross-platform cesta k ZIP souboru (použije path.resolve nebo normalizuje lomítka)
+    const normalizedZipName = zipName.replace(/\\/g, '/');
+    const copyCmd = `docker cp "${normalizedZipName}" espo:/var/www/html/${path.basename(normalizedZipName)}`;
 
-    const installCmd = `docker exec espo php /var/www/html/bin/command extension --file="/var/www/html/${zipName}" && docker exec espo php /var/www/html/bin/command clear-cache`;
+    const installCmd = `docker exec espo php /var/www/html/bin/command extension --file="/var/www/html/${path.basename(normalizedZipName)}" && docker exec espo php /var/www/html/bin/command clear-cache`;
 
     exec(copyCmd, (err, stdout, stderr) => {
       if (err) {
