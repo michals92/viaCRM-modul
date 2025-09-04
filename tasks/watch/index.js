@@ -26,12 +26,16 @@ function runBuild() {
  */
 function createZip(zipName = "build.zip") {
   return new Promise((resolve, reject) => {
-    if (!fs.existsSync("dist")) {
-      console.error("❌ Build folder 'dist/' does not exist.");
-      return reject(new Error("Build folder 'dist/' does not exist."));
+    if (!fs.existsSync("build")) {
+      console.error("❌ Build folder 'build/' does not exist.");
+      return reject(new Error("Build folder 'build/' does not exist."));
+    }
+    if (!fs.existsSync("build/manifest.json")) {
+      console.error("❌ manifest.json nebyl nalezen v build/. ZIP nebude platný instalační balíček EspoCRM.");
+      return reject(new Error("manifest.json nebyl nalezen v build/."));
     }
 
-    console.log("📦 Creating zip...");
+    console.log("📦 Creating zip from build/ ...");
 
     const output = fs.createWriteStream(zipName);
     const archive = archiver("zip", { zlib: { level: 9 } });
@@ -41,13 +45,20 @@ function createZip(zipName = "build.zip") {
       resolve();
     });
 
+    output.on("error", (err) => {
+      console.error("❌ Output stream error:", err);
+      reject(err);
+    });
+
     archive.on("error", (err) => {
       console.error("❌ Archiving failed:", err);
       reject(err);
     });
 
     archive.pipe(output);
-    archive.directory("dist/", false);
+    
+    archive.directory("build/", false);
+
     archive.finalize();
   });
 }
@@ -59,7 +70,7 @@ function installToEspoDocker(zipName = "build.zip") {
   return new Promise((resolve, reject) => {
     const copyCmd = `docker cp ${zipName} espo:/var/www/html/${zipName}`;
 
-    const installCmd = `docker exec espo php /var/www/html/command.php extension --file"/var/www/html/${zipName}" && docker exec espo php /var/www/html/command.php clear-cache`;
+    const installCmd = `docker exec espo php /var/www/html/bin/command extension --file="/var/www/html/${zipName}" && docker exec espo php /var/www/html/bin/command clear-cache`;
 
     exec(copyCmd, (err, stdout, stderr) => {
       if (err) {
