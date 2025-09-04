@@ -7,7 +7,7 @@
     "init": "echo 'ViaCRM module initialized'",
     "build": "npm run clean-build && node tasks/build/simple-build.js",
     "build:zip": "npm run build && node tasks/build/zip.js",
-    "watch": "nodemon --watch src --ext js,ts,jsx,tsx --exec \"npm run build:zip\"",
+    "watch": "node tasks/watch/index.js",
     "deploy": "npm run build:zip",
     "clean-build": "npx del-cli build",
     "clean-dist": "npx del-cli dist",

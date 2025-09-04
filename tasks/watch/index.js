@@ -57,10 +57,9 @@ function createZip(zipName = "build.zip") {
  */
 function installToEspoDocker(zipName = "build.zip") {
   return new Promise((resolve, reject) => {
-    // Zkopíruje ZIP do kontejneru
     const copyCmd = `docker cp ${zipName} espo:/var/www/html/${zipName}`;
-    // Spustí instalaci v kontejru
-    const installCmd = `docker exec espo php /var/www/html/command.php extension:install /var/www/html/${zipName} && docker exec espo php /var/www/html/command.php cache:clear`;
+
+    const installCmd = `docker exec espo php /var/www/html/command.php extension --file"/var/www/html/${zipName}" && docker exec espo php /var/www/html/command.php clear-cache`;
 
     exec(copyCmd, (err, stdout, stderr) => {
       if (err) {
@@ -89,11 +88,8 @@ function buildZipAndInstall() {
     });
 }
 
-// Spustí build, zip a instalaci na začátku
 buildZipAndInstall();
 
-// Sleduje změny ve složce src a při změně spustí build, zip a instalaci do Dockeru
-// Watcher pro EspoCRM modul – při změně v src rebuilduje, balí a instaluje do Dockeru
 chokidar.watch("src", { ignoreInitial: true }).on("all", (event, path) => {
   console.log(`🔄 Detected change (${event}) in ${path}, rebuilding and installing...`);
   buildZipAndInstall();
