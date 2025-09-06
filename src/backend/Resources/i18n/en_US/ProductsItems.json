@@ -1,0 +1,29 @@
+{
+    "fields": {
+        "name": "Name",
+        "status": "Status",
+        "description": "Description",
+        "assignedUser": "Assigned User",
+        "teams": "Teams",
+        "createdAt": "Created At",
+        "modifiedAt": "Modified At",
+        "createdBy": "Created By",
+        "modifiedBy": "Modified By"
+    },
+    "options": {
+        "status": {
+            "Active": "Active",
+            "Inactive": "Inactive"
+        }
+    },
+    "links": {
+        "assignedUser": "Assigned User",
+        "teams": "Teams",
+        "createdBy": "Created By",
+        "modifiedBy": "Modified By"
+    },
+    "labels": {
+        "Create": "Create ProductsItems",
+        "View List": "View ProductsItems List"
+    }
+}

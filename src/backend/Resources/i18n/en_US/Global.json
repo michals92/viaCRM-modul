@@ -1,9 +1,13 @@
 {
     "scopeNames": {
-        "Hr": "HR Employee"
+        "Hr": "HR Employee",
+        "ProductsItems": "ProductsItems",
+        "Offer": "Offer"
     },
     "scopeNamesPlural": {
-        "Hr": "HR Employees"
+        "Hr": "HR Employees",
+        "ProductsItems": "ProductsItems",
+        "Offer": "Offer"
     },
     "labels": {
         "Hr": "HR Employee",
@@ -12,7 +16,7 @@
     },
     "fields": {
         "firstName": "First Name",
-        "lastName": "Last Name", 
+        "lastName": "Last Name",
         "position": "Position",
         "department": "Department",
         "employeeId": "Employee ID",
@@ -35,7 +39,7 @@
             "IT": "Information Technology",
             "Finance": "Finance",
             "Sales": "Sales",
-            "Marketing": "Marketing", 
+            "Marketing": "Marketing",
             "Operations": "Operations",
             "Management": "Management"
         },

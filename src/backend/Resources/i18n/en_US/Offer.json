@@ -1,0 +1,40 @@
+{
+    "fields": {
+        "name": "Name",
+        "offerNumber": "Offer Number",
+        "status": "Status",
+        "account": "Account",
+        "contact": "Contact",
+        "validUntil": "Valid Until",
+        "dateOffered": "Date Offered",
+        "amount": "Amount",
+        "description": "Description",
+        "assignedUser": "Assigned User",
+        "teams": "Teams",
+        "createdAt": "Created At",
+        "modifiedAt": "Modified At",
+        "createdBy": "Created By",
+        "modifiedBy": "Modified By"
+    },
+    "options": {
+        "status": {
+            "Draft": "Draft",
+            "Sent": "Sent",
+            "Accepted": "Accepted",
+            "Rejected": "Rejected",
+            "Expired": "Expired"
+        }
+    },
+    "links": {
+        "account": "Account",
+        "contact": "Contact",
+        "assignedUser": "Assigned User",
+        "teams": "Teams",
+        "createdBy": "Created By",
+        "modifiedBy": "Modified By"
+    },
+    "labels": {
+        "Create": "Create Offer",
+        "View List": "View Offer List"
+    }
+}

@@ -48,6 +48,8 @@ console.log('================================\n');
 // 1. Create entityDefs
 const entityDefsPath = path.join(basePath, 'Resources', 'metadata', 'entityDefs', `${entityName}.json`);
 const entityDefs = {
+    "table": entityName.toLowerCase(),
+    "languageCategory": entityName,
     "fields": {
         "name": {
             "type": "varchar",
@@ -132,16 +134,16 @@ writeJsonFile(entityDefsPath, entityDefs);
 const scopesPath = path.join(basePath, 'Resources', 'metadata', 'scopes', `${entityName}.json`);
 const scopes = {
     "entity": true,
-    "layouts": true,
     "tab": true,
+    "layouts": true,
     "acl": true,
-    "aclPortal": true,
-    "aclPortalLevelList": ["all", "account", "contact", "own", "no"],
     "customizable": true,
     "importable": true,
-    "exportable": true,
-    "stream": true,
-    "disabled": false
+    "stream": false,
+    "disabled": false,
+    "type": "Base",
+    "module": "ViaCrm",
+    "object": true
 };
 writeJsonFile(scopesPath, scopes);
 
@@ -149,13 +151,8 @@ writeJsonFile(scopesPath, scopes);
 const clientDefsPath = path.join(basePath, 'Resources', 'metadata', 'clientDefs', `${entityName}.json`);
 const clientDefs = {
     "controller": "controllers/record",
-    "boolFilterList": ["onlyMy"],
-    "selectDefaultFilters": {
-        "boolFilterList": ["onlyMy"]
-    },
-    "kanbanViewMode": false,
-    "color": null,
-    "iconClass": "fas fa-cube"
+    "iconClass": "fas fa-cube",
+    "color": "#3498db"
 };
 writeJsonFile(clientDefsPath, clientDefs);
 
@@ -185,7 +182,6 @@ writeJsonFile(listLayoutPath, listLayout);
 const detailLayoutPath = path.join(basePath, 'Resources', 'layouts', entityName, 'detail.json');
 const detailLayout = [
     {
-        "label": "Overview",
         "rows": [
             [
                 {
@@ -199,9 +195,7 @@ const detailLayout = [
                 {
                     "name": "assignedUser"
                 },
-                {
-                    "name": "teams"
-                }
+                false
             ],
             [
                 {
@@ -281,31 +275,17 @@ const entityPhpContent = `<?php
 
 namespace Espo\\Modules\\ViaCrm\\Entities;
 
-use Espo\\Core\\ORM\\Entity;
+use Espo\\Core\\Templates\\Entities\\Base;
 
-class ${entityName} extends Entity
+class ${entityName} extends Base
 {
     public const ENTITY_TYPE = '${entityName}';
     
-    public const STATUS_ACTIVE = 'Active';
-    public const STATUS_INACTIVE = 'Inactive';
 }
 `;
 writePhpFile(entityPhpPath, entityPhpContent);
 
-// 11. Create Repository PHP class
-const repositoryPhpPath = path.join(basePath, 'Repositories', `${entityName}.php`);
-const repositoryPhpContent = `<?php
-
-namespace Espo\\Modules\\ViaCrm\\Repositories;
-
-use Espo\\Core\\Repositories\\Database;
-
-class ${entityName} extends Database
-{
-}
-`;
-writePhpFile(repositoryPhpPath, repositoryPhpContent);
+// 11. Skip Repository - not needed for Base entities
 
 // 12. Create Controller PHP class
 const controllerPhpPath = path.join(basePath, 'Controllers', `${entityName}.php`);
