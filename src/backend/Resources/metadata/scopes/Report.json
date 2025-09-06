@@ -1,0 +1,13 @@
+{
+    "entity": true,
+    "tab": true,
+    "layouts": true,
+    "acl": true,
+    "customizable": true,
+    "importable": true,
+    "stream": false,
+    "disabled": false,
+    "type": "BasePlus",
+    "module": "ViaCrm",
+    "object": true
+}

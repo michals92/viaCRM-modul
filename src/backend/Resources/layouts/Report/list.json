@@ -1,0 +1,18 @@
+[
+    {
+        "name": "name",
+        "link": true
+    },
+    {
+        "name": "status",
+        "width": 30
+    },
+    {
+        "name": "assignedUser",
+        "width": 25
+    },
+    {
+        "name": "createdAt",
+        "width": 20
+    }
+]

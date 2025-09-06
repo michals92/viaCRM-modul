@@ -1,0 +1,26 @@
+[
+    {
+        "rows": [
+            [
+                {
+                    "name": "name"
+                }
+            ],
+            [
+                {
+                    "name": "status"
+                }
+            ],
+            [
+                {
+                    "name": "assignedUser"
+                }
+            ],
+            [
+                {
+                    "name": "teams"
+                }
+            ]
+        ]
+    }
+]
