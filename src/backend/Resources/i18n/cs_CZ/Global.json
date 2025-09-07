@@ -3,13 +3,15 @@
         "Hr": "Zaměstnanec",
         "Attendance": "Docházka",
         "Report": "Report",
-        "Order": "Objednávka"
+        "Order": "Objednávka",
+        "ProductsItems": "Produkt"
     },
     "scopeNamesPlural": {
         "Hr": "Zaměstnanci",
         "Attendance": "Docházka",
         "Report": "Reporty",
-        "Order": "Objednávky"
+        "Order": "Objednávky",
+        "ProductsItems": "Produkty"
     },
     "options": {
         "codeType": {

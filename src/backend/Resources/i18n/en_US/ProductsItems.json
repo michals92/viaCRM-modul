@@ -1,19 +1,57 @@
 {
+    "labels": {
+        "Create ProductsItems": "Create Product",
+        "ProductsItems": "Products",
+        "View": "View",
+        "Edit": "Edit",
+        "Delete": "Delete",
+        "Export": "Export"
+    },
     "fields": {
         "name": "Name",
+        "sku": "SKU",
+        "barcode": "Barcode",
+        "productType": "Product Type",
         "status": "Status",
+        "category": "Category",
+        "brand": "Brand",
+        "price": "Price",
+        "costPrice": "Cost Price",
+        "weight": "Weight",
+        "dimensions": "Dimensions",
+        "stockQuantity": "Stock Quantity",
+        "minStockLevel": "Min Stock Level",
+        "maxStockLevel": "Max Stock Level",
+        "unit": "Unit",
+        "taxRate": "Tax Rate (%)",
+        "isActive": "Active",
+        "notes": "Notes",
         "description": "Description",
-        "assignedUser": "Assigned User",
-        "teams": "Teams",
         "createdAt": "Created At",
         "modifiedAt": "Modified At",
         "createdBy": "Created By",
-        "modifiedBy": "Modified By"
+        "modifiedBy": "Modified By",
+        "assignedUser": "Assigned User",
+        "teams": "Teams"
     },
     "options": {
+        "productType": {
+            "physical": "Physical",
+            "virtual": "Virtual",
+            "service": "Service"
+        },
         "status": {
             "Active": "Active",
-            "Inactive": "Inactive"
+            "Inactive": "Inactive",
+            "Discontinued": "Discontinued"
+        },
+        "unit": {
+            "pcs": "pcs",
+            "kg": "kg",
+            "liter": "liter",
+            "meter": "meter",
+            "hours": "hours",
+            "license": "license"
         }
     },
     "links": {
@@ -22,8 +60,15 @@
         "createdBy": "Created By",
         "modifiedBy": "Modified By"
     },
-    "labels": {
-        "Create": "Create ProductsItems",
-        "View List": "View ProductsItems List"
+    "tooltips": {
+        "sku": "Unique product identifier",
+        "barcode": "Barcode for scanning",
+        "productType": "Product type determines storage and sales method",
+        "weight": "Weight in kg",
+        "dimensions": "Dimensions in format length x width x height",
+        "stockQuantity": "Current stock quantity",
+        "minStockLevel": "Minimum level when product should be reordered",
+        "maxStockLevel": "Maximum storage capacity",
+        "taxRate": "Tax rate in percentage"
     }
 }

@@ -1,0 +1,68 @@
+{
+    "labels": {
+        "Create ProductsItems": "Vytvořit Produkt",
+        "ProductsItems": "Produkty",
+        "View": "Zobrazit",
+        "Edit": "Upravit",
+        "Delete": "Smazat",
+        "Export": "Exportovat"
+    },
+    "fields": {
+        "name": "Název",
+        "sku": "SKU",
+        "barcode": "Čárový kód",
+        "productType": "Typ produktu",
+        "status": "Status",
+        "category": "Kategorie",
+        "brand": "Značka",
+        "price": "Cena",
+        "costPrice": "Nákupní cena",
+        "weight": "Hmotnost",
+        "dimensions": "Rozměry",
+        "stockQuantity": "Množství na skladě",
+        "minStockLevel": "Minimální stav skladu",
+        "maxStockLevel": "Maximální stav skladu",
+        "unit": "Jednotka",
+        "taxRate": "Daň (%)",
+        "isActive": "Aktivní",
+        "notes": "Poznámky",
+        "description": "Popis",
+        "createdAt": "Vytvořeno",
+        "modifiedAt": "Upraveno",
+        "createdBy": "Vytvořil",
+        "modifiedBy": "Upravil",
+        "assignedUser": "Přiřazený uživatel",
+        "teams": "Týmy"
+    },
+    "options": {
+        "productType": {
+            "physical": "Fyzický",
+            "virtual": "Virtuální",
+            "service": "Služba"
+        },
+        "status": {
+            "Active": "Aktivní",
+            "Inactive": "Neaktivní",
+            "Discontinued": "Vyřazen"
+        },
+        "unit": {
+            "pcs": "ks",
+            "kg": "kg",
+            "liter": "l",
+            "meter": "m",
+            "hours": "hod",
+            "license": "licence"
+        }
+    },
+    "tooltips": {
+        "sku": "Jedinečný identifikátor produktu",
+        "barcode": "Čárový kód pro skenování",
+        "productType": "Typ produktu určuje způsob skladování a prodeje",
+        "weight": "Hmotnost v kg",
+        "dimensions": "Rozměry ve formátu délka x šířka x výška",
+        "stockQuantity": "Aktuální množství na skladě",
+        "minStockLevel": "Minimální úroveň při které se produkt objedná",
+        "maxStockLevel": "Maximální skladová kapacita",
+        "taxRate": "Daňová sazba v procentech"
+    }
+}

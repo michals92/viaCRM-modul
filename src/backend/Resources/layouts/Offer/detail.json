@@ -35,12 +35,6 @@
             ],
             [
                 {
-                    "name": "assignedUser"
-                },
-                false
-            ],
-            [
-                {
                     "name": "description",
                     "fullWidth": true
                 }

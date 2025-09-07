@@ -1,18 +1,39 @@
 [
     {
         "name": "name",
-        "link": true
-    },
-    {
-        "name": "status",
-        "width": 30
-    },
-    {
-        "name": "assignedUser",
+        "link": true,
         "width": 25
     },
     {
+        "name": "sku",
+        "width": 15
+    },
+    {
+        "name": "productType",
+        "width": 12
+    },
+    {
+        "name": "status",
+        "width": 10
+    },
+    {
+        "name": "price",
+        "width": 12
+    },
+    {
+        "name": "stockQuantity",
+        "width": 10
+    },
+    {
+        "name": "category",
+        "width": 15
+    },
+    {
+        "name": "assignedUser",
+        "width": 15
+    },
+    {
         "name": "createdAt",
-        "width": 20
+        "width": 12
     }
 ]

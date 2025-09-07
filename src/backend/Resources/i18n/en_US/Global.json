@@ -1,14 +1,14 @@
 {
     "scopeNames": {
         "Hr": "HR Employee",
-        "ProductsItems": "ProductsItems",
+        "ProductsItems": "Product",
         "Offer": "Offer",
         "Report": "Report",
         "Order": "Order"
     },
     "scopeNamesPlural": {
         "Hr": "HR Employees",
-        "ProductsItems": "ProductsItems",
+        "ProductsItems": "Products",
         "Offer": "Offer",
         "Report": "Report",
         "Order": "Order"

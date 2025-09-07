@@ -1,27 +1,149 @@
 [
     {
-        "label": "Overview",
+        "label": "Basic Information",
         "rows": [
             [
                 {
-                    "name": "name"
+                    "name": "name",
+                    "fullWidth": false
                 },
                 {
-                    "name": "status"
+                    "name": "sku",
+                    "fullWidth": false
                 }
             ],
             [
                 {
-                    "name": "assignedUser"
+                    "name": "productType",
+                    "fullWidth": false
                 },
                 {
-                    "name": "teams"
+                    "name": "status",
+                    "fullWidth": false
                 }
             ],
+            [
+                {
+                    "name": "category",
+                    "fullWidth": false
+                },
+                {
+                    "name": "brand",
+                    "fullWidth": false
+                }
+            ],
+            [
+                {
+                    "name": "barcode",
+                    "fullWidth": false
+                },
+                {
+                    "name": "unit",
+                    "fullWidth": false
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Pricing & Tax",
+        "rows": [
+            [
+                {
+                    "name": "price",
+                    "fullWidth": false
+                },
+                {
+                    "name": "costPrice",
+                    "fullWidth": false
+                }
+            ],
+            [
+                {
+                    "name": "taxRate",
+                    "fullWidth": false
+                },
+                {
+                    "name": "isActive",
+                    "fullWidth": false
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Physical Properties",
+        "rows": [
+            [
+                {
+                    "name": "weight",
+                    "fullWidth": false
+                },
+                {
+                    "name": "dimensions",
+                    "fullWidth": false
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Inventory",
+        "rows": [
+            [
+                {
+                    "name": "stockQuantity",
+                    "fullWidth": false
+                },
+                {
+                    "name": "minStockLevel",
+                    "fullWidth": false
+                }
+            ],
+            [
+                {
+                    "name": "maxStockLevel",
+                    "fullWidth": false
+                },
+                false
+            ]
+        ]
+    },
+    {
+        "label": "Description & Notes",
+        "rows": [
             [
                 {
                     "name": "description",
                     "fullWidth": true
+                }
+            ],
+            [
+                {
+                    "name": "notes",
+                    "fullWidth": true
+                }
+            ]
+        ]
+    },
+    {
+        "label": "System",
+        "rows": [
+            [
+                {
+                    "name": "createdAt",
+                    "fullWidth": false
+                },
+                {
+                    "name": "modifiedAt",
+                    "fullWidth": false
+                }
+            ],
+            [
+                {
+                    "name": "createdBy",
+                    "fullWidth": false
+                },
+                {
+                    "name": "modifiedBy",
+                    "fullWidth": false
                 }
             ]
         ]
