@@ -238,11 +238,6 @@ const detailSmallLayout = [
             ],
             [
                 {
-                    "name": "assignedUser"
-                }
-            ],
-            [
-                {
                     "name": "teams"
                 }
             ]
