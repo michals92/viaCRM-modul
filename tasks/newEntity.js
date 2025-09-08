@@ -20,7 +20,20 @@ if (!/^[A-Z][a-zA-Z0-9]*$/.test(entityName)) {
     process.exit(1);
 }
 
-const moduleName = 'ViaCrm';
+const packageJsonPath = path.join(__dirname, '..', 'package.json');
+let moduleName = '';
+
+try {
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+    if (packageJson.espocrm && packageJson.espocrm.extensionName) {
+        moduleName = packageJson.espocrm.extensionName;
+    }
+    console.log(`Using module name from package.json: ${moduleName}`);
+} catch (error) {
+    console.warn(`Warning: Could not read package.json, exiting.`);
+    process.exit(1);
+}
+
 const basePath = path.join(__dirname, '..', 'src', 'backend');
 
 function ensureDirectoryExists(dirPath) {
@@ -142,7 +155,7 @@ const scopes = {
     "stream": false,
     "disabled": false,
     "type": "Base",
-    "module": "ViaCrm",
+    "module": moduleName,
     "object": true
 };
 writeJsonFile(scopesPath, scopes);
@@ -268,7 +281,7 @@ writeJsonFile(massUpdateLayoutPath, massUpdateLayout);
 const entityPhpPath = path.join(basePath, 'Entities', `${entityName}.php`);
 const entityPhpContent = `<?php
 
-namespace Espo\\Modules\\ViaCrm\\Entities;
+namespace Espo\\Modules\\${moduleName}\\Entities;
 
 use Espo\\Core\\Templates\\Entities\\Base;
 
@@ -286,7 +299,7 @@ writePhpFile(entityPhpPath, entityPhpContent);
 const controllerPhpPath = path.join(basePath, 'Controllers', `${entityName}.php`);
 const controllerPhpContent = `<?php
 
-namespace Espo\\Modules\\ViaCrm\\Controllers;
+namespace Espo\\Modules\\${moduleName}\\Controllers;
 
 use Espo\\Core\\Controllers\\Record;
 
@@ -300,7 +313,7 @@ writePhpFile(controllerPhpPath, controllerPhpContent);
 const servicePhpPath = path.join(basePath, 'Services', `${entityName}.php`);
 const servicePhpContent = `<?php
 
-namespace Espo\\Modules\\ViaCrm\\Services;
+namespace Espo\\Modules\\${moduleName}\\Services;
 
 use Espo\\Services\\Record;
 
