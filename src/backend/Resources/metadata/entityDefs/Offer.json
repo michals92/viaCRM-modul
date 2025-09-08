@@ -69,6 +69,10 @@
         "teams": {
             "type": "linkMultiple",
             "view": "views/fields/teams"
+        },
+        "productsItems": {
+            "type": "linkMultiple",
+            "view": "views/fields/link-multiple"
         }
     },
     "links": {
@@ -97,6 +101,13 @@
         "contact": {
             "type": "belongsTo",
             "entity": "Contact"
+        },
+        "productsItems": {
+            "type": "hasMany",
+            "entity": "ProductsItems",
+            "foreign": "offers",
+            "relationName": "offerProductsItems",
+            "layoutRelationshipsDisabled": false
         }
     },
     "collection": {

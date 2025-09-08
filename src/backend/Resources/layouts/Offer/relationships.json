@@ -1,0 +1,12 @@
+[
+    {
+        "name": "productsItems",
+        "label": "Products",
+        "view": "views/record/panels/relationship",
+        "displayAsList": true,
+        "layoutName": "listSmall",
+        "select": true,
+        "create": true,
+        "rowActionsView": "views/record/row-actions/relationship"
+    }
+]

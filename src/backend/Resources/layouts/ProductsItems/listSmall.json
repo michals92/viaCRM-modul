@@ -4,6 +4,15 @@
         "link": true
     },
     {
+        "name": "sku"
+    },
+    {
+        "name": "price"
+    },
+    {
+        "name": "stockQuantity"
+    },
+    {
         "name": "status"
     }
 ]

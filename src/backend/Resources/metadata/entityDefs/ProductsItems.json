@@ -127,6 +127,10 @@
         "teams": {
             "type": "linkMultiple",
             "view": "views/fields/teams"
+        },
+        "offers": {
+            "type": "linkMultiple",
+            "view": "views/fields/link-multiple"
         }
     },
     "links": {
@@ -147,6 +151,12 @@
             "entity": "Team",
             "relationName": "entityTeam",
             "layoutRelationshipsDisabled": true
+        },
+        "offers": {
+            "type": "hasMany",
+            "entity": "Offer",
+            "foreign": "productsItems",
+            "relationName": "offerProductsItems"
         }
     },
     "collection": {
