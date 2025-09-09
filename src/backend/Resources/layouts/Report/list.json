@@ -4,15 +4,27 @@
         "link": true
     },
     {
+        "name": "type",
+        "width": 15
+    },
+    {
+        "name": "targetEntity", 
+        "width": 20
+    },
+    {
         "name": "status",
-        "width": 30
+        "width": 15
+    },
+    {
+        "name": "isPublic",
+        "width": 15
     },
     {
         "name": "assignedUser",
-        "width": 25
+        "width": 20
     },
     {
         "name": "createdAt",
-        "width": 20
+        "width": 15
     }
 ]

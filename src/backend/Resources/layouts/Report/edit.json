@@ -1,0 +1,102 @@
+[
+    {
+        "label": "Basic Information",
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "status"
+                }
+            ],
+            [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "targetEntity"
+                }
+            ],
+            [
+                {
+                    "name": "assignedUser"
+                },
+                {
+                    "name": "isPublic"
+                }
+            ],
+            [
+                {
+                    "name": "description",
+                    "fullWidth": true
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Configuration",
+        "rows": [
+            [
+                {
+                    "name": "columns"
+                },
+                {
+                    "name": "groupBy"
+                }
+            ],
+            [
+                {
+                    "name": "orderBy"
+                },
+                {
+                    "name": "orderDirection"
+                }
+            ],
+            [
+                {
+                    "name": "chartType"
+                },
+                {
+                    "name": "refreshInterval"
+                }
+            ],
+            [
+                {
+                    "name": "filters",
+                    "fullWidth": true
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Date Filters",
+        "rows": [
+            [
+                {
+                    "name": "dateFilter"
+                },
+                false
+            ],
+            [
+                {
+                    "name": "dateFrom"
+                },
+                {
+                    "name": "dateTo"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Export Options",
+        "rows": [
+            [
+                {
+                    "name": "exportFormats",
+                    "fullWidth": true
+                }
+            ]
+        ]
+    }
+]

@@ -3,6 +3,20 @@
         "name": "Name",
         "status": "Status",
         "description": "Description",
+        "type": "Report Type",
+        "targetEntity": "Target Entity",
+        "columns": "Columns",
+        "filters": "Filters",
+        "groupBy": "Group By",
+        "orderBy": "Order By",
+        "orderDirection": "Order Direction",
+        "chartType": "Chart Type",
+        "dateFilter": "Date Filter",
+        "dateFrom": "Date From",
+        "dateTo": "Date To",
+        "isPublic": "Public Report",
+        "exportFormats": "Export Formats",
+        "refreshInterval": "Refresh Interval (minutes)",
         "assignedUser": "Assigned User",
         "teams": "Teams",
         "createdAt": "Created At",
@@ -14,6 +28,44 @@
         "status": {
             "Active": "Active",
             "Inactive": "Inactive"
+        },
+        "type": {
+            "List": "List Report",
+            "Grid": "Grid Report",
+            "Chart": "Chart Report"
+        },
+        "targetEntity": {
+            "Absence": "Absence",
+            "Attendance": "Attendance",
+            "Hr": "HR",
+            "Order": "Order",
+            "Offer": "Offer",
+            "ProductsItems": "Products Items",
+            "User": "User",
+            "Account": "Account",
+            "Contact": "Contact"
+        },
+        "chartType": {
+            "Bar": "Bar Chart",
+            "Line": "Line Chart",
+            "Pie": "Pie Chart",
+            "Doughnut": "Doughnut Chart"
+        },
+        "dateFilter": {
+            "today": "Today",
+            "thisWeek": "This Week",
+            "thisMonth": "This Month",
+            "thisQuarter": "This Quarter",
+            "thisYear": "This Year",
+            "lastWeek": "Last Week",
+            "lastMonth": "Last Month",
+            "lastQuarter": "Last Quarter",
+            "lastYear": "Last Year",
+            "custom": "Custom Range"
+        },
+        "orderDirection": {
+            "ASC": "Ascending",
+            "DESC": "Descending"
         }
     },
     "links": {
@@ -24,6 +76,17 @@
     },
     "labels": {
         "Create": "Create Report",
-        "View List": "View Report List"
+        "View List": "View Report List",
+        "Run Report": "Run Report",
+        "Export": "Export",
+        "Basic Information": "Basic Information",
+        "Configuration": "Configuration",
+        "Date Filters": "Date Filters",
+        "Export Options": "Export Options",
+        "Select Field": "Select Field",
+        "Select Condition": "Select Condition",
+        "Add Filter": "Add Filter",
+        "No filters set": "No filters set",
+        "None": "None"
     }
 }

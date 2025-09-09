@@ -158,5 +158,37 @@
             "controller": "EasyEmailEditor",
             "action": "uploadImage"
         }
+    },
+    {
+        "route": "/Report/:id/run",
+        "method": "GET",
+        "params": {
+            "controller": "Report",
+            "action": "run"
+        }
+    },
+    {
+        "route": "/Report/:id/export",
+        "method": "GET",
+        "params": {
+            "controller": "Report",
+            "action": "export"
+        }
+    },
+    {
+        "route": "/Report/action/getEntityFields",
+        "method": "GET",
+        "params": {
+            "controller": "Report",
+            "action": "getEntityFields"
+        }
+    },
+    {
+        "route": "/Report/action/preview",
+        "method": "POST",
+        "params": {
+            "controller": "Report",
+            "action": "preview"
+        }
     }
 ]

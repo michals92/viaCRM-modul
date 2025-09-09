@@ -18,6 +18,111 @@
         "description": {
             "type": "text"
         },
+        "type": {
+            "type": "enum",
+            "options": [
+                "List",
+                "Grid",
+                "Chart"
+            ],
+            "default": "List",
+            "required": true
+        },
+        "targetEntity": {
+            "type": "enum",
+            "options": [
+                "Absence",
+                "Attendance", 
+                "Hr",
+                "Order",
+                "Offer",
+                "ProductsItems",
+                "User",
+                "Account",
+                "Contact"
+            ],
+            "required": true,
+            "default": ""
+        },
+        "columns": {
+            "type": "jsonArray",
+            "required": false,
+            "tooltip": "Fields to display in the report",
+            "view": "viacrm:views/fields/entity-columns"
+        },
+        "filters": {
+            "type": "jsonObject",
+            "required": false,
+            "tooltip": "Filters to apply to the report data",
+            "view": "viacrm:views/fields/report-filters"
+        },
+        "groupBy": {
+            "type": "varchar",
+            "required": false,
+            "tooltip": "Field to group data by",
+            "view": "viacrm:views/fields/entity-field-select"
+        },
+        "orderBy": {
+            "type": "varchar",
+            "required": false,
+            "tooltip": "Field to order data by",
+            "view": "viacrm:views/fields/entity-field-select"
+        },
+        "orderDirection": {
+            "type": "enum",
+            "options": ["ASC", "DESC"],
+            "default": "ASC"
+        },
+        "chartType": {
+            "type": "enum",
+            "options": [
+                "Bar",
+                "Line",
+                "Pie",
+                "Doughnut"
+            ],
+            "default": "Bar"
+        },
+        "dateFilter": {
+            "type": "enum",
+            "options": [
+                "today",
+                "thisWeek",
+                "thisMonth",
+                "thisQuarter",
+                "thisYear",
+                "lastWeek",
+                "lastMonth",
+                "lastQuarter",
+                "lastYear",
+                "custom"
+            ],
+            "required": false
+        },
+        "dateFrom": {
+            "type": "date",
+            "required": false
+        },
+        "dateTo": {
+            "type": "date", 
+            "required": false
+        },
+        "isPublic": {
+            "type": "bool",
+            "default": false,
+            "tooltip": "Make this report available to all users"
+        },
+        "exportFormats": {
+            "type": "jsonArray",
+            "default": ["CSV", "Excel", "PDF"],
+            "tooltip": "Available export formats for this report",
+            "view": "viacrm:views/fields/export-formats"
+        },
+        "refreshInterval": {
+            "type": "int",
+            "min": 0,
+            "tooltip": "Auto-refresh interval in minutes (0 = manual only)"
+        },
         "createdAt": {
             "type": "datetime",
             "readOnly": true

@@ -1,7 +1,13 @@
 {
     "system": {
         "itemList": [
-            "__APPEND__"
+            "__APPEND__",
+            {
+                "url": "#Report",
+                "label": "Reports",
+                "description": "Report Builder and Management",
+                "iconClass": "fas fa-chart-bar"
+            }
         ]
     }
 }

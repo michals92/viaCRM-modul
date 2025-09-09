@@ -1,0 +1,208 @@
+/* Report Module Styles */
+
+/* Enhanced Report Builder UI */
+.report-filters-field .filter-row {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.report-filters-field .filter-row:hover {
+    background-color: #f0f0f0;
+}
+
+.report-filters-field .add-filter-btn {
+    margin-top: 10px;
+}
+
+.report-filters-display .filter-item {
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background-color: #e3f2fd;
+    border-radius: 3px;
+    border-left: 3px solid #2196f3;
+}
+
+.report-configuration-section {
+    margin-bottom: 20px;
+}
+
+.report-configuration-section .panel-heading {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+/* Multi-select field improvements */
+.field[data-name="columns"] .select2-container,
+.field[data-name="exportFormats"] .select2-container {
+    width: 100% !important;
+}
+
+.field[data-name="columns"] .select2-selection--multiple,
+.field[data-name="exportFormats"] .select2-selection--multiple {
+    min-height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Field dropdowns for entity-dependent fields */
+.entity-field-select .select2-container {
+    width: 100% !important;
+}
+
+/* Form section styling */
+.record-edit .panel[data-name="basic-information"] {
+    border-color: #3498db;
+}
+
+.record-edit .panel[data-name="configuration"] {
+    border-color: #2ecc71;
+}
+
+.record-edit .panel[data-name="date-filters"] {
+    border-color: #f39c12;
+}
+
+.record-edit .panel[data-name="export-options"] {
+    border-color: #9b59b6;
+}
+
+.report-result-modal .chart-container {
+    padding: 20px;
+    text-align: center;
+    min-height: 300px;
+}
+
+.report-result-modal .report-content {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.report-result-modal .table {
+    font-size: 12px;
+}
+
+.report-result-modal .table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+
+.preview-modal .preview-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.preview-modal .table {
+    font-size: 11px;
+}
+
+.export-modal .radio {
+    margin: 10px 0;
+}
+
+.export-modal .radio label {
+    padding-left: 25px;
+    font-weight: normal;
+}
+
+/* Dashboard Report Chart Styles */
+.dashlet-container .report-chart-dashlet {
+    height: 100%;
+}
+
+.dashlet-container .chart-container {
+    height: calc(100% - 40px);
+    position: relative;
+}
+
+.dashlet-container .report-summary {
+    padding: 10px;
+}
+
+.dashlet-container .summary-stats {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.dashlet-container .grid-summary {
+    font-size: 12px;
+}
+
+.dashlet-container .grid-item {
+    margin: 5px 0;
+    padding: 3px 5px;
+    background-color: #f8f9fa;
+    border-radius: 3px;
+}
+
+.dashlet-container .list-preview .table {
+    font-size: 10px;
+    margin-bottom: 0;
+}
+
+.dashlet-container .list-preview .table th,
+.dashlet-container .list-preview .table td {
+    padding: 3px 5px;
+    border: 1px solid #ddd;
+}
+
+/* Report Builder Form Styles */
+.record-detail .panel-body .field[data-name="filters"] {
+    min-height: 100px;
+}
+
+.record-detail .panel-body .field[data-name="columns"] {
+    min-height: 80px;
+}
+
+.record-edit .panel-body .field[data-name="filters"] .form-control {
+    min-height: 100px;
+}
+
+.record-edit .panel-body .field[data-name="columns"] .form-control {
+    min-height: 80px;
+}
+
+/* Report List View Styles */
+.list-container .report-type-label {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.list-container .report-type-list {
+    background-color: #5bc0de;
+    color: white;
+}
+
+.list-container .report-type-grid {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.list-container .report-type-chart {
+    background-color: #5cb85c;
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .report-result-modal .table {
+        font-size: 10px;
+    }
+    
+    .report-result-modal .chart-container {
+        padding: 10px;
+        min-height: 200px;
+    }
+    
+    .dashlet-container .chart-container {
+        height: 200px;
+    }
+}

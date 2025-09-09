@@ -1,5 +1,60 @@
 {
     "controller": "controllers/record",
-    "iconClass": "fas fa-cube",
-    "color": "#3498db"
+    "iconClass": "fas fa-chart-bar",
+    "color": "#2ecc71",
+    "menu": {
+        "detail": {
+            "buttons": [
+                {
+                    "label": "Run Report",
+                    "name": "runReport",
+                    "style": "primary",
+                    "action": "runReport"
+                },
+                {
+                    "label": "Export",
+                    "name": "exportReport",
+                    "style": "default",
+                    "action": "exportReport"
+                }
+            ]
+        }
+    },
+    "dynamicLogic": {
+        "fields": {
+            "chartType": {
+                "visible": {
+                    "conditionGroup": [
+                        {
+                            "type": "equals",
+                            "attribute": "type",
+                            "value": "Chart"
+                        }
+                    ]
+                }
+            },
+            "dateFrom": {
+                "visible": {
+                    "conditionGroup": [
+                        {
+                            "type": "equals",
+                            "attribute": "dateFilter", 
+                            "value": "custom"
+                        }
+                    ]
+                }
+            },
+            "dateTo": {
+                "visible": {
+                    "conditionGroup": [
+                        {
+                            "type": "equals",
+                            "attribute": "dateFilter",
+                            "value": "custom"
+                        }
+                    ]
+                }
+            }
+        }
+    }
 }

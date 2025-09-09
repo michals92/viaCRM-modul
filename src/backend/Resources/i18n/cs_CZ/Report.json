@@ -1,13 +1,72 @@
 {
     "fields": {
         "name": "Název",
+        "status": "Stav",
         "description": "Popis",
+        "type": "Typ sestavy",
+        "targetEntity": "Cílová entita",
+        "columns": "Sloupce",
+        "filters": "Filtry",
+        "groupBy": "Seskupit podle",
+        "orderBy": "Seřadit podle",
+        "orderDirection": "Směr řazení",
+        "chartType": "Typ grafu",
+        "dateFilter": "Filtr data",
+        "dateFrom": "Datum od",
+        "dateTo": "Datum do",
+        "isPublic": "Veřejná sestava",
+        "exportFormats": "Formáty exportu",
+        "refreshInterval": "Interval obnovení (minuty)",
         "assignedUser": "Přiřazený uživatel",
         "teams": "Týmy",
         "createdAt": "Vytvořeno",
         "modifiedAt": "Upraveno",
         "createdBy": "Vytvořil",
         "modifiedBy": "Upravil"
+    },
+    "options": {
+        "status": {
+            "Active": "Aktivní",
+            "Inactive": "Neaktivní"
+        },
+        "type": {
+            "List": "Seznam",
+            "Grid": "Mřížka",
+            "Chart": "Graf"
+        },
+        "targetEntity": {
+            "Absence": "Absence",
+            "Attendance": "Docházka",
+            "Hr": "HR",
+            "Order": "Objednávka",
+            "Offer": "Nabídka",
+            "ProductsItems": "Položky produktů",
+            "User": "Uživatel",
+            "Account": "Účet",
+            "Contact": "Kontakt"
+        },
+        "chartType": {
+            "Bar": "Sloupcový graf",
+            "Line": "Čárový graf",
+            "Pie": "Koláčový graf",
+            "Doughnut": "Koblizkový graf"
+        },
+        "dateFilter": {
+            "today": "Dnes",
+            "thisWeek": "Tento týden",
+            "thisMonth": "Tento měsíc",
+            "thisQuarter": "Toto čtvrtletí",
+            "thisYear": "Tento rok",
+            "lastWeek": "Minulý týden",
+            "lastMonth": "Minulý měsíc",
+            "lastQuarter": "Minulé čtvrtletí",
+            "lastYear": "Minulý rok",
+            "custom": "Vlastní rozsah"
+        },
+        "orderDirection": {
+            "ASC": "Vzestupně",
+            "DESC": "Sestupně"
+        }
     },
     "links": {
         "assignedUser": "Přiřazený uživatel",
@@ -16,7 +75,17 @@
         "modifiedBy": "Upravil"
     },
     "labels": {
-        "Create": "Vytvořit Report",
-        "View List": "Zobrazit seznam Reportů"
+        "Create": "Vytvořit sestavu",
+        "View List": "Zobrazit seznam sestav",
+        "Run Report": "Spustit sestavu",
+        "Export": "Exportovat",
+        "Basic Information": "Základní informace",
+        "Configuration": "Konfigurace",
+        "Date Filters": "Filtry dat",
+        "Export Options": "Možnosti exportu",
+        "Data Preview": "Náhled dat",
+        "Report Results": "Výsledky sestavy",
+        "Export Report": "Exportovat sestavu",
+        "Select export format": "Vyberte formát exportu"
     }
 }

@@ -1,0 +1,40 @@
+{
+    "view": "viacrm:views/dashlets/report-chart",
+    "aclScope": "Report",
+    "entityType": "Report",
+    "options": {
+        "fields": {
+            "title": {
+                "type": "varchar",
+                "required": true
+            },
+            "reportId": {
+                "type": "link",
+                "entity": "Report",
+                "required": true
+            },
+            "refreshInterval": {
+                "type": "int",
+                "default": 0,
+                "min": 0
+            }
+        },
+        "defaults": {
+            "title": "Report Chart"
+        },
+        "layout": [
+            {
+                "rows": [
+                    [
+                        {"name": "title"},
+                        {"name": "reportId"}
+                    ],
+                    [
+                        {"name": "refreshInterval"},
+                        false
+                    ]
+                ]
+            }
+        ]
+    }
+}
