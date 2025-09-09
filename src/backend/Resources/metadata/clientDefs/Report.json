@@ -1,25 +1,10 @@
 {
     "controller": "controllers/record",
+    "views": {
+        "detail": "viacrm:views/report/record/detail"
+    },
     "iconClass": "fas fa-chart-bar",
     "color": "#2ecc71",
-    "menu": {
-        "detail": {
-            "buttons": [
-                {
-                    "label": "Run Report",
-                    "name": "runReport",
-                    "style": "primary",
-                    "action": "runReport"
-                },
-                {
-                    "label": "Export",
-                    "name": "exportReport",
-                    "style": "default",
-                    "action": "exportReport"
-                }
-            ]
-        }
-    },
     "dynamicLogic": {
         "fields": {
             "chartType": {

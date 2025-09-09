@@ -1,4 +1,4 @@
-define('viacrm:views/report/modals/result', ['views/modal', 'lib/chart'], function (Dep, Chart) {
+define('viacrm:views/report/modals/result', ['views/modal'], function (Dep) {
     
     return Dep.extend({
         
@@ -49,27 +49,175 @@ define('viacrm:views/report/modals/result', ['views/modal', 'lib/chart'], functi
         },
         
         renderChart() {
-            const ctx = this.$el.find('#reportChart')[0].getContext('2d');
+            const data = this.result;
+            const chartType = (data.chartType || 'Bar').toLowerCase();
             
-            new Chart(ctx, {
-                type: this.result.chartType.toLowerCase(),
-                data: {
-                    labels: this.result.labels,
-                    datasets: this.result.datasets
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: this.model.get('name')
-                        }
-                    }
+            let html = `<div class="chart-container-custom">
+                <h4>${data.chartType} Chart</h4>`;
+            
+            if (data.labels && data.datasets && data.datasets[0]) {
+                const values = data.datasets[0].data;
+                const maxValue = Math.max(...values);
+                
+                if (chartType === 'pie' || chartType === 'doughnut') {
+                    // Render pie chart
+                    html += this.renderPieChart(data.labels, values, data.datasets[0].backgroundColor);
+                } else if (chartType === 'line') {
+                    // Render line chart
+                    html += this.renderLineChart(data.labels, values, maxValue, data.datasets[0].backgroundColor);
+                } else {
+                    // Render bar chart (default)
+                    html += this.renderBarChart(data.labels, values, maxValue, data.datasets[0].backgroundColor);
                 }
+                
+                // Add data table below chart
+                html += '<div class="chart-data-table" style="margin-top: 20px;">';
+                html += '<table class="table table-sm table-striped">';
+                html += '<thead><tr><th>Category</th><th>Value</th></tr></thead><tbody>';
+                data.labels.forEach((label, index) => {
+                    const value = values[index] || 0;
+                    html += `<tr><td>${label}</td><td>${value}</td></tr>`;
+                });
+                html += '</tbody></table></div>';
+            }
+            
+            html += '</div>';
+            this.$el.find('.chart-container').html(html);
+        },
+        
+        renderBarChart(labels, values, maxValue, colors) {
+            let html = '<div class="bar-chart" style="display: flex; align-items: end; height: 300px; padding: 20px; border: 1px solid #ddd; background: #fafafa;">';
+            
+            labels.forEach((label, index) => {
+                const value = values[index] || 0;
+                const height = maxValue > 0 ? (value / maxValue) * 250 : 0;
+                const color = colors ? colors[index] : '#36A2EB';
+                
+                html += `<div class="bar-item" style="flex: 1; margin: 0 5px; text-align: center;">
+                    <div class="bar" style="
+                        height: ${height}px; 
+                        background-color: ${color}; 
+                        border-radius: 4px 4px 0 0;
+                        margin-bottom: 5px;
+                        transition: opacity 0.2s;
+                        position: relative;
+                    " title="${label}: ${value}">
+                        <span style="
+                            position: absolute;
+                            top: -20px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            font-size: 12px;
+                            font-weight: bold;
+                            color: #333;
+                        ">${value}</span>
+                    </div>
+                    <div class="bar-label" style="font-size: 12px; color: #666;">${label}</div>
+                </div>`;
             });
+            
+            html += '</div>';
+            return html;
+        },
+        
+        renderLineChart(labels, values, maxValue, colors) {
+            const chartHeight = 180;
+            const chartWidth = 350;
+            const padding = 30;
+            const totalWidth = chartWidth + padding * 2;
+            const totalHeight = chartHeight + padding * 2;
+            
+            let html = `<div class="line-chart" style="
+                width: 100%; 
+                max-width: 450px; 
+                margin: 0 auto; 
+                padding: 10px; 
+                border: 1px solid #ddd; 
+                background: #fafafa;
+                overflow: hidden;
+            ">
+                <svg width="100%" height="250" viewBox="0 0 ${totalWidth} ${totalHeight}" style="background: white; display: block;">`;
+            
+            // Draw grid lines
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (chartHeight / 5) * i;
+                html += `<line x1="${padding}" y1="${y}" x2="${chartWidth + padding}" y2="${y}" stroke="#eee" stroke-width="1"/>`;
+            }
+            
+            // Calculate points
+            const points = [];
+            labels.forEach((label, index) => {
+                const value = values[index] || 0;
+                const x = padding + (chartWidth / Math.max(labels.length - 1, 1)) * index;
+                const y = padding + chartHeight - (maxValue > 0 ? (value / maxValue) * chartHeight : 0);
+                points.push({ x, y, value, label });
+            });
+            
+            // Draw line
+            if (points.length > 1) {
+                const pathData = points.map((point, index) => 
+                    `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`
+                ).join(' ');
+                
+                html += `<path d="${pathData}" stroke="#36A2EB" stroke-width="2" fill="none"/>`;
+            }
+            
+            // Draw points
+            points.forEach((point, index) => {
+                const color = colors ? colors[index] : '#36A2EB';
+                html += `<circle cx="${point.x}" cy="${point.y}" r="4" fill="${color}" stroke="white" stroke-width="1">
+                    <title>${point.label}: ${point.value}</title>
+                </circle>`;
+                
+                // Add value labels (only if there's space)
+                if (point.y > 20) {
+                    html += `<text x="${point.x}" y="${point.y - 8}" text-anchor="middle" font-size="10" fill="#333">${point.value}</text>`;
+                }
+                
+                // Add category labels at bottom
+                html += `<text x="${point.x}" y="${chartHeight + padding + 20}" text-anchor="middle" font-size="10" fill="#666">${point.label}</text>`;
+            });
+            
+            html += '</svg></div>';
+            return html;
+        },
+        
+        renderPieChart(labels, values, colors) {
+            const total = values.reduce((sum, val) => sum + val, 0);
+            let cumulativePercentage = 0;
+            
+            let html = '<div class="pie-chart-container" style="display: flex; align-items: center; justify-content: center;">';
+            html += '<div class="pie-chart" style="width: 300px; height: 300px; border-radius: 50%; background: conic-gradient(';
+            
+            // Create conic gradient for pie chart
+            const gradientStops = [];
+            labels.forEach((label, index) => {
+                const value = values[index] || 0;
+                const percentage = total > 0 ? (value / total) * 100 : 0;
+                const color = colors ? colors[index] : `hsl(${(index * 360) / labels.length}, 70%, 60%)`;
+                
+                gradientStops.push(`${color} ${cumulativePercentage}% ${cumulativePercentage + percentage}%`);
+                cumulativePercentage += percentage;
+            });
+            
+            html += gradientStops.join(', ');
+            html += ');"></div>';
+            
+            // Add legend
+            html += '<div class="pie-legend" style="margin-left: 20px;">';
+            labels.forEach((label, index) => {
+                const value = values[index] || 0;
+                const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+                const color = colors ? colors[index] : `hsl(${(index * 360) / labels.length}, 70%, 60%)`;
+                
+                html += `<div class="legend-item" style="display: flex; align-items: center; margin-bottom: 5px;">
+                    <div style="width: 20px; height: 20px; background-color: ${color}; margin-right: 10px; border-radius: 2px;"></div>
+                    <span>${label}: ${value} (${percentage}%)</span>
+                </div>`;
+            });
+            html += '</div></div>';
+            
+            return html;
         },
         
         renderListData() {

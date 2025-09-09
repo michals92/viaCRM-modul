@@ -5,7 +5,38 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
         setup() {
             Dep.prototype.setup.call(this);
             
+            this.setupButtons();
             this.setupFieldDependency();
+        },
+        
+        setupButtons() {
+            // Add buttons to top bar - use proper EspoCRM format
+            this.buttonList.push({
+                name: 'runReport',
+                label: 'Run Report',
+                style: 'success',
+                action: 'runReport'
+            });
+            
+            this.buttonList.push({
+                name: 'exportReport',
+                label: 'Export',
+                style: 'primary', 
+                action: 'exportReport'
+            });
+            
+            // Also add to dropdown
+            this.dropdownItemList.push({
+                name: 'runReport',
+                label: 'Run Report',
+                action: 'runReport'
+            });
+            
+            this.dropdownItemList.push({
+                name: 'exportReport',
+                label: 'Export',
+                action: 'exportReport'
+            });
         },
         
         setupFieldDependency() {
@@ -26,8 +57,10 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
             const targetEntity = this.model.get('targetEntity');
             if (!targetEntity) return;
             
-            this.ajaxGetRequest(`Report/action/getEntityFields?entityType=${targetEntity}`)
-                .then(fields => {
+            $.ajax({
+                url: `api/v1/Report/action/getEntityFields?entityType=${targetEntity}`,
+                type: 'GET'
+            }).then(fields => {
                     this.updateColumnOptions(fields);
                     this.updateGroupByOptions(fields);
                     this.updateOrderByOptions(fields);
@@ -96,29 +129,38 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
         },
         
         actionRunReport() {
+            console.log('Run Report clicked!');
+            
             if (!this.model.id) {
                 this.notify('Report must be saved first', 'warning');
                 return;
             }
             
             this.notify('Running report...', 'info');
+            console.log('Running report for ID:', this.model.id);
             
-            this.ajaxGetRequest(`Report/${this.model.id}/run`)
-                .then(result => {
-                    this.createView('reportResult', 'viacrm:views/report/modals/result', {
-                        model: this.model,
-                        result: result
-                    }, view => {
-                        view.render();
-                    });
-                })
-                .catch(error => {
-                    this.notify('Error running report', 'error');
-                    console.error(error);
+            $.ajax({
+                url: `api/v1/Report/${this.model.id}/run`,
+                type: 'GET'
+            }).done(result => {
+                console.log('Report result:', result);
+                this.notify('Report completed!', 'success');
+                
+                this.createView('reportResult', 'viacrm:views/report/modals/result', {
+                    model: this.model,
+                    result: result
+                }, view => {
+                    view.render();
                 });
+            }).fail(error => {
+                this.notify('Error running report', 'error');
+                console.error('Report error:', error);
+            });
         },
         
         actionExportReport() {
+            console.log('Export clicked!');
+            
             if (!this.model.id) {
                 this.notify('Report must be saved first', 'warning');
                 return;
@@ -140,8 +182,8 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
         },
         
         exportFormat(format) {
-            const url = `Report/${this.model.id}/export?format=${format}`;
-            window.open(this.getBasePath() + '/' + url, '_blank');
+            const url = `api/v1/Report/${this.model.id}/export?format=${format}`;
+            window.open(url, '_blank');
         }
     });
 });

@@ -12,15 +12,34 @@ class Report extends Record
 {
     public function actionRun(Request $request, Response $response)
     {
-        $id = $request->getRouteParam('id');
-        if (!$id) {
-            throw new BadRequest("Report ID is required");
-        }
+        try {
+            $id = $request->getRouteParam('id');
+            if (!$id) {
+                throw new BadRequest("Report ID is required");
+            }
 
-        $reportService = $this->getRecordService();
-        $result = $reportService->runReport($id);
-        
-        $response->writeBody(json_encode($result));
+            error_log("Controller - Running report with ID: " . $id);
+            
+            $reportService = $this->getRecordService();
+            $result = $reportService->runReport($id);
+            
+            error_log("Controller - Report result: " . json_encode($result));
+            
+            $response->setHeader('Content-Type', 'application/json');
+            $response->writeBody(json_encode($result));
+        } catch (\Exception $e) {
+            error_log("Controller error in actionRun: " . $e->getMessage());
+            error_log("Controller error trace: " . $e->getTraceAsString());
+            
+            $response->setStatus(500);
+            $response->setHeader('Content-Type', 'application/json');
+            $response->writeBody(json_encode([
+                'error' => $e->getMessage(),
+                'type' => 'list',
+                'data' => [],
+                'total' => 0
+            ]));
+        }
     }
 
     public function actionExport(Request $request, Response $response)
