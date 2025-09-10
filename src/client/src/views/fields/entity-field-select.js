@@ -19,6 +19,13 @@ define('viacrm:views/fields/entity-field-select', ['views/fields/enum'], functio
             this.listenTo(this.model, 'change:targetEntity', () => {
                 this.updateFieldOptions();
             });
+            
+            // For editing existing records, update fields once after first render
+            if (this.model.get('targetEntity')) {
+                this.once('after:render', () => {
+                    this.updateFieldOptions();
+                });
+            }
         },
 
         updateFieldOptions: function () {
@@ -59,7 +66,10 @@ define('viacrm:views/fields/entity-field-select', ['views/fields/enum'], functio
                 
                 console.log('Updated groupBy/orderBy options:', options);
                 
-                this.reRender();
+                // Re-render only if already rendered
+                if (this.isRendered()) {
+                    this.reRender();
+                }
                 
             }).fail((error) => {
                 console.error('Error loading fields for groupBy/orderBy:', error);
@@ -74,7 +84,10 @@ define('viacrm:views/fields/entity-field-select', ['views/fields/enum'], functio
                     'createdAt': 'Created At'
                 };
                 
-                this.reRender();
+                // Re-render only if already rendered
+                if (this.isRendered()) {
+                    this.reRender();
+                }
             });
         },
 

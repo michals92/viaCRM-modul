@@ -18,6 +18,13 @@ define('viacrm:views/fields/entity-columns', ['views/fields/multi-enum'], functi
             this.listenTo(this.model, 'change:targetEntity', () => {
                 this.updateFieldOptions();
             });
+            
+            // For editing existing records, update fields once after first render
+            if (this.model.get('targetEntity')) {
+                this.once('after:render', () => {
+                    this.updateFieldOptions();
+                });
+            }
         },
 
         updateFieldOptions: function () {
@@ -57,7 +64,10 @@ define('viacrm:views/fields/entity-columns', ['views/fields/multi-enum'], functi
                 console.log('Updated field options:', options);
                 console.log('Updated field translations:', translatedOptions);
                 
-                this.reRender();
+                // Re-render only if already rendered
+                if (this.isRendered()) {
+                    this.reRender();
+                }
                 
             }).fail((error) => {
                 console.error('Error loading fields for', targetEntity, ':', error);
@@ -73,7 +83,10 @@ define('viacrm:views/fields/entity-columns', ['views/fields/multi-enum'], functi
                     'modifiedAt': 'Modified At'
                 };
                 
-                this.reRender();
+                // Re-render only if already rendered
+                if (this.isRendered()) {
+                    this.reRender();
+                }
             });
         },
 
