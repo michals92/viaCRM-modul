@@ -67,79 +67,233 @@ class Report extends Record
                 throw new BadRequest("Entity type is required");
             }
 
-            // Simple hardcoded field list for each entity to avoid API complexity
-            $entityFields = [
-                'Absence' => [
-                    ['name' => 'name', 'type' => 'varchar', 'label' => 'Name'],
-                    ['name' => 'status', 'type' => 'enum', 'label' => 'Status'],
-                    ['name' => 'startDate', 'type' => 'date', 'label' => 'Start Date'],
-                    ['name' => 'endDate', 'type' => 'date', 'label' => 'End Date'],
-                    ['name' => 'type', 'type' => 'enum', 'label' => 'Type'],
-                    ['name' => 'createdAt', 'type' => 'datetime', 'label' => 'Created At']
-                ],
-                'Attendance' => [
-                    ['name' => 'name', 'type' => 'varchar', 'label' => 'Name'],
-                    ['name' => 'date', 'type' => 'date', 'label' => 'Date'],
-                    ['name' => 'checkIn', 'type' => 'datetime', 'label' => 'Check In'],
-                    ['name' => 'checkOut', 'type' => 'datetime', 'label' => 'Check Out'],
-                    ['name' => 'status', 'type' => 'enum', 'label' => 'Status']
-                ],
-                'Hr' => [
-                    ['name' => 'name', 'type' => 'varchar', 'label' => 'Name'],
-                    ['name' => 'department', 'type' => 'varchar', 'label' => 'Department'],
-                    ['name' => 'position', 'type' => 'varchar', 'label' => 'Position'],
-                    ['name' => 'status', 'type' => 'enum', 'label' => 'Status']
-                ],
-                'Order' => [
-                    ['name' => 'name', 'type' => 'varchar', 'label' => 'Name'],
-                    ['name' => 'number', 'type' => 'varchar', 'label' => 'Number'],
-                    ['name' => 'status', 'type' => 'enum', 'label' => 'Status'],
-                    ['name' => 'amount', 'type' => 'currency', 'label' => 'Amount'],
-                    ['name' => 'dateOrdered', 'type' => 'date', 'label' => 'Date Ordered']
-                ],
-                'Offer' => [
-                    ['name' => 'name', 'type' => 'varchar', 'label' => 'Name'],
-                    ['name' => 'number', 'type' => 'varchar', 'label' => 'Number'],
-                    ['name' => 'status', 'type' => 'enum', 'label' => 'Status'],
-                    ['name' => 'amount', 'type' => 'currency', 'label' => 'Amount'],
-                    ['name' => 'validUntil', 'type' => 'date', 'label' => 'Valid Until']
-                ],
-                'ProductsItems' => [
-                    ['name' => 'name', 'type' => 'varchar', 'label' => 'Name'],
-                    ['name' => 'sku', 'type' => 'varchar', 'label' => 'SKU'],
-                    ['name' => 'price', 'type' => 'currency', 'label' => 'Price'],
-                    ['name' => 'quantity', 'type' => 'int', 'label' => 'Quantity'],
-                    ['name' => 'status', 'type' => 'enum', 'label' => 'Status']
-                ],
-                'User' => [
-                    ['name' => 'userName', 'type' => 'varchar', 'label' => 'User Name'],
-                    ['name' => 'firstName', 'type' => 'varchar', 'label' => 'First Name'],
-                    ['name' => 'lastName', 'type' => 'varchar', 'label' => 'Last Name'],
-                    ['name' => 'emailAddress', 'type' => 'email', 'label' => 'Email Address'],
-                    ['name' => 'isActive', 'type' => 'bool', 'label' => 'Is Active']
-                ],
-                'Account' => [
-                    ['name' => 'name', 'type' => 'varchar', 'label' => 'Name'],
-                    ['name' => 'type', 'type' => 'enum', 'label' => 'Type'],
-                    ['name' => 'industry', 'type' => 'enum', 'label' => 'Industry'],
-                    ['name' => 'website', 'type' => 'url', 'label' => 'Website'],
-                    ['name' => 'emailAddress', 'type' => 'email', 'label' => 'Email Address']
-                ],
-                'Contact' => [
-                    ['name' => 'name', 'type' => 'personName', 'label' => 'Name'],
-                    ['name' => 'emailAddress', 'type' => 'email', 'label' => 'Email Address'],
-                    ['name' => 'phoneNumber', 'type' => 'phone', 'label' => 'Phone Number'],
-                    ['name' => 'title', 'type' => 'varchar', 'label' => 'Title'],
-                    ['name' => 'accountName', 'type' => 'varchar', 'label' => 'Account']
-                ]
-            ];
+            error_log("Getting fields for entity: " . $entityType);
 
-            $fields = $entityFields[$entityType] ?? [];
+            // Get entity metadata dynamically
+            $metadata = $this->getContainer()->get('metadata');
+            $entityManager = $this->getContainer()->get('entityManager');
+            
+            // Check if entity exists
+            if (!$entityManager->hasRepository($entityType)) {
+                throw new BadRequest("Entity type '{$entityType}' does not exist");
+            }
+
+            // Get field definitions from metadata
+            $fieldDefs = $metadata->get(['entityDefs', $entityType, 'fields']) ?? [];
+            
+            $fields = [];
+            
+            // Process each field definition
+            foreach ($fieldDefs as $fieldName => $fieldDef) {
+                try {
+                    // Skip system/internal fields that shouldn't be in reports
+                    if ($this->shouldSkipField($fieldName, $fieldDef)) {
+                        continue;
+                    }
+                    
+                    $fieldType = $fieldDef['type'] ?? 'varchar';
+                    $label = $this->getFieldLabel($entityType, $fieldName, $metadata);
+                    
+                    $fields[] = [
+                        'name' => $fieldName,
+                        'type' => $fieldType,
+                        'label' => $label
+                    ];
+                    
+                } catch (\Exception $fieldError) {
+                    error_log("Error processing field {$fieldName}: " . $fieldError->getMessage());
+                    // Skip problematic fields
+                    continue;
+                }
+            }
+            
+            // Sort fields by label for better UX
+            usort($fields, function($a, $b) {
+                return strcmp($a['label'], $b['label']);
+            });
+
+            error_log("Found " . count($fields) . " fields for {$entityType}");
             $response->writeBody(json_encode($fields));
+            
         } catch (\Exception $e) {
+            error_log("Error in actionGetEntityFields: " . $e->getMessage());
             $response->setStatus(500);
             $response->writeBody(json_encode(['error' => $e->getMessage()]));
         }
+    }
+
+    private function shouldSkipField($fieldName, $fieldDef)
+    {
+        $fieldType = $fieldDef['type'] ?? '';
+        
+        // Skip read-only system fields
+        if (!empty($fieldDef['readOnly'])) {
+            return true;
+        }
+        
+        // Skip certain field types that don't make sense in reports
+        $skipTypes = [
+            'password', 'passwordConfirm', 'wysiwyg', 'text', 'longtext',
+            'image', 'file', 'attachmentMultiple', 'linkMultiple',
+            'currencyConverted', 'foreign'
+        ];
+        
+        if (in_array($fieldType, $skipTypes)) {
+            return true;
+        }
+        
+        // Skip system fields
+        $systemFields = [
+            'deleted', 'versionNumber', 'followerIds', 'followersIds',
+            'isFollowed', 'stream', 'emailAddressData', 'phoneNumberData'
+        ];
+        
+        if (in_array($fieldName, $systemFields)) {
+            return true;
+        }
+        
+        // Skip fields ending with certain patterns
+        $skipPatterns = ['Ids', 'Names', 'Data', 'Map'];
+        foreach ($skipPatterns as $pattern) {
+            if (substr($fieldName, -strlen($pattern)) === $pattern && $fieldName !== 'id') {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private function getFieldLabel($entityType, $fieldName, $metadata)
+    {
+        // Try to get label from language data
+        $language = $this->getContainer()->get('language');
+        
+        // Try entity-specific label first
+        $label = $language->translate($fieldName, 'fields', $entityType);
+        
+        // Fallback to global field label
+        if ($label === $fieldName) {
+            $label = $language->translate($fieldName, 'fields', 'Global');
+        }
+        
+        // If still no translation, make a nice label from field name
+        if ($label === $fieldName) {
+            $label = $this->makeNiceLabel($fieldName);
+        }
+        
+        return $label;
+    }
+
+    private function makeNiceLabel($fieldName)
+    {
+        // Convert camelCase to Nice Label
+        $label = preg_replace('/([A-Z])/', ' $1', $fieldName);
+        $label = trim($label);
+        $label = ucwords(strtolower($label));
+        
+        // Handle common abbreviations
+        $replacements = [
+            'Id' => 'ID',
+            'Url' => 'URL',
+            'Api' => 'API',
+            'Html' => 'HTML',
+            'Xml' => 'XML',
+            'Json' => 'JSON'
+        ];
+        
+        foreach ($replacements as $search => $replace) {
+            $label = str_replace($search, $replace, $label);
+        }
+        
+        return $label;
+    }
+
+    public function actionGetAvailableEntities(Request $request, Response $response)
+    {
+        try {
+            error_log("Getting available entities");
+            
+            $metadata = $this->getContainer()->get('metadata');
+            $entityManager = $this->getContainer()->get('entityManager');
+            $language = $this->getContainer()->get('language');
+            
+            // Get all entity definitions
+            $entityDefs = $metadata->get(['entityDefs']) ?? [];
+            $entities = [];
+            
+            foreach ($entityDefs as $entityType => $entityDef) {
+                try {
+                    // Skip internal/system entities
+                    if ($this->shouldSkipEntity($entityType, $entityDef)) {
+                        continue;
+                    }
+                    
+                    // Check if entity has a repository (is queryable)
+                    if (!$entityManager->hasRepository($entityType)) {
+                        continue;
+                    }
+                    
+                    // Get entity label
+                    $label = $language->translate($entityType, 'scopeNames');
+                    if ($label === $entityType) {
+                        $label = $this->makeNiceLabel($entityType);
+                    }
+                    
+                    $entities[] = [
+                        'name' => $entityType,
+                        'label' => $label
+                    ];
+                    
+                } catch (\Exception $entityError) {
+                    error_log("Error processing entity {$entityType}: " . $entityError->getMessage());
+                    continue;
+                }
+            }
+            
+            // Sort entities by label
+            usort($entities, function($a, $b) {
+                return strcmp($a['label'], $b['label']);
+            });
+            
+            error_log("Found " . count($entities) . " available entities");
+            $response->writeBody(json_encode($entities));
+            
+        } catch (\Exception $e) {
+            error_log("Error in actionGetAvailableEntities: " . $e->getMessage());
+            $response->setStatus(500);
+            $response->writeBody(json_encode(['error' => $e->getMessage()]));
+        }
+    }
+
+    private function shouldSkipEntity($entityType, $entityDef)
+    {
+        // Skip system/internal entities
+        $systemEntities = [
+            'ActionHistoryRecord', 'ArrayValue', 'Attachment', 'AuthenticationProvider',
+            'AuthFailLogRecord', 'AuthLogRecord', 'AuthToken', 'EmailFolder',
+            'EmailFilter', 'Export', 'Extension', 'GlobalStream', 'Import',
+            'ImportError', 'Integration', 'Job', 'KnowledgeBaseArticle', 'LayoutRecord',
+            'LayoutSet', 'LeadCapture', 'Note', 'Notification', 'PasswordChangeRequest',
+            'Portal', 'PortalRole', 'Preferences', 'Role', 'ScheduledJob',
+            'Stream', 'Subscription', 'Team', 'Template', 'UniqueId',
+            'User', 'Webhook', 'WebhookQueueItem', 'WorkingTimeCalendar', 'WorkingTimeRange'
+        ];
+        
+        if (in_array($entityType, $systemEntities)) {
+            return true;
+        }
+        
+        // Skip entities marked as not accessible
+        if (isset($entityDef['disabled']) && $entityDef['disabled']) {
+            return true;
+        }
+        
+        // Skip entities without fields (likely system entities)
+        if (empty($entityDef['fields'])) {
+            return true;
+        }
+        
+        return false;
     }
 
     public function actionPreview(Request $request, Response $response)

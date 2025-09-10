@@ -119,17 +119,8 @@ class Report extends Record
                             }
                         }
                     } else {
-                        // Get safe basic fields
-                        $safeFields = ['id', 'name', 'status', 'createdAt'];
-                        foreach ($safeFields as $field) {
-                            try {
-                                if ($entity->hasAttribute($field)) {
-                                    $data[$field] = $entity->get($field);
-                                }
-                            } catch (\Exception $e) {
-                                // Skip problematic fields
-                            }
-                        }
+                        // Get safe basic fields dynamically
+                        $data = $this->extractSafeEntityData($entity, $targetEntity);
                     }
                     
                     if (!empty($data)) {
@@ -642,5 +633,109 @@ class Report extends Record
             'contentType' => 'application/pdf',
             'filename' => $report->get('name') . '_' . date('Y-m-d_H-i-s') . '.pdf'
         ];
+    }
+
+    private function extractSafeEntityData($entity, $targetEntity)
+    {
+        try {
+            // Get field definitions from metadata
+            $metadata = $this->getContainer()->get('metadata');
+            $fieldDefs = $metadata->get(['entityDefs', $targetEntity, 'fields']) ?? [];
+            
+            $data = [];
+            $safeFieldTypes = [
+                'varchar', 'int', 'float', 'bool', 'date', 'datetime', 
+                'enum', 'email', 'phone', 'url', 'currency'
+            ];
+            
+            // Always include ID if available
+            if ($entity->hasAttribute('id')) {
+                $data['id'] = $entity->get('id');
+            }
+            
+            // Extract fields based on metadata
+            foreach ($fieldDefs as $fieldName => $fieldDef) {
+                try {
+                    $fieldType = $fieldDef['type'] ?? '';
+                    
+                    // Skip unsuitable fields
+                    if (!in_array($fieldType, $safeFieldTypes)) {
+                        continue;
+                    }
+                    
+                    // Skip read-only fields except for basic ones
+                    if (!empty($fieldDef['readOnly']) && !in_array($fieldName, ['createdAt', 'modifiedAt'])) {
+                        continue;
+                    }
+                    
+                    // Skip system fields
+                    if (in_array($fieldName, ['deleted', 'versionNumber'])) {
+                        continue;
+                    }
+                    
+                    if ($entity->hasAttribute($fieldName)) {
+                        $value = $entity->get($fieldName);
+                        
+                        // Format value based on type
+                        $data[$fieldName] = $this->formatFieldValue($value, $fieldType);
+                        
+                        // Limit to reasonable number of fields for display
+                        if (count($data) >= 8) {
+                            break;
+                        }
+                    }
+                } catch (\Exception $e) {
+                    // Skip problematic fields
+                    continue;
+                }
+            }
+            
+            // Fallback to basic fields if nothing was extracted
+            if (empty($data) || count($data) <= 1) { // Only ID
+                $basicFields = ['name', 'title', 'subject', 'status', 'type', 'createdAt'];
+                foreach ($basicFields as $field) {
+                    try {
+                        if ($entity->hasAttribute($field)) {
+                            $data[$field] = $entity->get($field);
+                        }
+                    } catch (\Exception $e) {
+                        // Skip
+                    }
+                }
+            }
+            
+            return $data;
+            
+        } catch (\Exception $e) {
+            error_log("Error extracting entity data: " . $e->getMessage());
+            
+            // Ultimate fallback
+            return ['id' => $entity->get('id') ?? 'unknown'];
+        }
+    }
+    
+    private function formatFieldValue($value, $fieldType)
+    {
+        if ($value === null) {
+            return null;
+        }
+        
+        switch ($fieldType) {
+            case 'bool':
+                return $value ? 'Yes' : 'No';
+            case 'date':
+            case 'datetime':
+                if ($value instanceof \DateTime) {
+                    return $value->format($fieldType === 'date' ? 'Y-m-d' : 'Y-m-d H:i:s');
+                }
+                return (string)$value;
+            case 'currency':
+            case 'float':
+                return is_numeric($value) ? number_format((float)$value, 2) : $value;
+            case 'int':
+                return is_numeric($value) ? (int)$value : $value;
+            default:
+                return (string)$value;
+        }
     }
 }

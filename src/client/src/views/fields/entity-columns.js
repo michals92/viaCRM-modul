@@ -26,32 +26,52 @@ define('viacrm:views/fields/entity-columns', ['views/fields/multi-enum'], functi
             if (!targetEntity) {
                 this.params.options = [];
                 this.translatedOptions = {};
-            } else {
-                // Static field options for each entity type
-                const entityFields = {
-                    'Absence': ['name', 'status', 'startDate', 'endDate', 'type', 'createdAt'],
-                    'Attendance': ['name', 'date', 'checkIn', 'checkOut', 'status'],
-                    'Hr': ['name', 'department', 'position', 'status'],
-                    'Order': ['name', 'number', 'status', 'amount', 'dateOrdered'],
-                    'Offer': ['name', 'number', 'status', 'amount', 'validUntil'],
-                    'ProductsItems': ['name', 'sku', 'price', 'quantity', 'status'],
-                    'User': ['userName', 'firstName', 'lastName', 'emailAddress', 'isActive'],
-                    'Account': ['name', 'type', 'industry', 'website', 'emailAddress'],
-                    'Contact': ['name', 'emailAddress', 'phoneNumber', 'title', 'accountName']
-                };
-    
-                const options = entityFields[targetEntity] || [];
-                const translatedOptions = {};
-                
-                options.forEach(field => {
-                    translatedOptions[field] = this.translate(field, 'fields', targetEntity) || field;
-                });
-    
-                this.params.options = options;
-                this.translatedOptions = translatedOptions;
+                this.reRender();
+                return;
             }
             
-            this.reRender();
+            console.log('Loading fields for entity:', targetEntity);
+            
+            // Load fields dynamically from the backend
+            $.ajax({
+                url: 'Report/action/getEntityFields',
+                type: 'GET',
+                data: { entityType: targetEntity },
+                dataType: 'json'
+            }).done((fields) => {
+                console.log('Received fields for', targetEntity, ':', fields);
+                
+                const options = fields.map(field => field.name);
+                const translatedOptions = {};
+                
+                fields.forEach(field => {
+                    translatedOptions[field.name] = field.label;
+                });
+                
+                this.params.options = options;
+                this.translatedOptions = translatedOptions;
+                
+                console.log('Updated field options:', options);
+                console.log('Updated field translations:', translatedOptions);
+                
+                this.reRender();
+                
+            }).fail((error) => {
+                console.error('Error loading fields for', targetEntity, ':', error);
+                
+                // Fallback to basic fields
+                const basicFields = ['id', 'name', 'status', 'createdAt', 'modifiedAt'];
+                this.params.options = basicFields;
+                this.translatedOptions = {
+                    'id': 'ID',
+                    'name': 'Name',
+                    'status': 'Status',
+                    'createdAt': 'Created At',
+                    'modifiedAt': 'Modified At'
+                };
+                
+                this.reRender();
+            });
         },
 
         getTranslatedOptions: function () {

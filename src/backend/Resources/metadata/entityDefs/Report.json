@@ -29,20 +29,11 @@
             "required": true
         },
         "targetEntity": {
-            "type": "enum",
-            "options": [
-                "Absence",
-                "Attendance", 
-                "Hr",
-                "Order",
-                "Offer",
-                "ProductsItems",
-                "User",
-                "Account",
-                "Contact"
-            ],
+            "type": "varchar",
             "required": true,
-            "default": ""
+            "default": "",
+            "tooltip": "Entity to generate report from",
+            "view": "viacrm:views/fields/target-entity-select"
         },
         "columns": {
             "type": "jsonArray",
