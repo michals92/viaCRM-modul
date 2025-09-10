@@ -644,8 +644,8 @@ class Report extends Record
             
             $data = [];
             $safeFieldTypes = [
-                'varchar', 'int', 'float', 'bool', 'date', 'datetime', 
-                'enum', 'email', 'phone', 'url', 'currency'
+                'varchar', 'text', 'int', 'float', 'bool', 'date', 'datetime', 
+                'enum', 'email', 'phone', 'url', 'currency', 'link'
             ];
             
             // Always include ID if available
@@ -734,6 +734,13 @@ class Report extends Record
                 return is_numeric($value) ? number_format((float)$value, 2) : $value;
             case 'int':
                 return is_numeric($value) ? (int)$value : $value;
+            case 'text':
+                // Truncate long text for display
+                $textValue = (string)$value;
+                return strlen($textValue) > 100 ? substr($textValue, 0, 100) . '...' : $textValue;
+            case 'link':
+                // For link fields, show the name if available
+                return is_array($value) && isset($value['name']) ? $value['name'] : (string)$value;
             default:
                 return (string)$value;
         }

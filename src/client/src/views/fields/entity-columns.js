@@ -33,8 +33,11 @@ define('viacrm:views/fields/entity-columns', ['views/fields/multi-enum'], functi
             console.log('Loading fields for entity:', targetEntity);
             
             // Load fields dynamically from the backend
+            const basePath = window.location.pathname.replace(/\/+$/, '');
+            const url = `${basePath}/api/v1/Report/action/getEntityFields`;
+            
             $.ajax({
-                url: 'Report/action/getEntityFields',
+                url: url,
                 type: 'GET',
                 data: { entityType: targetEntity },
                 dataType: 'json'

@@ -14,8 +14,12 @@ define('viacrm:views/fields/target-entity-select', ['views/fields/enum'], functi
         loadAvailableEntities: function () {
             console.log('Loading available entities...');
             
+            // Use proper EspoCRM API endpoint format
+            const basePath = window.location.pathname.replace(/\/+$/, '');
+            const url = `${basePath}/api/v1/Report/action/getAvailableEntities`;
+            
             $.ajax({
-                url: 'Report/action/getAvailableEntities',
+                url: url,
                 type: 'GET',
                 dataType: 'json'
             }).done((entities) => {
@@ -63,13 +67,16 @@ define('viacrm:views/fields/target-entity-select', ['views/fields/enum'], functi
             Dep.prototype.afterRender.call(this);
             
             // Set up change listener to trigger field loading for related fields
-            this.$element.on('change', () => {
-                const selectedEntity = this.fetch().targetEntity;
-                console.log('Target entity changed to:', selectedEntity);
-                
-                // Trigger event so other fields can react
-                this.trigger('change');
-            });
+            // Use $el instead of $element for EspoCRM compatibility
+            if (this.$el && this.$el.find('select').length > 0) {
+                this.$el.find('select').on('change', () => {
+                    const selectedEntity = this.fetch().targetEntity;
+                    console.log('Target entity changed to:', selectedEntity);
+                    
+                    // Trigger event so other fields can react
+                    this.trigger('change');
+                });
+            }
         }
     });
 });

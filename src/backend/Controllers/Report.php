@@ -133,7 +133,7 @@ class Report extends Record
         
         // Skip certain field types that don't make sense in reports
         $skipTypes = [
-            'password', 'passwordConfirm', 'wysiwyg', 'text', 'longtext',
+            'password', 'passwordConfirm', 'wysiwyg', 'longtext',
             'image', 'file', 'attachmentMultiple', 'linkMultiple',
             'currencyConverted', 'foreign'
         ];
@@ -276,7 +276,7 @@ class Report extends Record
             'LayoutSet', 'LeadCapture', 'Note', 'Notification', 'PasswordChangeRequest',
             'Portal', 'PortalRole', 'Preferences', 'Role', 'ScheduledJob',
             'Stream', 'Subscription', 'Team', 'Template', 'UniqueId',
-            'User', 'Webhook', 'WebhookQueueItem', 'WorkingTimeCalendar', 'WorkingTimeRange'
+            'Webhook', 'WebhookQueueItem', 'WorkingTimeCalendar', 'WorkingTimeRange'
         ];
         
         if (in_array($entityType, $systemEntities)) {
