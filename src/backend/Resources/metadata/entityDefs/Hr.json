@@ -166,61 +166,6 @@
             "foreign": "hrRecord"
         }
     },
-    "dynamicLogic": {
-        "fields": {
-            "partTimeStartDate": {
-                "visible": {
-                    "conditionGroup": [
-                        {
-                            "type": "equals",
-                            "attribute": "workingHoursType",
-                            "value": "Part-time"
-                        }
-                    ]
-                }
-            },
-            "partTimeEndDate": {
-                "visible": {
-                    "conditionGroup": [
-                        {
-                            "type": "equals",
-                            "attribute": "workingHoursType", 
-                            "value": "Part-time"
-                        }
-                    ]
-                }
-            },
-            "workingHours": {
-                "required": {
-                    "conditionGroup": [
-                        {
-                            "type": "equals",
-                            "attribute": "workingHoursType",
-                            "value": "Part-time"
-                        }
-                    ]
-                }
-            }
-        },
-        "options": {
-            "workingHours": {
-                "conditionGroup": [
-                    {
-                        "type": "equals",
-                        "attribute": "workingHoursType",
-                        "value": "Full-time"
-                    }
-                ],
-                "actions": [
-                    {
-                        "type": "setValue",
-                        "attribute": "workingHours",
-                        "value": 40
-                    }
-                ]
-            }
-        }
-    },
     "collection": {
         "orderBy": "name",
         "order": "asc"
