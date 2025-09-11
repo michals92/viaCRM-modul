@@ -73,6 +73,9 @@
         "productsItems": {
             "type": "linkMultiple",
             "view": "views/fields/link-multiple"
+        },
+        "offerItems": {
+            "type": "offerItems"
         }
     },
     "links": {

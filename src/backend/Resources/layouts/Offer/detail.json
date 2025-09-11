@@ -39,6 +39,12 @@
                     "name": "description",
                     "fullWidth": true
                 }
+            ],
+            [
+                {
+                    "name": "offerItems",
+                    "fullWidth": true
+                }
             ]
         ]
     }

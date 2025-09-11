@@ -14,7 +14,8 @@
         "createdAt": "Created At",
         "modifiedAt": "Modified At",
         "createdBy": "Created By",
-        "modifiedBy": "Modified By"
+        "modifiedBy": "Modified By",
+        "offerItems": "Offer Items"
     },
     "options": {
         "status": {
