@@ -17,6 +17,8 @@
     },
     "labels": {
         "Create": "Vytvořit Objednávku",
-        "View List": "Zobrazit seznam Objednávek"
+        "View List": "Zobrazit seznam Objednávek",
+        "Print to PDF": "Tisknout do PDF",
+        "Manage PDF Templates": "Spravovat PDF šablony"
     }
 }

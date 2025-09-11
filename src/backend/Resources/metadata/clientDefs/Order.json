@@ -1,5 +1,8 @@
 {
     "controller": "controllers/record",
     "iconClass": "fas fa-cube",
-    "color": "#3498db"
+    "color": "#3498db",
+    "recordViews": {
+        "detail": "viacrm:views/order/record/detail"
+    }
 }

@@ -1,5 +1,8 @@
 {
     "controller": "controllers/record",
     "iconClass": "fas fa-file-contract",
-    "color": "#e74c3c"
+    "color": "#e74c3c",
+    "recordViews": {
+        "detail": "viacrm:views/offer/record/detail"
+    }
 }

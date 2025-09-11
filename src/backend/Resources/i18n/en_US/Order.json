@@ -24,6 +24,8 @@
     },
     "labels": {
         "Create": "Create Order",
-        "View List": "View Order List"
+        "View List": "View Order List",
+        "Print to PDF": "Print to PDF",
+        "Manage PDF Templates": "Manage PDF Templates"
     }
 }

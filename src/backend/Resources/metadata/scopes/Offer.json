@@ -9,5 +9,6 @@
     "disabled": false,
     "type": "Base",
     "module": "ViaCrm",
-    "object": true
+    "object": true,
+    "templates": true
 }

@@ -1,0 +1,42 @@
+{
+    "fields": {
+        "name": "Název",
+        "offerNumber": "Číslo nabídky",
+        "status": "Stav",
+        "account": "Klient",
+        "contact": "Kontakt",
+        "validUntil": "Platnost do",
+        "dateOffered": "Datum nabídky",
+        "amount": "Částka",
+        "description": "Popis",
+        "assignedUser": "Přiřazený uživatel",
+        "teams": "Týmy",
+        "createdAt": "Vytvořeno",
+        "modifiedAt": "Upraveno",
+        "createdBy": "Vytvořil",
+        "modifiedBy": "Upravil"
+    },
+    "options": {
+        "status": {
+            "Draft": "Koncept",
+            "Sent": "Odesláno",
+            "Accepted": "Přijato",
+            "Rejected": "Odmítnuto",
+            "Expired": "Expirováno"
+        }
+    },
+    "links": {
+        "account": "Klient",
+        "contact": "Kontakt",
+        "assignedUser": "Přiřazený uživatel",
+        "teams": "Týmy",
+        "createdBy": "Vytvořil",
+        "modifiedBy": "Upravil"
+    },
+    "labels": {
+        "Create": "Vytvořit nabídku",
+        "View List": "Zobrazit seznam nabídek",
+        "Print to PDF": "Tisknout do PDF",
+        "Manage PDF Templates": "Spravovat PDF šablony"
+    }
+}
