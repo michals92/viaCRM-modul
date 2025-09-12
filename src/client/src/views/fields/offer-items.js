@@ -57,8 +57,8 @@ define('viacrm:views/fields/offer-items', ['views/fields/base'], function (Dep) 
                     totalWithoutVat: totalWithoutVat,
                     vatAmount: vatAmount,
                     totalWithVat: totalWithVat,
-                    isCustom: item.isCustom !== false && !item.productId,  // true if custom item
-                    isCatalogProduct: item.productId && item.isCustom === false  // true if from catalog
+                    isCustom: item.isCustom !== undefined ? item.isCustom : !item.productId,  // Use saved isCustom or determine from productId
+                    isCatalogProduct: !!item.productId  // true if has productId (from catalog)
                 };
             }.bind(this));
             
@@ -128,25 +128,35 @@ define('viacrm:views/fields/offer-items', ['views/fields/base'], function (Dep) 
             }, function(view) {
                 view.render();
                 
-                this.listenTo(view, 'select', function(model) {
+                this.listenToOnce(view, 'select', function(model) {
                     if (index >= 0 && index < this.items.length) {
-                        // Debug logging
-                        console.log('Selected product model:', model);
-                        console.log('Product data:', model.attributes);
-                        console.log('TaxRate value:', model.get('taxRate'));
-                        console.log('TaxRate type:', typeof model.get('taxRate'));
-                        
-                        this.items[index].productId = model.id;
-                        this.items[index].productName = model.get('name');
-                        this.items[index].unitPrice = parseFloat(model.get('price')) || 0;
-                        var taxRate = model.get('taxRate');
-                        this.items[index].vat = taxRate !== null && taxRate !== undefined ? parseFloat(taxRate) : this.defaultVat;
-                        this.items[index].isCustom = false; // Mark as catalog product
-                        
-                        console.log('Final VAT assigned:', this.items[index].vat);
-                        
-                        this.model.set(this.name, this.items);
-                        this.reRender();
+                        // Fetch complete model data if needed
+                        if (!model.has('taxRate')) {
+                            this.getModelFactory().create('ProductsItems', function(productModel) {
+                                productModel.id = model.id;
+                                productModel.fetch().then(function() {
+                                    this.items[index].productId = productModel.id;
+                                    this.items[index].productName = productModel.get('name');
+                                    this.items[index].unitPrice = parseFloat(productModel.get('price')) || 0;
+                                    var taxRate = productModel.get('taxRate');
+                                    this.items[index].vat = taxRate !== null && taxRate !== undefined ? parseFloat(taxRate) : this.defaultVat;
+                                    this.items[index].isCustom = false; // Mark as catalog product
+                                    
+                                    this.model.set(this.name, this.items);
+                                    this.reRender();
+                                }.bind(this));
+                            }.bind(this));
+                        } else {
+                            this.items[index].productId = model.id;
+                            this.items[index].productName = model.get('name');
+                            this.items[index].unitPrice = parseFloat(model.get('price')) || 0;
+                            var taxRate = model.get('taxRate');
+                            this.items[index].vat = taxRate !== null && taxRate !== undefined ? parseFloat(taxRate) : this.defaultVat;
+                            this.items[index].isCustom = false; // Mark as catalog product
+                            
+                            this.model.set(this.name, this.items);
+                            this.reRender();
+                        }
                     }
                     view.close();
                 }.bind(this));
@@ -196,7 +206,8 @@ define('viacrm:views/fields/offer-items', ['views/fields/base'], function (Dep) 
                     productName: productName,
                     quantity: quantity,
                     unitPrice: unitPrice,
-                    vat: vat
+                    vat: vat,
+                    isCustom: !productId  // Save isCustom flag based on whether there's a productId
                 });
                 
                 totalWithoutVat += itemTotalWithoutVat;
@@ -235,7 +246,8 @@ define('viacrm:views/fields/offer-items', ['views/fields/base'], function (Dep) 
                         productName: productName,
                         quantity: quantity,
                         unitPrice: unitPrice,
-                        vat: vat
+                        vat: vat,
+                        isCustom: !productId  // Save isCustom flag based on whether there's a productId
                     });
                 }
             });
