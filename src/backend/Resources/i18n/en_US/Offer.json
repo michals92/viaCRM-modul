@@ -7,17 +7,13 @@
         "contact": "Contact",
         "validUntil": "Valid Until",
         "dateOffered": "Date Offered",
-        "amount": "Amount",
         "description": "Description",
-        "assignedUser": "Assigned User",
         "teams": "Teams",
         "createdAt": "Created At",
         "modifiedAt": "Modified At",
         "createdBy": "Created By",
         "modifiedBy": "Modified By",
-        "offerItems": "Offer Items",
-        "overallDiscountType": "Overall Discount Type",
-        "overallDiscountValue": "Overall Discount Value"
+        "offerItems": "Offer Items"
     },
     "options": {
         "status": {
@@ -26,16 +22,11 @@
             "Accepted": "Accepted",
             "Rejected": "Rejected",
             "Expired": "Expired"
-        },
-        "overallDiscountType": {
-            "percentage": "Percentage (%)",
-            "fixed": "Fixed Amount"
         }
     },
     "links": {
         "account": "Account",
         "contact": "Contact",
-        "assignedUser": "Assigned User",
         "teams": "Teams",
         "createdBy": "Created By",
         "modifiedBy": "Modified By"

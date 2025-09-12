@@ -37,9 +37,6 @@
         "dateOffered": {
             "type": "date"
         },
-        "amount": {
-            "type": "currency"
-        },
         "description": {
             "type": "text"
         },
@@ -61,30 +58,12 @@
             "readOnly": true,
             "view": "views/fields/user"
         },
-        "assignedUser": {
-            "type": "link",
-            "required": false,
-            "view": "views/fields/assigned-user"
-        },
         "teams": {
             "type": "linkMultiple",
             "view": "views/fields/teams"
         },
-        "productsItems": {
-            "type": "linkMultiple",
-            "view": "views/fields/link-multiple"
-        },
         "offerItems": {
             "type": "offerItems"
-        },
-        "overallDiscountType": {
-            "type": "enum",
-            "options": ["percentage", "fixed"],
-            "default": "percentage"
-        },
-        "overallDiscountValue": {
-            "type": "float",
-            "default": 0
         }
     },
     "links": {
@@ -93,10 +72,6 @@
             "entity": "User"
         },
         "modifiedBy": {
-            "type": "belongsTo",
-            "entity": "User"
-        },
-        "assignedUser": {
             "type": "belongsTo",
             "entity": "User"
         },
@@ -113,13 +88,6 @@
         "contact": {
             "type": "belongsTo",
             "entity": "Contact"
-        },
-        "productsItems": {
-            "type": "hasMany",
-            "entity": "ProductsItems",
-            "foreign": "offers",
-            "relationName": "offerProductsItems",
-            "layoutRelationshipsDisabled": false
         }
     },
     "collection": {
@@ -130,12 +98,6 @@
         "name": {
             "columns": [
                 "name",
-                "deleted"
-            ]
-        },
-        "assignedUser": {
-            "columns": [
-                "assignedUserId",
                 "deleted"
             ]
         },
