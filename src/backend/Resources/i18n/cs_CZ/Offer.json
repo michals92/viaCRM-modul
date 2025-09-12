@@ -14,7 +14,10 @@
         "createdAt": "Vytvořeno",
         "modifiedAt": "Upraveno",
         "createdBy": "Vytvořil",
-        "modifiedBy": "Upravil"
+        "modifiedBy": "Upravil",
+        "offerItems": "Položky nabídky",
+        "overallDiscountType": "Typ celkové slevy",
+        "overallDiscountValue": "Hodnota celkové slevy"
     },
     "options": {
         "status": {
@@ -23,6 +26,10 @@
             "Accepted": "Přijato",
             "Rejected": "Odmítnuto",
             "Expired": "Expirováno"
+        },
+        "overallDiscountType": {
+            "percentage": "Procenta (%)",
+            "fixed": "Pevná částka"
         }
     },
     "links": {

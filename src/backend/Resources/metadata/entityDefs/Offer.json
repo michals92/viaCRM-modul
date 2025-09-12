@@ -76,6 +76,15 @@
         },
         "offerItems": {
             "type": "offerItems"
+        },
+        "overallDiscountType": {
+            "type": "enum",
+            "options": ["percentage", "fixed"],
+            "default": "percentage"
+        },
+        "overallDiscountValue": {
+            "type": "float",
+            "default": 0
         }
     },
     "links": {

@@ -15,7 +15,9 @@
         "modifiedAt": "Modified At",
         "createdBy": "Created By",
         "modifiedBy": "Modified By",
-        "offerItems": "Offer Items"
+        "offerItems": "Offer Items",
+        "overallDiscountType": "Overall Discount Type",
+        "overallDiscountValue": "Overall Discount Value"
     },
     "options": {
         "status": {
@@ -24,6 +26,10 @@
             "Accepted": "Accepted",
             "Rejected": "Rejected",
             "Expired": "Expired"
+        },
+        "overallDiscountType": {
+            "percentage": "Percentage (%)",
+            "fixed": "Fixed Amount"
         }
     },
     "links": {
