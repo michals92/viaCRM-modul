@@ -138,18 +138,18 @@
                 <h5 style="margin: 0 0 8px 0; font-weight: 600; color: #2c3e50; display: flex; align-items: center;">
                     <i class="fas fa-box" style="margin-right: 8px; color: #6c757d;"></i>
                     {{#if isCatalogProduct}}
-                        <span class="badge" style="background: #28a745; font-size: 10px; margin-right: 10px;">CATALOG</span>
+                        <span class="badge" style="background: #28a745; font-size: 10px; margin-right: 10px;">KATALOG</span>
                     {{else}}
-                        <span class="badge" style="background: #ffc107; color: #212529; font-size: 10px; margin-right: 10px;">CUSTOM</span>
+                        <span class="badge" style="background: #ffc107; color: #212529; font-size: 10px; margin-right: 10px;">VLASTNÍ</span>
                     {{/if}}
-                    Product
+                    Produkt
                 </h5>
                 {{#if isCustom}}
                     <div class="input-group">
                         <input type="hidden" data-name="productId" value="">
-                        <input type="text" class="form-control" data-name="productName" value="{{productName}}" placeholder="Enter product name..." style="font-size: 15px; border: 1px solid #ced4da;">
+                        <input type="text" class="form-control" data-name="productName" value="{{productName}}" placeholder="Zadejte název produktu..." style="font-size: 15px; border: 1px solid #ced4da;">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-outline-primary" data-action="selectProduct" data-index="{{@index}}" title="Search Products">
+                            <button type="button" class="btn btn-outline-primary" data-action="selectProduct" data-index="{{@index}}" title="Vyhledat produkty">
                                 <i class="fas fa-search"></i>
                             </button>
                         </span>
@@ -157,10 +157,10 @@
                 {{else}}
                     <div class="input-group">
                         <input type="hidden" data-name="productId" value="{{productId}}">
-                        <input type="text" class="form-control" data-name="productName" value="{{productName}}" placeholder="Product Name" {{#if productId}}readonly{{/if}} style="font-size: 15px; border: 1px solid #ced4da;">
+                        <input type="text" class="form-control" data-name="productName" value="{{productName}}" placeholder="Název produktu" {{#if productId}}readonly{{/if}} style="font-size: 15px; border: 1px solid #ced4da;">
                         <span class="input-group-btn">
                             {{#if productId}}
-                                <button type="button" class="btn btn-outline-secondary" data-action="clearProduct" data-index="{{@index}}" title="Make Custom">
+                                <button type="button" class="btn btn-outline-secondary" data-action="clearProduct" data-index="{{@index}}" title="Změnit na vlastní">
                                     <i class="fas fa-edit"></i>
                                 </button>
                             {{else}}
@@ -173,7 +173,7 @@
                 {{/if}}
             </div>
             <div class="col-xs-1 text-right">
-                <button type="button" class="btn btn-remove-item" data-action="removeItem" data-index="{{@index}}" title="Remove item" style="
+                <button type="button" class="btn btn-remove-item" data-action="removeItem" data-index="{{@index}}" title="Odebrat položku" style="
                     margin-top: 24px;
                     background: linear-gradient(135deg, #ff6b6b, #ee5a52);
                     border: none;
@@ -198,17 +198,17 @@
             <div class="col-sm-6" style="border-right: 1px solid #f1f3f4; padding-right: 20px;">
                 <h6 style="margin: 0 0 12px 0; color: #495057; font-weight: 500;">
                     <i class="fas fa-cogs" style="margin-right: 6px; color: #6c757d;"></i>
-                    Item Details
+                    Detaily položky
                 </h6>
                 
                 <div class="row">
                     <div class="col-xs-6" style="margin-bottom: 15px;">
-                        <label style="font-size: 11px; color: #6c757d; margin-bottom: 4px; display: block; text-transform: uppercase; letter-spacing: 0.5px;">Quantity</label>
+                        <label style="font-size: 11px; color: #6c757d; margin-bottom: 4px; display: block; text-transform: uppercase; letter-spacing: 0.5px;">Množství</label>
                         <input type="number" class="form-control text-center" data-name="quantity" value="{{quantity}}" min="0.01" step="any" placeholder="1" style="font-weight: 500;">
                     </div>
                     
                     <div class="col-xs-6" style="margin-bottom: 15px;">
-                        <label style="font-size: 11px; color: #6c757d; margin-bottom: 4px; display: block; text-transform: uppercase; letter-spacing: 0.5px;">Unit Price</label>
+                        <label style="font-size: 11px; color: #6c757d; margin-bottom: 4px; display: block; text-transform: uppercase; letter-spacing: 0.5px;">Jednotková cena</label>
                         <input type="number" class="form-control text-right" data-name="unitPrice" value="{{unitPrice}}" min="0" step="any" placeholder="0.00" style="font-weight: 500;">
                     </div>
                 </div>
@@ -216,9 +216,9 @@
                 <div class="row">
                     <div class="col-xs-6" style="margin-bottom: 15px;">
                         <label style="font-size: 11px; color: #6c757d; margin-bottom: 4px; display: block; text-transform: uppercase; letter-spacing: 0.5px;">
-                            VAT Rate (%)
+                            DPH sazba (%)
                             {{#if isCatalogProduct}}
-                                <i class="fas fa-lock" style="color: #28a745; margin-left: 4px;" title="From catalog"></i>
+                                <i class="fas fa-lock" style="color: #28a745; margin-left: 4px;" title="Z katalogu"></i>
                             {{/if}}
                         </label>
                         {{#if isCatalogProduct}}
@@ -230,12 +230,12 @@
                     
                     <div class="col-xs-6" style="margin-bottom: 15px;">
                         <label style="font-size: 11px; color: #6c757d; margin-bottom: 4px; display: block; text-transform: uppercase; letter-spacing: 0.5px;">
-                            Discount
+                            Sleva
                         </label>
                         <div class="input-group">
                             <input type="number" class="form-control text-center" data-name="discountValue" value="{{discountValue}}" min="0" step="any" placeholder="0" style="font-weight: 500;">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default btn-sm" data-action="toggleItemDiscountType" data-index="{{@index}}" title="Toggle type" style="min-width: 35px;">
+                                <button type="button" class="btn btn-default btn-sm" data-action="toggleItemDiscountType" data-index="{{@index}}" title="Přepnout typ" style="min-width: 35px;">
                                     {{#if isDiscountPercent}}%{{else}}${{/if}}
                                 </button>
                             </span>
@@ -248,29 +248,29 @@
             <div class="col-sm-6" style="padding-left: 20px;">
                 <h6 style="margin: 0 0 12px 0; color: #495057; font-weight: 500;">
                     <i class="fas fa-calculator" style="margin-right: 6px; color: #6c757d;"></i>
-                    Calculations
+                    Výpočty
                 </h6>
                 
                 <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 16px;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                        <span style="color: #6c757d; font-size: 13px;">Subtotal:</span>
+                        <span style="color: #6c757d; font-size: 13px;">Mezisoučet:</span>
                         <span style="font-weight: 500;" class="item-subtotal">{{subtotal}}</span>
                     </div>
                     
                     <div style="display: flex; justify-content: space-between; margin-bottom: 8px;" class="discount-row" {{#unless discountAmount}}style="display: none !important;"{{/unless}}>
-                        <span style="color: #dc3545; font-size: 13px;">Discount:</span>
+                        <span style="color: #dc3545; font-size: 13px;">Sleva:</span>
                         <span style="color: #dc3545; font-weight: 500;" class="item-discount-amount">{{#if discountAmount}}-{{discountAmount}}{{else}}-0.00{{/if}}</span>
                     </div>
                     
                     <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-                        <span style="color: #6c757d; font-size: 13px;">Net Amount:</span>
+                        <span style="color: #6c757d; font-size: 13px;">Čistá částka:</span>
                         <span style="font-weight: 500;" class="item-total-without-vat">{{totalWithoutVat}}</span>
                     </div>
                     
                     <hr style="margin: 12px 0; border-color: #dee2e6;">
                     
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-weight: 600; color: #2c3e50;">Total with VAT:</span>
+                        <span style="font-weight: 600; color: #2c3e50;">Celkem s DPH:</span>
                         <span style="font-size: 18px; font-weight: 700; color: #28a745;" class="item-total-with-vat">{{totalWithVat}}</span>
                     </div>
                 </div>
@@ -282,10 +282,10 @@
     <!-- Add Item Section -->
     <div class="add-item-section">
         <button type="button" class="btn btn-primary btn-lg" data-action="addCustomItem" style="margin-bottom: 10px;">
-            <i class="fas fa-plus-circle"></i> Add New Item
+            <i class="fas fa-plus-circle"></i> Přidat novou položku
         </button>
         <br>
-        <small class="text-muted">Click to add a new product to this offer</small>
+        <small class="text-muted">Klikněte pro přidání nového produktu do této nabídky</small>
     </div>
     
     <!-- Footer Controls -->
@@ -293,16 +293,16 @@
         <div class="col-sm-4">
             <div class="form-group">
                 <label class="control-label">
-                    <i class="fas fa-percent"></i> Overall Discount
-                    <small class="text-muted">(Applied to total before VAT)</small>
+                    <i class="fas fa-percent"></i> Celková sleva
+                    <small class="text-muted">(Použito na celkový součet před DPH)</small>
                 </label>
                 <div class="input-group">
                     <input type="number" class="form-control text-center {{#if isOverallDiscountPercent}}discount-percentage{{else}}discount-fixed{{/if}}" 
                            data-name="overallDiscountValue" value="{{overallDiscountValue}}" min="0" step="any" placeholder="0"
-                           title="{{#if isOverallDiscountPercent}}Overall discount percentage{{else}}Overall discount amount{{/if}}" data-toggle="tooltip">
+                           title="{{#if isOverallDiscountPercent}}Procento celkové slevy{{else}}Částka celkové slevy{{/if}}" data-toggle="tooltip">
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-toggle-discount {{#if overallDiscountValue}}active{{/if}}" data-action="toggleOverallDiscountType" 
-                                title="Switch between % and fixed amount" data-toggle="tooltip">
+                                title="Přepnout mezi % a pevnou částkou" data-toggle="tooltip">
                             {{#if isOverallDiscountPercent}}
                                 <i class="fas fa-percentage"></i>
                             {{else}}
@@ -313,9 +313,9 @@
                 </div>
                 <small class="help-block">
                     {{#if isOverallDiscountPercent}}
-                        <i class="fas fa-info-circle text-info"></i> Percentage discount on subtotal
+                        <i class="fas fa-info-circle text-info"></i> Procentní sleva z mezisoučtu
                     {{else}}
-                        <i class="fas fa-info-circle text-info"></i> Fixed amount discount
+                        <i class="fas fa-info-circle text-info"></i> Sleva s pevnou částkou
                     {{/if}}
                 </small>
             </div>
@@ -323,12 +323,12 @@
         <div class="col-sm-8">
             <div class="totals-summary">
                 <h5 style="margin-top: 0; color: #495057;">
-                    <i class="fas fa-calculator"></i> Order Summary
+                    <i class="fas fa-calculator"></i> Souhrn objednávky
                 </h5>
                 
                 <div class="total-row">
                     <div class="row">
-                        <div class="col-xs-8"><i class="fas fa-list-ul"></i> Subtotal:</div>
+                        <div class="col-xs-8"><i class="fas fa-list-ul"></i> Mezisoučet:</div>
                         <div class="col-xs-4 text-right"><strong class="subtotal-without-vat">{{subtotalWithoutVat}}</strong></div>
                     </div>
                 </div>
@@ -336,7 +336,7 @@
                 {{#if itemDiscountAmount}}
                 <div class="total-row">
                     <div class="row">
-                        <div class="col-xs-8"><i class="fas fa-tags text-warning"></i> Item Discounts:</div>
+                        <div class="col-xs-8"><i class="fas fa-tags text-warning"></i> Slevy položek:</div>
                         <div class="col-xs-4 text-right text-warning">-<span class="item-discount-total">{{itemDiscountAmount}}</span></div>
                     </div>
                 </div>
@@ -344,7 +344,7 @@
                 
                 <div class="total-row">
                     <div class="row">
-                        <div class="col-xs-8">Before Overall Disc.:</div>
+                        <div class="col-xs-8">Před celkovou slevou:</div>
                         <div class="col-xs-4 text-right"><span class="total-before-overall-discount">{{totalWithoutVatBeforeOverallDiscount}}</span></div>
                     </div>
                 </div>
@@ -352,7 +352,7 @@
                 {{#if overallDiscountAmount}}
                 <div class="total-row">
                     <div class="row">
-                        <div class="col-xs-8"><i class="fas fa-percent text-info"></i> Overall Discount:</div>
+                        <div class="col-xs-8"><i class="fas fa-percent text-info"></i> Celková sleva:</div>
                         <div class="col-xs-4 text-right text-info">-<span class="overall-discount-amount">{{overallDiscountAmount}}</span></div>
                     </div>
                 </div>
@@ -360,21 +360,21 @@
                 
                 <div class="total-row" style="border-top: 1px solid #dee2e6; padding-top: 8px;">
                     <div class="row">
-                        <div class="col-xs-8"><strong><i class="fas fa-minus-circle"></i> Net Total:</strong></div>
+                        <div class="col-xs-8"><strong><i class="fas fa-minus-circle"></i> Celkem bez DPH:</strong></div>
                         <div class="col-xs-4 text-right"><strong class="grand-total-without-vat">{{totalWithoutVat}}</strong></div>
                     </div>
                 </div>
                 
                 <div class="total-row">
                     <div class="row">
-                        <div class="col-xs-8"><i class="fas fa-percentage text-muted"></i> VAT Amount:</div>
+                        <div class="col-xs-8"><i class="fas fa-percentage text-muted"></i> Částka DPH:</div>
                         <div class="col-xs-4 text-right text-muted"><span class="grand-total-vat">{{totalVatAmount}}</span></div>
                     </div>
                 </div>
                 
                 <div class="grand-total">
                     <div class="row">
-                        <div class="col-xs-8"><i class="fas fa-check-circle"></i> <strong>TOTAL:</strong></div>
+                        <div class="col-xs-8"><i class="fas fa-check-circle"></i> <strong>CELKEM:</strong></div>
                         <div class="col-xs-4 text-right"><strong class="grand-total-with-vat" style="font-size: 18px;">{{totalWithVat}}</strong></div>
                     </div>
                 </div>

@@ -4,5 +4,9 @@
     },
     "scopeNamesPlural": {
         "Hr": "Zaměstnanci"
+    },
+    "messages": {
+        "Product name is required": "Název produktu je povinný",
+        "Quantity must be greater than 0": "Množství musí být větší než 0"
     }
 }

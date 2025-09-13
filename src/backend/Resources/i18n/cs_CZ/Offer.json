@@ -7,17 +7,13 @@
         "contact": "Kontakt",
         "validUntil": "Platnost do",
         "dateOffered": "Datum nabídky",
-        "amount": "Částka",
         "description": "Popis",
-        "assignedUser": "Přiřazený uživatel",
         "teams": "Týmy",
         "createdAt": "Vytvořeno",
         "modifiedAt": "Upraveno",
         "createdBy": "Vytvořil",
         "modifiedBy": "Upravil",
-        "offerItems": "Položky nabídky",
-        "overallDiscountType": "Typ celkové slevy",
-        "overallDiscountValue": "Hodnota celkové slevy"
+        "offerItems": "Položky nabídky"
     },
     "options": {
         "status": {
@@ -26,16 +22,11 @@
             "Accepted": "Přijato",
             "Rejected": "Odmítnuto",
             "Expired": "Expirováno"
-        },
-        "overallDiscountType": {
-            "percentage": "Procenta (%)",
-            "fixed": "Pevná částka"
         }
     },
     "links": {
         "account": "Klient",
         "contact": "Kontakt",
-        "assignedUser": "Přiřazený uživatel",
         "teams": "Týmy",
         "createdBy": "Vytvořil",
         "modifiedBy": "Upravil"

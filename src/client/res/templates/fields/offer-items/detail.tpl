@@ -3,13 +3,13 @@
     <table class="table table-bordered table-condensed table-hover">
         <thead>
             <tr class="active">
-                <th>Product</th>
-                <th class="text-center" style="min-width: 60px;">Qty</th>
-                <th class="text-right" style="min-width: 80px;">Unit Price</th>
-                <th class="text-right" style="min-width: 80px;">Discount</th>
-                <th class="text-center" style="min-width: 60px;">VAT %</th>
-                <th class="text-right" style="min-width: 90px;">Net Amount</th>
-                <th class="text-right" style="min-width: 100px;">Total</th>
+                <th>Produkt</th>
+                <th class="text-center" style="min-width: 60px;">Množ.</th>
+                <th class="text-right" style="min-width: 80px;">Jedn. cena</th>
+                <th class="text-right" style="min-width: 80px;">Sleva</th>
+                <th class="text-center" style="min-width: 60px;">DPH %</th>
+                <th class="text-right" style="min-width: 90px;">Čistá částka</th>
+                <th class="text-right" style="min-width: 100px;">Celkem</th>
             </tr>
         </thead>
         <tbody>
@@ -38,41 +38,41 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="5" class="text-right">Subtotal:</td>
+                <td colspan="5" class="text-right">Mezisoučet:</td>
                 <td class="text-right">{{subtotalWithoutVat}}</td>
                 <td></td>
             </tr>
             {{#if itemDiscountAmount}}
             <tr>
-                <td colspan="5" class="text-right">Item Discounts:</td>
+                <td colspan="5" class="text-right">Slevy položek:</td>
                 <td class="text-right">-{{itemDiscountAmount}}</td>
                 <td></td>
             </tr>
             {{/if}}
             {{#if overallDiscountAmount}}
             <tr>
-                <td colspan="5" class="text-right">Overall Discount:</td>
+                <td colspan="5" class="text-right">Celková sleva:</td>
                 <td class="text-right">-{{overallDiscountAmount}}</td>
                 <td></td>
             </tr>
             {{/if}}
             <tr class="active">
-                <td colspan="5" class="text-right"><strong>Net Total:</strong></td>
+                <td colspan="5" class="text-right"><strong>Celkem bez DPH:</strong></td>
                 <td class="text-right"><strong>{{totalWithoutVat}}</strong></td>
                 <td></td>
             </tr>
             <tr>
-                <td colspan="5" class="text-right">VAT Amount:</td>
+                <td colspan="5" class="text-right">Částka DPH:</td>
                 <td class="text-right">{{totalVatAmount}}</td>
                 <td></td>
             </tr>
             <tr class="success">
-                <td colspan="6" class="text-right"><strong style="font-size: 14px;">Total Amount:</strong></td>
+                <td colspan="6" class="text-right"><strong style="font-size: 14px;">Celková částka:</strong></td>
                 <td class="text-right"><strong class="text-primary" style="font-size: 18px;">{{totalWithVat}}</strong></td>
             </tr>
         </tfoot>
     </table>
 </div>
 {{else}}
-<span class="none-value">No items</span>
+<span class="none-value">Žádné položky</span>
 {{/if}}
