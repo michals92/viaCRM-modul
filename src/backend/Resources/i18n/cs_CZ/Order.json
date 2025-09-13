@@ -1,24 +1,57 @@
 {
     "fields": {
         "name": "Název",
+        "orderNumber": "Číslo objednávky",
+        "status": "Stav",
+        "account": "Klient",
+        "contact": "Kontakt",
+        "offer": "Související nabídka",
+        "orderDate": "Datum objednávky",
+        "expectedDeliveryDate": "Očekávané datum dodání",
+        "actualDeliveryDate": "Skutečné datum dodání",
+        "shippingAddress": "Dodací adresa",
+        "billingAddress": "Fakturační adresa",
+        "shippingMethod": "Způsob dopravy",
+        "paymentMethod": "Způsob platby",
+        "paymentTerms": "Platební podmínky",
+        "vendorInvoiceNumber": "Číslo faktury dodavatele",
         "description": "Popis",
         "assignedUser": "Přiřazený uživatel",
         "teams": "Týmy",
         "createdAt": "Vytvořeno",
         "modifiedAt": "Upraveno",
         "createdBy": "Vytvořil",
-        "modifiedBy": "Upravil"
+        "modifiedBy": "Upravil",
+        "orderItems": "Položky objednávky"
+    },
+    "options": {
+        "status": {
+            "Draft": "Koncept",
+            "Confirmed": "Potvrzeno",
+            "Processing": "Zpracovává se",
+            "Shipped": "Odesláno",
+            "Delivered": "Doručeno",
+            "Cancelled": "Zrušeno",
+            "Refunded": "Refundováno"
+        }
     },
     "links": {
+        "account": "Klient",
+        "contact": "Kontakt",
+        "offer": "Související nabídka",
         "assignedUser": "Přiřazený uživatel",
         "teams": "Týmy",
         "createdBy": "Vytvořil",
         "modifiedBy": "Upravil"
     },
     "labels": {
-        "Create": "Vytvořit Objednávku",
-        "View List": "Zobrazit seznam Objednávek",
+        "Create": "Vytvořit objednávku",
+        "View List": "Zobrazit seznam objednávek",
         "Print to PDF": "Tisknout do PDF",
-        "Manage PDF Templates": "Spravovat PDF šablony"
+        "Manage PDF Templates": "Spravovat PDF šablony",
+        "Overview": "Přehled",
+        "Shipping & Payment": "Doprava a platba",
+        "Order Items": "Položky objednávky",
+        "Additional Information": "Dodatečné informace"
     }
 }

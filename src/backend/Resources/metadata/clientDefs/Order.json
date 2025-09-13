@@ -1,7 +1,7 @@
 {
     "controller": "controllers/record",
-    "iconClass": "fas fa-cube",
-    "color": "#3498db",
+    "iconClass": "fas fa-shopping-cart",
+    "color": "#2980b9",
     "recordViews": {
         "detail": "viacrm:views/order/record/detail"
     }

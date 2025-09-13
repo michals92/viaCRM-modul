@@ -1,22 +1,44 @@
 {
     "fields": {
         "name": "Name",
+        "orderNumber": "Order Number",
         "status": "Status",
+        "account": "Account",
+        "contact": "Contact",
+        "offer": "Related Offer",
+        "orderDate": "Order Date",
+        "expectedDeliveryDate": "Expected Delivery Date",
+        "actualDeliveryDate": "Actual Delivery Date",
+        "shippingAddress": "Shipping Address",
+        "billingAddress": "Billing Address",
+        "shippingMethod": "Shipping Method",
+        "paymentMethod": "Payment Method",
+        "paymentTerms": "Payment Terms",
+        "vendorInvoiceNumber": "Vendor Invoice Number",
         "description": "Description",
         "assignedUser": "Assigned User",
         "teams": "Teams",
         "createdAt": "Created At",
         "modifiedAt": "Modified At",
         "createdBy": "Created By",
-        "modifiedBy": "Modified By"
+        "modifiedBy": "Modified By",
+        "orderItems": "Order Items"
     },
     "options": {
         "status": {
-            "Active": "Active",
-            "Inactive": "Inactive"
+            "Draft": "Draft",
+            "Confirmed": "Confirmed",
+            "Processing": "Processing",
+            "Shipped": "Shipped",
+            "Delivered": "Delivered",
+            "Cancelled": "Cancelled",
+            "Refunded": "Refunded"
         }
     },
     "links": {
+        "account": "Account",
+        "contact": "Contact",
+        "offer": "Related Offer",
         "assignedUser": "Assigned User",
         "teams": "Teams",
         "createdBy": "Created By",
@@ -26,6 +48,10 @@
         "Create": "Create Order",
         "View List": "View Order List",
         "Print to PDF": "Print to PDF",
-        "Manage PDF Templates": "Manage PDF Templates"
+        "Manage PDF Templates": "Manage PDF Templates",
+        "Overview": "Overview",
+        "Shipping & Payment": "Shipping & Payment",
+        "Order Items": "Order Items",
+        "Additional Information": "Additional Information"
     }
 }

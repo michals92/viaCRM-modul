@@ -1,0 +1,14 @@
+{
+    "params": [
+        {
+            "name": "required",
+            "type": "bool",
+            "default": false
+        }
+    ],
+    "validationList": ["required"],
+    "fieldDefs": {
+        "type": "jsonArray"
+    },
+    "view": "viacrm:views/fields/order-items"
+}

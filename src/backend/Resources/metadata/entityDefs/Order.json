@@ -7,13 +7,60 @@
             "required": true,
             "trim": true
         },
+        "orderNumber": {
+            "type": "varchar",
+            "trim": true,
+            "unique": false
+        },
         "status": {
             "type": "enum",
             "options": [
-                "Active",
-                "Inactive"
+                "Draft",
+                "Confirmed",
+                "Processing",
+                "Shipped",
+                "Delivered",
+                "Cancelled",
+                "Refunded"
             ],
-            "default": "Active"
+            "default": "Draft"
+        },
+        "account": {
+            "type": "link",
+            "required": false
+        },
+        "contact": {
+            "type": "link"
+        },
+        "offer": {
+            "type": "link"
+        },
+        "orderDate": {
+            "type": "date"
+        },
+        "expectedDeliveryDate": {
+            "type": "date"
+        },
+        "actualDeliveryDate": {
+            "type": "date"
+        },
+        "shippingAddress": {
+            "type": "text"
+        },
+        "billingAddress": {
+            "type": "text"
+        },
+        "shippingMethod": {
+            "type": "varchar"
+        },
+        "paymentMethod": {
+            "type": "varchar"
+        },
+        "paymentTerms": {
+            "type": "varchar"
+        },
+        "vendorInvoiceNumber": {
+            "type": "varchar"
         },
         "description": {
             "type": "text"
@@ -44,6 +91,9 @@
         "teams": {
             "type": "linkMultiple",
             "view": "views/fields/teams"
+        },
+        "orderItems": {
+            "type": "orderItems"
         }
     },
     "links": {
@@ -64,6 +114,18 @@
             "entity": "Team",
             "relationName": "entityTeam",
             "layoutRelationshipsDisabled": true
+        },
+        "account": {
+            "type": "belongsTo",
+            "entity": "Account"
+        },
+        "contact": {
+            "type": "belongsTo",
+            "entity": "Contact"
+        },
+        "offer": {
+            "type": "belongsTo",
+            "entity": "Offer"
         }
     },
     "collection": {
@@ -77,6 +139,12 @@
                 "deleted"
             ]
         },
+        "orderNumber": {
+            "columns": [
+                "orderNumber",
+                "deleted"
+            ]
+        },
         "assignedUser": {
             "columns": [
                 "assignedUserId",
@@ -86,6 +154,12 @@
         "createdAt": {
             "columns": [
                 "createdAt",
+                "deleted"
+            ]
+        },
+        "account": {
+            "columns": [
+                "accountId",
                 "deleted"
             ]
         }
