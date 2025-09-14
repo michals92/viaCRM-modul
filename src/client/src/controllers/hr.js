@@ -2,15 +2,11 @@ define('viacrm:controllers/hr', ['controllers/record'], function (Controller) {
 
     return Controller.extend({
 
-        actionCreateFromUser: function () {
-            console.log('HR actionCreateFromUser called');
-            
+        actionCreateFromUser: function () {  
             this.createView('modal', 'viacrm:views/hr/create-from-user-modal', {}, function (view) {
-                console.log('Modal view created');
                 view.render();
                 
                 this.listenToOnce(view, 'created', function (data) {
-                    console.log('HR record created:', data);
                     this.getRouter().navigate('#Hr/view/' + data.id, {trigger: true});
                 }, this);
                 

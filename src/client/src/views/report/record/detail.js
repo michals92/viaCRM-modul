@@ -129,7 +129,6 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
         },
         
         actionRunReport() {
-            console.log('Run Report clicked!');
             
             if (!this.model.id) {
                 this.notify('Report must be saved first', 'warning');
@@ -137,13 +136,11 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
             }
             
             this.notify('Running report...', 'info');
-            console.log('Running report for ID:', this.model.id);
             
             $.ajax({
                 url: `api/v1/Report/${this.model.id}/run`,
                 type: 'GET'
             }).done(result => {
-                console.log('Report result:', result);
                 this.notify('Report completed!', 'success');
                 
                 this.createView('reportResult', 'viacrm:views/report/modals/result', {
@@ -159,7 +156,6 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
         },
         
         actionExportReport() {
-            console.log('Export clicked!');
             
             if (!this.model.id) {
                 this.notify('Report must be saved first', 'warning');

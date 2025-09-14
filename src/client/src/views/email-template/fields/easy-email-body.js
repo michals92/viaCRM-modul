@@ -109,22 +109,18 @@ define(['views/fields/base'], function (FieldView) {
 
                 switch (type) {
                     case 'EASY_EMAIL_READY':
-                        console.log('Easy Email Editor ready');
                         this.sendContentToEditor(iframe);
                         break;
 
                     case 'EASY_EMAIL_SAVE':
-                        console.log('Saving email data from editor:', data);
                         this.handleSaveFromEditor(data);
                         break;
 
                     case 'EASY_EMAIL_CLOSE':
-                        console.log('Editor requested close');
                         this.closeEditor();
                         break;
 
                     default:
-                        console.log('Unknown message type:', type);
                 }
             };
 

@@ -5,23 +5,16 @@ define(() => {
             this.scope = this.view.scope;
         }
 
-        process() {
-            console.log('ViaCRM AdminButtons: Processing for scope:', this.scope);
-            
+        process() { 
             if (!this.scope) {
-                console.log('ViaCRM AdminButtons: No scope, skipping');
                 return;
             }
 
             const isAdmin = this.view.getUser().isAdmin();
-            console.log('ViaCRM AdminButtons: User is admin:', isAdmin);
 
             if (!isAdmin) {
-                console.log('ViaCRM AdminButtons: User not admin, skipping');
                 return;
             }
-
-            console.log('ViaCRM AdminButtons: Adding admin buttons');
             this.addAdminButtons();
         }
 
@@ -34,7 +27,7 @@ define(() => {
         }
 
         addEditEntityButton() {
-            console.log('ViaCRM AdminButtons: Adding Edit Entity button');
+
             try {
                 this.view.addMenuItem('buttons', {
                     name: 'editEntity',
@@ -42,18 +35,14 @@ define(() => {
                     iconClass: 'fas fa-tools fa-sm',
                     link: '#Admin/entityManager/scope=' + this.scope
                 });
-                console.log('ViaCRM AdminButtons: Edit Entity button added successfully');
             } catch(e) {
-                console.error('ViaCRM AdminButtons: Error adding Edit Entity button:', e);
             }
         }
 
         addEditLayoutButton() {
             if (!this.view.name) return;
             
-            const layoutType = this.view.name.toLowerCase();
-            console.log('ViaCRM AdminButtons: Adding Edit Layout button for type:', layoutType);
-            
+            const layoutType = this.view.name.toLowerCase();            
             this.view.addMenuItem('buttons', {
                 name: 'editLayout',
                 label: 'Edit Layout',
@@ -74,7 +63,6 @@ define(() => {
         }
 
         addRebuildButton() {
-            console.log('ViaCRM AdminButtons: Adding Rebuild button');
             
             this.view.addMenuItem('buttons', {
                 name: 'rebuild',
@@ -90,7 +78,6 @@ define(() => {
         }
 
         addClearCacheButton() {
-            console.log('ViaCRM AdminButtons: Adding Clear Cache button');
             
             this.view.addMenuItem('buttons', {
                 name: 'clearCache',
@@ -105,9 +92,7 @@ define(() => {
             };
         }
 
-        doRebuild() {
-            console.log('ViaCRM AdminButtons: Executing rebuild');
-            
+        doRebuild() {            
             Espo.Ui.notify('Rebuilding...');
             
             Espo.Ajax.postRequest('Admin/rebuild')
@@ -124,7 +109,6 @@ define(() => {
         }
 
         doClearCache() {
-            console.log('ViaCRM AdminButtons: Executing clear cache');
             
             Espo.Ui.notify('Clearing cache...');
             

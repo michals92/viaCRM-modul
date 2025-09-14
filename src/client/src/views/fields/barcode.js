@@ -110,7 +110,6 @@ define('viacrm:views/fields/barcode', ['views/fields/varchar'], function (Dep) {
                         this.renderFallback($barcode, value);
                     }
                 } else {
-                    console.log('QRCode library not loaded yet');
                     this.renderFallback($barcode, value);
                 }
             } else {
@@ -150,9 +149,7 @@ define('viacrm:views/fields/barcode', ['views/fields/varchar'], function (Dep) {
                         };
                         
                         var barcodeFormat = formatMap[format] || 'CODE128';
-                        
-                        console.log('Generating barcode with format:', barcodeFormat, 'value:', value);
-                        
+                                                
                         JsBarcode(svg, value, {
                             format: barcodeFormat,
                             width: 2,
@@ -168,7 +165,6 @@ define('viacrm:views/fields/barcode', ['views/fields/varchar'], function (Dep) {
                         this.renderFallback($barcode, value);
                     }
                 } else {
-                    console.log('JsBarcode library not loaded yet, retrying...');
                     // Try to load again and retry
                     if (!this.retriedBarcode) {
                         this.retriedBarcode = true;

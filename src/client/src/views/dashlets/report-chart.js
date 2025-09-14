@@ -8,11 +8,7 @@ define('viacrm:views/dashlets/report-chart', ['views/dashlets/abstract/base'], f
 
         setup() {
             Dep.prototype.setup.call(this);
-            
-            console.log('ReportChart setup called');
-            console.log('All options:', this.options);
-            console.log('Options data:', this.optionsData);
-            
+ 
             // For link field, we need to get the ID from optionsData
             this.reportId = this.optionsData?.reportIdId || this.optionsData?.reportId || this.options.reportIdId || this.options.reportId || null;
             this.reportTitle = this.optionsData?.title || this.options.title || 'Report Chart';
@@ -21,10 +17,7 @@ define('viacrm:views/dashlets/report-chart', ['views/dashlets/abstract/base'], f
             // Initialize display limits for load more functionality
             this.gridDisplayLimit = null;
             this.listDisplayLimit = null;
-            
-            console.log('Report ID:', this.reportId);
-            console.log('Report Title:', this.reportTitle);
-            
+
             if (this.refreshInterval > 0) {
                 this.startAutoRefresh();
             }
@@ -56,15 +49,10 @@ define('viacrm:views/dashlets/report-chart', ['views/dashlets/abstract/base'], f
 
         afterRender() {
             Dep.prototype.afterRender.call(this);
-            
-            console.log('ReportChart afterRender called');
-            console.log('Report ID in afterRender:', this.reportId);
-            
+        
             if (this.reportId) {
-                console.log('Loading report data...');
                 this.loadReportData();
             } else {
-                console.log('No report ID, showing message');
                 this.showNoReportMessage();
             }
             
@@ -142,18 +130,15 @@ define('viacrm:views/dashlets/report-chart', ['views/dashlets/abstract/base'], f
         },
 
         loadReportData() {
-            console.log('Loading report data for ID:', this.reportId);
             
             const basePath = window.location.pathname.replace(/\/+$/, '');
             const url = `${basePath}/api/v1/Report/${this.reportId}/run`;
-            console.log('Request URL:', url);
             
             $.ajax({
                 url: url,
                 type: 'GET',
                 dataType: 'json'
             }).done(result => {
-                console.log('Report data received:', result);
                 this.reportData = result;
                 // Reset display limits when loading new data
                 this.gridDisplayLimit = null;
@@ -622,17 +607,12 @@ define('viacrm:views/dashlets/report-chart', ['views/dashlets/abstract/base'], f
             }
         },
 
-        actionOptions() {
-            console.log('actionOptions called');
-            console.log('Current options data:', this.optionsData);
-            console.log('Options fields:', this.optionsFields);
-            
+        actionOptions() { 
             this.createView('options', 'viacrm:views/dashlets/options/report-chart', {
                 name: this.name,
                 optionsData: this.optionsData,
                 fields: this.optionsFields
             }, (view) => {
-                console.log('Options view created:', view);
                 view.render();
             });
         }

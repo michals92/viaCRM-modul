@@ -975,7 +975,6 @@ class EasyEmailEditor implements EntryPoint
 
         // Initialize the mighty editor
         document.addEventListener("DOMContentLoaded", function() {
-            console.log("🚀 Initializing Legendary Email Editor...");
             initializeEditor();
             setupDragAndDrop();
             setupKeyboardShortcuts();
@@ -1734,7 +1733,6 @@ class EasyEmailEditor implements EntryPoint
                 credentials: "include"
             })
             .then(response => {
-                console.log("Save response status:", response.status);
                 
                 if (!response.ok) {
                     return response.text().then(text => {
@@ -1744,7 +1742,6 @@ class EasyEmailEditor implements EntryPoint
                 }
                 
                 return response.text().then(text => {
-                    console.log("Raw response text:", text);
                     try {
                         return JSON.parse(text);
                     } catch (e) {
@@ -1755,8 +1752,6 @@ class EasyEmailEditor implements EntryPoint
                 });
             })
             .then(data => {
-                console.log("Parsed response data:", data);
-                
                 if (data.success) {
                     showNotification("Template saved successfully! 🎉", "success");
                     
@@ -1948,7 +1943,6 @@ class EasyEmailEditor implements EntryPoint
                 }, "*");
             }
             
-            console.log("🚀 Legendary Email Editor Ready!");
             showNotification("🚀 Legendary Email Editor Loaded!", "success");
         }
 

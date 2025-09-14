@@ -5,9 +5,7 @@ define(['views/record/edit'], function (RecordEditView) {
         
         setup() {
             super.setup();
-            
-            console.log('ViaCRM: EmailTemplate record edit view loaded successfully!');
-            
+                        
             // Add Easy Email Editor button
             if (!this.buttonList) {
                 this.buttonList = [];
@@ -51,9 +49,7 @@ define(['views/record/edit'], function (RecordEditView) {
             const templateId = this.model.id || 'new';
             const authToken = this.getUser().get('token') || '';
             const editorUrl = `${this.getConfig().get('siteUrl')}/?entryPoint=EasyEmailEditor&templateId=${encodeURIComponent(templateId)}&authToken=${encodeURIComponent(authToken)}&timestamp=${Date.now()}`;
-            
-            console.log('🚀 Opening Legendary Email Editor in new window:', editorUrl);
-            
+                        
             // Open editor in new window/tab for full-screen experience
             const editorWindow = window.open(
                 editorUrl, 
@@ -95,7 +91,6 @@ define(['views/record/edit'], function (RecordEditView) {
         }
         
         handleEasyEmailSave(data) {
-            console.log('Saving Easy Email data:', data);
             
             // Update model with saved data
             if (data.mjml) {

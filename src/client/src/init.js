@@ -11,9 +11,6 @@
     window.ViaCRM.version = '2.4.2';
     window.ViaCRM.initialized = true;
     
-    console.log('ViaCRM Module initialized v' + window.ViaCRM.version);
-    console.log('ViaCRM: Available at window.ViaCRM =', window.ViaCRM);
-    
     // Setup extensions when Espo is ready
     function setupExtensions() {
         if (typeof Espo !== 'undefined' && Espo.loader) {

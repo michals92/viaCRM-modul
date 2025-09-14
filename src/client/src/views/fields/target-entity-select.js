@@ -12,7 +12,6 @@ define('viacrm:views/fields/target-entity-select', ['views/fields/enum'], functi
         },
 
         loadAvailableEntities: function () {
-            console.log('Loading available entities...');
             
             // Use proper EspoCRM API endpoint format
             const basePath = window.location.pathname.replace(/\/+$/, '');
@@ -22,9 +21,7 @@ define('viacrm:views/fields/target-entity-select', ['views/fields/enum'], functi
                 url: url,
                 type: 'GET',
                 dataType: 'json'
-            }).done((entities) => {
-                console.log('Received entities:', entities);
-                
+            }).done((entities) => {                
                 // Update options
                 this.params.options = [''].concat(entities.map(entity => entity.name));
                 
@@ -33,9 +30,6 @@ define('viacrm:views/fields/target-entity-select', ['views/fields/enum'], functi
                 entities.forEach(entity => {
                     this.translatedOptions[entity.name] = entity.label;
                 });
-                
-                console.log('Updated options:', this.params.options);
-                console.log('Updated translations:', this.translatedOptions);
                 
                 // Re-render the field if already rendered
                 if (this.isRendered()) {
@@ -71,7 +65,6 @@ define('viacrm:views/fields/target-entity-select', ['views/fields/enum'], functi
             if (this.$el && this.$el.find('select').length > 0) {
                 this.$el.find('select').on('change', () => {
                     const selectedEntity = this.fetch().targetEntity;
-                    console.log('Target entity changed to:', selectedEntity);
                     
                     // Trigger event so other fields can react
                     this.trigger('change');

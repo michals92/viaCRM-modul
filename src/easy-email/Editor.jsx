@@ -3,8 +3,6 @@ import { EmailEditor, EmailEditorProvider } from 'easy-email-editor';
 import { BlockManager } from 'easy-email-core';
 import 'easy-email-editor/lib/style.css';
 
-// Simplified approach - just use basic blocks for now
-console.log('Easy Email Editor: Initializing with core blocks only');
 
 const defaultData = {
   subject: 'Welcome to our newsletter',

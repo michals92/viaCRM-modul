@@ -6,9 +6,7 @@ define('viacrm:controllers/legendary-email-editor', ['controller'], function (Co
 
         edit: function (options) {
             const id = options.id || 'new';
-            
-            console.log('🚀 Legendary Email Editor Controller - Loading for ID:', id);
-            
+
             this.main('viacrm:views/email-template/legendary-editor', {
                 templateId: id
             });

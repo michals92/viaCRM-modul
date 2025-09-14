@@ -3,8 +3,6 @@
 (function() {
     'use strict';
     
-    console.log('ViaCRM app.js loaded');
-    
     // Extend ViaCRM namespace with app functionality
     if (typeof window.ViaCRM !== 'undefined') {
         window.ViaCRM.app = {
@@ -12,8 +10,7 @@
             
             init: function() {
                 if (this.initialized) return;
-                
-                console.log('ViaCRM app initialized');
+
                 this.initialized = true;
                 
                 // Any additional app initialization
@@ -23,7 +20,6 @@
             setupGlobalExtensions: function() {
                 // Setup any global app extensions
                 if (typeof window.Espo !== 'undefined') {
-                    console.log('ViaCRM app extensions ready');
                     this.setupRoutes();
                     this.customizeFooter();
                 }
@@ -37,7 +33,6 @@
                         const creditElement = footer.querySelector('p.credit.small');
                         if (creditElement) {
                             creditElement.innerHTML = '© 2025 ViaCRM';
-                            console.log('Footer updated to ViaCRM branding');
                         }
                     } else {
                         // Retry if footer not found yet
@@ -73,19 +68,16 @@
                     // Wait for the app to be ready
                     const registerRoutes = () => {
                         if (window.app && window.app.router) {
-                            console.log('🚀 Registering Legendary Email Editor routes...');
                             
                             // Define routes for legendary editor
                             const routes = {
                                 'EmailTemplate/edit/:id/legendary': function(id) {
-                                    console.log('🚀 Route matched: EmailTemplate/edit/' + id + '/legendary');
                                     this.main('viacrm:views/email-template/legendary-editor', {
                                         templateId: id
                                     });
                                 }.bind(window.app),
                                 
                                 'EmailTemplate/create/legendary': function() {
-                                    console.log('🚀 Route matched: EmailTemplate/create/legendary');
                                     this.main('viacrm:views/email-template/legendary-editor', {
                                         templateId: 'new'
                                     });
@@ -95,10 +87,7 @@
                             // Add each route to the router
                             for (const route in routes) {
                                 window.app.router.route(route, 'legendary_' + route.replace(/[^a-zA-Z0-9]/g, '_'), routes[route]);
-                            }
-                            
-                            console.log('🚀 Legendary Email Editor routes registered successfully');
-                            
+                            }  
                         } else {
                             setTimeout(registerRoutes, 100);
                         }

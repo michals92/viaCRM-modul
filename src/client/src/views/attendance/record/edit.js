@@ -22,8 +22,6 @@ define('viacrm:views/attendance/record/edit', ['views/record/edit'], function (D
                 
                 var localDateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
                 this.model.set('arrivalDate', localDateTime);
-                
-                console.log('Setting arrival date to local time:', localDateTime);
             }
         }
 

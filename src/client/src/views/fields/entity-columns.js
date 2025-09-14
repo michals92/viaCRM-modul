@@ -37,7 +37,6 @@ define('viacrm:views/fields/entity-columns', ['views/fields/multi-enum'], functi
                 return;
             }
             
-            console.log('Loading fields for entity:', targetEntity);
             
             // Load fields dynamically from the backend
             const basePath = window.location.pathname.replace(/\/+$/, '');
@@ -48,9 +47,7 @@ define('viacrm:views/fields/entity-columns', ['views/fields/multi-enum'], functi
                 type: 'GET',
                 data: { entityType: targetEntity },
                 dataType: 'json'
-            }).done((fields) => {
-                console.log('Received fields for', targetEntity, ':', fields);
-                
+            }).done((fields) => {                
                 const options = fields.map(field => field.name);
                 const translatedOptions = {};
                 
@@ -60,9 +57,6 @@ define('viacrm:views/fields/entity-columns', ['views/fields/multi-enum'], functi
                 
                 this.params.options = options;
                 this.translatedOptions = translatedOptions;
-                
-                console.log('Updated field options:', options);
-                console.log('Updated field translations:', translatedOptions);
                 
                 // Re-render only if already rendered
                 if (this.isRendered()) {

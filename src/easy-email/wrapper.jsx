@@ -14,9 +14,7 @@ function initEasyEmailEditor() {
   try {
     const root = createRoot(container);
     root.render(<EasyEmailEditorApp />);
-    
-    console.log('Easy Email Editor initialized successfully');
-  } catch (error) {
+    } catch (error) {
     console.error('Easy Email Editor initialization failed:', error);
     
     // Show error message in container

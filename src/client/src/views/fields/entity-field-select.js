@@ -37,9 +37,7 @@ define('viacrm:views/fields/entity-field-select', ['views/fields/enum'], functio
                 this.reRender();
                 return;
             }
-            
-            console.log('Loading fields for groupBy/orderBy entity:', targetEntity);
-            
+                        
             // Load fields dynamically from the backend
             const basePath = window.location.pathname.replace(/\/+$/, '');
             const url = `${basePath}/api/v1/Report/action/getEntityFields`;
@@ -50,7 +48,6 @@ define('viacrm:views/fields/entity-field-select', ['views/fields/enum'], functio
                 data: { entityType: targetEntity },
                 dataType: 'json'
             }).done((fields) => {
-                console.log('Received fields for groupBy/orderBy:', fields);
                 
                 // Filter fields that are suitable for grouping/ordering
                 const suitableFields = fields.filter(field => this.isFieldSuitableForGrouping(field));
@@ -63,9 +60,7 @@ define('viacrm:views/fields/entity-field-select', ['views/fields/enum'], functio
                 
                 this.params.options = options;
                 this.translatedOptions = translatedOptions;
-                
-                console.log('Updated groupBy/orderBy options:', options);
-                
+                                
                 // Re-render only if already rendered
                 if (this.isRendered()) {
                     this.reRender();

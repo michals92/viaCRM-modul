@@ -14,7 +14,6 @@ define('viacrm:views/email-template/legendary-editor', ['view'], function (Dep) 
                     this.getEntityManager().getEntity('EmailTemplate', this.templateId)
                         .then((model) => {
                             this.model = model;
-                            console.log('📧 Loaded email template model:', model.get('name'));
                         })
                         .catch((error) => {
                             console.error('❌ Failed to load template:', error);
@@ -42,7 +41,6 @@ define('viacrm:views/email-template/legendary-editor', ['view'], function (Dep) 
             const iframe = this.$el.find('#legendary-editor-iframe')[0];
             if (iframe) {
                 iframe.src = this.editorUrl;
-                console.log('🚀 Loading Legendary Email Editor in full page mode');
             }
         },
 

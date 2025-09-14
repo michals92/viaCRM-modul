@@ -125,7 +125,6 @@ define('viacrm:views/modals/easy-email-editor', ['views/modal'], function (Dep) 
             
             // Focus iframe when ready
             $iframe.on('load', function() {
-                console.log('🚀 Legendary Email Editor iframe loaded');
             });
         },
 
