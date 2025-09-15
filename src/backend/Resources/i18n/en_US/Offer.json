@@ -37,6 +37,7 @@
         "Print to PDF": "Print to PDF",
         "Manage PDF Templates": "Manage PDF Templates",
         "Send PDF via Email": "Send PDF via Email",
+        "Convert to Order": "Convert to Order",
         "PDF Document": "PDF Document",
         "Direct PDF Link": "Direct PDF Link",
         "PDF Link": "PDF Link"
@@ -47,6 +48,10 @@
         "Please find the PDF document here": "Please find the PDF document here",
         "Note: Click the link above to download the PDF document.": "Note: Click the link above to download the PDF document.",
         "PDF link added to email": "PDF link added to email",
-        "PDF attached": "PDF attached"
+        "PDF attached": "PDF attached",
+        "Are you sure you want to convert this offer to an order?": "Are you sure you want to convert this offer to an order?",
+        "Offer converted to order successfully": "Offer converted to order successfully",
+        "Converting...": "Converting...",
+        "Only sent or accepted offers can be converted to orders": "Only sent or accepted offers can be converted to orders"
     }
 }

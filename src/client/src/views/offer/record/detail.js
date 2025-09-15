@@ -5,23 +5,40 @@ define('viacrm:views/offer/record/detail', ['views/record/detail'], function (De
         setup: function () {
             Dep.prototype.setup.call(this);
             
-            // Check if Print to PDF button already exists
-            var hasPrintPdf = this.dropdownItemList.some(function(item) {
-                return item.name === 'printPdf';
+            // Add main action buttons
+            
+            // Print to PDF button
+            this.addButton({
+                name: 'printPdf',
+                label: 'Print to PDF',
+                style: 'default',
+                acl: 'read',
+                iconHtml: '<span class="fas fa-file-pdf"></span>'
             });
             
-            if (!hasPrintPdf) {
-                this.dropdownItemList.push({
-                    name: 'printPdf',
-                    label: 'Print to PDF'
-                });
-            }
-
-            this.dropdownItemList.push({
+            // Send PDF via Email button
+            this.addButton({
                 name: 'sendPdfEmail',
-                label: 'Send PDF via Email'
+                label: 'Send PDF Email',
+                style: 'default',
+                acl: 'read',
+                iconHtml: '<span class="fas fa-envelope"></span>'
             });
-
+            
+            // Convert to Order button (green, more prominent)
+            this.addButton({
+                name: 'convertToOrder',
+                label: 'Convert to Order',
+                style: 'success',
+                acl: 'read',
+                iconHtml: '<span class="fas fa-shopping-cart"></span>'
+            });
+            
+            // Only keep manage templates in dropdown (remove duplicates)
+            this.dropdownItemList = this.dropdownItemList.filter(function(item) {
+                return item.name !== 'printPdf' && item.name !== 'sendPdfEmail';
+            });
+            
             this.dropdownItemList.push({
                 name: 'managePdfTemplates',
                 label: 'Manage PDF Templates'
@@ -100,6 +117,31 @@ define('viacrm:views/offer/record/detail', ['views/record/detail'], function (De
                         }, this);
                     }, this);
                 }, this);
+            }.bind(this));
+        },
+
+        actionConvertToOrder: function () {
+            this.confirm(this.translate('Are you sure you want to convert this offer to an order?', 'messages', 'Offer'), function () {
+                this.notify(this.translate('Converting...', 'messages', 'Offer'));
+                
+                Espo.Ajax.postRequest('Offer/action/convertToOrder', {
+                    id: this.model.id
+                }).then(function (response) {
+                    this.notify(this.translate('Offer converted to order successfully', 'messages', 'Offer'), 'success');
+                    
+                    // Navigate to the new order
+                    if (response.orderId) {
+                        var url = '#Order/view/' + response.orderId;
+                        this.getRouter().navigate(url, {trigger: true});
+                    } else {
+                        // Refresh current view to show updated status
+                        this.model.fetch();
+                    }
+                }.bind(this)).catch(function (xhr) {
+                    var response = xhr.responseJSON || {};
+                    var message = response.message || 'Error occurred';
+                    this.notify(message, 'error');
+                }.bind(this));
             }.bind(this));
         }
     });

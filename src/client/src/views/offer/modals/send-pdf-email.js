@@ -38,7 +38,7 @@ define('viacrm:views/offer/modals/send-pdf-email', ['views/modals/compose-email'
                     // Trigger change event to update view
                     this.model.trigger('change:attachmentsIds');
                     
-                    Espo.Ui.notify(this.translate('PDF attached', 'messages'), 'success');
+                    Espo.Ui.notify(this.translate('PDF attached', 'messages', 'Offer'), 'success');
                 }
             }.bind(this)).catch(function (xhr) {
                 var errorMessage = 'Error generating PDF';

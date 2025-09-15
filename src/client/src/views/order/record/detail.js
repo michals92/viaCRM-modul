@@ -5,23 +5,31 @@ define('viacrm:views/order/record/detail', ['views/record/detail'], function (De
         setup: function () {
             Dep.prototype.setup.call(this);
             
-            // Check if Print to PDF button already exists
-            var hasPrintPdf = this.dropdownItemList.some(function(item) {
-                return item.name === 'printPdf';
+            // Add main action buttons
+            
+            // Print to PDF button
+            this.addButton({
+                name: 'printPdf',
+                label: 'Print to PDF',
+                style: 'default',
+                acl: 'read',
+                iconHtml: '<span class="fas fa-file-pdf"></span>'
             });
             
-            if (!hasPrintPdf) {
-                this.dropdownItemList.push({
-                    name: 'printPdf',
-                    label: 'Print to PDF'
-                });
-            }
-
-            this.dropdownItemList.push({
+            // Send PDF via Email button
+            this.addButton({
                 name: 'sendPdfEmail',
-                label: 'Send PDF via Email'
+                label: 'Send PDF Email',
+                style: 'default',
+                acl: 'read',
+                iconHtml: '<span class="fas fa-envelope"></span>'
             });
-
+            
+            // Only keep manage templates in dropdown (remove duplicates)
+            this.dropdownItemList = this.dropdownItemList.filter(function(item) {
+                return item.name !== 'printPdf' && item.name !== 'sendPdfEmail';
+            });
+            
             this.dropdownItemList.push({
                 name: 'managePdfTemplates',
                 label: 'Manage PDF Templates'

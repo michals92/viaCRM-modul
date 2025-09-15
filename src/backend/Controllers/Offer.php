@@ -102,4 +102,87 @@ class Offer extends Record
             throw new BadRequest('Failed to generate PDF: ' . $e->getMessage());
         }
     }
+
+    public function postActionConvertToOrder(Request $request): array
+    {
+        $data = $request->getParsedBody();
+        $offerId = $data->id ?? null;
+        
+        if (!$offerId) {
+            throw new BadRequest('Missing offer ID');
+        }
+        
+        // Check permissions
+        $offer = $this->entityManager->getEntityById('Offer', $offerId);
+        if (!$offer) {
+            throw new NotFound('Offer not found');
+        }
+        
+        if (!$this->acl->check($offer, 'read')) {
+            throw new Forbidden('No read access to Offer');
+        }
+        
+        if (!$this->acl->check('Order', 'create')) {
+            throw new Forbidden('No create access to Order');
+        }
+        
+        try {
+            // Create new Order entity directly
+            $order = $this->entityManager->getEntity('Order');
+            
+            // Set basic fields
+            $order->set([
+                'name' => 'Order from: ' . $offer->get('name'),
+                'status' => 'Draft',
+                'orderDate' => date('Y-m-d'),
+                'description' => $offer->get('description'),
+                'offerId' => $offer->getId()
+            ]);
+            
+            // Copy account if exists
+            if ($offer->get('accountId')) {
+                $order->set('accountId', $offer->get('accountId'));
+            }
+            
+            // Copy contact if exists
+            if ($offer->get('contactId')) {
+                $order->set('contactId', $offer->get('contactId'));
+            }
+            
+            // Copy assigned user if exists
+            if ($offer->get('assignedUserId')) {
+                $order->set('assignedUserId', $offer->get('assignedUserId'));
+            }
+            
+            // Convert offer items to order items
+            $offerItems = $offer->get('offerItems');
+            if ($offerItems) {
+                // Simple conversion - just copy the items as is
+                $order->set('orderItems', $offerItems);
+            }
+            
+            // Save the order
+            $this->entityManager->saveEntity($order);
+            
+            // Update offer status
+            $offer->set('status', 'Accepted');
+            $this->entityManager->saveEntity($offer);
+            
+            return [
+                'success' => true,
+                'orderId' => $order->getId(),
+                'orderName' => $order->get('name'),
+                'message' => 'Offer successfully converted to order'
+            ];
+            
+        } catch (\Exception $e) {
+            $this->log->error('Failed to convert offer to order', [
+                'offerId' => $offerId,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            throw new BadRequest('Failed to convert offer to order: ' . $e->getMessage());
+        }
+    }
 }

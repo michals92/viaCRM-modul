@@ -35,8 +35,10 @@
         "Create": "Vytvořit nabídku",
         "View List": "Zobrazit seznam nabídek",
         "Print to PDF": "Tisknout do PDF",
+        "Send PDF Email": "Odeslat PDF emailem",
         "Manage PDF Templates": "Spravovat PDF šablony",
         "Send PDF via Email": "Odeslat PDF emailem",
+        "Convert to Order": "Převést na objednávku",
         "PDF Document": "PDF dokument",
         "Direct PDF Link": "Přímý odkaz na PDF",
         "PDF Link": "PDF odkaz"
@@ -47,6 +49,11 @@
         "Please find the PDF document here": "PDF dokument naleznete zde",
         "Note: Click the link above to download the PDF document.": "Poznámka: Klikněte na odkaz výše pro stažení PDF dokumentu.",
         "PDF link added to email": "Odkaz na PDF byl přidán do emailu",
-        "PDF attached": "PDF přiloženo"
+        "PDF attached": "PDF přiloženo",
+        "Send PDF Email": "Odeslat PDF emailem",
+        "Are you sure you want to convert this offer to an order?": "Opravdu chcete převést tuto nabídku na objednávku?",
+        "Offer converted to order successfully": "Nabídka byla úspěšně převedena na objednávku",
+        "Converting...": "Převádí se...",
+        "Only sent or accepted offers can be converted to orders": "Pouze odeslané nebo přijaté nabídky lze převést na objednávky"
     }
 }

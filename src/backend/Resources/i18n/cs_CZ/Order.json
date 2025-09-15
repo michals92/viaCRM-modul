@@ -48,6 +48,7 @@
         "Create": "Vytvořit objednávku",
         "View List": "Zobrazit seznam objednávek",
         "Print to PDF": "Tisknout do PDF",
+        "Send PDF Email": "Odeslat PDF emailem",
         "Manage PDF Templates": "Spravovat PDF šablony",
         "Send PDF via Email": "Odeslat PDF emailem",
         "PDF Document": "PDF dokument",
@@ -64,6 +65,7 @@
         "Please find the PDF document here": "PDF dokument naleznete zde",
         "Note: Click the link above to download the PDF document.": "Poznámka: Klikněte na odkaz výše pro stažení PDF dokumentu.",
         "PDF link added to email": "Odkaz na PDF byl přidán do emailu",
-        "PDF attached": "PDF přiloženo"
+        "PDF attached": "PDF přiloženo",
+        "Send PDF Email": "Odeslat PDF emailem"
     }
 }
