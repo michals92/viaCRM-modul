@@ -18,13 +18,13 @@ define('viacrm:views/order/record/detail', ['views/record/detail'], function (De
             }
 
             this.dropdownItemList.push({
-                name: 'managePdfTemplates',
-                label: 'Manage PDF Templates'
+                name: 'sendPdfEmail',
+                label: 'Send PDF via Email'
             });
 
             this.dropdownItemList.push({
-                name: 'sendPdfEmail',
-                label: 'Send PDF via Email'
+                name: 'managePdfTemplates',
+                label: 'Manage PDF Templates'
             });
         },
 
