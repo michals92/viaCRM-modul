@@ -25,7 +25,7 @@
                 <td class="text-right">{{unitPrice}}</td>
                 <td class="text-right">
                     {{#if discountValue}}
-                        {{discountValue}}{{#if isDiscountPercent}}%{{else}} ${{/if}}
+                        {{discountValue}}{{#if isDiscountPercent}}%{{else}} {{../currencySymbol}}{{/if}}
                     {{else}}
                         -
                     {{/if}}
