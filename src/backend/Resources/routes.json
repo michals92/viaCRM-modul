@@ -190,5 +190,21 @@
             "controller": "Report",
             "action": "preview"
         }
+    },
+    {
+        "route": "/Offer/action/generatePdfWithAttachment",
+        "method": "POST",
+        "params": {
+            "controller": "Offer",
+            "action": "generatePdfWithAttachment"
+        }
+    },
+    {
+        "route": "/Order/action/generatePdfWithAttachment",
+        "method": "POST",
+        "params": {
+            "controller": "Order",
+            "action": "generatePdfWithAttachment"
+        }
     }
 ]

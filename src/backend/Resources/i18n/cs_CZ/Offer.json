@@ -35,6 +35,18 @@
         "Create": "Vytvořit nabídku",
         "View List": "Zobrazit seznam nabídek",
         "Print to PDF": "Tisknout do PDF",
-        "Manage PDF Templates": "Spravovat PDF šablony"
+        "Manage PDF Templates": "Spravovat PDF šablony",
+        "Send PDF via Email": "Odeslat PDF emailem",
+        "PDF Document": "PDF dokument",
+        "Direct PDF Link": "Přímý odkaz na PDF",
+        "PDF Link": "PDF odkaz"
+    },
+    "messages": {
+        "Please find attached PDF document": "V příloze naleznete PDF dokument",
+        "PDF link added to email body": "Odkaz na PDF byl přidán do těla emailu",
+        "Please find the PDF document here": "PDF dokument naleznete zde",
+        "Note: Click the link above to download the PDF document.": "Poznámka: Klikněte na odkaz výše pro stažení PDF dokumentu.",
+        "PDF link added to email": "Odkaz na PDF byl přidán do emailu",
+        "PDF attached": "PDF přiloženo"
     }
 }

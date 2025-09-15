@@ -49,9 +49,21 @@
         "View List": "View Order List",
         "Print to PDF": "Print to PDF",
         "Manage PDF Templates": "Manage PDF Templates",
+        "Send PDF via Email": "Send PDF via Email",
+        "PDF Document": "PDF Document",
+        "Direct PDF Link": "Direct PDF Link",
+        "PDF Link": "PDF Link",
         "Overview": "Overview",
         "Shipping & Payment": "Shipping & Payment",
         "Order Items": "Order Items",
         "Additional Information": "Additional Information"
+    },
+    "messages": {
+        "Please find attached PDF document": "Please find attached PDF document",
+        "PDF link added to email body": "PDF link added to email body",
+        "Please find the PDF document here": "Please find the PDF document here",
+        "Note: Click the link above to download the PDF document.": "Note: Click the link above to download the PDF document.",
+        "PDF link added to email": "PDF link added to email",
+        "PDF attached": "PDF attached"
     }
 }

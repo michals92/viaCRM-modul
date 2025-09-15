@@ -21,6 +21,11 @@ define('viacrm:views/offer/record/detail', ['views/record/detail'], function (De
                 name: 'managePdfTemplates',
                 label: 'Manage PDF Templates'
             });
+
+            this.dropdownItemList.push({
+                name: 'sendPdfEmail',
+                label: 'Send PDF via Email'
+            });
         },
 
         actionPrintPdf: function () {
@@ -44,6 +49,58 @@ define('viacrm:views/offer/record/detail', ['views/record/detail'], function (De
         actionManagePdfTemplates: function () {
             var url = '#Template/list/entityType=' + encodeURIComponent(this.model.entityType);
             this.getRouter().navigate(url, {trigger: true});
+        },
+
+        actionSendPdfEmail: function () {
+            this.createView('pdfTemplate', 'views/modals/select-template', {
+                entityType: this.model.entityType,
+                entityId: this.model.id
+            }, function (view) {
+                view.render();
+                
+                this.listenToOnce(view, 'select', function (templateModel) {
+                    // Get email from contact or account
+                    var emailTo = '';
+                    var parentId = null;
+                    var parentType = null;
+                    
+                    if (this.model.get('contactId')) {
+                        emailTo = this.model.get('contactEmailAddress') || '';
+                        parentId = this.model.get('contactId');
+                        parentType = 'Contact';
+                    } else if (this.model.get('accountId')) {
+                        emailTo = this.model.get('accountEmailAddress') || '';
+                        parentId = this.model.get('accountId');
+                        parentType = 'Account';
+                    }
+                    
+                    // Use the modern PDF email modal with attachment functionality
+                    this.createView('sendPdfEmail', 'viacrm:views/offer/modals/send-pdf-email', {
+                        attributes: {
+                            to: emailTo,
+                            name: this.model.get('name'),
+                            subject: this.translate('Offer', 'scopeNames') + ': ' + this.model.get('name'),
+                            parentId: parentId,
+                            parentType: parentType,
+                            parentName: this.model.get('contactName') || this.model.get('accountName'),
+                            body: this.translate('Please find attached PDF document', 'messages', 'Offer') + '.\n\n'
+                        },
+                        selectTemplateDisabled: true,
+                        signatureDisabled: false,
+                        pdfTemplate: {
+                            id: templateModel.id,
+                            entityId: this.model.id,
+                            entityType: this.model.entityType
+                        }
+                    }, function (view) {
+                        view.render();
+                        
+                        this.listenToOnce(view, 'after:save', function () {
+                            this.notify('Email sent successfully', 'success');
+                        }, this);
+                    }, this);
+                }, this);
+            }.bind(this));
         }
     });
 });

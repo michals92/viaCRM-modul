@@ -32,6 +32,30 @@
         "contact": {
             "type": "link"
         },
+        "contactName": {
+            "type": "foreign",
+            "link": "contact",
+            "field": "name",
+            "readOnly": true
+        },
+        "contactEmailAddress": {
+            "type": "foreign",
+            "link": "contact",
+            "field": "emailAddress",
+            "readOnly": true
+        },
+        "accountName": {
+            "type": "foreign",
+            "link": "account",
+            "field": "name",
+            "readOnly": true
+        },
+        "accountEmailAddress": {
+            "type": "foreign",
+            "link": "account", 
+            "field": "emailAddress",
+            "readOnly": true
+        },
         "offer": {
             "type": "link"
         },
