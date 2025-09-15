@@ -40,6 +40,10 @@ define('viacrm:views/fields/order-items', ['views/fields/base'], function (Dep) 
             // Get default VAT rate from config or use 0 as fallback
             this.defaultVat = this.getConfig().get('defaultTaxRate') || 0;
             
+            // Currency setup
+            this.displayCurrency = this.getUser().get('defaultCurrency') || this.getConfig().get('defaultCurrency') || 'CZK';
+            this.currencySymbol = this.getCurrencySymbol(this.displayCurrency);
+            
             // Initialize discount settings
             this.overallDiscountType = this.model.get('overallDiscountType') || 'percentage';
             this.overallDiscountValue = this.model.get('overallDiscountValue') || 0;
@@ -49,6 +53,7 @@ define('viacrm:views/fields/order-items', ['views/fields/base'], function (Dep) 
             var data = Dep.prototype.data.call(this);
             
             this.items = this.model.get(this.name) || [];
+            data.currencySymbol = this.currencySymbol;
             
             data.items = this.items.map(function(item) {
                 var quantity = parseFloat(item.quantity) || 1;
@@ -158,8 +163,24 @@ define('viacrm:views/fields/order-items', ['views/fields/base'], function (Dep) 
             };
         },
 
+        getCurrencySymbol: function(currency) {
+            var currencySymbols = {
+                'USD': '$',
+                'EUR': '€',
+                'CZK': 'Kč',
+                'GBP': '£',
+                'PLN': 'zł',
+                'JPY': '¥',
+                'CHF': 'CHF',
+                'CAD': 'C$',
+                'AUD': 'A$'
+            };
+            
+            return currencySymbols[currency] || currency;
+        },
+
         formatCurrency: function(value) {
-            return parseFloat(value).toFixed(2);
+            return parseFloat(value).toFixed(2) + ' ' + this.currencySymbol;
         },
 
         addCustomItem: function() {

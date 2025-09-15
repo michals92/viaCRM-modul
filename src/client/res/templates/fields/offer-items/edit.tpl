@@ -236,7 +236,7 @@
                             <input type="number" class="form-control text-center" data-name="discountValue" value="{{discountValue}}" min="0" step="any" placeholder="0" style="font-weight: 500;">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default btn-sm" data-action="toggleItemDiscountType" data-index="{{@index}}" title="Přepnout typ" style="min-width: 35px;">
-                                    {{#if isDiscountPercent}}%{{else}}${{/if}}
+                                    {{#if isDiscountPercent}}%{{else}}{{../currencySymbol}}{{/if}}
                                 </button>
                             </span>
                         </div>
@@ -306,7 +306,7 @@
                             {{#if isOverallDiscountPercent}}
                                 <i class="fas fa-percentage"></i>
                             {{else}}
-                                <i class="fas fa-dollar-sign"></i>
+                                {{currencySymbol}}
                             {{/if}}
                         </button>
                     </span>
