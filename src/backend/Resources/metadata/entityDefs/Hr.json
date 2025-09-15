@@ -20,8 +20,10 @@
         "email": {
             "type": "email"
         },
-        "phone": {
-            "type": "phone"
+        "phoneNumber": {
+            "type": "phone",
+            "typeList": ["Mobile", "Office", "Home", "Other"],
+            "defaultType": "Mobile"
         },
         "position": {
             "type": "varchar",
