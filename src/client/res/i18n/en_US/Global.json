@@ -1,0 +1,32 @@
+{
+    "scopeNames": {
+        "Hr": "Employee",
+        "Lead": "Lead",
+        "Account": "Account",
+        "Contact": "Contact",
+        "Opportunity": "Opportunity",
+        "Case": "Case",
+        "Task": "Task",
+        "Meeting": "Meeting",
+        "Call": "Call",
+        "Email": "Email",
+        "Document": "Document"
+    },
+    "scopeNamesPlural": {
+        "Hr": "Employees",
+        "Lead": "Leads",
+        "Account": "Accounts",
+        "Contact": "Contacts",
+        "Opportunity": "Opportunities",
+        "Case": "Cases",
+        "Task": "Tasks",
+        "Meeting": "Meetings",
+        "Call": "Calls",
+        "Email": "Emails",
+        "Document": "Documents"
+    },
+    "messages": {
+        "Product name is required": "Product name is required",
+        "Quantity must be greater than 0": "Quantity must be greater than 0"
+    }
+}

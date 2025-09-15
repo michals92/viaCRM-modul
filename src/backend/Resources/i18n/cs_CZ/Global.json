@@ -5,7 +5,17 @@
         "Report": "Report",
         "Order": "Objednávka",
         "ProductsItems": "Produkt",
-        "Offer": "Nabídka"
+        "Offer": "Nabídka",
+        "Lead": "Lead",
+        "Account": "Firma",
+        "Contact": "Kontakt",
+        "Opportunity": "Příležitost",
+        "Case": "Případ",
+        "Task": "Úkol",
+        "Meeting": "Schůzka",
+        "Call": "Hovor",
+        "Email": "Email",
+        "Document": "Dokument"
     },
     "scopeNamesPlural": {
         "Hr": "Zaměstnanci",
@@ -13,7 +23,17 @@
         "Report": "Reporty",
         "Order": "Objednávky",
         "ProductsItems": "Produkty",
-        "Offer": "Nabídky"
+        "Offer": "Nabídky",
+        "Lead": "Leady",
+        "Account": "Firmy",
+        "Contact": "Kontakty",
+        "Opportunity": "Příležitosti",
+        "Case": "Případy",
+        "Task": "Úkoly",
+        "Meeting": "Schůzky",
+        "Call": "Hovory",
+        "Email": "Emaily",
+        "Document": "Dokumenty"
     },
     "options": {
         "codeType": {

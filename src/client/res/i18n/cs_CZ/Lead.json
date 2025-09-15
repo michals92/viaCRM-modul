@@ -1,0 +1,66 @@
+{
+    "fields": {
+        "name": "Jméno",
+        "firstName": "Křestní jméno",
+        "lastName": "Příjmení",
+        "salutationName": "Oslovení",
+        "title": "Titul",
+        "status": "Stav",
+        "source": "Zdroj",
+        "industry": "Průmysl",
+        "opportunityAmount": "Částka příležitosti",
+        "website": "Webová stránka",
+        "address": "Adresa",
+        "emailAddress": "Email",
+        "phoneNumber": "Telefon",
+        "doNotCall": "Nevolat",
+        "description": "Popis",
+        "convertedAt": "Převeden",
+        "campaign": "Kampaň",
+        "assignedUser": "Přiřazený uživatel",
+        "teams": "Týmy",
+        "createdAt": "Vytvořeno",
+        "modifiedAt": "Upraveno"
+    },
+    "links": {
+        "targetLists": "Cílové seznamy",
+        "campaign": "Kampaň",
+        "assignedUser": "Přiřazený uživatel",
+        "teams": "Týmy"
+    },
+    "labels": {
+        "Create Lead": "Vytvořit lead",
+        "Convert Lead": "Převést lead",
+        "Converted": "Převeden"
+    },
+    "options": {
+        "status": {
+            "New": "Nový",
+            "Assigned": "Přiřazen",
+            "In Process": "Zpracovává se",
+            "Converted": "Převeden",
+            "Recycled": "Recyklován",
+            "Dead": "Mrtvý"
+        },
+        "source": {
+            "Call": "Hovor",
+            "Email": "Email",
+            "Existing Customer": "Stávající zákazník",
+            "Partner": "Partner",
+            "Public Relations": "Public Relations",
+            "Web Site": "Webová stránka",
+            "Campaign": "Kampaň",
+            "Other": "Jiný"
+        }
+    },
+    "presetFilters": {
+        "new": "Nové",
+        "assigned": "Přiřazené",
+        "converted": "Převedené"
+    },
+    "boolFilters": {
+        "onlyMy": "Pouze moje",
+        "followed": "Sledované",
+        "converted": "Převedené"
+    }
+}

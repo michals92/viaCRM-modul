@@ -1,0 +1,66 @@
+{
+    "fields": {
+        "name": "Name",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "salutationName": "Salutation",
+        "title": "Title",
+        "status": "Status",
+        "source": "Source",
+        "industry": "Industry",
+        "opportunityAmount": "Opportunity Amount",
+        "website": "Website",
+        "address": "Address",
+        "emailAddress": "Email",
+        "phoneNumber": "Phone",
+        "doNotCall": "Do Not Call",
+        "description": "Description",
+        "convertedAt": "Converted At",
+        "campaign": "Campaign",
+        "assignedUser": "Assigned User",
+        "teams": "Teams",
+        "createdAt": "Created At",
+        "modifiedAt": "Modified At"
+    },
+    "links": {
+        "targetLists": "Target Lists",
+        "campaign": "Campaign",
+        "assignedUser": "Assigned User",
+        "teams": "Teams"
+    },
+    "labels": {
+        "Create Lead": "Create Lead",
+        "Convert Lead": "Convert Lead",
+        "Converted": "Converted"
+    },
+    "options": {
+        "status": {
+            "New": "New",
+            "Assigned": "Assigned",
+            "In Process": "In Process",
+            "Converted": "Converted",
+            "Recycled": "Recycled",
+            "Dead": "Dead"
+        },
+        "source": {
+            "Call": "Call",
+            "Email": "Email",
+            "Existing Customer": "Existing Customer",
+            "Partner": "Partner",
+            "Public Relations": "Public Relations",
+            "Web Site": "Web Site",
+            "Campaign": "Campaign",
+            "Other": "Other"
+        }
+    },
+    "presetFilters": {
+        "new": "New",
+        "assigned": "Assigned",
+        "converted": "Converted"
+    },
+    "boolFilters": {
+        "onlyMy": "Only My",
+        "followed": "Followed",
+        "converted": "Converted"
+    }
+}

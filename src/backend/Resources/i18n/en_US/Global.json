@@ -1,17 +1,39 @@
 {
     "scopeNames": {
-        "Hr": "HR Employee",
+        "Hr": "Employee",
+        "Attendance": "Attendance",
+        "Report": "Report",
+        "Order": "Order",
         "ProductsItems": "Product",
         "Offer": "Offer",
-        "Report": "Report",
-        "Order": "Order"
+        "Lead": "Lead",
+        "Account": "Account",
+        "Contact": "Contact",
+        "Opportunity": "Opportunity",
+        "Case": "Case",
+        "Task": "Task",
+        "Meeting": "Meeting",
+        "Call": "Call",
+        "Email": "Email",
+        "Document": "Document"
     },
     "scopeNamesPlural": {
-        "Hr": "HR Employees",
+        "Hr": "Employees",
+        "Attendance": "Attendance",
+        "Report": "Reports",
+        "Order": "Orders",
         "ProductsItems": "Products",
-        "Offer": "Offer",
-        "Report": "Report",
-        "Order": "Order"
+        "Offer": "Offers",
+        "Lead": "Leads",
+        "Account": "Accounts",
+        "Contact": "Contacts",
+        "Opportunity": "Opportunities",
+        "Case": "Cases",
+        "Task": "Tasks",
+        "Meeting": "Meetings",
+        "Call": "Calls",
+        "Email": "Emails",
+        "Document": "Documents"
     },
     "labels": {
         "Hr": "HR Employee",
