@@ -1,0 +1,15 @@
+{
+	"labels": {
+	    "Primary": "Primární",
+	    "Opted Out": "Odhlášen",
+	    "Invalid": "Neplatný"
+	},
+	"fields": {
+	   "optOut": "Odhlášen",
+	   "invalid": "Neplatný",
+        "lower": "Lower-case jméno"
+	},
+	"presetFilters": {
+	   "orphan": "Sirotek"
+	}
+}

@@ -1,0 +1,42 @@
+{
+    "fields": {
+        "name": "Jméno",
+        "status": "Status",
+        "isHtml": "HTML",
+        "body": "Tělo",
+        "subject": "Předmět",
+        "attachments": "Přílohy",
+        "oneOff": "Jednorázový",
+        "category": "Kategorie",
+        "insertField": "Vložit pole"
+    },
+    "links": {
+    },
+    "labels": {
+        "Create EmailTemplate": "Vytvořit šablonu e-mailu",
+        "Info": "Info",
+        "Available placeholders": "Dostupné placeholdery"
+    },
+    "options": {
+        "status": {
+            "Active": "Aktivní",
+            "Inactive": "Neaktivní"
+        }
+    },
+    "messages": {
+        "infoText": "Dostupné placeholdery:\n\n{optOutUrl} &#8211; URL pro odhlašovací odkaz;\n\n{optOutLink} &#8211; odhlašovací odkaz."
+    },
+    "tooltips": {
+        "oneOff": "Zkontrolujte, zda tuto šablonu použijete pouze jednou. Např. pro hromadný e-mail."
+    },
+    "presetFilters": {
+        "actual": "Aktivní"
+    },
+    "placeholderTexts": {
+        "today": "Dnešní datum",
+        "now": "Aktuální datum a čas",
+        "currentYear": "Aktuální rok",
+        "optOutUrl": "URL pro odhlašovací odkaz",
+        "optOutLink": "odhlašovací odkaz"
+    }
+}

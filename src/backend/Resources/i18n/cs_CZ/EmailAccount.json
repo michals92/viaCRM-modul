@@ -1,0 +1,73 @@
+{
+    "fields": {
+        "name": "Jméno",
+        "status": "Stav",
+        "host": "Hostitel",
+        "username": "Uživatelské jméno",
+        "password": "Heslo",
+        "port": "Port",
+        "monitoredFolders": "Sledované složky",
+        "security": "Zabezpečení",
+        "fetchSince": "Načíst od",
+        "emailAddress": "E-mailová adresa",
+        "sentFolder": "Složka odeslané",
+        "storeSentEmails": "Uložit odeslané e-maily",
+        "keepFetchedEmailsUnread": "Udržet načtené e-maily jako nepřečtené",
+        "emailFolder": "Umístit do složky",
+        "connectedAt": "Připojeno v",
+        "useImap": "Načíst e-maily",
+        "useSmtp": "Použít SMTP",
+        "smtpHost": "SMTP Host",
+        "smtpPort": "SMTP Port",
+        "smtpAuth": "SMTP Auth",
+        "smtpSecurity": "SMTP zabezpečení",
+        "smtpAuthMechanism": "SMTP Auth Mechanism",
+        "smtpUsername": "SMTP jméno",
+        "smtpPassword": "SMTP heslo"
+    },
+    "links": {
+        "filters": "Filtry",
+        "emails": "E-maily"
+    },
+    "options": {
+        "status": {
+            "Active": "Aktivní",
+            "Inactive": "Neaktivní"
+        },
+        "smtpAuthMechanism": {
+            "plain": "PLAIN",
+            "login": "LOGIN",
+            "crammd5": "CRAM-MD5"
+        },
+        "smtpSecurity": {
+            "SSL": "SSL/TLS",
+            "TLS": "STARTTLS"
+        },
+        "security": {
+            "SSL": "SSL/TLS",
+            "TLS": "STARTTLS"
+        }
+    },
+    "labels": {
+        "Create EmailAccount": "Vytvořit e-mailový účet",
+        "IMAP": "IMAP",
+        "Main": "Hlavní",
+        "Test Connection": "Otestovat připojení",
+        "Send Test Email": "Odeslat testovací e-mail",
+        "SMTP": "SMTP"
+    },
+    "presetFilters": {
+        "active": "Aktivní"
+    },
+    "messages": {
+        "couldNotConnectToImap": "Nelze se připojit k IMAP serveru",
+        "connectionIsOk": "Připojení je v pořádku",
+        "imapNotConnected": "Nelze se připojit k [IMAP účtu](#EmailAccount/view/{id})."
+    },
+    "tooltips": {
+        "useSmtp": "Možnost odesílat e-maily.",
+        "emailAddress": "Uživatelský záznam (přiřazený uživatel) by měl mít stejnou e-mailovou adresu, aby mohl používat tento e-mailový účet pro odesílání.",
+        "monitoredFolders": "Více složek by mělo být odděleno čárkou.\n\nMůžete přidat složku 'Odeslané', aby se synchronizovaly e-maily odeslané z externího e-mailového klienta.",
+        "storeSentEmails": "Odeslané e-maily budou uloženy na IMAP serveru. Pole E-mailová adresa by mělo odpovídat adrese, ze které budou e-maily odesílány."
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "fields": {
+        "skipNotifications": "Přeskočit oznámení"
+    },
+    "labels": {
+        "Create EmailFolder": "Vytvořit složku",
+        "Manage Folders": "Spravovat složky",
+        "Emails": "E-maily"
+    }
+}

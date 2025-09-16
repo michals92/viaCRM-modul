@@ -1,0 +1,13 @@
+{
+    "fields": {
+        "layout": "Rozložení",
+        "append": "Přidat (neodstraňovat záložky uživatele)"
+    },
+    "links": {
+    },
+    "labels": {
+        "Create DashboardTemplate": "Vytvořit šablonu",
+        "Deploy to Users": "Použít pro uživatele",
+        "Deploy to Team": "Použít pro tým"
+    }
+}

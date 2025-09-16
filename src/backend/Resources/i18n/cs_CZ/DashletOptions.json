@@ -1,0 +1,23 @@
+{
+  "fields": {
+    "title": "Popis",
+    "dateFrom": "Datum od",
+    "dateTo": "Datum do",
+    "autorefreshInterval": "Interval automatického obnovení",
+    "displayRecords": "Zobrazit záznamů",
+    "isDoubleHeight": "Výška 2x",
+    "mode": "Mód",
+    "reportId": "Výber reportu",
+    "refreshInterval": "Interval obnovení (minuty)",
+    "team": "Tým",
+    "futureDays": "Dalších X dní",
+    "useLastStage": "Seskupit podle posledního kroku"
+  },
+  "options": {
+    "mode": {
+      "agendaWeek": "Týden (agenda)",
+      "basicWeek": "Týden",
+      "month": "Měsíc"
+    }
+  }
+}
