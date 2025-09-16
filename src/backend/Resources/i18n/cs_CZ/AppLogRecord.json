@@ -1,0 +1,15 @@
+{
+    "fields": {
+        "message": "Zpráva",
+        "code": "Kód",
+        "level": "Úroveň",
+        "exceptionClass": "Exception class",
+        "file": "Soubor",
+        "line": "Řádek",
+        "requestMethod": "Metoda požadavku",
+        "requestResourcePath": "Cesta k prostředku požadavku"
+    },
+    "presetFilters": {
+        "errors": "Chyby"
+    }
+}
