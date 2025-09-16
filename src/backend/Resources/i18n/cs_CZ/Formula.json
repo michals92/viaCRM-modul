@@ -1,0 +1,23 @@
+{
+    "labels": {
+        "Check Syntax": "Zkontrolovat syntaxi",
+        "Run": "Spustit"
+    },
+    "fields": {
+        "target": "Cíl",
+        "targetType": "Typ cíle",
+        "script": "Skript",
+        "output": "Výstup",
+        "error": "Chyba"
+    },
+    "messages": {
+        "runSuccess": "Úspěšně provedeno.",
+        "runError": "Chyba.",
+        "checkSyntaxSuccess": "Syntaxe je v pořádku.",
+        "checkSyntaxError": "Chyba syntaxe.",
+        "emptyScript": "Skript je prázdný."
+    },
+    "tooltips": {
+        "output": "Vypište hodnoty pomocí funkce `output\\printLine`."
+    }
+}

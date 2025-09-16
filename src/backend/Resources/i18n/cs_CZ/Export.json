@@ -1,0 +1,31 @@
+{
+    "fields": {
+        "exportAllFields": "Exportovat všechna pole",
+        "fieldList": "Seznam polí",
+        "format": "Formát",
+        "status": "Stav",
+        "xlsxLite": "Lite verze",
+        "xlsxRecordLinks": "Odkazy na záznamy",
+        "xlsxTitle": "Nadpis"
+    },
+    "options": {
+        "format": {
+            "csv": "CSV",
+            "xlsx": "XLSX (Excel)"
+        },
+        "status": {
+            "Pending": "Čeká na zpracování",
+            "Running": "Probíhá",
+            "Success": "Úspěšně dokončeno",
+            "Failed": "Chyba"
+        }
+    },
+    "tooltips": {
+        "xlsxLite": "Spotřebuje mnohem méně paměti. Doporučeno při exportu velkého množství záznamů.",
+        "xlsxTitle": "Vytiskne nadpis a aktuální datum v záhlaví."
+    },
+    "messages": {
+        "exportProcessed": "Export byl zpracován. Stáhněte si [soubor]({url}).",
+        "infoText": "Export je zpracováván na pozadí pomocí cronu. Dokončení může chvíli trvat. Zavření tohoto dialogu neovlivní průběh exportu."
+    }
+}

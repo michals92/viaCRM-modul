@@ -1,0 +1,12 @@
+{
+    "labels": {
+        "Connect": "Připojit",
+        "Disconnect": "Odpojit",
+        "Disconnected": "Odpojeno",
+        "Connected": "Připojeno"
+    },
+    "help": {},
+    "messages": {
+        "externalAccountNoConnectDisabled": "Externí účet pro integraci '{integration}' byl zakázán, protože se nepodařilo připojit."
+    }
+}

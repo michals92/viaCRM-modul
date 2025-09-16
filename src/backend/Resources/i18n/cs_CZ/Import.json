@@ -1,0 +1,112 @@
+{
+    "labels": {
+        "New import with same params": "Nový import se stejnými parametry",
+        "Revert Import": "Vrátit import",
+        "Return to Import": "Zpět na import",
+        "Run Import": "Spustit import",
+        "Back": "Zpět",
+        "Field Mapping": "Mapování polí",
+        "Default Values": "Výchozí hodnoty",
+        "Add Field": "Přidat pole",
+        "Created": "Vytvořeno",
+        "Updated": "Aktualizováno",
+        "Result": "Výsledek",
+        "Show records": "Zobrazit záznamy",
+        "Remove Duplicates": "Odstranit duplicity",
+        "importedCount": "Importováno (počet)",
+        "duplicateCount": "Duplicity (počet)",
+        "updatedCount": "Aktualizováno (počet)",
+        "Create Only": "Pouze vytvořit",
+        "Create and Update": "Vytvořit a aktualizovat",
+        "Update Only": "Pouze aktualizovat",
+        "Update by": "Aktualizovat podle",
+        "Set as Not Duplicate": "Označit jako neduplikát",
+        "File (CSV)": "Soubor (CSV)",
+        "First Row Value": "Hodnota v prvním řádku",
+        "Skip": "Přeskočit",
+        "Header Row Value": "Hodnota v záhlaví",
+        "Field": "Pole",
+        "What to Import?": "Co importovat?",
+        "Entity Type": "Typ entity",
+        "What to do?": "Co udělat?",
+        "Properties": "Vlastnosti",
+        "Header Row": "Záhlaví",
+        "Person Name Format": "Formát jména osoby",
+        "John Smith": "Jan Novák",
+        "Smith John": "Novák Jan",
+        "Smith, John": "Novák, Jan",
+        "Field Delimiter": "Oddělovač polí",
+        "Date Format": "Formát data",
+        "Decimal Mark": "Desetinná čárka",
+        "Text Qualifier": "Textový kvalifikátor",
+        "Time Format": "Formát času",
+        "Currency": "Měna",
+        "Preview": "Náhled",
+        "Next": "Další",
+        "Step 1": "Krok 1",
+        "Step 2": "Krok 2",
+        "Double Quote": "Dvojitá uvozovka",
+        "Single Quote": "Jednoduchá uvozovka",
+        "Imported": "Importováno",
+        "Duplicates": "Duplicity",
+        "Skip searching for duplicates": "Přeskočit hledání duplicit",
+        "Timezone": "Časové pásmo",
+        "Remove Import Log": "Odstranit log importu",
+        "New Import": "Nový import",
+        "Import Results": "Výsledky importu",
+        "Run Manually": "Spustit ručně",
+        "Silent Mode": "Tichý režim",
+        "Export": "Exportovat"
+    },
+    "messages": {
+        "importRunning": "Spustit import...",
+        "noErrors": "Žádné chyby",
+        "utf8": "Mělo by být kódováno jako UTF-8",
+        "duplicatesRemoved": "Duplicity odstraněny",
+        "inIdle": "Provést v nečinnosti (pro velká data; přes cron)",
+        "revert": "Toto trvale odstraní všechny importované záznamy.",
+        "removeDuplicates": "Toto trvale odstraní všechny importované záznamy, které byly rozpoznány jako duplicity.",
+        "confirmRevert": "Toto trvale odstraní všechny importované záznamy. Jste si jisti?",
+        "confirmRemoveDuplicates": "Toto trvale odstraní všechny importované záznamy, které byly rozpoznány jako duplicity. Jste si jisti?",
+        "confirmRemoveImportLog" : "Toto odstraní log importu. Všechny importované záznamy budou zachovány. Nebudete moci vrátit výsledky importu. Jste si jisti?",
+        "removeImportLog": "Toto odstraní log importu. Všechny importované záznamy budou zachovány. Použijte to, pokud si jste jisti, že je import v pořádku."
+    },
+    "params": {
+        "phoneNumberCountry": "Telefonní kód země"
+    },
+    "fields": {
+        "file": "Soubor",
+        "entityType": "Typ entity",
+        "imported": "Importované záznamy",
+        "duplicates": "Duplicity",
+        "updated": "Aktualizované záznamy",
+        "status": "Stav"
+    },
+    "links": {
+        "errors": "Chyby"
+    },
+    "options": {
+        "status": {
+            "Failed": "Selhalo",
+            "Standby": "Čeká",
+            "Pending": "Čeká na zpracování",
+            "In Process": "Zpracovává se",
+            "Complete": "Dokončeno"
+        },
+        "personNameFormat": {
+            "f l": "První Příjmení",
+            "l f": "Příjmení První",
+            "f m l": "První Střední Příjmení",
+            "l f m": "Příjmení První Střední",
+            "l, f": "Příjmení, První"
+        }
+    },
+    "strings": {
+        "commandToRun": "Příkaz k provedení (z CLI)",
+        "saveAsDefault": "Uložit jako výchozí"
+    },
+    "tooltips": {
+        "manualMode": "Pokud je zaškrtnuto, budete muset import spustit ručně z CLI. Příkaz bude zobrazen po nastavení importu.",
+        "silentMode": "Většina skriptů po uložení bude přeskočena, poznámky streamu nebudou vytvořeny. Import poběží rychleji."
+    }
+}
