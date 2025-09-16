@@ -1,0 +1,24 @@
+{
+    "labels": {
+        "Create OAuthProvider": "Vytvořit OAuth poskytovatele"
+    },
+    "fields": {
+        "isActive": "Aktivní",
+        "clientId": "Client ID",
+        "clientSecret": "Client Secret",
+        "authorizationEndpoint": "Authorization Endpoint",
+        "tokenEndpoint": "Token Endpoint",
+        "authorizationRedirectUri": "Authorization Redirect URI",
+        "scopes": "Scopes",
+        "scopeSeparator": "Scope Separator",
+        "hasAccessToken": "Has Access Token",
+        "authorizationPrompt": "Authorization Prompt",
+        "authorizationParams": "Authorization Params"
+    },
+    "links": {
+        "accounts": "Účty"
+    },
+    "tooltips": {
+        "authorizationParams": "Další parametry dotazu, které budou odeslány na koncový bod autorizace. Specifikováno ve formátu JSON."
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "fields": {
+        "status": "Stav",
+        "executionTime": "Čas provedení",
+        "target": "Cíl"
+    }
+}

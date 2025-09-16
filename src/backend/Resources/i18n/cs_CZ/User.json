@@ -135,7 +135,7 @@
         "security2FaResetConfirmation": "Opravdu chcete resetovat aktuální nastavení 2FA?",
         "auth2FARequiredHeader": "Vyžadováno dvoufaktorové ověření",
         "auth2FARequired": "Musíte nastavit dvoufaktorové ověření. Použijte autentizační aplikaci na svém mobilním telefonu (např. Google Authenticator).",
-        "ldapUserInEspoNotFound": "Uživatel nebyl v EspoCRM nalezen. Kontaktujte administrátora pro jeho vytvoření.",
+        "ldapUserInEspoNotFound": "Uživatel nebyl ve ViaCRM nalezen. Kontaktujte administrátora pro jeho vytvoření.",
         "passwordChangeRequestNotFound": "Žádost o změnu hesla nebyla nalezena. Možná vypršela. Zkuste zahájit nové obnovení hesla z [přihlašovací stránky]({url}).",
         "defaultTeamIsNotUsers": "Výchozí tým musí být jedním z týmů uživatele."
     },

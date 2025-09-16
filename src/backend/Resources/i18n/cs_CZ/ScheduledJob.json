@@ -1,0 +1,41 @@
+{
+    "fields": {
+        "name": "Jméno",
+        "status": "Stav",
+        "job": "Úkol",
+        "scheduling": "Plánování"
+    },
+    "links": {
+        "log": "Log"
+    },
+    "labels": {
+        "As often as possible": "Co nejčastěji",
+        "Create ScheduledJob": "Vytvořit naplánovaný úkol"
+    },
+    "options": {
+        "job": {
+            "Cleanup": "Údržba",
+            "CheckInboundEmails": "Kontrola skupinových e-mailových účtů",
+            "CheckEmailAccounts": "Kontrola osobních e-mailových účtů",
+            "SendEmailReminders": "Odeslat e-mailové připomínky",
+            "AuthTokenControl": "Ovládání autentizačního tokenu",
+            "SendEmailNotifications": "Odeslat e-mailová oznámení",
+            "CheckNewVersion": "Kontrola nové verze",
+            "ProcessWebhookQueue": "Zpracování fronty webhooků",
+            "SendScheduledEmails": "Odeslat naplánované e-maily"
+        },
+        "cronSetup": {
+            "linux": "Poznámka: Přidejte tento řádek do souboru crontab pro spuštění naplánovaných úkolů Espo:",
+            "mac": "Poznámka: Přidejte tento řádek do souboru crontab pro spuštění naplánovaných úkolů Espo:",
+            "windows": "Poznámka: Vytvořte dávkový soubor s následujícími příkazy pro spuštění naplánovaných úkolů Espo pomocí naplánovaných úloh systému Windows:",
+            "default": "Poznámka: Přidejte tento příkaz do Cron Job (naplánované úlohy):"
+        },
+        "status": {
+            "Active": "Aktivní",
+            "Inactive": "Neaktivní"
+        }
+    },
+    "tooltips": {
+        "scheduling": "Crontab notace. Definuje frekvenci spuštění úloh.\n\n`*/5 * * * *` - každých 5 minut\n\n`0 */2 * * *` - každé 2 hodiny\n\n`30 1 * * *` - v 01:30 jednou denně\n\n`0 0 1 * *` - prvního dne v měsíci"
+    }
+}

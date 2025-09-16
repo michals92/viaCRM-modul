@@ -1,0 +1,16 @@
+{
+    "messages": {
+        "infoMention": "Napište **@username** pro zmínění uživatele v příspěvku.",
+        "infoSyntax": "Dostupná markdown syntaxe",
+        "couldNotAddFollowerUserHasNoAccessToStream": "Nelze přidat uživatele '{userName}' mezi sledující. Uživatel nemá přístup 'stream' k záznamu."
+    },
+    "syntaxItems": {
+        "code": "kód",
+        "multilineCode": "víceřádkový kód",
+        "strongText": "tučný text",
+        "emphasizedText": "zdůrazněný text",
+        "deletedText": "smazaný text",
+        "blockquote": "citace",
+        "link": "text odkazu"
+    }
+}
