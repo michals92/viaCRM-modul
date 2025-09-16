@@ -1,0 +1,106 @@
+{
+    "fields": {
+        "name": "Název",
+        "emailAddress": "E-mailová adresa",
+        "team": "Cílový tým",
+        "status": "Stav",
+        "assignToUser": "Přiřadit uživateli",
+        "host": "Server",
+        "username": "Uživatelské jméno",
+        "password": "Heslo",
+        "port": "Port",
+        "monitoredFolders": "Sledované složky",
+        "trashFolder": "Koš",
+        "security": "Zabezpečení",
+        "createCase": "Vytvořit případ",
+        "reply": "Automatická odpověď",
+        "caseDistribution": "Distribuce případů",
+        "replyEmailTemplate": "Šablona odpovědi",
+        "replyFromAddress": "Odpovědět z adresy",
+        "replyToAddress": "Odpovědět na adresu",
+        "replyFromName": "Odpovědět jménem",
+        "targetUserPosition": "Cílová pozice uživatele",
+        "fetchSince": "Stahovat od",
+        "addAllTeamUsers": "Pro všechny uživatele týmu",
+        "teams": "Týmy",
+        "sentFolder": "Odeslaná pošta",
+        "storeSentEmails": "Ukládat odeslané e-maily",
+        "keepFetchedEmailsUnread": "Ponechat stažené e-maily jako nepřečtené",
+        "connectedAt": "Připojeno v",
+        "excludeFromReply": "Vyloučit z odpovědi",
+        "useImap": "Stahovat e-maily",
+        "useSmtp": "Použít SMTP",
+        "smtpHost": "SMTP server",
+        "smtpPort": "SMTP port",
+        "smtpAuth": "SMTP autentizace",
+        "smtpSecurity": "SMTP zabezpečení",
+        "smtpAuthMechanism": "SMTP autentizační mechanismus",
+        "smtpUsername": "SMTP uživatelské jméno",
+        "smtpPassword": "SMTP heslo",
+        "fromName": "Jméno odesílatele",
+        "smtpIsShared": "SMTP je sdílený",
+        "smtpIsForMassEmail": "SMTP pro hromadné e-maily",
+        "groupEmailFolder": "Skupinová e-mailová složka",
+        "isSystem": "Systémový účet"
+    },
+    "tooltips": {
+        "isSystem": "Jedná se o systémový e-mailový účet.",
+        "useSmtp": "Možnost odesílat e-maily.",
+        "reply": "Oznamte odesílatelům e-mailů, že jejich zpráva byla přijata.\n\n Během určitého období bude konkrétnímu příjemci zaslán pouze jeden e-mail, aby se zabránilo smyčkám.",
+        "createCase": "Automaticky vytvořit případ z příchozích e-mailů.",
+        "replyToAddress": "Zadejte e-mailovou adresu této schránky, aby odpovědi chodily sem.",
+        "caseDistribution": "Jak budou případy přiřazovány. Přímo uživateli nebo v rámci týmu.",
+        "assignToUser": "Případy budou přiřazeny tomuto uživateli.",
+        "team": "Případy budou přiřazeny tomuto týmu.",
+        "teams": "E-maily budou přiřazeny těmto týmům.",
+        "targetUserPosition": "Případy budou rozděleny uživatelům se zadanou pozicí.",
+        "addAllTeamUsers": "E-maily se zobrazí ve schránce všech uživatelů zadaných týmů.",
+        "monitoredFolders": "Více složek oddělujte čárkou.",
+        "smtpIsShared": "Pokud je zaškrtnuto, uživatelé budou moci odesílat e-maily přes toto SMTP. Dostupnost je řízena rolemi pomocí oprávnění Skupinový e-mailový účet.",
+        "smtpIsForMassEmail": "Pokud je zaškrtnuto, SMTP bude dostupné pro hromadné e-maily.",
+        "storeSentEmails": "Odeslané e-maily budou uloženy na IMAP serveru.",
+        "groupEmailFolder": "Příchozí e-maily vložit do skupinové složky.",
+        "excludeFromReply": "Při odpovídání na e-maily zaslané na tuto adresu nebude tato adresa přidána do kopie (CC).\n\nPoznámka: Povolením této volby bude e-mailová adresa tohoto účtu viditelná uživatelům, kteří mají oprávnění odesílat e-maily."
+    },
+    "links": {
+        "filters": "Filtry",
+        "emails": "E-maily",
+        "assignToUser": "Přiřadit uživateli",
+        "groupEmailFolder": "Skupinová e-mailová složka"
+    },
+    "options": {
+        "status": {
+            "Active": "Aktivní",
+            "Inactive": "Neaktivní"
+        },
+        "caseDistribution": {
+            "": "Žádný",
+            "Direct-Assignment": "Přímé přiřazení",
+            "Round-Robin": "Kruhové přiřazení",
+            "Least-Busy": "Nejmenší vytížení"
+        },
+        "smtpAuthMechanism": {
+            "plain": "PLAIN",
+            "login": "LOGIN",
+            "crammd5": "CRAM-MD5"
+        },
+        "smtpSecurity": {
+            "SSL": "SSL/TLS",
+            "TLS": "STARTTLS"
+        },
+        "security": {
+            "SSL": "SSL/TLS",
+            "TLS": "STARTTLS"
+        }
+    },
+    "labels": {
+        "Create InboundEmail": "Vytvořit e-mail účet",
+        "IMAP": "IMAP",
+        "Actions": "Akce",
+        "Main": "Hlavní"
+    },
+    "messages": {
+        "couldNotConnectToImap": "Nelze se připojit k IMAP serveru",
+        "imapNotConnected": "Nelze se připojit ke skupině [IMAP účet](#InboundEmail/view/{id})."
+    }
+}

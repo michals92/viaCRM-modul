@@ -1,0 +1,26 @@
+{
+    "fields": {
+        "enabled": "Zapnuto",
+        "clientId": "ID klienta",
+        "clientSecret": "Tajný klíč klienta",
+        "redirectUri": "Přesměrovací URI",
+        "apiKey": "API klíč",
+        "siteKey": "Site Key",
+        "secretKey": "Secret Key",
+        "scoreThreshold": "Score Threshold",
+        "mapId": "Map ID"
+    },
+    "titles": {
+        "GoogleMaps": "Google Maps",
+        "GoogleReCaptcha": "Google reCAPTCHA"
+    },
+    "messages": {
+        "selectIntegration": "Vyberte integraci z nabídky.",
+        "noIntegrations": "Žádné integrace nejsou k dispozici."
+    },
+    "help": {
+        "GoogleReCaptcha": "Získejte Site Key a Secret Key z [Google](https://www.google.com/recaptcha/).",
+        "Google": "**Získejte OAuth 2.0 přihlašovací údaje z Google Developers Console.**\n\nNavštivte [Google Developers Console](https://console.developers.google.com/project) a získejte OAuth 2.0 přihlašovací údaje, jako je ID klienta a tajný klíč klienta, které jsou známy jak Google, tak aplikaci ViaCRM.",
+        "GoogleMaps": "Získejte API klíč [zde](https://developers.google.com/maps/documentation/javascript/get-api-key)."
+    }
+}
