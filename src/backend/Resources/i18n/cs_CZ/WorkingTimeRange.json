@@ -1,0 +1,31 @@
+{
+    "labels": {
+        "Create WorkingTimeRange": "Vytvořit výjimku",
+        "Calendars": "Kalendáře"
+    },
+    "fields": {
+        "timeRanges": "Rozvrh",
+        "dateStart": "Začátek",
+        "dateEnd": "Konec",
+        "type": "Typ",
+        "calendars": "Kalendáře",
+        "users": "Uživatelé"
+    },
+    "links": {
+        "calendars": "Kalendáře",
+        "users": "Uživatelé"
+    },
+    "options": {
+        "type": {
+            "Non-working": "Nepracovní",
+            "Working": "Pracovní"
+        }
+    },
+    "presetFilters": {
+        "actual": "Aktuální"
+    },
+    "tooltips": {
+        "calendars": "Kalendáře, na které se má výjimka vztahovat. Výjimka se vztahuje na všechny uživatele vybraných kalendářů.\n\nPokud potřebujete použít výjimku pouze pro konkrétní uživatele, nechte toto pole prázdné.",
+        "users": "Konkrétní uživatelé, na které se má výjimka vztahovat."
+    }
+}

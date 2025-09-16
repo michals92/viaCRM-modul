@@ -1,0 +1,22 @@
+{
+    "labels": {
+        "Create Webhook": "Vytvořit Webhook"
+    },
+    "fields": {
+        "event": "Událost",
+        "url": "URL",
+        "isActive": "Je aktivní",
+        "user": "API uživatel",
+        "entityType": "Typ entity",
+        "field": "Pole",
+        "secretKey": "Secret Key",
+        "skipOwn": "Přeskočit vlastní"
+    },
+    "links": {
+        "user": "Uživatel",
+        "queueItems": "Položky fronty"
+    },
+    "tooltips": {
+        "skipOwn": "Nesdílet, pokud událost byla iniciována uživatelem, který vlastní webhook."
+    }
+}

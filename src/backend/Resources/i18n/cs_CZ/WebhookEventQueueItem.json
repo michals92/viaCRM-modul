@@ -1,0 +1,13 @@
+{
+    "fields": {
+        "event": "Událost",
+        "target": "Cíl",
+        "data": "Data",
+        "isProcessed": "Je zpracováno",
+        "user": "Uživatel"
+    },
+    "links": {
+        "target": "Cíl",
+        "user": "Uživatel"
+    }
+}

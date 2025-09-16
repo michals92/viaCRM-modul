@@ -1,0 +1,23 @@
+{
+    "fields": {
+        "title": "Title",
+        "dateFrom": "Date from",
+        "dateTo": "Date to",
+        "autorefreshInterval": "Auto-refresh interval",
+        "displayRecords": "Display records",
+        "isDoubleHeight": "Double height",
+        "mode": "Mode",
+        "reportId": "Choose report",
+        "refreshInterval": "Refresh interval (minutes)",
+        "team": "Team",
+        "futureDays": "Next X Days",
+        "useLastStage": "Group by last reached stage"
+    },
+    "options": {
+        "mode": {
+            "agendaWeek": "Week (agenda)",
+            "basicWeek": "Week",
+            "month": "Month"
+        }
+    }
+}
