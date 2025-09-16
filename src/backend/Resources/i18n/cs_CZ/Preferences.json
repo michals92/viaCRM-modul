@@ -1,0 +1,73 @@
+{
+    "fields": {
+        "dateFormat": "Formát data",
+        "timeFormat": "Formát času",
+        "timeZone": "Časová zóna",
+        "weekStart": "První den v týdnu",
+        "thousandSeparator": "Oddělovač tisíců",
+        "decimalMark": "Desetinná tečka",
+        "defaultCurrency": "Výchozí měna",
+        "currencyList": "Seznam měn",
+        "language": "Jazyk",
+        "exportDelimiter": "Oddělovač exportu",
+        "receiveAssignmentEmailNotifications": "E-mailové upozornění při přiřazení",
+        "receiveMentionEmailNotifications": "E-mailové upozornění na zmínky v příspěvcích",
+        "receiveStreamEmailNotifications": "E-mailové upozornění na příspěvky a aktualizace stavu",
+        "assignmentNotificationsIgnoreEntityTypeList": "In-app assignment notifications",
+        "assignmentEmailNotificationsIgnoreEntityTypeList": "Email assignment notifications",
+        "reactionNotifications": "In-app notifications about reactions",
+        "autoFollowEntityTypeList": "Global Auto-Follow",
+        "signature": "E-mailový podpis",
+        "dashboardTabList": "Seznam karet",
+        "defaultReminders": "Výchozí připomenutí",
+        "defaultRemindersTask": "Výchozí připomenutí pro úkoly",
+        "theme": "Téma",
+        "pageContentWidth": "Šířka obsahu",
+        "useCustomTabList": "Vlastní seznam karet",
+        "addCustomTabs": "Přidat vlastní karty",
+        "tabList": "Seznam karet",
+        "emailReplyToAllByDefault": "Odpovědět všem e-mailem ve výchozím nastavení",
+        "dashboardLayout": "Rozložení řídicího panelu",
+        "dashboardLocked": "Zamknout řídicí panel",
+        "emailReplyForceHtml": "Odpovědět e-mailem v HTML",
+        "doNotFillAssignedUserIfNotRequired": "Nepředvyplňovat přiřazeného uživatele při vytváření záznamu",
+        "followEntityOnStreamPost": "Automaticky sledovat záznam po zveřejnění ve Streamu",
+        "followCreatedEntities": "Automaticky sledovat vytvořené záznamy",
+        "followCreatedEntityTypeList": "Automaticky sledovat vytvořené záznamy konkrétních typů entit",
+        "emailUseExternalClient": "Použít externí e-mailového klienta",
+        "textSearchStoringDisabled": "Zakázat ukládání textového filtru",
+        "calendarSlotDuration": "Délka časového bloku v kalendáři",
+        "calendarScrollHour": "Posunout kalendář na hodinu"
+    },
+    "links": {
+    },
+    "options": {
+        "weekStart": {
+            "0": "Neděle",
+            "1": "Pondělí"
+        },
+        "pageContentWidth": {
+            "": "Normální",
+            "Wide": "Široká"
+        }
+    },
+    "labels": {
+        "Notifications": "Upozornění",
+        "User Interface": "Uživatelské rozhraní",
+        "Misc": "Různé",
+        "Locale": "Jazyková lokalizace",
+        "Reset Dashboard to Default": "Obnovit výchozí nastavení řídicího panelu"
+    },
+    "tooltips": {
+        "addCustomTabs": "Pokud je zaškrtnuto, vlastní karty budou přidány k výchozím kartám. Jinak budou vlastní karty použity místo výchozích karet.",
+        "autoFollowEntityTypeList": "Automaticky sledovat VŠECHNY nové záznamy (vytvořené jakýmkoli uživatelem) vybraných typů entit. Aby bylo možné vidět informace ve streamu a přijímat upozornění na všechny záznamy v systému.",
+        "doNotFillAssignedUserIfNotRequired": "Při vytváření záznamu nebude přiřazený uživatel vyplněn vlastním uživatelským účtem, pokud není pole povinné.",
+        "followCreatedEntities": "Když jsou vytvářeny nové záznamy, budou automaticky sledovány, i když jsou přiřazeny jinému uživateli.",
+        "followCreatedEntityTypeList": "Když jsou vytvářeny nové záznamy vybraných typů entit, budou automaticky sledovány, i když jsou přiřazeny jinému uživateli."
+    },
+    "tabFields": {
+        "label": "Popis",
+        "iconClass": "Ikona",
+        "color": "Barva"
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "fields": {
+        "post": "Příspěvek",
+        "attachments": "Přílohy",
+        "targetType": "Cíl",
+        "teams": "Týmy",
+        "users": "Uživatelé",
+        "portals": "Portály",
+        "type": "Typ",
+        "isGlobal": "Je globální",
+        "isInternal": "Je interní (pro interní uživatele)",
+        "isPinned": "Je připnutý",
+        "related": "Související",
+        "createdByGender": "Pohlaví autora",
+        "data": "Data",
+        "number": "Číslo"
+    },
+    "filters": {
+        "all": "Vše",
+        "posts": "Příspěvky",
+        "updates": "Aktualizace",
+        "activity": "Aktivita"
+    },
+    "options": {
+        "targetType": {
+            "self": "Sebe",
+            "users": "Uživatelé",
+            "teams": "Týmy",
+            "all": "Všichni interní uživatelé",
+            "portals": "Uživatelé portálu"
+        },
+        "type": {
+            "Post": "Příspět",
+            "Create": "Vytvořit",
+            "CreateRelated": "Vytvořit související",
+            "Update": "Aktualizovat",
+            "Status": "Stav",
+            "Assign": "Přiřadit",
+            "Relate": "Související",
+            "Unrelate": "Odpojit",
+            "EmailReceived": "E-mail přijat",
+            "EmailSent": "E-mail odeslán"
+        }
+    },
+    "labels": {
+        "View Posts": "Zobrazit příspěvky",
+        "View Attachments": "Zobrazit přílohy",
+        "View Activity": "Zobrazit aktivitu",
+        "Pin": "Připnout",
+        "Unpin": "Odepnout",
+        "Pinned": "Připnutý",
+        "Quote Reply": "Odpovědět citací"
+    },
+    "messages": {
+        "writeMessage": "Napište svou zprávu zde",
+        "pinnedMaxCountExceeded": "Nelze připnout více poznámek. Maximální povolený počet je {count}."
+    },
+    "links": {
+        "portals": "Portály",
+        "attachments": "Přílohy",
+        "superParent": "Nadřazený",
+        "related": "Související"
+    },
+    "otherFields": {
+        "to": "Komu"
+    }
+}
