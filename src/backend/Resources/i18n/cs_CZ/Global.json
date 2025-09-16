@@ -37,7 +37,7 @@
         "Settings": "Nastavení",
         "FieldManager": "Správce polí",
         "Integration": "Integrace",
-        "LayoutManager": "Správce rozložení",
+        "LayoutManager": "Správce rozvržení",
         "EntityManager": "Správce entit",
         "Export": "Export",
         "DynamicLogic": "Dynamic Logic",
@@ -68,7 +68,8 @@
         "AppSecret": "App Secret",
         "OAuthProvider": "OAuth Provider",
         "OAuthAccount": "OAuth Account",
-        "Account": "Firma"
+        "Account": "Firma",
+        "Lead": "Lead"
     },
     "scopeNamesPlural": {
         "Note": "Poznámky",
@@ -127,7 +128,8 @@
         "AppSecret": "App Secret",
         "OAuthProvider": "Poskytovatel OAuth",
         "OAuthAccount": "Účet OAuth",
-        "Account": "Firmy"
+        "Account": "Firmy",
+        "Lead": "Leady"
     },
     "labels": {
         "Previous Page": "Předchozí stránka",
@@ -331,7 +333,7 @@
         "Reaction Removed": "Reakce odebrána",
         "Reactions": "Reakce",
         "Edit Entity": "Upravit entitu",
-        "Edit Layout": "Upravit rozložení",
+        "Edit Layout": "Upravit rozvržení",
         "Edit Labels": "Upravit štítky",
         "Rebuild": "Rebuild",
         "Clear Cache": "Vymazat cache"
@@ -532,7 +534,8 @@
         "parent": "Rodič",
         "children": "Děti",
         "accounts": "Firmy",
-        "account": "Firma"
+        "account": "Firma",
+        "leads": "Leady"
     },
     "dashlets": {
         "Stream": "Stream",

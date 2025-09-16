@@ -34,13 +34,13 @@
     },
     "labels": {
         "New panel": "Nový panel",
-        "Layout": "Rozložení"
+        "Layout": "Rozvržení"
     },
     "messages": {
         "alreadyExists": "Layout `{name}` již existuje.",
         "createInfo": "Vlastní seznamy layoutu mohou být použity panely vztahů.",
         "cantBeEmpty": "Layout nemůže být prázdný.",
-        "fieldsIncompatible": "Pole nemohou být v layoutu rozložení současně: {fields}."
+        "fieldsIncompatible": "Pole nemohou být v layoutu současně: {fields}."
     },
     "tooltips": {
         "noteText": "Text, který se zobrazí v panelu. Podporován je Markdown.",

@@ -21,7 +21,7 @@
         "workingHours": "Pracovní hodiny",
         "workingHoursType": "Typ úvazku",
         "workingSchedule": "Pracovní rozvrh",
-        "fte": "FTE",
+        "fte": "Ekvivalent plného úvazku (FTE)",
         "workingDays": "Pracovní dny",
         "partTimeStartDate": "Začátek částečného úvazku",
         "partTimeEndDate": "Konec částečného úvazku",
