@@ -129,7 +129,9 @@
         "OAuthProvider": "Poskytovatel OAuth",
         "OAuthAccount": "Účet OAuth",
         "Account": "Firmy",
-        "Lead": "Leady"
+        "Lead": "Leady",
+        "KnowledgeBaseArticle": "Databáze znalostí",
+        "Opportunities": "Obchodní příležitosti"
     },
     "labels": {
         "Previous Page": "Předchozí stránka",
@@ -535,7 +537,8 @@
         "children": "Děti",
         "accounts": "Firmy",
         "account": "Firma",
-        "leads": "Leady"
+        "leads": "Leady",
+        "opportunities": "Obchodní příležitosti"
     },
     "dashlets": {
         "Stream": "Stream",
