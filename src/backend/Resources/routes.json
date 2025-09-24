@@ -206,5 +206,21 @@
             "controller": "Order",
             "action": "generatePdfWithAttachment"
         }
+    },
+    {
+        "route": "/AresLookup/searchByIco",
+        "method": "GET",
+        "params": {
+            "controller": "AresLookup",
+            "action": "searchByIco"
+        }
+    },
+    {
+        "route": "/AresLookup/searchByName",
+        "method": "GET",
+        "params": {
+            "controller": "AresLookup",
+            "action": "searchByName"
+        }
     }
 ]

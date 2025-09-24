@@ -1,0 +1,11 @@
+{
+    "view": "viacrm:views/fields/ares-lookup",
+    "params": [
+        {
+            "name": "autoFillFields",
+            "type": "multiEnum",
+            "options": ["name", "billingAddress", "shippingAddress", "phone", "emailAddress"],
+            "tooltip": "Pole která se automaticky vyplní při výběru firmy z ARES"
+        }
+    ]
+}
