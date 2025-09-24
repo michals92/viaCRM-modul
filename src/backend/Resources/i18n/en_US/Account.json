@@ -25,7 +25,10 @@
         "createdAt": "Created At",
         "modifiedAt": "Modified At",
         "createdBy": "Created By",
-        "modifiedBy": "Modified By"
+        "modifiedBy": "Modified By",
+        "companyLookup": "Company Lookup",
+        "ico": "Company ID (IČO)",
+        "dic": "Tax ID (DIČ)"
     },
     "options": {
         "type": {

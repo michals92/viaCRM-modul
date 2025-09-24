@@ -25,7 +25,10 @@
         "createdAt": "Vytvořeno",
         "modifiedAt": "Upraveno",
         "createdBy": "Vytvořil",
-        "modifiedBy": "Upravil"
+        "modifiedBy": "Upravil",
+        "companyLookup": "Vyhledání firmy",
+        "ico": "IČO",
+        "dic": "DIČ"
     },
     "options": {
         "type": {

@@ -1,0 +1,74 @@
+[
+  {
+    "rows": [
+      [
+        {
+          "name": "companyLookup",
+          "span": 2
+        },
+        false
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "name": "name"
+        },
+        {
+          "name": "website"
+        }
+      ],
+      [
+        {
+          "name": "ico"
+        },
+        {
+          "name": "dic"
+        }
+      ],
+      [
+        {
+          "name": "emailAddress"
+        },
+        {
+          "name": "phoneNumber"
+        }
+      ],
+      [
+        {
+          "name": "type"
+        },
+        {
+          "name": "industry"
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "name": "billingAddress",
+          "span": 1
+        },
+        {
+          "name": "shippingAddress",
+          "span": 1
+        }
+      ]
+    ]
+  },
+  {
+    "rows": [
+      [
+        {
+          "name": "description",
+          "span": 2
+        },
+        false
+      ]
+    ]
+  }
+]

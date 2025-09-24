@@ -1,0 +1,21 @@
+{
+  "controller": "controllers/record",
+  "recordViews": {
+    "detail": "views/record/detail",
+    "edit": "views/record/edit"
+  },
+  "dynamicLogic": {
+    "fields": {
+      "companyLookup": {
+        "visible": {
+          "conditionGroup": [
+            {
+              "type": "isEmpty",
+              "attribute": "id"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

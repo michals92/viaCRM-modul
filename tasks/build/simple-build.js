@@ -46,6 +46,15 @@ async function build() {
             await fs.copy(clientSrc, clientDest);
         }
         
+        // Copy custom files for entity extensions
+        console.log('📦 Copying custom files...');
+        const customSrc = path.join(rootDir, 'src/custom');
+        const customDest = path.join(buildDir, 'files/custom');
+        
+        if (await fs.pathExists(customSrc)) {
+            await fs.copy(customSrc, customDest);
+        }
+        
         // Check for optional compile step
         const compileScriptPath = path.join(__dirname, 'compile-theme.js');
         if (await fs.pathExists(compileScriptPath)) {

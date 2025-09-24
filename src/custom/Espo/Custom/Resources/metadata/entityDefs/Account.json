@@ -1,0 +1,25 @@
+{
+  "fields": {
+    "companyLookup": {
+      "type": "aresLookup",
+      "view": "viacrm:views/fields/ares-lookup",
+      "autoFillFields": [
+        "name",
+        "billingAddress",
+        "shippingAddress", 
+        "dic",
+        "ico"
+      ]
+    },
+    "ico": {
+      "type": "varchar",
+      "maxLength": 20,
+      "view": "views/fields/varchar"
+    },
+    "dic": {
+      "type": "varchar", 
+      "maxLength": 20,
+      "view": "views/fields/varchar"
+    }
+  }
+}
