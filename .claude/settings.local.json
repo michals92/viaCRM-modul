@@ -16,7 +16,10 @@
       "Bash(git add:*)",
       "Bash(grep:*)",
       "Bash(chmod:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker exec:*)",
+      "Bash(docker cp:*)"
     ],
     "deny": []
   }

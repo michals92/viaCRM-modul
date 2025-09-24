@@ -426,18 +426,19 @@ class AresLookup extends Base
         $results = [];
         
         // Parse search results - look for table rows with company links
-        if (preg_match_all('/<tr[^>]*bgcolor="#EEEEEE"[^>]*>.*?<a href="(vypis\.asp\?ID=\d+&(?:amp;)?SID=\d+&(?:amp;)?P=0)"[^>]*>([^<]+)<\/a>.*?<\/tr>/is', $html, $matches, PREG_SET_ORDER)) {
+        if (preg_match_all('/<tr[^>]*bgcolor="#EEEEEE"[^>]*>.*?<a href="vypis\.asp\?ID=\d+&(?:amp;)?SID=\d+&(?:amp;)?P=0"[^>]*>([^<]+)<\/a>.*?<\/tr>/is', $html, $matches, PREG_SET_ORDER)) {
             foreach ($matches as $match) {
-                $detailLink = html_entity_decode($match[1]);
-                $companyName = html_entity_decode(trim($match[2]), ENT_QUOTES, 'UTF-8');
+                $companyName = html_entity_decode(trim($match[1]), ENT_QUOTES, 'UTF-8');
                 
-                // Get full company details from detail page
-                $detailUrl = self::ORSR_BASE_URL . '/' . $detailLink;
-                $detailHtml = $this->fetchOrsrHtml($detailUrl);
+                // Try to extract ICO from the row if possible
+                $ico = '';
+                if (preg_match('/(\d{8})/', $match[0], $icoMatch)) {
+                    $ico = $icoMatch[1];
+                }
                 
-                $companyData = [
-                    'id' => uniqid(),
-                    'ico' => '',
+                $results[] = [
+                    'id' => $ico ?: uniqid(),
+                    'ico' => $ico,
                     'name' => $companyName,
                     'dic' => '',
                     'address' => '',
@@ -446,35 +447,8 @@ class AresLookup extends Base
                     'country' => 'SK'
                 ];
                 
-                if ($detailHtml) {
-                    // First extract ICO
-                    $ico = '';
-                    if (preg_match('/<span class="tl">IČO:&nbsp;<\/span>.*?<span class=[\'"]ra[\'"]>\s*(\d+(?:\s+\d+)*)\s*<\/span>/is', $detailHtml, $icoMatch)) {
-                        $ico = str_replace(' ', '', trim($icoMatch[1]));
-                        if (strlen($ico) <= 8) {
-                            $ico = str_pad($ico, 8, '0', STR_PAD_LEFT);
-                        }
-                        $companyData['id'] = $ico;
-                        $companyData['ico'] = $ico;
-                    }
-                    
-                    // Then try to parse full company details with the found ICO
-                    if ($ico) {
-                        $companyDetails = $this->parseOrsrDetail($detailHtml, $ico);
-                        if ($companyDetails) {
-                            // Use parsed details (keep name from search results as it might be cleaner)
-                            $companyData['dic'] = $companyDetails['dic'] ?? '';
-                            $companyData['address'] = $companyDetails['address'] ?? '';
-                            $companyData['city'] = $companyDetails['city'] ?? '';
-                            $companyData['zip'] = $companyDetails['zip'] ?? '';
-                        }
-                    }
-                }
-                
-                $results[] = $companyData;
-                
-                // Limit to 3 results from Slovak registry (due to detail page fetching)
-                if (count($results) >= 3) {
+                // Limit to 5 results from Slovak registry
+                if (count($results) >= 5) {
                     break;
                 }
             }
@@ -547,90 +521,108 @@ class AresLookup extends Base
             $raSpans = array_map('trim', $spanMatches[1]);
         }
         
-        // Based on debug output, we know the structure:
-        // Index 2: "ESET, spol. s r.o." - company name
-        // Index 4: "Einsteinova" - street  
-        // Index 5: "24" - house number
-        // Index 6: "Bratislava" - city
-        // Index 7: "851 01" - ZIP
-        // Index 9: "31 333 532" - ICO (formatted)
-        
-        // Company name is at index 2
-        if (isset($raSpans[2])) {
-            $result['name'] = html_entity_decode(trim($raSpans[2]), ENT_QUOTES, 'UTF-8');
+        // Company name is typically the first meaningful 'ra' span after legal form
+        foreach ($raSpans as $span) {
+            $cleanSpan = html_entity_decode(trim($span), ENT_QUOTES, 'UTF-8');
+            if (!empty($cleanSpan) && !in_array($cleanSpan, ['Sro', '(od:', 'EUR']) && !preg_match('/^\d/', $cleanSpan) && strpos($cleanSpan, '.') !== false) {
+                $result['name'] = $cleanSpan;
+                break;
+            }
         }
         
-        // Address components are at predictable indices, but may vary based on company
-        // Look for address components more flexibly
-        $foundStreet = false;
-        $foundCity = false;
-        
-        for ($i = 4; $i < min(count($raSpans), 20); $i++) {
-            $span = html_entity_decode(trim($raSpans[$i]), ENT_QUOTES, 'UTF-8');
-            
-            // Skip obvious non-address data
-            if (empty($span) || preg_match('/^\(od:/', $span) || in_array($span, ['EUR', 'Vznik funkcie'])) {
-                continue;
+        // ICO is usually a pattern like "31 333 532" 
+        foreach ($raSpans as $span) {
+            if (preg_match('/^\d{2}\s\d{3}\s\d{3}$/', trim($span))) {
+                // ICO found but we already have it
+                break;
             }
+        }
+        
+        // DIC would be in format SK2020xxxxxx but might not be present in basic extract
+        foreach ($raSpans as $span) {
+            if (preg_match('/^SK\d{10}$/', trim($span))) {
+                $result['dic'] = trim($span);
+                break;
+            }
+        }
+        
+        // Parse address from spans - look for street name, number, city, ZIP pattern
+        $addressParts = [];
+        $foundAddress = false;
+        
+        for ($i = 0; $i < count($raSpans); $i++) {
+            $span = trim($raSpans[$i]);
             
-            // Look for street address (contains letters, not just numbers or dates)
-            if (!$foundStreet && preg_match('/[a-zA-ZÀ-ž]/', $span) && !preg_match('/^\d{3}\s?\d{2}$/', $span)) {
-                $street = $span;
+            // Look for street name (contains letters, not just numbers)
+            if (!$foundAddress && preg_match('/^[A-Za-zÀ-ž\s]+$/', $span) && strlen($span) > 3 && !in_array($span, ['Sro', 'EUR', 'Vznik funkcie'])) {
+                $street = html_entity_decode($span, ENT_QUOTES, 'UTF-8');
                 
-                // Check if next span might be house number
-                if (isset($raSpans[$i + 1]) && preg_match('/^\d+/', trim($raSpans[$i + 1])) && !preg_match('/^\d{3}\s?\d{2}$/', trim($raSpans[$i + 1]))) {
+                // Next span might be house number
+                if (isset($raSpans[$i + 1]) && preg_match('/^\d+/', trim($raSpans[$i + 1]))) {
                     $street .= ' ' . trim($raSpans[$i + 1]);
-                    $i++; // Skip the house number span
+                    $i++; // Skip next span as we used it
                 }
                 
                 $result['address'] = $street;
-                $foundStreet = true;
-                continue;
-            }
-            
-            // Look for city (after street, contains letters, not a date pattern)
-            if ($foundStreet && !$foundCity && preg_match('/^[a-zA-ZÀ-ž\s\-]+$/', $span) && strlen($span) > 2) {
-                $result['city'] = $span;
-                $foundCity = true;
+                $foundAddress = true;
                 
-                // Check if the next span is ZIP code - if so, grab it immediately
-                if (isset($raSpans[$i + 1]) && preg_match('/^\d{3}\s?\d{2}$/', trim($raSpans[$i + 1]))) {
-                    $result['zip'] = str_replace(' ', '', trim($raSpans[$i + 1]));
-                    break; // We have all address components
+                // Look for city in following spans
+                for ($j = $i + 1; $j < min($i + 4, count($raSpans)); $j++) {
+                    $nextSpan = trim($raSpans[$j]);
+                    
+                    // City pattern
+                    if (preg_match('/^[A-Za-zÀ-ž\s\-]+$/', $nextSpan) && strlen($nextSpan) > 3 && !str_contains($nextSpan, '(od:')) {
+                        $result['city'] = html_entity_decode($nextSpan, ENT_QUOTES, 'UTF-8');
+                        
+                        // ZIP might be in the next span
+                        if (isset($raSpans[$j + 1]) && preg_match('/^\d{3}\s?\d{2}$/', trim($raSpans[$j + 1]))) {
+                            $result['zip'] = str_replace(' ', '', trim($raSpans[$j + 1]));
+                        }
+                        break;
+                    }
                 }
-                continue;
+                break;
             }
+        }
+            $fullAddress = html_entity_decode(trim($matches[1]), ENT_QUOTES, 'UTF-8');
             
-            // Look for ZIP code (5 digits pattern)
-            if ($foundCity && empty($result['zip']) && preg_match('/^\d{3}\s?\d{2}$/', $span)) {
-                $result['zip'] = str_replace(' ', '', $span);
-                break; // We have all address components
+            // Try to parse address components
+            $addressParts = array_map('trim', explode(',', $fullAddress));
+            if (count($addressParts) >= 2) {
+                // Usually format: Street Number, ZIP City
+                $result['address'] = $addressParts[0];
+                
+                // Parse ZIP and city from last part
+                $lastPart = end($addressParts);
+                if (preg_match('/^(\d{3}\s?\d{2})\s+(.+)$/', $lastPart, $cityMatches)) {
+                    $result['zip'] = str_replace(' ', '', $cityMatches[1]);
+                    $result['city'] = $cityMatches[2];
+                } else {
+                    $result['city'] = $lastPart;
+                }
+            } else {
+                $result['address'] = $fullAddress;
             }
         }
         
-        // Look for DIČ (Slovak VAT number) in multiple formats
-        foreach ($raSpans as $span) {
-            $cleanSpan = trim($span);
-            // Standard Slovak DIČ format: SK + 10 digits
-            if (preg_match('/^SK\d{10}$/', $cleanSpan)) {
-                $result['dic'] = $cleanSpan;
-                break;
+        // Alternative address parsing for "Bydlisko" (for individuals) - updated pattern
+        if (empty($result['address'])) {
+            if (preg_match('/<span class="tl">Bydlisko:&nbsp;<\/span>.*?<span class=[\'"]ra[\'"]>\s*([^<]+?)\s*<\/span>/is', $html, $matches)) {
+                $fullAddress = html_entity_decode(trim($matches[1]), ENT_QUOTES, 'UTF-8');
+                $addressParts = array_map('trim', explode(',', $fullAddress));
+                if (count($addressParts) >= 2) {
+                    $result['address'] = $addressParts[0];
+                    $lastPart = end($addressParts);
+                    if (preg_match('/^(\d{3}\s?\d{2})\s+(.+)$/', $lastPart, $cityMatches)) {
+                        $result['zip'] = str_replace(' ', '', $cityMatches[1]);
+                        $result['city'] = $cityMatches[2];
+                    } else {
+                        $result['city'] = $lastPart;
+                    }
+                }
             }
-            // Alternative format: just 10 digits (we'll add SK prefix)
-            if (preg_match('/^2\d{9}$/', $cleanSpan)) {
-                $result['dic'] = 'SK' . $cleanSpan;
-                break;
-            }
-        }
-        
-        // If no DIČ found in ORSR, Slovak companies may not have public DIČ available
-        if (empty($result['dic']) && !empty($ico)) {
-            // Slovak DIČ is not always publicly available in ORSR
-            // Companies only have DIČ if they are VAT registered
-            $result['dic'] = ''; // DIČ not available in ORSR (may not be VAT registered)
         }
         
         return !empty($result['name']) ? $result : null;
     }
-    
 }

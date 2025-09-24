@@ -132,13 +132,21 @@ define('viacrm:views/fields/ares-lookup', ['views/fields/base'], function (Dep) 
             $suggestions.empty();
 
             this.suggestions.forEach((company, index) => {
+                var countryBadge = company.country === 'SK' ? 
+                    '<span class="badge" style="background-color: #5bc0de; margin-left: 5px;">SK</span>' : 
+                    '<span class="badge" style="background-color: #777; margin-left: 5px;">CZ</span>';
+                
                 var $item = $('<div>')
                     .addClass('company-suggestion')
                     .attr('data-index', index)
                     .html(`
-                        <div class="company-name">${company.name}</div>
+                        <div class="company-name">
+                            ${company.name}
+                            ${countryBadge}
+                        </div>
                         <div class="company-details">
                             IČO: ${company.ico || 'N/A'}
+                            ${company.dic ? ' | DIČ: ' + company.dic : ''}
                             ${company.address ? ' | ' + company.address : ''}
                             ${company.city ? ', ' + company.city : ''}
                         </div>
@@ -184,12 +192,27 @@ define('viacrm:views/fields/ares-lookup', ['views/fields/base'], function (Dep) 
                         }
                         break;
                     
+                    case 'dic':
+                    case 'vatNumber':
+                        if (companyData.dic && !this.model.get(fieldName)) {
+                            this.model.set(fieldName, companyData.dic);
+                        }
+                        break;
+                    
+                    case 'ico':
+                    case 'companyId':
+                        if (companyData.ico && !this.model.get(fieldName)) {
+                            this.model.set(fieldName, companyData.ico);
+                        }
+                        break;
+                    
                     case 'billingAddress':
                         if (companyData.address || companyData.city || companyData.zip) {
                             this.model.set('billingAddressStreet', companyData.address || '');
                             this.model.set('billingAddressCity', companyData.city || '');
                             this.model.set('billingAddressPostalCode', companyData.zip || '');
-                            this.model.set('billingAddressCountry', 'Česká republika');
+                            var country = companyData.country === 'SK' ? 'Slovenská republika' : 'Česká republika';
+                            this.model.set('billingAddressCountry', country);
                         }
                         break;
                     
@@ -198,7 +221,8 @@ define('viacrm:views/fields/ares-lookup', ['views/fields/base'], function (Dep) 
                             this.model.set('shippingAddressStreet', companyData.address || '');
                             this.model.set('shippingAddressCity', companyData.city || '');
                             this.model.set('shippingAddressPostalCode', companyData.zip || '');
-                            this.model.set('shippingAddressCountry', 'Česká republika');
+                            var country = companyData.country === 'SK' ? 'Slovenská republika' : 'Česká republika';
+                            this.model.set('shippingAddressCountry', country);
                         }
                         break;
                 }

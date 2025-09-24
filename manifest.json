@@ -1,0 +1,22 @@
+{
+  "name": "ViaCrm",
+  "version": "2.6.0",
+  "acceptableVersions": [
+    ">=8.0.0"
+  ],
+  "php": [
+    ">=8.0"
+  ],
+  "releaseDate": "2025-09-24",
+  "author": "VIA Development Team",
+  "description": "VIA CRM module for EspoCRM with ARES/ORSR/Finstat integration",
+  "tags": [
+    "crm",
+    "espocrm",
+    "module",
+    "viacrm",
+    "ares",
+    "orsr",
+    "finstat"
+  ]
+}

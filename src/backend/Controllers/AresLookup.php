@@ -4,21 +4,27 @@ namespace Espo\Modules\ViaCrm\Controllers;
 
 use Espo\Core\Templates\Controllers\Base;
 use Espo\Core\Api\Request;
+use Espo\Modules\ViaCrm\Services\AresLookup as AresLookupService;
 
 class AresLookup extends Base
 {
     public function getActionSearchByIco(Request $request)
     {
-        $ico = $request->getQueryParam('ico') ?? '';
-        
-        if (empty($ico)) {
-            return ['error' => 'IČO is required'];
-        }
+        try {
+            $ico = $request->getQueryParam('ico') ?? '';
+            
+            if (empty($ico)) {
+                return ['error' => 'IČO is required'];
+            }
 
-        $service = $this->getServiceFactory()->create('AresLookup');
-        $result = $service->searchByIco($ico);
-        
-        return $result ? ['company' => $result] : ['company' => null];
+            $service = new AresLookupService();
+            $result = $service->searchByIco($ico);
+            
+            return $result ? ['company' => $result] : ['company' => null];
+        } catch (\Exception $e) {
+            $GLOBALS['log']->error('AresLookup searchByIco error: ' . $e->getMessage());
+            return ['error' => $e->getMessage()];
+        }
     }
     
     public function getActionSearchByName(Request $request)
@@ -29,7 +35,7 @@ class AresLookup extends Base
             return ['companies' => []];
         }
 
-        $service = $this->getServiceFactory()->create('AresLookup');
+        $service = new AresLookupService();
         $results = $service->searchByName($name);
         
         return ['companies' => $results];

@@ -18,9 +18,15 @@
         </div>
     </div>
     <div style="margin-top: 8px;">
-        <span class="label label-default">
-            <i class="fas fa-building"></i> Ověřeno v ARES
+        {{#ifEqual companyData.country 'SK'}}
+        <span class="label label-primary">
+            <i class="fas fa-building"></i> Ověřeno v ORSR (SK)
         </span>
+        {{else}}
+        <span class="label label-default">
+            <i class="fas fa-building"></i> Ověřeno v ARES (CZ)
+        </span>
+        {{/ifEqual}}
     </div>
 </div>
 {{else}}
