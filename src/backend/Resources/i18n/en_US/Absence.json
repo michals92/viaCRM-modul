@@ -94,6 +94,7 @@
         "days": "Automatically calculated working days (excluding weekends)",
         "hours": "Number of absence hours - automatically calculated based on employee's working hours and number of working days. Upon approval, automatically deducted from vacation.",
         "dailyHours": "Employee's daily working hours (weekly hours / 5 days)",
+        "hrRecord": "HR record is automatically selected based on the requester",
         "substitute": "Person who will substitute for you during your absence",
         "substituteInstructions": "Detailed instructions for the substitute person",
         "attachments": "Attach relevant documents (medical certificate, etc.)"

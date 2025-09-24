@@ -49,13 +49,24 @@
             "default": "Active"
         },
         "manager": {
-            "type": "link"
+            "type": "link",
+            "entity": "User"
         },
         "notes": {
             "type": "text"
         },
         "assignedUser": {
-            "type": "link"
+            "type": "link",
+            "entity": "User",
+            "layoutDetailDisabled": false,
+            "layoutListDisabled": false,
+            "layoutMassUpdateDisabled": true,
+            "layoutSidePanelDisabled": true
+        },
+        "teams": {
+            "type": "linkMultiple",
+            "entity": "Team",
+            "layoutSidePanelDisabled": true
         },
         "createdAt": {
             "type": "datetime",

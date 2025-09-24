@@ -51,12 +51,6 @@
             ],
             [
                 {
-                    "name": "assignedUser"
-                },
-                false
-            ],
-            [
-                {
                     "name": "workingHoursType"
                 },
                 {

@@ -3,6 +3,11 @@
     "iconClass": "fas fa-users",
     "color": "#3498DB",
     "dynamicHandler": "viacrm:views/hr/hr-dynamic-handler",
+    "sidePanelFieldLists": {
+        "detail": ["createdAt", "modifiedAt", "createdBy", "modifiedBy"],
+        "detailSmall": ["createdAt", "modifiedAt"],
+        "edit": []
+    },
     "views": {
         "list": "viacrm:views/hr/list"
     },

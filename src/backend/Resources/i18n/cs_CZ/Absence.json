@@ -95,6 +95,7 @@
         "days": "Automaticky vypočítané pracovní dny (bez víkendů)",
         "hours": "Počet hodin absence - automaticky vypočítáno podle pracovní doby zaměstnance a počtu pracovních dnů. Při schválení se automaticky odečte z dovolené.",
         "dailyHours": "Denní pracovní doba zaměstnance (týdenní úvazek / 5 dnů)",
+        "hrRecord": "HR záznam se automaticky vybere na základě žadatele",
         "substitute": "Osoba, která vás bude zastupovat během vaší absence",
         "substituteInstructions": "Detailní instrukce pro zastupující osobu",
         "attachments": "Přiložte relevantní dokumenty (potvrzení od lékaře, atd.)"
