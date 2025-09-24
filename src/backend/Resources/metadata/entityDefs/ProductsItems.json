@@ -1,4 +1,6 @@
 {
+    "table": "products_items",
+    "languageCategory": "ProductsItems",
     "fields": {
         "name": {
             "type": "varchar",

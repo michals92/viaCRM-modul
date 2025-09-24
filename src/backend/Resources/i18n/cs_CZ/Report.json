@@ -3,7 +3,7 @@
         "name": "Název",
         "status": "Stav",
         "description": "Popis",
-        "type": "Typ sestavy",
+        "type": "Typ přehledu",
         "targetEntity": "Cílová entita",
         "columns": "Sloupce",
         "filters": "Filtry",
@@ -14,7 +14,7 @@
         "dateFilter": "Filtr data",
         "dateFrom": "Datum od",
         "dateTo": "Datum do",
-        "isPublic": "Veřejná sestava",
+        "isPublic": "Veřejný přehled",
         "exportFormats": "Formáty exportu",
         "refreshInterval": "Interval obnovení (minuty)",
         "assignedUser": "Přiřazený uživatel",
@@ -75,17 +75,18 @@
         "modifiedBy": "Upravil"
     },
     "labels": {
-        "Create": "Vytvořit sestavu",
-        "View List": "Zobrazit seznam sestav",
-        "Run Report": "Spustit sestavu",
+        "Create": "Vytvořit přehled",
+        "Create Report": "Vytvořit přehled",
+        "View List": "Zobrazit seznam přehledů",
+        "Run Report": "Spustit přehled",
         "Export": "Exportovat",
         "Basic Information": "Základní informace",
         "Configuration": "Konfigurace",
         "Date Filters": "Filtry",
         "Export Options": "Možnosti exportu",
         "Data Preview": "Náhled dat",
-        "Report Results": "Výsledky sestavy",
-        "Export Report": "Exportovat sestavu",
+        "Report Results": "Výsledky přehledu",
+        "Export Report": "Exportovat přehled",
         "Select export format": "Vyberte formát exportu"
     }
 }

@@ -1,6 +1,7 @@
 {
     "labels": {
-        "Create ProductsItems": "Vytvořit Produkt",
+        "Create ProductsItems": "Vytvořit produkt",
+        "Create": "Vytvořit produkt",
         "ProductsItems": "Produkty",
         "View": "Zobrazit",
         "Edit": "Upravit",

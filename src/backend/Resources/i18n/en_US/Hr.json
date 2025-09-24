@@ -1,0 +1,70 @@
+{
+    "fields": {
+        "name": "Full Name",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phoneNumber": "Phone",
+        "position": "Position",
+        "department": "Department",
+        "employeeId": "Employee ID",
+        "hireDate": "Hire Date",
+        "salary": "Salary",
+        "manager": "Manager",
+        "notes": "Notes",
+        "status": "Status",
+        "assignedUser": "Assigned User",
+        "createdAt": "Created At",
+        "modifiedAt": "Modified At",
+        "createdBy": "Created By",
+        "modifiedBy": "Modified By",
+        "workingHours": "Working Hours",
+        "workingHoursType": "Employment Type",
+        "workingSchedule": "Working Schedule",
+        "fte": "Full Time Equivalent (FTE)",
+        "workingDays": "Working Days",
+        "partTimeStartDate": "Part-time Start Date",
+        "partTimeEndDate": "Part-time End Date",
+        "documents": "Documents",
+        "vacationHoursTotal": "Total Vacation Hours",
+        "vacationHoursUsed": "Used Vacation Hours",
+        "vacationHoursRemaining": "Remaining Vacation Hours",
+        "sickLeaveHours": "Sick Leave Hours"
+    },
+    "options": {
+        "department": {
+            "HR": "Human Resources",
+            "IT": "Information Technology", 
+            "Finance": "Finance",
+            "Sales": "Sales",
+            "Marketing": "Marketing",
+            "Operations": "Operations",
+            "Management": "Management"
+        },
+        "status": {
+            "Active": "Active",
+            "Inactive": "Inactive",
+            "Terminated": "Terminated",
+            "On Leave": "On Leave"
+        },
+        "workingHoursType": {
+            "Full-time": "Full-time",
+            "Part-time": "Part-time"
+        },
+        "workingDays": {
+            "Monday": "Monday",
+            "Tuesday": "Tuesday",
+            "Wednesday": "Wednesday",
+            "Thursday": "Thursday",
+            "Friday": "Friday",
+            "Saturday": "Saturday",
+            "Sunday": "Sunday"
+        }
+    },
+    "labels": {
+        "Create Hr": "New Employee",
+        "Create from User": "Create from User",
+        "List View": "List",
+        "Detail View": "Detail"
+    }
+}

@@ -12,6 +12,7 @@
         "user": "Uživatel"
     },
     "labels": {
+        "Create": "Vytvořit docházku",
         "Create Attendance": "Nová docházka",
         "Edit Attendance": "Upravit docházku",
         "View Attendance": "Zobrazit docházku",

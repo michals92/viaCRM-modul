@@ -1,0 +1,101 @@
+{
+    "fields": {
+        "name": "Name",
+        "type": "Absence Type",
+        "status": "Status",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "days": "Days",
+        "hours": "Hours",
+        "dailyHours": "Daily Working Hours",
+        "reason": "Reason",
+        "approverComment": "Approver Comment",
+        "requestedBy": "Requested By",
+        "approvedBy": "Approved By",
+        "approvedAt": "Approved At",
+        "hrRecord": "HR Record",
+        "attachments": "Attachments",
+        "priority": "Priority",
+        "substitute": "Substitute",
+        "substituteInstructions": "Substitute Instructions",
+        "createdAt": "Created At",
+        "modifiedAt": "Modified At",
+        "createdBy": "Created By",
+        "modifiedBy": "Modified By",
+        "assignedUser": "Assigned User",
+        "teams": "Teams"
+    },
+    "links": {
+        "requestedBy": "Requested By",
+        "approvedBy": "Approved By",
+        "hrRecord": "HR Record",
+        "substitute": "Substitute",
+        "assignedUser": "Assigned User",
+        "teams": "Teams",
+        "createdBy": "Created By",
+        "modifiedBy": "Modified By"
+    },
+    "labels": {
+        "Create Absence": "Create Absence Request",
+        "My Requests": "My Requests",
+        "Pending Approvals": "Pending Approvals",
+        "Calendar View": "Calendar View",
+        "Approve": "Approve",
+        "Reject": "Reject",
+        "Cancel": "Cancel",
+        "Approval": "Approval",
+        "Substitute Information": "Substitute Information",
+        "Calculate Days": "Calculate Days"
+    },
+    "options": {
+        "type": {
+            "vacation": "Vacation",
+            "sick_leave": "Sick Leave",
+            "personal_leave": "Personal Leave",
+            "maternity_leave": "Maternity/Parental Leave",
+            "unpaid_leave": "Unpaid Leave"
+        },
+        "status": {
+            "pending": "Pending",
+            "approved": "Approved",
+            "rejected": "Rejected",
+            "cancelled": "Cancelled"
+        },
+        "priority": {
+            "low": "Low",
+            "normal": "Normal", 
+            "high": "High",
+            "urgent": "Urgent"
+        }
+    },
+    "presetFilters": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "cancelled": "Cancelled"
+    },
+    "messages": {
+        "confirmApprove": "Are you sure you want to approve this request?",
+        "confirmReject": "Are you sure you want to reject this request?",
+        "confirmCancel": "Are you sure you want to cancel this request?",
+        "approvedSuccessfully": "Request has been approved successfully",
+        "rejectedSuccessfully": "Request has been rejected",
+        "cancelledSuccessfully": "Request has been cancelled",
+        "overlappingDates": "You already have a request for overlapping dates",
+        "pastDateNotAllowed": "Cannot request leave in the past (except sick leave)",
+        "endDateBeforeStart": "End date must be after start date",
+        "commentRequiredForRejection": "Comment is required when rejecting request",
+        "cannotApproveOwnRequest": "You cannot approve your own request",
+        "onlyPendingCanBeApproved": "Only pending requests can be approved",
+        "onlyOwnRequestsCanBeCancelled": "You can only cancel your own requests"
+    },
+    "tooltips": {
+        "type": "Select absence type - vacation, sick leave, personal leave, etc.",
+        "days": "Automatically calculated working days (excluding weekends)",
+        "hours": "Number of absence hours - automatically calculated based on employee's working hours and number of working days. Upon approval, automatically deducted from vacation.",
+        "dailyHours": "Employee's daily working hours (weekly hours / 5 days)",
+        "substitute": "Person who will substitute for you during your absence",
+        "substituteInstructions": "Detailed instructions for the substitute person",
+        "attachments": "Attach relevant documents (medical certificate, etc.)"
+    }
+}

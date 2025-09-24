@@ -36,6 +36,7 @@
         "modifiedBy": "Upravil"
     },
     "labels": {
+        "Create": "Vytvořit žádost o absence",
         "Create Absence": "Vytvořit žádost o dovolenou",
         "My Requests": "Mé žádosti",
         "Pending Approvals": "Čekající schválení",

@@ -69,7 +69,14 @@
         "OAuthProvider": "OAuth Provider",
         "OAuthAccount": "OAuth Account",
         "Account": "Firma",
-        "Lead": "Lead"
+        "Lead": "Lead",
+        "Absence": "Absence",
+        "Attendance": "Docházka",
+        "Hr": "Personální záznamy",
+        "ProductsItems": "Produkty",
+        "Offer": "Nabídka",
+        "Order": "Objednávka",
+        "Report": "Přehled"
     },
     "scopeNamesPlural": {
         "Note": "Poznámky",
@@ -131,7 +138,14 @@
         "Account": "Firmy",
         "Lead": "Leady",
         "KnowledgeBaseArticle": "Databáze znalostí",
-        "Opportunities": "Obchodní příležitosti"
+        "Opportunities": "Obchodní příležitosti",
+        "Absence": "Absence",
+        "Attendance": "Docházka",
+        "Hr": "Personální záznamy",
+        "ProductsItems": "Produkty",
+        "Offer": "Nabídky",
+        "Order": "Objednávky",
+        "Report": "Přehledy"
     },
     "labels": {
         "Previous Page": "Předchozí stránka",
@@ -184,6 +198,13 @@
         "Created": "Vytvořeno",
         "Create": "Vytvořit",
         "create": "vytvořit",
+        "Create Absence": "Vytvořit žádost o absence",
+        "Create Attendance": "Vytvořit docházku",
+        "Create Hr": "Vytvořit zaměstnance",
+        "Create ProductsItems": "Vytvořit produkt",
+        "Create Offer": "Vytvořit nabídku",
+        "Create Order": "Vytvořit objednávku",
+        "Create Report": "Vytvořit přehled",
         "Scheduled": "Naplánováno",
         "Overview": "Přehled",
         "Details": "Detaily",
