@@ -1,43 +1,29 @@
 [
     {
+        "label": "",
         "rows": [
             [
-                {
-                    "name": "name"
-                },
-                {
-                    "name": "status"
-                }
+                {"name":"name"},
+                {"name":"parent"}
             ],
             [
-                {
-                    "name": "priority"
-                },
-                {
-                    "name": "assignedUser"
-                }
+                {"name":"status"},
+                {"name":"priority"}
             ],
             [
-                {
-                    "name": "dateStart"
-                },
-                {
-                    "name": "dateEnd"
-                }
+                {"name":"dateStart"},
+                {"name":"dateCompleted"}
             ],
             [
-                {
-                    "name": "dateDue"
-                },
-                {
-                    "name": "timeSpent"
-                }
+                {"name":"dateEnd"},
+                {"name":"reminders"}
             ],
             [
-                {
-                    "name": "description",
-                    "fullWidth": true
-                }
+                {"name":"description", "fullWidth": true}
+            ],
+            [
+                {"name":"attachments"},
+                {"name": "timeSpent"}
             ]
         ]
     }
