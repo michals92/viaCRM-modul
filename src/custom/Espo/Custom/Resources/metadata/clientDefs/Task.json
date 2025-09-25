@@ -1,0 +1,10 @@
+{
+    "relationshipPanels": {
+        "timeEntries": {
+            "view": "views/record/panels/relationship",
+            "label": "Time Entries",
+            "create": true,
+            "createButton": true
+        }
+    }
+}

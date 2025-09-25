@@ -1,0 +1,15 @@
+{
+    "labels": {
+        "Create TimeEntry": "Vytvořit časový záznam",
+        "Time Entry": "Časový záznam",
+        "Time Entries": "Časové záznamy"
+    },
+    "fields": {
+        "name": "Název",
+        "timeSpent": "Odpracovaný čas (hod)",
+        "description": "Popis práce",
+        "dateLogged": "Datum záznamu",
+        "user": "Uživatel",
+        "task": "Úkol"
+    }
+}

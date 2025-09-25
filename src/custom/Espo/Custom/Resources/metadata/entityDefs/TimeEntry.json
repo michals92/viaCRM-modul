@@ -1,0 +1,40 @@
+{
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": false,
+            "maxLength": 255
+        },
+        "task": {
+            "type": "link",
+            "required": true
+        },
+        "user": {
+            "type": "link",
+            "required": false
+        },
+        "timeSpent": {
+            "type": "float",
+            "required": true,
+            "min": 0.1
+        },
+        "description": {
+            "type": "text"
+        },
+        "dateLogged": {
+            "type": "date",
+            "required": false
+        }
+    },
+    "links": {
+        "task": {
+            "type": "belongsTo",
+            "entity": "Task",
+            "foreign": "timeEntries"
+        },
+        "user": {
+            "type": "belongsTo",
+            "entity": "User"
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "fields": {
+        "timeSpent": {
+            "type": "float",
+            "min": 0,
+            "default": 0,
+            "readOnly": true,
+            "notStorable": true
+        }
+    },
+    "links": {
+        "timeEntries": {
+            "type": "hasMany",
+            "entity": "TimeEntry",
+            "foreign": "task"
+        }
+    }
+}

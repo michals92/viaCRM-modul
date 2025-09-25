@@ -1,0 +1,28 @@
+[
+    {
+        "rows": [
+            [
+                {
+                    "name": "timeSpent"
+                },
+                {
+                    "name": "user"
+                }
+            ],
+            [
+                {
+                    "name": "task"
+                },
+                {
+                    "name": "dateLogged"
+                }
+            ],
+            [
+                {
+                    "name": "description",
+                    "fullWidth": true
+                }
+            ]
+        ]
+    }
+]

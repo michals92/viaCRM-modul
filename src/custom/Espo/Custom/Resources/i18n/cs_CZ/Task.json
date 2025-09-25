@@ -1,0 +1,9 @@
+{
+    "fields": {
+        "timeSpent": "Celkový odpracovaný čas (hod)",
+        "timeEntries": "Časové záznamy"
+    },
+    "labels": {
+        "Time Entries": "Časové záznamy"
+    }
+}
