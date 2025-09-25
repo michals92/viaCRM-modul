@@ -5,7 +5,16 @@
             "min": 0,
             "default": 0,
             "readOnly": true,
-            "notStorable": true
+            "notStorable": true,
+            "select": {
+                "select": "SUM:(timeEntry.timeSpent)",
+                "leftJoins": [
+                    [
+                        "timeEntries",
+                        "timeEntry"
+                    ]
+                ]
+            }
         }
     },
     "links": {

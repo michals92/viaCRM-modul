@@ -7,5 +7,6 @@
     "importable": false,
     "notifications": false,
     "stream": false,
-    "disabled": false
+    "disabled": false,
+    "massActions": true
 }

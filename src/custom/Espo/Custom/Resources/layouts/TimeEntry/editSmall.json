@@ -6,15 +6,13 @@
                     "name": "timeSpent"
                 },
                 {
-                    "name": "user"
+                    "name": "dateLogged"
                 }
             ],
             [
                 {
-                    "name": "task"
-                },
-                {
-                    "name": "dateLogged"
+                    "name": "user",
+                    "fullWidth": true
                 }
             ],
             [

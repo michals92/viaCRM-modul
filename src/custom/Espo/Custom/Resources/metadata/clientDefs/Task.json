@@ -1,10 +1,28 @@
 {
+    "bottomPanels": {
+        "detail": [
+            {
+                "name": "timeEntries",
+                "label": "Time Entries",
+                "view": "views/record/panels/relationship",
+                "sticked": true,
+                "isForm": true,
+                "rowActionsView": "views/record/row-actions/relationship"
+            },
+            "__APPEND__"
+        ]
+    },
     "relationshipPanels": {
         "timeEntries": {
             "view": "views/record/panels/relationship",
             "label": "Time Entries",
             "create": true,
-            "createButton": true
+            "createButton": true,
+            "select": false,
+            "rowActionsView": "views/record/row-actions/relationship",
+            "layout": "listSmall",
+            "orderBy": "dateLogged",
+            "orderDirection": "desc"
         }
     }
 }

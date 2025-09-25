@@ -1,0 +1,19 @@
+[
+    {
+        "name": "timeSpent",
+        "width": 15,
+        "align": "right"
+    },
+    {
+        "name": "user",
+        "width": 25
+    },
+    {
+        "name": "description",
+        "width": 40
+    },
+    {
+        "name": "dateLogged",
+        "width": 20
+    }
+]

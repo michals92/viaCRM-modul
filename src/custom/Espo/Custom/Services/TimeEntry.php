@@ -12,12 +12,12 @@ class TimeEntry extends \Espo\Services\Record
         
         // Nastav aktuálního uživatele pokud není nastaven
         if (!$entity->get('userId')) {
-            $entity->set('userId', $this->getUser()->getId());
+            $entity->set('userId', $this->user->getId());
         }
         
-        // Nastav aktuální čas pokud není nastaven
+        // Nastav aktuální datum pokud není nastaveno
         if (!$entity->get('dateLogged')) {
-            $entity->set('dateLogged', date('Y-m-d H:i:s'));
+            $entity->set('dateLogged', date('Y-m-d'));
         }
         
         // Nastav název pokud není nastaven

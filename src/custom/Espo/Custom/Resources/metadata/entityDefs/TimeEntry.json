@@ -11,7 +11,11 @@
         },
         "user": {
             "type": "link",
-            "required": false
+            "required": false,
+            "defaultAttributes": {
+                "assignedUserId": "{user.id}",
+                "assignedUserName": "{user.name}"
+            }
         },
         "timeSpent": {
             "type": "float",
@@ -23,7 +27,8 @@
         },
         "dateLogged": {
             "type": "date",
-            "required": false
+            "required": false,
+            "default": "javascript: return this.dateTime.getToday();"
         }
     },
     "links": {
