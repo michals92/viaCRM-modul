@@ -1,0 +1,29 @@
+{
+    "dashlets": {
+        "UniversalKanban": "Kanban Board"
+    },
+    "labels": {
+        "Kanban Board": "Kanban Tabule"
+    },
+    "fields": {
+        "entityType": "Typ entity",
+        "statusField": "Pole pro status",
+        "autorefreshInterval": "Automatické obnovování (min)",
+        "maxRecords": "Maximální počet záznamů"
+    },
+    "options": {
+        "autorefreshInterval": {
+            "0": "Zakázáno",
+            "0.5": "30 sekund", 
+            "1": "1 minuta",
+            "2": "2 minuty",
+            "5": "5 minut",
+            "10": "10 minut"
+        }
+    },
+    "tooltips": {
+        "statusField": "Pole pro status (ponechte prázdné pro automatickou detekci)",
+        "autorefreshInterval": "Jak často se má dashlet automaticky obnovovat",
+        "maxRecords": "Maximální počet záznamů zobrazených v Kanban tabuli"
+    }
+}

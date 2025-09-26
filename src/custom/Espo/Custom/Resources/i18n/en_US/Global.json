@@ -1,0 +1,29 @@
+{
+    "dashlets": {
+        "UniversalKanban": "Kanban Board"
+    },
+    "labels": {
+        "Kanban Board": "Kanban Board"
+    },
+    "fields": {
+        "entityType": "Entity Type",
+        "statusField": "Status Field",
+        "autorefreshInterval": "Auto Refresh (min)",
+        "maxRecords": "Max Records"
+    },
+    "options": {
+        "autorefreshInterval": {
+            "0": "Disabled",
+            "0.5": "30 seconds",
+            "1": "1 minute", 
+            "2": "2 minutes",
+            "5": "5 minutes",
+            "10": "10 minutes"
+        }
+    },
+    "tooltips": {
+        "statusField": "Status field name (leave empty for auto-detection)",
+        "autorefreshInterval": "How often to automatically refresh the dashlet",
+        "maxRecords": "Maximum number of records displayed in Kanban board"
+    }
+}

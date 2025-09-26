@@ -1,0 +1,73 @@
+{
+    "view": "viacrm:views/dashlets/universal-kanban",
+    "aclScope": "Task",
+    "options": {
+        "fields": {
+            "title": {
+                "type": "varchar",
+                "required": true
+            },
+            "entityType": {
+                "type": "enum",
+                "options": [
+                    "Task",
+                    "Test",
+                    "Lead", 
+                    "Opportunity",
+                    "Case",
+                    "Account",
+                    "Contact",
+                    "Order",
+                    "Offer",
+                    "Invoice",
+                    "Quote",
+                    "Absence",
+                    "Hr",
+                    "Attendance",
+                    "Report"
+                ],
+                "required": true,
+                "default": "Task"
+            },
+            "statusField": {
+                "type": "varchar",
+                "required": false,
+                "tooltip": "Pole pro status (ponechte prázdné pro automatickou detekci)"
+            },
+            "autorefreshInterval": {
+                "type": "enumFloat",
+                "options": [0, 0.5, 1, 2, 5, 10],
+                "default": 0
+            },
+            "maxRecords": {
+                "type": "int",
+                "min": 10,
+                "max": 500,
+                "default": 100
+            }
+        },
+        "defaults": {
+            "title": "Kanban Board",
+            "entityType": "Task",
+            "autorefreshInterval": 0,
+            "maxRecords": 100
+        },
+        "layout": [
+            {
+                "rows": [
+                    [
+                        {"name": "title", "span": 12}
+                    ],
+                    [
+                        {"name": "entityType", "span": 6},
+                        {"name": "maxRecords", "span": 6}
+                    ],
+                    [
+                        {"name": "statusField", "span": 6},
+                        {"name": "autorefreshInterval", "span": 6}
+                    ]
+                ]
+            }
+        ]
+    }
+}
