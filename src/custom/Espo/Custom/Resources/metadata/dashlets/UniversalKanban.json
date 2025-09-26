@@ -11,20 +11,8 @@
                 "type": "enum",
                 "options": [
                     "Task",
-                    "Test",
-                    "Lead", 
-                    "Opportunity",
-                    "Case",
                     "Account",
-                    "Contact",
-                    "Order",
-                    "Offer",
-                    "Invoice",
-                    "Quote",
-                    "Absence",
-                    "Hr",
-                    "Attendance",
-                    "Report"
+                    "TimeEntry"
                 ],
                 "required": true,
                 "default": "Task"
