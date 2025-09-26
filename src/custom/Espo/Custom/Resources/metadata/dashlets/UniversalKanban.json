@@ -9,11 +9,7 @@
             },
             "entityType": {
                 "type": "enum",
-                "options": [
-                    "Task",
-                    "Account",
-                    "TimeEntry"
-                ],
+                "view": "viacrm:views/dashlets/fields/entity-type",
                 "required": true,
                 "default": "Task"
             },

@@ -27,31 +27,54 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
             }
         },
 
+        getEntityTypeTranslations: function(entityList) {
+            const translations = {};
+            
+            entityList.forEach(entityName => {
+                const label = this.getLanguage().translate(entityName, 'scopeNames') || entityName;
+                translations[entityName] = label;
+            });
+            
+            return translations;
+        },
+        
         getKanbanEntitiesList: function() {
             const entityList = this.getMetadata().getScopeList() || [];
             const kanbanEntities = [];
+            
+            console.log('All available scopes:', entityList);
             
             entityList.forEach(entityName => {
                 const entityDefs = this.getMetadata().get(['entityDefs', entityName]);
                 const scopeDefs = this.getMetadata().get(['scopes', entityName]);
                 
-                if (!entityDefs || !entityDefs.fields) return;
+                if (!entityDefs || !entityDefs.fields) {
+                    console.log(entityName + ': No entityDefs or fields');
+                    return;
+                }
                 
                 // Check if entity has any field that could be used for status (enum type)
-                const hasStatusField = Object.keys(entityDefs.fields).some(fieldName => {
+                const enumFields = Object.keys(entityDefs.fields).filter(fieldName => {
                     const field = entityDefs.fields[fieldName];
                     return field.type === 'enum' && field.options && field.options.length > 1;
                 });
                 
-                // More relaxed scope validation - just check if it's a real entity
+                const hasStatusField = enumFields.length > 0;
+                
+                // More relaxed scope validation - include module entities
                 const isValidScope = scopeDefs && 
                                    scopeDefs.entity !== false && 
                                    !scopeDefs.disabled &&
                                    // Only exclude obvious system entities
-                                   !entityName.match(/^(User|Team|Role|Portal|Integration|Import|Export|Attachment|Note|Email|EmailTemplate|EmailFilter|EmailAccount|InboundEmail|Job|ScheduledJob|AuthToken|ActionHistoryRecord|ArrayValue|Autofollow|Cleanup|Dashboard|Extension|ExternalAccount|GroupEmailFolder|Layout|Mass|Pdf|Preferences|Settings|Stream|Template|Webhook|LogRecord|PasswordChangeRequest|TwoFactorCode|Currency|Language)$/);
+                                   !entityName.match(/^(User|Team|Role|Portal|Integration|Import|Export|Attachment|Note|Email|EmailTemplate|EmailFilter|EmailAccount|InboundEmail|Job|ScheduledJob|AuthToken|ActionHistoryRecord|ArrayValue|Autofollow|Cleanup|Dashboard|Extension|ExternalAccount|GroupEmailFolder|Layout|Mass|Pdf|Preferences|Settings|Stream|Template|Webhook|LogRecord|PasswordChangeRequest|TwoFactorCode|Currency|Language|ProductsItems)$/);
+                
+                if (hasStatusField) {
+                    console.log(entityName + ': Has enum fields:', enumFields, ', isValidScope:', isValidScope);
+                }
                 
                 if (hasStatusField && isValidScope) {
                     kanbanEntities.push(entityName);
+                    console.log('✓ Added ' + entityName + ' to kanban entities');
                 }
             });
             
@@ -667,6 +690,9 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
         },
 
         getOptionsFields: function() {
+            const kanbanEntities = this.getKanbanEntitiesList();
+            const translations = this.getEntityTypeTranslations(kanbanEntities);
+            
             return {
                 'title': {
                     'type': 'varchar',
@@ -675,7 +701,8 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
                 'entityType': {
                     'type': 'enum',
                     'required': true,
-                    'options': this.getKanbanEntitiesList()
+                    'options': kanbanEntities,
+                    'translation': translations
                 },
                 'statusField': {
                     'type': 'varchar',
