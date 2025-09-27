@@ -1,4 +1,4 @@
-define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'], function (Dep) {
+define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base', 'search-manager'], function (Dep, SearchManager) {
     
     return Dep.extend({
 
@@ -13,6 +13,9 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
             this.statusField = this.getOption('statusField') || this.getDefaultStatusField();
             this.refreshInterval = this.getOption('autorefreshInterval') || 0;
             this.maxRecords = this.getOption('maxRecords') || 100;
+            
+            // Filter options
+            this.searchFilters = this.getOption('searchFilters') || null;
             
             // Load custom CSS via style tag
             this.loadCustomStyles();
@@ -133,6 +136,24 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
             return statusLikeField || statusFields[0] || 'status';
         },
 
+        buildWhereClause: function() {
+            // Built-in filters are now handled through searchFilters
+            return [];
+        },
+        
+        getSearchManager: function() {
+            if (!this.searchManager) {
+                const collection = this.getCollectionFactory().create(this.entityType);
+                this.searchManager = new SearchManager(
+                    collection,
+                    'kanban',
+                    this.getStorage(),
+                    this.getDateTime()
+                );
+            }
+            return this.searchManager;
+        },
+
         afterRender: function() {
             Dep.prototype.afterRender.call(this);
             this.loadKanbanData();
@@ -165,14 +186,16 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
             // Add optional fields if they exist
             if (availableFields.assignedUser) {
                 selectFields.push('assignedUserName');
+                selectFields.push('assignedUserId');
             }
             if (availableFields.createdAt) {
                 selectFields.push('createdAt');
             }
-            // Only add kanbanOrder if it exists
-            if (availableFields.kanbanOrder) {
-                selectFields.push('kanbanOrder');
+            // Add teams if available
+            if (availableFields.teams) {
+                selectFields.push('teamsIds');
             }
+
             
             // Build request parameters
             const requestParams = {
@@ -180,14 +203,56 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
                 maxSize: this.maxRecords
             };
             
-            // Only add orderBy if we have a field to order by
-            if (availableFields.kanbanOrder) {
-                requestParams.orderBy = 'kanbanOrder';
-                requestParams.order = 'asc';
-            } else if (availableFields.createdAt) {
-                requestParams.orderBy = 'createdAt';
-                requestParams.order = 'desc';
+            // Build where clause based on filters
+            const where = this.buildWhereClause();
+            if (where && where.length > 0) {
+                requestParams.where = where;
             }
+            
+            // Add custom search filters if specified
+            if (this.searchFilters && typeof this.searchFilters === 'object') {
+                // Apply primary filter from searchFilters (overrides separate primaryFilter option)
+                if (this.searchFilters.primary) {
+                    // Check if it's a bool filter or primary filter
+                    const clientDefs = this.getMetadata().get(['clientDefs', this.entityType]) || {};
+                    const boolFilterList = clientDefs.boolFilterList || [];
+                    
+                    if (boolFilterList.includes(this.searchFilters.primary)) {
+                        // It's actually a bool filter
+                        requestParams.boolFilterList = [this.searchFilters.primary];
+                    } else {
+                        // It's a primary filter
+                        requestParams.primaryFilter = this.searchFilters.primary;
+                    }
+                }
+                
+                // Apply bool filters
+                if (this.searchFilters.bool) {
+                    const boolFilters = [];
+                    Object.keys(this.searchFilters.bool).forEach(filter => {
+                        if (this.searchFilters.bool[filter]) {
+                            boolFilters.push(filter);
+                        }
+                    });
+                    if (boolFilters.length > 0) {
+                        if (requestParams.boolFilterList) {
+                            requestParams.boolFilterList = requestParams.boolFilterList.concat(boolFilters);
+                        } else {
+                            requestParams.boolFilterList = boolFilters;
+                        }
+                    }
+                }
+                
+                // Apply where conditions for field filters
+                if (this.searchFilters.where && this.searchFilters.where.length > 0) {
+                    if (requestParams.where) {
+                        requestParams.where = requestParams.where.concat(this.searchFilters.where);
+                    } else {
+                        requestParams.where = this.searchFilters.where;
+                    }
+                }
+            }
+            
             // If no orderBy field available, don't specify ordering
             
             console.log('Loading data for entity:', this.entityType, 'with params:', requestParams);
@@ -305,23 +370,6 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
                     grouped[status] = [];
                 }
                 grouped[status].push(record);
-            });
-            
-            // Sort each group by kanbanOrder (ascending), then by createdAt (descending)
-            Object.keys(grouped).forEach(status => {
-                grouped[status].sort((a, b) => {
-                    const orderA = parseInt(a.kanbanOrder) || 999999;
-                    const orderB = parseInt(b.kanbanOrder) || 999999;
-                    
-                    if (orderA !== orderB) {
-                        return orderA - orderB;
-                    }
-                    
-                    // If same order or both null, sort by createdAt descending
-                    const dateA = new Date(a.createdAt || 0);
-                    const dateB = new Date(b.createdAt || 0);
-                    return dateB - dateA;
-                });
             });
             
             return grouped;
@@ -523,46 +571,8 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
             // Insert the moved card at target position
             cardIds.splice(targetIndex, 0, recordId);
             
-            // Update kanbanOrder for all cards in this status
-            this.updateKanbanOrder(cardIds, status);
         },
-
-        updateKanbanOrder: function(cardIds, status) {
-            // Check if entity supports kanbanOrder field
-            const entityDefs = this.getMetadata().get(['entityDefs', this.entityType]) || {};
-            const hasKanbanOrder = entityDefs.fields && entityDefs.fields.kanbanOrder;
-            
-            if (!hasKanbanOrder) {
-                console.log('Entity ' + this.entityType + ' does not support kanbanOrder field, skipping reorder');
-                // Just refresh to show cards in original order
-                this.loadKanbanData();
-                return;
-            }
-            
-            // Update individual records with new kanbanOrder
-            const updatePromises = cardIds.map((id, index) => {
-                const kanbanOrder = (index + 1) * 10; // Use increments of 10 for easier reordering
-                
-                return $.ajax({
-                    url: 'api/v1/' + this.entityType + '/' + id,
-                    type: 'PUT',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ kanbanOrder: kanbanOrder })
-                });
-            });
-            
-            // Wait for all updates to complete
-            $.when.apply($, updatePromises).done((function() {
-                Espo.Ui.success('Pořadí aktualizováno');
-                this.loadKanbanData();
-            }).bind(this)).fail((function(error) {
-                console.error('Error updating kanban order:', error);
-                Espo.Ui.error(this.translate('Error occurred'));
-                this.loadKanbanData(); // Refresh to show correct state
-            }).bind(this));
-        },
-
+           
         updateRecordStatus: function(recordId, newStatus) {
             const data = {};
             data[this.statusField] = newStatus;
@@ -678,9 +688,20 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
         actionRefresh: function() {
             this.loadKanbanData();
         },
+        
+        optionsChanged: function(options) {
+            // Update local options
+            this.entityType = options.entityType || this.entityType;
+            this.statusField = options.statusField || this.getDefaultStatusField();
+            this.maxRecords = options.maxRecords || 100;
+            this.searchFilters = options.searchFilters || null;
+            
+            // Reload data with new filters
+            this.loadKanbanData();
+        },
 
         actionOptions: function() {
-            this.createView('options', 'custom:views/dashlets/options/universal-kanban', {
+            this.createView('options', 'viacrm:views/dashlets/options/universal-kanban', {
                 name: this.name,
                 optionsData: this.optionsData,
                 fields: this.optionsFields || this.getOptionsFields()

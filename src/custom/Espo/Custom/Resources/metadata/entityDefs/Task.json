@@ -15,16 +15,6 @@
                     ]
                 ]
             }
-        },
-        "kanbanOrder": {
-            "type": "int",
-            "default": null,
-            "notNull": false,
-            "layoutListDisabled": true,
-            "layoutDetailDisabled": true,
-            "layoutMassUpdateDisabled": true,
-            "importDisabled": true,
-            "exportDisabled": true
         }
     },
     "links": {

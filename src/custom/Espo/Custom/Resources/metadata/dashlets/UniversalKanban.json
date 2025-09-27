@@ -28,6 +28,12 @@
                 "min": 10,
                 "max": 500,
                 "default": 100
+            },
+            "searchFilters": {
+                "type": "base",
+                "view": "viacrm:views/dashlets/fields/search-filters",
+                "required": false,
+                "tooltip": "Klikněte pro nastavení filtrů"
             }
         },
         "defaults": {
@@ -44,11 +50,14 @@
                     ],
                     [
                         {"name": "entityType", "span": 6},
-                        {"name": "maxRecords", "span": 6}
+                        {"name": "statusField", "span": 6}
                     ],
                     [
-                        {"name": "statusField", "span": 6},
+                        {"name": "maxRecords", "span": 6},
                         {"name": "autorefreshInterval", "span": 6}
+                    ],
+                    [
+                        {"name": "searchFilters", "span": 12}
                     ]
                 ]
             }

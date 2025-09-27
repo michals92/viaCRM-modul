@@ -9,7 +9,11 @@
         "entityType": "Entity Type",
         "statusField": "Status Field",
         "autorefreshInterval": "Auto Refresh (min)",
-        "maxRecords": "Max Records"
+        "maxRecords": "Max Records",
+        "filterType": "Filter Type",
+        "primaryFilter": "Primary Filter",
+        "boolFilterList": "Bool Filters",
+        "teamId": "Team"
     },
     "options": {
         "autorefreshInterval": {
@@ -19,11 +23,21 @@
             "2": "2 minutes",
             "5": "5 minutes",
             "10": "10 minutes"
+        },
+        "filterType": {
+            "all": "All Records",
+            "onlyMy": "Only Mine",
+            "onlyMyTeam": "My Team",
+            "custom": "Custom Filter"
         }
     },
     "tooltips": {
         "statusField": "Status field name (leave empty for auto-detection)",
         "autorefreshInterval": "How often to automatically refresh the dashlet",
-        "maxRecords": "Maximum number of records displayed in Kanban board"
+        "maxRecords": "Maximum number of records displayed in Kanban board",
+        "filterType": "How to filter displayed records",
+        "primaryFilter": "Primary filter name defined in entity metadata",
+        "boolFilterList": "List of boolean filters separated by comma",
+        "teamId": "Filter by specific team"
     }
 }

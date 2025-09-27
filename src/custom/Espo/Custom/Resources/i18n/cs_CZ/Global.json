@@ -9,7 +9,11 @@
         "entityType": "Typ entity",
         "statusField": "Pole pro status",
         "autorefreshInterval": "Automatické obnovování (min)",
-        "maxRecords": "Maximální počet záznamů"
+        "maxRecords": "Maximální počet záznamů",
+        "filterType": "Typ filtru",
+        "primaryFilter": "Primární filtr",
+        "boolFilterList": "Boolean filtry",
+        "teamId": "Tým"
     },
     "options": {
         "autorefreshInterval": {
@@ -19,11 +23,21 @@
             "2": "2 minuty",
             "5": "5 minut",
             "10": "10 minut"
+        },
+        "filterType": {
+            "all": "Všechny záznamy",
+            "onlyMy": "Pouze moje",
+            "onlyMyTeam": "Můj tým",
+            "custom": "Vlastní filtr"
         }
     },
     "tooltips": {
         "statusField": "Pole pro status (ponechte prázdné pro automatickou detekci)",
         "autorefreshInterval": "Jak často se má dashlet automaticky obnovovat",
-        "maxRecords": "Maximální počet záznamů zobrazených v Kanban tabuli"
+        "maxRecords": "Maximální počet záznamů zobrazených v Kanban tabuli",
+        "filterType": "Jak filtrovat zobrazené záznamy",
+        "primaryFilter": "Název primárního filtru definovaného v entity metadata",
+        "boolFilterList": "Seznam boolean filtrů oddělených čárkou",
+        "teamId": "Filtrovat podle konkrétního týmu"
     }
 }

@@ -146,27 +146,13 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
             if (availableFields.createdAt) {
                 selectFields.push('createdAt');
             }
-            // Only add kanbanOrder if it exists
-            if (availableFields.kanbanOrder) {
-                selectFields.push('kanbanOrder');
-            }
-            
+                    
             // Build request parameters
             const requestParams = {
                 select: selectFields.join(','),
                 maxSize: this.maxRecords
             };
-            
-            // Only add orderBy if we have a field to order by
-            if (availableFields.kanbanOrder) {
-                requestParams.orderBy = 'kanbanOrder';
-                requestParams.order = 'asc';
-            } else if (availableFields.createdAt) {
-                requestParams.orderBy = 'createdAt';
-                requestParams.order = 'desc';
-            }
-            // If no orderBy field available, don't specify ordering
-            
+
             console.log('Loading data for entity:', this.entityType, 'with params:', requestParams);
             
             $.ajax({
@@ -282,23 +268,6 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
                     grouped[status] = [];
                 }
                 grouped[status].push(record);
-            });
-            
-            // Sort each group by kanbanOrder (ascending), then by createdAt (descending)
-            Object.keys(grouped).forEach(status => {
-                grouped[status].sort((a, b) => {
-                    const orderA = parseInt(a.kanbanOrder) || 999999;
-                    const orderB = parseInt(b.kanbanOrder) || 999999;
-                    
-                    if (orderA !== orderB) {
-                        return orderA - orderB;
-                    }
-                    
-                    // If same order or both null, sort by createdAt descending
-                    const dateA = new Date(a.createdAt || 0);
-                    const dateB = new Date(b.createdAt || 0);
-                    return dateB - dateA;
-                });
             });
             
             return grouped;
@@ -500,44 +469,6 @@ define('viacrm:views/dashlets/universal-kanban', ['views/dashlets/abstract/base'
             // Insert the moved card at target position
             cardIds.splice(targetIndex, 0, recordId);
             
-            // Update kanbanOrder for all cards in this status
-            this.updateKanbanOrder(cardIds, status);
-        },
-
-        updateKanbanOrder: function(cardIds, status) {
-            // Check if entity supports kanbanOrder field
-            const entityDefs = this.getMetadata().get(['entityDefs', this.entityType]) || {};
-            const hasKanbanOrder = entityDefs.fields && entityDefs.fields.kanbanOrder;
-            
-            if (!hasKanbanOrder) {
-                console.log('Entity ' + this.entityType + ' does not support kanbanOrder field, skipping reorder');
-                // Just refresh to show cards in original order
-                this.loadKanbanData();
-                return;
-            }
-            
-            // Update individual records with new kanbanOrder
-            const updatePromises = cardIds.map((id, index) => {
-                const kanbanOrder = (index + 1) * 10; // Use increments of 10 for easier reordering
-                
-                return $.ajax({
-                    url: 'api/v1/' + this.entityType + '/' + id,
-                    type: 'PUT',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ kanbanOrder: kanbanOrder })
-                });
-            });
-            
-            // Wait for all updates to complete
-            $.when.apply($, updatePromises).done((function() {
-                Espo.Ui.success('Pořadí aktualizováno');
-                this.loadKanbanData();
-            }).bind(this)).fail((function(error) {
-                console.error('Error updating kanban order:', error);
-                Espo.Ui.error(this.translate('Error occurred'));
-                this.loadKanbanData(); // Refresh to show correct state
-            }).bind(this));
         },
 
         updateRecordStatus: function(recordId, newStatus) {
