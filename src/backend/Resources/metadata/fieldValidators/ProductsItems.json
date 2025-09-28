@@ -1,0 +1,14 @@
+{
+    "orderStatusesForCounting": {
+        "valid": "Espo\\Modules\\ViaCrm\\Classes\\FieldValidators\\ProductsItems\\DynamicStatusMultiEnum"
+    },
+    "offerStatusesForCounting": {
+        "valid": "Espo\\Modules\\ViaCrm\\Classes\\FieldValidators\\ProductsItems\\DynamicStatusMultiEnum"
+    },
+    "orderStatusesForStockDeduction": {
+        "valid": "Espo\\Modules\\ViaCrm\\Classes\\FieldValidators\\ProductsItems\\DynamicStatusMultiEnum"
+    },
+    "offerStatusesForStockDeduction": {
+        "valid": "Espo\\Modules\\ViaCrm\\Classes\\FieldValidators\\ProductsItems\\DynamicStatusMultiEnum"
+    }
+}

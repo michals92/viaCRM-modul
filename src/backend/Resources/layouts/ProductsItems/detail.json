@@ -113,6 +113,42 @@
                     "name": "quoteQuantity",
                     "fullWidth": false
                 }
+            ],
+            [
+                {
+                    "name": "availableStockQuantity",
+                    "fullWidth": false
+                },
+                false
+            ]
+        ]
+    },
+    {
+        "label": "Status Configuration",
+        "rows": [
+            [
+                {
+                    "name": "orderStatusesForCounting",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
+                    "name": "offerStatusesForCounting",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
+                    "name": "orderStatusesForStockDeduction",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
+                    "name": "offerStatusesForStockDeduction",
+                    "fullWidth": true
+                }
             ]
         ]
     },

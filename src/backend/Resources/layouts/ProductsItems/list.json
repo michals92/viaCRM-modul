@@ -33,6 +33,10 @@
         "width": 10
     },
     {
+        "name": "availableStockQuantity",
+        "width": 10
+    },
+    {
         "name": "category",
         "width": 15
     },

@@ -1,5 +1,8 @@
 {
     "controller": "controllers/record",
     "iconClass": "fas fa-boxes",
-    "color": "#3498db"
+    "color": "#3498db",
+    "views": {
+        "detail": "viacrm:views/products-items/detail"
+    }
 }
