@@ -73,7 +73,9 @@ class Report extends Record
             ];
         }
         
-        usort($fields, fn($a, $b) => strcmp($a['label'], $b['label']));
+        usort($fields, function($a, $b) {
+            return strcmp($a['label'], $b['label']);
+        });
         $response->writeBody(json_encode($fields));
     }
 
