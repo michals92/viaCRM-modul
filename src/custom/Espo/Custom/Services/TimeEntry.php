@@ -2,29 +2,32 @@
 
 namespace Espo\Custom\Services;
 
+use Espo\Services\Record;
 use Espo\ORM\Entity;
 
-class TimeEntry extends \Espo\Services\Record
+class TimeEntry extends Record
 {
-    protected function beforeCreateEntity(Entity $entity, $data)
+    public function beforeCreateEntity(Entity $entity, $data)
     {
         parent::beforeCreateEntity($entity, $data);
         
-        // Nastav aktuálního uživatele pokud není nastaven
-        if (!$entity->get('userId')) {
-            $entity->set('userId', $this->user->getId());
-        }
-        
-        // Nastav aktuální datum pokud není nastaveno
-        if (!$entity->get('dateLogged')) {
-            $entity->set('dateLogged', date('Y-m-d'));
-        }
-        
-        // Nastav název pokud není nastaven
+        // Automaticky vygenerovat název
         if (!$entity->get('name')) {
-            $timeSpent = $entity->get('timeSpent') ?: 0;
-            $description = $entity->get('description') ? ' - ' . substr($entity->get('description'), 0, 30) : '';
-            $entity->set('name', "Time Entry {$timeSpent}h{$description}");
+            $hours = $entity->get('timeSpent') ?: 0;
+            $date = $entity->get('dateLogged') ?: date('Y-m-d');
+            $entity->set('name', "Time Entry - {$hours}h - {$date}");
+        }
+    }
+    
+    public function beforeUpdateEntity(Entity $entity, $data)
+    {
+        parent::beforeUpdateEntity($entity, $data);
+        
+        // Aktualizovat název pokud se změnil čas
+        if ($entity->isAttributeChanged('timeSpent') || !$entity->get('name')) {
+            $hours = $entity->get('timeSpent') ?: 0;
+            $date = $entity->get('dateLogged') ?: date('Y-m-d');
+            $entity->set('name', "Time Entry - {$hours}h - {$date}");
         }
     }
 }

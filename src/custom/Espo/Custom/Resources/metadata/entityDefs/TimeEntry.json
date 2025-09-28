@@ -11,16 +11,13 @@
         },
         "user": {
             "type": "link",
-            "required": false,
-            "defaultAttributes": {
-                "assignedUserId": "{user.id}",
-                "assignedUserName": "{user.name}"
-            }
+            "required": false
         },
         "timeSpent": {
             "type": "float",
             "required": true,
-            "min": 0.1
+            "min": 0.1,
+            "default": 1
         },
         "description": {
             "type": "text"
@@ -29,6 +26,22 @@
             "type": "date",
             "required": false,
             "default": "javascript: return this.dateTime.getToday();"
+        },
+        "createdAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "modifiedAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "createdBy": {
+            "type": "link",
+            "readOnly": true
+        },
+        "modifiedBy": {
+            "type": "link",
+            "readOnly": true
         }
     },
     "links": {
@@ -38,6 +51,14 @@
             "foreign": "timeEntries"
         },
         "user": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "createdBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "modifiedBy": {
             "type": "belongsTo",
             "entity": "User"
         }

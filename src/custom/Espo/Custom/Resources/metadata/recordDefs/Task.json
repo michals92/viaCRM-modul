@@ -1,0 +1,8 @@
+{
+    "readLoaderClassNameList": [
+        "Espo\\Custom\\Classes\\FieldProcessing\\Task\\TimeSpentLoader"
+    ],
+    "listLoaderClassNameList": [
+        "Espo\\Custom\\Classes\\FieldProcessing\\Task\\TimeSpentLoader"
+    ]
+}
