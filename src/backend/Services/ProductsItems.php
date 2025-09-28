@@ -8,51 +8,47 @@ use Espo\ORM\Entity;
 class ProductsItems extends Record
 {
     /**
-     * Calculate total quantity from all orders for a product
+     * Convert items data to array format safely
      */
-    public function calculateOrderQuantity(Entity $entity): int
+    private function normalizeItemsData($items): array
     {
-        $productId = $entity->getId();
-        if (!$productId) {
-            return 0;
+        if (empty($items)) {
+            return [];
         }
 
-        // Get configured statuses for counting
-        $statusesForCounting = $entity->get('orderStatusesForCounting');
-        if (empty($statusesForCounting) || !is_array($statusesForCounting)) {
-            // Default statuses if not configured
-            $statusesForCounting = ['Confirmed', 'Processing', 'Shipped', 'Delivered'];
+        if (is_array($items)) {
+            return $items;
         }
 
-        $orderRepository = $this->entityManager->getRDBRepository('Order');
+        if (is_object($items)) {
+            // Convert object to array more efficiently
+            return (array) $items;
+        }
+
+        return [];
+    }
+
+    /**
+     * Calculate quantity from entity items for a specific product
+     */
+    private function calculateQuantityFromEntity(
+        string $entityType, 
+        string $itemsField, 
+        array $statuses, 
+        string $productId
+    ): int {
+        $repository = $this->entityManager->getRDBRepository($entityType);
         
-        // Get orders with configured statuses
-        $orders = $orderRepository
-            ->where([
-                'status' => $statusesForCounting
-            ])
+        $entities = $repository
+            ->where(['status' => $statuses])
             ->find();
 
         $totalQuantity = 0;
 
-        foreach ($orders as $order) {
-            $orderItems = $order->get('orderItems');
+        foreach ($entities as $entity) {
+            $items = $this->normalizeItemsData($entity->get($itemsField));
             
-            if (empty($orderItems)) {
-                continue;
-            }
-
-            // Convert to array if it's an object
-            if (is_object($orderItems)) {
-                $orderItems = json_decode(json_encode($orderItems), true);
-            }
-            
-            if (!is_array($orderItems)) {
-                continue;
-            }
-
-            foreach ($orderItems as $item) {
-                // Handle both array and object notation
+            foreach ($items as $item) {
                 $itemArray = is_object($item) ? (array) $item : $item;
                 
                 if (isset($itemArray['productId']) && $itemArray['productId'] === $productId) {
@@ -65,6 +61,24 @@ class ProductsItems extends Record
     }
 
     /**
+     * Calculate total quantity from all orders for a product
+     */
+    public function calculateOrderQuantity(Entity $entity): int
+    {
+        $productId = $entity->getId();
+        if (!$productId) {
+            return 0;
+        }
+
+        $statusesForCounting = $entity->get('orderStatusesForCounting');
+        if (empty($statusesForCounting) || !is_array($statusesForCounting)) {
+            $statusesForCounting = ['Confirmed', 'Processing', 'Shipped', 'Delivered'];
+        }
+
+        return $this->calculateQuantityFromEntity('Order', 'orderItems', $statusesForCounting, $productId);
+    }
+
+    /**
      * Calculate total quantity from all offers/quotes for a product
      */
     public function calculateQuoteQuantity(Entity $entity): int
@@ -74,51 +88,12 @@ class ProductsItems extends Record
             return 0;
         }
 
-        // Get configured statuses for counting
         $statusesForCounting = $entity->get('offerStatusesForCounting');
         if (empty($statusesForCounting) || !is_array($statusesForCounting)) {
-            // Default statuses if not configured
             $statusesForCounting = ['Sent', 'Accepted'];
         }
 
-        $offerRepository = $this->entityManager->getRDBRepository('Offer');
-        
-        // Get offers with configured statuses
-        $offers = $offerRepository
-            ->where([
-                'status' => $statusesForCounting
-            ])
-            ->find();
-
-        $totalQuantity = 0;
-
-        foreach ($offers as $offer) {
-            $offerItems = $offer->get('offerItems');
-            
-            if (empty($offerItems)) {
-                continue;
-            }
-
-            // Convert to array if it's an object
-            if (is_object($offerItems)) {
-                $offerItems = json_decode(json_encode($offerItems), true);
-            }
-            
-            if (!is_array($offerItems)) {
-                continue;
-            }
-
-            foreach ($offerItems as $item) {
-                // Handle both array and object notation
-                $itemArray = is_object($item) ? (array) $item : $item;
-                
-                if (isset($itemArray['productId']) && $itemArray['productId'] === $productId) {
-                    $totalQuantity += (int) ($itemArray['quantity'] ?? 0);
-                }
-            }
-        }
-
-        return $totalQuantity;
+        return $this->calculateQuantityFromEntity('Offer', 'offerItems', $statusesForCounting, $productId);
     }
 
     /**
@@ -136,77 +111,13 @@ class ProductsItems extends Record
         // Calculate deduction from orders
         $orderStatusesForDeduction = $entity->get('orderStatusesForStockDeduction');
         if (!empty($orderStatusesForDeduction) && is_array($orderStatusesForDeduction)) {
-            $orderRepository = $this->entityManager->getRDBRepository('Order');
-            
-            $orders = $orderRepository
-                ->where([
-                    'status' => $orderStatusesForDeduction
-                ])
-                ->find();
-
-            foreach ($orders as $order) {
-                $orderItems = $order->get('orderItems');
-                
-                if (empty($orderItems)) {
-                    continue;
-                }
-
-                // Convert to array if it's an object
-                if (is_object($orderItems)) {
-                    $orderItems = json_decode(json_encode($orderItems), true);
-                }
-                
-                if (!is_array($orderItems)) {
-                    continue;
-                }
-
-                foreach ($orderItems as $item) {
-                    // Handle both array and object notation
-                    $itemArray = is_object($item) ? (array) $item : $item;
-                    
-                    if (isset($itemArray['productId']) && $itemArray['productId'] === $productId) {
-                        $totalDeduction += (int) ($itemArray['quantity'] ?? 0);
-                    }
-                }
-            }
+            $totalDeduction += $this->calculateQuantityFromEntity('Order', 'orderItems', $orderStatusesForDeduction, $productId);
         }
 
         // Calculate deduction from offers
         $offerStatusesForDeduction = $entity->get('offerStatusesForStockDeduction');
         if (!empty($offerStatusesForDeduction) && is_array($offerStatusesForDeduction)) {
-            $offerRepository = $this->entityManager->getRDBRepository('Offer');
-            
-            $offers = $offerRepository
-                ->where([
-                    'status' => $offerStatusesForDeduction
-                ])
-                ->find();
-
-            foreach ($offers as $offer) {
-                $offerItems = $offer->get('offerItems');
-                
-                if (empty($offerItems)) {
-                    continue;
-                }
-
-                // Convert to array if it's an object
-                if (is_object($offerItems)) {
-                    $offerItems = json_decode(json_encode($offerItems), true);
-                }
-                
-                if (!is_array($offerItems)) {
-                    continue;
-                }
-
-                foreach ($offerItems as $item) {
-                    // Handle both array and object notation
-                    $itemArray = is_object($item) ? (array) $item : $item;
-                    
-                    if (isset($itemArray['productId']) && $itemArray['productId'] === $productId) {
-                        $totalDeduction += (int) ($itemArray['quantity'] ?? 0);
-                    }
-                }
-            }
+            $totalDeduction += $this->calculateQuantityFromEntity('Offer', 'offerItems', $offerStatusesForDeduction, $productId);
         }
 
         return $totalDeduction;
@@ -287,17 +198,28 @@ class ProductsItems extends Record
     }
 
     /**
-     * Recalculate quantities for all products
+     * Recalculate quantities for all products with batch processing
      */
-    public function recalculateAllQuantities(): void
+    public function recalculateAllQuantities(int $batchSize = 100): void
     {
-        $products = $this->entityManager
-            ->getRDBRepository('ProductsItems')
-            ->find();
-
-        foreach ($products as $product) {
-            $this->updateCalculatedFields($product->getId());
-        }
+        $repository = $this->entityManager->getRDBRepository('ProductsItems');
+        $offset = 0;
+        
+        do {
+            $products = $repository
+                ->limit($offset, $batchSize)
+                ->find();
+                
+            foreach ($products as $product) {
+                $this->updateCalculatedFields($product->getId());
+            }
+            
+            $offset += $batchSize;
+            
+            // Clear memory to prevent memory exhaustion
+            $this->entityManager->clear();
+            
+        } while (count($products) === $batchSize);
     }
 
     /**
