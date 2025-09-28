@@ -74,7 +74,8 @@
         },
         "maxStockLevel": {
             "type": "int",
-            "min": 0
+            "min": 0,
+            "default": 0
         },
         "unit": {
             "type": "enum",
@@ -133,6 +134,16 @@
         "offers": {
             "type": "linkMultiple",
             "view": "views/fields/link-multiple"
+        },
+        "orderQuantity": {
+            "type": "int",
+            "default": 0,
+            "min": 0
+        },
+        "quoteQuantity": {
+            "type": "int",
+            "default": 0,
+            "min": 0
         }
     },
     "links": {

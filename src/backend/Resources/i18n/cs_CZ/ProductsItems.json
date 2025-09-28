@@ -33,7 +33,9 @@
         "createdBy": "Vytvořil",
         "modifiedBy": "Upravil",
         "assignedUser": "Přiřazený uživatel",
-        "teams": "Týmy"
+        "teams": "Týmy",
+        "orderQuantity": "Množství v objednávkách",
+        "quoteQuantity": "Množství v nabídkách"
     },
     "options": {
         "productType": {
@@ -64,6 +66,8 @@
         "stockQuantity": "Aktuální množství na skladě",
         "minStockLevel": "Minimální úroveň při které se produkt objedná",
         "maxStockLevel": "Maximální skladová kapacita",
-        "taxRate": "Daňová sazba v procentech"
+        "taxRate": "Daňová sazba v procentech",
+        "orderQuantity": "Množství produktu v objednávkách",
+        "quoteQuantity": "Množství produktu v nabídkách"
     }
 }
