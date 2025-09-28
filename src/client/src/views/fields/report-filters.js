@@ -1,14 +1,17 @@
 define('viacrm:views/fields/report-filters', ['views/fields/base'], function (Dep) {
+    'use strict';
 
     return Dep.extend({
-
         type: 'reportFilters',
-
         editTemplate: 'viacrm:fields/report-filters/edit',
         detailTemplate: 'viacrm:fields/report-filters/detail',
+        
+        SUPPORTED_CONDITIONS: [
+            'equals', 'notEquals', 'contains', 'greaterThan', 'lessThan'
+        ],
 
         data: function () {
-            var data = Dep.prototype.data.call(this);
+            const data = Dep.prototype.data.call(this);
             data.valueIsSet = this.model.has(this.name);
             data.isNotEmpty = !!this.model.get(this.name);
             data.filters = this.getFiltersForDisplay();
@@ -18,14 +21,17 @@ define('viacrm:views/fields/report-filters', ['views/fields/base'], function (De
         setup: function () {
             Dep.prototype.setup.call(this);
             this.entityFields = [];
+            this._fieldsLoaded = false;
             
-            this.listenTo(this.model, 'change:targetEntity', () => {
-                this._fieldsLoaded = false;
-                this.loadEntityFields();
-                if (this.mode === 'edit') {
-                    this.reRender();
-                }
-            });
+            this.listenTo(this.model, 'change:targetEntity', this.onTargetEntityChange.bind(this));
+        },
+        
+        onTargetEntityChange: function () {
+            this._fieldsLoaded = false;
+            this.loadEntityFields();
+            if (this.mode === 'edit') {
+                this.reRender();
+            }
         },
 
         afterRender: function () {
@@ -58,8 +64,13 @@ define('viacrm:views/fields/report-filters', ['views/fields/base'], function (De
                 return;
             }
 
-            // Static field options for each entity type
-            const entityFieldData = {
+            this.entityFields = this.getStaticEntityFields(targetEntity);
+            this._fieldsLoaded = true;
+            this.updateFieldOptions();
+        },
+        
+        getStaticEntityFields: function (targetEntity) {
+            const entityFieldMap = {
                 'Absence': [
                     {name: 'name', type: 'varchar', label: 'Name'},
                     {name: 'status', type: 'enum', label: 'Status'},
@@ -124,10 +135,8 @@ define('viacrm:views/fields/report-filters', ['views/fields/base'], function (De
                     {name: 'accountName', type: 'varchar', label: 'Account'}
                 ]
             };
-
-            this.entityFields = entityFieldData[targetEntity] || [];
-            this._fieldsLoaded = true;
-            this.updateFieldOptions();
+            
+            return entityFieldMap[targetEntity] || [];
         },
 
         updateFieldOptions: function () {
@@ -146,7 +155,26 @@ define('viacrm:views/fields/report-filters', ['views/fields/base'], function (De
             const filtersContainer = this.$el.find('.filters-container');
             const filterIndex = filtersContainer.find('.filter-row').length;
             
-            const filterHtml = `
+            const filterHtml = this.createFilterRowHtml(filterIndex);
+            
+            filtersContainer.append(filterHtml);
+            this.initFilterRow(filtersContainer.find('.filter-row').last(), filterIndex);
+            this.updateFieldOptions();
+        },
+        
+        createFilterRowHtml: function (filterIndex) {
+            const conditionOptions = this.SUPPORTED_CONDITIONS.map(condition => {
+                const labels = {
+                    'equals': 'Equals',
+                    'notEquals': 'Not Equals',
+                    'contains': 'Contains',
+                    'greaterThan': 'Greater Than',
+                    'lessThan': 'Less Than'
+                };
+                return `<option value="${condition}">${labels[condition]}</option>`;
+            }).join('');
+            
+            return `
                 <div class="filter-row" style="margin-bottom: 10px; border: 1px solid #ddd; padding: 10px; border-radius: 4px;">
                     <div class="row">
                         <div class="col-md-3">
@@ -157,11 +185,7 @@ define('viacrm:views/fields/report-filters', ['views/fields/base'], function (De
                         <div class="col-md-3">
                             <select class="form-control filter-type-select" data-index="${filterIndex}">
                                 <option value="">Select Condition</option>
-                                <option value="equals">Equals</option>
-                                <option value="notEquals">Not Equals</option>
-                                <option value="contains">Contains</option>
-                                <option value="greaterThan">Greater Than</option>
-                                <option value="lessThan">Less Than</option>
+                                ${conditionOptions}
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -175,21 +199,20 @@ define('viacrm:views/fields/report-filters', ['views/fields/base'], function (De
                     </div>
                 </div>
             `;
-            
-            filtersContainer.append(filterHtml);
-            this.initFilterRow(filtersContainer.find('.filter-row').last(), filterIndex);
-            this.updateFieldOptions();
         },
 
         initFilterRow: function ($row, index) {
-            $row.find('.remove-filter-btn').on('click', () => {
-                $row.remove();
-                this.trigger('change');
-            });
-            
-            $row.find('select, input').on('change', () => {
-                this.trigger('change');
-            });
+            $row.find('.remove-filter-btn').on('click', this.onRemoveFilter.bind(this, $row));
+            $row.find('select, input').on('change', this.onFilterChange.bind(this));
+        },
+        
+        onRemoveFilter: function ($row) {
+            $row.remove();
+            this.trigger('change');
+        },
+        
+        onFilterChange: function () {
+            this.trigger('change');
         },
 
         getFiltersForDisplay: function () {
@@ -213,6 +236,13 @@ define('viacrm:views/fields/report-filters', ['views/fields/base'], function (De
                 return {};
             }
             
+            const filters = this.collectFiltersFromForm();
+            const data = {};
+            data[this.name] = filters;
+            return data;
+        },
+        
+        collectFiltersFromForm: function () {
             const filters = {};
             
             this.$el.find('.filter-row').each((index, element) => {
@@ -221,21 +251,19 @@ define('viacrm:views/fields/report-filters', ['views/fields/base'], function (De
                 const type = $row.find('.filter-type-select').val();
                 const value = $row.find('.filter-value-input').val();
                 
-                if (field && type && value) {
-                    filters[field] = {
-                        type: type,
-                        value: value
-                    };
+                if (this.isValidFilter(field, type, value)) {
+                    filters[field] = { type, value };
                 }
             });
             
-            const data = {};
-            data[this.name] = filters;
-            return data;
+            return filters;
+        },
+        
+        isValidFilter: function (field, type, value) {
+            return field && type && value && this.SUPPORTED_CONDITIONS.includes(type);
         },
 
         validateRequired: function () {
-            // Not required by default
             return false;
         }
     });

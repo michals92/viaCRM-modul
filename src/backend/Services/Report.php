@@ -6,377 +6,146 @@ use Espo\Services\Record;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Exceptions\NotFound;
+use Espo\Core\Exceptions\Error;
 
 class Report extends Record
 {
+    private const DEFAULT_MAX_SIZE = 100;
+    private const CHART_MAX_SIZE = 200;
+    private const PREVIEW_MAX_SIZE = 10;
+    
+    private const SUPPORTED_CHART_TYPES = ['Bar', 'Line', 'Pie', 'Doughnut'];
+    private const SUPPORTED_REPORT_TYPES = ['List', 'Grid', 'Chart'];
+    
+    private const SAFE_FIELD_TYPES = [
+        'varchar', 'text', 'int', 'float', 'bool', 'date', 'datetime',
+        'enum', 'email', 'phone', 'url', 'currency', 'link'
+    ];
 
-    public function runReport($id)
+    public function runReport(string $id): array
     {
-        error_log("=== REPORT SERVICE START ===");
-        error_log("RunReport called with ID: " . $id);
-        
         try {
-            // Step 1: Get report entity
-            error_log("Step 1: Getting report entity");
             $report = $this->getEntity($id);
             
             if (!$report) {
-                error_log("ERROR: Report not found");
-                return ['error' => 'Report not found', 'type' => 'list', 'data' => [], 'total' => 0];
+                throw new NotFound('Report not found');
             }
             
-            // Step 2: Get report configuration
-            error_log("Step 2: Getting report configuration");
             $type = $report->get('type') ?? 'List';
-            $targetEntity = $report->get('targetEntity') ?? 'User';
-            $columns = $report->get('columns') ?? [];
-            $chartType = $report->get('chartType') ?? 'Bar';
-            $groupBy = $report->get('groupBy');
+            $targetEntity = $report->get('targetEntity');
             
-            error_log("Type: {$type}, Entity: {$targetEntity}");
-            error_log("Columns: " . json_encode($columns));
-            error_log("ChartType: {$chartType}, GroupBy: {$groupBy}");
-            
-            // Step 3: Try real database queries with safe fallback
-            error_log("Step 3: Attempting real database queries");
-            
-            if ($type === 'Chart') {
-                return $this->safeChartQuery($targetEntity, $groupBy, $chartType);
+            if (!$targetEntity) {
+                throw new BadRequest('Target entity is required');
             }
             
-            if ($type === 'Grid') {
-                $listResult = $this->safeListQuery($targetEntity, $columns);
-                return $this->convertToGrid($listResult, $groupBy);
+            if (!in_array($type, self::SUPPORTED_REPORT_TYPES)) {
+                throw new BadRequest('Unsupported report type');
             }
             
-            // Default: List report
-            return $this->safeListQuery($targetEntity, $columns);
-            
+            return match ($type) {
+                'Chart' => $this->runChartReport($report),
+                'Grid' => $this->runGridReport($report),
+                default => $this->runListReport($report)
+            };
         } catch (\Exception $e) {
-            error_log("=== CRITICAL ERROR ===");
-            error_log("Error: " . $e->getMessage());
-            error_log("File: " . $e->getFile());
-            error_log("Line: " . $e->getLine());
-            error_log("Trace: " . $e->getTraceAsString());
+            $this->getLogger()->error('Report execution failed', [
+                'reportId' => $id,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
             
+            throw new Error('Failed to execute report: ' . $e->getMessage());
+        }
+    }
+
+    private function executeListQuery(string $targetEntity, array $columns, array $params = []): array
+    {
+        if (!$this->entityManager->hasRepository($targetEntity)) {
+            throw new BadRequest("Entity '{$targetEntity}' not found");
+        }
+        
+        $repository = $this->entityManager->getRepository($targetEntity);
+        $queryParams = array_merge(['maxSize' => self::DEFAULT_MAX_SIZE], $params);
+        
+        $collection = $repository->find($queryParams);
+        
+        if ($collection->count() === 0) {
             return [
                 'type' => 'list',
                 'data' => [],
                 'total' => 0,
-                'error' => $e->getMessage(),
-                'debug' => [
-                    'file' => $e->getFile(),
-                    'line' => $e->getLine()
-                ]
-            ];
-        } finally {
-            error_log("=== REPORT SERVICE END ===");
-        }
-    }
-
-    private function safeListQuery($targetEntity, $columns)
-    {
-        try {
-            error_log("SafeListQuery: Entity={$targetEntity}, Columns=" . json_encode($columns));
-            
-            // Check if repository exists
-            if (!$this->entityManager->hasRepository($targetEntity)) {
-                error_log("Repository not found for {$targetEntity}");
-                throw new \Exception("Entity repository not found");
-            }
-            
-            $repository = $this->entityManager->getRepository($targetEntity);
-            error_log("Repository obtained successfully");
-            
-            // Very basic query
-            $collection = $repository->find(['maxSize' => 10]);
-            $count = count($collection);
-            error_log("Query executed, found {$count} records");
-            
-            if ($count === 0) {
-                return [
-                    'type' => 'list',
-                    'data' => [],
-                    'total' => 0,
-                    'message' => "No records found for {$targetEntity}"
-                ];
-            }
-            
-            $result = [];
-            foreach ($collection as $entity) {
-                try {
-                    // Safe data extraction
-                    $data = [];
-                    
-                    if (!empty($columns)) {
-                        // Get only requested columns
-                        foreach ($columns as $column) {
-                            try {
-                                $data[$column] = $entity->get($column);
-                            } catch (\Exception $e) {
-                                $data[$column] = null;
-                                error_log("Error getting column {$column}: " . $e->getMessage());
-                            }
-                        }
-                    } else {
-                        // Get safe basic fields dynamically
-                        $data = $this->extractSafeEntityData($entity, $targetEntity);
-                    }
-                    
-                    if (!empty($data)) {
-                        $result[] = $data;
-                    }
-                    
-                } catch (\Exception $entityError) {
-                    error_log("Error processing entity: " . $entityError->getMessage());
-                    // Skip problematic entities
-                    continue;
-                }
-            }
-            
-            return [
-                'type' => 'list',
-                'data' => $result,
-                'total' => count($result),
-                'entityType' => $targetEntity,
-                'columnsUsed' => $columns
-            ];
-            
-        } catch (\Exception $e) {
-            error_log("SafeListQuery error: " . $e->getMessage());
-            
-            // Fallback to sample data
-            $sampleData = !empty($columns) ? 
-                array_fill_keys($columns, 'Sample Value') : 
-                ['id' => '1', 'name' => 'Sample Record'];
-                
-            return [
-                'type' => 'list',
-                'data' => [$sampleData],
-                'total' => 1,
-                'error' => 'Using sample data: ' . $e->getMessage(),
                 'entityType' => $targetEntity
             ];
         }
-    }
-
-    private function safeChartQuery($targetEntity, $groupBy, $chartType)
-    {
-        try {
-            error_log("SafeChartQuery: Entity={$targetEntity}, GroupBy={$groupBy}, ChartType={$chartType}");
-            
-            if (!$groupBy) {
-                throw new \Exception("Group By field required for charts");
-            }
-            
-            if (!$this->entityManager->hasRepository($targetEntity)) {
-                throw new \Exception("Entity repository not found");
-            }
-            
-            $repository = $this->entityManager->getRepository($targetEntity);
-            $collection = $repository->find(['maxSize' => 50]);
-            
-            $chartData = [];
-            foreach ($collection as $entity) {
-                try {
-                    $value = $entity->get($groupBy);
-                    
-                    if ($value === null || $value === '') {
-                        $value = 'Unknown';
-                    } elseif (is_bool($value)) {
-                        $value = $value ? 'Yes' : 'No';
-                    } else {
-                        $value = (string)$value;
-                    }
-                    
-                    $chartData[$value] = ($chartData[$value] ?? 0) + 1;
-                    
-                } catch (\Exception $e) {
-                    // Skip problematic entities
-                    continue;
-                }
-            }
-            
-            // Sort and limit
-            arsort($chartData);
-            $chartData = array_slice($chartData, 0, 8, true);
-            
-            if (empty($chartData)) {
-                $chartData = ['No Data' => 0];
-            }
-            
-            return [
-                'type' => 'chart',
-                'chartType' => $chartType,
-                'labels' => array_keys($chartData),
-                'datasets' => [
-                    [
-                        'label' => ucfirst($groupBy) . ' Count',
-                        'data' => array_values($chartData),
-                        'backgroundColor' => $this->generateColors(count($chartData))
-                    ]
-                ],
-                'total' => array_sum($chartData),
-                'entityType' => $targetEntity,
-                'groupBy' => $groupBy
-            ];
-            
-        } catch (\Exception $e) {
-            error_log("SafeChartQuery error: " . $e->getMessage());
-            
-            // Fallback to sample chart
-            return [
-                'type' => 'chart',
-                'chartType' => $chartType,
-                'labels' => ['Sample A', 'Sample B'],
-                'datasets' => [
-                    [
-                        'label' => ($groupBy ?: 'Status') . ' Count',
-                        'data' => [3, 2],
-                        'backgroundColor' => ['#36A2EB', '#FF6384']
-                    ]
-                ],
-                'total' => 5,
-                'error' => 'Using sample data: ' . $e->getMessage()
-            ];
-        }
-    }
-
-    private function convertToGrid($listResult, $groupBy)
-    {
-        try {
-            if ($listResult['type'] !== 'list' || empty($listResult['data'])) {
-                return $listResult; // Return as-is if not valid list data
-            }
-            
-            $groupedData = [];
-            foreach ($listResult['data'] as $row) {
-                $groupValue = $row[$groupBy] ?? 'Unknown';
-                $groupValue = (string)$groupValue;
-                
-                if (!isset($groupedData[$groupValue])) {
-                    $groupedData[$groupValue] = [];
-                }
-                $groupedData[$groupValue][] = $row;
-            }
-            
-            return [
-                'type' => 'grid',
-                'data' => $groupedData,
-                'groupBy' => $groupBy,
-                'total' => $listResult['total'],
-                'entityType' => $listResult['entityType'] ?? 'Unknown'
-            ];
-            
-        } catch (\Exception $e) {
-            error_log("ConvertToGrid error: " . $e->getMessage());
-            return $listResult; // Return original data on error
-        }
-    }
-
-    private function runListReport($report)
-    {
-        try {
-            $targetEntity = $report->get('targetEntity');
-            $columns = $report->get('columns') ?? [];
-            $orderBy = $report->get('orderBy');
-            $orderDirection = $report->get('orderDirection') ?? 'ASC';
-            
-            error_log("List Report - Target: {$targetEntity}, Columns: " . json_encode($columns));
-            error_log("List Report - OrderBy: {$orderBy}, Direction: {$orderDirection}");
-            
-            if (!$this->entityManager->hasRepository($targetEntity)) {
-                throw new \Exception("Entity '{$targetEntity}' repository not found");
-            }
-            
-            $repository = $this->entityManager->getRepository($targetEntity);
-            
-            // Build query parameters
-            $params = ['maxSize' => 20];
-            
-            if ($orderBy) {
-                $params['orderBy'] = $orderBy;
-                $params['order'] = $orderDirection;
-            }
-            
-            $collection = $repository->find($params);
-            $count = count($collection);
-            error_log("Found {$count} records for {$targetEntity}");
-            
-            if ($count === 0) {
-                return [
-                    'type' => 'list',
-                    'data' => [],
-                    'total' => 0,
-                    'message' => "No records found for {$targetEntity}"
-                ];
-            }
-            
-            $result = [];
-            foreach ($collection as $entity) {
-                try {
-                    $entityData = $entity->getValueMap();
-                    
-                    // If specific columns are selected, filter to only those
-                    if (!empty($columns)) {
-                        $filteredData = [];
-                        foreach ($columns as $column) {
-                            $filteredData[$column] = $entityData[$column] ?? null;
-                        }
-                        $result[] = $filteredData;
-                        error_log("Filtered data for columns: " . json_encode($filteredData));
-                    } else {
-                        // Show common fields for better readability
-                        $commonFields = ['id', 'name', 'status', 'createdAt', 'emailAddress', 'userName', 'firstName', 'lastName'];
-                        $basicData = [];
-                        foreach ($commonFields as $field) {
-                            if (isset($entityData[$field]) && $entityData[$field] !== null) {
-                                $basicData[$field] = $entityData[$field];
-                            }
-                        }
-                        $result[] = $basicData;
-                    }
-                    
-                } catch (\Exception $entityError) {
-                    error_log("Error processing entity: " . $entityError->getMessage());
-                    $result[] = ['id' => 'error', 'name' => 'Error loading entity'];
-                }
-            }
-            
-            return [
-                'type' => 'list',
-                'data' => $result,
-                'total' => count($result),
-                'entityType' => $targetEntity,
-                'columnsUsed' => $columns
-            ];
-            
-        } catch (\Exception $e) {
-            error_log("List Report error: " . $e->getMessage());
-            return [
-                'type' => 'list',
-                'data' => [],
-                'total' => 0,
-                'error' => $e->getMessage()
-            ];
-        }
-    }
-
-    private function runGridReport($report)
-    {
-        $listData = $this->runListReport($report);
-        $groupBy = $report->get('groupBy');
         
+        $result = [];
+        foreach ($collection as $entity) {
+            $data = $this->extractEntityData($entity, $columns, $targetEntity);
+            if (!empty($data)) {
+                $result[] = $data;
+            }
+        }
+        
+        return [
+            'type' => 'list',
+            'data' => $result,
+            'total' => count($result),
+            'entityType' => $targetEntity
+        ];
+    }
+
+    private function executeChartQuery(string $targetEntity, ?string $groupBy, string $chartType): array
+    {
         if (!$groupBy) {
-            return $listData;
+            throw new BadRequest('Group By field is required for chart reports');
+        }
+        
+        if (!in_array($chartType, self::SUPPORTED_CHART_TYPES)) {
+            throw new BadRequest('Unsupported chart type');
+        }
+        
+        if (!$this->entityManager->hasRepository($targetEntity)) {
+            throw new BadRequest("Entity '{$targetEntity}' not found");
+        }
+        
+        $repository = $this->entityManager->getRepository($targetEntity);
+        $collection = $repository->find(['maxSize' => self::CHART_MAX_SIZE]);
+        
+        $chartData = $this->aggregateChartData($collection, $groupBy);
+        
+        if (empty($chartData)) {
+            return $this->createEmptyChartResponse($chartType, $groupBy, $targetEntity);
+        }
+        
+        arsort($chartData);
+        $chartData = array_slice($chartData, 0, 8, true);
+        
+        return [
+            'type' => 'chart',
+            'chartType' => $chartType,
+            'labels' => array_keys($chartData),
+            'datasets' => [
+                [
+                    'label' => ucfirst($groupBy) . ' Count',
+                    'data' => array_values($chartData),
+                    'backgroundColor' => $this->generateColors(count($chartData))
+                ]
+            ],
+            'total' => array_sum($chartData),
+            'entityType' => $targetEntity,
+            'groupBy' => $groupBy
+        ];
+    }
+
+    private function convertToGrid(array $listResult, ?string $groupBy): array
+    {
+        if ($listResult['type'] !== 'list' || empty($listResult['data']) || !$groupBy) {
+            return $listResult;
         }
         
         $groupedData = [];
-        foreach ($listData['data'] as $row) {
-            $groupValue = $row[$groupBy] ?? 'Unknown';
-            if (!isset($groupedData[$groupValue])) {
-                $groupedData[$groupValue] = [];
-            }
+        foreach ($listResult['data'] as $row) {
+            $groupValue = (string)($row[$groupBy] ?? 'Unknown');
             $groupedData[$groupValue][] = $row;
         }
         
@@ -384,179 +153,165 @@ class Report extends Record
             'type' => 'grid',
             'data' => $groupedData,
             'groupBy' => $groupBy,
-            'total' => $listData['total']
+            'total' => $listResult['total'],
+            'entityType' => $listResult['entityType'] ?? 'Unknown'
         ];
     }
 
-    private function runChartReport($report)
+    private function runListReport($report): array
     {
-        try {
-            $chartType = $report->get('chartType') ?? 'Bar';
-            $targetEntity = $report->get('targetEntity');
-            $groupBy = $report->get('groupBy');
-            
-            error_log("Chart Report - Target: {$targetEntity}, GroupBy: {$groupBy}, ChartType: {$chartType}");
-            
-            if (!$groupBy) {
-                throw new \Exception("Group By field is required for chart reports");
-            }
-            
-            if (!$this->entityManager->hasRepository($targetEntity)) {
-                throw new \Exception("Entity '{$targetEntity}' repository not found");
-            }
-            
-            $repository = $this->entityManager->getRepository($targetEntity);
-            $collection = $repository->find(['maxSize' => 100]);
-            
-            $chartData = [];
-            foreach ($collection as $entity) {
-                try {
-                    $groupValue = $entity->get($groupBy);
-                    
-                    // Handle different data types
-                    if ($groupValue === null || $groupValue === '') {
-                        $groupValue = 'Unknown';
-                    } else if (is_bool($groupValue)) {
-                        $groupValue = $groupValue ? 'True' : 'False';
-                    } else {
-                        $groupValue = (string)$groupValue;
-                    }
-                    
-                    if (!isset($chartData[$groupValue])) {
-                        $chartData[$groupValue] = 0;
-                    }
-                    $chartData[$groupValue]++;
-                    
-                } catch (\Exception $entityError) {
-                    error_log("Error processing entity for chart: " . $entityError->getMessage());
-                    // Skip problematic entities
-                    continue;
-                }
-            }
-            
-            // Sort by count descending, limit to top 8 for readability
-            arsort($chartData);
-            $chartData = array_slice($chartData, 0, 8, true);
-            
-            $labels = array_keys($chartData);
-            $values = array_values($chartData);
-            
-            error_log("Chart data: " . json_encode($chartData));
-            
-            if (empty($chartData)) {
-                return [
-                    'type' => 'chart',
-                    'chartType' => $chartType,
-                    'labels' => ['No Data'],
-                    'datasets' => [
-                        [
-                            'label' => ($groupBy ?: 'Status') . ' Count',
-                            'data' => [0],
-                            'backgroundColor' => ['#cccccc']
-                        ]
-                    ],
-                    'total' => 0,
-                    'message' => "No data found for {$targetEntity} grouped by {$groupBy}"
-                ];
-            }
-            
-            return [
-                'type' => 'chart',
-                'chartType' => $chartType,
-                'labels' => $labels,
-                'datasets' => [
-                    [
-                        'label' => ucfirst($groupBy) . ' Count',
-                        'data' => $values,
-                        'backgroundColor' => $this->generateColors(count($labels))
-                    ]
-                ],
-                'total' => array_sum($values),
-                'entityType' => $targetEntity,
-                'groupBy' => $groupBy
-            ];
-            
-        } catch (\Exception $e) {
-            error_log("Chart Report error: " . $e->getMessage());
-            return [
-                'type' => 'chart',
-                'chartType' => 'Bar',
-                'labels' => ['Error'],
-                'datasets' => [
-                    [
-                        'label' => 'Count',
-                        'data' => [1],
-                        'backgroundColor' => ['#ff4444']
-                    ]
-                ],
-                'total' => 1,
-                'error' => $e->getMessage()
-            ];
+        $targetEntity = $report->get('targetEntity');
+        $columns = $report->get('columns') ?? [];
+        $orderBy = $report->get('orderBy');
+        $orderDirection = $report->get('orderDirection') ?? 'ASC';
+        
+        $params = ['maxSize' => self::DEFAULT_MAX_SIZE];
+        
+        if ($orderBy) {
+            $params['orderBy'] = $orderBy;
+            $params['order'] = $orderDirection;
         }
+        
+        return $this->executeListQuery($targetEntity, $columns, $params);
+    }
+
+    private function runGridReport($report): array
+    {
+        $listData = $this->runListReport($report);
+        $groupBy = $report->get('groupBy');
+        
+        return $this->convertToGrid($listData, $groupBy);
+    }
+
+    private function runChartReport($report): array
+    {
+        $chartType = $report->get('chartType') ?? 'Bar';
+        $targetEntity = $report->get('targetEntity');
+        $groupBy = $report->get('groupBy');
+        
+        return $this->executeChartQuery($targetEntity, $groupBy, $chartType);
     }
 
 
-    private function applyDateFilters(&$params, $report)
+    private function aggregateChartData($collection, string $groupBy): array
+    {
+        $chartData = [];
+        foreach ($collection as $entity) {
+            try {
+                $groupValue = $entity->get($groupBy);
+                $groupValue = $this->normalizeGroupValue($groupValue);
+                $chartData[$groupValue] = ($chartData[$groupValue] ?? 0) + 1;
+            } catch (\Exception $e) {
+                continue;
+            }
+        }
+        return $chartData;
+    }
+    
+    private function normalizeGroupValue($value): string
+    {
+        if ($value === null || $value === '') {
+            return 'Unknown';
+        }
+        
+        if (is_bool($value)) {
+            return $value ? 'Yes' : 'No';
+        }
+        
+        return (string)$value;
+    }
+    
+    private function createEmptyChartResponse(string $chartType, string $groupBy, string $targetEntity): array
+    {
+        return [
+            'type' => 'chart',
+            'chartType' => $chartType,
+            'labels' => ['No Data'],
+            'datasets' => [
+                [
+                    'label' => ucfirst($groupBy) . ' Count',
+                    'data' => [0],
+                    'backgroundColor' => ['#cccccc']
+                ]
+            ],
+            'total' => 0,
+            'entityType' => $targetEntity,
+            'groupBy' => $groupBy
+        ];
+    }
+    
+    private function extractEntityData($entity, array $columns, string $targetEntity): array
+    {
+        if (!empty($columns)) {
+            return $this->extractSpecificColumns($entity, $columns);
+        }
+        
+        return $this->extractSafeEntityData($entity, $targetEntity);
+    }
+    
+    private function extractSpecificColumns($entity, array $columns): array
+    {
+        $data = [];
+        foreach ($columns as $column) {
+            try {
+                $data[$column] = $entity->get($column);
+            } catch (\Exception $e) {
+                $data[$column] = null;
+            }
+        }
+        return $data;
+    }
+    
+    private function applyDateFilters(array &$params, $report): void
     {
         $dateFilter = $report->get('dateFilter');
         if (!$dateFilter) {
             return;
         }
         
-        $dateFrom = null;
-        $dateTo = null;
-        
-        switch ($dateFilter) {
-            case 'today':
-                $dateFrom = date('Y-m-d');
-                $dateTo = date('Y-m-d');
-                break;
-            case 'thisWeek':
-                $dateFrom = date('Y-m-d', strtotime('monday this week'));
-                $dateTo = date('Y-m-d', strtotime('sunday this week'));
-                break;
-            case 'thisMonth':
-                $dateFrom = date('Y-m-01');
-                $dateTo = date('Y-m-t');
-                break;
-            case 'thisYear':
-                $dateFrom = date('Y-01-01');
-                $dateTo = date('Y-12-31');
-                break;
-            case 'lastMonth':
-                $dateFrom = date('Y-m-01', strtotime('last month'));
-                $dateTo = date('Y-m-t', strtotime('last month'));
-                break;
-            case 'lastYear':
-                $dateFrom = date('Y-01-01', strtotime('last year'));
-                $dateTo = date('Y-12-31', strtotime('last year'));
-                break;
-            case 'custom':
-                $dateFrom = $report->get('dateFrom');
-                $dateTo = $report->get('dateTo');
-                break;
-        }
+        [$dateFrom, $dateTo] = $this->calculateDateRange($dateFilter, $report);
         
         if ($dateFrom || $dateTo) {
-            // Initialize where array if not set
             if (!isset($params['where'])) {
                 $params['where'] = [];
             }
             
             if ($dateFrom) {
-                $params['where'][] = [
-                    'createdAt>=' => $dateFrom . ' 00:00:00'
-                ];
+                $params['where'][] = ['createdAt>=' => $dateFrom . ' 00:00:00'];
             }
             if ($dateTo) {
-                $params['where'][] = [
-                    'createdAt<=' => $dateTo . ' 23:59:59'
-                ];
+                $params['where'][] = ['createdAt<=' => $dateTo . ' 23:59:59'];
             }
         }
     }
+    
+    private function calculateDateRange(string $dateFilter, $report): array
+    {
+        return match ($dateFilter) {
+            'today' => [date('Y-m-d'), date('Y-m-d')],
+            'thisWeek' => [
+                date('Y-m-d', strtotime('monday this week')),
+                date('Y-m-d', strtotime('sunday this week'))
+            ],
+            'thisMonth' => [date('Y-m-01'), date('Y-m-t')],
+            'thisYear' => [date('Y-01-01'), date('Y-12-31')],
+            'lastMonth' => [
+                date('Y-m-01', strtotime('last month')),
+                date('Y-m-t', strtotime('last month'))
+            ],
+            'lastYear' => [
+                date('Y-01-01', strtotime('last year')),
+                date('Y-12-31', strtotime('last year'))
+            ],
+            'custom' => [
+                $report->get('dateFrom'),
+                $report->get('dateTo')
+            ],
+            default => [null, null]
+        };
+    }
 
-    private function generateColors($count)
+    private function generateColors(int $count): array
     {
         $colors = [
             '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
@@ -572,30 +327,30 @@ class Report extends Record
         return $result;
     }
 
-    public function exportReport($id, $format)
+    public function exportReport(string $id, string $format): array
     {
         $reportData = $this->runReport($id);
         $report = $this->getEntity($id);
         
+        if (!$report) {
+            throw new NotFound('Report not found');
+        }
+        
         $exportFormats = $report->get('exportFormats') ?? ['CSV'];
         
         if (!in_array($format, $exportFormats)) {
-            throw new BadRequest("Export format not allowed for this report");
+            throw new BadRequest('Export format not allowed for this report');
         }
         
-        switch ($format) {
-            case 'CSV':
-                return $this->exportToCsv($reportData, $report);
-            case 'Excel':
-                return $this->exportToExcel($reportData, $report);
-            case 'PDF':
-                return $this->exportToPdf($reportData, $report);
-            default:
-                throw new BadRequest("Unsupported export format");
-        }
+        return match ($format) {
+            'CSV' => $this->exportToCsv($reportData, $report),
+            'Excel' => $this->exportToExcel($reportData, $report),
+            'PDF' => $this->exportToPdf($reportData, $report),
+            default => throw new BadRequest('Unsupported export format')
+        };
     }
 
-    private function exportToCsv($data, $report)
+    private function exportToCsv(array $data, $report): array
     {
         $csv = '';
         
@@ -617,7 +372,7 @@ class Report extends Record
         ];
     }
 
-    private function exportToExcel($data, $report)
+    private function exportToExcel(array $data, $report): array
     {
         return [
             'content' => 'Excel export not implemented yet',
@@ -626,7 +381,7 @@ class Report extends Record
         ];
     }
 
-    private function exportToPdf($data, $report)
+    private function exportToPdf(array $data, $report): array
     {
         return [
             'content' => 'PDF export not implemented yet',
@@ -635,86 +390,81 @@ class Report extends Record
         ];
     }
 
-    private function extractSafeEntityData($entity, $targetEntity)
+    private function extractSafeEntityData($entity, string $targetEntity): array
     {
         try {
-            // Get field definitions from metadata
             $metadata = $this->getContainer()->get('metadata');
             $fieldDefs = $metadata->get(['entityDefs', $targetEntity, 'fields']) ?? [];
             
             $data = [];
-            $safeFieldTypes = [
-                'varchar', 'text', 'int', 'float', 'bool', 'date', 'datetime', 
-                'enum', 'email', 'phone', 'url', 'currency', 'link'
-            ];
             
-            // Always include ID if available
             if ($entity->hasAttribute('id')) {
                 $data['id'] = $entity->get('id');
             }
             
-            // Extract fields based on metadata
             foreach ($fieldDefs as $fieldName => $fieldDef) {
-                try {
-                    $fieldType = $fieldDef['type'] ?? '';
-                    
-                    // Skip unsuitable fields
-                    if (!in_array($fieldType, $safeFieldTypes)) {
-                        continue;
-                    }
-                    
-                    // Skip read-only fields except for basic ones
-                    if (!empty($fieldDef['readOnly']) && !in_array($fieldName, ['createdAt', 'modifiedAt'])) {
-                        continue;
-                    }
-                    
-                    // Skip system fields
-                    if (in_array($fieldName, ['deleted', 'versionNumber'])) {
-                        continue;
-                    }
-                    
-                    if ($entity->hasAttribute($fieldName)) {
-                        $value = $entity->get($fieldName);
-                        
-                        // Format value based on type
-                        $data[$fieldName] = $this->formatFieldValue($value, $fieldType);
-                        
-                        // Limit to reasonable number of fields for display
-                        if (count($data) >= 8) {
-                            break;
-                        }
-                    }
-                } catch (\Exception $e) {
-                    // Skip problematic fields
+                if (!$this->isValidFieldForExtraction($fieldName, $fieldDef, $entity)) {
                     continue;
+                }
+                
+                $fieldType = $fieldDef['type'] ?? 'varchar';
+                $value = $entity->get($fieldName);
+                $data[$fieldName] = $this->formatFieldValue($value, $fieldType);
+                
+                if (count($data) >= 8) {
+                    break;
                 }
             }
             
-            // Fallback to basic fields if nothing was extracted
-            if (empty($data) || count($data) <= 1) { // Only ID
-                $basicFields = ['name', 'title', 'subject', 'status', 'type', 'createdAt'];
-                foreach ($basicFields as $field) {
-                    try {
-                        if ($entity->hasAttribute($field)) {
-                            $data[$field] = $entity->get($field);
-                        }
-                    } catch (\Exception $e) {
-                        // Skip
-                    }
-                }
+            if (count($data) <= 1) {
+                $data = array_merge($data, $this->extractBasicFields($entity));
             }
             
             return $data;
             
         } catch (\Exception $e) {
-            error_log("Error extracting entity data: " . $e->getMessage());
-            
-            // Ultimate fallback
             return ['id' => $entity->get('id') ?? 'unknown'];
         }
     }
     
-    private function formatFieldValue($value, $fieldType)
+    private function isValidFieldForExtraction(string $fieldName, array $fieldDef, $entity): bool
+    {
+        $fieldType = $fieldDef['type'] ?? '';
+        
+        if (!in_array($fieldType, self::SAFE_FIELD_TYPES)) {
+            return false;
+        }
+        
+        if (!empty($fieldDef['readOnly']) && !in_array($fieldName, ['createdAt', 'modifiedAt'])) {
+            return false;
+        }
+        
+        if (in_array($fieldName, ['deleted', 'versionNumber'])) {
+            return false;
+        }
+        
+        return $entity->hasAttribute($fieldName);
+    }
+    
+    private function extractBasicFields($entity): array
+    {
+        $basicFields = ['name', 'title', 'subject', 'status', 'type', 'createdAt'];
+        $data = [];
+        
+        foreach ($basicFields as $field) {
+            try {
+                if ($entity->hasAttribute($field)) {
+                    $data[$field] = $entity->get($field);
+                }
+            } catch (\Exception $e) {
+                continue;
+            }
+        }
+        
+        return $data;
+    }
+    
+    private function formatFieldValue($value, string $fieldType)
     {
         if ($value === null) {
             return null;
