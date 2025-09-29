@@ -32,7 +32,17 @@
         "createdBy": "Created By",
         "modifiedBy": "Modified By",
         "assignedUser": "Assigned User",
-        "teams": "Teams"
+        "teams": "Teams",
+        "orderQuantity": "Order Quantity",
+        "quoteQuantity": "Quote Quantity",
+        "orderStatusesForCounting": "Order Statuses for Counting",
+        "offerStatusesForCounting": "Offer Statuses for Counting",
+        "orderStatusesForStockDeduction": "Order Statuses for Stock Deduction",
+        "offerStatusesForStockDeduction": "Offer Statuses for Stock Deduction",
+        "availableStockQuantity": "Available Stock Quantity"
+    },
+    "labels": {
+        "Recalculate Quantities": "Recalculate Quantities"
     },
     "options": {
         "productType": {
@@ -69,6 +79,13 @@
         "stockQuantity": "Current stock quantity",
         "minStockLevel": "Minimum level when product should be reordered",
         "maxStockLevel": "Maximum storage capacity",
-        "taxRate": "Tax rate in percentage"
+        "taxRate": "Tax rate in percentage",
+        "orderQuantity": "Quantity of product in orders (calculated automatically)",
+        "quoteQuantity": "Quantity of product in quotes (calculated automatically)",
+        "orderStatusesForCounting": "Which order statuses should count towards order quantity",
+        "offerStatusesForCounting": "Which offer statuses should count towards quote quantity",
+        "orderStatusesForStockDeduction": "Which order statuses should deduct from stock quantity",
+        "offerStatusesForStockDeduction": "Which offer statuses should deduct from stock quantity",
+        "availableStockQuantity": "Stock quantity minus deductions from orders/offers"
     }
 }

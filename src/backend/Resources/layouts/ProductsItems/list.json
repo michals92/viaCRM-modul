@@ -25,6 +25,18 @@
         "width": 10
     },
     {
+        "name": "orderQuantity",
+        "width": 10
+    },
+    {
+        "name": "quoteQuantity",
+        "width": 10
+    },
+    {
+        "name": "availableStockQuantity",
+        "width": 10
+    },
+    {
         "name": "category",
         "width": 15
     },

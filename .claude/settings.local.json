@@ -20,7 +20,8 @@
       "Bash(docker logs:*)",
       "Bash(docker exec:*)",
       "Bash(docker cp:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(find:*)"
     ],
     "deny": []
   }

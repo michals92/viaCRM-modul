@@ -33,7 +33,17 @@
         "createdBy": "Vytvořil",
         "modifiedBy": "Upravil",
         "assignedUser": "Přiřazený uživatel",
-        "teams": "Týmy"
+        "teams": "Týmy",
+        "orderQuantity": "Množství v objednávkách",
+        "quoteQuantity": "Množství v nabídkách",
+        "orderStatusesForCounting": "Stavy objednávek pro počítání",
+        "offerStatusesForCounting": "Stavy nabídek pro počítání",
+        "orderStatusesForStockDeduction": "Stavy objednávek pro odečet ze skladu",
+        "offerStatusesForStockDeduction": "Stavy nabídek pro odečet ze skladu",
+        "availableStockQuantity": "Dostupné skladové množství"
+    },
+    "labels": {
+        "Recalculate Quantities": "Přepočítat množství"
     },
     "options": {
         "productType": {
@@ -64,6 +74,13 @@
         "stockQuantity": "Aktuální množství na skladě",
         "minStockLevel": "Minimální úroveň při které se produkt objedná",
         "maxStockLevel": "Maximální skladová kapacita",
-        "taxRate": "Daňová sazba v procentech"
+        "taxRate": "Daňová sazba v procentech",
+        "orderQuantity": "Množství produktu v objednávkách (vypočítáno automaticky)",
+        "quoteQuantity": "Množství produktu v nabídkách (vypočítáno automaticky)",
+        "orderStatusesForCounting": "Které stavy objednávek se počítají do množství objednávek",
+        "offerStatusesForCounting": "Které stavy nabídek se počítají do množství nabídek",
+        "orderStatusesForStockDeduction": "Které stavy objednávek se odečítají ze skladového množství",
+        "offerStatusesForStockDeduction": "Které stavy nabídek se odečítají ze skladového množství",
+        "availableStockQuantity": "Skladové množství minus odečty z objednávek/nabídek"
     }
 }

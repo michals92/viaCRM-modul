@@ -65,7 +65,8 @@
         "stockQuantity": {
             "type": "int",
             "default": 0,
-            "min": 0
+            "min": 0,
+            "view": "viacrm:views/fields/stock-quantity"
         },
         "minStockLevel": {
             "type": "int",
@@ -74,7 +75,8 @@
         },
         "maxStockLevel": {
             "type": "int",
-            "min": 0
+            "min": 0,
+            "default": 0
         },
         "unit": {
             "type": "enum",
@@ -133,6 +135,43 @@
         "offers": {
             "type": "linkMultiple",
             "view": "views/fields/link-multiple"
+        },
+        "orderQuantity": {
+            "type": "int",
+            "default": 0,
+            "min": 0,
+            "readOnly": true
+        },
+        "quoteQuantity": {
+            "type": "int",
+            "default": 0,
+            "min": 0,
+            "readOnly": true
+        },
+        "orderStatusesForCounting": {
+            "type": "multiEnum",
+            "view": "viacrm:views/fields/dynamic-status-multi-enum",
+            "default": ["Confirmed", "Processing", "Shipped", "Delivered"]
+        },
+        "offerStatusesForCounting": {
+            "type": "multiEnum",
+            "view": "viacrm:views/fields/dynamic-status-multi-enum",
+            "default": ["Sent", "Accepted"]
+        },
+        "orderStatusesForStockDeduction": {
+            "type": "multiEnum",
+            "view": "viacrm:views/fields/dynamic-status-multi-enum",
+            "default": ["Shipped", "Delivered"]
+        },
+        "offerStatusesForStockDeduction": {
+            "type": "multiEnum",
+            "view": "viacrm:views/fields/dynamic-status-multi-enum",
+            "default": []
+        },
+        "availableStockQuantity": {
+            "type": "int",
+            "default": 0,
+            "readOnly": true
         }
     },
     "links": {
