@@ -5,6 +5,7 @@
         "status": "Stav",
         "startDate": "Datum začátku",
         "endDate": "Datum konce",
+        "halfDay": "Půl den",
         "days": "Počet dnů",
         "hours": "Počet hodin",
         "dailyHours": "Denní pracovní doba",
@@ -92,6 +93,7 @@
     },
     "tooltips": {
         "type": "Vyberte typ absence - dovolená, nemocenská, osobní volno atd.",
+        "halfDay": "Zaškrtněte pro půldenní absenci. Tato možnost je dostupná pouze když je datum začátku a konce stejné. Počet hodin bude automaticky vydělen dvěma.",
         "days": "Automaticky vypočítané pracovní dny (bez víkendů)",
         "hours": "Počet hodin absence - automaticky vypočítáno podle pracovní doby zaměstnance a počtu pracovních dnů. Při schválení se automaticky odečte z dovolené.",
         "dailyHours": "Denní pracovní doba zaměstnance (týdenní úvazek / 5 dnů)",

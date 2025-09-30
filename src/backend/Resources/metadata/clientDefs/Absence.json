@@ -1,5 +1,9 @@
 {
     "controller": "controllers/record",
+    "recordViews": {
+        "detail": "viacrm:views/absence/record/detail",
+        "edit": "viacrm:views/absence/record/edit"
+    },
     "iconClass": "fas fa-calendar-times",
     "color": "#FF6B6B",
     "quickCreate": true,
