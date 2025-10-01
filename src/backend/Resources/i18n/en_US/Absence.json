@@ -5,6 +5,7 @@
         "status": "Status",
         "startDate": "Start Date",
         "endDate": "End Date",
+        "halfDay": "Half Day",
         "days": "Days",
         "hours": "Hours",
         "dailyHours": "Daily Working Hours",
@@ -91,6 +92,7 @@
     },
     "tooltips": {
         "type": "Select absence type - vacation, sick leave, personal leave, etc.",
+        "halfDay": "Check for half-day absence. This option is only available when start and end dates are the same. Hours will be automatically divided by two.",
         "days": "Automatically calculated working days (excluding weekends)",
         "hours": "Number of absence hours - automatically calculated based on employee's working hours and number of working days. Upon approval, automatically deducted from vacation.",
         "dailyHours": "Employee's daily working hours (weekly hours / 5 days)",

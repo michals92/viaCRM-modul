@@ -20,15 +20,19 @@
             [
                 {
                     "name": "startDate",
-                    "span": 4
+                    "span": 3
                 },
                 {
                     "name": "endDate",
-                    "span": 4
+                    "span": 3
+                },
+                {
+                    "name": "halfDay",
+                    "span": 3
                 },
                 {
                     "name": "hours",
-                    "span": 4
+                    "span": 3
                 }
             ],
             [

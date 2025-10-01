@@ -27,6 +27,11 @@
             "type": "date",
             "required": true
         },
+        "halfDay": {
+            "type": "bool",
+            "default": false,
+            "tooltip": "Zaškrtněte pro půldenní absenci (pouze když je datum začátku a konce stejné)"
+        },
         "days": {
             "type": "int",
             "min": 1,

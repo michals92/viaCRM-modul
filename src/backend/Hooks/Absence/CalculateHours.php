@@ -27,10 +27,11 @@ class CalculateHours implements
         if ($entity->isNew()) {
             $needsRecalculation = true;
         } else {
-            // Check if dates or HR record changed
+            // Check if dates, HR record or halfDay changed
             if ($entity->isAttributeChanged('startDate') || 
                 $entity->isAttributeChanged('endDate') || 
-                $entity->isAttributeChanged('hrRecordId')) {
+                $entity->isAttributeChanged('hrRecordId') ||
+                $entity->isAttributeChanged('halfDay')) {
                 $needsRecalculation = true;
             }
         }
@@ -59,6 +60,14 @@ class CalculateHours implements
             $workingDays = $this->calculateWorkingDays($startDate, $endDate);
             $hours = $workingDays * 8;
             $this->log->debug('CalculateHours: No HR record, calculated ' . $workingDays . ' working days, using default 8 hours/day = ' . $hours . ' hours');
+        }
+        
+        // Check if it's a half-day absence (only valid when start and end date are the same)
+        $isHalfDay = false;
+        if ($entity->get('halfDay') && $startDate === $endDate) {
+            $isHalfDay = true;
+            $hours = $hours / 2;
+            $this->log->debug('CalculateHours: Half-day absence detected, hours divided by 2: ' . $hours);
         }
         
         $entity->set('days', $workingDays);
