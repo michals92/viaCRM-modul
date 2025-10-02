@@ -22,9 +22,7 @@
                 {
                     "name": "assignedUser"
                 },
-                {
-                    "name": "isPublic"
-                }
+                false
             ],
             [
                 {

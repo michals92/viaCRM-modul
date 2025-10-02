@@ -10,7 +10,6 @@
         "orderBy": "Order By",
         "orderDirection": "Order Direction",
         "chartType": "Chart Type",
-        "isPublic": "Public Report",
         "exportFormats": "Export Formats",
         "refreshInterval": "Refresh Interval (minutes)",
         "assignedUser": "Assigned User",

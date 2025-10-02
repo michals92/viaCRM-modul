@@ -59,6 +59,28 @@ class Report extends Record
         }
     }
 
+    public function runReportPreview($reportData): array
+    {
+        $targetEntity = $reportData->targetEntity ?? null;
+        
+        if (!$targetEntity) {
+            throw new BadRequest('Target entity is required');
+        }
+        
+        $columns = $reportData->columns ?? [];
+        $orderBy = $reportData->orderBy ?? null;
+        $orderDirection = $reportData->orderDirection ?? 'ASC';
+        
+        $params = ['maxSize' => self::PREVIEW_MAX_SIZE];
+        
+        if ($orderBy) {
+            $params['orderBy'] = $orderBy;
+            $params['order'] = $orderDirection;
+        }
+        
+        return $this->executeListQuery($targetEntity, $columns, $params);
+    }
+
     private function executeListQuery(string $targetEntity, array $columns, array $params = []): array
     {
         if (!$this->entityManager->hasRepository($targetEntity)) {

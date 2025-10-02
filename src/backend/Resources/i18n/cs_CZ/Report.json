@@ -10,7 +10,6 @@
         "orderBy": "Seřadit podle",
         "orderDirection": "Směr řazení",
         "chartType": "Typ grafu",
-        "isPublic": "Veřejný přehled",
         "exportFormats": "Formáty exportu",
         "refreshInterval": "Interval obnovení (minuty)",
         "assignedUser": "Přiřazený uživatel",

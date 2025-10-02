@@ -17,6 +17,27 @@
                         }
                     ]
                 }
+            },
+            "groupBy": {
+                "required": {
+                    "conditionGroup": [
+                        {
+                            "type": "or",
+                            "value": [
+                                {
+                                    "type": "equals",
+                                    "attribute": "type",
+                                    "value": "Grid"
+                                },
+                                {
+                                    "type": "equals",
+                                    "attribute": "type",
+                                    "value": "Chart"
+                                }
+                            ]
+                        }
+                    ]
+                }
             }
         }
     }

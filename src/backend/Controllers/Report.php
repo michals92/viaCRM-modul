@@ -256,11 +256,8 @@ class Report extends Record
             throw new BadRequest("Target entity is required");
         }
 
-        $tempReport = $this->getEntityManager()->getEntity('Report');
-        $tempReport->set($data);
-        
         $reportService = $this->getRecordService();
-        $result = $reportService->runListReport($tempReport);
+        $result = $reportService->runReportPreview($data);
         
         $response->writeBody(json_encode([
             'preview' => array_slice($result['data'], 0, 10),

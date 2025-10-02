@@ -43,7 +43,7 @@
         },
         "groupBy": {
             "type": "varchar",
-            "required": true,
+            "required": false,
             "tooltip": "Field to group data by",
             "view": "viacrm:views/fields/entity-field-select"
         },
@@ -67,11 +67,6 @@
                 "Doughnut"
             ],
             "default": "Bar"
-        },
-        "isPublic": {
-            "type": "bool",
-            "default": false,
-            "tooltip": "Make this report available to all users"
         },
         "exportFormats": {
             "type": "jsonArray",
