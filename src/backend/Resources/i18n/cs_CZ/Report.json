@@ -50,6 +50,11 @@
         "orderDirection": {
             "ASC": "Vzestupně",
             "DESC": "Sestupně"
+        },
+        "exportFormats": {
+            "CSV": "CSV",
+            "Excel": "Excel",
+            "PDF": "PDF"
         }
     },
     "links": {

@@ -51,7 +51,7 @@ define('viacrm:views/report/modals/export', ['views/modal'], function (Dep) {
                 return;
             }
             
-            const url = `Report/${this.model.id}/export?format=${selectedFormat}`;
+            const url = `api/v1/Report/${this.model.id}/export?format=${selectedFormat}`;
             window.open(this.getBasePath() + '/' + url, '_blank');
             
             this.close();

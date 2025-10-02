@@ -50,6 +50,11 @@
         "orderDirection": {
             "ASC": "Ascending",
             "DESC": "Descending"
+        },
+        "exportFormats": {
+            "CSV": "CSV",
+            "Excel": "Excel",
+            "PDF": "PDF"
         }
     },
     "links": {
@@ -63,6 +68,8 @@
         "View List": "View Report List",
         "Run Report": "Run Report",
         "Export": "Export",
+        "Export Report": "Export Report",
+        "Select export format": "Select export format",
         "Basic Information": "Basic Information",
         "Configuration": "Configuration",
         "Export Options": "Export Options",

@@ -75,7 +75,7 @@
         },
         "exportFormats": {
             "type": "jsonArray",
-            "default": ["CSV"],
+            "default": ["CSV", "Excel", "PDF"],
             "tooltip": "Available export formats for this report",
             "view": "viacrm:views/fields/export-formats"
         },

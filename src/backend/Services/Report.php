@@ -7,6 +7,9 @@ use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Exceptions\NotFound;
 use Espo\Core\Exceptions\Error;
+use Espo\Tools\Pdf\Service as PdfService;
+use Espo\Core\Utils\TemplateFileManager;
+use Espo\Core\Htmlizer\Factory as HtmlizerFactory;
 
 class Report extends Record
 {
@@ -378,6 +381,11 @@ class Report extends Record
         switch ($format) {
             case 'CSV':
                 return $this->exportToCsv($reportData, $report);
+            case 'Excel':
+            case 'XLSX':
+                return $this->exportToExcel($reportData, $report);
+            case 'PDF':
+                return $this->exportToPdf($reportData, $report);
             default:
                 throw new BadRequest('Unsupported export format');
         }
@@ -386,22 +394,26 @@ class Report extends Record
     private function exportToCsv(array $data, $report): array
     {
         $csv = '';
+        $reportName = $report->get('name') ?? 'Report';
         
-        if ($data['type'] === 'list' && !empty($data['data'])) {
-            $headers = array_keys($data['data'][0]);
-            $csv .= implode(',', $headers) . "\n";
-            
-            foreach ($data['data'] as $row) {
-                $csv .= implode(',', array_map(function($value) {
-                    return '"' . str_replace('"', '""', $value) . '"';
-                }, $row)) . "\n";
-            }
+        switch ($data['type']) {
+            case 'list':
+                $csv = $this->generateListCsv($data);
+                break;
+            case 'grid':
+                $csv = $this->generateGridCsv($data);
+                break;
+            case 'chart':
+                $csv = $this->generateChartCsv($data);
+                break;
+            default:
+                throw new BadRequest('Unsupported report type for CSV export');
         }
         
         return [
             'content' => $csv,
             'contentType' => 'text/csv',
-            'filename' => $report->get('name') . '_' . date('Y-m-d_H-i-s') . '.csv'
+            'filename' => $this->sanitizeFileName($reportName) . '_' . date('Y-m-d_H-i-s') . '.csv'
         ];
     }
 
@@ -510,5 +522,545 @@ class Report extends Record
             default:
                 return (string)$value;
         }
+    }
+
+    private function generateListCsv(array $data): string
+    {
+        $csv = '';
+        
+        if (!empty($data['data'])) {
+            $headers = array_keys($data['data'][0]);
+            $csv .= $this->arrayToCsvRow($headers) . "\n";
+            
+            foreach ($data['data'] as $row) {
+                $csv .= $this->arrayToCsvRow(array_values($row)) . "\n";
+            }
+        }
+        
+        return $csv;
+    }
+
+    private function generateGridCsv(array $data): string
+    {
+        $csv = "Group,Item Count\n";
+        
+        if (!empty($data['data'])) {
+            foreach ($data['data'] as $group => $items) {
+                $csv .= $this->arrayToCsvRow([$group, count($items)]) . "\n";
+            }
+        }
+        
+        return $csv;
+    }
+
+    private function generateChartCsv(array $data): string
+    {
+        $csv = "Label,Value\n";
+        
+        if (!empty($data['labels']) && !empty($data['datasets'][0]['data'])) {
+            $labels = $data['labels'];
+            $values = $data['datasets'][0]['data'];
+            
+            for ($i = 0; $i < count($labels); $i++) {
+                $csv .= $this->arrayToCsvRow([$labels[$i], $values[$i]]) . "\n";
+            }
+        }
+        
+        return $csv;
+    }
+
+    private function arrayToCsvRow(array $fields): string
+    {
+        return implode(',', array_map(function($value) {
+            return '"' . str_replace('"', '""', (string)$value) . '"';
+        }, $fields));
+    }
+
+    private function sanitizeFileName(string $filename): string
+    {
+        return preg_replace('/[^a-zA-Z0-9_-]/', '_', $filename);
+    }
+
+    private function exportToExcel(array $data, $report): array
+    {
+        $content = $this->generateExcelXml($data, $report);
+        $reportName = $report->get('name') ?? 'Report';
+        
+        return [
+            'content' => $content,
+            'contentType' => 'application/vnd.ms-excel',
+            'filename' => $this->sanitizeFileName($reportName) . '_' . date('Y-m-d_H-i-s') . '.xls'
+        ];
+    }
+
+    private function generateExcelXml(array $data, $report): string
+    {
+        $reportName = htmlspecialchars($report->get('name') ?? 'Report');
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= '<?mso-application progid="Excel.Sheet"?>' . "\n";
+        $xml .= '<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"' . "\n";
+        $xml .= ' xmlns:o="urn:schemas-microsoft-com:office:office"' . "\n";
+        $xml .= ' xmlns:x="urn:schemas-microsoft-com:office:excel"' . "\n";
+        $xml .= ' xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"' . "\n";
+        $xml .= ' xmlns:html="http://www.w3.org/TR/REC-html40">' . "\n";
+        
+        $xml .= '<Styles>' . "\n";
+        $xml .= '<Style ss:ID="header">' . "\n";
+        $xml .= '<Font ss:Bold="1"/>' . "\n";
+        $xml .= '<Interior ss:Color="#E0E0E0" ss:Pattern="Solid"/>' . "\n";
+        $xml .= '</Style>' . "\n";
+        $xml .= '</Styles>' . "\n";
+        
+        $xml .= '<Worksheet ss:Name="' . $reportName . '">' . "\n";
+        $xml .= '<Table>' . "\n";
+        
+        switch ($data['type']) {
+            case 'list':
+                $xml .= $this->generateExcelListData($data);
+                break;
+            case 'grid':
+                $xml .= $this->generateExcelGridData($data);
+                break;
+            case 'chart':
+                $xml .= $this->generateExcelChartData($data);
+                break;
+        }
+        
+        $xml .= '</Table>' . "\n";
+        $xml .= '</Worksheet>' . "\n";
+        $xml .= '</Workbook>';
+        
+        return $xml;
+    }
+
+    private function generateExcelListData(array $data): string
+    {
+        $xml = '';
+        
+        if (!empty($data['data'])) {
+            $headers = array_keys($data['data'][0]);
+            
+            // Header row
+            $xml .= '<Row>' . "\n";
+            foreach ($headers as $header) {
+                $xml .= '<Cell ss:StyleID="header"><Data ss:Type="String">' . htmlspecialchars($header) . '</Data></Cell>' . "\n";
+            }
+            $xml .= '</Row>' . "\n";
+            
+            // Data rows
+            foreach ($data['data'] as $row) {
+                $xml .= '<Row>' . "\n";
+                foreach ($row as $value) {
+                    $type = is_numeric($value) ? 'Number' : 'String';
+                    $xml .= '<Cell><Data ss:Type="' . $type . '">' . htmlspecialchars((string)$value) . '</Data></Cell>' . "\n";
+                }
+                $xml .= '</Row>' . "\n";
+            }
+        }
+        
+        return $xml;
+    }
+
+    private function generateExcelGridData(array $data): string
+    {
+        $xml = '';
+        
+        // Header row
+        $xml .= '<Row>' . "\n";
+        $xml .= '<Cell ss:StyleID="header"><Data ss:Type="String">Group</Data></Cell>' . "\n";
+        $xml .= '<Cell ss:StyleID="header"><Data ss:Type="String">Item Count</Data></Cell>' . "\n";
+        $xml .= '</Row>' . "\n";
+        
+        if (!empty($data['data'])) {
+            foreach ($data['data'] as $group => $items) {
+                $xml .= '<Row>' . "\n";
+                $xml .= '<Cell><Data ss:Type="String">' . htmlspecialchars($group) . '</Data></Cell>' . "\n";
+                $xml .= '<Cell><Data ss:Type="Number">' . count($items) . '</Data></Cell>' . "\n";
+                $xml .= '</Row>' . "\n";
+            }
+        }
+        
+        return $xml;
+    }
+
+    private function generateExcelChartData(array $data): string
+    {
+        $xml = '';
+        
+        // Header row
+        $xml .= '<Row>' . "\n";
+        $xml .= '<Cell ss:StyleID="header"><Data ss:Type="String">Label</Data></Cell>' . "\n";
+        $xml .= '<Cell ss:StyleID="header"><Data ss:Type="String">Value</Data></Cell>' . "\n";
+        $xml .= '</Row>' . "\n";
+        
+        if (!empty($data['labels']) && !empty($data['datasets'][0]['data'])) {
+            $labels = $data['labels'];
+            $values = $data['datasets'][0]['data'];
+            
+            for ($i = 0; $i < count($labels); $i++) {
+                $xml .= '<Row>' . "\n";
+                $xml .= '<Cell><Data ss:Type="String">' . htmlspecialchars($labels[$i]) . '</Data></Cell>' . "\n";
+                $xml .= '<Cell><Data ss:Type="Number">' . $values[$i] . '</Data></Cell>' . "\n";
+                $xml .= '</Row>' . "\n";
+            }
+        }
+        
+        return $xml;
+    }
+
+    private function exportToPdf(array $data, $report): array
+    {
+        try {
+            // Create dynamic HTML content for the report
+            $html = $this->generateReportHtml($data, $report);
+            
+            // Try to generate PDF using available methods
+            $pdfContents = $this->generatePdfFromHtml($html);
+            
+            if (empty($pdfContents)) {
+                throw new Error('PDF generation resulted in empty content');
+            }
+            
+            $reportName = $report->get('name') ?? 'Report';
+            
+            return [
+                'content' => $pdfContents,
+                'contentType' => 'application/pdf',
+                'filename' => $this->sanitizeFileName($reportName) . '_' . date('Y-m-d_H-i-s') . '.pdf'
+            ];
+            
+        } catch (\Exception $e) {
+            $this->log->error('PDF generation failed for report', [
+                'reportId' => $report->getId(),
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            // Fallback to HTML if PDF generation fails
+            return $this->generateHtmlFallback($data, $report);
+        }
+    }
+
+    private function generateReportHtml(array $data, $report): string
+    {
+        $reportName = htmlspecialchars($report->get('name') ?? 'Report');
+        $reportType = htmlspecialchars($report->get('type') ?? 'List');
+        $targetEntity = htmlspecialchars($report->get('targetEntity') ?? 'Unknown');
+        
+        $html = '<!DOCTYPE html>' . "\n";
+        $html .= '<html><head>' . "\n";
+        $html .= '<meta charset="UTF-8">' . "\n";
+        $html .= '<title>' . $reportName . '</title>' . "\n";
+        $html .= '<style>' . "\n";
+        $html .= 'body { font-family: "DejaVu Sans", Arial, sans-serif; margin: 20px; font-size: 10px; line-height: 1.4; }' . "\n";
+        $html .= 'h1 { color: #333; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-size: 16px; margin-bottom: 20px; }' . "\n";
+        $html .= 'h2 { color: #555; font-size: 12px; margin-bottom: 10px; }' . "\n";
+        $html .= '.report-meta { color: #666; font-size: 9px; margin-bottom: 20px; background: #f8f9fa; padding: 10px; border-radius: 4px; }' . "\n";
+        $html .= 'table { border-collapse: collapse; width: 100%; margin-top: 15px; page-break-inside: auto; }' . "\n";
+        $html .= 'th, td { border: 1px solid #ddd; padding: 4px 6px; text-align: left; vertical-align: top; }' . "\n";
+        $html .= 'th { background-color: #f5f5f5; font-weight: bold; font-size: 9px; }' . "\n";
+        $html .= 'td { font-size: 9px; }' . "\n";
+        $html .= 'tr:nth-child(even) { background-color: #f9f9f9; }' . "\n";
+        $html .= 'tr { page-break-inside: avoid; }' . "\n";
+        $html .= '.chart-summary { margin: 15px 0; padding: 10px; background: #f0f8ff; border-radius: 4px; }' . "\n";
+        $html .= '.total-summary { font-weight: bold; margin-top: 10px; padding: 8px; background: #e8f5e8; }' . "\n";
+        $html .= '</style>' . "\n";
+        $html .= '</head><body>' . "\n";
+        
+        $html .= '<h1>' . $reportName . '</h1>' . "\n";
+        $html .= '<div class="report-meta">' . "\n";
+        $html .= '<strong>Report Type:</strong> ' . $reportType . '<br>' . "\n";
+        $html .= '<strong>Target Entity:</strong> ' . $targetEntity . '<br>' . "\n";
+        $html .= '<strong>Generated on:</strong> ' . date('Y-m-d H:i:s') . '<br>' . "\n";
+        $html .= '<strong>Total Records:</strong> ' . ($data['total'] ?? 0) . "\n";
+        $html .= '</div>' . "\n";
+        
+        switch ($data['type']) {
+            case 'list':
+                $html .= $this->generatePdfListTable($data);
+                break;
+            case 'grid':
+                $html .= $this->generatePdfGridTable($data);
+                break;
+            case 'chart':
+                $html .= $this->generatePdfChartTable($data);
+                break;
+        }
+        
+        $html .= '</body></html>';
+        
+        return $html;
+    }
+    
+    private function generatePdfFromHtml(string $html): string
+    {
+        // Try to use EspoCRM's PDF service first
+        try {
+            $pdfService = $this->injectableFactory->create(PdfService::class);
+            
+            // Create a temporary template for PDF generation
+            $template = $this->entityManager->getEntity('Template');
+            if ($template) {
+                $template->set([
+                    'name' => 'TempReportTemplate_' . uniqid(),
+                    'body' => $html,
+                    'entityType' => 'Report',
+                    'header' => '',
+                    'footer' => '',
+                    'printFooter' => false
+                ]);
+                
+                // Save the temporary template
+                $this->entityManager->saveEntity($template);
+                
+                try {
+                    // Create a temporary report entity
+                    $tempReport = $this->entityManager->getEntity('Report');
+                    $tempReport->set('id', 'temp-report-' . uniqid());
+                    $this->entityManager->saveEntity($tempReport);
+                    
+                    // Generate PDF using EspoCRM's service
+                    $pdfData = $pdfService->generate('Report', $tempReport->getId(), $template->getId());
+                    $pdfContents = $pdfData->getString();
+                    
+                    // Clean up temporary entities
+                    $this->entityManager->removeEntity($template);
+                    $this->entityManager->removeEntity($tempReport);
+                    
+                    if (!empty($pdfContents)) {
+                        return $pdfContents;
+                    }
+                    
+                } catch (\Exception $serviceError) {
+                    // Clean up on error
+                    try {
+                        $this->entityManager->removeEntity($template);
+                        if (isset($tempReport)) {
+                            $this->entityManager->removeEntity($tempReport);
+                        }
+                    } catch (\Exception $cleanupError) {
+                        // Ignore cleanup errors
+                    }
+                    
+                    throw $serviceError;
+                }
+            }
+            
+            // If EspoCRM service fails, try direct PDF libraries
+            return $this->generatePdfWithAvailableLibrary($html);
+            
+        } catch (\Exception $e) {
+            // Fall back to direct PDF generation
+            return $this->generatePdfWithAvailableLibrary($html);
+        }
+    }
+    
+    private function generatePdfWithAvailableLibrary(string $html): string
+    {
+        // Check if TCPDF is available (common in EspoCRM installations)
+        if (class_exists('\TCPDF')) {
+            return $this->generatePdfWithTcpdf($html);
+        }
+        
+        // Check if Dompdf is available
+        if (class_exists('\Dompdf\Dompdf')) {
+            return $this->generatePdfWithDompdf($html);
+        }
+        
+        // Check for other PDF libraries that might be available
+        if (class_exists('\Mpdf\Mpdf')) {
+            return $this->generatePdfWithMpdf($html);
+        }
+        
+        // If no PDF library is available, throw an error
+        throw new Error('No PDF generation library available. Please install TCPDF, Dompdf, or mPDF.');
+    }
+    
+    private function generatePdfWithTcpdf(string $html): string
+    {
+        $pdf = new \TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
+        
+        // Set document information
+        $pdf->SetCreator('EspoCRM Report Module');
+        $pdf->SetAuthor('viaCRM Module');
+        $pdf->SetTitle('Report');
+        
+        // Set margins
+        $pdf->SetMargins(15, 20, 15);
+        $pdf->SetHeaderMargin(5);
+        $pdf->SetFooterMargin(10);
+        
+        // Set auto page breaks
+        $pdf->SetAutoPageBreak(true, 20);
+        
+        // Add a page
+        $pdf->AddPage();
+        
+        // Set font
+        $pdf->SetFont('dejavusans', '', 9);
+        
+        // Output the HTML content
+        $pdf->writeHTML($html, true, false, true, false, '');
+        
+        // Return PDF content as string
+        return $pdf->Output('', 'S');
+    }
+    
+    private function generatePdfWithDompdf(string $html): string
+    {
+        $dompdf = new \Dompdf\Dompdf();
+        $dompdf->loadHtml($html);
+        
+        // Set paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+        
+        // Render the HTML as PDF
+        $dompdf->render();
+        
+        // Return PDF content as string
+        return $dompdf->output();
+    }
+    
+    private function generatePdfWithMpdf(string $html): string
+    {
+        $mpdf = new \Mpdf\Mpdf([
+            'format' => 'A4',
+            'orientation' => 'P',
+            'margin_left' => 15,
+            'margin_right' => 15,
+            'margin_top' => 16,
+            'margin_bottom' => 16,
+            'margin_header' => 9,
+            'margin_footer' => 9
+        ]);
+        
+        $mpdf->WriteHTML($html);
+        
+        // Return PDF content as string
+        return $mpdf->Output('', 'S');
+    }
+    
+    private function generateHtmlFallback(array $data, $report): array
+    {
+        // Fallback to HTML if PDF generation fails
+        $html = $this->generateReportHtml($data, $report);
+        $reportName = $report->get('name') ?? 'Report';
+        
+        return [
+            'content' => $html,
+            'contentType' => 'text/html',
+            'filename' => $this->sanitizeFileName($reportName) . '_' . date('Y-m-d_H-i-s') . '.html'
+        ];
+    }
+
+    private function generatePdfListTable(array $data): string
+    {
+        $html = '<h2>List Report Data</h2>' . "\n";
+        
+        if (!empty($data['data'])) {
+            $headers = array_keys($data['data'][0]);
+            
+            $html .= '<table>' . "\n";
+            
+            // Header row
+            $html .= '<thead><tr>' . "\n";
+            foreach ($headers as $header) {
+                $html .= '<th>' . htmlspecialchars(ucfirst(str_replace('_', ' ', $header))) . '</th>' . "\n";
+            }
+            $html .= '</tr></thead>' . "\n";
+            
+            // Data rows
+            $html .= '<tbody>' . "\n";
+            foreach ($data['data'] as $row) {
+                $html .= '<tr>' . "\n";
+                foreach ($row as $value) {
+                    $cellValue = $value;
+                    if (is_array($value)) {
+                        $cellValue = isset($value['name']) ? $value['name'] : json_encode($value);
+                    }
+                    $html .= '<td>' . htmlspecialchars((string)$cellValue) . '</td>' . "\n";
+                }
+                $html .= '</tr>' . "\n";
+            }
+            $html .= '</tbody>' . "\n";
+            $html .= '</table>' . "\n";
+            
+            // Add summary
+            $html .= '<div class="total-summary">Total Records: ' . count($data['data']) . '</div>' . "\n";
+        } else {
+            $html .= '<p>No data available for this report.</p>' . "\n";
+        }
+        
+        return $html;
+    }
+
+    private function generatePdfGridTable(array $data): string
+    {
+        $groupBy = $data['groupBy'] ?? 'Group';
+        $html = '<h2>Grid Report - Grouped by ' . htmlspecialchars(ucfirst(str_replace('_', ' ', $groupBy))) . '</h2>' . "\n";
+        
+        if (!empty($data['data'])) {
+            $html .= '<table>' . "\n";
+            $html .= '<thead><tr><th>' . htmlspecialchars(ucfirst(str_replace('_', ' ', $groupBy))) . '</th><th>Count</th></tr></thead>' . "\n";
+            $html .= '<tbody>' . "\n";
+            
+            $totalItems = 0;
+            foreach ($data['data'] as $group => $items) {
+                $count = count($items);
+                $totalItems += $count;
+                $html .= '<tr>' . "\n";
+                $html .= '<td>' . htmlspecialchars($group) . '</td>' . "\n";
+                $html .= '<td>' . $count . '</td>' . "\n";
+                $html .= '</tr>' . "\n";
+            }
+            
+            $html .= '</tbody></table>' . "\n";
+            $html .= '<div class="total-summary">Total Groups: ' . count($data['data']) . ' | Total Items: ' . $totalItems . '</div>' . "\n";
+        } else {
+            $html .= '<p>No data available for this report.</p>' . "\n";
+        }
+        
+        return $html;
+    }
+
+    private function generatePdfChartTable(array $data): string
+    {
+        $chartType = $data['chartType'] ?? 'Chart';
+        $groupBy = $data['groupBy'] ?? 'Group';
+        $html = '<h2>' . htmlspecialchars($chartType) . ' Chart Report - ' . htmlspecialchars(ucfirst(str_replace('_', ' ', $groupBy))) . '</h2>' . "\n";
+        
+        if (!empty($data['labels']) && !empty($data['datasets'][0]['data'])) {
+            $labels = $data['labels'];
+            $values = $data['datasets'][0]['data'];
+            $datasetLabel = $data['datasets'][0]['label'] ?? 'Value';
+            
+            // Chart summary
+            $html .= '<div class="chart-summary">' . "\n";
+            $html .= '<strong>Chart Type:</strong> ' . htmlspecialchars($chartType) . '<br>' . "\n";
+            $html .= '<strong>Data Points:</strong> ' . count($labels) . '<br>' . "\n";
+            $html .= '<strong>Total:</strong> ' . array_sum($values) . "\n";
+            $html .= '</div>' . "\n";
+            
+            $html .= '<table>' . "\n";
+            $html .= '<thead><tr><th>' . htmlspecialchars(ucfirst(str_replace('_', ' ', $groupBy))) . '</th><th>' . htmlspecialchars($datasetLabel) . '</th><th>Percentage</th></tr></thead>' . "\n";
+            $html .= '<tbody>' . "\n";
+            
+            $total = array_sum($values);
+            for ($i = 0; $i < count($labels); $i++) {
+                $percentage = $total > 0 ? round(($values[$i] / $total) * 100, 1) : 0;
+                $html .= '<tr>' . "\n";
+                $html .= '<td>' . htmlspecialchars($labels[$i]) . '</td>' . "\n";
+                $html .= '<td>' . $values[$i] . '</td>' . "\n";
+                $html .= '<td>' . $percentage . '%</td>' . "\n";
+                $html .= '</tr>' . "\n";
+            }
+            
+            $html .= '</tbody></table>' . "\n";
+            $html .= '<div class="total-summary">Total: ' . $total . ' items across ' . count($labels) . ' categories</div>' . "\n";
+        } else {
+            $html .= '<p>No chart data available for this report.</p>' . "\n";
+        }
+        
+        return $html;
     }
 }
