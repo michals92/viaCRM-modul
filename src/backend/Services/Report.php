@@ -31,14 +31,6 @@ class Report extends Record
                 throw new NotFound('Report not found');
             }
             
-            // Log what's actually saved in the database
-            error_log('Report execution started: ' . json_encode([
-                'reportId' => $id,
-                'orderBy' => $report->get('orderBy'),
-                'orderDirection' => $report->get('orderDirection'),
-                'targetEntity' => $report->get('targetEntity'),
-                'type' => $report->get('type')
-            ]));
             
             $type = $report->get('type') ?? 'List';
             $targetEntity = $report->get('targetEntity');
@@ -60,12 +52,6 @@ class Report extends Record
                     return $this->runListReport($report);
             }
         } catch (\Exception $e) {
-            error_log('Report execution failed: ' . json_encode([
-                'reportId' => $id,
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]));
-            
             throw new Error('Failed to execute report: ' . $e->getMessage());
         }
     }
@@ -99,15 +85,8 @@ class Report extends Record
                 [$params['orderBy'], $orderDirection]
             ];
             
-            error_log('Applied ordering to query params: ' . json_encode([
-                'orderBy' => $params['orderBy'],
-                'order' => $orderDirection,
-                'orderDirection' => $orderDirection,
-                'allParams' => $queryParams
-            ]));
         }
         
-        error_log('Final query parameters: ' . json_encode($queryParams));
         
         try {
             // Try multiple approaches for ordering
@@ -116,9 +95,7 @@ class Report extends Record
             // Approach 1: Standard repository find
             try {
                 $collection = $repository->find($queryParams);
-                error_log('Standard repository find succeeded');
             } catch (\Exception $e1) {
-                error_log('Standard repository find failed: ' . $e1->getMessage());
                 
                 // Approach 2: Use SelectBuilder if available
                 try {
@@ -134,15 +111,11 @@ class Report extends Record
                         
                         $query = $queryBuilder->build();
                         $collection = $this->entityManager->getCollectionFactory()->createFromQuery($query);
-                        error_log('QueryBuilder approach succeeded');
                     }
                 } catch (\Exception $e2) {
-                    error_log('QueryBuilder approach failed: ' . $e2->getMessage());
-                    
                     // Approach 3: Manual sorting fallback
                     $simpleParams = ['maxSize' => $queryParams['maxSize']];
                     $collection = $repository->find($simpleParams);
-                    error_log('Fallback to simple query succeeded, will sort manually');
                 }
             }
             
@@ -151,10 +124,6 @@ class Report extends Record
             }
             
         } catch (\Exception $e) {
-            error_log('All query execution approaches failed: ' . json_encode([
-                'error' => $e->getMessage(),
-                'queryParams' => $queryParams
-            ]));
             throw $e;
         }
         
@@ -180,7 +149,6 @@ class Report extends Record
             $orderField = $params['orderBy'];
             $orderDirection = strtoupper($params['order'] ?? 'ASC');
             
-            error_log('Applying manual sorting: field=' . $orderField . ', direction=' . $orderDirection);
             
             usort($result, function($a, $b) use ($orderField, $orderDirection) {
                 $aValue = $a[$orderField] ?? '';
@@ -196,7 +164,6 @@ class Report extends Record
                 return $orderDirection === 'DESC' ? -$comparison : $comparison;
             });
             
-            error_log('Manual sorting completed for ' . count($result) . ' records');
         }
         
         return [
@@ -285,13 +252,6 @@ class Report extends Record
             $params['order'] = $orderDirection;
         }
         
-        // Log the parameters being passed to executeListQuery
-        error_log('Running list report: ' . json_encode([
-            'targetEntity' => $targetEntity,
-            'orderBy' => $orderBy,
-            'orderDirection' => $orderDirection,
-            'params' => $params
-        ]));
         
         return $this->executeListQuery($targetEntity, $columns, $params);
     }
@@ -383,62 +343,6 @@ class Report extends Record
         return $data;
     }
     
-    private function applyDateFilters(array &$params, $report): void
-    {
-        $dateFilter = $report->get('dateFilter');
-        if (!$dateFilter) {
-            return;
-        }
-        
-        [$dateFrom, $dateTo] = $this->calculateDateRange($dateFilter, $report);
-        
-        if ($dateFrom || $dateTo) {
-            if (!isset($params['where'])) {
-                $params['where'] = [];
-            }
-            
-            if ($dateFrom) {
-                $params['where'][] = ['createdAt>=' => $dateFrom . ' 00:00:00'];
-            }
-            if ($dateTo) {
-                $params['where'][] = ['createdAt<=' => $dateTo . ' 23:59:59'];
-            }
-        }
-    }
-    
-    private function calculateDateRange(string $dateFilter, $report): array
-    {
-        switch ($dateFilter) {
-            case 'today':
-                return [date('Y-m-d'), date('Y-m-d')];
-            case 'thisWeek':
-                return [
-                    date('Y-m-d', strtotime('monday this week')),
-                    date('Y-m-d', strtotime('sunday this week'))
-                ];
-            case 'thisMonth':
-                return [date('Y-m-01'), date('Y-m-t')];
-            case 'thisYear':
-                return [date('Y-01-01'), date('Y-12-31')];
-            case 'lastMonth':
-                return [
-                    date('Y-m-01', strtotime('last month')),
-                    date('Y-m-t', strtotime('last month'))
-                ];
-            case 'lastYear':
-                return [
-                    date('Y-01-01', strtotime('last year')),
-                    date('Y-12-31', strtotime('last year'))
-                ];
-            case 'custom':
-                return [
-                    $report->get('dateFrom'),
-                    $report->get('dateTo')
-                ];
-            default:
-                return [null, null];
-        }
-    }
 
     private function generateColors(int $count): array
     {
@@ -474,10 +378,6 @@ class Report extends Record
         switch ($format) {
             case 'CSV':
                 return $this->exportToCsv($reportData, $report);
-            case 'Excel':
-                return $this->exportToExcel($reportData, $report);
-            case 'PDF':
-                return $this->exportToPdf($reportData, $report);
             default:
                 throw new BadRequest('Unsupported export format');
         }
@@ -505,23 +405,6 @@ class Report extends Record
         ];
     }
 
-    private function exportToExcel(array $data, $report): array
-    {
-        return [
-            'content' => 'Excel export not implemented yet',
-            'contentType' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            'filename' => $report->get('name') . '_' . date('Y-m-d_H-i-s') . '.xlsx'
-        ];
-    }
-
-    private function exportToPdf(array $data, $report): array
-    {
-        return [
-            'content' => 'PDF export not implemented yet',
-            'contentType' => 'application/pdf',
-            'filename' => $report->get('name') . '_' . date('Y-m-d_H-i-s') . '.pdf'
-        ];
-    }
 
     private function extractSafeEntityData($entity, string $targetEntity): array
     {

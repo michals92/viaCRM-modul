@@ -41,15 +41,9 @@
             "tooltip": "Fields to display in the report",
             "view": "viacrm:views/fields/entity-columns"
         },
-        "filters": {
-            "type": "jsonObject",
-            "required": false,
-            "tooltip": "Filters to apply to the report data",
-            "view": "viacrm:views/fields/report-filters"
-        },
         "groupBy": {
             "type": "varchar",
-            "required": false,
+            "required": true,
             "tooltip": "Field to group data by",
             "view": "viacrm:views/fields/entity-field-select"
         },
@@ -74,30 +68,6 @@
             ],
             "default": "Bar"
         },
-        "dateFilter": {
-            "type": "enum",
-            "options": [
-                "today",
-                "thisWeek",
-                "thisMonth",
-                "thisQuarter",
-                "thisYear",
-                "lastWeek",
-                "lastMonth",
-                "lastQuarter",
-                "lastYear",
-                "custom"
-            ],
-            "required": false
-        },
-        "dateFrom": {
-            "type": "date",
-            "required": false
-        },
-        "dateTo": {
-            "type": "date", 
-            "required": false
-        },
         "isPublic": {
             "type": "bool",
             "default": false,
@@ -105,7 +75,7 @@
         },
         "exportFormats": {
             "type": "jsonArray",
-            "default": ["CSV", "Excel", "PDF"],
+            "default": ["CSV"],
             "tooltip": "Available export formats for this report",
             "view": "viacrm:views/fields/export-formats"
         },

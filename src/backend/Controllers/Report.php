@@ -168,8 +168,6 @@ class Report extends Record
     public function actionGetAvailableEntities(Request $request, Response $response)
     {
         try {
-            error_log("Getting available entities");
-            
             $metadata = $this->getContainer()->get('metadata');
             $entityManager = $this->getContainer()->get('entityManager');
             $language = $this->getContainer()->get('language');
@@ -202,7 +200,6 @@ class Report extends Record
                     ];
                     
                 } catch (\Exception $entityError) {
-                    error_log("Error processing entity {$entityType}: " . $entityError->getMessage());
                     continue;
                 }
             }
@@ -212,11 +209,9 @@ class Report extends Record
                 return strcmp($a['label'], $b['label']);
             });
             
-            error_log("Found " . count($entities) . " available entities");
             $response->writeBody(json_encode($entities));
             
         } catch (\Exception $e) {
-            error_log("Error in actionGetAvailableEntities: " . $e->getMessage());
             $response->setStatus(500);
             $response->writeBody(json_encode(['error' => $e->getMessage()]));
         }

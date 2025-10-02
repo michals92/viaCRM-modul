@@ -17,28 +17,6 @@
                         }
                     ]
                 }
-            },
-            "dateFrom": {
-                "visible": {
-                    "conditionGroup": [
-                        {
-                            "type": "equals",
-                            "attribute": "dateFilter", 
-                            "value": "custom"
-                        }
-                    ]
-                }
-            },
-            "dateTo": {
-                "visible": {
-                    "conditionGroup": [
-                        {
-                            "type": "equals",
-                            "attribute": "dateFilter",
-                            "value": "custom"
-                        }
-                    ]
-                }
             }
         }
     }

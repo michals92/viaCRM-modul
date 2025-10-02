@@ -47,10 +47,6 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
             this.listenTo(this.model, 'change:type', () => {
                 this.toggleChartFields();
             });
-            
-            this.listenTo(this.model, 'change:dateFilter', () => {
-                this.toggleDateFields();
-            });
         },
         
         updateFieldOptions() {
@@ -107,14 +103,6 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
             const isChart = type === 'Chart';
             
             this.toggleField('chartType', isChart);
-        },
-        
-        toggleDateFields() {
-            const dateFilter = this.model.get('dateFilter');
-            const isCustom = dateFilter === 'custom';
-            
-            this.toggleField('dateFrom', isCustom);
-            this.toggleField('dateTo', isCustom);
         },
         
         toggleField(fieldName, show) {

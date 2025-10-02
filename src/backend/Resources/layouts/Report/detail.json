@@ -60,31 +60,6 @@
                 {
                     "name": "refreshInterval"
                 }
-            ],
-            [
-                {
-                    "name": "filters",
-                    "fullWidth": true
-                }
-            ]
-        ]
-    },
-    {
-        "label": "Date Filters",
-        "rows": [
-            [
-                {
-                    "name": "dateFilter"
-                },
-                false
-            ],
-            [
-                {
-                    "name": "dateFrom"
-                },
-                {
-                    "name": "dateTo"
-                }
             ]
         ]
     },
