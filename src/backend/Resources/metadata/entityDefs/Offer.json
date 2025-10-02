@@ -8,9 +8,9 @@
             "trim": true
         },
         "offerNumber": {
-            "type": "varchar",
-            "trim": true,
-            "unique": false
+            "type": "number",
+            "unique": true,
+            "readOnly": true
         },
         "status": {
             "type": "enum",
