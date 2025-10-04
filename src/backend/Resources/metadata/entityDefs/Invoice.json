@@ -73,6 +73,24 @@
         "contactPerson": {
             "type": "link"
         },
+        "contactPersonName": {
+            "type": "foreign",
+            "link": "contactPerson",
+            "field": "name",
+            "readOnly": true
+        },
+        "contactPersonEmailAddress": {
+            "type": "foreign",
+            "link": "contactPerson",
+            "field": "emailAddress",
+            "readOnly": true
+        },
+        "accountEmailAddress": {
+            "type": "foreign",
+            "link": "account", 
+            "field": "emailAddress",
+            "readOnly": true
+        },
         "invoiceEmail": {
             "type": "email"
         },
