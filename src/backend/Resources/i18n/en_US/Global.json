@@ -16,7 +16,8 @@
         "Meeting": "Meeting",
         "Call": "Call",
         "Email": "Email",
-        "Document": "Document"
+        "Document": "Document",
+        "Invoice": "Invoice"
     },
     "scopeNamesPlural": {
         "Absence": "Absences",
@@ -35,12 +36,13 @@
         "Meeting": "Meetings",
         "Call": "Calls",
         "Email": "Emails",
-        "Document": "Documents"
+        "Document": "Documents",
+        "Invoice": "Invoice"
     },
     "labels": {
         "Hr": "HR Employee",
         "Create Absence": "Create Absence",
-        "Create Attendance": "Create Attendance", 
+        "Create Attendance": "Create Attendance",
         "Create Hr": "Create Employee",
         "Create ProductsItems": "Create Product",
         "Create Offer": "Create Offer",

@@ -1,0 +1,112 @@
+[
+    {
+        "label": "Invoice Details",
+        "rows": [
+            [
+                {
+                    "name": "invoiceNumber"
+                },
+                {
+                    "name": "invoiceType"
+                }
+            ],
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "status"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Organization",
+        "rows": [
+            [
+                {
+                    "name": "account"
+                },
+                {
+                    "name": "accountVatId"
+                }
+            ],
+            [
+                {
+                    "name": "contactPerson"
+                },
+                {
+                    "name": "invoiceEmail"
+                }
+            ],
+            [
+                {
+                    "name": "billingAddress",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
+                    "name": "shippingAddress",
+                    "fullWidth": true
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Payment Details",
+        "rows": [
+            [
+                {
+                    "name": "variableSymbol"
+                },
+                {
+                    "name": "constantSymbol"
+                }
+            ],
+            [
+                {
+                    "name": "specificSymbol"
+                },
+                false
+            ]
+        ]
+    },
+    {
+        "label": "Dates",
+        "rows": [
+            [
+                {
+                    "name": "issueDate"
+                },
+                {
+                    "name": "taxableSupplyDate"
+                }
+            ],
+            [
+                {
+                    "name": "dueDate"
+                },
+                {
+                    "name": "paymentDays"
+                }
+            ]
+        ]
+    },
+    {
+        "rows": [
+            [
+                {
+                    "name": "description",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
+                    "name": "attachments",
+                    "fullWidth": true
+                }
+            ]
+        ]
+    }
+]

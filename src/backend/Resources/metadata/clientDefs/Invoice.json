@@ -1,0 +1,5 @@
+{
+    "controller": "controllers/record",
+    "iconClass": "fas fa-file-invoice-dollar",
+    "color": "#3498db"
+}

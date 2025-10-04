@@ -1,0 +1,64 @@
+{
+    "fields": {
+        "name": "Název",
+        "invoiceNumber": "Číslo faktury",
+        "variableSymbol": "Variabilní symbol",
+        "constantSymbol": "Konstantní symbol",
+        "specificSymbol": "Specifický symbol",
+        "invoiceType": "Typ faktury",
+        "account": "Organizace",
+        "accountName": "Název organizace",
+        "accountVatId": "IČO / DIČ / VAT ID",
+        "billingAddress": "Fakturační adresa",
+        "shippingAddress": "Dodací adresa",
+        "contactPerson": "Kontaktní osoba",
+        "invoiceEmail": "Email pro e-fakturu",
+        "issueDate": "Datum vystavení",
+        "taxableSupplyDate": "Datum zdanitelného plnění",
+        "dueDate": "Datum splatnosti",
+        "paymentDays": "Počet dní splatnosti",
+        "status": "Stav",
+        "description": "Popis",
+        "assignedUser": "Přiřazený uživatel",
+        "teams": "Týmy",
+        "createdAt": "Vytvořeno",
+        "modifiedAt": "Upraveno",
+        "createdBy": "Vytvořil",
+        "modifiedBy": "Upravil",
+        "attachments": "Přílohy"
+    },
+    "options": {
+        "invoiceType": {
+            "standard": "Běžná",
+            "advance": "Zálohová",
+            "proforma": "Proforma",
+            "creditNote": "Dobropis",
+            "taxDocument": "Daňový doklad"
+        },
+        "status": {
+            "draft": "Koncept",
+            "sent": "Odeslána",
+            "paid": "Zaplacena",
+            "cancelled": "Stornována"
+        }
+    },
+    "links": {
+        "account": "Organizace",
+        "contactPerson": "Kontaktní osoba",
+        "assignedUser": "Přiřazený uživatel",
+        "teams": "Týmy",
+        "createdBy": "Vytvořil",
+        "modifiedBy": "Upravil",
+        "attachments": "Přílohy"
+    },
+    "labels": {
+        "Create": "Vytvořit fakturu",
+        "View List": "Zobrazit seznam faktur"
+    },
+    "tooltips": {
+        "variableSymbol": "Pro párování plateb (max 10 číslic)",
+        "constantSymbol": "Bankovní identifikátor (max 10 číslic)",
+        "specificSymbol": "Dodatečná identifikace (max 10 číslic)",
+        "paymentDays": "Automaticky vypočítáno z data vystavení a splatnosti"
+    }
+}
