@@ -23,7 +23,8 @@
       "Bash(mv:*)",
       "Bash(find:*)",
       "WebFetch(domain:forum.espocrm.com)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(php -l:*)"
     ],
     "deny": []
   }
