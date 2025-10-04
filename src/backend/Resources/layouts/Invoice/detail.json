@@ -28,12 +28,20 @@
                     "name": "account"
                 },
                 {
-                    "name": "accountVatId"
+                    "name": "contactPerson"
                 }
             ],
             [
                 {
-                    "name": "contactPerson"
+                    "name": "accountCompanyId"
+                },
+                {
+                    "name": "accountTaxId"
+                }
+            ],
+            [
+                {
+                    "name": "accountVatId"
                 },
                 {
                     "name": "invoiceEmail"

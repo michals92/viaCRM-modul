@@ -49,6 +49,16 @@
             "type": "varchar",
             "disabled": true
         },
+        "accountCompanyId": {
+            "type": "varchar",
+            "maxLength": 20,
+            "trim": true
+        },
+        "accountTaxId": {
+            "type": "varchar",
+            "maxLength": 20,
+            "trim": true
+        },
         "accountVatId": {
             "type": "varchar",
             "maxLength": 50,
