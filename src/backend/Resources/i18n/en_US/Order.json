@@ -31,6 +31,7 @@
             "Processing": "Processing",
             "Shipped": "Shipped",
             "Delivered": "Delivered",
+            "Invoiced": "Invoiced",
             "Cancelled": "Cancelled",
             "Refunded": "Refunded"
         }
@@ -51,6 +52,7 @@
         "Send PDF Email": "Send PDF Email",
         "Manage PDF Templates": "Manage PDF Templates",
         "Send PDF via Email": "Send PDF via Email",
+        "Convert to Invoice": "Convert to Invoice",
         "PDF Document": "PDF Document",
         "Direct PDF Link": "Direct PDF Link",
         "PDF Link": "PDF Link",
@@ -65,6 +67,9 @@
         "Please find the PDF document here": "Please find the PDF document here",
         "Note: Click the link above to download the PDF document.": "Note: Click the link above to download the PDF document.",
         "PDF link added to email": "PDF link added to email",
-        "PDF attached": "PDF attached"
+        "PDF attached": "PDF attached",
+        "Are you sure you want to convert this order to an invoice?": "Are you sure you want to convert this order to an invoice?",
+        "Converting...": "Converting...",
+        "Order converted to invoice successfully": "Order converted to invoice successfully"
     }
 }
