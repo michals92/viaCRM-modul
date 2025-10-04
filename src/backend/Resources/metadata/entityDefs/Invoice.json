@@ -90,7 +90,8 @@
         },
         "paymentDays": {
             "type": "int",
-            "readOnly": true
+            "readOnly": true,
+            "notStorable": false
         },
         "status": {
             "type": "enum",

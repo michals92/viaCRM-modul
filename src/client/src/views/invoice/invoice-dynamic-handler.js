@@ -17,6 +17,11 @@ define('viacrm:views/invoice/invoice-dynamic-handler', [], function () {
             if (options.ui && model.hasChanged('accountId')) {
                 this.handleAccountChange(model, options);
             }
+            
+            // Calculate payment days when dates change
+            if (options.ui && (model.hasChanged('issueDate') || model.hasChanged('dueDate'))) {
+                this.calculatePaymentDays(model);
+            }
         },
 
         handleAccountChange: function (model, options) {
@@ -135,6 +140,38 @@ define('viacrm:views/invoice/invoice-dynamic-handler', [], function () {
                 'shippingAddressPostalCode': '',
                 'invoiceEmail': ''
             });
+        },
+
+        calculatePaymentDays: function (model) {
+            var issueDate = model.get('issueDate');
+            var dueDate = model.get('dueDate');
+            
+            if (!issueDate || !dueDate) {
+                // Clear payment days if either date is missing
+                model.set('paymentDays', null);
+                return;
+            }
+            
+            try {
+                // Parse dates (format: YYYY-MM-DD)
+                var issueDateObj = new Date(issueDate);
+                var dueDateObj = new Date(dueDate);
+                
+                // Calculate difference in milliseconds
+                var timeDiff = dueDateObj.getTime() - issueDateObj.getTime();
+                
+                // Convert to days
+                var daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                
+                // Set the calculated days
+                model.set('paymentDays', daysDiff);
+                
+                console.log('Payment days calculated:', daysDiff, 'from', issueDate, 'to', dueDate);
+                
+            } catch (error) {
+                console.error('Error calculating payment days:', error);
+                model.set('paymentDays', null);
+            }
         }
 
     });
