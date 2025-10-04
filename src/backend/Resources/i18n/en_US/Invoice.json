@@ -27,7 +27,10 @@
         "modifiedAt": "Modified At",
         "createdBy": "Created By",
         "modifiedBy": "Modified By",
-        "attachments": "Attachments"
+        "attachments": "Attachments",
+        "invoiceItems": "Invoice Items",
+        "overallDiscountType": "Overall Discount Type",
+        "overallDiscountValue": "Overall Discount Value"
     },
     "options": {
         "invoiceType": {

@@ -27,7 +27,10 @@
         "modifiedAt": "Upraveno",
         "createdBy": "Vytvořil",
         "modifiedBy": "Upravil",
-        "attachments": "Přílohy"
+        "attachments": "Přílohy",
+        "invoiceItems": "Položky faktury",
+        "overallDiscountType": "Typ celkové slevy",
+        "overallDiscountValue": "Hodnota celkové slevy"
     },
     "options": {
         "invoiceType": {

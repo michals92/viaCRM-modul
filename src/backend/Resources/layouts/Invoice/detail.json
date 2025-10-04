@@ -111,6 +111,12 @@
             ],
             [
                 {
+                    "name": "invoiceItems",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
                     "name": "attachments",
                     "fullWidth": true
                 }

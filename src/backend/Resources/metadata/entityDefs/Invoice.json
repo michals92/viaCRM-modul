@@ -141,6 +141,18 @@
         },
         "attachments": {
             "type": "attachmentMultiple"
+        },
+        "invoiceItems": {
+            "type": "invoiceItems"
+        },
+        "overallDiscountType": {
+            "type": "enum",
+            "options": ["percentage", "fixed"],
+            "default": "percentage"
+        },
+        "overallDiscountValue": {
+            "type": "float",
+            "default": 0
         }
     },
     "links": {
@@ -177,6 +189,12 @@
             "foreign": "parent",
             "layoutRelationshipsDisabled": true,
             "relationName": "attachments"
+        },
+        "productsItems": {
+            "type": "hasMany",
+            "entity": "ProductsItems",
+            "foreign": "invoices",
+            "relationName": "invoiceProductsItems"
         }
     },
     "collection": {
