@@ -10,45 +10,27 @@ use Espo\Core\Exceptions\NotFound;
 
 class Report extends Record
 {
-    public function actionRun(Request $request, Response $response)
+    public function actionRun(Request $request, Response $response): void
     {
-        try {
-            $id = $request->getRouteParam('id');
-            if (!$id) {
-                throw new BadRequest("Report ID is required");
-            }
-
-            error_log("Controller - Running report with ID: " . $id);
-            
-            $reportService = $this->getRecordService();
-            $result = $reportService->runReport($id);
-            
-            error_log("Controller - Report result: " . json_encode($result));
-            
-            $response->setHeader('Content-Type', 'application/json');
-            $response->writeBody(json_encode($result));
-        } catch (\Exception $e) {
-            error_log("Controller error in actionRun: " . $e->getMessage());
-            error_log("Controller error trace: " . $e->getTraceAsString());
-            
-            $response->setStatus(500);
-            $response->setHeader('Content-Type', 'application/json');
-            $response->writeBody(json_encode([
-                'error' => $e->getMessage(),
-                'type' => 'list',
-                'data' => [],
-                'total' => 0
-            ]));
+        $id = $request->getRouteParam('id');
+        if (!$id) {
+            throw new BadRequest('Report ID is required');
         }
+
+        $reportService = $this->getRecordService();
+        $result = $reportService->runReport($id);
+        
+        $response->setHeader('Content-Type', 'application/json');
+        $response->writeBody(json_encode($result));
     }
 
-    public function actionExport(Request $request, Response $response)
+    public function actionExport(Request $request, Response $response): void
     {
         $id = $request->getRouteParam('id');
         $format = $request->getQueryParam('format', 'CSV');
         
         if (!$id) {
-            throw new BadRequest("Report ID is required");
+            throw new BadRequest('Report ID is required');
         }
 
         $reportService = $this->getRecordService();
@@ -59,70 +41,45 @@ class Report extends Record
         $response->writeBody($result['content']);
     }
 
-    public function actionGetEntityFields(Request $request, Response $response)
+    public function actionGetEntityFields(Request $request, Response $response): void
     {
-        try {
-            $entityType = $request->getQueryParam('entityType');
-            if (!$entityType) {
-                throw new BadRequest("Entity type is required");
-            }
-
-            error_log("Getting fields for entity: " . $entityType);
-
-            // Get entity metadata dynamically
-            $metadata = $this->getContainer()->get('metadata');
-            $entityManager = $this->getContainer()->get('entityManager');
-            
-            // Check if entity exists
-            if (!$entityManager->hasRepository($entityType)) {
-                throw new BadRequest("Entity type '{$entityType}' does not exist");
-            }
-
-            // Get field definitions from metadata
-            $fieldDefs = $metadata->get(['entityDefs', $entityType, 'fields']) ?? [];
-            
-            $fields = [];
-            
-            // Process each field definition
-            foreach ($fieldDefs as $fieldName => $fieldDef) {
-                try {
-                    // Skip system/internal fields that shouldn't be in reports
-                    if ($this->shouldSkipField($fieldName, $fieldDef)) {
-                        continue;
-                    }
-                    
-                    $fieldType = $fieldDef['type'] ?? 'varchar';
-                    $label = $this->getFieldLabel($entityType, $fieldName, $metadata);
-                    
-                    $fields[] = [
-                        'name' => $fieldName,
-                        'type' => $fieldType,
-                        'label' => $label
-                    ];
-                    
-                } catch (\Exception $fieldError) {
-                    error_log("Error processing field {$fieldName}: " . $fieldError->getMessage());
-                    // Skip problematic fields
-                    continue;
-                }
-            }
-            
-            // Sort fields by label for better UX
-            usort($fields, function($a, $b) {
-                return strcmp($a['label'], $b['label']);
-            });
-
-            error_log("Found " . count($fields) . " fields for {$entityType}");
-            $response->writeBody(json_encode($fields));
-            
-        } catch (\Exception $e) {
-            error_log("Error in actionGetEntityFields: " . $e->getMessage());
-            $response->setStatus(500);
-            $response->writeBody(json_encode(['error' => $e->getMessage()]));
+        $entityType = $request->getQueryParam('entityType');
+        if (!$entityType) {
+            throw new BadRequest('Entity type is required');
         }
+
+        $metadata = $this->getContainer()->get('metadata');
+        $entityManager = $this->getContainer()->get('entityManager');
+        
+        if (!$entityManager->hasRepository($entityType)) {
+            throw new BadRequest("Entity type '{$entityType}' does not exist");
+        }
+
+        $fieldDefs = $metadata->get(['entityDefs', $entityType, 'fields']) ?? [];
+        $fields = [];
+        
+        foreach ($fieldDefs as $fieldName => $fieldDef) {
+            if ($this->shouldSkipField($fieldName, $fieldDef)) {
+                continue;
+            }
+            
+            $fieldType = $fieldDef['type'] ?? 'varchar';
+            $label = $this->getFieldLabel($entityType, $fieldName, $metadata);
+            
+            $fields[] = [
+                'name' => $fieldName,
+                'type' => $fieldType,
+                'label' => $label
+            ];
+        }
+        
+        usort($fields, function($a, $b) {
+            return strcmp($a['label'], $b['label']);
+        });
+        $response->writeBody(json_encode($fields));
     }
 
-    private function shouldSkipField($fieldName, $fieldDef)
+    private function shouldSkipField(string $fieldName, array $fieldDef): bool
     {
         $fieldType = $fieldDef['type'] ?? '';
         
@@ -163,7 +120,7 @@ class Report extends Record
         return false;
     }
 
-    private function getFieldLabel($entityType, $fieldName, $metadata)
+    private function getFieldLabel(string $entityType, string $fieldName, $metadata): string
     {
         // Try to get label from language data
         $language = $this->getContainer()->get('language');
@@ -184,7 +141,7 @@ class Report extends Record
         return $label;
     }
 
-    private function makeNiceLabel($fieldName)
+    private function makeNiceLabel(string $fieldName): string
     {
         // Convert camelCase to Nice Label
         $label = preg_replace('/([A-Z])/', ' $1', $fieldName);
@@ -211,8 +168,6 @@ class Report extends Record
     public function actionGetAvailableEntities(Request $request, Response $response)
     {
         try {
-            error_log("Getting available entities");
-            
             $metadata = $this->getContainer()->get('metadata');
             $entityManager = $this->getContainer()->get('entityManager');
             $language = $this->getContainer()->get('language');
@@ -245,7 +200,6 @@ class Report extends Record
                     ];
                     
                 } catch (\Exception $entityError) {
-                    error_log("Error processing entity {$entityType}: " . $entityError->getMessage());
                     continue;
                 }
             }
@@ -255,11 +209,9 @@ class Report extends Record
                 return strcmp($a['label'], $b['label']);
             });
             
-            error_log("Found " . count($entities) . " available entities");
             $response->writeBody(json_encode($entities));
             
         } catch (\Exception $e) {
-            error_log("Error in actionGetAvailableEntities: " . $e->getMessage());
             $response->setStatus(500);
             $response->writeBody(json_encode(['error' => $e->getMessage()]));
         }
@@ -304,11 +256,8 @@ class Report extends Record
             throw new BadRequest("Target entity is required");
         }
 
-        $tempReport = $this->getEntityManager()->getEntity('Report');
-        $tempReport->set($data);
-        
         $reportService = $this->getRecordService();
-        $result = $reportService->runListReport($tempReport);
+        $result = $reportService->runReportPreview($data);
         
         $response->writeBody(json_encode([
             'preview' => array_slice($result['data'], 0, 10),

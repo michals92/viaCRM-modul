@@ -17,10 +17,6 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
             this.listenTo(this.model, 'change:type', () => {
                 this.toggleChartFields();
             });
-            
-            this.listenTo(this.model, 'change:dateFilter', () => {
-                this.toggleDateFields();
-            });
         },
         
         setupPreviewButton() {
@@ -39,7 +35,6 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
             }
             
             this.toggleChartFields();
-            this.toggleDateFields();
         },
         
         updateFieldOptions() {
@@ -70,14 +65,12 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
         updateGroupByOptions(fields) {
             const groupByView = this.getFieldView('groupBy');
             if (groupByView) {
-                const options = [''].concat(
-                    fields
-                        .filter(field => ['enum', 'varchar', 'bool', 'date'].includes(field.type))
-                        .map(field => field.name)
-                );
+                const options = fields
+                    .filter(field => ['enum', 'varchar', 'bool', 'date'].includes(field.type))
+                    .map(field => field.name);
                 
                 groupByView.params.options = options;
-                groupByView.translatedOptions = { '': 'None' };
+                groupByView.translatedOptions = {};
                 fields.forEach(field => {
                     groupByView.translatedOptions[field.name] = field.label;
                 });
@@ -105,14 +98,6 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
             this.toggleField('chartType', isChart);
         },
         
-        toggleDateFields() {
-            const dateFilter = this.model.get('dateFilter');
-            const isCustom = dateFilter === 'custom';
-            
-            this.toggleField('dateFrom', isCustom);
-            this.toggleField('dateTo', isCustom);
-        },
-        
         toggleField(fieldName, show) {
             const fieldView = this.getFieldView(fieldName);
             if (fieldView) {
@@ -128,13 +113,9 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
             const data = {
                 targetEntity: this.model.get('targetEntity'),
                 columns: this.model.get('columns'),
-                filters: this.model.get('filters'),
                 groupBy: this.model.get('groupBy'),
                 orderBy: this.model.get('orderBy'),
-                orderDirection: this.model.get('orderDirection'),
-                dateFilter: this.model.get('dateFilter'),
-                dateFrom: this.model.get('dateFrom'),
-                dateTo: this.model.get('dateTo')
+                orderDirection: this.model.get('orderDirection')
             };
             
             if (!data.targetEntity) {

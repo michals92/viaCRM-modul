@@ -41,12 +41,6 @@
             "tooltip": "Fields to display in the report",
             "view": "viacrm:views/fields/entity-columns"
         },
-        "filters": {
-            "type": "jsonObject",
-            "required": false,
-            "tooltip": "Filters to apply to the report data",
-            "view": "viacrm:views/fields/report-filters"
-        },
         "groupBy": {
             "type": "varchar",
             "required": false,
@@ -73,35 +67,6 @@
                 "Doughnut"
             ],
             "default": "Bar"
-        },
-        "dateFilter": {
-            "type": "enum",
-            "options": [
-                "today",
-                "thisWeek",
-                "thisMonth",
-                "thisQuarter",
-                "thisYear",
-                "lastWeek",
-                "lastMonth",
-                "lastQuarter",
-                "lastYear",
-                "custom"
-            ],
-            "required": false
-        },
-        "dateFrom": {
-            "type": "date",
-            "required": false
-        },
-        "dateTo": {
-            "type": "date", 
-            "required": false
-        },
-        "isPublic": {
-            "type": "bool",
-            "default": false,
-            "tooltip": "Make this report available to all users"
         },
         "exportFormats": {
             "type": "jsonArray",

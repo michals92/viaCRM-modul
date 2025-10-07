@@ -176,6 +176,14 @@
         }
     },
     {
+        "route": "/Report/action/getAvailableEntities",
+        "method": "GET",
+        "params": {
+            "controller": "Report",
+            "action": "getAvailableEntities"
+        }
+    },
+    {
         "route": "/Report/action/getEntityFields",
         "method": "GET",
         "params": {

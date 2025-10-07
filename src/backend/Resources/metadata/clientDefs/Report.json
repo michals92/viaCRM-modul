@@ -18,24 +18,23 @@
                     ]
                 }
             },
-            "dateFrom": {
-                "visible": {
+            "groupBy": {
+                "required": {
                     "conditionGroup": [
                         {
-                            "type": "equals",
-                            "attribute": "dateFilter", 
-                            "value": "custom"
-                        }
-                    ]
-                }
-            },
-            "dateTo": {
-                "visible": {
-                    "conditionGroup": [
-                        {
-                            "type": "equals",
-                            "attribute": "dateFilter",
-                            "value": "custom"
+                            "type": "or",
+                            "value": [
+                                {
+                                    "type": "equals",
+                                    "attribute": "type",
+                                    "value": "Grid"
+                                },
+                                {
+                                    "type": "equals",
+                                    "attribute": "type",
+                                    "value": "Chart"
+                                }
+                            ]
                         }
                     ]
                 }

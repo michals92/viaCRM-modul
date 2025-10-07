@@ -6,15 +6,10 @@
         "type": "Typ přehledu",
         "targetEntity": "Cílová entita",
         "columns": "Sloupce",
-        "filters": "Filtry",
         "groupBy": "Seskupit podle",
         "orderBy": "Seřadit podle",
         "orderDirection": "Směr řazení",
         "chartType": "Typ grafu",
-        "dateFilter": "Filtr data",
-        "dateFrom": "Datum od",
-        "dateTo": "Datum do",
-        "isPublic": "Veřejný přehled",
         "exportFormats": "Formáty exportu",
         "refreshInterval": "Interval obnovení (minuty)",
         "assignedUser": "Přiřazený uživatel",
@@ -51,21 +46,14 @@
             "Pie": "Koláčový graf",
             "Doughnut": "Koblizkový graf"
         },
-        "dateFilter": {
-            "today": "Dnes",
-            "thisWeek": "Tento týden",
-            "thisMonth": "Tento měsíc",
-            "thisQuarter": "Toto čtvrtletí",
-            "thisYear": "Tento rok",
-            "lastWeek": "Minulý týden",
-            "lastMonth": "Minulý měsíc",
-            "lastQuarter": "Minulé čtvrtletí",
-            "lastYear": "Minulý rok",
-            "custom": "Vlastní rozsah"
-        },
         "orderDirection": {
             "ASC": "Vzestupně",
             "DESC": "Sestupně"
+        },
+        "exportFormats": {
+            "CSV": "CSV",
+            "Excel": "Excel",
+            "PDF": "PDF"
         }
     },
     "links": {
@@ -82,7 +70,6 @@
         "Export": "Exportovat",
         "Basic Information": "Základní informace",
         "Configuration": "Konfigurace",
-        "Date Filters": "Filtry",
         "Export Options": "Možnosti exportu",
         "Data Preview": "Náhled dat",
         "Report Results": "Výsledky přehledu",

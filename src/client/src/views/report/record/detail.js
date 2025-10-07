@@ -47,10 +47,6 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
             this.listenTo(this.model, 'change:type', () => {
                 this.toggleChartFields();
             });
-            
-            this.listenTo(this.model, 'change:dateFilter', () => {
-                this.toggleDateFields();
-            });
         },
         
         updateFieldOptions() {
@@ -58,9 +54,9 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
             if (!targetEntity) return;
             
             $.ajax({
-                url: `api/v1/Report/action/getEntityFields?entityType=${targetEntity}`,
+                url: this.getBasePath() + '/api/v1/Report/action/getEntityFields?entityType=' + targetEntity,
                 type: 'GET'
-            }).then(fields => {
+            }).done(fields => {
                     this.updateColumnOptions(fields);
                     this.updateGroupByOptions(fields);
                     this.updateOrderByOptions(fields);
@@ -109,14 +105,6 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
             this.toggleField('chartType', isChart);
         },
         
-        toggleDateFields() {
-            const dateFilter = this.model.get('dateFilter');
-            const isCustom = dateFilter === 'custom';
-            
-            this.toggleField('dateFrom', isCustom);
-            this.toggleField('dateTo', isCustom);
-        },
-        
         toggleField(fieldName, show) {
             const fieldView = this.getFieldView(fieldName);
             if (fieldView) {
@@ -138,7 +126,7 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
             this.notify('Running report...', 'info');
             
             $.ajax({
-                url: `api/v1/Report/${this.model.id}/run`,
+                url: this.getBasePath() + '/api/v1/Report/' + this.model.id + '/run',
                 type: 'GET'
             }).done(result => {
                 this.notify('Report completed!', 'success');
