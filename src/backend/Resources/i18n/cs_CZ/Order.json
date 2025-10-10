@@ -31,6 +31,7 @@
             "Processing": "Zpracovává se",
             "Shipped": "Odesláno",
             "Delivered": "Doručeno",
+            "Invoiced": "Vyfakturováno",
             "Cancelled": "Zrušeno",
             "Refunded": "Refundováno"
         }
@@ -51,6 +52,7 @@
         "Send PDF Email": "Odeslat PDF emailem",
         "Manage PDF Templates": "Spravovat PDF šablony",
         "Send PDF via Email": "Odeslat PDF emailem",
+        "Convert to Invoice": "Konvertovat na fakturu",
         "PDF Document": "PDF dokument",
         "Direct PDF Link": "Přímý odkaz na PDF",
         "PDF Link": "PDF odkaz",
@@ -66,6 +68,9 @@
         "Note: Click the link above to download the PDF document.": "Poznámka: Klikněte na odkaz výše pro stažení PDF dokumentu.",
         "PDF link added to email": "Odkaz na PDF byl přidán do emailu",
         "PDF attached": "PDF přiloženo",
-        "Send PDF Email": "Odeslat PDF emailem"
+        "Send PDF Email": "Odeslat PDF emailem",
+        "Are you sure you want to convert this order to an invoice?": "Opravdu chcete konvertovat tuto objednávku na fakturu?",
+        "Converting...": "Konvertuji...",
+        "Order converted to invoice successfully": "Objednávka byla úspěšně konvertována na fakturu"
     }
 }

@@ -1,0 +1,126 @@
+[
+    {
+        "label": "Invoice Details",
+        "rows": [
+            [
+                {
+                    "name": "invoiceNumber"
+                },
+                {
+                    "name": "invoiceType"
+                }
+            ],
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "status"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Organization",
+        "rows": [
+            [
+                {
+                    "name": "account"
+                },
+                {
+                    "name": "contactPerson"
+                }
+            ],
+            [
+                {
+                    "name": "accountCompanyId"
+                },
+                {
+                    "name": "accountTaxId"
+                }
+            ],
+            [
+                {
+                    "name": "accountVatId"
+                },
+                {
+                    "name": "invoiceEmail"
+                }
+            ],
+            [
+                {
+                    "name": "billingAddress",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
+                    "name": "shippingAddress",
+                    "fullWidth": true
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Payment Details",
+        "rows": [
+            [
+                {
+                    "name": "variableSymbol"
+                },
+                {
+                    "name": "constantSymbol"
+                }
+            ],
+            [
+                {
+                    "name": "specificSymbol"
+                },
+                false
+            ]
+        ]
+    },
+    {
+        "label": "Dates",
+        "rows": [
+            [
+                {
+                    "name": "issueDate"
+                },
+                {
+                    "name": "taxableSupplyDate"
+                }
+            ],
+            [
+                {
+                    "name": "dueDate"
+                },
+                {
+                    "name": "paymentDays"
+                }
+            ]
+        ]
+    },
+    {
+        "rows": [
+            [
+                {
+                    "name": "description",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
+                    "name": "invoiceItems",
+                    "fullWidth": true
+                }
+            ],
+            [
+                {
+                    "name": "attachments",
+                    "fullWidth": true
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,83 @@
+{
+    "fields": {
+        "name": "Name",
+        "invoiceNumber": "Invoice Number",
+        "variableSymbol": "Variable Symbol",
+        "constantSymbol": "Constant Symbol",
+        "specificSymbol": "Specific Symbol",
+        "invoiceType": "Invoice Type",
+        "account": "Organization",
+        "accountName": "Organization Name",
+        "accountCompanyId": "Company ID (IČO)",
+        "accountTaxId": "Tax ID (DIČ)",
+        "accountVatId": "VAT ID",
+        "billingAddress": "Billing Address",
+        "shippingAddress": "Shipping Address",
+        "contactPerson": "Contact Person",
+        "invoiceEmail": "Invoice Email",
+        "issueDate": "Issue Date",
+        "taxableSupplyDate": "Taxable Supply Date",
+        "dueDate": "Due Date",
+        "paymentDays": "Payment Days",
+        "status": "Status",
+        "description": "Description",
+        "assignedUser": "Assigned User",
+        "teams": "Teams",
+        "createdAt": "Created At",
+        "modifiedAt": "Modified At",
+        "createdBy": "Created By",
+        "modifiedBy": "Modified By",
+        "attachments": "Attachments",
+        "invoiceItems": "Invoice Items",
+        "overallDiscountType": "Overall Discount Type",
+        "overallDiscountValue": "Overall Discount Value"
+    },
+    "options": {
+        "invoiceType": {
+            "standard": "Standard",
+            "advance": "Advance",
+            "proforma": "Proforma",
+            "creditNote": "Credit Note",
+            "taxDocument": "Tax Document"
+        },
+        "status": {
+            "draft": "Draft",
+            "sent": "Sent",
+            "paid": "Paid",
+            "cancelled": "Cancelled"
+        }
+    },
+    "links": {
+        "account": "Organization",
+        "contactPerson": "Contact Person",
+        "assignedUser": "Assigned User",
+        "teams": "Teams",
+        "createdBy": "Created By",
+        "modifiedBy": "Modified By",
+        "attachments": "Attachments"
+    },
+    "labels": {
+        "Create": "Create Invoice",
+        "View List": "View Invoice List",
+        "Print to PDF": "Print to PDF",
+        "Manage PDF Templates": "Manage PDF Templates",
+        "Send PDF via Email": "Send PDF via Email",
+        "PDF Document": "PDF Document",
+        "Direct PDF Link": "Direct PDF Link",
+        "PDF Link": "PDF Link"
+    },
+    "messages": {
+        "Please find attached PDF document": "Please find attached PDF document",
+        "PDF link added to email body": "PDF link added to email body",
+        "Please find the PDF document here": "Please find the PDF document here",
+        "Note: Click the link above to download the PDF document.": "Note: Click the link above to download the PDF document.",
+        "PDF link added to email": "PDF link added to email",
+        "PDF attached": "PDF attached"
+    },
+    "tooltips": {
+        "variableSymbol": "Used for payment matching (max 10 digits)",
+        "constantSymbol": "Bank identifier (max 10 digits)",
+        "specificSymbol": "Additional identification (max 10 digits)",
+        "paymentDays": "Automatically calculated from issue and due dates"
+    }
+}

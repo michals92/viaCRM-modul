@@ -216,6 +216,14 @@
         }
     },
     {
+        "route": "/Invoice/action/generatePdfWithAttachment",
+        "method": "POST",
+        "params": {
+            "controller": "Invoice",
+            "action": "generatePdfWithAttachment"
+        }
+    },
+    {
         "route": "/AresLookup/searchByIco",
         "method": "GET",
         "params": {

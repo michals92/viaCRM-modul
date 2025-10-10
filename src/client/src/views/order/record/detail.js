@@ -25,6 +25,15 @@ define('viacrm:views/order/record/detail', ['views/record/detail'], function (De
                 iconHtml: '<span class="fas fa-envelope"></span>'
             });
             
+            // Convert to Invoice button (green, more prominent)
+            this.addButton({
+                name: 'convertToInvoice',
+                label: 'Convert to Invoice',
+                style: 'success',
+                acl: 'read',
+                iconHtml: '<span class="fas fa-file-invoice-dollar"></span>'
+            });
+            
             // Only keep manage templates in dropdown (remove duplicates)
             this.dropdownItemList = this.dropdownItemList.filter(function(item) {
                 return item.name !== 'printPdf' && item.name !== 'sendPdfEmail';
@@ -108,6 +117,31 @@ define('viacrm:views/order/record/detail', ['views/record/detail'], function (De
                         }, this);
                     }, this);
                 }, this);
+            }.bind(this));
+        },
+
+        actionConvertToInvoice: function () {
+            this.confirm(this.translate('Are you sure you want to convert this order to an invoice?', 'messages', 'Order'), function () {
+                this.notify(this.translate('Converting...', 'messages', 'Order'));
+                
+                Espo.Ajax.postRequest('Order/action/convertToInvoice', {
+                    id: this.model.id
+                }).then(function (response) {
+                    this.notify(this.translate('Order converted to invoice successfully', 'messages', 'Order'), 'success');
+                    
+                    // Navigate to the new invoice
+                    if (response.invoiceId) {
+                        var url = '#Invoice/view/' + response.invoiceId;
+                        this.getRouter().navigate(url, {trigger: true});
+                    } else {
+                        // Refresh current view to show updated status
+                        this.model.fetch();
+                    }
+                }.bind(this)).catch(function (xhr) {
+                    var response = xhr.responseJSON || {};
+                    var message = response.message || 'Error occurred';
+                    this.notify(message, 'error');
+                }.bind(this));
             }.bind(this));
         }
     });

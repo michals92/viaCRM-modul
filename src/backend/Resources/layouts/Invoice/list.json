@@ -1,0 +1,32 @@
+[
+    {
+        "name": "invoiceNumber",
+        "link": true,
+        "width": 15
+    },
+    {
+        "name": "name",
+        "link": true,
+        "width": 25
+    },
+    {
+        "name": "account",
+        "width": 20
+    },
+    {
+        "name": "invoiceType",
+        "width": 10
+    },
+    {
+        "name": "status",
+        "width": 10
+    },
+    {
+        "name": "issueDate",
+        "width": 10
+    },
+    {
+        "name": "dueDate",
+        "width": 10
+    }
+]

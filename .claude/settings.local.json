@@ -22,7 +22,9 @@
       "Bash(docker cp:*)",
       "Bash(mv:*)",
       "Bash(find:*)",
-      "WebFetch(domain:forum.espocrm.com)"
+      "WebFetch(domain:forum.espocrm.com)",
+      "Bash(sed:*)",
+      "Bash(php -l:*)"
     ],
     "deny": []
   }

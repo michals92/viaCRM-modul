@@ -2,5 +2,8 @@
     "Absence": {
         "AutoAssignHrRecord": "Espo\\Modules\\ViaCrm\\Hooks\\Absence\\AutoAssignHrRecord",
         "CalculateHours": "Espo\\Modules\\ViaCrm\\Hooks\\Absence\\CalculateHours"
+    },
+    "Invoice": {
+        "CalculatePaymentDays": "Espo\\Modules\\ViaCrm\\Hooks\\Invoice\\CalculatePaymentDays"
     }
 }

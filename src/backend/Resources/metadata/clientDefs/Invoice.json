@@ -1,0 +1,9 @@
+{
+    "controller": "controllers/record",
+    "iconClass": "fas fa-file-invoice-dollar",
+    "color": "#3498db",
+    "dynamicHandler": "viacrm:views/invoice/invoice-dynamic-handler",
+    "recordViews": {
+        "detail": "viacrm:views/invoice/record/detail"
+    }
+}

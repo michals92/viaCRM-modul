@@ -20,6 +20,7 @@
                 "Processing",
                 "Shipped",
                 "Delivered",
+                "Invoiced",
                 "Cancelled",
                 "Refunded"
             ],
