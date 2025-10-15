@@ -105,6 +105,40 @@
         "teams": {
             "type": "linkMultiple",
             "view": "views/fields/teams"
+        },
+        "dateFrom": {
+            "type": "date",
+            "required": false,
+            "tooltip": "Filter records created from this date",
+            "view": "views/fields/date"
+        },
+        "dateTo": {
+            "type": "date",
+            "required": false,
+            "tooltip": "Filter records created to this date",
+            "view": "views/fields/date"
+        },
+        "dateFilterType": {
+            "type": "enum",
+            "required": false,
+            "options": [
+                "custom",
+                "today",
+                "yesterday",
+                "thisWeek",
+                "lastWeek",
+                "thisMonth",
+                "lastMonth",
+                "thisQuarter",
+                "lastQuarter",
+                "thisYear",
+                "lastYear",
+                "last7Days",
+                "last30Days",
+                "last90Days"
+            ],
+            "default": "custom",
+            "tooltip": "Predefined date filter period"
         }
     },
     "links": {

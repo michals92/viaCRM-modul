@@ -53,6 +53,20 @@
             ],
             [
                 {
+                    "name": "dateFilterType"
+                },
+                false
+            ],
+            [
+                {
+                    "name": "dateFrom"
+                },
+                {
+                    "name": "dateTo"
+                }
+            ],
+            [
+                {
                     "name": "chartType"
                 },
                 {

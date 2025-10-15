@@ -17,6 +17,8 @@ class Report extends Record
     private const CHART_MAX_SIZE = 200;
     private const PREVIEW_MAX_SIZE = 10;
     
+    private $currentTargetEntity = null;
+    
     private const SUPPORTED_CHART_TYPES = ['Bar', 'Line', 'Pie', 'Doughnut'];
     private const SUPPORTED_REPORT_TYPES = ['List', 'Grid', 'Chart'];
     
@@ -62,22 +64,48 @@ class Report extends Record
     public function runReportPreview($reportData): array
     {
         $targetEntity = $reportData->targetEntity ?? null;
-        
+
         if (!$targetEntity) {
             throw new BadRequest('Target entity is required');
         }
-        
+
         $columns = $reportData->columns ?? [];
         $orderBy = $reportData->orderBy ?? null;
         $orderDirection = $reportData->orderDirection ?? 'ASC';
-        
+        $dateFrom = $reportData->dateFrom ?? null;
+        $dateTo = $reportData->dateTo ?? null;
+
         $params = ['maxSize' => self::PREVIEW_MAX_SIZE];
-        
+
         if ($orderBy) {
             $params['orderBy'] = $orderBy;
             $params['order'] = $orderDirection;
         }
-        
+
+        // Add date filtering
+        if ($dateFrom) {
+            $params['dateFrom'] = $dateFrom;
+        }
+
+        if ($dateTo) {
+            $params['dateTo'] = $dateTo;
+        }
+
+        // Debug logging for preview - safe check
+        try {
+            if (method_exists($this, 'getLogger')) {
+                $this->getLogger()->debug('Report preview called', [
+                    'targetEntity' => $targetEntity,
+                    'dateFrom' => $dateFrom,
+                    'dateTo' => $dateTo,
+                    'columns' => $columns,
+                    'params' => $params
+                ]);
+            }
+        } catch (\Exception $e) {
+            // Ignore logging errors
+        }
+
         return $this->executeListQuery($targetEntity, $columns, $params);
     }
 
@@ -86,68 +114,126 @@ class Report extends Record
         if (!$this->entityManager->hasRepository($targetEntity)) {
             throw new BadRequest("Entity '{$targetEntity}' not found");
         }
-        
+
         $repository = $this->entityManager->getRepository($targetEntity);
-        
+
         // Build query parameters with proper EspoCRM format
         $queryParams = [
             'maxSize' => $params['maxSize'] ?? self::DEFAULT_MAX_SIZE
         ];
-        
+
+        // Add date filtering if specified - use EspoCRM native format
+        if (!empty($params['dateFrom']) || !empty($params['dateTo'])) {
+            // EspoCRM uses array format for WHERE conditions
+            $where = [];
+
+            if (!empty($params['dateFrom'])) {
+                $where[] = [
+                    'type' => 'greaterThanOrEquals',
+                    'field' => 'createdAt',
+                    'value' => $params['dateFrom']
+                ];
+            }
+
+            if (!empty($params['dateTo'])) {
+                $where[] = [
+                    'type' => 'lessThanOrEquals',
+                    'field' => 'createdAt',
+                    'value' => $params['dateTo'] . ' 23:59:59'
+                ];
+            }
+
+            if (!empty($where)) {
+                $queryParams['where'] = $where;
+
+                // Debug: Write to temporary file for debugging
+                try {
+                    $debugData = [
+                        'timestamp' => date('Y-m-d H:i:s'),
+                        'entity' => $targetEntity,
+                        'dateFrom' => $params['dateFrom'] ?? null,
+                        'dateTo' => $params['dateTo'] ?? null,
+                        'where' => $where,
+                        'queryParams' => $queryParams
+                    ];
+                    file_put_contents('/tmp/report_debug.log', json_encode($debugData, JSON_PRETTY_PRINT) . "\n", FILE_APPEND);
+                } catch (\Exception $e) {
+                    // Ignore debug file errors
+                }
+            }
+        }
+
         // Add ordering if specified - try multiple EspoCRM formats
         if (!empty($params['orderBy'])) {
             $orderDirection = strtolower($params['order'] ?? 'ASC');
-            
+
             // Format 1: Standard EspoCRM format
             $queryParams['orderBy'] = $params['orderBy'];
             $queryParams['order'] = $orderDirection;
-            
+
             // Format 2: Alternative format with orderDirection
             $queryParams['orderDirection'] = $orderDirection;
-            
+
             // Format 3: Array format (some EspoCRM versions)
             $queryParams['orderByList'] = [
                 [$params['orderBy'], $orderDirection]
             ];
-            
+
         }
         
         
         try {
-            // Try multiple approaches for ordering
-            $collection = null;
-            
-            // Approach 1: Standard repository find
-            try {
-                $collection = $repository->find($queryParams);
-            } catch (\Exception $e1) {
-                
-                // Approach 2: Use SelectBuilder if available
-                try {
-                    if (method_exists($this->entityManager, 'getQueryBuilder')) {
-                        $queryBuilder = $this->entityManager->getQueryBuilder()
-                            ->select()
-                            ->from($targetEntity)
-                            ->limit($queryParams['maxSize']);
-                        
-                        if (!empty($params['orderBy'])) {
-                            $queryBuilder->order($params['orderBy'], strtoupper($params['order'] ?? 'ASC'));
-                        }
-                        
-                        $query = $queryBuilder->build();
-                        $collection = $this->entityManager->getCollectionFactory()->createFromQuery($query);
+            // Use simple EspoORM find with additional filtering
+            $basicParams = ['maxSize' => $queryParams['maxSize']];
+
+            // Add ordering if specified
+            if (!empty($params['orderBy'])) {
+                $basicParams['orderBy'] = $params['orderBy'];
+                $basicParams['order'] = $params['order'] ?? 'ASC';
+            }
+
+            // Get all records first
+            $collection = $repository->find($basicParams);
+
+            // Filter manually if date filtering is required
+            if (!empty($params['dateFrom']) || !empty($params['dateTo'])) {
+                $filteredCollection = $this->entityManager->getCollectionFactory()->create($targetEntity);
+
+                foreach ($collection as $entity) {
+                    $createdAt = $entity->get('createdAt');
+
+                    if (!$createdAt) {
+                        continue;
                     }
-                } catch (\Exception $e2) {
-                    // Approach 3: Manual sorting fallback
-                    $simpleParams = ['maxSize' => $queryParams['maxSize']];
-                    $collection = $repository->find($simpleParams);
+
+                    // Convert to DateTime for comparison
+                    $entityDate = new \DateTime($createdAt);
+                    $includeEntity = true;
+
+                    if (!empty($params['dateFrom'])) {
+                        $dateFrom = new \DateTime($params['dateFrom']);
+                        $dateFrom->setTime(0, 0, 0);
+                        if ($entityDate < $dateFrom) {
+                            $includeEntity = false;
+                        }
+                    }
+
+                    if (!empty($params['dateTo'])) {
+                        $dateTo = new \DateTime($params['dateTo']);
+                        $dateTo->setTime(23, 59, 59);
+                        if ($entityDate > $dateTo) {
+                            $includeEntity = false;
+                        }
+                    }
+
+                    if ($includeEntity) {
+                        $filteredCollection->append($entity);
+                    }
                 }
+
+                $collection = $filteredCollection;
             }
-            
-            if (!$collection) {
-                throw new Error('Failed to execute query with all approaches');
-            }
-            
+
         } catch (\Exception $e) {
             throw $e;
         }
@@ -199,22 +285,72 @@ class Report extends Record
         ];
     }
 
-    private function executeChartQuery(string $targetEntity, ?string $groupBy, string $chartType): array
+    private function executeChartQuery(string $targetEntity, ?string $groupBy, string $chartType, ?string $orderBy = null, ?string $orderDirection = 'ASC', ?string $dateFrom = null, ?string $dateTo = null): array
     {
         if (!$groupBy) {
             throw new BadRequest('Group By field is required for chart reports');
         }
-        
+
         if (!in_array($chartType, self::SUPPORTED_CHART_TYPES)) {
             throw new BadRequest('Unsupported chart type');
         }
-        
+
         if (!$this->entityManager->hasRepository($targetEntity)) {
             throw new BadRequest("Entity '{$targetEntity}' not found");
         }
-        
+
+        $this->currentTargetEntity = $targetEntity;
         $repository = $this->entityManager->getRepository($targetEntity);
-        $collection = $repository->find(['maxSize' => self::CHART_MAX_SIZE]);
+
+        // Use simple EspoORM find with manual date filtering (same approach as executeListQuery)
+        $basicParams = ['maxSize' => self::CHART_MAX_SIZE];
+
+        if ($orderBy) {
+            $basicParams['orderBy'] = $orderBy;
+            $basicParams['order'] = $orderDirection;
+        }
+
+        // Get all records first
+        $collection = $repository->find($basicParams);
+
+        // Filter manually if date filtering is required
+        if (!empty($dateFrom) || !empty($dateTo)) {
+            $filteredCollection = $this->entityManager->getCollectionFactory()->create($targetEntity);
+
+            foreach ($collection as $entity) {
+                $createdAt = $entity->get('createdAt');
+
+                if (!$createdAt) {
+                    continue;
+                }
+
+                // Convert to DateTime for comparison
+                $entityDate = new \DateTime($createdAt);
+                $includeEntity = true;
+
+                if (!empty($dateFrom)) {
+                    $dateFromObj = new \DateTime($dateFrom);
+                    $dateFromObj->setTime(0, 0, 0);
+                    if ($entityDate < $dateFromObj) {
+                        $includeEntity = false;
+                    }
+                }
+
+                if (!empty($dateTo)) {
+                    $dateToObj = new \DateTime($dateTo);
+                    $dateToObj->setTime(23, 59, 59);
+                    if ($entityDate > $dateToObj) {
+                        $includeEntity = false;
+                    }
+                }
+
+                if ($includeEntity) {
+                    $filteredCollection->append($entity);
+                }
+            }
+
+            $collection = $filteredCollection;
+        }
         
         $chartData = $this->aggregateChartData($collection, $groupBy);
         
@@ -222,7 +358,31 @@ class Report extends Record
             return $this->createEmptyChartResponse($chartType, $groupBy, $targetEntity);
         }
         
-        arsort($chartData);
+        // Sort chart data according to user's preferences
+        if ($orderBy && $orderBy !== $groupBy) {
+            // If ordering by a different field than groupBy, we need to get the actual entity data
+            $chartData = $this->sortChartDataByField($chartData, $groupBy, $orderBy, $orderDirection);
+        } else {
+            // Default sorting: by count (value) or by group name
+            if ($orderBy === $groupBy) {
+                // Sort by group name
+                $orderDirection = strtolower($orderDirection);
+                if ($orderDirection === 'desc') {
+                    krsort($chartData);
+                } else {
+                    ksort($chartData);
+                }
+            } else {
+                // Default: sort by count (value)
+                $orderDirection = strtolower($orderDirection ?? 'desc');
+                if ($orderDirection === 'asc') {
+                    asort($chartData);
+                } else {
+                    arsort($chartData);
+                }
+            }
+        }
+        
         $chartData = array_slice($chartData, 0, 8, true);
         
         return [
@@ -263,29 +423,78 @@ class Report extends Record
         ];
     }
 
+    private function convertChartToGrid(array $chartResult, ?string $groupBy): array
+    {
+        if ($chartResult['type'] !== 'chart' || empty($chartResult['labels']) || !$groupBy) {
+            return $chartResult;
+        }
+        
+        $labels = $chartResult['labels'];
+        $values = $chartResult['datasets'][0]['data'] ?? [];
+        
+        $groupedData = [];
+        foreach ($labels as $index => $label) {
+            $count = $values[$index] ?? 0;
+            // Create dummy data for grid display
+            $groupedData[$label] = array_fill(0, $count, ['group' => $label, 'count' => $count]);
+        }
+        
+        return [
+            'type' => 'grid',
+            'data' => $groupedData,
+            'groupBy' => $groupBy,
+            'total' => $chartResult['total'],
+            'entityType' => $chartResult['entityType'] ?? 'Unknown'
+        ];
+    }
+
     private function runListReport($report): array
     {
         $targetEntity = $report->get('targetEntity');
         $columns = $report->get('columns') ?? [];
         $orderBy = $report->get('orderBy');
         $orderDirection = $report->get('orderDirection') ?? 'ASC';
-        
+
+        // Get date range from dateFilterType or custom dates
+        $dateRange = $this->getDateRangeFromReport($report);
+
         $params = ['maxSize' => self::DEFAULT_MAX_SIZE];
-        
+
         if ($orderBy) {
             $params['orderBy'] = $orderBy;
             $params['order'] = $orderDirection;
         }
-        
-        
+
+        // Add date filtering
+        if ($dateRange['from']) {
+            $params['dateFrom'] = $dateRange['from'];
+        }
+
+        if ($dateRange['to']) {
+            $params['dateTo'] = $dateRange['to'];
+        }
+
         return $this->executeListQuery($targetEntity, $columns, $params);
     }
 
     private function runGridReport($report): array
     {
-        $listData = $this->runListReport($report);
+        $targetEntity = $report->get('targetEntity');
         $groupBy = $report->get('groupBy');
-        
+        $orderBy = $report->get('orderBy');
+        $orderDirection = $report->get('orderDirection') ?? 'ASC';
+
+        // Get date range from dateFilterType or custom dates
+        $dateRange = $this->getDateRangeFromReport($report);
+
+        // For grid reports, we can use chart query with group by and then convert
+        if ($groupBy && $orderBy) {
+            $chartData = $this->executeChartQuery($targetEntity, $groupBy, 'Bar', $orderBy, $orderDirection, $dateRange['from'], $dateRange['to']);
+            return $this->convertChartToGrid($chartData, $groupBy);
+        }
+
+        // Fallback to original behavior
+        $listData = $this->runListReport($report);
         return $this->convertToGrid($listData, $groupBy);
     }
 
@@ -294,8 +503,165 @@ class Report extends Record
         $chartType = $report->get('chartType') ?? 'Bar';
         $targetEntity = $report->get('targetEntity');
         $groupBy = $report->get('groupBy');
-        
-        return $this->executeChartQuery($targetEntity, $groupBy, $chartType);
+        $orderBy = $report->get('orderBy');
+        $orderDirection = $report->get('orderDirection') ?? 'ASC';
+
+        // Get date range from dateFilterType or custom dates
+        $dateRange = $this->getDateRangeFromReport($report);
+
+        return $this->executeChartQuery($targetEntity, $groupBy, $chartType, $orderBy, $orderDirection, $dateRange['from'], $dateRange['to']);
+    }
+
+    /**
+     * Get date range from report's dateFilterType or custom date fields
+     */
+    private function getDateRangeFromReport($report): array
+    {
+        $dateFilterType = $report->get('dateFilterType') ?? 'custom';
+
+        // If custom, use the specific date fields
+        if ($dateFilterType === 'custom') {
+            return [
+                'from' => $report->get('dateFrom'),
+                'to' => $report->get('dateTo')
+            ];
+        }
+
+        // For predefined filter types, calculate the date range
+        return $this->calculateDateRange($dateFilterType);
+    }
+
+    /**
+     * Calculate date range for predefined filter types
+     */
+    private function calculateDateRange(string $filterType): array
+    {
+        $today = new \DateTime();
+        $currentYear = (int)$today->format('Y');
+        $currentMonth = (int)$today->format('m');
+        $currentDay = (int)$today->format('d');
+        $currentWeekDay = (int)$today->format('w'); // 0 = Sunday, 1 = Monday, etc.
+
+        switch ($filterType) {
+            case 'today':
+                return [
+                    'from' => $today->format('Y-m-d'),
+                    'to' => $today->format('Y-m-d')
+                ];
+
+            case 'yesterday':
+                $yesterday = clone $today;
+                $yesterday->modify('-1 day');
+                return [
+                    'from' => $yesterday->format('Y-m-d'),
+                    'to' => $yesterday->format('Y-m-d')
+                ];
+
+            case 'thisWeek':
+                // Monday of this week
+                $monday = clone $today;
+                $monday->modify('monday this week');
+                // Sunday of this week
+                $sunday = clone $monday;
+                $sunday->modify('+6 days');
+                return [
+                    'from' => $monday->format('Y-m-d'),
+                    'to' => $sunday->format('Y-m-d')
+                ];
+
+            case 'lastWeek':
+                // Monday of last week
+                $lastMonday = clone $today;
+                $lastMonday->modify('monday last week');
+                // Sunday of last week
+                $lastSunday = clone $lastMonday;
+                $lastSunday->modify('+6 days');
+                return [
+                    'from' => $lastMonday->format('Y-m-d'),
+                    'to' => $lastSunday->format('Y-m-d')
+                ];
+
+            case 'thisMonth':
+                $startDate = new \DateTime("$currentYear-$currentMonth-01");
+                $endDate = new \DateTime("$currentYear-$currentMonth-" . date('t'));
+                return [
+                    'from' => $startDate->format('Y-m-d'),
+                    'to' => $endDate->format('Y-m-d')
+                ];
+
+            case 'lastMonth':
+                $lastMonth = $currentMonth == 1 ? 12 : $currentMonth - 1;
+                $lastYear = $currentMonth == 1 ? $currentYear - 1 : $currentYear;
+                $startDate = new \DateTime("$lastYear-$lastMonth-01");
+                $endDate = new \DateTime("$lastYear-$lastMonth-" . date('t', mktime(0, 0, 0, $lastMonth, 1, $lastYear)));
+                return [
+                    'from' => $startDate->format('Y-m-d'),
+                    'to' => $endDate->format('Y-m-d')
+                ];
+
+            case 'thisQuarter':
+                $quarter = ceil($currentMonth / 3);
+                $quarterStartMonth = ($quarter - 1) * 3 + 1;
+                $quarterEndMonth = $quarter * 3;
+                $startDate = new \DateTime("$currentYear-$quarterStartMonth-01");
+                $endDate = new \DateTime("$currentYear-$quarterEndMonth-" . date('t', mktime(0, 0, 0, $quarterEndMonth, 1, $currentYear)));
+                return [
+                    'from' => $startDate->format('Y-m-d'),
+                    'to' => $endDate->format('Y-m-d')
+                ];
+
+            case 'lastQuarter':
+                $lastQuarter = $currentMonth <= 3 ? 4 : ($currentMonth <= 6 ? 1 : ($currentMonth <= 9 ? 2 : 3));
+                $lastQuarterYear = $currentMonth <= 3 ? $currentYear - 1 : $currentYear;
+                $quarterStartMonth = ($lastQuarter - 1) * 3 + 1;
+                $quarterEndMonth = $lastQuarter * 3;
+                $startDate = new \DateTime("$lastQuarterYear-$quarterStartMonth-01");
+                $endDate = new \DateTime("$lastQuarterYear-$quarterEndMonth-" . date('t', mktime(0, 0, 0, $quarterEndMonth, 1, $lastQuarterYear)));
+                return [
+                    'from' => $startDate->format('Y-m-d'),
+                    'to' => $endDate->format('Y-m-d')
+                ];
+
+            case 'thisYear':
+                return [
+                    'from' => "$currentYear-01-01",
+                    'to' => "$currentYear-12-31"
+                ];
+
+            case 'lastYear':
+                $lastYear = $currentYear - 1;
+                return [
+                    'from' => "$lastYear-01-01",
+                    'to' => "$lastYear-12-31"
+                ];
+
+            case 'last7Days':
+                $sevenDaysAgo = clone $today;
+                $sevenDaysAgo->modify('-6 days'); // Include today, so 6 days back
+                return [
+                    'from' => $sevenDaysAgo->format('Y-m-d'),
+                    'to' => $today->format('Y-m-d')
+                ];
+
+            case 'last30Days':
+                $thirtyDaysAgo = clone $today;
+                $thirtyDaysAgo->modify('-29 days'); // Include today, so 29 days back
+                return [
+                    'from' => $thirtyDaysAgo->format('Y-m-d'),
+                    'to' => $today->format('Y-m-d')
+                ];
+
+            case 'last90Days':
+                $ninetyDaysAgo = clone $today;
+                $ninetyDaysAgo->modify('-89 days'); // Include today, so 89 days back
+                return [
+                    'from' => $ninetyDaysAgo->format('Y-m-d'),
+                    'to' => $today->format('Y-m-d')
+                ];
+
+            default:
+                return ['from' => null, 'to' => null];
+        }
     }
 
 
@@ -325,6 +691,75 @@ class Report extends Record
         }
         
         return (string)$value;
+    }
+    
+    private function sortChartDataByField(array $chartData, string $groupBy, string $orderBy, string $orderDirection = 'ASC'): array
+    {
+        // Get all entities that belong to each group
+        $repository = $this->entityManager->getRepository($this->currentTargetEntity);
+        $allEntities = $repository->find(['maxSize' => self::CHART_MAX_SIZE]);
+        
+        // Group entities by the groupBy field and collect orderBy values
+        $groupValues = [];
+        foreach ($allEntities as $entity) {
+            try {
+                $groupValue = $this->normalizeGroupValue($entity->get($groupBy));
+                $orderValue = $entity->get($orderBy);
+                
+                if (!isset($groupValues[$groupValue])) {
+                    $groupValues[$groupValue] = [];
+                }
+                $groupValues[$groupValue][] = $orderValue;
+            } catch (\Exception $e) {
+                continue;
+            }
+        }
+        
+        // Sort the groups based on the first/average order value
+        $orderDirection = strtolower($orderDirection);
+        uksort($chartData, function($a, $b) use ($groupValues, $orderDirection) {
+            $aValue = null;
+            $bValue = null;
+            
+            // Get first non-null order value for each group
+            if (isset($groupValues[$a])) {
+                foreach ($groupValues[$a] as $val) {
+                    if ($val !== null) {
+                        $aValue = $val;
+                        break;
+                    }
+                }
+            }
+            
+            if (isset($groupValues[$b])) {
+                foreach ($groupValues[$b] as $val) {
+                    if ($val !== null) {
+                        $bValue = $val;
+                        break;
+                    }
+                }
+            }
+            
+            // If both null, compare by group name
+            if ($aValue === null && $bValue === null) {
+                $comparison = strcasecmp($a, $b);
+            } elseif ($aValue === null) {
+                $comparison = 1;
+            } elseif ($bValue === null) {
+                $comparison = -1;
+            } else {
+                // Compare numeric and string values
+                if (is_numeric($aValue) && is_numeric($bValue)) {
+                    $comparison = (float)$aValue <=> (float)$bValue;
+                } else {
+                    $comparison = strcasecmp((string)$aValue, (string)$bValue);
+                }
+            }
+            
+            return $orderDirection === 'desc' ? -$comparison : $comparison;
+        });
+        
+        return $chartData;
     }
     
     private function createEmptyChartResponse(string $chartType, string $groupBy, string $targetEntity): array
@@ -752,12 +1187,19 @@ class Report extends Record
             ];
             
         } catch (\Exception $e) {
-            $this->log->error('PDF generation failed for report', [
-                'reportId' => $report->getId(),
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            
+            // Safe logging attempt
+            try {
+                if (method_exists($this, 'getLogger')) {
+                    $this->getLogger()->error('PDF generation failed for report', [
+                        'reportId' => $report->getId(),
+                        'error' => $e->getMessage(),
+                        'trace' => $e->getTraceAsString()
+                    ]);
+                }
+            } catch (\Exception $logError) {
+                // Ignore logging errors
+            }
+
             // Fallback to HTML if PDF generation fails
             return $this->generateHtmlFallback($data, $report);
         }
@@ -818,7 +1260,12 @@ class Report extends Record
     {
         // Try to use EspoCRM's PDF service first
         try {
-            $pdfService = $this->injectableFactory->create(PdfService::class);
+            // Check if injectableFactory is available
+            if (property_exists($this, 'injectableFactory') && $this->injectableFactory) {
+                $pdfService = $this->injectableFactory->create(PdfService::class);
+            } else {
+                throw new \Exception('injectableFactory not available');
+            }
             
             // Create a temporary template for PDF generation
             $template = $this->entityManager->getEntity('Template');

@@ -14,6 +14,9 @@
         "refreshInterval": "Interval obnovení (minuty)",
         "assignedUser": "Přiřazený uživatel",
         "teams": "Týmy",
+        "dateFrom": "Vytvořeno od",
+        "dateTo": "Vytvořeno do",
+        "dateFilterType": "Typ filtru",
         "createdAt": "Vytvořeno",
         "modifiedAt": "Upraveno",
         "createdBy": "Vytvořil",
@@ -54,6 +57,22 @@
             "CSV": "CSV",
             "Excel": "Excel",
             "PDF": "PDF"
+        },
+        "dateFilterType": {
+            "custom": "Vlastní rozmezí",
+            "today": "Dnes",
+            "yesterday": "Včera",
+            "thisWeek": "Tento týden",
+            "lastWeek": "Minulý týden",
+            "thisMonth": "Tento měsíc",
+            "lastMonth": "Minulý měsíc",
+            "thisQuarter": "Tento kvartál",
+            "lastQuarter": "Minulý kvartál",
+            "thisYear": "Tento rok",
+            "lastYear": "Minulý rok",
+            "last7Days": "Posledních 7 dní",
+            "last30Days": "Posledních 30 dní",
+            "last90Days": "Posledních 90 dní"
         }
     },
     "links": {
@@ -74,6 +93,9 @@
         "Data Preview": "Náhled dat",
         "Report Results": "Výsledky přehledu",
         "Export Report": "Exportovat přehled",
-        "Select export format": "Vyberte formát exportu"
+        "Select export format": "Vyberte formát exportu",
+        "Date Filtering": "Filtrování podle data",
+        "Date Range": "Časové rozmezí",
+        "End date cannot be earlier than start date": "Konečné datum nemůže být dříve než počáteční datum"
     }
 }
