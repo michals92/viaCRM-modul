@@ -17,6 +17,8 @@ class Report extends Record
     private const CHART_MAX_SIZE = 200;
     private const PREVIEW_MAX_SIZE = 10;
     
+    private $currentTargetEntity = null;
+    
     private const SUPPORTED_CHART_TYPES = ['Bar', 'Line', 'Pie', 'Doughnut'];
     private const SUPPORTED_REPORT_TYPES = ['List', 'Grid', 'Chart'];
     
@@ -199,7 +201,7 @@ class Report extends Record
         ];
     }
 
-    private function executeChartQuery(string $targetEntity, ?string $groupBy, string $chartType): array
+    private function executeChartQuery(string $targetEntity, ?string $groupBy, string $chartType, ?string $orderBy = null, ?string $orderDirection = 'ASC'): array
     {
         if (!$groupBy) {
             throw new BadRequest('Group By field is required for chart reports');
@@ -213,8 +215,18 @@ class Report extends Record
             throw new BadRequest("Entity '{$targetEntity}' not found");
         }
         
+        $this->currentTargetEntity = $targetEntity;
         $repository = $this->entityManager->getRepository($targetEntity);
-        $collection = $repository->find(['maxSize' => self::CHART_MAX_SIZE]);
+        
+        // Build query parameters for chart with ordering
+        $params = ['maxSize' => self::CHART_MAX_SIZE];
+        
+        if ($orderBy) {
+            $params['orderBy'] = $orderBy;
+            $params['order'] = $orderDirection;
+        }
+        
+        $collection = $repository->find($params);
         
         $chartData = $this->aggregateChartData($collection, $groupBy);
         
@@ -222,7 +234,31 @@ class Report extends Record
             return $this->createEmptyChartResponse($chartType, $groupBy, $targetEntity);
         }
         
-        arsort($chartData);
+        // Sort chart data according to user's preferences
+        if ($orderBy && $orderBy !== $groupBy) {
+            // If ordering by a different field than groupBy, we need to get the actual entity data
+            $chartData = $this->sortChartDataByField($chartData, $groupBy, $orderBy, $orderDirection);
+        } else {
+            // Default sorting: by count (value) or by group name
+            if ($orderBy === $groupBy) {
+                // Sort by group name
+                $orderDirection = strtolower($orderDirection);
+                if ($orderDirection === 'desc') {
+                    krsort($chartData);
+                } else {
+                    ksort($chartData);
+                }
+            } else {
+                // Default: sort by count (value)
+                $orderDirection = strtolower($orderDirection ?? 'desc');
+                if ($orderDirection === 'asc') {
+                    asort($chartData);
+                } else {
+                    arsort($chartData);
+                }
+            }
+        }
+        
         $chartData = array_slice($chartData, 0, 8, true);
         
         return [
@@ -263,6 +299,31 @@ class Report extends Record
         ];
     }
 
+    private function convertChartToGrid(array $chartResult, ?string $groupBy): array
+    {
+        if ($chartResult['type'] !== 'chart' || empty($chartResult['labels']) || !$groupBy) {
+            return $chartResult;
+        }
+        
+        $labels = $chartResult['labels'];
+        $values = $chartResult['datasets'][0]['data'] ?? [];
+        
+        $groupedData = [];
+        foreach ($labels as $index => $label) {
+            $count = $values[$index] ?? 0;
+            // Create dummy data for grid display
+            $groupedData[$label] = array_fill(0, $count, ['group' => $label, 'count' => $count]);
+        }
+        
+        return [
+            'type' => 'grid',
+            'data' => $groupedData,
+            'groupBy' => $groupBy,
+            'total' => $chartResult['total'],
+            'entityType' => $chartResult['entityType'] ?? 'Unknown'
+        ];
+    }
+
     private function runListReport($report): array
     {
         $targetEntity = $report->get('targetEntity');
@@ -283,9 +344,19 @@ class Report extends Record
 
     private function runGridReport($report): array
     {
-        $listData = $this->runListReport($report);
+        $targetEntity = $report->get('targetEntity');
         $groupBy = $report->get('groupBy');
+        $orderBy = $report->get('orderBy');
+        $orderDirection = $report->get('orderDirection') ?? 'ASC';
         
+        // For grid reports, we can use chart query with group by and then convert
+        if ($groupBy && $orderBy) {
+            $chartData = $this->executeChartQuery($targetEntity, $groupBy, 'Bar', $orderBy, $orderDirection);
+            return $this->convertChartToGrid($chartData, $groupBy);
+        }
+        
+        // Fallback to original behavior
+        $listData = $this->runListReport($report);
         return $this->convertToGrid($listData, $groupBy);
     }
 
@@ -294,8 +365,10 @@ class Report extends Record
         $chartType = $report->get('chartType') ?? 'Bar';
         $targetEntity = $report->get('targetEntity');
         $groupBy = $report->get('groupBy');
+        $orderBy = $report->get('orderBy');
+        $orderDirection = $report->get('orderDirection') ?? 'ASC';
         
-        return $this->executeChartQuery($targetEntity, $groupBy, $chartType);
+        return $this->executeChartQuery($targetEntity, $groupBy, $chartType, $orderBy, $orderDirection);
     }
 
 
@@ -325,6 +398,75 @@ class Report extends Record
         }
         
         return (string)$value;
+    }
+    
+    private function sortChartDataByField(array $chartData, string $groupBy, string $orderBy, string $orderDirection = 'ASC'): array
+    {
+        // Get all entities that belong to each group
+        $repository = $this->entityManager->getRepository($this->currentTargetEntity);
+        $allEntities = $repository->find(['maxSize' => self::CHART_MAX_SIZE]);
+        
+        // Group entities by the groupBy field and collect orderBy values
+        $groupValues = [];
+        foreach ($allEntities as $entity) {
+            try {
+                $groupValue = $this->normalizeGroupValue($entity->get($groupBy));
+                $orderValue = $entity->get($orderBy);
+                
+                if (!isset($groupValues[$groupValue])) {
+                    $groupValues[$groupValue] = [];
+                }
+                $groupValues[$groupValue][] = $orderValue;
+            } catch (\Exception $e) {
+                continue;
+            }
+        }
+        
+        // Sort the groups based on the first/average order value
+        $orderDirection = strtolower($orderDirection);
+        uksort($chartData, function($a, $b) use ($groupValues, $orderDirection) {
+            $aValue = null;
+            $bValue = null;
+            
+            // Get first non-null order value for each group
+            if (isset($groupValues[$a])) {
+                foreach ($groupValues[$a] as $val) {
+                    if ($val !== null) {
+                        $aValue = $val;
+                        break;
+                    }
+                }
+            }
+            
+            if (isset($groupValues[$b])) {
+                foreach ($groupValues[$b] as $val) {
+                    if ($val !== null) {
+                        $bValue = $val;
+                        break;
+                    }
+                }
+            }
+            
+            // If both null, compare by group name
+            if ($aValue === null && $bValue === null) {
+                $comparison = strcasecmp($a, $b);
+            } elseif ($aValue === null) {
+                $comparison = 1;
+            } elseif ($bValue === null) {
+                $comparison = -1;
+            } else {
+                // Compare numeric and string values
+                if (is_numeric($aValue) && is_numeric($bValue)) {
+                    $comparison = (float)$aValue <=> (float)$bValue;
+                } else {
+                    $comparison = strcasecmp((string)$aValue, (string)$bValue);
+                }
+            }
+            
+            return $orderDirection === 'desc' ? -$comparison : $comparison;
+        });
+        
+        return $chartData;
     }
     
     private function createEmptyChartResponse(string $chartType, string $groupBy, string $targetEntity): array
