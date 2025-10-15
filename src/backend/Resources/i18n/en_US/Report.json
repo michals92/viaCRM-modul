@@ -16,6 +16,7 @@
         "teams": "Teams",
         "dateFrom": "Created From",
         "dateTo": "Created To",
+        "dateFilterType": "Date Filter Type",
         "createdAt": "Created At",
         "modifiedAt": "Modified At",
         "createdBy": "Created By",
@@ -56,6 +57,22 @@
             "CSV": "CSV",
             "Excel": "Excel",
             "PDF": "PDF"
+        },
+        "dateFilterType": {
+            "custom": "Custom Range",
+            "today": "Today",
+            "yesterday": "Yesterday",
+            "thisWeek": "This Week",
+            "lastWeek": "Last Week",
+            "thisMonth": "This Month",
+            "lastMonth": "Last Month",
+            "thisQuarter": "This Quarter",
+            "lastQuarter": "Last Quarter",
+            "thisYear": "This Year",
+            "lastYear": "Last Year",
+            "last7Days": "Last 7 Days",
+            "last30Days": "Last 30 Days",
+            "last90Days": "Last 90 Days"
         }
     },
     "links": {

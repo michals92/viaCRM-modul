@@ -8,6 +8,7 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
             this.setupFieldDependency();
             this.setupPreviewButton();
             this.setupDateValidation();
+            this.setupDateFilterType();
         },
         
         setupFieldDependency() {
@@ -121,9 +122,158 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
             });
         },
 
+        setupDateFilterType() {
+            this.listenTo(this.model, 'change:dateFilterType', () => {
+                this.handleDateFilterTypeChange();
+            });
+
+            // Handle initial setup
+            this.handleDateFilterTypeChange();
+        },
+
+        handleDateFilterTypeChange() {
+            const dateFilterType = this.model.get('dateFilterType') || 'custom';
+            const isCustom = dateFilterType === 'custom';
+
+            // Show/hide date fields based on filter type
+            this.toggleField('dateFrom', isCustom);
+            this.toggleField('dateTo', isCustom);
+
+            // If not custom, calculate and set date range
+            if (!isCustom) {
+                const dateRange = this.calculateDateRange(dateFilterType);
+                if (dateRange) {
+                    this.model.set({
+                        dateFrom: dateRange.from,
+                        dateTo: dateRange.to
+                    }, { silent: true });
+                }
+            }
+        },
+
+        calculateDateRange(filterType) {
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            const currentMonth = today.getMonth();
+            const currentDate = today.getDate();
+            const currentDay = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+
+            let from, to;
+
+            switch (filterType) {
+                case 'today':
+                    from = today;
+                    to = today;
+                    break;
+
+                case 'yesterday':
+                    const yesterday = new Date(today);
+                    yesterday.setDate(yesterday.getDate() - 1);
+                    from = yesterday;
+                    to = yesterday;
+                    break;
+
+                case 'thisWeek':
+                    const startOfWeek = new Date(today);
+                    startOfWeek.setDate(today.getDate() - currentDay + (currentDay === 0 ? -6 : 1)); // Monday
+                    from = startOfWeek;
+                    to = new Date(startOfWeek);
+                    to.setDate(startOfWeek.getDate() + 6); // Sunday
+                    break;
+
+                case 'lastWeek':
+                    const lastWeekStart = new Date(today);
+                    lastWeekStart.setDate(today.getDate() - currentDay - 6); // Last Monday
+                    from = lastWeekStart;
+                    to = new Date(lastWeekStart);
+                    to.setDate(lastWeekStart.getDate() + 6); // Last Sunday
+                    break;
+
+                case 'thisMonth':
+                    from = new Date(currentYear, currentMonth, 1);
+                    to = new Date(currentYear, currentMonth + 1, 0); // Last day of current month
+                    break;
+
+                case 'lastMonth':
+                    from = new Date(currentYear, currentMonth - 1, 1);
+                    to = new Date(currentYear, currentMonth, 0); // Last day of last month
+                    break;
+
+                case 'thisQuarter':
+                    const quarterStart = Math.floor(currentMonth / 3) * 3;
+                    from = new Date(currentYear, quarterStart, 1);
+                    to = new Date(currentYear, quarterStart + 3, 0); // Last day of quarter
+                    break;
+
+                case 'lastQuarter':
+                    const lastQuarterStart = Math.floor((currentMonth - 3) / 3) * 3;
+                    from = new Date(currentYear, lastQuarterStart, 1);
+                    to = new Date(currentYear, lastQuarterStart + 3, 0); // Last day of last quarter
+                    break;
+
+                case 'thisYear':
+                    from = new Date(currentYear, 0, 1);
+                    to = new Date(currentYear, 11, 31); // Dec 31
+                    break;
+
+                case 'lastYear':
+                    from = new Date(currentYear - 1, 0, 1);
+                    to = new Date(currentYear - 1, 11, 31); // Dec 31 of last year
+                    break;
+
+                case 'last7Days':
+                    from = new Date(today);
+                    from.setDate(today.getDate() - 6); // 7 days ago including today
+                    to = today;
+                    break;
+
+                case 'last30Days':
+                    from = new Date(today);
+                    from.setDate(today.getDate() - 29); // 30 days ago including today
+                    to = today;
+                    break;
+
+                case 'last90Days':
+                    from = new Date(today);
+                    from.setDate(today.getDate() - 89); // 90 days ago including today
+                    to = today;
+                    break;
+
+                default:
+                    return null;
+            }
+
+            // Format dates as YYYY-MM-DD
+            const formatDate = (date) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+
+            return {
+                from: formatDate(from),
+                to: formatDate(to)
+            };
+        },
+
+        getEffectiveDateRange() {
+            const dateFilterType = this.model.get('dateFilterType') || 'custom';
+
+            if (dateFilterType !== 'custom') {
+                return this.calculateDateRange(dateFilterType) || { from: null, to: null };
+            }
+
+            return {
+                from: this.model.get('dateFrom'),
+                to: this.model.get('dateTo')
+            };
+        },
+
         validateDateRange() {
-            const dateFrom = this.model.get('dateFrom');
-            const dateTo = this.model.get('dateTo');
+            const dateRange = this.getEffectiveDateRange();
+            const dateFrom = dateRange.from;
+            const dateTo = dateRange.to;
 
             if (dateFrom && dateTo) {
                 if (new Date(dateFrom) > new Date(dateTo)) {
@@ -134,14 +284,17 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
         },
         
         actionPreviewData() {
+            // Get effective date range based on filter type
+            const dateRange = this.getEffectiveDateRange();
+
             const data = {
                 targetEntity: this.model.get('targetEntity'),
                 columns: this.model.get('columns'),
                 groupBy: this.model.get('groupBy'),
                 orderBy: this.model.get('orderBy'),
                 orderDirection: this.model.get('orderDirection'),
-                dateFrom: this.model.get('dateFrom'),
-                dateTo: this.model.get('dateTo')
+                dateFrom: dateRange.from,
+                dateTo: dateRange.to
             };
 
             // Debug logging - show all model data

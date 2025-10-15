@@ -454,8 +454,9 @@ class Report extends Record
         $columns = $report->get('columns') ?? [];
         $orderBy = $report->get('orderBy');
         $orderDirection = $report->get('orderDirection') ?? 'ASC';
-        $dateFrom = $report->get('dateFrom');
-        $dateTo = $report->get('dateTo');
+
+        // Get date range from dateFilterType or custom dates
+        $dateRange = $this->getDateRangeFromReport($report);
 
         $params = ['maxSize' => self::DEFAULT_MAX_SIZE];
 
@@ -465,12 +466,12 @@ class Report extends Record
         }
 
         // Add date filtering
-        if ($dateFrom) {
-            $params['dateFrom'] = $dateFrom;
+        if ($dateRange['from']) {
+            $params['dateFrom'] = $dateRange['from'];
         }
 
-        if ($dateTo) {
-            $params['dateTo'] = $dateTo;
+        if ($dateRange['to']) {
+            $params['dateTo'] = $dateRange['to'];
         }
 
         return $this->executeListQuery($targetEntity, $columns, $params);
@@ -482,12 +483,13 @@ class Report extends Record
         $groupBy = $report->get('groupBy');
         $orderBy = $report->get('orderBy');
         $orderDirection = $report->get('orderDirection') ?? 'ASC';
-        $dateFrom = $report->get('dateFrom');
-        $dateTo = $report->get('dateTo');
+
+        // Get date range from dateFilterType or custom dates
+        $dateRange = $this->getDateRangeFromReport($report);
 
         // For grid reports, we can use chart query with group by and then convert
         if ($groupBy && $orderBy) {
-            $chartData = $this->executeChartQuery($targetEntity, $groupBy, 'Bar', $orderBy, $orderDirection, $dateFrom, $dateTo);
+            $chartData = $this->executeChartQuery($targetEntity, $groupBy, 'Bar', $orderBy, $orderDirection, $dateRange['from'], $dateRange['to']);
             return $this->convertChartToGrid($chartData, $groupBy);
         }
 
@@ -503,10 +505,163 @@ class Report extends Record
         $groupBy = $report->get('groupBy');
         $orderBy = $report->get('orderBy');
         $orderDirection = $report->get('orderDirection') ?? 'ASC';
-        $dateFrom = $report->get('dateFrom');
-        $dateTo = $report->get('dateTo');
 
-        return $this->executeChartQuery($targetEntity, $groupBy, $chartType, $orderBy, $orderDirection, $dateFrom, $dateTo);
+        // Get date range from dateFilterType or custom dates
+        $dateRange = $this->getDateRangeFromReport($report);
+
+        return $this->executeChartQuery($targetEntity, $groupBy, $chartType, $orderBy, $orderDirection, $dateRange['from'], $dateRange['to']);
+    }
+
+    /**
+     * Get date range from report's dateFilterType or custom date fields
+     */
+    private function getDateRangeFromReport($report): array
+    {
+        $dateFilterType = $report->get('dateFilterType') ?? 'custom';
+
+        // If custom, use the specific date fields
+        if ($dateFilterType === 'custom') {
+            return [
+                'from' => $report->get('dateFrom'),
+                'to' => $report->get('dateTo')
+            ];
+        }
+
+        // For predefined filter types, calculate the date range
+        return $this->calculateDateRange($dateFilterType);
+    }
+
+    /**
+     * Calculate date range for predefined filter types
+     */
+    private function calculateDateRange(string $filterType): array
+    {
+        $today = new \DateTime();
+        $currentYear = (int)$today->format('Y');
+        $currentMonth = (int)$today->format('m');
+        $currentDay = (int)$today->format('d');
+        $currentWeekDay = (int)$today->format('w'); // 0 = Sunday, 1 = Monday, etc.
+
+        switch ($filterType) {
+            case 'today':
+                return [
+                    'from' => $today->format('Y-m-d'),
+                    'to' => $today->format('Y-m-d')
+                ];
+
+            case 'yesterday':
+                $yesterday = clone $today;
+                $yesterday->modify('-1 day');
+                return [
+                    'from' => $yesterday->format('Y-m-d'),
+                    'to' => $yesterday->format('Y-m-d')
+                ];
+
+            case 'thisWeek':
+                // Monday of this week
+                $monday = clone $today;
+                $monday->modify('monday this week');
+                // Sunday of this week
+                $sunday = clone $monday;
+                $sunday->modify('+6 days');
+                return [
+                    'from' => $monday->format('Y-m-d'),
+                    'to' => $sunday->format('Y-m-d')
+                ];
+
+            case 'lastWeek':
+                // Monday of last week
+                $lastMonday = clone $today;
+                $lastMonday->modify('monday last week');
+                // Sunday of last week
+                $lastSunday = clone $lastMonday;
+                $lastSunday->modify('+6 days');
+                return [
+                    'from' => $lastMonday->format('Y-m-d'),
+                    'to' => $lastSunday->format('Y-m-d')
+                ];
+
+            case 'thisMonth':
+                $startDate = new \DateTime("$currentYear-$currentMonth-01");
+                $endDate = new \DateTime("$currentYear-$currentMonth-" . date('t'));
+                return [
+                    'from' => $startDate->format('Y-m-d'),
+                    'to' => $endDate->format('Y-m-d')
+                ];
+
+            case 'lastMonth':
+                $lastMonth = $currentMonth == 1 ? 12 : $currentMonth - 1;
+                $lastYear = $currentMonth == 1 ? $currentYear - 1 : $currentYear;
+                $startDate = new \DateTime("$lastYear-$lastMonth-01");
+                $endDate = new \DateTime("$lastYear-$lastMonth-" . date('t', mktime(0, 0, 0, $lastMonth, 1, $lastYear)));
+                return [
+                    'from' => $startDate->format('Y-m-d'),
+                    'to' => $endDate->format('Y-m-d')
+                ];
+
+            case 'thisQuarter':
+                $quarter = ceil($currentMonth / 3);
+                $quarterStartMonth = ($quarter - 1) * 3 + 1;
+                $quarterEndMonth = $quarter * 3;
+                $startDate = new \DateTime("$currentYear-$quarterStartMonth-01");
+                $endDate = new \DateTime("$currentYear-$quarterEndMonth-" . date('t', mktime(0, 0, 0, $quarterEndMonth, 1, $currentYear)));
+                return [
+                    'from' => $startDate->format('Y-m-d'),
+                    'to' => $endDate->format('Y-m-d')
+                ];
+
+            case 'lastQuarter':
+                $lastQuarter = $currentMonth <= 3 ? 4 : ($currentMonth <= 6 ? 1 : ($currentMonth <= 9 ? 2 : 3));
+                $lastQuarterYear = $currentMonth <= 3 ? $currentYear - 1 : $currentYear;
+                $quarterStartMonth = ($lastQuarter - 1) * 3 + 1;
+                $quarterEndMonth = $lastQuarter * 3;
+                $startDate = new \DateTime("$lastQuarterYear-$quarterStartMonth-01");
+                $endDate = new \DateTime("$lastQuarterYear-$quarterEndMonth-" . date('t', mktime(0, 0, 0, $quarterEndMonth, 1, $lastQuarterYear)));
+                return [
+                    'from' => $startDate->format('Y-m-d'),
+                    'to' => $endDate->format('Y-m-d')
+                ];
+
+            case 'thisYear':
+                return [
+                    'from' => "$currentYear-01-01",
+                    'to' => "$currentYear-12-31"
+                ];
+
+            case 'lastYear':
+                $lastYear = $currentYear - 1;
+                return [
+                    'from' => "$lastYear-01-01",
+                    'to' => "$lastYear-12-31"
+                ];
+
+            case 'last7Days':
+                $sevenDaysAgo = clone $today;
+                $sevenDaysAgo->modify('-6 days'); // Include today, so 6 days back
+                return [
+                    'from' => $sevenDaysAgo->format('Y-m-d'),
+                    'to' => $today->format('Y-m-d')
+                ];
+
+            case 'last30Days':
+                $thirtyDaysAgo = clone $today;
+                $thirtyDaysAgo->modify('-29 days'); // Include today, so 29 days back
+                return [
+                    'from' => $thirtyDaysAgo->format('Y-m-d'),
+                    'to' => $today->format('Y-m-d')
+                ];
+
+            case 'last90Days':
+                $ninetyDaysAgo = clone $today;
+                $ninetyDaysAgo->modify('-89 days'); // Include today, so 89 days back
+                return [
+                    'from' => $ninetyDaysAgo->format('Y-m-d'),
+                    'to' => $today->format('Y-m-d')
+                ];
+
+            default:
+                return ['from' => null, 'to' => null];
+        }
     }
 
 

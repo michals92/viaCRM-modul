@@ -53,6 +53,12 @@
             ],
             [
                 {
+                    "name": "dateFilterType"
+                },
+                false
+            ],
+            [
+                {
                     "name": "dateFrom"
                 },
                 {
