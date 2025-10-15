@@ -4,9 +4,10 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
         
         setup() {
             Dep.prototype.setup.call(this);
-            
+
             this.setupFieldDependency();
             this.setupPreviewButton();
+            this.setupDateValidation();
         },
         
         setupFieldDependency() {
@@ -108,6 +109,29 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
                 }
             }
         },
+
+        setupDateValidation() {
+            this.listenTo(this.model, 'change:dateFrom change:dateTo', () => {
+                this.validateDateRange();
+                // Debug: Log when date fields change
+                console.log('Date fields changed:', {
+                    dateFrom: this.model.get('dateFrom'),
+                    dateTo: this.model.get('dateTo')
+                });
+            });
+        },
+
+        validateDateRange() {
+            const dateFrom = this.model.get('dateFrom');
+            const dateTo = this.model.get('dateTo');
+
+            if (dateFrom && dateTo) {
+                if (new Date(dateFrom) > new Date(dateTo)) {
+                    this.model.set('dateTo', null);
+                    this.notify(this.translate('End date cannot be earlier than start date', 'labels', 'Report'), 'warning');
+                }
+            }
+        },
         
         actionPreviewData() {
             const data = {
@@ -115,16 +139,28 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
                 columns: this.model.get('columns'),
                 groupBy: this.model.get('groupBy'),
                 orderBy: this.model.get('orderBy'),
-                orderDirection: this.model.get('orderDirection')
+                orderDirection: this.model.get('orderDirection'),
+                dateFrom: this.model.get('dateFrom'),
+                dateTo: this.model.get('dateTo')
             };
-            
+
+            // Debug logging - show all model data
+            console.log('Report preview data:', data);
+            console.log('Full model data:', this.model.toJSON());
+            console.log('Date fields specifically:', {
+                dateFrom: this.model.get('dateFrom'),
+                dateTo: this.model.get('dateTo'),
+                modelHasDateFrom: this.model.has('dateFrom'),
+                modelHasDateTo: this.model.has('dateTo')
+            });
+
             if (!data.targetEntity) {
                 this.notify('Target Entity is required for preview', 'warning');
                 return;
             }
-            
+
             this.notify('Loading preview...', 'info');
-            
+
             this.ajaxPostRequest('Report/action/preview', data)
                 .then(result => {
                     this.createView('previewModal', 'viacrm:views/report/modals/preview', {

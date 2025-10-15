@@ -14,6 +14,8 @@
         "refreshInterval": "Interval obnovení (minuty)",
         "assignedUser": "Přiřazený uživatel",
         "teams": "Týmy",
+        "dateFrom": "Vytvořeno od",
+        "dateTo": "Vytvořeno do",
         "createdAt": "Vytvořeno",
         "modifiedAt": "Upraveno",
         "createdBy": "Vytvořil",
@@ -74,6 +76,9 @@
         "Data Preview": "Náhled dat",
         "Report Results": "Výsledky přehledu",
         "Export Report": "Exportovat přehled",
-        "Select export format": "Vyberte formát exportu"
+        "Select export format": "Vyberte formát exportu",
+        "Date Filtering": "Filtrování podle data",
+        "Date Range": "Časové rozmezí",
+        "End date cannot be earlier than start date": "Konečné datum nemůže být dříve než počáteční datum"
     }
 }

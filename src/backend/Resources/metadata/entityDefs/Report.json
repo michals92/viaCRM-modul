@@ -105,6 +105,18 @@
         "teams": {
             "type": "linkMultiple",
             "view": "views/fields/teams"
+        },
+        "dateFrom": {
+            "type": "date",
+            "required": false,
+            "tooltip": "Filter records created from this date",
+            "view": "views/fields/date"
+        },
+        "dateTo": {
+            "type": "date",
+            "required": false,
+            "tooltip": "Filter records created to this date",
+            "view": "views/fields/date"
         }
     },
     "links": {

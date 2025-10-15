@@ -64,22 +64,48 @@ class Report extends Record
     public function runReportPreview($reportData): array
     {
         $targetEntity = $reportData->targetEntity ?? null;
-        
+
         if (!$targetEntity) {
             throw new BadRequest('Target entity is required');
         }
-        
+
         $columns = $reportData->columns ?? [];
         $orderBy = $reportData->orderBy ?? null;
         $orderDirection = $reportData->orderDirection ?? 'ASC';
-        
+        $dateFrom = $reportData->dateFrom ?? null;
+        $dateTo = $reportData->dateTo ?? null;
+
         $params = ['maxSize' => self::PREVIEW_MAX_SIZE];
-        
+
         if ($orderBy) {
             $params['orderBy'] = $orderBy;
             $params['order'] = $orderDirection;
         }
-        
+
+        // Add date filtering
+        if ($dateFrom) {
+            $params['dateFrom'] = $dateFrom;
+        }
+
+        if ($dateTo) {
+            $params['dateTo'] = $dateTo;
+        }
+
+        // Debug logging for preview - safe check
+        try {
+            if (method_exists($this, 'getLogger')) {
+                $this->getLogger()->debug('Report preview called', [
+                    'targetEntity' => $targetEntity,
+                    'dateFrom' => $dateFrom,
+                    'dateTo' => $dateTo,
+                    'columns' => $columns,
+                    'params' => $params
+                ]);
+            }
+        } catch (\Exception $e) {
+            // Ignore logging errors
+        }
+
         return $this->executeListQuery($targetEntity, $columns, $params);
     }
 
@@ -88,68 +114,126 @@ class Report extends Record
         if (!$this->entityManager->hasRepository($targetEntity)) {
             throw new BadRequest("Entity '{$targetEntity}' not found");
         }
-        
+
         $repository = $this->entityManager->getRepository($targetEntity);
-        
+
         // Build query parameters with proper EspoCRM format
         $queryParams = [
             'maxSize' => $params['maxSize'] ?? self::DEFAULT_MAX_SIZE
         ];
-        
+
+        // Add date filtering if specified - use EspoCRM native format
+        if (!empty($params['dateFrom']) || !empty($params['dateTo'])) {
+            // EspoCRM uses array format for WHERE conditions
+            $where = [];
+
+            if (!empty($params['dateFrom'])) {
+                $where[] = [
+                    'type' => 'greaterThanOrEquals',
+                    'field' => 'createdAt',
+                    'value' => $params['dateFrom']
+                ];
+            }
+
+            if (!empty($params['dateTo'])) {
+                $where[] = [
+                    'type' => 'lessThanOrEquals',
+                    'field' => 'createdAt',
+                    'value' => $params['dateTo'] . ' 23:59:59'
+                ];
+            }
+
+            if (!empty($where)) {
+                $queryParams['where'] = $where;
+
+                // Debug: Write to temporary file for debugging
+                try {
+                    $debugData = [
+                        'timestamp' => date('Y-m-d H:i:s'),
+                        'entity' => $targetEntity,
+                        'dateFrom' => $params['dateFrom'] ?? null,
+                        'dateTo' => $params['dateTo'] ?? null,
+                        'where' => $where,
+                        'queryParams' => $queryParams
+                    ];
+                    file_put_contents('/tmp/report_debug.log', json_encode($debugData, JSON_PRETTY_PRINT) . "\n", FILE_APPEND);
+                } catch (\Exception $e) {
+                    // Ignore debug file errors
+                }
+            }
+        }
+
         // Add ordering if specified - try multiple EspoCRM formats
         if (!empty($params['orderBy'])) {
             $orderDirection = strtolower($params['order'] ?? 'ASC');
-            
+
             // Format 1: Standard EspoCRM format
             $queryParams['orderBy'] = $params['orderBy'];
             $queryParams['order'] = $orderDirection;
-            
+
             // Format 2: Alternative format with orderDirection
             $queryParams['orderDirection'] = $orderDirection;
-            
+
             // Format 3: Array format (some EspoCRM versions)
             $queryParams['orderByList'] = [
                 [$params['orderBy'], $orderDirection]
             ];
-            
+
         }
         
         
         try {
-            // Try multiple approaches for ordering
-            $collection = null;
-            
-            // Approach 1: Standard repository find
-            try {
-                $collection = $repository->find($queryParams);
-            } catch (\Exception $e1) {
-                
-                // Approach 2: Use SelectBuilder if available
-                try {
-                    if (method_exists($this->entityManager, 'getQueryBuilder')) {
-                        $queryBuilder = $this->entityManager->getQueryBuilder()
-                            ->select()
-                            ->from($targetEntity)
-                            ->limit($queryParams['maxSize']);
-                        
-                        if (!empty($params['orderBy'])) {
-                            $queryBuilder->order($params['orderBy'], strtoupper($params['order'] ?? 'ASC'));
-                        }
-                        
-                        $query = $queryBuilder->build();
-                        $collection = $this->entityManager->getCollectionFactory()->createFromQuery($query);
+            // Use simple EspoORM find with additional filtering
+            $basicParams = ['maxSize' => $queryParams['maxSize']];
+
+            // Add ordering if specified
+            if (!empty($params['orderBy'])) {
+                $basicParams['orderBy'] = $params['orderBy'];
+                $basicParams['order'] = $params['order'] ?? 'ASC';
+            }
+
+            // Get all records first
+            $collection = $repository->find($basicParams);
+
+            // Filter manually if date filtering is required
+            if (!empty($params['dateFrom']) || !empty($params['dateTo'])) {
+                $filteredCollection = $this->entityManager->getCollectionFactory()->create($targetEntity);
+
+                foreach ($collection as $entity) {
+                    $createdAt = $entity->get('createdAt');
+
+                    if (!$createdAt) {
+                        continue;
                     }
-                } catch (\Exception $e2) {
-                    // Approach 3: Manual sorting fallback
-                    $simpleParams = ['maxSize' => $queryParams['maxSize']];
-                    $collection = $repository->find($simpleParams);
+
+                    // Convert to DateTime for comparison
+                    $entityDate = new \DateTime($createdAt);
+                    $includeEntity = true;
+
+                    if (!empty($params['dateFrom'])) {
+                        $dateFrom = new \DateTime($params['dateFrom']);
+                        $dateFrom->setTime(0, 0, 0);
+                        if ($entityDate < $dateFrom) {
+                            $includeEntity = false;
+                        }
+                    }
+
+                    if (!empty($params['dateTo'])) {
+                        $dateTo = new \DateTime($params['dateTo']);
+                        $dateTo->setTime(23, 59, 59);
+                        if ($entityDate > $dateTo) {
+                            $includeEntity = false;
+                        }
+                    }
+
+                    if ($includeEntity) {
+                        $filteredCollection->append($entity);
+                    }
                 }
+
+                $collection = $filteredCollection;
             }
-            
-            if (!$collection) {
-                throw new Error('Failed to execute query with all approaches');
-            }
-            
+
         } catch (\Exception $e) {
             throw $e;
         }
@@ -201,32 +285,72 @@ class Report extends Record
         ];
     }
 
-    private function executeChartQuery(string $targetEntity, ?string $groupBy, string $chartType, ?string $orderBy = null, ?string $orderDirection = 'ASC'): array
+    private function executeChartQuery(string $targetEntity, ?string $groupBy, string $chartType, ?string $orderBy = null, ?string $orderDirection = 'ASC', ?string $dateFrom = null, ?string $dateTo = null): array
     {
         if (!$groupBy) {
             throw new BadRequest('Group By field is required for chart reports');
         }
-        
+
         if (!in_array($chartType, self::SUPPORTED_CHART_TYPES)) {
             throw new BadRequest('Unsupported chart type');
         }
-        
+
         if (!$this->entityManager->hasRepository($targetEntity)) {
             throw new BadRequest("Entity '{$targetEntity}' not found");
         }
-        
+
         $this->currentTargetEntity = $targetEntity;
         $repository = $this->entityManager->getRepository($targetEntity);
-        
-        // Build query parameters for chart with ordering
-        $params = ['maxSize' => self::CHART_MAX_SIZE];
-        
+
+        // Use simple EspoORM find with manual date filtering (same approach as executeListQuery)
+        $basicParams = ['maxSize' => self::CHART_MAX_SIZE];
+
         if ($orderBy) {
-            $params['orderBy'] = $orderBy;
-            $params['order'] = $orderDirection;
+            $basicParams['orderBy'] = $orderBy;
+            $basicParams['order'] = $orderDirection;
         }
-        
-        $collection = $repository->find($params);
+
+        // Get all records first
+        $collection = $repository->find($basicParams);
+
+        // Filter manually if date filtering is required
+        if (!empty($dateFrom) || !empty($dateTo)) {
+            $filteredCollection = $this->entityManager->getCollectionFactory()->create($targetEntity);
+
+            foreach ($collection as $entity) {
+                $createdAt = $entity->get('createdAt');
+
+                if (!$createdAt) {
+                    continue;
+                }
+
+                // Convert to DateTime for comparison
+                $entityDate = new \DateTime($createdAt);
+                $includeEntity = true;
+
+                if (!empty($dateFrom)) {
+                    $dateFromObj = new \DateTime($dateFrom);
+                    $dateFromObj->setTime(0, 0, 0);
+                    if ($entityDate < $dateFromObj) {
+                        $includeEntity = false;
+                    }
+                }
+
+                if (!empty($dateTo)) {
+                    $dateToObj = new \DateTime($dateTo);
+                    $dateToObj->setTime(23, 59, 59);
+                    if ($entityDate > $dateToObj) {
+                        $includeEntity = false;
+                    }
+                }
+
+                if ($includeEntity) {
+                    $filteredCollection->append($entity);
+                }
+            }
+
+            $collection = $filteredCollection;
+        }
         
         $chartData = $this->aggregateChartData($collection, $groupBy);
         
@@ -330,15 +454,25 @@ class Report extends Record
         $columns = $report->get('columns') ?? [];
         $orderBy = $report->get('orderBy');
         $orderDirection = $report->get('orderDirection') ?? 'ASC';
-        
+        $dateFrom = $report->get('dateFrom');
+        $dateTo = $report->get('dateTo');
+
         $params = ['maxSize' => self::DEFAULT_MAX_SIZE];
-        
+
         if ($orderBy) {
             $params['orderBy'] = $orderBy;
             $params['order'] = $orderDirection;
         }
-        
-        
+
+        // Add date filtering
+        if ($dateFrom) {
+            $params['dateFrom'] = $dateFrom;
+        }
+
+        if ($dateTo) {
+            $params['dateTo'] = $dateTo;
+        }
+
         return $this->executeListQuery($targetEntity, $columns, $params);
     }
 
@@ -348,13 +482,15 @@ class Report extends Record
         $groupBy = $report->get('groupBy');
         $orderBy = $report->get('orderBy');
         $orderDirection = $report->get('orderDirection') ?? 'ASC';
-        
+        $dateFrom = $report->get('dateFrom');
+        $dateTo = $report->get('dateTo');
+
         // For grid reports, we can use chart query with group by and then convert
         if ($groupBy && $orderBy) {
-            $chartData = $this->executeChartQuery($targetEntity, $groupBy, 'Bar', $orderBy, $orderDirection);
+            $chartData = $this->executeChartQuery($targetEntity, $groupBy, 'Bar', $orderBy, $orderDirection, $dateFrom, $dateTo);
             return $this->convertChartToGrid($chartData, $groupBy);
         }
-        
+
         // Fallback to original behavior
         $listData = $this->runListReport($report);
         return $this->convertToGrid($listData, $groupBy);
@@ -367,8 +503,10 @@ class Report extends Record
         $groupBy = $report->get('groupBy');
         $orderBy = $report->get('orderBy');
         $orderDirection = $report->get('orderDirection') ?? 'ASC';
-        
-        return $this->executeChartQuery($targetEntity, $groupBy, $chartType, $orderBy, $orderDirection);
+        $dateFrom = $report->get('dateFrom');
+        $dateTo = $report->get('dateTo');
+
+        return $this->executeChartQuery($targetEntity, $groupBy, $chartType, $orderBy, $orderDirection, $dateFrom, $dateTo);
     }
 
 
@@ -894,12 +1032,19 @@ class Report extends Record
             ];
             
         } catch (\Exception $e) {
-            $this->log->error('PDF generation failed for report', [
-                'reportId' => $report->getId(),
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            
+            // Safe logging attempt
+            try {
+                if (method_exists($this, 'getLogger')) {
+                    $this->getLogger()->error('PDF generation failed for report', [
+                        'reportId' => $report->getId(),
+                        'error' => $e->getMessage(),
+                        'trace' => $e->getTraceAsString()
+                    ]);
+                }
+            } catch (\Exception $logError) {
+                // Ignore logging errors
+            }
+
             // Fallback to HTML if PDF generation fails
             return $this->generateHtmlFallback($data, $report);
         }
@@ -960,7 +1105,12 @@ class Report extends Record
     {
         // Try to use EspoCRM's PDF service first
         try {
-            $pdfService = $this->injectableFactory->create(PdfService::class);
+            // Check if injectableFactory is available
+            if (property_exists($this, 'injectableFactory') && $this->injectableFactory) {
+                $pdfService = $this->injectableFactory->create(PdfService::class);
+            } else {
+                throw new \Exception('injectableFactory not available');
+            }
             
             // Create a temporary template for PDF generation
             $template = $this->entityManager->getEntity('Template');

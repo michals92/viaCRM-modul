@@ -53,6 +53,14 @@
             ],
             [
                 {
+                    "name": "dateFrom"
+                },
+                {
+                    "name": "dateTo"
+                }
+            ],
+            [
+                {
                     "name": "chartType"
                 },
                 {
