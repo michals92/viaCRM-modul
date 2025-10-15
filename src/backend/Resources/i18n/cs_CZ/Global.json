@@ -76,7 +76,7 @@
         "ProductsItems": "Produkty",
         "Offer": "Nabídka",
         "Order": "Objednávka",
-        "Invoice": "Faktura",
+        "Invoice": "Vydaná faktura",
         "Report": "Přehled"
     },
     "scopeNamesPlural": {
@@ -146,7 +146,7 @@
         "ProductsItems": "Produkty",
         "Offer": "Nabídky",
         "Order": "Objednávky",
-        "Invoice": "Faktury",
+        "Invoice": "Vydané faktury",
         "Report": "Přehledy"
     },
     "labels": {

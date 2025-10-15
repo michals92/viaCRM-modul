@@ -42,7 +42,14 @@
         "availableStockQuantity": "Available Stock Quantity"
     },
     "labels": {
-        "Recalculate Quantities": "Recalculate Quantities"
+        "Recalculate Quantities": "Recalculate Quantities",
+        "Basic Information": "Basic Information",
+        "Pricing & Tax": "Pricing & Tax",
+        "Physical Properties": "Physical Properties",
+        "Inventory": "Inventory",
+        "Status Configuration": "Status Configuration",
+        "Description & Notes": "Description & Notes",
+        "System": "System"
     },
     "options": {
         "productType": {
@@ -70,7 +77,7 @@
         "createdBy": "Created By",
         "modifiedBy": "Modified By"
     },
-    "tooltips": {
+        "tooltips": {
         "sku": "Unique product identifier",
         "barcode": "Barcode for scanning",
         "productType": "Product type determines storage and sales method",

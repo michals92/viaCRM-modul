@@ -11,6 +11,9 @@
         "accountCompanyId": "Company ID (IČO)",
         "accountTaxId": "Tax ID (DIČ)",
         "accountVatId": "VAT ID",
+        "contactPersonName": "Contact Person Name",
+        "contactPersonEmailAddress": "Contact Person Email",
+        "accountEmailAddress": "Account Email",
         "billingAddress": "Billing Address",
         "shippingAddress": "Shipping Address",
         "contactPerson": "Contact Person",
@@ -58,13 +61,18 @@
     },
     "labels": {
         "Create": "Create Invoice",
+        "Create Invoice": "Create Invoice",
         "View List": "View Invoice List",
         "Print to PDF": "Print to PDF",
         "Manage PDF Templates": "Manage PDF Templates",
         "Send PDF via Email": "Send PDF via Email",
         "PDF Document": "PDF Document",
         "Direct PDF Link": "Direct PDF Link",
-        "PDF Link": "PDF Link"
+        "PDF Link": "PDF Link",
+        "Invoice Details": "Invoice Details",
+        "Organization": "Organization",
+        "Payment Details": "Payment Details",
+        "Dates": "Dates"
     },
     "messages": {
         "Please find attached PDF document": "Please find attached PDF document",

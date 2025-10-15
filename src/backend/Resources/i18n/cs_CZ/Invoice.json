@@ -10,10 +10,13 @@
         "accountName": "Název organizace",
         "accountCompanyId": "IČO",
         "accountTaxId": "DIČ",
-        "accountVatId": "VAT ID",
+        "accountVatId": "DIČ EU",
         "billingAddress": "Fakturační adresa",
         "shippingAddress": "Dodací adresa",
         "contactPerson": "Kontaktní osoba",
+        "contactPersonName": "Jméno kontaktní osoby",
+        "contactPersonEmailAddress": "Email kontaktní osoby",
+        "accountEmailAddress": "Email organizace",
         "invoiceEmail": "Email pro e-fakturu",
         "issueDate": "Datum vystavení",
         "taxableSupplyDate": "Datum zdanitelného plnění",
@@ -57,14 +60,19 @@
         "attachments": "Přílohy"
     },
     "labels": {
-        "Create": "Vytvořit fakturu",
-        "View List": "Zobrazit seznam faktur",
+        "Create": "Vytvořit vydanou fakturu",
+        "Create Invoice": "Vytvořit vydanou fakturu",
+        "View List": "Zobrazit seznam vydaných faktur",
         "Print to PDF": "Tisknout do PDF",
         "Manage PDF Templates": "Spravovat PDF šablony",
         "Send PDF via Email": "Odeslat PDF emailem",
         "PDF Document": "PDF dokument",
         "Direct PDF Link": "Přímý odkaz na PDF",
-        "PDF Link": "PDF odkaz"
+        "PDF Link": "PDF odkaz",
+        "Invoice Details": "Detaily faktury",
+        "Organization": "Organizace",
+        "Payment Details": "Platební údaje",
+        "Dates": "Data"
     },
     "messages": {
         "Please find attached PDF document": "V příloze naleznete PDF dokument",

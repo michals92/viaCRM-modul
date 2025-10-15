@@ -43,7 +43,14 @@
         "availableStockQuantity": "Dostupné skladové množství"
     },
     "labels": {
-        "Recalculate Quantities": "Přepočítat množství"
+        "Recalculate Quantities": "Přepočítat množství",
+        "Basic Information": "Základní informace",
+        "Pricing & Tax": "Ceny a daně",
+        "Physical Properties": "Fyzické vlastnosti",
+        "Inventory": "Sklad",
+        "Status Configuration": "Konfigurace stavů",
+        "Description & Notes": "Popis a poznámky",
+        "System": "Systém"
     },
     "options": {
         "productType": {
@@ -65,7 +72,7 @@
             "license": "licence"
         }
     },
-    "tooltips": {
+      "tooltips": {
         "sku": "Jedinečný identifikátor produktu",
         "barcode": "Čárový kód pro skenování",
         "productType": "Typ produktu určuje způsob skladování a prodeje",
