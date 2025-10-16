@@ -25,12 +25,12 @@ define('viacrm:views/report/modals/export', ['views/modal'], function (Dep) {
             this.buttonList = [
                 {
                     name: 'export',
-                    label: 'Export',
+                    label: this.translate('Export', 'labels', 'Report'),
                     style: 'primary'
                 },
                 {
                     name: 'cancel',
-                    label: 'Cancel'
+                    label: this.translate('Cancel', 'labels', 'Report')
                 }
             ];
         },
@@ -47,7 +47,7 @@ define('viacrm:views/report/modals/export', ['views/modal'], function (Dep) {
             const selectedFormat = this.$el.find('input[name="exportFormat"]:checked').val();
             
             if (!selectedFormat) {
-                this.notify('Please select an export format', 'warning');
+                this.notify(this.translate('Please select an export format', 'labels', 'Report'), 'warning');
                 return;
             }
             

@@ -26,12 +26,12 @@ define('viacrm:views/report/modals/result', ['views/modal'], function (Dep) {
             this.buttonList = [
                 {
                     name: 'export',
-                    label: 'Export',
+                    label: this.translate('Export', 'labels', 'Report'),
                     style: 'primary'
                 },
                 {
                     name: 'cancel',
-                    label: 'Close'
+                    label: this.translate('Close', 'labels', 'Report')
                 }
             ];
         },
@@ -53,7 +53,7 @@ define('viacrm:views/report/modals/result', ['views/modal'], function (Dep) {
             const chartType = (data.chartType || 'Bar').toLowerCase();
             
             let html = `<div class="chart-container-custom">
-                <h4>${data.chartType} Chart</h4>`;
+                <h4>${this.translate(data.chartType + ' Chart', 'labels', 'Report')}</h4>`;
             
             if (data.labels && data.datasets && data.datasets[0]) {
                 const values = data.datasets[0].data;
@@ -73,7 +73,7 @@ define('viacrm:views/report/modals/result', ['views/modal'], function (Dep) {
                 // Add data table below chart
                 html += '<div class="chart-data-table" style="margin-top: 20px;">';
                 html += '<table class="table table-sm table-striped">';
-                html += '<thead><tr><th>Category</th><th>Value</th></tr></thead><tbody>';
+                html += `<thead><tr><th>${this.translate('Category', 'labels', 'Report')}</th><th>${this.translate('Value', 'labels', 'Report')}</th></tr></thead><tbody>`;
                 data.labels.forEach((label, index) => {
                     const value = values[index] || 0;
                     html += `<tr><td>${label}</td><td>${value}</td></tr>`;
@@ -223,7 +223,7 @@ define('viacrm:views/report/modals/result', ['views/modal'], function (Dep) {
         renderListData() {
             const data = this.result.data;
             if (!data || data.length === 0) {
-                this.$el.find('.report-content').html('<p>No data found</p>');
+                this.$el.find('.report-content').html(`<p>${this.translate('No data found', 'labels', 'Report')}</p>`);
                 return;
             }
             
@@ -253,7 +253,7 @@ define('viacrm:views/report/modals/result', ['views/modal'], function (Dep) {
             html += '</table>';
             
             if (data.length > 50) {
-                html += `<p><em>Showing first 50 of ${data.length} records. Use export to get all data.</em></p>`;
+                html += `<p><em>${this.translate('Showing first {count} of {total} records', 'labels', 'Report').replace('{count}', '50').replace('{total}', data.length)}. ${this.translate('Use export to get all data', 'labels', 'Report')}.</em></p>`;
             }
             
             this.$el.find('.report-content').html(html);
@@ -263,13 +263,13 @@ define('viacrm:views/report/modals/result', ['views/modal'], function (Dep) {
             const data = this.result.data;
             const groupBy = this.result.groupBy;
             
-            let html = `<h4>Grouped by: ${this.translate(groupBy, 'fields')}</h4>`;
+            let html = `<h4>${this.translate('Grouped by: {field}', 'labels', 'Report').replace('{field}', this.translate(groupBy, 'fields'))}</h4>`;
             
             Object.keys(data).forEach(groupValue => {
                 const groupData = data[groupValue];
                 html += `<div class="panel panel-default">
                     <div class="panel-heading">
-                        <h5>${groupValue} (${groupData.length} records)</h5>
+                        <h5>${groupValue} (${groupData.length} ${this.translate('records', 'labels', 'Report')})</h5>
                     </div>
                     <div class="panel-body">`;
                 
@@ -297,7 +297,7 @@ define('viacrm:views/report/modals/result', ['views/modal'], function (Dep) {
                     html += '</tbody></table>';
                     
                     if (groupData.length > 10) {
-                        html += `<p><em>Showing first 10 of ${groupData.length} records in this group.</em></p>`;
+                        html += `<p><em>${this.translate('Showing first {count} of {total} records in this group', 'labels', 'Report').replace('{count}', '10').replace('{total}', groupData.length)}.</em></p>`;
                     }
                 }
                 

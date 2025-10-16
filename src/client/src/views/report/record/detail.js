@@ -13,14 +13,14 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
             // Add buttons to top bar - use proper EspoCRM format
             this.buttonList.push({
                 name: 'runReport',
-                label: 'Run Report',
+                label: this.translate('Run Report', 'labels', 'Report'),
                 style: 'success',
                 action: 'runReport'
             });
             
             this.buttonList.push({
                 name: 'exportReport',
-                label: 'Export',
+                label: this.translate('Export', 'labels', 'Report'),
                 style: 'primary', 
                 action: 'exportReport'
             });
@@ -28,13 +28,13 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
             // Also add to dropdown
             this.dropdownItemList.push({
                 name: 'runReport',
-                label: 'Run Report',
+                label: this.translate('Run Report', 'labels', 'Report'),
                 action: 'runReport'
             });
             
             this.dropdownItemList.push({
                 name: 'exportReport',
-                label: 'Export',
+                label: this.translate('Export', 'labels', 'Report'),
                 action: 'exportReport'
             });
         },
@@ -119,17 +119,17 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
         actionRunReport() {
             
             if (!this.model.id) {
-                this.notify('Report must be saved first', 'warning');
+                this.notify(this.translate('Report must be saved first', 'labels', 'Report'), 'warning');
                 return;
             }
             
-            this.notify('Running report...', 'info');
+            this.notify(this.translate('Running report...', 'labels', 'Report'), 'info');
             
             $.ajax({
                 url: this.getBasePath() + '/api/v1/Report/' + this.model.id + '/run',
                 type: 'GET'
             }).done(result => {
-                this.notify('Report completed!', 'success');
+                this.notify(this.translate('Report completed!', 'labels', 'Report'), 'success');
                 
                 this.createView('reportResult', 'viacrm:views/report/modals/result', {
                     model: this.model,
@@ -138,7 +138,7 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
                     view.render();
                 });
             }).fail(error => {
-                this.notify('Error running report', 'error');
+                this.notify(this.translate('Error running report', 'labels', 'Report'), 'error');
                 console.error('Report error:', error);
             });
         },
@@ -146,7 +146,7 @@ define('viacrm:views/report/record/detail', ['views/record/detail'], function (D
         actionExportReport() {
             
             if (!this.model.id) {
-                this.notify('Report must be saved first', 'warning');
+                this.notify(this.translate('Report must be saved first', 'labels', 'Report'), 'warning');
                 return;
             }
             

@@ -24,7 +24,7 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
         setupPreviewButton() {
             this.dropdownItemList.push({
                 name: 'preview',
-                label: 'Preview Data',
+                label: this.translate('Data Preview', 'labels', 'Report'),
                 action: 'previewData'
             });
         },
@@ -85,7 +85,7 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
             if (orderByView) {
                 const options = [''].concat(fields.map(field => field.name));
                 orderByView.params.options = options;
-                orderByView.translatedOptions = { '': 'Default' };
+                orderByView.translatedOptions = { '': this.translate('Default', 'labels', 'Report') };
                 fields.forEach(field => {
                     orderByView.translatedOptions[field.name] = field.label;
                 });
@@ -308,11 +308,11 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
             });
 
             if (!data.targetEntity) {
-                this.notify('Target Entity is required for preview', 'warning');
+                this.notify(this.translate('Target Entity is required for preview', 'labels', 'Report'), 'warning');
                 return;
             }
 
-            this.notify('Loading preview...', 'info');
+            this.notify(this.translate('Loading preview...', 'labels', 'Report'), 'info');
 
             this.ajaxPostRequest('Report/action/preview', data)
                 .then(result => {
@@ -324,7 +324,7 @@ define('viacrm:views/report/record/edit', ['views/record/edit'], function (Dep) 
                     });
                 })
                 .catch(error => {
-                    this.notify('Error loading preview', 'error');
+                    this.notify(this.translate('Error loading preview', 'labels', 'Report'), 'error');
                     console.error(error);
                 });
         }

@@ -24,7 +24,7 @@ define('viacrm:views/report/modals/preview', ['views/modal'], function (Dep) {
             this.buttonList = [
                 {
                     name: 'cancel',
-                    label: 'Close'
+                    label: this.translate('Close', 'labels', 'Report')
                 }
             ];
         },
@@ -39,7 +39,7 @@ define('viacrm:views/report/modals/preview', ['views/modal'], function (Dep) {
             const data = this.result.preview;
             
             if (!data || data.length === 0) {
-                this.$el.find('.preview-content').html('<p class="text-muted">No data found with current filters</p>');
+                this.$el.find('.preview-content').html(`<p class="text-muted">${this.translate('No data found with current filters', 'labels', 'Report')}</p>`);
                 return;
             }
             
@@ -74,7 +74,7 @@ define('viacrm:views/report/modals/preview', ['views/modal'], function (Dep) {
             html += '</div>';
             
             if (this.result.total > 10) {
-                html += `<p class="text-muted"><em>Showing first 10 of ${this.result.total} records</em></p>`;
+                html += `<p class="text-muted"><em>${this.translate('Showing first {count} of {total} records', 'labels', 'Report').replace('{count}', '10').replace('{total}', this.result.total)}</em></p>`;
             }
             
             this.$el.find('.preview-content').html(html);
