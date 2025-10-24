@@ -24,7 +24,10 @@
       "Bash(find:*)",
       "WebFetch(domain:forum.espocrm.com)",
       "Bash(sed:*)",
-      "Bash(php -l:*)"
+      "Bash(php -l:*)",
+      "Bash(rmdir:*)",
+      "WebSearch",
+      "Bash(npm run build:zip:*)"
     ],
     "deny": []
   }

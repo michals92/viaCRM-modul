@@ -1,0 +1,48 @@
+{
+    "labels": {
+        "Create KnowledgeBaseArticle": "Vytvořit článek",
+        "Any": "Jakýkoliv",
+        "Send in Email": "Odeslat v e-mailu",
+        "Move Up": "Posunout nahoru",
+        "Move Down": "Posunout dolů",
+        "Move to Top": "Posunout na začátek",
+        "Move to Bottom": "Posunout na konec"
+    },
+    "fields": {
+        "name": "Název",
+        "status": "Stav",
+        "type": "Typ",
+        "attachments": "Přílohy",
+        "publishDate": "Datum publikace",
+        "expirationDate": "Datum expirace",
+        "description": "Popis",
+        "body": "Tělo článku",
+        "categories": "Kategorie",
+        "language": "Jazyk",
+        "portals": "Portály",
+        "bodyPlain": "Prostý text článku"
+    },
+    "links": {
+        "cases": "Případové studie",
+        "opportunities": "Obchodní příležitosti",
+        "categories": "Kategorie",
+        "portals": "Portály"
+    },
+    "options": {
+        "status": {
+            "In Review": "Kontroluje se",
+            "Draft": "Koncept",
+            "Archived": "Archivováno",
+            "Published": "Publikováno"
+        },
+        "type": {
+            "Article": "Článek"
+        }
+    },
+    "tooltips": {
+        "portals": "Článek bude dostupný pouze ve specifikovaných portálech."
+    },
+    "presetFilters": {
+        "published": "Publikováno"
+    }
+}

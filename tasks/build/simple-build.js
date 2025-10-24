@@ -50,9 +50,17 @@ async function build() {
         console.log('📦 Copying custom files...');
         const customSrc = path.join(rootDir, 'src/custom');
         const customDest = path.join(buildDir, 'files/custom');
-        
+
         if (await fs.pathExists(customSrc)) {
             await fs.copy(customSrc, customDest);
+        }
+
+        // Copy custom client files to proper client structure
+        const customClientSrc = path.join(rootDir, 'src/custom/Espo/Custom/Resources/client');
+        const customClientDest = path.join(buildDir, 'files/client');
+
+        if (await fs.pathExists(customClientSrc)) {
+            await fs.copy(customClientSrc, customClientDest);
         }
         
         // Check for optional compile step
