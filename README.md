@@ -8,7 +8,7 @@ VIA CRM module for EspoCRM - základní modul pro vývoj.
 
 1. Clone the repository
 2. Run `npm install`
-3. Run `npm run build`
+3. Run `npm run build:zip`
 
 ## Development
 
