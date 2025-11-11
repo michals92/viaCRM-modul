@@ -77,7 +77,8 @@
         "Offer": "Nabídka",
         "Order": "Objednávka",
         "Invoice": "Vydaná faktura",
-        "Report": "Přehled"
+        "Report": "Přehled",
+        "CInventoryMovemant": "Skladový pohyb"
     },
     "scopeNamesPlural": {
         "Note": "Poznámky",
@@ -147,7 +148,8 @@
         "Offer": "Nabídky",
         "Order": "Objednávky",
         "Invoice": "Vydané faktury",
-        "Report": "Přehledy"
+        "Report": "Přehledy",
+        "CInventoryMovemant": "Skladové pohyby"
     },
     "labels": {
         "Previous Page": "Předchozí stránka",
@@ -170,6 +172,7 @@
         "Not valid": "Neplatné",
         "Please wait...": "Čekejte prosím...",
         "Please wait": "Čekejte prosím",
+        "Create CInventoryMovemant": "Vytvořit Skladový pohyb",
         "Attached": "Přiloženo",
         "Loading...": "Načítání...",
         "Uploading...": "Nahrávání...",

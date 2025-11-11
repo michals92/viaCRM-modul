@@ -17,7 +17,8 @@
         "Call": "Call",
         "Email": "Email",
         "Document": "Document",
-        "Invoice": "Invoice"
+        "Invoice": "Invoice",
+        "CInventoryMovemant": "Inventory Movement"
     },
     "scopeNamesPlural": {
         "Absence": "Absences",
@@ -37,7 +38,8 @@
         "Call": "Calls",
         "Email": "Emails",
         "Document": "Documents",
-        "Invoice": "Invoice"
+        "Invoice": "Invoice",
+        "CInventoryMovemant": "Inventory Movements"
     },
     "labels": {
         "Hr": "HR Employee",
@@ -84,7 +86,8 @@
         "Save & Continue Editing": "Save & Continue Editing",
         "Save & New": "Save & New",
         "Cancel": "Cancel",
-        "Apply": "Apply"
+        "Apply": "Apply",
+        "Create CInventoryMovemant": "Create Inventory Movement"
     },
     "fields": {
         "firstName": "First Name",

@@ -13,7 +13,7 @@
         "width": 12
     },
     {
-        "name": "status",
+        "name": "cLoan",
         "width": 10
     },
     {
@@ -41,11 +41,11 @@
         "width": 15
     },
     {
-        "name": "assignedUser",
-        "width": 15
-    },
-    {
-        "name": "createdAt",
-        "width": 12
+        "name": "__ACTION__",
+        "width": 20,
+        "notSortable": true,
+        "align": "center",
+        "view": "custom:views\/products-items\/fields\/inventory-actions",
+        "customLabel": "Akce"
     }
 ]

@@ -1,0 +1,25 @@
+[
+    {
+        "name": "name",
+        "width": 40,
+        "link": true,
+        "align": "left"
+    },
+    {
+        "name": "stockQuantity",
+        "width": 25,
+        "align": "left"
+    },
+    {
+        "name": "cLoan",
+        "width": 16
+    },
+    {
+        "name": "__ACTION__",
+        "width": 20,
+        "notSortable": true,
+        "align": "center",
+        "view": "custom:views\/products-items\/fields\/inventory-actions",
+        "customLabel": "Akce"
+    }
+]

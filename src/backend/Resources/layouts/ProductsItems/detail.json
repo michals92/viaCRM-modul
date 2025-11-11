@@ -10,6 +10,10 @@
                 {
                     "name": "sku",
                     "fullWidth": false
+                },
+                {
+                    "name": "cLoan",
+                    "fullWidth": false
                 }
             ],
             [

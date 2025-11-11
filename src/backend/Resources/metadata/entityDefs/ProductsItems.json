@@ -68,6 +68,10 @@
             "min": 0,
             "view": "viacrm:views/fields/stock-quantity"
         },
+        "cLoan": {
+            "type": "bool",
+            "default": false
+        },
         "minStockLevel": {
             "type": "int",
             "default": 0,

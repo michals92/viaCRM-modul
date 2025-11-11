@@ -1,0 +1,144 @@
+{
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": true,
+            "pattern": "$noBadCharacters",
+            "readOnlyAfterCreate": true,
+            "options": []
+        },
+        "description": {
+            "type": "text",
+            "readOnlyAfterCreate": true
+        },
+        "createdAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "modifiedAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "createdBy": {
+            "type": "link",
+            "readOnly": true,
+            "view": "views/fields/user"
+        },
+        "modifiedBy": {
+            "type": "link",
+            "readOnly": true,
+            "view": "views/fields/user"
+        },
+        "assignedUser": {
+            "type": "link",
+            "required": true,
+            "view": "views/fields/assigned-user",
+            "readOnlyAfterCreate": true
+        },
+        "teams": {
+            "type": "linkMultiple",
+            "view": "views/fields/teams",
+            "readOnlyAfterCreate": true
+        },
+        "product": {
+            "type": "link",
+            "required": true,
+            "view": "views/fields/link",
+            "readOnlyAfterCreate": true
+        },
+        "amount": {
+            "type": "int",
+            "required": true,
+            "default": 1,
+            "min": 1,
+            "isCustom": true,
+            "readOnlyAfterCreate": true
+        },
+        "movemantType": {
+            "type": "enum",
+            "required": true,
+            "options": [
+                "receipt",
+                "Issu"
+            ],
+            "style": {
+                "receipt": "success",
+                "Issu": "warning"
+            },
+            "default": "receipt",
+            "maxLength": 100,
+            "isCustom": true,
+            "readOnlyAfterCreate": true
+        },
+        "loan": {
+            "notNull": true,
+            "type": "bool",
+            "isCustom": true
+        },
+        "vystaveno": {
+            "type": "bool",
+            "default": false,
+            "isCustom": true
+        }
+    },
+    "links": {
+        "createdBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "modifiedBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "assignedUser": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "teams": {
+            "type": "hasMany",
+            "entity": "Team",
+            "relationName": "entityTeam",
+            "layoutRelationshipsDisabled": true
+        },
+        "product": {
+            "type": "belongsTo",
+            "entity": "ProductsItems"
+        }
+    },
+    "collection": {
+        "orderBy": "createdAt",
+        "order": "desc",
+        "textFilterFields": [
+            "name"
+        ],
+        "fullTextSearch": false,
+        "countDisabled": false
+    },
+    "indexes": {
+        "name": {
+            "columns": [
+                "name",
+                "deleted"
+            ]
+        },
+        "assignedUser": {
+            "columns": [
+                "assignedUserId",
+                "deleted"
+            ]
+        },
+        "createdAt": {
+            "columns": [
+                "createdAt"
+            ]
+        },
+        "createdAtId": {
+            "unique": true,
+            "columns": [
+                "createdAt",
+                "id"
+            ]
+        }
+    },
+    "optimisticConcurrencyControl": false
+}

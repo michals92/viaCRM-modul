@@ -21,6 +21,7 @@
         "weight": "Hmotnost",
         "dimensions": "Rozměry",
         "stockQuantity": "Množství na skladě",
+        "cLoan": "Zápůjčka",
         "minStockLevel": "Minimální stav skladu",
         "maxStockLevel": "Maximální stav skladu",
         "unit": "Jednotka",

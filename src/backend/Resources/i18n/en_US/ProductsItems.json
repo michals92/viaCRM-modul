@@ -20,6 +20,7 @@
         "weight": "Weight",
         "dimensions": "Dimensions",
         "stockQuantity": "Stock Quantity",
+        "cLoan": "Loan",
         "minStockLevel": "Min Stock Level",
         "maxStockLevel": "Max Stock Level",
         "unit": "Unit",

@@ -1,0 +1,19 @@
+{
+    "labels": {
+        "Create CInventoryMovemant": "Vytvořit Skladový pohyb"
+    },
+    "fields": {
+        "product": "Produkt",
+        "amount": "Množství",
+        "movemantType": "Příjemka/Výdejka",
+        "loan": "Zapůjčení/Vrácení"
+    },
+    "options": {
+        "movemantType": {
+            "receipt": "Příjemka",
+            "Issu": "Výdejka",
+            "loan": "Zapůjčení",
+            "return": "Vrácení"
+        }
+    }
+}
