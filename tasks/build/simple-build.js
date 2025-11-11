@@ -8,13 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '../..');
 
-// Read package.json to get module info
-const packageJson = await fs.readJSON(path.join(rootDir, 'package.json'));
-const moduleName = packageJson.espocrm?.extensionName || packageJson.name;
-const moduleNamePascal = moduleName.charAt(0).toUpperCase() + moduleName.slice(1);
-const moduleNameLower = moduleName.toLowerCase();
-
-console.log(`🔨 Starting ${moduleName} module build...`);
+// Note: Module info is read inside build() where it's actually used.
 
 async function build() {
     try {
@@ -23,6 +17,7 @@ async function build() {
         const moduleName = packageJson.espocrm?.extensionName || packageJson.name;
         const moduleNamePascal = moduleName.charAt(0).toUpperCase() + moduleName.slice(1).replace(/-([a-z])/g, (g) => g[1].toUpperCase());
         const moduleNameLower = moduleName.toLowerCase().replace(/[^a-z0-9]/g, '');
+        console.log(`🔨 Starting ${moduleName} module build...`);
         
         // Ensure build directory exists
         const buildDir = path.join(rootDir, 'build');
@@ -37,28 +32,32 @@ async function build() {
             await fs.copy(backendSrc, backendDest);
         }
         
-        // Copy client files
-        console.log('📦 Copying client files...');
+        // Copy client (module) files -> files/client/custom/modules/<module>
+        console.log('📦 Copying client (module) files...');
         const clientSrc = path.join(rootDir, 'src/client');
         const clientDest = path.join(buildDir, 'files/client/custom/modules', moduleNameLower);
-        
         if (await fs.pathExists(clientSrc)) {
             await fs.copy(clientSrc, clientDest);
         }
         
-        // Copy custom files for entity extensions
-        console.log('📦 Copying custom files...');
+        // Copy custom files for entity extensions -> files/custom (exclude Resources/client to avoid duplication)
+        console.log('📦 Copying custom (backend/metadata) files...');
         const customSrc = path.join(rootDir, 'src/custom');
         const customDest = path.join(buildDir, 'files/custom');
-
+        const customClientSrc = path.join(rootDir, 'src/custom/Espo/Custom/Resources/client');
         if (await fs.pathExists(customSrc)) {
-            await fs.copy(customSrc, customDest);
+            await fs.copy(customSrc, customDest, {
+                filter: (srcPath) => {
+                    const resolved = path.resolve(srcPath);
+                    const resolvedClientRoot = path.resolve(customClientSrc);
+                    // Skip copying Resources/client into files/custom; it goes to files/client.
+                    return !resolved.startsWith(resolvedClientRoot);
+                },
+            });
         }
 
-        // Copy custom client files to proper client structure
-        const customClientSrc = path.join(rootDir, 'src/custom/Espo/Custom/Resources/client');
+        // Copy custom client files to proper client structure -> files/client
         const customClientDest = path.join(buildDir, 'files/client');
-
         if (await fs.pathExists(customClientSrc)) {
             await fs.copy(customClientSrc, customClientDest);
         }
