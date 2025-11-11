@@ -5,10 +5,6 @@
         "width": 25
     },
     {
-        "name": "sku",
-        "width": 15
-    },
-    {
         "name": "productType",
         "width": 12
     },
@@ -35,10 +31,6 @@
     {
         "name": "availableStockQuantity",
         "width": 10
-    },
-    {
-        "name": "category",
-        "width": 15
     },
     {
         "name": "__ACTION__",
