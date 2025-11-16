@@ -33,9 +33,12 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
                     'name' => $data['subject'] ?? 'New Email Template',
                     'subject' => $data['subject'] ?? '',
                     'body' => $data['html'] ?? '',
+                    'isHtml' => true,
                     'bodyMjml' => $data['mjml'] ?? '',
                     'useEasyEmailEditor' => true
                 ]);
+                // Ensure persisted (createEntity usually persists, but keep explicit for safety)
+                $entityManager->saveEntity($template);
                 
                 error_log('SaveTemplate - Created new template with ID: ' . $template->getId());
             } else {
@@ -54,6 +57,7 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
                 // Save HTML body
                 if (isset($data['html'])) {
                     $template->set('body', $data['html']);
+                    $template->set('isHtml', true);
                 }
                 
                 // Save subject
@@ -78,7 +82,7 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
             error_log('SaveTemplate - Sending response: ' . json_encode($responseData));
             
             $response->writeBody(json_encode($responseData));
-            
+
         } catch (\Exception $e) {
             error_log('SaveTemplate - Error: ' . $e->getMessage());
             error_log('SaveTemplate - Stack trace: ' . $e->getTraceAsString());
@@ -98,13 +102,17 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
 
     public function postActionSaveEmail(Request $request, Response $response): void
     {
+        $response->setHeader('Content-Type', 'application/json');
         $data = $request->getParsedBody();
+        if (is_object($data)) {
+            $data = (array) $data;
+        }
         
         $entityManager = $this->getEntityManager();
         
         // Create or update email entity
-        if (!empty($data->emailId)) {
-            $email = $entityManager->getEntity('Email', $data->emailId);
+        if (!empty($data['emailId'])) {
+            $email = $entityManager->getEntity('Email', $data['emailId']);
             if (!$email) {
                 throw new NotFound();
             }
@@ -115,18 +123,18 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
         }
 
         // Save email data
-        if (isset($data->html)) {
-            $email->set('body', $data->html);
+        if (isset($data['html'])) {
+            $email->set('body', $data['html']);
             $email->set('isHtml', true);
         }
         
-        if (isset($data->subject)) {
-            $email->set('subject', $data->subject);
+        if (isset($data['subject'])) {
+            $email->set('subject', $data['subject']);
         }
         
-        if (isset($data->mjml)) {
+        if (isset($data['mjml'])) {
             // Store MJML in custom field if needed
-            $email->set('bodyMjml', $data->mjml);
+            $email->set('bodyMjml', $data['mjml']);
         }
         
         $entityManager->saveEntity($email);
@@ -139,6 +147,7 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
 
     public function getActionLoadTemplate(Request $request, Response $response): void
     {
+        $response->setHeader('Content-Type', 'application/json');
         $templateId = $request->getRouteParam('id');
         
         if (!$templateId) {
@@ -166,6 +175,7 @@ class EasyEmailEditor extends \Espo\Core\Controllers\Record
 
     public function postActionUploadImage(Request $request, Response $response): void
     {
+        $response->setHeader('Content-Type', 'application/json');
         $attachment = $request->getBodyContents();
         
         if (!$attachment) {

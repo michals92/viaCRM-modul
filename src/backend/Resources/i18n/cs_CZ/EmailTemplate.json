@@ -4,11 +4,13 @@
         "status": "Status",
         "isHtml": "HTML",
         "body": "Tělo",
+        "bodyMjml": "MJML data",
         "subject": "Předmět",
         "attachments": "Přílohy",
         "oneOff": "Jednorázový",
         "category": "Kategorie",
-        "insertField": "Vložit pole"
+        "insertField": "Vložit pole",
+        "useEasyEmailEditor": "Použít Easy Email Editor"
     },
     "links": {
     },
@@ -27,7 +29,8 @@
         "infoText": "Dostupné placeholdery:\n\n{optOutUrl} &#8211; URL pro odhlašovací odkaz;\n\n{optOutLink} &#8211; odhlašovací odkaz."
     },
     "tooltips": {
-        "oneOff": "Zkontrolujte, zda tuto šablonu použijete pouze jednou. Např. pro hromadný e-mail."
+        "oneOff": "Zkontrolujte, zda tuto šablonu použijete pouze jednou. Např. pro hromadný e-mail.",
+        "useEasyEmailEditor": "Povolí vizuální drag-and-drop editor e-mailů založený na MJML."
     },
     "presetFilters": {
         "actual": "Aktivní"

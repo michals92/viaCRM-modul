@@ -4,63 +4,25 @@ define('viacrm:views/email/record/compose-with-easy-email', ['views/email/record
 
         setup: function () {
             Dep.prototype.setup.call(this);
-            
-            // Add Easy Email Editor button to compose view
-            this.addButton({
-                name: 'useEasyEmailEditor',
-                label: 'Easy Email Editor',
-                style: 'default',
-                position: 'top'
-            });
-            
-            this.listenTo(this, 'after:render', function () {
-                this.setupEasyEmailToggle();
-            });
+            this.addButton({ name: 'useEasyEmailEditor', label: 'Easy Email Editor', style: 'default', position: 'top' });
         },
 
-        setupEasyEmailToggle: function () {
-            // Check if email has MJML data
-            if (this.model.get('bodyMjml')) {
-                this.showEasyEmailIndicator();
-            }
-        },
-
-        showEasyEmailIndicator: function () {
-            const $bodyField = this.$el.find('.field[data-name="body"]');
-            
-            if (!$bodyField.find('.easy-email-indicator').length) {
-                $bodyField.before(
-                    '<div class="easy-email-indicator alert alert-info">' +
-                    '<i class="fas fa-palette"></i> ' +
-                    'This email was created with Easy Email Editor. ' +
-                    '<a href="javascript:" class="action-edit-easy-email">Edit with Easy Email</a>' +
-                    '</div>'
-                );
-            }
-            
-            this.$el.off('click', '.action-edit-easy-email');
-            this.$el.on('click', '.action-edit-easy-email', () => {
-                this.actionUseEasyEmailEditor();
-            });
-        },
+        setupEasyEmailToggle: function () {},
+        showEasyEmailIndicator: function () {},
 
         actionUseEasyEmailEditor: function () {
-            const emailId = this.model.id || null;
-            const url = `?entryPoint=EasyEmailEditor&emailId=${emailId || ''}&entityType=Email&mode=compose`;
-            
-            // Open Easy Email Editor in modal
-            this.createView('easyEmailModal', 'viacrm:views/modals/easy-email-composer', {
-                url: url,
-                emailId: emailId,
-                model: this.model,
-                isNew: !emailId
-            }, (view) => {
-                view.render();
-                
-                this.listenToOnce(view, 'save', (data) => {
-                    this.handleEasyEmailSave(data);
-                });
-            });
+            const emailId = this.model.id || '';
+            const url = `?entryPoint=EasyEmailEditor&emailId=${encodeURIComponent(emailId)}&entityType=Email&mode=compose&authToken=${encodeURIComponent(this.getUser().get('token') || '')}`;
+            const editorWindow = window.open(url, 'viacrm-email-editor', `width=${screen.width},height=${screen.height},resizable=yes,scrollbars=yes`);
+            if (!editorWindow) { this.notify('Please allow popups for the email editor', 'warning'); return; }
+            editorWindow.focus();
+            const handler = (event) => {
+                if (event.source !== editorWindow) return;
+                if (!event.data || !event.data.type) return;
+                if (event.data.type === 'EASY_EMAIL_SAVE') this.handleEasyEmailSave(event.data.data || {});
+            };
+            window.addEventListener('message', handler);
+            const iv = setInterval(() => { if (editorWindow.closed) { window.removeEventListener('message', handler); clearInterval(iv); } }, 1000);
         },
 
         handleEasyEmailSave: function (data) {

@@ -53,7 +53,7 @@ define(['views/record/edit'], function (RecordEditView) {
             // Open editor in new window/tab for full-screen experience
             const editorWindow = window.open(
                 editorUrl, 
-                'legendary-email-editor', 
+                'viacrm-email-editor', 
                 'width=' + screen.width + ',height=' + screen.height + ',scrollbars=yes,resizable=yes,toolbar=no,location=no,directories=no,status=no,menubar=no'
             );
             
@@ -86,7 +86,7 @@ define(['views/record/edit'], function (RecordEditView) {
                 }, 1000);
                 
             } else {
-                this.notify('Please allow popups for the legendary email editor', 'warning');
+                this.notify('Please allow popups for the email editor', 'warning');
             }
         }
         

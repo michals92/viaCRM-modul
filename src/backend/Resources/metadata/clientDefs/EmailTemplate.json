@@ -2,9 +2,6 @@
     "recordViews": {
         "edit": "viacrm:views/email-template/record/edit-with-easy-email"
     },
-    "views": {
-        "edit": "viacrm:views/email-template/edit"
-    },
     "sidePanels": {
         "edit": [
             {

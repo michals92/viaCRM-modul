@@ -1,6 +1,6 @@
 {
   "name": "viacrm",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "VIA CRM module for EspoCRM",
   "author": "VIA Development Team",
   "scripts": {
@@ -18,8 +18,7 @@
     "lint:js": "eslint \"src/**/*.js\"",
     "lint:js:fix": "eslint \"src/**/*.js\" --fix",
     "lint": "npm run lint:css && npm run lint:js",
-    "lint:fix": "npm run lint:css:fix && npm run lint:js:fix",
-    "build:easy-email": "node tasks/build/easy-email.js build/client/modules/viacrm/lib/easy-email-editor.js"
+    "lint:fix": "npm run lint:css:fix && npm run lint:js:fix"
   },
   "type": "module",
   "keywords": [
@@ -60,14 +59,10 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "grapesjs": "^0.21.8",
+    "grapesjs-preset-newsletter": "^0.2.18",
     "@types/archiver": "^6.0.3",
-    "archiver": "^7.0.1",
-    "easy-email-core": "^4.16.4",
-    "easy-email-editor": "^4.16.3",
-    "easy-email-extensions": "^4.16.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-final-form": "^6.5.9"
+    "archiver": "^7.0.1"
   },
   "espocrm": {
     "extensionName": "ViaCrm",

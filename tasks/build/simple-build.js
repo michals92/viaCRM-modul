@@ -104,6 +104,29 @@ async function build() {
                 version: manifest.version
             }, null, 2)
         );
+
+        // Optionally copy GrapesJS assets for self-hosted usage
+        try {
+            const nm = path.join(rootDir, 'node_modules');
+            const grapesCss = path.join(nm, 'grapesjs', 'dist', 'css', 'grapes.min.css');
+            const grapesJs = path.join(nm, 'grapesjs', 'dist', 'grapes.min.js');
+            const presetJs = path.join(nm, 'grapesjs-preset-newsletter', 'dist', 'grapesjs-preset-newsletter.min.js');
+            const clientLibDest = path.join(buildDir, 'files/client/custom/modules', moduleNameLower, 'lib');
+            await fs.ensureDir(clientLibDest);
+            const toCopy = [
+                [grapesCss, path.join(clientLibDest, 'grapes.min.css')],
+                [grapesJs, path.join(clientLibDest, 'grapes.min.js')],
+                [presetJs, path.join(clientLibDest, 'grapesjs-preset-newsletter.min.js')],
+            ];
+            for (const [src, dest] of toCopy) {
+                if (await fs.pathExists(src)) {
+                    await fs.copy(src, dest);
+                }
+            }
+            console.log('🧩 GrapesJS assets copied (self-host).');
+        } catch (e) {
+            console.log('ℹ️ GrapesJS assets not copied (optional):', e.message);
+        }
         
         console.log('✅ Build completed successfully!');
         console.log(`📁 Build output: ${buildDir}`);
