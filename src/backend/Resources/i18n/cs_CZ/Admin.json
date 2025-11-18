@@ -322,7 +322,8 @@
         "pdfTemplates": "Šablony pro tisk do PDF.",
         "formulaSandbox": "Zápis a testování skriptů ve formuli.",
         "addressCountries": "Země dostupné pro adresní pole.",
-        "oAuthProviders": "OAuth poskytovatelé pro integrace."
+        "oAuthProviders": "OAuth poskytovatelé pro integrace.",
+        "Show internal field names": "Interní názvy"
     },
     "keywords": {
         "settings": "systém",

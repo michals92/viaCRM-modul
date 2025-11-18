@@ -5,6 +5,7 @@
 @import url('./extensions.css');
 @import url('./layout-manager.css');
 @import url('./related-panels.css');
+@import url('./field-name.css');
 
 .viacrm-module {
     /* Base styles for VIA CRM module */

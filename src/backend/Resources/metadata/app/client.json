@@ -2,7 +2,8 @@
     "scriptList": [
         "__APPEND__",
         "client/custom/modules/viacrm/src/init.js",
-        "client/custom/modules/viacrm/src/app.js"
+        "client/custom/modules/viacrm/src/app.js",
+        "client/custom/modules/viacrm/src/field-name-controller.js"
     ],
     "views/record/kanban": [
         "__APPEND__",

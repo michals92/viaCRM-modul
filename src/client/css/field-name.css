@@ -1,0 +1,175 @@
+/* FieldName styling */
+.data-name-display {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%; /* Restrict to container width */
+    margin-bottom: 5px; /* Add spacing below */
+    font-size: 0.9em;
+    word-wrap: break-word; /* Break long words */
+    overflow-wrap: break-word;
+    white-space: normal; /* Allow text to wrap */
+    text-shadow: 0 0 5px magenta;
+    cursor: pointer;
+    background: linear-gradient(45deg, magenta, deeppink, violet, purple);
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 400% 400%;
+    transition: transform 0.2s;
+    animation: gradient-animation 5s ease infinite,
+    text-shadow-animation 5s ease infinite;
+    -webkit-text-fill-color: transparent;
+}
+
+.data-name-display::after {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    padding: 6px 10px;
+    font-size: 0.75em;
+    color: white;
+    white-space: nowrap;
+    text-shadow: 0 0 1px rgb(95, 0, 0, 0.85);
+    pointer-events: none;
+    content: attr(data-tooltip);
+    background: linear-gradient(45deg, magenta, deeppink, violet, purple);
+    background-size: 400% 400%;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity 0.2s,
+    transform 0.2s;
+    animation: gradient-animation 5s ease infinite;
+}
+
+.data-name-display::after::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    border-radius: 4px;
+}
+
+.data-name-display:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+}
+
+.data-name-display::before {
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    content: '';
+    background: linear-gradient(45deg, magenta, deeppink, violet, purple);
+    background-size: 400% 400%;
+    opacity: 0;
+    transform: translateX(-50%) rotate(45deg);
+    transition: opacity 0.2s;
+    animation: gradient-animation 5s ease infinite;
+}
+
+.data-name-display::before::before {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    content: '';
+    background: rgb(0, 0, 0, 0.2);
+}
+
+.data-name-display:hover::before {
+    opacity: 1;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+@keyframes text-shadow-animation {
+    0% {
+        text-shadow: 0 0 2px magenta;
+    }
+
+    25% {
+        text-shadow: 0 0 2px deeppink;
+    }
+
+    50% {
+        text-shadow: 0 0 2px purple;
+    }
+
+    75% {
+        text-shadow: 0 0 2px deeppink;
+    }
+
+    100% {
+        text-shadow: 0 0 2px magenta;
+    }
+}
+
+.data-name-tooltip {
+    position: absolute;
+    z-index: 1000;
+    padding: 6px 10px;
+    font-size: 0.75em;
+    color: #fff;
+    white-space: nowrap;
+    pointer-events: none;
+    background-color: rgb(0, 0, 0, 0.85);
+    border-radius: 4px;
+    opacity: 0;
+    animation: fade-in 0.2s forwards;
+}
+
+.data-name-tooltip.fade-in {
+    animation: fade-in 0.2s forwards;
+}
+
+@keyframes fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Adjust .data-name-wrapper */
+.data-name-wrapper {
+    margin-bottom: 5px; /* Add spacing between internal name and label */
+}
+
+/* Tooltip arrow */
+.data-name-tooltip::after {
+    position: absolute;
+    bottom: -5px; /* Position at the bottom of the tooltip */
+    left: 50%;
+    content: '';
+    border-color: rgb(0, 0, 0, 0.85) transparent transparent;
+    border-style: solid;
+    border-width: 5px;
+    transform: translateX(-50%);
+}
+
+/* Prevent overlapping labels */
+.control-label {
+    position: relative;
+
+    /* Position labels above other elements if needed */
+}
+
+/* FieldName styling END */

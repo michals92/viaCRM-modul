@@ -22,6 +22,7 @@ define(() => {
             this.addEditEntityButton();
             this.addEditLayoutButton();
             this.addEditLabelsButton();
+            this.addToggleFieldNamesButton();
             this.addRebuildButton();
             this.addClearCacheButton();
         }
@@ -60,6 +61,78 @@ define(() => {
                 iconClass: 'fas fa-tags fa-sm',
                 link: '#Admin/labelManager/scope=' + this.scope + '&language=' + language
             });
+        }
+
+        addToggleFieldNamesButton() {
+            this.view.addMenuItem('buttons', {
+                name: 'toggleFieldNames',
+                label: 'Interní názvy',
+                iconClass: 'fas fa-eye fa-sm',
+                action: 'toggleFieldNames'
+            });
+
+            this.view.actionToggleFieldNames = () => {
+                try {
+                    const navToggle = document.getElementById('nav-toggle-field-names');
+
+                    if (navToggle && typeof navToggle.click === 'function') {
+                        let stored = 'disabled';
+                        try {
+                            const fromStorage = window.localStorage.getItem('displayInternalFieldNames');
+                            if (fromStorage) {
+                                stored = fromStorage;
+                            }
+                        } catch (e) {
+                            // ignore storage errors
+                        }
+
+                        const clicks = stored === 'hidden' ? 2 : 1;
+                        for (let i = 0; i < clicks; i++) {
+                            navToggle.click();
+                        }
+                        return;
+                    }
+                } catch (e) {
+                    // ignore DOM errors, fallback to direct toggle
+                }
+
+                try {
+                    const storageKey = 'displayInternalFieldNames';
+                    let currentStatus = 'disabled';
+
+                    try {
+                        const stored = window.localStorage.getItem(storageKey);
+                        if (stored) {
+                            currentStatus = stored;
+                        }
+                    } catch (e) {
+                        // ignore storage errors
+                    }
+
+                    // From the admin button we want a simple on/off toggle:
+                    // if not enabled -> enable, otherwise disable.
+                    const newStatus = currentStatus === 'enabled' ? 'disabled' : 'enabled';
+
+                    try {
+                        window.localStorage.setItem(storageKey, newStatus);
+                    } catch (e) {
+                        // ignore storage errors
+                    }
+
+                    if (window && typeof window.dispatchEvent === 'function') {
+                        window.dispatchEvent(new CustomEvent('displayInternalFieldNamesChanged', {
+                            detail: { newValue: newStatus }
+                        }));
+                    }
+
+                    if (window.Espo && window.Espo.Ui && typeof window.Espo.Ui.success === 'function') {
+                        window.Espo.Ui.success(this.view.translate('Done'));
+                    }
+                } catch (e) {
+                    // eslint-disable-next-line no-console
+                    console.error('Error toggling internal field names:', e);
+                }
+            };
         }
 
         addRebuildButton() {

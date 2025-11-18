@@ -1,0 +1,10 @@
+{
+    "buttons": {
+        "toggleFieldNames": {
+            "disabled": false,
+            "order": 5,
+            "view": "viacrm:views/site/navbar/toggle-field-names"
+        }
+    }
+}
+
