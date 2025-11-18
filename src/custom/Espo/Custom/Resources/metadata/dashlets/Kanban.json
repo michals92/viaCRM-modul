@@ -1,0 +1,109 @@
+{
+    "view": "viacrm:views/dashlets/kanban",
+    "options": {
+        "defaults": {
+            "displayRecords": 10,
+            "autorefreshInterval": 0.5
+        },
+        "fields": {
+            "autorefreshInterval": {
+                "type": "enumFloat",
+                "options": [
+                    0,
+                    0.5,
+                    1,
+                    2,
+                    5,
+                    10
+                ]
+            },
+            "boolFilterList": {
+                "type": "multiEnum",
+                "view": "views/dashlets/fields/records/bool-filter-list"
+            },
+            "displayRecords": {
+                "type": "enumInt",
+                "options": [
+                    3,
+                    4,
+                    5,
+                    7,
+                    10,
+                    15,
+                    20,
+                    30,
+                    50
+                ]
+            },
+            "entityType": {
+                "type": "enum",
+                "view": "views/dashlets/fields/records/entity-type",
+                "translation": "Global.scopeNames"
+            },
+            "primaryFilter": {
+                "type": "enum",
+                "view": "views/dashlets/fields/records/primary-filter"
+            },
+            "sortBy": {
+                "type": "enum",
+                "view": "views/dashlets/fields/records/sort-by"
+            },
+            "sortDirection": {
+                "type": "enum",
+                "options": [
+                    "asc",
+                    "desc"
+                ],
+                "view": "views/dashlets/fields/records/sort-direction",
+                "translation": "EntityManager.options.sortDirection"
+            },
+            "title": {
+                "type": "varchar",
+                "required": true,
+                "trim": true
+            }
+        },
+        "layout": [
+            {
+                "rows": [
+                    [
+                        {
+                            "name": "title"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "entityType"
+                        },
+                        false
+                    ],
+                    [
+                        {
+                            "name": "primaryFilter"
+                        },
+                        {
+                            "name": "sortBy"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "boolFilterList"
+                        },
+                        {
+                            "name": "sortDirection"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "displayRecords"
+                        },
+                        {
+                            "name": "autorefreshInterval"
+                        }
+                    ]
+                ]
+            }
+        ]
+    }
+}
+
