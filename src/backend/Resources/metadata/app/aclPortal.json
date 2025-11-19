@@ -1,0 +1,44 @@
+{
+	"adminMandatory": {
+		"scopeLevel": {
+			"PortalUser": {
+				"create": "yes",
+				"delete": "all",
+				"edit": "all",
+				"read": "all"
+			}
+		}
+	},
+	"mandatory": {
+		"scopeFieldLevel": {
+			"User": {
+				"type": true
+			}
+		},
+		"scopeLevel": {
+			"PortalUser": {
+				"create": "yes",
+				"delete": "own",
+				"edit": "own",
+				"read": "own"
+			},
+			"User": {
+				"edit": "own"
+			}
+		}
+	},
+	"strictDefault": {
+		"scopeFieldLevel": {
+			"User": {
+				"name": {
+					"edit": "no",
+					"read": "yes"
+				},
+				"phoneNumber": {
+					"edit": "no",
+					"read": "yes"
+				}
+			}
+		}
+	}
+}

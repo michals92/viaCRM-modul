@@ -1,0 +1,22 @@
+{
+	"fields": {
+		"attempts": "Pokusy",
+		"data": "Data",
+		"event": "Událost",
+		"processAt": "Zpracovat v",
+		"processedAt": "Zpracováno v",
+		"status": "Stav",
+		"target": "Cíl",
+		"webhook": "Webhook"
+	},
+	"links": {
+		"webhook": "Webhook"
+	},
+	"options": {
+		"status": {
+			"Failed": "Neúspěšné",
+			"Pending": "Čekající",
+			"Success": "Úspěšné"
+		}
+	}
+}

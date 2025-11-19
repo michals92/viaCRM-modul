@@ -1,0 +1,87 @@
+{
+	"fields": {
+		"addAllTeamUsers": "Pro všechny uživatele týmu",
+		"connectedAt": "Připojeno v",
+		"emailAddress": "Emailová adresa",
+		"ewsPassword": "Heslo",
+		"ewsServerUrl": "URL serveru",
+		"ewsUserName": "Uživatelské jméno",
+		"excludeFromReply": "Vyloučit z odpovědi",
+		"fetchSince": "Načíst od",
+		"fromName": "Od jména",
+		"groupEmailFolder": "Skupinová složka",
+		"isSystem": "Systémový email",
+		"keepFetchedEmailsUnread": "Nechat načtené e-maily jako nepřečtené",
+		"port": "Port",
+		"security": "Zabezpečení",
+		"sentFolder": "Odeslaná složka",
+		"signature": "Podpis",
+		"smtpAuth": "SMTP autentizace",
+		"smtpAuthMechanism": "SMTP autentizační mechanismus",
+		"smtpHost": "Server",
+		"smtpIsForMassEmail": "SMTP pro hromadný e-mail",
+		"smtpIsShared": "SMTP je sdíleno",
+		"smtpPassword": "SMTP heslo",
+		"smtpPort": "SMTP Port",
+		"smtpSecurity": "Zabezpečení",
+		"smtpUsername": "SMTP uživatelské jméno",
+		"status": "Stav",
+		"storeSentEmails": "Uložit odeslané e-maily",
+		"teams": "Týmy",
+		"useEws": "Použít EWS",
+		"useImap": "Použít IMAP",
+		"useSmtp": "Použít SMTP"
+	},
+	"labels": {
+		"EWS": "EWS",
+		"IMAP": "IMAP",
+		"Miscellaneous": "Vedlejší",
+		"Resync IMAP": "Synchronizovat IMAP"
+	},
+	"links": {
+		"assignToUser": "Přiřadit uživateli",
+		"emails": "Emaily",
+		"filters": "Filtry",
+		"groupEmailFolder": "Skupinová emailová složka"
+	},
+	"massActions": {
+		"resyncImap": "Synchronizovat Imap"
+	},
+	"messages": {
+		"imapNotConnected": "Nelze se připojit ke skupinovému [IMAP účtu](#InboundEmail/view/{id})."
+	},
+	"options": {
+		"caseDistribution": {
+			"": "Žádná",
+			"Direct-Assignment": "Přímé přiřazení",
+			"Least-Busy": "Nejméně vytížený",
+			"Round-Robin": "Round-Robin"
+		},
+		"security": {
+			"SSL": "SSL/TLS",
+			"TLS": "STARTTLS"
+		},
+		"smtpAuthMechanism": {
+			"crammd5": "CRAM-MD5",
+			"login": "LOGIN",
+			"plain": "PLAIN"
+		},
+		"smtpSecurity": {
+			"SSL": "SSL/TLS",
+			"TLS": "STARTTLS"
+		}
+	},
+	"tooltips": {
+		"addAllTeamUsers": "E-maily se budou zobrazovat ve složce Doručená pošta všech uživatelů určených týmů.",
+		"excludeFromReply": "Při odpovídání na e-maily zaslané na e-mailovou adresu tohoto účtu nebude tato adresa přidána do kopie (CC).\n\nUpozorňujeme, že povolením tohoto parametru bude e-mailová adresa tohoto účtu zpřístupněna uživatelům, kteří mají oprávnění odesílat e-maily.",
+		"groupEmailFolder": "Přesunout příchozí emaily do skupinové složky",
+		"isSystem": "Jedná se o email systémového uživatele",
+		"monitoredFolders": "Více složek by mělo být odděleno čárkou.",
+		"signature": "Je možno používat zástupné symboly jako {userName}, {name}, {emailAddress} a {phoneNumber}",
+		"smtpIsForMassEmail": "Pokud je zaškrtnuto, pak bude SMTP k dispozici pro hromadný e-mail.",
+		"smtpIsShared": "Je-li toto políčko zaškrtnuto, uživatelé budou moci odesílat e-maily pomocí tohoto protokolu SMTP. Dostupnost je kontrolována rolemi prostřednictvím oprávnění skupinového e-mailového účtu.",
+		"storeSentEmails": "Odeslané e-maily budou uloženy na serveru IMAP.",
+		"teams": "E-maily týmů budou přiřazeny.",
+		"useSmtp": "Možnost odesílat e-maily."
+	}
+}

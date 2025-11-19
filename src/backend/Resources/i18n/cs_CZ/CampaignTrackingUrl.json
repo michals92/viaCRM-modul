@@ -1,0 +1,25 @@
+{
+	"fields": {
+		"action": "Akce",
+		"campaign": "Kampaň",
+		"message": "Zpráva",
+		"url": "URL",
+		"urlToUse": "Kód, který se má vložit místo adresy URL"
+	},
+	"labels": {
+		"Create CampaignTrackingUrl": "Vytvořit sledovací URL"
+	},
+	"links": {
+		"campaign": "Kampaň"
+	},
+	"options": {
+		"action": {
+			"Redirect": "Přesměrování",
+			"Show Message": "Zobrazit zprávu"
+		}
+	},
+	"tooltips": {
+		"message": "Po kliknutí na odkaz se zpráva zobrazí příjemci. Markdown je podporován.",
+		"url": "Po kliknutí na odkaz bude příjemce přesměrován na toto místo."
+	}
+}

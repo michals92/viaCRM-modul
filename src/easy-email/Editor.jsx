@@ -1,380 +1,243 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
-import { EmailEditor, EmailEditorProvider } from 'easy-email-editor';
-import { BlockManager } from 'easy-email-core';
+import {useEffect, useMemo, useRef, useState} from 'react';
+import {AdvancedType, BasicType, BlockManager, JsonToMjml} from 'easy-email-core';
+import {MjmlToJson} from 'easy-email-extensions';
+import {StandardLayout} from 'easy-email-extensions';
+import {EmailEditor, EmailEditorProvider, Stack} from 'easy-email-editor';
+import {Button, PageHeader} from '@arco-design/web-react';
+import {IconMoonFill, IconSunFill} from '@arco-design/web-react/icon';
+import useExportTemplate from './hooks/useExportTemplate';
+import useImportTemplate from './hooks/useImportTemplate';
+import locales from 'easy-email-localization/locales/locales.json';
+
 import 'easy-email-editor/lib/style.css';
+import 'easy-email-extensions/lib/style.css';
+import '@arco-themes/react-easy-email-theme/css/arco.css';
+import './css/styles.css';
+import {useFullScreenHandle} from "./hooks/useFullScreenHandle";
 
-// Simplified approach - just use basic blocks for now
-console.log('Easy Email Editor: Initializing with core blocks only');
-
-const defaultData = {
-  subject: 'Welcome to our newsletter',
-  subTitle: 'Thanks for subscribing!',
-  content: {
-    type: 'page',
-    data: {
-      value: {
-        breakpoints: {
-          480: true
-        },
-        headStyles: [],
-        fonts: [],
-        responsive: true,
-        generalStyle: {
-          'body-background-color': '#f0f0f0',
-          'content-background-color': '#ffffff',
-          'content-area-background-color': '#ffffff',
-          'content-area-width': '600px'
-        }
-      }
-    },
-    attributes: {
-      'background-color': '#f0f0f0',
-      'width': '600px'
-    },
-    children: [
-      {
-        type: 'standard_section',
-        data: {
-          value: {
-            noWrap: false
-          }
-        },
-        attributes: {
-          'background-color': '#ffffff',
-          'padding': '20px'
-        },
-        children: [
-          {
-            type: 'standard_column',
-            attributes: {
-              'width': '100%'
+const categories = [
+    {
+        label: 'Content',
+        active: true,
+        blocks: [
+            {
+                type: AdvancedType.TEXT,
             },
-            data: {
-              value: {}
+            {
+                type: AdvancedType.IMAGE,
+                payload: {attributes: {padding: '0px 0px 0px 0px'}},
             },
-            children: [
-              {
-                type: 'standard_text',
-                data: {
-                  value: {
-                    content: 'Welcome to Easy Email Editor!'
-                  }
-                },
-                attributes: {
-                  'font-size': '24px',
-                  'font-weight': 'bold',
-                  'text-align': 'center',
-                  'color': '#333333',
-                  'padding': '10px 25px'
-                },
-                children: []
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-};
-
-export default function EasyEmailEditorApp() {
-  const [data, setData] = useState(defaultData);
-  const [loading, setLoading] = useState(true);
-  const editorRef = useRef(null);
-
-  // Initialize editor with config from PHP
-  useEffect(() => {
-    if (window.EASY_EMAIL_CONFIG) {
-      const config = window.EASY_EMAIL_CONFIG;
-      
-      if (config.templateData && config.templateData.bodyMjml) {
-        try {
-          const templateData = JSON.parse(config.templateData.bodyMjml);
-          setData(templateData);
-        } catch (e) {
-          console.warn('Failed to parse template MJML data:', e);
-        }
-      }
-      
-      setLoading(false);
-      
-      // Notify parent that editor is ready
-      if (window.EasyEmailAPI) {
-        window.EasyEmailAPI.ready();
-      }
-    } else {
-      setLoading(false);
-    }
-  }, []);
-
-  // Handle content loading from parent window
-  useEffect(() => {
-    window.EasyEmailEditor = {
-      loadContent: (contentData) => {
-        if (contentData.mjml) {
-          try {
-            const parsedData = typeof contentData.mjml === 'string' 
-              ? JSON.parse(contentData.mjml) 
-              : contentData.mjml;
-            setData(parsedData);
-          } catch (e) {
-            console.error('Failed to load content:', e);
-            // Try to create basic structure from HTML if MJML parse fails
-            if (contentData.html) {
-              setData({
-                ...defaultData,
-                subject: contentData.subject || 'Untitled Email',
-                content: {
-                  ...defaultData.content,
-                  children: [{
-                    type: 'standard_section',
-                    attributes: { 'background-color': '#ffffff', 'padding': '20px' },
-                    children: [{
-                      type: 'standard_column',
-                      attributes: { 'width': '100%' },
-                      children: [{
-                        type: 'standard_text',
-                        data: { value: { content: contentData.html } },
-                        attributes: { 'padding': '10px' }
-                      }]
-                    }]
-                  }]
-                }
-              });
-            }
-          }
-        } else if (contentData.html) {
-          // Convert HTML to basic MJML structure
-          setData({
-            ...defaultData,
-            subject: contentData.subject || 'Untitled Email',
-            content: {
-              ...defaultData.content,
-              children: [{
-                type: 'standard_section',
-                attributes: { 'background-color': '#ffffff', 'padding': '20px' },
-                children: [{
-                  type: 'standard_column',
-                  attributes: { 'width': '100%' },
-                  children: [{
-                    type: 'standard_text',
-                    data: { value: { content: contentData.html } },
-                    attributes: { 'padding': '10px' }
-                  }]
-                }]
-              }]
-            }
-          });
-        }
-      },
-      
-      getData: () => {
-        return data;
-      },
-      
-      requestSave: () => {
-        handleSave();
-      }
-    };
-
-    // Listen for save requests from parent
-    const handleParentMessage = (event) => {
-      if (event.data.type === 'EASY_EMAIL_REQUEST_SAVE') {
-        handleSave();
-      }
-    };
-    
-    window.addEventListener('message', handleParentMessage);
-
-    return () => {
-      delete window.EasyEmailEditor;
-      window.removeEventListener('message', handleParentMessage);
-    };
-  }, [data, handleSave]);
-
-  const handleSave = useCallback(() => {
-    if (editorRef.current) {
-      const exportData = editorRef.current.exportHtml({
-        beautify: true,
-        minify: false
-      });
-      
-      const saveData = {
-        mjml: JSON.stringify(data, null, 2),
-        html: exportData.html,
-        subject: data.subject || 'Untitled Email',
-        json: data
-      };
-
-      console.log('Saving email data:', saveData);
-      
-      if (window.EasyEmailAPI) {
-        window.EasyEmailAPI.save(saveData);
-      }
-    }
-  }, [data]);
-
-  const handlePreview = useCallback(() => {
-    if (editorRef.current) {
-      const exportData = editorRef.current.exportHtml({
-        beautify: true,
-        minify: false
-      });
-      
-      const previewWindow = window.open('', '_blank');
-      if (previewWindow) {
-        previewWindow.document.write(`
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Email Preview</title>
-          </head>
-          <body style="margin: 0; padding: 20px; background: #f0f0f0;">
-            ${exportData.html}
-          </body>
-          </html>
-        `);
-        previewWindow.document.close();
-      }
-    }
-  }, []);
-
-  const config = {
-    height: 'calc(100vh - 60px)',
-    onUploadImage: async (file) => {
-      try {
-        // Upload image to EspoCRM
-        const formData = new FormData();
-        formData.append('file', file);
-        
-        const response = await fetch('/api/v1/EasyEmailEditor/action/uploadImage', {
-          method: 'POST',
-          headers: {
-            'X-File-Name': file.name
-          },
-          body: file
-        });
-        
-        if (!response.ok) {
-          throw new Error('Upload failed');
-        }
-        
-        const result = await response.json();
-        return {
-          url: result.url,
-          name: result.name
-        };
-      } catch (error) {
-        console.error('Image upload failed:', error);
-        // Fallback to placeholder
-        return {
-          url: 'https://via.placeholder.com/300x200?text=' + encodeURIComponent(file.name),
-          name: file.name
-        };
-      }
+            {
+                type: AdvancedType.BUTTON,
+            },
+            {
+                type: AdvancedType.SOCIAL,
+            },
+            {
+                type: AdvancedType.DIVIDER,
+            },
+            {
+                type: AdvancedType.SPACER,
+            },
+            {
+                type: AdvancedType.HERO,
+            },
+            {
+                type: AdvancedType.ACCORDION,
+            },
+            {
+                type: AdvancedType.CAROUSEL,
+            },
+            {
+                type: AdvancedType.WRAPPER,
+            },
+        ],
     },
-    fontList: [
-      'Arial',
-      'Helvetica',
-      'Georgia',
-      'Times New Roman',
-      'Courier New',
-      'Verdana',
-      'Tahoma'
-    ],
-    mergeTags: [
-      {
-        name: 'First Name',
-        value: '{{firstName}}'
-      },
-      {
-        name: 'Last Name', 
-        value: '{{lastName}}'
-      },
-      {
-        name: 'Email',
-        value: '{{emailAddress}}'
-      },
-      {
-        name: 'Company',
-        value: '{{accountName}}'
-      }
-    ]
-  };
+    {
+        label: 'Layout',
+        active: true,
+        displayType: 'column',
+        blocks: [
+            {
+                title: '2 columns',
+                payload: [
+                    ['50%', '50%'],
+                    ['33%', '67%'],
+                    ['67%', '33%'],
+                    ['25%', '75%'],
+                    ['75%', '25%'],
+                ],
+            },
+            {
+                title: '3 columns',
+                payload: [
+                    ['33.33%', '33.33%', '33.33%'],
+                    ['25%', '25%', '50%'],
+                    ['50%', '25%', '25%'],
+                ],
+            },
+            {
+                title: '4 columns',
+                payload: [
+                    ['25%', '25%', '25%', '25%']
+                ],
+            },
+        ],
+    },
+];
 
-  if (loading) {
+export default function Editor({
+                                   mjmlContent,
+                                   content,
+                                   height,
+                                   onChange,
+                                   onUploadImage,
+                                   locale,
+                                   translations,
+                                   onToggleFullscreen
+                               }) {
+    height = height || 'calc(100vh - 85px)';
+    locale = locale || 'en';
+    translations = translations || {};
+    const easyEmailLocale = locale in locales ? locales[locale] : locales['en'];
+    const language = {...easyEmailLocale, ...translations};
+
+    let defaultTemplate = content;
+
+    if (!defaultTemplate && mjmlContent) {
+        defaultTemplate = MjmlToJson(mjmlContent);
+    }
+
+    if (!defaultTemplate) {
+        defaultTemplate = BlockManager.getBlockByType(BasicType.PAGE).create({});
+    }
+
+    const translate = key => {
+        return key in language ? language[key] : key;
+    };
+
+    const wrapperEl = useRef(null);
+    const [template, setTemplate] = useState(defaultTemplate);
+    const [exportFileName, setExportFileName] = useState('export.mjml');
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [smallScene, setSmallScene] = useState(false);
+    const [editorHeight, setEditorHeight] = useState(height);
+
+    const fullScreenHandle = useFullScreenHandle();
+    const {exportTemplate} = useExportTemplate();
+    const {importTemplate} = useImportTemplate();
+
+    const initialValues = useMemo(() => {
+        return {
+            content: template,
+        };
+    }, [template]);
+
+    useEffect(() => {
+        if (onToggleFullscreen) {
+            onToggleFullscreen(fullScreenHandle.active);
+        }
+
+        setEditorHeight(fullScreenHandle.active ? '100vh' : height);
+    }, [fullScreenHandle.active]);
+
+    useEffect(() => {
+        if (content) {
+            setTemplate(content);
+        } else if (mjmlContent) {
+            setTemplate(MjmlToJson(mjmlContent));
+        }
+    }, [content, mjmlContent]);
+
+    useEffect(() => {
+        function handleResize() {
+            if (wrapperEl.current) {
+                setSmallScene(wrapperEl.current.offsetWidth < 1400);
+            }
+        }
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    useEffect(() => {
+        if (isDarkMode) {
+            document.body.setAttribute('arco-theme', 'dark');
+        } else {
+            document.body.removeAttribute('arco-theme');
+        }
+
+        return () => document.body.removeAttribute('arco-theme');
+    }, [isDarkMode]);
+
+    const onExportMjml = (values) => {
+        exportTemplate(exportFileName, JsonToMjml({
+            data: values.content,
+            mode: 'production',
+            context: values.content,
+        }));
+    };
+
+    const onImportMjml = async () => {
+        const [fileName, template] = await importTemplate();
+        setExportFileName(fileName);
+        setTemplate(template);
+    };
+
     return (
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100vh',
-        fontSize: '18px',
-        color: '#666'
-      }}>
-        Loading Easy Email Editor...
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Toolbar */}
-      <div style={{
-        height: '60px',
-        background: '#ffffff',
-        borderBottom: '1px solid #e1e5e9',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0 20px',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-      }}>
-        <div style={{ fontSize: '18px', fontWeight: '600', color: '#333' }}>
-          Easy Email Editor
-        </div>
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <button
-            onClick={handlePreview}
-            style={{
-              padding: '8px 16px',
-              background: '#6c757d',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            Preview
-          </button>
-          <button
-            onClick={handleSave}
-            style={{
-              padding: '8px 16px',
-              background: '#007bff',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            Save
-          </button>
-        </div>
-      </div>
-
-      {/* Editor */}
-      <div style={{ flex: 1 }}>
-        <EmailEditorProvider
-          config={config}
-          data={data}
-          onChange={setData}
+        <div
+            ref={wrapperEl}
+            className={'easy-email-editor-wrapper'}
+            data-fullscreen={fullScreenHandle.active}
         >
-          <EmailEditor ref={editorRef} />
-        </EmailEditorProvider>
-      </div>
-    </div>
-  );
-}
+            <EmailEditorProvider
+                data={initialValues}
+                height={editorHeight}
+                onUploadImage={onUploadImage || undefined}
+                locale={language}
+            >
+                {({values}) => {
+                    if (onChange) {
+                        onChange(values);
+                    }
+
+                    return (
+                        <>
+                            <PageHeader
+                                title={translate('Edit')}
+                                style={{background: 'var(--color-bg-2)'}}
+                                extra={
+                                    <Stack alignment={'center'}>
+                                        <Button
+                                            onClick={() => setIsDarkMode(v => !v)}
+                                            shape='circle'
+                                            type='text'
+                                            icon={isDarkMode ? <IconMoonFill/> : <IconSunFill/>}
+                                        ></Button>
+                                        <Button onClick={fullScreenHandle.toggle}>
+                                            {fullScreenHandle.active ? translate('Exit Full Screen') : translate('Full Screen')}
+                                        </Button>
+                                        <Button onClick={() => onExportMjml(values)}>
+                                            {translate('Export Template')}
+                                        </Button>
+                                        <Button onClick={onImportMjml}>
+                                            {translate('Import Template')}
+                                        </Button>
+                                    </Stack>
+                                }
+                            />
+                            <StandardLayout
+                                showSourceCode={true}
+                                categories={categories}
+                                compact={!smallScene}
+                            >
+                                <EmailEditor/>
+                            </StandardLayout>
+                        </>
+                    );
+                }}
+            </EmailEditorProvider>
+        </div>
+    );
+};

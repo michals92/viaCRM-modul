@@ -1,0 +1,18 @@
+{
+	"fields": {
+		"createdAt": "Vytvořeno",
+		"createdBy": "Vytvořil",
+		"modifiedAt": "Upraveno",
+		"modifiedBy": "Upravil",
+		"name": "Název",
+		"status": "Stav"
+	},
+	"labels": {
+		"Create RealEstateSendMatchesQueueItem": "Vytvořit položku fronty odesílání shod",
+		"RealEstateSendMatchesQueueItem": "Položka fronty odesílání shod"
+	},
+	"links": {
+		"createdBy": "Vytvořil",
+		"modifiedBy": "Upravil"
+	}
+}

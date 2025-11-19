@@ -1,0 +1,29 @@
+{
+	"fields": {
+		"field": "Pole",
+		"file": "Soubor",
+		"isBeingUploaded": "Nahrává se",
+		"related": "Příbuzný",
+		"role": "Role",
+		"size": "Velikost v bytech",
+		"sourceId": "Zdrojové ID",
+		"storage": "Úložiště",
+		"type": "Typ"
+	},
+	"insertFromSourceLabels": {
+		"Document": "Vložit dokument"
+	},
+	"options": {
+		"role": {
+			"Attachment": "Příloha",
+			"Export File": "Exportovat soubor",
+			"Import File": "Importovat soubor",
+			"Inline Attachment": "Vložená příloha",
+			"Mail Merge": "Spojit Emaily",
+			"Mass Pdf": "Hromadná tvorba PDF"
+		}
+	},
+	"presetFilters": {
+		"orphan": "Sirotek"
+	}
+}

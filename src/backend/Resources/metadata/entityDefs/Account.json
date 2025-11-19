@@ -1,0 +1,67 @@
+{
+	"fields": {
+		"accountEmailAddresses": {
+			"type": "linkMultiple"
+		},
+		"accountPhoneNumbers": {
+			"type": "linkMultiple"
+		},
+		"billingAddress": {
+			"tooltip": true
+		},
+		"name": {
+			"view": "autocrm:views/account/fields/name"
+		},
+		"shippingAddress": {
+			"tooltip": true
+		},
+		"sicCode": {
+			"type": "varchar",
+			"view": "autocrm:views/account/fields/sic-code",
+			"maxLength": 40,
+			"trim": true,
+			"pattern": "$noBadCharacters",
+			"noSpellCheck": true
+		},
+		"slovakVatId": {
+			"type": "varchar",
+			"maxLength": 12,
+			"trim": true,
+			"pattern": "$noBadCharacters",
+			"noSpellCheck": true,
+			"tooltip": true
+		},
+		"type": {
+			"type": "multiEnum",
+			"default": [],
+			"options": [
+				"__APPEND__",
+				"Supplier"
+			],
+			"style": {
+				"Customer": "success",
+				"Supplier": "info"
+			},
+			"displayAsLabel": true
+		},
+		"vatId": {
+			"type": "varchar",
+			"maxLength": 40,
+			"trim": true,
+			"pattern": "$noBadCharacters",
+			"noSpellCheck": true
+		}
+	},
+	"links": {
+		"accountEmailAddresses": {
+			"type": "hasMany",
+			"entity": "EmailAddress",
+			"foreign": "account"
+		},
+		"accountPhoneNumbers": {
+			"type": "hasMany",
+			"entity": "PhoneNumber",
+			"foreign": "account"
+		}
+	}
+}

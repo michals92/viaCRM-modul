@@ -1,0 +1,24 @@
+{
+	"fields": {
+		"entityType": "Typ entity",
+		"exportLineNumber": "Číslo řádku exportu",
+		"exportRowIndex": "Index řádku exportu",
+		"import": "Import",
+		"lineNumber": "Číslo řádku",
+		"row": "Řádek",
+		"rowIndex": "Index řádku",
+		"type": "Typ",
+		"validationFailures": "Selhání validace"
+	},
+	"options": {
+		"type": {
+			"Access": "Přístup",
+			"Not-Found": "Nenalezeno",
+			"Validation": "Validace"
+		}
+	},
+	"tooltips": {
+		"exportLineNumber": "Číslo řádku v exportovaném CSV.",
+		"lineNumber": "Číslo řádku v původním CSV."
+	}
+}

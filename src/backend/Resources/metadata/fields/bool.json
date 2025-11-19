@@ -1,0 +1,19 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "display",
+			"type": "enum",
+			"options": [
+				"",
+				"Switch"
+			]
+		},
+		{
+			"name": "directEdit",
+			"type": "bool",
+			"view": "autocrm:views/admin/field-manager/fields/bool/direct-edit",
+			"tooltip": true
+		}
+	]
+}

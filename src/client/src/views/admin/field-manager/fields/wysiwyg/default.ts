@@ -1,0 +1,1 @@
+define(['views/fields/wysiwyg'], Dep => class extends Dep {});

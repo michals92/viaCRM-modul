@@ -1,0 +1,1 @@
+define(['autocrm:views/attribute-mapping/field-definitions/base'], Dep => class extends Dep {});

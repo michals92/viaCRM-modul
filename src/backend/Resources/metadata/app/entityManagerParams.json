@@ -1,0 +1,229 @@
+{
+	"@BasePlus": {
+		"defaultEmailTemplate": {
+			"fieldDefs": {
+				"entity": "EmailTemplate",
+				"tooltip": true,
+				"type": "link"
+			},
+			"location": "clientDefs"
+		},
+		"defaultEmailTemplateId": {
+			"fieldDefs": {
+				"type": "varchar"
+			},
+			"hidden": true,
+			"location": "clientDefs"
+		},
+		"defaultEmailTemplateName": {
+			"fieldDefs": {
+				"type": "varchar"
+			},
+			"hidden": true,
+			"location": "clientDefs"
+		}
+	},
+	"@Event": {
+		"ongoingStatusList": {
+			"fieldDefs": {
+				"required": true,
+				"tooltip": true,
+				"type": "multiEnum",
+				"view": "crm:views/admin/entity-manager/fields/status-list"
+			},
+			"location": "scopes"
+		}
+	},
+	"Call": {
+		"ongoingStatusList": {
+			"fieldDefs": {
+				"required": true,
+				"tooltip": true,
+				"type": "multiEnum",
+				"view": "crm:views/admin/entity-manager/fields/status-list"
+			},
+			"location": "scopes"
+		}
+	},
+	"EmailTemplate": {
+		"defaultSelectFilters": {
+			"fieldDefs": {
+				"type": "jsonObject",
+				"view": "autocrm:views/admin/entity-manager/fields/default-advanced-filters"
+			},
+			"location": "clientDefs"
+		}
+	},
+	"Global": {
+		"attachmentCompareViewMode": {
+			"fieldDefs": {
+				"tooltip": true,
+				"type": "bool"
+			},
+			"location": "clientDefs"
+		},
+		"attachmentCompareViewModeField": {
+			"fieldDefs": {
+				"tooltip": true,
+				"type": "enum",
+				"view": "autocrm:views/admin/entity-manager/fields/attachment-compare-view-mode-field"
+			},
+			"location": "clientDefs"
+		},
+		"defaultAdvancedFilters": {
+			"fieldDefs": {
+				"type": "jsonObject",
+				"view": "autocrm:views/admin/entity-manager/fields/default-advanced-filters"
+			},
+			"location": "clientDefs"
+		},
+		"defaultFilterData": {
+			"fieldDefs": {
+				"type": "jsonObject",
+				"view": "autocrm:views/admin/entity-manager/fields/default-filter-data"
+			},
+			"location": "clientDefs"
+		},
+		"detailDefaultViewMode": {
+			"fieldDefs": {
+				"type": "enum",
+				"view": "autocrm:views/admin/entity-manager/fields/detail-default-view-mode"
+			},
+			"location": "clientDefs"
+		},
+		"duplicateCheckCreateButtonDisabled": {
+			"fieldDefs": {
+				"tooltip": true,
+				"type": "bool"
+			},
+			"location": "clientDefs"
+		},
+		"filterHeaderLabel": {
+			"fieldDefs": {
+				"type": "varchar"
+			},
+			"location": "clientDefs"
+		},
+		"fullTextMinWordLength": {
+			"fieldDefs": {
+				"min": 1,
+				"type": "int"
+			},
+			"location": "entityDefs"
+		},
+		"fullTextSearchEscapeSpecialCharacters": {
+			"fieldDefs": {
+				"default": false,
+				"tooltip": true,
+				"type": "bool"
+			},
+			"location": "entityDefs"
+		},
+		"fullTextSearchMode": {
+			"fieldDefs": {
+				"default": "Default",
+				"options": [
+					"Default",
+					"AllWordsRequired"
+				],
+				"tooltip": true,
+				"type": "enum"
+			},
+			"location": "entityDefs"
+		},
+		"gridViewMode": {
+			"fieldDefs": {
+				"type": "bool"
+			},
+			"location": "clientDefs"
+		},
+		"hidePdfButtonsInDetail": {
+			"fieldDefs": {
+				"type": "bool"
+			},
+			"location": "clientDefs"
+		},
+		"isWide": {
+			"fieldDefs": {
+				"tooltip": true,
+				"type": "bool"
+			},
+			"location": "clientDefs"
+		},
+		"listDefaultViewMode": {
+			"fieldDefs": {
+				"type": "enum",
+				"view": "autocrm:views/admin/entity-manager/fields/list-default-view-mode"
+			},
+			"location": "clientDefs"
+		},
+		"listHeaderLabel": {
+			"fieldDefs": {
+				"type": "varchar"
+			},
+			"location": "clientDefs"
+		},
+		"partitionedViewMode": {
+			"fieldDefs": {
+				"type": "bool"
+			},
+			"location": "clientDefs"
+		},
+		"pdfNameField": {
+			"fieldDefs": {
+				"type": "enum",
+				"view": "autocrm:views/admin/entity-manager/fields/pdf-name-field"
+			},
+			"location": "clientDefs"
+		},
+		"showCurrencyConvertInDetail": {
+			"fieldDefs": {
+				"type": "bool"
+			},
+			"location": "clientDefs"
+		},
+		"userKanbanStatusIgnoreList": {
+			"fieldDefs": {
+				"type": "multiEnum",
+				"view": "autocrm:views/admin/entity-manager/fields/user-kanban-status-ignore-list"
+			},
+			"location": "scopes"
+		},
+		"userKanbanViewMode": {
+			"fieldDefs": {
+				"type": "bool"
+			},
+			"location": "clientDefs"
+		}
+	},
+	"Lead": {
+		"hideConvertButton": {
+			"fieldDefs": {
+				"type": "bool"
+			},
+			"location": "clientDefs"
+		}
+	},
+	"Meeting": {
+		"ongoingStatusList": {
+			"fieldDefs": {
+				"required": true,
+				"tooltip": true,
+				"type": "multiEnum",
+				"view": "crm:views/admin/entity-manager/fields/status-list"
+			},
+			"location": "scopes"
+		}
+	},
+	"Task": {
+		"ongoingStatusList": {
+			"fieldDefs": {
+				"required": true,
+				"tooltip": true,
+				"type": "multiEnum",
+				"view": "crm:views/admin/entity-manager/fields/status-list"
+			},
+			"location": "scopes"
+		}
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "required",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "readOnly",
+			"type": "bool"
+		},
+		{
+			"name": "storePng",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "lockAfterSigning",
+			"type": "bool",
+			"default": true
+		}
+	],
+	"view": "autocrm:views/fields/electronic-signature",
+	"notCreatable": false,
+	"filter": false,
+	"converterClassName": "Espo\\Modules\\Autocrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\ElectronicSignature",
+	"textFilter": false,
+	"fullTextSearch": false
+}

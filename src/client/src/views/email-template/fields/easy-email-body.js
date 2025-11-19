@@ -1,226 +1,146 @@
-define(['views/fields/base'], function (FieldView) {
-    'use strict';
+/* global EasyEmailEditor:readonly */
 
-    return class extends FieldView {
-        
-        setup() {
-            super.setup();
-            
-            this.useEasyEmail = this.model.get('useEasyEmailEditor') || false;
-            
-            // Listen for changes to the easy email toggle
-            this.listenTo(this.model, 'change:useEasyEmailEditor', () => {
-                this.useEasyEmail = this.model.get('useEasyEmailEditor') || false;
-                this.reRender();
-            });
-        }
+define(['views/fields/text', 'views/fields/wysiwyg', 'lib!easy-email'], (Dep, Wysiwyg) => class extends Dep {
+	detailTemplate = 'autocrm:email-template/fields/body-easy-email/detail';
 
-        afterRender() {
-            super.afterRender();
-            
-            if (this.useEasyEmail && this.mode === 'edit') {
-                this.createEasyEmailEditor();
-            }
-        }
+	editTemplate = 'autocrm:email-template/fields/body-easy-email/edit';
 
-        createEasyEmailEditor() {
-            const container = this.$el.find('[data-name="' + this.name + '"]');
-            
-            if (container.length === 0) {
-                console.warn('Easy Email: Container not found for field', this.name);
-                return;
-            }
+	useIframe = true;
 
-            // Clear existing content
-            container.empty();
+	editorHeight = '800px';
 
-            // Create iframe container
-            const iframeContainer = $('<div>')
-                .css({
-                    width: '100%',
-                    height: '600px',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                    position: 'relative'
-                });
+	getAttributeList() {
+		return ['body', 'bodyMjml'];
+	}
 
-            // Create toolbar
-            const toolbar = $('<div>')
-                .css({
-                    background: '#f8f9fa',
-                    padding: '10px',
-                    borderBottom: '1px solid #ddd',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
-                });
+	setup() {
+		super.setup();
 
-            toolbar.append(
-                $('<span>').text('Easy Email Editor').css('font-weight', 'bold'),
-                $('<div>').append(
-                    $('<button>')
-                        .addClass('btn btn-default btn-sm')
-                        .text('Preview')
-                        .on('click', () => this.previewEmail()),
-                    ' ',
-                    $('<button>')
-                        .addClass('btn btn-primary btn-sm')
-                        .text('Save & Close')
-                        .on('click', () => this.saveAndClose())
-                )
-            );
+		this.listenToInsertField();
+	}
 
-            // Create iframe
-            const iframe = $('<iframe>')
-                .attr({
-                    src: this.getEditorUrl(),
-                    frameborder: '0'
-                })
-                .css({
-                    width: '100%',
-                    height: '550px',
-                    border: 'none'
-                });
+	listenToInsertField() {
+		this.listenTo(this.model, 'insert-field', data => {
+			if (!this.editor) {
+				return;
+			}
 
-            iframeContainer.append(toolbar, iframe);
-            container.append(iframeContainer);
+			const tag = '{' + data.entityType + '.' + data.field + '}';
+			const content = this.editor.getContent();
 
-            // Setup PostMessage listener
-            this.setupPostMessageListener(iframe[0]);
-        }
+			content.children.unshift({
+				type: 'advanced_text',
+				data: { value: { content: tag } },
+				attributes: {},
+				children: [],
+			});
 
-        getEditorUrl() {
-            const params = new URLSearchParams({
-                templateId: this.model.id || '',
-                entityType: 'EmailTemplate',
-                mode: 'edit'
-            });
+			this.editor.setContent(content);
+		});
+	}
 
-            return `?entryPoint=EasyEmailEditor&${params.toString()}`;
-        }
+	afterRender() {
+		super.afterRender();
 
-        setupPostMessageListener(iframe) {
-            this.postMessageHandler = (event) => {
-                if (event.source !== iframe.contentWindow) {
-                    return;
-                }
+		if (this.isEditMode() && this.model.get('type') === 'EasyEmail') {
+			this.$editor = this.$el.find('.easy-email-editor');
+			this.enableEasyEmailEditor();
+		}
 
-                const { type, data } = event.data;
+		if (this.isReadMode()) {
+			this.renderDetail();
+		}
+	}
 
-                switch (type) {
-                    case 'EASY_EMAIL_READY':
-                        console.log('Easy Email Editor ready');
-                        this.sendContentToEditor(iframe);
-                        break;
+	onRemove() {
+		if (this.editor) {
+			this.editor.unmount();
+		}
+	}
 
-                    case 'EASY_EMAIL_SAVE':
-                        console.log('Saving email data from editor:', data);
-                        this.handleSaveFromEditor(data);
-                        break;
+	getLocale() {
+		return this.getConfig().get('language').substring(0, 2);
+	}
 
-                    case 'EASY_EMAIL_CLOSE':
-                        console.log('Editor requested close');
-                        this.closeEditor();
-                        break;
+	getTranslations() {
+		const data = this.getLanguage().data;
 
-                    default:
-                        console.log('Unknown message type:', type);
-                }
-            };
+		if (!('EmailTemplate' in data)) {
+			return {};
+		}
 
-            window.addEventListener('message', this.postMessageHandler);
-        }
+		return data.EmailTemplate.easyEmailEditorLabels || {};
+	}
 
-        sendContentToEditor(iframe) {
-            const currentContent = {
-                mjml: this.model.get('bodyMjml') || null,
-                html: this.model.get('body') || '',
-                subject: this.model.get('subject') || ''
-            };
+	enableEasyEmailEditor() {
+		this.editor = EasyEmailEditor.render(this.$editor[0], {
+			height: this.editorHeight,
+			mjmlContent: this.model.get('bodyMjml') || '',
+			locale: this.getLocale(),
+			translations: this.getTranslations(),
+			onChange: () => {
+				if (this.isRendered() && this.isEditMode()) {
+					this.trigger('change');
+				}
+			},
+			onUploadImage: this.uploadInlineAttachment.bind(this),
+		});
+	}
 
-            iframe.contentWindow.postMessage({
-                type: 'EASY_EMAIL_LOAD',
-                data: currentContent
-            }, '*');
-        }
+	uploadInlineAttachment(file) {
+		const orgName = this.name;
+		this.name = 'body';
+		return Wysiwyg.prototype.uploadInlineAttachment.call(this, file).then(attachment => {
+			this.name = orgName;
+			return '?entryPoint=attachment&id=' + attachment.id;
+		});
+	}
 
-        handleSaveFromEditor(data) {
-            // Update model with data from editor
-            this.model.set({
-                'body': data.html || '',
-                'bodyMjml': data.mjml || '',
-                'subject': data.subject || this.model.get('subject')
-            });
+	isPlain() {
+		if (Wysiwyg.prototype.isPlain) {
+			return Wysiwyg.prototype.isPlain.call(this);
+		} else {
+			return !this.isHtml();
+		}
+	}
 
-            // Trigger change event
-            this.trigger('change');
-            
-            // Show success message
-            Espo.Ui.success(this.translate('Saved'));
-        }
+	renderDetail() {
+		const orgName = this.name;
+		this.name = 'body';
+		Wysiwyg.prototype.renderDetail.call(this);
+		this.name = orgName;
+	}
 
-        previewEmail() {
-            const html = this.model.get('body');
-            if (!html) {
-                Espo.Ui.warning('No content to preview');
-                return;
-            }
+	getValueForDisplay() {
+		return this.model.get('body');
+	}
 
-            const previewWindow = window.open('', '_blank');
-            if (previewWindow) {
-                previewWindow.document.write(`
-                    <!DOCTYPE html>
-                    <html>
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Email Preview</title>
-                    </head>
-                    <body style="margin: 0; padding: 20px; background: #f0f0f0;">
-                        ${html}
-                    </body>
-                    </html>
-                `);
-                previewWindow.document.close();
-            }
-        }
+	sanitizeHtml(html) {
+		return Wysiwyg.prototype.sanitizeHtml.call(this, html);
+	}
 
-        saveAndClose() {
-            // The save already happened via PostMessage
-            // Just show message
-            Espo.Ui.success('Content saved');
-            
-            // Optionally close the editor view
-            this.closeEditor();
-        }
+	htmlHasColors(html) {
+		return Wysiwyg.prototype.htmlHasColors.call(this, html);
+	}
 
-        closeEditor() {
-            // Switch back to standard editor
-            this.useEasyEmail = false;
-            this.reRender();
-        }
+	fetch() {
+		const data = {};
 
-        onRemove() {
-            // Clean up PostMessage listener
-            if (this.postMessageHandler) {
-                window.removeEventListener('message', this.postMessageHandler);
-                this.postMessageHandler = null;
-            }
-            
-            super.onRemove();
-        }
+		if (this.editor) {
+			data.body = this.sanitizeHtml(this.editor.getHtml());
+			data.bodyMjml = this.editor.getMjml();
+		}
 
-        getValueForDisplay() {
-            if (this.useEasyEmail && this.mode === 'detail') {
-                // In detail mode, show a preview or summary
-                const html = this.model.get('body') || '';
-                if (html.length > 100) {
-                    return html.substring(0, 100) + '... (Easy Email)';
-                }
-                return html + ' (Easy Email)';
-            }
-            
-            return super.getValueForDisplay();
-        }
-    };
+		return data;
+	}
+
+	/** For Wysiwyg.prototype.renderDetail.call(this) to work correctly in 8.4.0 */
+	isHtml() {
+		return true;
+	}
+
+	/** For Wysiwyg.prototype.renderDetail.call(this) to work correctly in 8.4.0 */
+	getValueForIframe() {
+		return this.sanitizeHtml(this.model.get(this.name) || '');
+	}
 });

@@ -1,0 +1,51 @@
+{
+	"fields": {
+		"Acceptance": "Přijetí",
+		"acceptanceStatus": "Stav přijetí",
+		"dateEndDate": "Datum ukončení (celý den)",
+		"dateStartDate": "Datum zahájení (celý den)",
+		"isAllDay": "Celý den",
+		"joinUrl": "URL pro připojení",
+		"leads": "Potenciály",
+		"meetingType": "Typ schůzky",
+		"sourceEmail": "Zdrojový e-mail",
+		"status": "Stav",
+		"uid": "UID"
+	},
+	"labels": {
+		"Acceptance": "Přijetí",
+		"All-Day": "Celý den",
+		"Send Cancellation": "Odeslat zrušení",
+		"Send Invitations": "Odeslat pozvánky",
+		"Set Held": "Označit jako uskutečněno",
+		"Set Not Held": "Označit jako neuskutečněno"
+	},
+	"links": {
+		"leads": "Potenciály"
+	},
+	"massActions": {
+		"setHeld": "Označit jako uskutečněno",
+		"setNotHeld": "Označit jako neuskutečněno"
+	},
+	"messages": {
+		"nothingHasBeenSent": "Nic nebylo odesláno",
+		"selectAcceptanceStatus": "Nastavit svůj stav přijetí.",
+		"sendCancellationsToSelectedAttendees": "Odeslat zrušení vybraným účastníkům",
+		"sendInvitationsToSelectedAttendees": "Odeslat pozvánky vybraným účastníkům"
+	},
+	"options": {
+		"meetingType": {
+			"": "",
+			"Acquisition": "Akvizice",
+			"Business": "Obchod",
+			"Maintenance": "Udržovací",
+			"Project": "Projekt",
+			"Social": "Společenská"
+		},
+		"status": {
+			"Held": "Uskutečněno",
+			"Not Held": "Neuskutečněno",
+			"Planned": "Plánovaný"
+		}
+	}
+}

@@ -1,0 +1,55 @@
+{
+	"fieldDefs": {
+		"dbType": "float"
+	},
+	"validationList": [
+		"required",
+		"min",
+		"max"
+	],
+	"mandatoryValidationList": [
+		"valid",
+		"rangeInternal"
+	],
+	"params": [
+		{
+			"name": "required",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "default",
+			"type": "int"
+		},
+		{
+			"name": "min",
+			"type": "int"
+		},
+		{
+			"name": "max",
+			"type": "int"
+		},
+		{
+			"name": "disableFormatting",
+			"type": "bool"
+		},
+		{
+			"name": "audited",
+			"type": "bool"
+		},
+		{
+			"name": "readOnly",
+			"type": "bool"
+		},
+		{
+			"name": "readOnlyAfterCreate",
+			"type": "bool"
+		}
+	],
+	"view": "autocrm:views/fields/percentage",
+	"notCreatable": false,
+	"filter": true,
+	"textFilter": true,
+	"personalData": true,
+	"textFilterForeign": true
+}

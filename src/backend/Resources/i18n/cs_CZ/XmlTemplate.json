@@ -1,0 +1,10 @@
+{
+	"fields": {
+		"body": "Tělo",
+		"entityType": "Typ entity",
+		"title": "Název"
+	},
+	"labels": {
+		"Create XmlTemplate": "Vytvořit XML šablonu"
+	}
+}

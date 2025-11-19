@@ -1,0 +1,22 @@
+{
+	"fields": {
+		"entityType": "Typ entity",
+		"event": "Událost",
+		"field": "Pole",
+		"isActive": "Je aktivní",
+		"secretKey": "Soukromý klíč",
+		"skipOwn": "Přeskočit vlastní",
+		"url": "URL",
+		"user": "API Uživatel"
+	},
+	"labels": {
+		"Create Webhook": "Vytvořit Webhook"
+	},
+	"links": {
+		"queueItems": "Položky fronty",
+		"user": "Uživatel"
+	},
+	"tooltips": {
+		"skipOwn": "Webhook nebude zavolán pro akce provedené samotným uživatelem webhooku."
+	}
+}

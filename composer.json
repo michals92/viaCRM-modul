@@ -1,0 +1,36 @@
+{
+    "name": "apertia/autocrm",
+    "description": "The base module for all AutoCRM modules",
+    "type": "espocrm-module",
+    "autoload": {
+        "psr-4": {
+            "Espo\\Modules\\Autocrm\\": "src/backend"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AutocrmDev\\PHPStan\\Extensions\\": "phpstan/extensions/",
+            "Apertia\\PhpCsFixer\\": "php-cs-fixer/",
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "brinley/jsignature": "^2.1",
+        "ext-curl": "*",
+        "ext-dom": "*",
+        "ext-soap": "*",
+        "psy/psysh": "^0.12.8"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.75",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-deprecation-rules": "^1.2",
+        "phpunit/phpunit": "^9.5",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.25",
+        "ely/php-code-style": "^1.0"
+    },
+    "scripts": {
+        "lint": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run --diff --verbose",
+        "fix": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix"
+    }
+}

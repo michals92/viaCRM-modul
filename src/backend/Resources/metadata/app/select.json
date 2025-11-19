@@ -1,0 +1,6 @@
+{
+	"whereItemConverterClassNameMap": {
+		"tomorrow": "Espo\\Modules\\Autocrm\\Classes\\Select\\Where\\ItemConverters\\Tomorrow",
+		"yesterday": "Espo\\Modules\\Autocrm\\Classes\\Select\\Where\\ItemConverters\\Yesterday"
+	}
+}

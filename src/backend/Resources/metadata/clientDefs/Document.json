@@ -1,0 +1,18 @@
+{
+	"color": "#006400",
+	"menu": {
+		"list": {
+			"buttons": [
+				"__APPEND__",
+				{
+					"label": "Upload From Zip",
+					"style": "primary",
+					"name": "uploadFromZip",
+					"action": "uploadFromZip",
+					"handler": "autocrm:handlers/actions/document/upload-from-zip",
+					"initFunction": "init"
+				}
+			]
+		}
+	}
+}

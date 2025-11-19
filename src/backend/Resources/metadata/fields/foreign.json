@@ -1,0 +1,9 @@
+{
+	"fieldTypeList": [
+		"__APPEND__",
+		"sequenceNumber"
+	],
+	"fieldTypeViewMap": {
+		"sequenceNumber": "views/fields/foreign-varchar"
+	}
+}

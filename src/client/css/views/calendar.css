@@ -1,0 +1,29 @@
+.panel-body.calendar-item {
+    padding: 5px;
+    padding-bottom: 0;
+}
+
+.fc-event .panel {
+    margin-bottom: 0;
+}
+
+.calendar-scope-list {
+    display: flex;
+}
+
+.calendar-scope-list > div {
+    padding: 10px;
+    margin-right: 5px;
+}
+
+@media only screen and (width <= 992px) {
+    .calendar-scope-list {
+        display: none;
+    }
+}
+
+.fc-day.fc-daygrid-day {
+    &.public-holiday {
+        background-color: rgb(1, 2, 255, 0.2);
+    }
+}

@@ -1,0 +1,52 @@
+.admin-content {
+    .user-teams-container > .teams-panel {
+        overflow: hidden;
+    }
+}
+
+[data-item="teamSwitching"] .dropdown-menu {
+    margin-top: 0;
+}
+
+#nav-team-switching {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 5px;
+    color: var(--navbar-link-color) !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#nav-team-switching:hover {
+    color: var(--navbar-link-hover-color) !important;
+}
+
+#nav-team-switching[aria-expanded='true'] {
+    background-color: var(--navbar-link-active-bg) !important;
+}
+
+@media screen and (width <= 768px) {
+    #nav-team-switching[aria-expanded='true'] {
+        background-color: var(--navbar-inverse-link-active-bg) !important;
+    }
+}
+
+.current-team {
+    max-width: 150px;
+    margin-left: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.default-team {
+    pointer-events: none;
+    cursor: none;
+}
+
+[data-id="none"] {
+    pointer-events: none;
+    cursor: none;
+}

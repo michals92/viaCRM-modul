@@ -1,0 +1,40 @@
+[
+	"__APPEND__",
+	{
+		"tabLabel": "$label:EWS",
+		"tabBreak": true,
+		"rows": [
+			[
+				{
+					"name": "useEws"
+				},
+				false
+			],
+			[
+				{
+					"name": "ewsServerUrl",
+					"fullWidth": true
+				}
+			],
+			[
+				{
+					"name": "ewsUserName"
+				},
+				{
+					"name": "ewsPassword"
+				}
+			]
+		]
+	},
+	{
+		"tabLabel": "$label:Miscellaneous",
+		"tabBreak": true,
+		"rows": [
+			[
+				{
+					"name": "signature"
+				}
+			]
+		]
+	}
+]

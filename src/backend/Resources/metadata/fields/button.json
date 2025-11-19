@@ -1,0 +1,58 @@
+{
+	"fieldDefs": {
+		"orderDisabled": true
+	},
+	"params": [
+		"__APPEND__",
+		{
+			"name": "workflow",
+			"type": "link",
+			"entity": "Workflow",
+			"required": true,
+			"view": "autocrm:views/admin/field-manager/fields/button/workflow"
+		},
+		{
+			"name": "workflowId",
+			"type": "varchar",
+			"required": true,
+			"hidden": true
+		},
+		{
+			"name": "workflowName",
+			"type": "varchar",
+			"required": false,
+			"hidden": true
+		},
+		{
+			"name": "customLabel",
+			"type": "varchar",
+			"required": true
+		},
+		{
+			"name": "style",
+			"type": "enum",
+			"required": true,
+			"default": "default",
+			"options": [
+				"default",
+				"success",
+				"danger",
+				"warning",
+				"info",
+				"primary"
+			],
+			"style": {
+				"danger": "danger",
+				"default": "default",
+				"info": "info",
+				"primary": "primary",
+				"success": "success",
+				"warning": "warning"
+			}
+		}
+	],
+	"view": "autocrm:views/fields/button",
+	"notCreatable": false,
+	"converterClassName": "Espo\\Modules\\Autocrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\Button",
+	"notStorable": true
+}

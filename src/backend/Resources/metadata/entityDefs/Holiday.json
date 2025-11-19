@@ -1,0 +1,42 @@
+{
+	"fields": {
+		"date": {
+			"type": "date",
+			"required": true
+		},
+		"genitive": {
+			"type": "varchar",
+			"required": true,
+			"trim": true
+		},
+		"holidayName": {
+			"type": "varchar",
+			"trim": true
+		},
+		"langCode": {
+			"type": "varchar",
+			"required": true,
+			"maxLength": 6,
+			"trim": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"trim": true
+		},
+		"nominative": {
+			"type": "varchar",
+			"required": true,
+			"trim": true
+		}
+	},
+	"indexes": {
+		"langCodeDate": {
+			"columns": [
+				"langCode",
+				"date"
+			],
+			"unique": true
+		}
+	}
+}

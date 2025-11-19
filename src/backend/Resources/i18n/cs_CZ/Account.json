@@ -1,0 +1,92 @@
+{
+	"fields": {
+		"accountEmailAddresses": "Přiřazené emailové účty",
+		"accountPhoneNumbers": "Přiřazené telefonní čísla",
+		"contactIsInactive": "Je neaktivní",
+		"emailAddress": "Email",
+		"originalLead": "Původní Potenciál",
+		"sicCode": "IČ",
+		"slovakVatId": "IČ DPH",
+		"targetList": "Cílový seznam",
+		"targetLists": "Cílové seznamy",
+		"vatId": "DIČ"
+	},
+	"fillProviders": {
+		"Ares": "Vyplnit z ARES",
+		"Finstat": "Vyplnit z FinStatu"
+	},
+	"labels": {
+		"Fill Data": "Vyplnit údaje",
+		"Set Primary": "Nastavit jako primární",
+		"Verify VAT Number": "Ověřit DIČ"
+	},
+	"links": {
+		"contactsPrimary": "Primární kontakty",
+		"originalLead": "Původní Potenciál",
+		"portalUsers": "Uživatelé portálu"
+	},
+	"messages": {
+		"couldNotFindCompanyByName": "Nelze najít společnost s názvem \"{name}\"",
+		"couldNotFindCompanyBySicCode": "Nelze najít společnost s IČO \"{sicCode}\"",
+		"errorWhileFetchingFinstat": "Chyba při získávání údajů z Finstatu",
+		"invalidAresResponse": "Neplatná odpověď z ARESu",
+		"invalidFinstatResponse": "Neplatná odpověď z Finstatu",
+		"invalidSicCode": "IČO má neplatný formát",
+		"missingSicCode": "Zadejte IČO",
+		"vatIdInvalidformat": "DIČ má neplatný formát",
+		"vatNumberIsInvalid": "DIČ je neplatné",
+		"vatNumberIsValid": "DIČ je validní",
+		"vatVerificationFailed": "Ověření DIČ selhalo"
+	},
+	"options": {
+		"industry": {
+			"Aerospace": "Letectví a kosmonautika",
+			"Architecture": "Architektura",
+			"Automotive": "Automobilový průmysl",
+			"Building Materials & Equipment": "Stavebnictví",
+			"Construction": "Konstrukce",
+			"Consulting": "Poradenství",
+			"Creative": "Tvůrčí činnost",
+			"Culture": "Kultura",
+			"Defense": "Obrana",
+			"Electric Power": "Elektrická energie",
+			"Energy": "Energie",
+			"Finance": "Finance",
+			"Healthcare": "Zdravotnictví",
+			"Hospitality": "Pohostinství",
+			"Manufacturing": "Výroba",
+			"Marketing": "Marketing",
+			"Mass Media": "Hromadné sdělovací prostředky",
+			"Mining": "Hornictví",
+			"Music": "Hudba",
+			"Petroleum": "Ropa",
+			"Retail": "Maloobchod",
+			"Shipping": "Přeprava",
+			"Software": "Software",
+			"Support": "Podpora",
+			"Testing, Inspection & Certification": "Testování, inspekce a certifikace",
+			"Travel": "Cestování",
+			"Water": "Vodohospodářství",
+			"Wholesale": "Velkoobchod"
+		},
+		"type": {
+			"": "",
+			"Customer": "Zákazník",
+			"Investor": "Investor",
+			"Partner": "Partner",
+			"Supplier": "Dodavatel"
+		}
+	},
+	"presetFilters": {
+		"recentlyCreated": "Nedávno vytvořeno"
+	},
+	"tabs": {
+		"Account": "Organizace",
+		"Support": "Podpora"
+	},
+	"tooltips": {
+		"billingAddress": "Země, které lze vybírat v poli adresy, se definují v [Nastavení](#Admin/AutocrmSettings), v poli *Seznam zemí adresy*.",
+		"shippingAddress": "Země, které lze vybírat v poli adresy, se definují v [Nastavení](#Admin/AutocrmSettings), v poli *Seznam zemí adresy*.",
+		"slovakVatId": "IČ DPH je slovenské identifikační číslo pro účely DPH"
+	}
+}

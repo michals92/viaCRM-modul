@@ -1,0 +1,13 @@
+{
+	"fields": {
+		"data": "Data šablony",
+		"entityType": "Typ subjektu"
+	},
+	"labels": {
+		"Create RecordTemplate": "Vytvořit šablonu záznamu",
+		"Data": "Data",
+		"Select template entity type": "Vyberte typ šablony",
+		"Template Name": "Název šablony",
+		"Template Settings": "Nastavení šablony"
+	}
+}

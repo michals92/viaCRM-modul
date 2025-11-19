@@ -1,0 +1,11 @@
+{
+	"labels": {
+		"Completed": "Dokončeno",
+		"Ongoing": "Probíhající",
+		"Planned": "Plánováno",
+		"Set Up": "Nastavit"
+	},
+	"messages": {
+		"workQueueNotSetUp": "Fronta práce není nastavena"
+	}
+}

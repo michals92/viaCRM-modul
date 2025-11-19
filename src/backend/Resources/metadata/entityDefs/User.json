@@ -1,1 +1,66 @@
-{}
+{
+	"fields": {
+		"alertActive": {
+			"type": "bool",
+			"notStorable": true,
+			"utility": true
+		},
+		"alerts": {
+			"type": "linkMultiple"
+		},
+		"defaultTeam": {
+			"view": "autocrm:views/user/fields/default-team"
+		},
+		"humanResource": {
+			"type": "link"
+		},
+		"roles": {
+			"view": "autocrm:views/user/fields/roles"
+		},
+		"stampWithSignature": {
+			"type": "file",
+			"sourceList": [],
+			"accept": [],
+			"isCustom": true
+		},
+		"teamRole": {
+			"view": "autocrm:views/user/fields/team-role"
+		},
+		"teams": {
+			"view": "autocrm:views/user/fields/teams"
+		},
+		"type": {
+			"icons": {
+				"regular": "fas fa-user",
+				"admin": "fas fa-user-shield",
+				"api": "fas fa-robot"
+			}
+		}
+	},
+	"links": {
+		"alerts": {
+			"type": "hasMany",
+			"entity": "Alert",
+			"foreign": "users",
+			"additionalColumns": {
+				"alertActive": {
+					"type": "bool"
+				}
+			},
+			"columnAttributeMap": {
+				"alertActive": "alertActive"
+			}
+		},
+		"humanResource": {
+			"type": "belongsTo",
+			"entity": "HumanResource",
+			"foreign": "user"
+		},
+		"stampWithSignature": {
+			"type": "belongsTo",
+			"entity": "Attachment",
+			"skipOrmDefs": true,
+			"utility": true
+		}
+	}
+}

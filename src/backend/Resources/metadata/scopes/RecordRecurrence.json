@@ -1,0 +1,12 @@
+{
+	"type": "Base",
+	"acl": false,
+	"customizable": false,
+	"entity": true,
+	"importable": false,
+	"layouts": false,
+	"module": "RecurringRecords",
+	"notifications": false,
+	"object": true,
+	"tab": false
+}

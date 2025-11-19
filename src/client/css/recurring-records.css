@@ -1,0 +1,32 @@
+.cron-expr__user-friendly .form-control {
+	display: inline-block;
+	width: auto;
+}
+
+.cron-expr__view-mode {
+	padding: 5px 0;
+	font-size: 13px;
+	color: #999;
+}
+
+.cron-expr__view-mode_link {
+	display: inline-block;
+}
+
+.cron-expr__view-mode_link:hover {
+	text-decoration: none;
+}
+
+.cron-expr__view-mode_link i {
+	font-size: 12px;
+	vertical-align: middle;
+}
+
+.cron-expr__user-friendly {
+	padding: 5px 0;
+}
+
+select.cron-expression-select {
+	display: inline-block;
+	width: auto;
+}

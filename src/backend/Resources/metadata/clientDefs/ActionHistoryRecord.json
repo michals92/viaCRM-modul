@@ -1,0 +1,12 @@
+{
+	"massActionList": [
+		"__APPEND__",
+		"revert"
+	],
+	"massActionDefs": {
+		"revert": {
+			"url": "ActionHistoryRecord/massRevert",
+			"aclScope": "ActionHistoryRecord"
+		}
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"controller": "controllers/record",
+	"iconClass": "fas fa-user-tie",
+	"gridLayoutType": "record",
+	"bottomLayoutType": "default",
+	"isWide": true,
+	"boolFilterList": [
+		"onlyMy"
+	]
+}

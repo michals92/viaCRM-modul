@@ -1,0 +1,28 @@
+{
+	"fields": {
+		"accountName": {
+			"view": "autocrm:views/lead/fields/account-name"
+		},
+		"sicCode": {
+			"type": "varchar",
+			"view": "autocrm:views/lead/fields/sic-code",
+			"maxLength": 40,
+			"trim": true,
+			"pattern": "$noBadCharacters",
+			"noSpellCheck": true
+		},
+		"vatId": {
+			"type": "varchar",
+			"maxLength": 40,
+			"trim": true,
+			"pattern": "$noBadCharacters",
+			"noSpellCheck": true
+		}
+	},
+	"links": {},
+	"collection": {
+		"orderBy": "createdAt",
+		"asc": false
+	},
+	"indexes": {}
+}

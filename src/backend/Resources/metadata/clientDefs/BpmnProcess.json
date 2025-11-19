@@ -1,0 +1,13 @@
+{
+	"recordViews": {
+		"list": "autocrm:views/bpmn-process/record/list"
+	},
+	"massActionList": [
+		"__APPEND__",
+		"stop"
+	],
+	"checkAllResultMassActionList": [
+		"__APPEND__",
+		"stop"
+	]
+}

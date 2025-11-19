@@ -1,0 +1,10 @@
+{
+	"fields": {
+		"date": "Datum",
+		"genitive": "Rod",
+		"holidayName": "Státní svátek",
+		"langCode": "Kód jazyka",
+		"name": "Název",
+		"nominative": "Slovník"
+	}
+}

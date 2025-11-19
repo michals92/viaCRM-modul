@@ -1,0 +1,92 @@
+{
+	"cronLabels": {
+		"Every": "Každ(ou/ý)",
+		"Weekdays": "Pracovní dny",
+		"Weekends": "Víkendy",
+		"at": "v",
+		"days": [
+			"Neděli",
+			"Pondělí",
+			"Úterý",
+			"Středu",
+			"Čtvrtek",
+			"Pátek",
+			"Sobotu"
+		],
+		"minutes past the hour": "minut(u/y)",
+		"months": [
+			"Ledna",
+			"Února",
+			"Března",
+			"Dubna",
+			"Května",
+			"Června",
+			"Července",
+			"Srpna",
+			"Září",
+			"Října",
+			"Listopadu",
+			"Prosince"
+		],
+		"nd": ".",
+		"of": "",
+		"on the": "na",
+		"periods": [
+			"minutu",
+			"hodinu",
+			"den",
+			"týden",
+			"měsíc",
+			"rok"
+		],
+		"rd": ".",
+		"st": ".",
+		"th": ".",
+		"unsupported": "Nepodporovaný cron výraz. Prosím použijte pokročilý typ zobrazení."
+	},
+	"fields": {
+		"entityType": "Typ subjektu",
+		"generateInAdvance": "Generovat dopředu na",
+		"generateInBatches": "Předgenerovávat v dávkách",
+		"infinite": "Bez datumu ukončení",
+		"scheduling": "Plánování",
+		"status": "Stav",
+		"until": "Opakovat do"
+	},
+	"labels": {
+		"Batching": "Dávkování",
+		"Create RecordRecurrence": "Vytvořit opakování záznamu",
+		"Recurrence": "Opakování",
+		"advanced": "Pokročilý",
+		"user-friendly": "Uživatelsky přívětivý",
+		"viewMode": "typ zobrazení (kliknutím přepnout)"
+	},
+	"messages": {
+		"batchSizeLimitExceeded": "Počet vygenerovaných záznamů v jedné dávce by překročila limit nastavený administrátorem. Nastavte prosím častější dávkování nebo snižte míru opakování.",
+		"cronExprInvalid": "Cron výraz není platný.",
+		"invalidSchedulingExpression": "Neplatný výraz CRON",
+		"missingDateStart": "Opakovaný záznam musí mít vyplněné datum zahájení."
+	},
+	"options": {
+		"generateInAdvance": {
+			"1_day": "1 den",
+			"1_month": "1 měsíc",
+			"1_week": "1 týden",
+			"1_year": "1 rok",
+			"2_days": "2 dny",
+			"2_months": "2 měsíce",
+			"2_weeks": "2 týdny",
+			"3_months": "3 měsíce",
+			"6_months": "6 měsíců"
+		},
+		"status": {
+			"Active": "Aktivní",
+			"Completed": "Dokončeno",
+			"Draft": "Koncept"
+		}
+	},
+	"tooltips": {
+		"generateInAdvance": "Časová perioda, po kterou se záznamy dopředu předgenerují",
+		"scheduling": "Frekvence opakování záznamu\n\n**Uživatelsky přívětivý** mód - jednoduchý na použití, méně flexibilní\n\n**Pokročilý** mód - plně flexibilní, používá cron výraz"
+	}
+}

@@ -1,0 +1,59 @@
+{
+	"aresLookup": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\AresLookup",
+		"listed": true
+	},
+	"autocomplete": {
+		"className": "Espo\\Modules\\Autocrm\\Core\\Console\\Commands\\Autocomplete"
+	},
+	"configGet": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\ConfigGet",
+		"listed": true
+	},
+	"emailHealth": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\EmailHealth",
+		"listed": true
+	},
+	"getLayout": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\GetLayout",
+		"listed": true
+	},
+	"getSql": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\GetSql",
+		"listed": true
+	},
+	"indexes": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\Indexes",
+		"listed": true
+	},
+	"lastJobRun": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\LastJobRun",
+		"listed": true
+	},
+	"listLayouts": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\ListLayouts",
+		"listed": true
+	},
+	"metadataGet": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\MetadataGet",
+		"listed": true
+	},
+	"runJob": {
+		"autocompleteClassName": "Espo\\Modules\\Autocrm\\Core\\Console\\CommandAutocomplete\\RunJob"
+	},
+	"setPasswordNonInteractive": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\SetPasswordNonInteractive",
+		"listed": true
+	},
+	"textSearch": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\TextSearch",
+		"listed": true
+	},
+	"tinker": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\Tinker",
+		"listed": true
+	},
+	"upgrade": {
+		"className": "Espo\\Modules\\Autocrm\\Core\\Console\\Commands\\Upgrade"
+	}
+}

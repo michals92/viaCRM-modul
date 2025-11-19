@@ -1,0 +1,28 @@
+{
+	"fields": {
+		"date": {
+			"type": "date"
+		},
+		"entityType": {
+			"type": "varchar",
+			"maxLength": 100,
+			"index": true
+		},
+		"fieldName": {
+			"type": "varchar",
+			"maxLength": 100
+		},
+		"value": {
+			"type": "int",
+			"default": 1
+		}
+	},
+	"indexes": {
+		"entityTypeFieldName": {
+			"columns": [
+				"entityType",
+				"fieldName"
+			]
+		}
+	}
+}

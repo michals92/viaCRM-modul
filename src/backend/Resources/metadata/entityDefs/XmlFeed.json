@@ -1,0 +1,127 @@
+{
+	"fields": {
+		"assignedUser": {
+			"type": "link",
+			"required": false,
+			"view": "views/fields/assigned-user"
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"customTag": {
+			"type": "varchar",
+			"default": false
+		},
+		"description": {
+			"type": "text"
+		},
+		"entityType": {
+			"type": "foreign",
+			"view": "views/fields/entity-type",
+			"readOnly": true,
+			"link": "template",
+			"field": "entityType"
+		},
+		"filters": {
+			"type": "jsonObject",
+			"view": "autocrm:views/xml-feed/fields/filters"
+		},
+		"filtersProcessed": {
+			"type": "jsonArray"
+		},
+		"isPublic": {
+			"type": "bool",
+			"default": false
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"pattern": "$noBadCharacters"
+		},
+		"replaceEntries": {
+			"type": "linkMultiple",
+			"recordListEnabled": true,
+			"recordListLinkDisabled": true,
+			"recordListLayout": "listSmall"
+		},
+		"teams": {
+			"type": "linkMultiple",
+			"view": "views/fields/teams"
+		},
+		"template": {
+			"type": "link",
+			"required": true
+		}
+	},
+	"links": {
+		"assignedUser": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"replaceEntries": {
+			"type": "belongsTo",
+			"entity": "XmlFeedReplaceEntry",
+			"foreign": "xmlTemplate"
+		},
+		"teams": {
+			"type": "hasMany",
+			"entity": "Team",
+			"layoutRelationshipsDisabled": true,
+			"relationName": "entityTeam"
+		},
+		"template": {
+			"type": "belongsTo",
+			"entity": "XmlTemplate",
+			"foreign": "xmlFeeds"
+		}
+	},
+	"indexes": {
+		"assignedUser": {
+			"columns": [
+				"assignedUserId",
+				"deleted"
+			]
+		},
+		"createdAt": {
+			"columns": [
+				"createdAt"
+			]
+		},
+		"createdAtId": {
+			"columns": [
+				"createdAt",
+				"id"
+			],
+			"unique": true
+		},
+		"name": {
+			"columns": [
+				"name",
+				"deleted"
+			]
+		}
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"extends": [
+		"stylelint-config-standard",
+		"stylelint-config-recess-order"
+	],
+	"plugins": [
+		"stylelint-order"
+	],
+	"rules": {
+		"import-notation": "string",
+		"selector-class-pattern": null,
+		"selector-id-pattern": null,
+		"no-descending-specificity": null,
+		"declaration-block-no-redundant-longhand-properties": null,
+		"alpha-value-notation": "number",
+		"color-function-notation": "legacy",
+		"property-no-vendor-prefix": null,
+		"value-no-vendor-prefix": null,
+		"selector-no-vendor-prefix": null,
+		"at-rule-no-vendor-prefix": null,
+		"media-feature-name-no-vendor-prefix": null
+	},
+	"ignoreFiles": [
+		"src/client/css/shepherd.css",
+		"**/*.min.css",
+		"node_modules/**/*",
+		"build/**/*",
+		"dist/**/*"
+	]
+}

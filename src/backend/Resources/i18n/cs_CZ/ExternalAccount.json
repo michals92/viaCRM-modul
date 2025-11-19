@@ -1,0 +1,9 @@
+{
+	"labels": {
+		"Disconnect": "Odpojit",
+		"Disconnected": "Odpojeno"
+	},
+	"messages": {
+		"externalAccountNoConnectDisabled": "Externí účet pro integraci '{integration}' byl deaktivován z důvodu nemožnosti připojení."
+	}
+}

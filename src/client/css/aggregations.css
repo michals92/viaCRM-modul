@@ -1,0 +1,11 @@
+.btn-dropdown-group {
+	display: inline-block;
+}
+
+.function a.remove-function {
+	display: none;
+}
+
+.function:hover a.remove-function {
+	display: block;
+}

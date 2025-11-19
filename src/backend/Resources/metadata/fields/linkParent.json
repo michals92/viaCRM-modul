@@ -1,0 +1,17 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "compact",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "autocompleteMinChars",
+			"type": "int",
+			"min": 0,
+			"tooltip": true
+		}
+	]
+}

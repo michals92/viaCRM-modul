@@ -1,0 +1,50 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "format",
+			"type": "varchar",
+			"default": "{YYYY}-{number}",
+			"maxLength": 64,
+			"tooltip": true
+		},
+		{
+			"name": "allowCustomValue",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "nextNumber",
+			"type": "int",
+			"required": true,
+			"default": 1,
+			"min": 0,
+			"max": 2147483647
+		},
+		{
+			"name": "padLength",
+			"type": "int",
+			"required": true,
+			"default": 5,
+			"min": 1,
+			"max": 20
+		},
+		{
+			"name": "reset",
+			"type": "enum",
+			"default": "Yearly",
+			"options": [
+				"Daily",
+				"Monthly",
+				"Yearly",
+				"Never"
+			]
+		}
+	],
+	"view": "autocrm:views/fields/sequence-number",
+	"filter": true,
+	"converterClassName": "Espo\\Modules\\Autocrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\SequenceNumber",
+	"textFilter": true,
+	"hookClassName": "Espo\\Modules\\Autocrm\\Tools\\FieldManager\\Hooks\\SequenceNumberType"
+}

@@ -1,0 +1,11 @@
+{
+	"fields": {
+		"address": "Adresa"
+	},
+	"labels": {
+		"Create RealEstateLocation": "Vytvořit lokalitu"
+	},
+	"tooltips": {
+		"address": "Tato adresa bude vložena do pole adresy nemovitosti po zadání této lokality. Nepotřebná pole adresy nechte prázdná."
+	}
+}

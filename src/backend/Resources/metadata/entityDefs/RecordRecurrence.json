@@ -1,0 +1,92 @@
+{
+	"fields": {
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"createdRecords": {
+			"type": "linkMultiple",
+			"readOnly": true
+		},
+		"data": {
+			"type": "jsonObject",
+			"required": true
+		},
+		"entityType": {
+			"type": "enum",
+			"required": true,
+			"view": "views/fields/entity-type"
+		},
+		"generateInAdvance": {
+			"type": "enum",
+			"options": [
+				"1_day",
+				"2_days",
+				"1_week",
+				"2_weeks",
+				"1_month",
+				"2_months",
+				"3_months",
+				"6_months",
+				"1_year"
+			],
+			"tooltip": true
+		},
+		"generateInBatches": {
+			"type": "bool"
+		},
+		"infinite": {
+			"type": "bool"
+		},
+		"lastGenerated": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true
+		},
+		"scheduling": {
+			"type": "cronExpression",
+			"required": true,
+			"default": "0 0 * * *",
+			"min": 1,
+			"tooltip": true
+		},
+		"status": {
+			"type": "enum",
+			"default": "Draft",
+			"options": [
+				"Draft",
+				"Active",
+				"Completed"
+			],
+			"style": {
+				"Active": "warning",
+				"Completed": "success"
+			},
+			"readOnly": true
+		},
+		"until": {
+			"type": "datetime"
+		}
+	},
+	"links": {
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		}
+	},
+	"indexes": {
+		"entityType": {
+			"columns": [
+				"entityType"
+			]
+		}
+	}
+}

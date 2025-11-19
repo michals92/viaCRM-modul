@@ -1,0 +1,9 @@
+.drag-over-valid {
+    background-color: rgb(40, 167, 69, 0.1) !important;
+    border: 2px dashed #28a745 !important;
+}
+
+.drag-over-invalid {
+    background-color: rgb(220, 53, 69, 0.1) !important;
+    border: 2px dashed #dc3545 !important;
+}

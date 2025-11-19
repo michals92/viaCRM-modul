@@ -1,0 +1,13 @@
+[
+	{
+		"name": "message",
+		"link": true
+	},
+	{
+		"name": "related",
+		"link": true
+	},
+	{
+		"name": "status"
+	}
+]

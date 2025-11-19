@@ -1,0 +1,26 @@
+{
+	"fields": {
+		"assignedUser": "Přiřazený uživatel",
+		"customTag": "Vlastní kořenový tag",
+		"entityType": "Typ entity",
+		"filters": "Filtry",
+		"isPublic": "Veřejný",
+		"name": "Název",
+		"replaceEntries": "Nahrazení",
+		"teams": "Týmy",
+		"template": "Šablona"
+	},
+	"labels": {
+		"Create XmlFeed": "Vytvořit XML Feed",
+		"View Feed": "Zobrazit feed"
+	},
+	"links": {
+		"assignedUser": "Přiřazený uživatel",
+		"replaceEntries": "Nahrazení",
+		"teams": "Týmy",
+		"template": "Šablona"
+	},
+	"messages": {
+		"limitOneRecord": "V bezplatné verzi lze vytvořit pouze jeden XML feed. Upravte již existující záznam nebo zvažte přechod na placenou verzi tohoto modulu."
+	}
+}

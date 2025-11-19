@@ -235,8 +235,5 @@
         "department": {
             "columns": ["department", "deleted"]
         }
-    },
-    "formula": {
-        "beforeSaveCustomScript": "vacationHoursRemaining = vacationHoursTotal - vacationHoursUsed;\n\nif (vacationHoursRemaining < 0) {\n    vacationHoursRemaining = 0;\n}"
     }
 }

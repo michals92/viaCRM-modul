@@ -1,0 +1,25 @@
+{
+	"fields": {
+		"calendarColors": "Calendar colors",
+		"calendarMaxEventStack": "Event max stack",
+		"collapsibleDashlets": "Collapsible dashlets",
+		"customFiltersAboveList": "Show custom filters above list",
+		"disableIntroGuide": "Disable intro guide",
+		"enableTeamSwitchingInNavbar": "Enable team switching in navbar",
+		"quickViewContextMenu": "Replace context menu with quick view action",
+		"signaturePosition": "Signature Position"
+	},
+	"labels": {
+		"AutoCRM": "AutoCRM",
+		"Navbar": "Navbar"
+	},
+	"options": {
+		"signaturePosition": {
+			"append": "Below Reply (at end)",
+			"prepend": "Above Reply (at beginning)"
+		}
+	},
+	"tooltips": {
+		"signaturePosition": "Set where your signature will appear when writing emails"
+	}
+}

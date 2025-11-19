@@ -1,0 +1,35 @@
+{
+	"fields": {
+		"dateEnd": "Datum ukončení",
+		"dateStart": "Datum platnosti",
+		"description": "Poznámka",
+		"message": "Zpráva",
+		"name": "Název",
+		"related": "Entita",
+		"showInCalendar": "Zobrazit v kalendáři",
+		"status": "Stav",
+		"users": "Uživatelé"
+	},
+	"labels": {
+		"Users": "Uživatelé"
+	},
+	"options": {
+		"status": {
+			"active": "Aktivní",
+			"archived": "Archiv",
+			"draft": "V přípravě",
+			"resolved": "Ukončeno"
+		}
+	},
+	"panelCustomLabels": {
+		"Descriptions": "Poznámky",
+		"Info": "Informace"
+	},
+	"panelNotes": {
+		"Descriptions": "Obsah notifikace a případná poznámka ke vzniku notifikace.",
+		"Info": "Nastavení notifikace, určující platnost a cílovou entitu."
+	},
+	"presetFilters": {
+		"active": "Pouze aktivní"
+	}
+}

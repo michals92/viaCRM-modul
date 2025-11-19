@@ -1,0 +1,40 @@
+{
+	"fields": {
+		"amountCurrency": "Měna částky",
+		"contact": "Kontakt",
+		"contactRole": "Role kontaktu",
+		"lastActivity": "Poslední aktivita",
+		"lastStage": "Poslední fáze",
+		"name": "Název",
+		"originalLead": "Původní potenciál",
+		"probability": "Pravděpodobnost"
+	},
+	"labels": {
+		"Create Opportunity": "Vytvořit příležitost"
+	},
+	"links": {
+		"contact": "Kontakt",
+		"originalLead": "Původní potenciál"
+	},
+	"options": {
+		"stage": {
+			"Closed Lost": "Ztraceno",
+			"Closed Won": "Vyhráno",
+			"Id. Decision Makers": "Identifikace rozhodovatelů",
+			"Needs Analysis": "Analýza potřeb",
+			"Negotiation": "Vyjednávání",
+			"Negotiation/Review": "Vyjednávání/Revize",
+			"Perception Analysis": "Analýza vnimaání",
+			"Proposal": "Nabídka",
+			"Proposal/Price Quote": "Nabídka/Cenová oferta",
+			"Prospecting": "Průzkum",
+			"Qualification": "Kvalifikace",
+			"Value Proposition": "Hodnotová nabídka"
+		}
+	},
+	"presetFilters": {
+		"lost": "Ztracené",
+		"open": "Otevřené",
+		"won": "Vyhráné"
+	}
+}

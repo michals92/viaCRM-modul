@@ -1,0 +1,322 @@
+[
+	{
+		"tabLabel": "$label:General Settings",
+		"tabIconClass": "fas fa-cog",
+		"rows": [
+			[
+				{
+					"name": "addressCountryAsEnum"
+				},
+				{
+					"name": "addressCountryList"
+				}
+			],
+			[
+				{
+					"name": "notificationsCheckInterval"
+				},
+				false
+			],
+			[
+				{
+					"name": "disableAccountLinkToEmail"
+				},
+				{
+					"name": "disableAccountLinkToPhone"
+				}
+			],
+			[
+				{
+					"name": "workQueueEntityTypeList"
+				},
+				false
+			],
+			[
+				{
+					"name": "disableConfirmInsertTemplate"
+				},
+				false
+			],
+			[
+				{
+					"name": "currencyRateDecimalSeparator"
+				},
+				false
+			]
+		],
+		"index": 0
+	},
+	{
+		"label": "Emails",
+		"rows": [
+			[
+				{
+					"name": "emailCheckInterval"
+				},
+				{
+					"name": "autoEmailRefresh"
+				}
+			],
+			[
+				{
+					"name": "saveAssignmentEmails"
+				},
+				{
+					"name": "emailParentFinderOrder"
+				}
+			]
+		],
+		"index": 1
+	},
+	{
+		"label": "Ares & Finstat",
+		"rows": [
+			[
+				{
+					"name": "ziveFirmyEnabled"
+				},
+				{
+					"name": "viesEnabled"
+				}
+			],
+			[
+				{
+					"name": "aresEnabled"
+				},
+				{
+					"name": "finstatEnabled"
+				}
+			],
+			[
+				{
+					"name": "aresIncludeHouseNumbersInAddress"
+				},
+				false
+			]
+		],
+		"index": 2
+	},
+	{
+		"label": "Limits",
+		"rows": [
+			[
+				{
+					"name": "forcePhpMaxFileSize"
+				},
+				false
+			],
+			[
+				{
+					"name": "massActionMergeRecordLimit"
+				},
+				false
+			]
+		],
+		"index": 3
+	},
+	{
+		"tabLabel": "$label:Button Settings",
+		"tabBreak": true,
+		"tabIconClass": "fas fa-toggle-on",
+		"rows": [
+			[
+				{
+					"name": "editLayoutEnabled"
+				},
+				{
+					"name": "editEntityEnabled"
+				}
+			],
+			[
+				{
+					"name": "editFiltersEnabled"
+				},
+				{
+					"name": "editLabelsEnabled"
+				}
+			],
+			[
+				{
+					"name": "editNavbarEnabled"
+				},
+				{
+					"name": "refreshEntityEnabled"
+				}
+			],
+			[
+				{
+					"name": "viewApiEnabled"
+				},
+				false
+			],
+			[
+				{
+					"name": "disableFollow"
+				},
+				false
+			]
+		],
+		"index": 4
+	},
+	{
+		"tabLabel": "$label:Calendar Settings",
+		"tabBreak": true,
+		"tabIconClass": "fas fa-calendar-alt",
+		"rows": [
+			[
+				{
+					"name": "calendarColors"
+				},
+				{
+					"name": "useLayoutsInCalendar"
+				}
+			],
+			[
+				{
+					"name": "calendarMaxEventStack"
+				},
+				{
+					"name": "calendarFontSize"
+				}
+			],
+			[
+				{
+					"name": "calendarAllDayScopeList"
+				},
+				{
+					"name": "calendarScopesDisabled"
+				}
+			]
+		],
+		"index": 5
+	},
+	{
+		"label": "Layouts & Interface",
+		"tabLabel": "$label:Appearance Settings",
+		"tabBreak": true,
+		"rows": [
+			[
+				{
+					"name": "defaultDetailLayout"
+				},
+				{
+					"name": "defaultIsWide"
+				}
+			],
+			[
+				{
+					"name": "disableIntroductoryGuide"
+				},
+				false
+			]
+		],
+		"tabIconClass": "fas fa-paint-brush",
+		"index": 6
+	},
+	{
+		"label": "Display",
+		"rows": [
+			[
+				{
+					"name": "reportLargeModeFontPercentage"
+				},
+				{
+					"name": "reportSmallModeFontPercentage"
+				}
+			],
+			[
+				{
+					"name": "stickyHeader"
+				},
+				false
+			],
+			[
+				{
+					"name": "stickyPdfView"
+				},
+				false
+			]
+		],
+		"index": 7
+	},
+	{
+		"tabLabel": "$label:Miscellaneous Settings",
+		"tabBreak": true,
+		"tabIconClass": "fas fa-ellipsis-h",
+		"rows": [
+			[
+				{
+					"name": "sanitizerAllowedUrlSchemes"
+				},
+				{
+					"name": "webSocketPingTimeout"
+				}
+			],
+			[
+				{
+					"name": "systemRequirementsInNavbarDisabled"
+				},
+				{
+					"name": "allowOtherUserReminders"
+				}
+			],
+			[
+				{
+					"name": "allowStreamPermissionLevelAboveRead"
+				},
+				false
+			],
+			[
+				{
+					"name": "disableExtensionLicenseMessage"
+				},
+				false
+			]
+		],
+		"index": 8
+	},
+	{
+		"tabLabel": "$label:Cleanup",
+		"tabBreak": true,
+		"tabIconClass": "fas fa-broom",
+		"rows": [
+			[
+				{
+					"name": "cleanupJobPeriod"
+				},
+				{
+					"name": "cleanupWorkflowLogPeriod"
+				}
+			],
+			[
+				{
+					"name": "cleanupAppLog"
+				},
+				{
+					"name": "cleanupAppLogPeriod"
+				}
+			]
+		],
+		"index": 9
+	},
+	{
+		"tabLabel": "$label:Record Recurrence",
+		"tabBreak": true,
+		"tabIconClass": "fas fa-redo",
+		"rows": [
+			[
+				{
+					"name": "recurrenceBatchSizeLimit"
+				},
+				false
+			],
+			[
+				{
+					"name": "showListScheduledRecurrencesButton"
+				},
+				false
+			]
+		],
+		"index": 10
+	}
+]

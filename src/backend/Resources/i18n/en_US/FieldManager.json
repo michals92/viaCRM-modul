@@ -1,0 +1,21 @@
+{
+	"messages": {
+		"layoutMissingOrInvalid": "Entity '{entityType}' is missing layout '{layout}' or layout does not contain valid JSON.",
+		"orderAttributeMissing": "Entity '{entityType}' is missing '{attribute}' order attribute.",
+		"orderAttributeWrongType": "Entity '{entityType}' order attribute '{attribute}' must be of type 'int'."
+	},
+	"tooltips": {
+		"defaultSelectFilters": "Default filters for select popup.",
+		"displaySeconds": "Whether to display seconds in time values. When disabled, seconds will be hidden in the UI but still stored in the database.",
+		"duplicateIgnore": "Ignore this field when duplicating records.",
+		"hideAddButton": "Hide the 'Add' (plus) button in email/phone fields.",
+		"hideInvalidButton": "Hide the 'Invalid' button in email/phone fields.",
+		"hideOptOutButton": "Hide the 'Opted Out' button in email/phone fields.",
+		"hideTypeSelector": "Hide the type selector dropdown in phone fields.",
+		"notStorable": "Whether the field in not storable in the database. Not storable field can be defined in the loader custom script. It is possible to set this property only when creating the field.",
+		"recordListEnabled": "Show list of related records, similar to relationship panel. This option will be slow for large number of related records.",
+		"recordListKeepRemoved": "Records removed from list will be deleted by default for 1-N relationship. If this option is set to true, removed records will be only unlinked.",
+		"recordListOrderByField": "The field where the position in the record list will be stored. Leave blank if you do not want to enable user sorting.",
+		"saveCoordinates": "Check this field to save coordinates to the database and have the option of selecting this field in the 'Map' dashlet"
+	}
+}

@@ -1,0 +1,23 @@
+{
+	"fields": {
+		"error": "Chyba",
+		"output": "Výstup",
+		"script": "Skript",
+		"target": "Cíl",
+		"targetType": "Typ cíle"
+	},
+	"labels": {
+		"Check Syntax": "Zkontrolovat syntaxi",
+		"Run": "Spustit"
+	},
+	"messages": {
+		"checkSyntaxError": "Chyba syntaxe.",
+		"checkSyntaxSuccess": "Syntaxe je správná.",
+		"emptyScript": "Skript je prázdný.",
+		"runError": "Chyba.",
+		"runSuccess": "Úspěšně spuštěno."
+	},
+	"tooltips": {
+		"output": "Vypsat hodnoty pomocí funkce `output\\printLine`."
+	}
+}

@@ -1,0 +1,43 @@
+{
+	"fields": {
+		"entity": {
+			"type": "linkParent"
+		},
+		"group": {
+			"type": "varchar",
+			"maxLength": 100
+		},
+		"order": {
+			"type": "int",
+			"dbType": "smallint"
+		},
+		"user": {
+			"type": "link"
+		}
+	},
+	"links": {
+		"entity": {
+			"type": "belongsToParent"
+		}
+	},
+	"indexes": {
+		"entityType": {
+			"columns": [
+				"entityType"
+			]
+		},
+		"entityTypeUserId": {
+			"columns": [
+				"entityType",
+				"userId"
+			]
+		},
+		"entityUserId": {
+			"columns": [
+				"entityType",
+				"entityId",
+				"userId"
+			]
+		}
+	}
+}

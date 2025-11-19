@@ -1,0 +1,53 @@
+/* Holiday Navbar Styling */
+.nav-holiday-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0.2rem .1rem;
+    margin: 0 .2rem;
+    overflow: hidden;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav-holiday-container:hover {
+    background-color: rgb(255, 255, 255, 0.2);
+    box-shadow: 0 3px 8px rgb(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.nav-user-holiday {
+    background-color: darkred;
+    border-left: 3px solid #38bdf8;
+}
+
+.nav-holiday-icon {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    margin-right: .4rem;
+    font-size: 1.2rem;
+    color: #38bdf8;
+}
+
+.nav-holiday-content {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: .22rem;
+}
+
+.nav-holiday-date {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+.nav-holiday-user, .nav-holiday-public {
+    padding-left: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: .8rem;
+    line-height: .8rem;
+    white-space: nowrap;
+}

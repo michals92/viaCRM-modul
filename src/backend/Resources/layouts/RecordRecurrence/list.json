@@ -1,0 +1,21 @@
+[
+	{
+		"name": "name",
+		"link": true
+	},
+	{
+		"name": "entityType",
+		"width": 10
+	},
+	{
+		"name": "scheduling"
+	},
+	{
+		"name": "status",
+		"width": 10
+	},
+	{
+		"name": "createdAt",
+		"width": 10
+	}
+]

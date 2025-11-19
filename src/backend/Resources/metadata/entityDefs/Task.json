@@ -1,0 +1,24 @@
+{
+	"fields": {
+		"email": {
+			"type": "link",
+			"layoutDetailDisabled": true,
+			"layoutMassUpdateDisabled": true,
+			"layoutListDisabled": true
+		},
+		"status": {
+			"icons": {
+				"Not Started": "fas fa-angle-up",
+				"Work": "fas fa-angle-right",
+				"InProgress": "fas fa-angle-double-right",
+				"Waiting": "fas fa-hourglass",
+				"Deferred": "fas fa-clock",
+				"WaitingApproval": "fas fa-hand-paper",
+				"Review": "fas fa-magnifying-glass",
+				"Completed": "fas fa-check",
+				"Canceled": "fas fa-backspace",
+				"Archived": "fas fa-archive"
+			}
+		}
+	}
+}

@@ -1,0 +1,22 @@
+[
+	"__APPEND__",
+	{
+		"rows": [
+			[
+				{
+					"name": "sicCode"
+				},
+				{
+					"name": "vatId"
+				}
+			],
+			[
+				false,
+				{
+					"name": "slovakVatId"
+				}
+			]
+		],
+		"index": 0.5
+	}
+]

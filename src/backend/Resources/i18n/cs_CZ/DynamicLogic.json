@@ -1,0 +1,31 @@
+{
+	"labels": {
+		"Field": "Pole"
+	},
+	"options": {
+		"operators": {
+			"contains": "Obsahuje",
+			"endsWith": "Končí na",
+			"equals": "Je rovno",
+			"greaterThan": "Větší než",
+			"greaterThanOrEquals": "Vetší nebo rovno",
+			"has": "Má některý",
+			"in": "V",
+			"inFuture": "V budoucnosti",
+			"inPast": "V minulosti",
+			"isEmpty": "Je prázdné",
+			"isFalse": "Není pravda",
+			"isNotEmpty": "Není prázdné",
+			"isToday": "Je dnes",
+			"isTrue": "Je pravda",
+			"lessThan": "Méně než",
+			"lessThanOrEquals": "Méně nebo rovno",
+			"matches": "Odpovídá regulárnímu výrazu",
+			"notContains": "Neobsahuje",
+			"notEquals": "Nerovná se",
+			"notHas": "Nemá",
+			"notIn": "Není z",
+			"startsWith": "Začíná na"
+		}
+	}
+}

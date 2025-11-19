@@ -1,0 +1,10 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "icons",
+			"type": "jsonObject",
+			"hidden": true
+		}
+	]
+}

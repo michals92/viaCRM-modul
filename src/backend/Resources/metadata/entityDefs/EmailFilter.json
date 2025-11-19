@@ -1,0 +1,17 @@
+{
+	"fields": {
+		"action": {
+			"view": "autocrm:views/email-filter/fields/action"
+		},
+		"alertIconClass": {
+			"type": "varchar",
+			"required": true,
+			"default": "fas fa-envelope",
+			"view": "autocrm:views/fields/icon-class"
+		},
+		"alertMessage": {
+			"type": "wysiwyg",
+			"default": "Nový email: {subject}"
+		}
+	}
+}

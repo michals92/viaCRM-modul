@@ -1,0 +1,21 @@
+[
+	{
+		"link": true,
+		"name": "name",
+		"params": {
+			"readOnly": true
+		}
+	},
+	{
+		"name": "userName",
+		"params": {
+			"readOnly": true
+		},
+		"width": 32
+	},
+	{
+		"name": "teamRole",
+		"notSortable": true,
+		"width": 25
+	}
+]

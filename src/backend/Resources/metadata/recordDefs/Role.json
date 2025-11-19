@@ -1,0 +1,6 @@
+{
+	"listLoaderClassNameList": [
+		"__APPEND__",
+		"Espo\\Modules\\Autocrm\\Classes\\FieldProcessing\\Role\\UsersLoader"
+	]
+}

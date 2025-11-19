@@ -1,0 +1,75 @@
+{
+	"fields": {
+		"unit": {
+			"customizationAuditedDisabled": true,
+			"customizationDisplayAsLabelDisabled": true,
+			"customizationInlineEditDisabledDisabled": true,
+			"customizationIsSortedDisabled": true,
+			"customizationOptionsDisabled": true,
+			"customizationReadOnlyDisabled": true,
+			"customizationRequiredDisabled": true,
+			"layoutDefaultSidePanelDisabled": true,
+			"layoutDetailDisabled": true,
+			"layoutListDisabled": true,
+			"layoutMassUpdateDisabled": true,
+			"type": "enum",
+			"view": "autocrm:views/fields/float-with-linked-unit"
+		}
+	},
+	"actualFields": [
+		"",
+		"unit",
+		"linkedUnit"
+	],
+	"params": [
+		{
+			"name": "required",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "min",
+			"type": "float"
+		},
+		{
+			"name": "max",
+			"type": "float"
+		},
+		{
+			"name": "decimalPlaces",
+			"type": "int"
+		},
+		{
+			"name": "audited",
+			"type": "bool"
+		},
+		{
+			"name": "readOnly",
+			"type": "bool"
+		},
+		{
+			"name": "readOnlyAfterCreate",
+			"type": "bool"
+		},
+		{
+			"name": "unitField",
+			"type": "varchar",
+			"tooltip": true
+		},
+		{
+			"name": "unitLinkName",
+			"type": "varchar",
+			"tooltip": true
+		},
+		{
+			"name": "compact",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		}
+	],
+	"view": "autocrm:views/fields/float-with-linked-unit",
+	"notCreatable": false,
+	"filter": true,
+	"converterClassName": "Espo\\Modules\\Autocrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\FloatWithLinkedUnit"
+}

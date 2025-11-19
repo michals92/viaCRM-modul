@@ -1,0 +1,11 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "forceDownload",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		}
+	]
+}

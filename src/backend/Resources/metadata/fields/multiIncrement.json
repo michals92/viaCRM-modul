@@ -1,0 +1,26 @@
+{
+	"fieldDefs": {
+		"type": "varchar",
+		"len": 36,
+		"notNull": false,
+		"unique": false
+	},
+	"params": [
+		{
+			"name": "sequences",
+			"type": "text",
+			"view": "autocrm:views/admin/field-manager/fields/autoincrement-sequences"
+		},
+		{
+			"name": "copyToClipboard",
+			"type": "bool",
+			"default": false
+		}
+	],
+	"view": "autocrm:views/fields/multi-increment",
+	"filter": true,
+	"textFilter": true,
+	"readOnly": true,
+	"hookClassName": "Espo\\Modules\\Autocrm\\Tools\\FieldManager\\Hooks\\MultiIncrementType",
+	"default": null
+}

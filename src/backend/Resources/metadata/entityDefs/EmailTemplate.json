@@ -1,14 +1,29 @@
 {
     "fields": {
         "bodyMjml": {
-            "type": "jsonObject",
-            "notStorable": false,
-            "tooltip": "MJML data for Easy Email Editor"
+            "type": "text",
+			"customizationDisabled": true,
+			"layoutDetailDisabled": true,
+			"layoutListDisabled": true,
+			"layoutMassUpdateDisabled": true,
+            "notStorable": false
         },
         "useEasyEmailEditor": {
             "type": "bool",
             "default": false,
             "tooltip": "Use Easy Email Editor for this template"
-        }
+        },
+        "body": {
+			"tooltip": true
+		},
+		"type": {
+			"type": "enum",
+			"required": true,
+			"default": "Default",
+			"options": [
+				"Default",
+				"EasyEmail"
+			]
+		}
     }
 }

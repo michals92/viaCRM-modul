@@ -13,8 +13,6 @@ import { lessContexts } from '@apertia/extension-build-tools/dist/contexts/less.
 import { cssContext } from '@apertia/extension-build-tools/dist/contexts/css.js';
 import { platform } from 'os';
 import slash from 'slash';
-import { readFile } from 'fs/promises';
-import { globby } from 'globby';
 
 const ROOT_DIR = await pkgDir();
 
@@ -31,7 +29,7 @@ if (isSSH && env.SSH_USER === undefined) {
 	env.SSH_USER = env.SSH_HOST;
 }
 const espocrmRootDirectory = isSSH
-	? (env.SSH_ESPO_ROOT_DIR ?? `/home/${env.SSH_USER}/public_html/`)
+	? env.SSH_ESPO_ROOT_DIR ?? `/home/${env.SSH_USER}/public_html/`
 	: env.LOCAL_ESPO_ROOT_DIR;
 
 if (!espocrmRootDirectory) {
@@ -78,7 +76,7 @@ const preparators = [
 			),
 	},
 	{
-		match: join(helpers.SRC_CLIENT, '**', '*.!(ts|d.ts|css)'),
+		match: join(helpers.SRC_CLIENT, '**', '*.!(ts|d.ts|css|less|scss)'),
 		convert: local =>
 			join(
 				espocrmRootDirectory,
@@ -114,32 +112,13 @@ const upload = async (local, remote) => {
  * @returns {string|null}
  */
 const preparePath = path => {
-	const preparator = preparators.find(({ match }) => {
-		return anymatch(match, path, { dot: true });
-	});
+	const preparator = preparators.find(({ match }) => anymatch(match, path, { dot: true }));
 
 	if (!preparator) {
 		return null;
 	}
 
 	return preparator.convert(path);
-};
-
-/**
- * Validate a single JSON file
- * @param {string} filePath - Path to the JSON file
- * @returns {Promise<void>}
- */
-const validateJsonFile = async filePath => {
-	try {
-		const content = await readFile(filePath, 'utf-8');
-		JSON.parse(content);
-	} catch (error) {
-		const relativePath = filePath.replace(process.cwd() + '/', '');
-		log.error(`Invalid JSON file: ${relativePath}`);
-		console.error(`  ❌ ${error instanceof Error ? error.message : String(error)}`);
-		throw new Error(`JSON validation failed: ${relativePath}`);
-	}
 };
 
 /**
@@ -150,23 +129,6 @@ const processPath = async path => {
 	const relativePath = isWindows
 		? relative(slash(ROOT_DIR), slash(path))
 		: relative(ROOT_DIR, path);
-
-	// Validate JSON files before processing
-	if (relativePath.endsWith('.json')) {
-		// Skip validation for certain files
-		const shouldSkip = [
-			'autoload.json',
-			'routes.json',
-			'node_modules',
-			'vendor',
-			'build',
-			'dist'
-		].some(skip => relativePath.includes(skip));
-
-		if (!shouldSkip) {
-			await validateJsonFile(path);
-		}
-	}
 
 	const remotePath = preparePath(relativePath);
 
@@ -180,9 +142,6 @@ const processPath = async path => {
 
 	log.success(`Transferred: ${relativePath}`);
 };
-
-// Initial validation is done by build process, skip here for watch mode
-log.info('Starting watch mode - JSON files will be validated individually when changed...');
 
 await tsContext.rebuild();
 await tsContext.watch();

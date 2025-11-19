@@ -1,0 +1,15 @@
+{
+	"acl": false,
+	"audited": true,
+	"customizable": true,
+	"entity": true,
+	"importable": true,
+	"isCustom": true,
+	"layouts": true,
+	"module": "Autocrm",
+	"notifications": true,
+	"object": true,
+	"stream": true,
+	"tab": true,
+	"type": "Base"
+}

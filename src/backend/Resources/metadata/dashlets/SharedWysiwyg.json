@@ -1,0 +1,49 @@
+{
+	"view": "autocrm:views/dashlets/shared-wysiwyg",
+	"options": {
+		"defaults": {
+			"autorefreshInterval": 0.5
+		},
+		"fields": {
+			"autorefreshInterval": {
+				"type": "enumFloat",
+				"options": [
+					0,
+					0.5,
+					1,
+					2,
+					5,
+					10
+				]
+			},
+			"sharedWysiwyg": {
+				"type": "link",
+				"entity": "SharedWysiwyg"
+			},
+			"title": {
+				"type": "varchar",
+				"required": true,
+				"trim": true
+			}
+		},
+		"layout": [
+			{
+				"rows": [
+					[
+						{
+							"name": "title"
+						}
+					],
+					[
+						{
+							"name": "autorefreshInterval"
+						},
+						{
+							"name": "sharedWysiwyg"
+						}
+					]
+				]
+			}
+		]
+	}
+}

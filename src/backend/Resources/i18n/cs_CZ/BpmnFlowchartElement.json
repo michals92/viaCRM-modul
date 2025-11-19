@@ -1,0 +1,113 @@
+{
+	"fields": {
+		"actionType": "Typ akcí",
+		"actions": "Akce",
+		"assignmentType": "Úkol",
+		"callableType": "Volatelný typ",
+		"canBeFailed": "Může selhat",
+		"cancelActivity": "Je přerušováno",
+		"conditionsFormula": "Vzorec podmínek",
+		"defaultFlowId": "Výchozí Flow",
+		"doNotStore": "Neukládat odeslané e-maily",
+		"emailTemplate": "Šablona e-mailu",
+		"errorCode": "Chybový kód",
+		"escalationCode": "Eskalační kód",
+		"flowchart": "Vývojový diagram",
+		"flowchartVisualization": "Flowchart Vývojový diagram",
+		"formula": "Vzorec (script)",
+		"from": "Od/z",
+		"fromEmailAddress": "Z e-mailové adresy",
+		"instructions": "Instrukce",
+		"isInterrupting": "Je přerušováno",
+		"messageType": "Typ zprávy",
+		"optOutLink": "Odkaz pro odhlášení",
+		"relatedTo": "Související s",
+		"repliedTo": "Odpovězeno",
+		"replyTo": "Odpověď na",
+		"replyToEmailAddress": "Odpovědět na emailovou adresu",
+		"returnVariableList": "Vrátit proměnné",
+		"scheduling": "Plánování",
+		"signal": "Signál",
+		"startDirection": "Začít směrem",
+		"target": "Cíl",
+		"targetReport": "Cílový report",
+		"targetTeam": "Cílový tým",
+		"targetType": "Typ cílové entity",
+		"targetUser": "Cílový uživatel",
+		"targetUserPosition": "Cílová pozice uživatele",
+		"timer": "Parametry časovače",
+		"to": "Komu/na",
+		"toEmailAddress": "Na emailovou adresu",
+		"toSpecifiedContacts": "Kontaktům",
+		"toSpecifiedTeams": "Týmům",
+		"toSpecifiedUsers": "Uživatelům",
+		"triggerType": "Typ spuštění"
+	},
+	"labels": {
+		"Actions": "Akce",
+		"Conditions": "Podmínky",
+		"Field": "Pole",
+		"Flows Conditions": "Podmínky průběhu"
+	},
+	"options": {
+		"actionType": {
+			"Approve": "Schválit",
+			"Review": "Posoudit"
+		},
+		"assignmentType": {
+			"": "Žádný",
+			"processAssignedUser": "Uživatel přiřazený k procesu",
+			"rule:Least-Busy": "Nejméně zaneprázdněn",
+			"specifiedUser": "Zadaný uživatel"
+		},
+		"emailAddress": {
+			"": "Žádný",
+			"assignedUser": "Přiřazený uživatel",
+			"currentUser": "Aktuální uživatel",
+			"followers": "Následovníci",
+			"followersExcludingAssignedUser": "Sledující kromě přiděleného uživatele",
+			"processAssignedUser": "Uživatel přiřazený k procesu",
+			"specifiedContacts": "Specifikované kontakty",
+			"specifiedEmailAddress": "Zadaná e-mailová adresa",
+			"specifiedTeams": "Specifikované týmy",
+			"specifiedUsers": "Zadaní uživatelé",
+			"system": "Systém",
+			"targetEntity": "Cílový záznam"
+		},
+		"startDirection": {
+			"d": "Dolů",
+			"l": "Doleva",
+			"r": "Doprava",
+			"u": "Nahoru"
+		},
+		"timerBase": {
+			"formula": "Vypočteno podle vzorce",
+			"moment": "Okamžik, kdy se událost spustila"
+		},
+		"timerShiftOperator": {
+			"minus": "mínus"
+		},
+		"timerShiftUnits": {
+			"days": "dny",
+			"hours": "hodiny",
+			"minutes": "minuty",
+			"months": "měsíce",
+			"seconds": "sekundy"
+		},
+		"triggerType": {
+			"afterRecordCreated": "Po vytvoření záznamu",
+			"afterRecordSaved": "Po uložení záznamu",
+			"afterRecordUpdated": "Po aktualizaci záznamu",
+			"sequential": "Sekvenční"
+		}
+	},
+	"tooltips": {
+		"returnVariableList": "Určete proměnné vzorce, které se zkopírují z dílčího procesu do nadřazeného procesu, jakmile dílčí proces úspěšně skončí.",
+		"scheduling": "Crontabova notace. Definuje frekvenci. Časové pásmo UTC. \n* / 5 * * * * - každých 5 minut 0 * / 2 * * * - každé 2 hodiny 30 1 * * * - v 01:30 jednou denně 0 0 1 * * - první den v měsíci",
+		"target": "Vyberte, který záznam bude použit jako cíl.",
+		"targetReport": "Záznamy ze seznamu reportu budou předány novému procesu.",
+		"taskSendMessageEmailAddress": "Dostupné zástupné symboly: \n * `{$$ variable}`",
+		"userTaskInstructions": "Pokyny pro uživatele. Markdown je podporován. \nDostupné zástupné symboly: * `{$ attribute}` * * {$$ variable} `",
+		"userTaskName": "Název záznamu uživatelské úlohy, který bude vytvořen. \nDostupné zástupné symboly: * `{$ attribute}` * * {$$ variable} `"
+	}
+}

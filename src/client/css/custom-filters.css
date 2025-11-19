@@ -1,0 +1,8 @@
+.remove-preset i {
+	font-size: 10px;
+}
+
+.custom-filter-controls .custom-filter button {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}

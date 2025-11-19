@@ -1,0 +1,9 @@
+{
+	"databaseFunction": "sum",
+	"types": [
+		"int",
+		"float",
+		"currency",
+		"currencyConverted"
+	]
+}

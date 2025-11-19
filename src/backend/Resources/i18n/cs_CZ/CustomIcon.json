@@ -1,0 +1,11 @@
+{
+	"fields": {
+		"description": "Popis",
+		"icon": "Ikona",
+		"name": "Název"
+	},
+	"labels": {
+		"Create CustomIcon": "Vytvořit vlastní ikonu"
+	},
+	"links": {}
+}

@@ -1,0 +1,11 @@
+{
+	"fields": {
+		"invalid": "Neplatný",
+		"numeric": "Číselná hodnota",
+		"optOut": "Odhlášeno",
+		"type": "Typ"
+	},
+	"presetFilters": {
+		"orphan": "Osiřelé"
+	}
+}

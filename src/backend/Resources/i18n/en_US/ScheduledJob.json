@@ -1,0 +1,11 @@
+{
+	"options": {
+		"job": {
+			"CheckEmailAccounts": "Check Personal Email Accounts (IMAP)",
+			"CheckEwsEmailAccounts": "Check Personal Email Accounts (EWS)",
+			"CheckEwsInboundEmails": "Check Group Email Accounts (EWS)",
+			"CheckInboundEmails": "Check Group Email Accounts (IMAP)",
+			"CheckRecurringRecords": "Schedule Recurring Records"
+		}
+	}
+}

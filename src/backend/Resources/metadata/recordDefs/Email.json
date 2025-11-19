@@ -1,0 +1,9 @@
+{
+	"beforeReadHookClassNameList": [
+		"Espo\\Modules\\Autocrm\\Classes\\RecordHooks\\Email\\MarkAsRead"
+	],
+	"beforeReadSuppressClassNameList": [
+		"Espo\\Classes\\RecordHooks\\Email\\MarkAsRead"
+	],
+	"readParamsFetcherClassName": "Espo\\Modules\\Autocrm\\Core\\Email\\ReadParamsFetcher"
+}

@@ -1,0 +1,104 @@
+{
+	"fields": {
+		"bold": "Tučný text",
+		"breakText": "Zalomit text",
+		"color": "Barva",
+		"css": "Doplňkové CSS třídy",
+		"customLabel": "Vlastní název",
+		"disabled": "Zakázáno",
+		"displayLinkButtonInToolbar": "Přenést tlačítko pro propojení",
+		"divider": "Oddělovač",
+		"dividerColor": "Barva oddělovače",
+		"dividerWidth": "Šířka oddělovače (px)",
+		"dynamicLogicStyled": "Podmínky pro použití stylu",
+		"dynamicLogicVisible": "Podmínky zviditelnění panelu",
+		"filtersEnabled": "Zobrazit filtry",
+		"hidden": "Skrytý",
+		"horizontalLabel": "Horizontální popisek",
+		"isEditable": "Upravitelné",
+		"isLarge": "Velká velikost písma",
+		"isMuted": "Tlumená barva",
+		"isSystem": "Systémový panel",
+		"layout": "Layout panelu",
+		"link": "Odkaz",
+		"noLabel": "Skrýt název",
+		"noteStyle": "Styl poznámky",
+		"noteText": "Text Poznámky",
+		"panelName": "Název panelu",
+		"screenSize": "Velikost obrazovky",
+		"sticked": "Přilepit nahoru",
+		"style": "Styl",
+		"tabBreak": "Zalomit záložku",
+		"tabColor": "Barva záložky",
+		"tabIconClass": "Ikona záložky",
+		"tabLabel": "Text záložky",
+		"visibleOnTabs": "Viditelný pouze na záložkách",
+		"width": "Šířka"
+	},
+	"labels": {
+		"Add Row": "Přidat řádek",
+		"Bold": "Zvýrazněný (tučný)",
+		"Color": "Barva",
+		"Column": "Sloupec",
+		"Columns Count": "Počet sloupců",
+		"Custom Label": "Vlastní název",
+		"Edit Panel": "Upravit panel",
+		"Field": "Pole",
+		"Insert New Panel": "Vložit nový panel",
+		"Insert Row": "Vložit řádek",
+		"Layout": "Vzhled",
+		"New Panel": "Nový panel",
+		"New panel": "Nový panel",
+		"Remove Panel": "Odstranit panel",
+		"Remove Row": "Odstranit řádek",
+		"Show Code": "Zobrazit kód",
+		"Width": "Šířka"
+	},
+	"messages": {
+		"alreadyExists": "Layout `{name}` již existuje.",
+		"cannotRemoveLastPanel": "Nelze odstranit poslední panel!",
+		"cantBeEmpty": "Layout nemůže být prázdné.",
+		"createInfo": "Vlastní layout seznamu mohou být použita panely vztahů.",
+		"fieldsIncompatible": "Pole nemohou být v layoutu společně: {fields}."
+	},
+	"options": {
+		"bottomLayoutType": {
+			"default": "Výchozí",
+			"tab": "Záložky"
+		},
+		"gridLayoutType": {
+			"record": "Výchozí",
+			"tab": "Záložky"
+		},
+		"screenSize": {
+			"lg": "Větší desktop",
+			"sm": "Tablet",
+			"xs": "Mobil"
+		},
+		"style": {
+			"danger": "Nebezpečí",
+			"default": "Výchozí",
+			"info": "Informace",
+			"primary": "Primární",
+			"success": "Úspěch",
+			"warning": "Varování"
+		}
+	},
+	"tooltips": {
+		"disabled": "Zakázané panely se nebudou zobrazovat v detailním pohledu entity, ale zůstanou viditelné v administrátorském rozhraní pro případné změny konfigurace.",
+		"displayLinkButtonInToolbar": "Přenese tlačítko odkazu z rozbalovací nabídky do seznamu tlačítek.",
+		"dynamicLogicStyled": "Barva bude použita, pokud je splněna určitá podmínka. Barva je definována parametrem *Styl*.",
+		"dynamicLogicVisible": "Pokud je nastaveno, panel bude skrytý, dokud nebude splněna podmínka.",
+		"hiddenPanel": "Chcete-li zobrazit panel, musíte kliknout na 'zobrazit více'.",
+		"isEditable": "Zda je pole v layoutu seznamu editovatelné. Mějte na paměti, že ne každé pole může být editovatelné (např. pole pouze pro čtení nebo pole s odkazy) a že editace v seznamu může způsobit chybné kliknutí a ztrátu dat.",
+		"link": "Pokud je zaškrtnuto, zobrazí se hodnota pole jako odkaz směřující na detailní pohled na záznam. Obvykle se používá pro pole * Jméno *.",
+		"noLabel": "Nezobrazovat popisek sloupce v záhlaví.",
+		"notSortable": "Zakáže možnost řazení podle sloupce.",
+		"noteText": "Text, který se zobrazí v panelu. Je podporován Markdown.",
+		"panelLayout": "Vyberte, který layout použít pro zobrazení souvisejícího záznamu v tomto panelu",
+		"panelStyle": "Barva panelu.",
+		"sticked": "Panel bude přilepen k panelu nad ním. Žádná mezera mezi panely.",
+		"tabBreak": "Samostatná záložka pro panel a všechny následující panely až do dalšího zalomení záložky.",
+		"width": "Šířka sloupce. Doporučuje se mít jeden sloupec bez zadané šířky, obvykle by to mělo být pole *Jméno*."
+	}
+}

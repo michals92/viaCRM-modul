@@ -1,0 +1,65 @@
+{
+	"fields": {
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"description": {
+			"type": "text"
+		},
+		"icon": {
+			"type": "file",
+			"required": true,
+			"accept": [
+				"image/svg+xml"
+			]
+		},
+		"iconClass": {
+			"type": "varchar",
+			"view": "autocrm:views/fields/icon-class-pure",
+			"readOnly": true,
+			"notStorable": true,
+			"select": {
+				"select": "CONCAT:('custom-icon-', id)"
+			}
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"trim": true
+		}
+	},
+	"links": {
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		}
+	},
+	"collection": {
+		"orderBy": "createdAt",
+		"asc": false
+	},
+	"indexes": {
+		"name": {
+			"columns": [
+				"name"
+			]
+		}
+	}
+}

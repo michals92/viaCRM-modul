@@ -1,0 +1,9 @@
+{
+	"fields": {
+		"token": {
+			"required": true,
+			"type": "varchar"
+		}
+	},
+	"view": "autocrm:views/integrations/zive-firmy"
+}

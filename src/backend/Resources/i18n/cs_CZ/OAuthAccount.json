@@ -1,0 +1,16 @@
+{
+	"fields": {
+		"data": "Data",
+		"hasAccessToken": "Má přístupový token",
+		"provider": "Poskytovatel",
+		"providerIsActive": "Poskytovatel je aktivní",
+		"user": "Uživatel"
+	},
+	"labels": {
+		"Connection": "Připojení",
+		"Create OAuthAccount": "Vytvořit OAuth účet"
+	},
+	"links": {
+		"provider": "Poskytovatel"
+	}
+}

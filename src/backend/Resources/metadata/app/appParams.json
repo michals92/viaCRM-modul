@@ -1,0 +1,41 @@
+{
+	"customIcons": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\CustomIcons"
+	},
+	"emailFolders": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\EmailFolders"
+	},
+	"extensions": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\Extensions"
+	},
+	"installedExtensions": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\InstalledExtensions"
+	},
+	"manualWorkflows": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\ManualWorkflows"
+	},
+	"recordTemplateEntityTypeList": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\RecordTemplateEntityTypeList"
+	},
+	"recurringRecordsEntityList": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\RecurringRecordsEntityList"
+	},
+	"roleList": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\RoleList"
+	},
+	"roleStyles": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\RoleStyles"
+	},
+	"teamStyles": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\TeamStyles"
+	},
+	"templateEntityTypeList": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\TemplateEntityTypeList"
+	},
+	"userList": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\UserList"
+	},
+	"xmlTemplateEntityTypeList": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\XmlTemplateEntityTypeList"
+	}
+}

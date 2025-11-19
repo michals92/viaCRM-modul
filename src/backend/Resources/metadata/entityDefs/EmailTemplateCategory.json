@@ -1,0 +1,14 @@
+{
+	"fields": {
+		"color": {
+			"type": "colorpicker",
+			"tooltip": true
+		},
+		"iconClass": {
+			"type": "varchar",
+			"view": "autocrm:views/fields/icon-class",
+			"maxLength": 50,
+			"tooltip": true
+		}
+	}
+}

@@ -1,0 +1,173 @@
+{
+	"actualFields": [
+		"__APPEND__",
+		"recordList",
+		"columnList"
+	],
+	"params": [
+		"__APPEND__",
+		{
+			"name": "recordListEnabled",
+			"type": "bool",
+			"required": true,
+			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-enabled",
+			"tooltip": true
+		},
+		{
+			"name": "columnListEnabled",
+			"type": "bool",
+			"required": false,
+			"default": false
+		},
+		{
+			"name": "recordListLayout",
+			"type": "enum",
+			"required": true,
+			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-layout"
+		},
+		{
+			"name": "recordListLayoutSuperCompact",
+			"type": "enum",
+			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-layout"
+		},
+		{
+			"name": "recordListButtonsPosition",
+			"type": "enum",
+			"default": "Bottom",
+			"options": [
+				"Top",
+				"Bottom"
+			]
+		},
+		{
+			"name": "recordListCreateDisabled",
+			"type": "bool",
+			"required": true
+		},
+		{
+			"name": "recordListLinkDisabled",
+			"type": "bool",
+			"required": true,
+			"default": true
+		},
+		{
+			"name": "recordListUnlinkDisabled",
+			"type": "bool",
+			"default": true
+		},
+		{
+			"name": "recordListRemoveDisabled",
+			"type": "bool",
+			"required": true
+		},
+		{
+			"name": "recordListDuplicateDisabled",
+			"type": "bool"
+		},
+		{
+			"name": "recordListConfirmRemove",
+			"type": "bool",
+			"required": true
+		},
+		{
+			"name": "recordListSuperCompact",
+			"type": "bool",
+			"required": false
+		},
+		{
+			"name": "recordListAllowedSuperCompact",
+			"type": "array",
+			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-layout-super-compact"
+		},
+		{
+			"name": "recordListOrderByField",
+			"type": "varchar",
+			"required": false,
+			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-order-by-field",
+			"maxLength": 60,
+			"tooltip": true
+		},
+		{
+			"name": "recordListKeepRemoved",
+			"type": "bool",
+			"required": true,
+			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-keep-removed",
+			"tooltip": true
+		},
+		{
+			"name": "recordListDynamicHandler",
+			"type": "varchar",
+			"hidden": true
+		},
+		{
+			"name": "recordListMandatorySelectAttributeList",
+			"type": "jsonArray",
+			"hidden": true
+		},
+		{
+			"name": "recordListForceSelectAllAttributes",
+			"type": "bool",
+			"hidden": true
+		},
+		{
+			"name": "defaultSelectFilters",
+			"type": "jsonObject",
+			"view": "autocrm:views/admin/field-manager/fields/link-multiple/advanced-filters",
+			"tooltip": true
+		},
+		{
+			"name": "checkboxesEnabled",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "createAsModal",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "createWhenDuplicating",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "enableShowDisplayList",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "recordListSectionMode",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "recordListSectionCollapsible",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "recordListSectionCollapseThreshold",
+			"type": "int",
+			"default": null,
+			"tooltip": true
+		},
+		{
+			"name": "duplicateIgnore",
+			"type": "bool",
+			"tooltip": true
+		},
+		{
+			"name": "removeAfterParent",
+			"type": "bool",
+			"default": false
+		}
+	],
+	"view": "autocrm:views/fields/link-multiple",
+	"duplicatorClassName": "Espo\\Modules\\Autocrm\\Classes\\FieldDuplicators\\LinkMultiple",
+	"converterClassName": "Espo\\Modules\\Autocrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\LinkMultiple",
+	"validatorClassName": "Espo\\Modules\\Autocrm\\Classes\\FieldValidators\\LinkMultipleType",
+	"valueFactoryClassName": "Espo\\Modules\\Autocrm\\Core\\Field\\LinkMultiple\\LinkMultipleFactory"
+}

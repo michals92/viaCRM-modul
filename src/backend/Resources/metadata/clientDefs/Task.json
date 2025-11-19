@@ -1,0 +1,25 @@
+{
+	"bottomPanels": {
+		"detail": [
+			"__APPEND__",
+			{
+				"label": "Scheduler",
+				"name": "scheduler",
+				"view": "autocrm:views/task/record/panels/scheduler",
+				"disabled": true,
+				"order": 3
+			}
+		],
+		"edit": [
+			"__APPEND__",
+			{
+				"label": "Scheduler",
+				"name": "scheduler",
+				"view": "autocrm:views/task/record/panels/scheduler",
+				"disabled": true,
+				"order": 1
+			}
+		]
+	},
+	"userKanbanViewMode": true
+}

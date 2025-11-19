@@ -1,0 +1,53 @@
+{
+	"fieldDefs": {
+		"notNull": false,
+		"dbType": "time"
+	},
+	"validationList": [
+		"required"
+	],
+	"mandatoryValidationList": [
+		"valid"
+	],
+	"params": [
+		{
+			"name": "required",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "audited",
+			"type": "bool"
+		},
+		{
+			"name": "readOnly",
+			"type": "bool"
+		},
+		{
+			"name": "displaySeconds",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "minuteStep",
+			"type": "enumInt",
+			"options": [
+				30,
+				15,
+				60,
+				10,
+				5,
+				1
+			]
+		},
+		{
+			"name": "readOnlyAfterCreate",
+			"type": "bool"
+		}
+	],
+	"view": "autocrm:views/fields/time",
+	"filter": true,
+	"personalData": true,
+	"default": null
+}

@@ -3,7 +3,8 @@
         "edit": "viacrm:views/email-template/record/edit-with-easy-email"
     },
     "views": {
-        "edit": "viacrm:views/email-template/edit"
+        "edit": "viacrm:views/email-template/edit",
+		"list": "autocrm:views/email-template/list"
     },
     "sidePanels": {
         "edit": [
@@ -14,5 +15,14 @@
                 "isForm": true
             }
         ]
-    }
+    },
+    "controller": "autocrm:controllers/email-template",
+	"color": "#fc9003",
+	"isWide": true,
+	"dynamicHandler": "autocrm:handlers/dynamic/email-template",
+	"placeholderList": [
+		"__APPEND__",
+		"viewInBrowserUrl",
+		"viewInBrowserLink"
+	]
 }

@@ -1,0 +1,25 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "saveCoordinates",
+			"type": "bool",
+			"tooltip": true
+		},
+		{
+			"name": "copyToClipboard",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "relations",
+			"type": "array"
+		},
+		{
+			"name": "autoFill",
+			"type": "bool",
+			"default": false
+		}
+	],
+	"hookClassName": "Espo\\Modules\\Autocrm\\Tools\\FieldManager\\Hooks\\AddressType"
+}

@@ -1,0 +1,11 @@
+{
+	"databaseFunction": "MAX",
+	"types": [
+		"int",
+		"float",
+		"currency",
+		"currencyConverted",
+		"date",
+		"datetime"
+	]
+}

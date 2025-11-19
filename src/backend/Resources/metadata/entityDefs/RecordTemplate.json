@@ -1,0 +1,83 @@
+{
+	"fields": {
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"data": {
+			"type": "jsonObject",
+			"required": true,
+			"clientReadOnly": true
+		},
+		"entityType": {
+			"type": "enum",
+			"required": true,
+			"view": "views/fields/entity-type",
+			"clientReadOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true
+		}
+	},
+	"links": {
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		}
+	},
+	"indexes": {
+		"entityType": {
+			"columns": [
+				"entityType"
+			]
+		}
+	},
+	"entityListToIgnore": [
+		"Job",
+		"UniqueId",
+		"Role",
+		"ScheduledJob",
+		"ScheduledJobLogRecord",
+		"PhoneNumber",
+		"Notification",
+		"EmailAddress",
+		"EmailAccount",
+		"EmailTemplate",
+		"Attachment",
+		"Extension",
+		"InboundEmail",
+		"AuthToken",
+		"Integration",
+		"ExternalAccount",
+		"Currency",
+		"Note",
+		"Workflow",
+		"Report",
+		"Reminder",
+		"PasswordChangeRequest",
+		"Team",
+		"GoogleCalendar",
+		"GoogleCalendarUser",
+		"GoogleCalendarRecurrentEvent",
+		"MailChimpLogMarker",
+		"MailChimp",
+		"MailChimpCamapaign",
+		"MailChimpList",
+		"MailChimpManualSync",
+		"Import",
+		"BpmnFlowchart",
+		"Email",
+		"VoipMessage",
+		"Template",
+		"RecordTemplate",
+		"QuoteItem",
+		"SalesOrderItem",
+		"InvoiceItem"
+	]
+}

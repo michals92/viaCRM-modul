@@ -1,0 +1,105 @@
+{
+	"fieldDefs": {
+		"readOnly": true
+	},
+	"params": [
+		{
+			"name": "currentValue",
+			"type": "varchar",
+			"required": true,
+			"view": "autocrm:views/admin/field-manager/fields/own-field/own-field"
+		},
+		{
+			"name": "targetValue",
+			"type": "varchar",
+			"required": true,
+			"view": "autocrm:views/admin/field-manager/fields/own-field/own-field"
+		},
+		{
+			"name": "height",
+			"type": "int",
+			"required": true,
+			"default": 150
+		},
+		{
+			"name": "align",
+			"type": "enum",
+			"required": true,
+			"default": "left",
+			"options": [
+				"left",
+				"right"
+			]
+		},
+		{
+			"name": "numberLineEnabled",
+			"type": "bool",
+			"required": true,
+			"default": true
+		},
+		{
+			"name": "numberLineFontPercentage",
+			"type": "int",
+			"required": true,
+			"default": 100
+		},
+		{
+			"name": "labelsEnabled",
+			"type": "bool",
+			"required": true,
+			"default": true
+		},
+		{
+			"name": "labelsFontPercentage",
+			"type": "int",
+			"required": true,
+			"default": 100
+		},
+		{
+			"name": "labelsFormat",
+			"type": "enum",
+			"required": true,
+			"default": "int",
+			"options": [
+				"int",
+				"float"
+			]
+		},
+		{
+			"name": "startColor",
+			"type": "colorpicker",
+			"required": true,
+			"default": "#e8e2ca"
+		},
+		{
+			"name": "endColor",
+			"type": "colorpicker",
+			"required": true,
+			"default": "#3e6c0a"
+		},
+		{
+			"name": "arrowColor",
+			"type": "colorpicker",
+			"required": true,
+			"default": "#000000"
+		}
+	],
+	"view": "autocrm:views/fields/speedometer-graph",
+	"notCreatable": false,
+	"filter": true,
+	"readOnly": true,
+	"fieldTypeList": [
+		"int",
+		"float",
+		"number",
+		"currencyConverted"
+	],
+	"fieldTypeViewMap": {
+		"int": "views/fields/foreign-int",
+		"float": "views/fields/foreign-float",
+		"number": "views/fields/foreign-varchar",
+		"currencyConverted": "views/fields/foreign-currency-converted"
+	},
+	"notStorable": true,
+	"skipOrmDefs": true
+}

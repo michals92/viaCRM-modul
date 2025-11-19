@@ -1,0 +1,13 @@
+{
+	"fields": {
+		"manHour": "Normohodina",
+		"name": "Jméno a příjmení",
+		"user": "Uživatel"
+	},
+	"labels": {
+		"Create HumanResource": "Vytvořit HR"
+	},
+	"links": {
+		"user": "Uživatel"
+	}
+}

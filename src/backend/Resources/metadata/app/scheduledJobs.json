@@ -1,0 +1,36 @@
+{
+	"CNBSync": {
+		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\CNBSync"
+	},
+	"CheckEwsEmailAccounts": {
+		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\CheckEwsEmailAccounts",
+		"preparatorClassName": "Espo\\Modules\\Autocrm\\Classes\\JobPreparators\\CheckEwsEmailAccounts"
+	},
+	"CheckEwsInboundEmails": {
+		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\CheckEwsInboundEmails",
+		"preparatorClassName": "Espo\\Modules\\Autocrm\\Classes\\JobPreparators\\CheckEwsInboundEmails"
+	},
+	"CheckRecurringRecords": {
+		"isSystem": true,
+		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\CheckRecurringRecords",
+		"preparatorClassName": "Espo\\Modules\\Autocrm\\Classes\\JobPreparators\\CheckRecurringRecords",
+		"scheduling": "*/1 * * * *"
+	},
+	"Cleanup": {
+		"isSystem": true,
+		"scheduling": "0 * * * *"
+	},
+	"PreloadHolidays": {
+		"isSystem": true,
+		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\PreloadHolidays",
+		"scheduling": "0 3 1 1 *"
+	},
+	"RecordCurrencyRates": {
+		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\RecordCurrencyRates"
+	},
+	"RefreshMicrosoftGraphSubscriptions": {
+		"isSystem": true,
+		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\RefreshMicrosoftGraphSubscriptions",
+		"scheduling": "0 1 * * *"
+	}
+}

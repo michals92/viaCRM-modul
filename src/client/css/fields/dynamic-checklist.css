@@ -1,0 +1,31 @@
+.dynamic-checklist-field > div {
+	display: flex;
+	align-items: center;
+}
+
+.dynamic-checklist-field > div.list-group-item {
+	/* edit mode */
+	justify-content: space-between;
+}
+
+.dynamic-checklist-field:not(.list-group) {
+	/* detail mode */
+	display: flex;
+	flex-direction: column;
+	row-gap: 7px;
+}
+
+.dynamic-checklist-field input[type='checkbox'].form-checkbox {
+	margin-right: 5px;
+}
+
+.dynamic-checklist-field input[type='text'].form-control {
+	display: inline-block;
+	max-width: 92%;
+	overflow-y: auto;
+}
+
+.dynamic-checklist-field .action-items {
+	float: right;
+	width: 3%;
+}

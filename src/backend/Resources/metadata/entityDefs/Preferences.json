@@ -1,0 +1,75 @@
+{
+	"fields": {
+		"calendarColors": {
+			"type": "jsonObject",
+			"view": "autocrm:views/fields/calendar-colors"
+		},
+		"calendarMaxEventStack": {
+			"type": "int",
+			"default": 5
+		},
+		"collapsibleDashlets": {
+			"type": "bool",
+			"default": false
+		},
+		"customFiltersAboveList": {
+			"type": "bool",
+			"default": false
+		},
+		"defaultEmailFolder": {
+			"type": "enum",
+			"default": "inbox",
+			"view": "autocrm:views/preferences/fields/default-email-folder"
+		},
+		"disableIntroGuide": {
+			"type": "bool",
+			"default": false
+		},
+		"emailDoNotMarkAsReadList": {
+			"type": "multiEnum",
+			"default": [
+				"rightClickPreview"
+			],
+			"view": "autocrm:views/preferences/fields/read-type-list",
+			"tooltip": true
+		},
+		"enableApertiaNewsInNavbar": {
+			"type": "bool",
+			"default": false
+		},
+		"enableHistoryTabs": {
+			"type": "bool",
+			"default": false
+		},
+		"enableHolidayInNavbar": {
+			"type": "bool",
+			"default": false
+		},
+		"enableTeamSwitchingInNavbar": {
+			"type": "bool"
+		},
+		"listCheckboxSize": {
+			"type": "enum",
+			"options": [
+				"small",
+				"medium",
+				"large",
+				"extra"
+			],
+			"tooltip": true
+		},
+		"quickViewContextMenu": {
+			"type": "bool",
+			"default": true
+		},
+		"signaturePosition": {
+			"type": "enum",
+			"default": "append",
+			"options": [
+				"prepend",
+				"append"
+			],
+			"tooltip": true
+		}
+	}
+}

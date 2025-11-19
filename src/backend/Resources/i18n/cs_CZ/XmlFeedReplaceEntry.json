@@ -1,0 +1,12 @@
+{
+	"fields": {
+		"find": "Najít",
+		"replace": "Nahradit"
+	},
+	"labels": {
+		"Create XmlTemplate": "Vytvořit XML šablonu"
+	},
+	"links": {
+		"xmlTemplate": "XML Šablona"
+	}
+}

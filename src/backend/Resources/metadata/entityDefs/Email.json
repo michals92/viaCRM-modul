@@ -11,6 +11,40 @@
             "default": false,
             "readOnly": false,
             "tooltip": "Email created with Easy Email Editor"
+        },
+        "bcc": {
+            "maxLength": 5000
+        },
+        "emailPdfActionEntity": {
+            "type": "linkParent"
+        },
+        "microsoftGraphMessageId": {
+            "type": "varchar",
+            "index": true
+        },
+        "takenStatus": {
+            "type": "enum",
+            "default": "Accepted",
+            "options": [
+                "Accepted",
+                "BeingHandled",
+                "Taken",
+                "Handled"
+            ],
+            "style": {
+                "Accepted": "default",
+                "BeingHandled": "primary",
+                "Taken": "danger",
+                "Handled": "success"
+            },
+            "displayAsLabel": true
         }
-    }
+    },
+    "links": {
+        "emailPdfActionEntity": {
+            "type": "belongsToParent",
+            "foreign": "emails"
+        }
+    },
+    "repositoryClassName": "Espo\\Modules\\Autocrm\\Classes\\Repositories\\Email"
 }

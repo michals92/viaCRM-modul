@@ -1,0 +1,80 @@
+{
+	"fields": {
+		"addAllTeamUsers": "Pro všechny uživatele týmu",
+		"connectedAt": "Připojeno v",
+		"emailAddress": "Emailová adresa",
+		"emailFolder": "Vložit do složky",
+		"ewsPassword": "Heslo",
+		"ewsServerUrl": "URL serveru",
+		"ewsUserName": "Uživatelské jméno",
+		"excludeFromReply": "Vyloučit z odpovědi",
+		"fetchSince": "Načíst od",
+		"fromName": "Od jména",
+		"groupEmailFolder": "Skupinová složka",
+		"isSystem": "Systémový email",
+		"keepFetchedEmailsUnread": "Ponechat načtené e-maily jako nepřečtené",
+		"port": "Port",
+		"security": "Zabezpečení",
+		"sentFolder": "Složka s odeslanými",
+		"signature": "Podpis",
+		"smtpAuth": "Autentikovat",
+		"smtpAuthMechanism": "Autentizační mechanismus",
+		"smtpHost": "Server",
+		"smtpIsForMassEmail": "SMTP pro hromadný e-mail",
+		"smtpIsShared": "SMTP je sdíleno",
+		"smtpPassword": "SMTP heslo",
+		"smtpPort": "SMTP Port",
+		"smtpSecurity": "Zabezpečení",
+		"smtpUsername": "SMTP uživatelské jméno",
+		"status": "Stav",
+		"storeSentEmails": "Uložit odeslané e-maily",
+		"syncReadStatus": "Synchronizovat stav přečtení",
+		"teams": "Týmy",
+		"useEws": "Použít EWS",
+		"useImap": "Použít IMAP",
+		"useSmtp": "Použít SMTP"
+	},
+	"labels": {
+		"EWS": "EWS",
+		"IMAP": "IMAP",
+		"Miscellaneous": "Vedlejší",
+		"Resync IMAP": "Synchronizovat IMAP",
+		"SMTP": "SMTP",
+		"Send Test Email": "Odeslat testovací email"
+	},
+	"links": {
+		"emails": "Emaily",
+		"filters": "Filtry"
+	},
+	"massActions": {
+		"resyncImap": "Synchronizovat Imap"
+	},
+	"messages": {
+		"imapNotConnected": "Nelze se připojit k [IMAP účtu](#EmailAccount/view/{id})."
+	},
+	"options": {
+		"security": {
+			"SSL": "SSL/TLS",
+			"TLS": "STARTTLS"
+		},
+		"smtpAuthMechanism": {
+			"crammd5": "CRAM-MD5",
+			"login": "LOGIN",
+			"plain": "PLAIN"
+		},
+		"smtpSecurity": {
+			"SSL": "SSL/TLS",
+			"TLS": "STARTTLS"
+		}
+	},
+	"presetFilters": {
+		"active": "Aktivní"
+	},
+	"tooltips": {
+		"emailAddress": "Záznam uživatele (přiřazený uživatel) by měl mít stejnou e-mailovou adresu, aby bylo možné použít tento e-mailový účet k odesílání.",
+		"signature": "Je možno používat zástupné symboly jako {userName}, {name}, {emailAddress} a {phoneNumber}",
+		"storeSentEmails": "Odeslané e-maily budou uloženy na serveru IMAP. Pole E-mailová adresa by se mělo shodovat s adresou, ze které budou e-maily zasílány.",
+		"useEws": "Možnost stahovat e-maily přes EWS (Exchange Web Services)",
+		"useSmtp": "Možnost odesílat e-maily."
+	}
+}

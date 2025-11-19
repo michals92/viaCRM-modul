@@ -1,0 +1,90 @@
+{
+	"fields": {
+		"unit": {
+			"customizationAuditedDisabled": true,
+			"customizationDisplayAsLabelDisabled": true,
+			"customizationInlineEditDisabledDisabled": true,
+			"customizationIsSortedDisabled": true,
+			"customizationOptionsDisabled": true,
+			"customizationReadOnlyDisabled": true,
+			"customizationRequiredDisabled": true,
+			"layoutDefaultSidePanelDisabled": true,
+			"layoutDetailDisabled": true,
+			"layoutListDisabled": true,
+			"layoutMassUpdateDisabled": true,
+			"type": "enum",
+			"view": "autocrm:views/fields/int-with-unit"
+		}
+	},
+	"actualFields": [
+		"",
+		"unit"
+	],
+	"params": [
+		{
+			"name": "required",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "default",
+			"type": "floatWithUnit",
+			"view": "autocrm:views/admin/field-manager/fields/int-with-unit/default"
+		},
+		{
+			"name": "min",
+			"type": "float"
+		},
+		{
+			"name": "max",
+			"type": "float"
+		},
+		{
+			"name": "decimalPlaces",
+			"type": "int"
+		},
+		{
+			"name": "audited",
+			"type": "bool"
+		},
+		{
+			"name": "readOnly",
+			"type": "bool"
+		},
+		{
+			"name": "readOnlyAfterCreate",
+			"type": "bool"
+		},
+		{
+			"name": "physicalQuantity",
+			"type": "enum",
+			"required": true,
+			"default": "area",
+			"options": [
+				"area",
+				"time",
+				"volume",
+				"weight",
+				"length",
+				"quantity",
+				"current",
+				"power",
+				"energy",
+				"voltage"
+			]
+		},
+		{
+			"name": "units",
+			"type": "array",
+			"view": "autocrm:views/admin/field-manager/fields/units"
+		},
+		{
+			"name": "compact",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		}
+	],
+	"view": "autocrm:views/fields/int-with-unit",
+	"converterClassName": "Espo\\Modules\\Autocrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\IntWithUnit"
+}

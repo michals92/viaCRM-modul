@@ -1,0 +1,33 @@
+.tabs-layout .panel-tabs {
+	padding: 0;
+}
+
+.tabs-layout .panel-nav {
+	overflow: hidden;
+}
+
+.tabs-layout .panel-nav li.active a {
+	font-weight: bold;
+}
+
+.nav-tabs.nav-justified > .active > a,
+.nav-tabs.nav-justified > .active > a:hover,
+.nav-tabs.nav-justified > .active > a:focus {
+	background-color: var(--panel-bg);
+}
+
+.nav.nav-tabs.nav-justified li,
+.tabs-layout .panel-nav li {
+	background-color: var(--body-bg);
+}
+
+.tabs-layout .panel-nav li.active a,
+.nav.nav-tabs.nav-justified li.active span {
+	font-weight: 400;
+}
+
+.bottom > .tabs {
+	.panel-title > span {
+		pointer-events: none !important;
+	}
+}

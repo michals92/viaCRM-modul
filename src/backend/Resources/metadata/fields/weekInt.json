@@ -1,0 +1,47 @@
+{
+	"fieldDefs": {
+		"orderDisabled": true
+	},
+	"fields": {
+		"monday": {
+			"type": "int"
+		},
+		"tuesday": {
+			"type": "int"
+		},
+		"wednesday": {
+			"type": "int"
+		},
+		"thursday": {
+			"type": "int"
+		},
+		"friday": {
+			"type": "int"
+		},
+		"saturday": {
+			"type": "int"
+		},
+		"sunday": {
+			"type": "int"
+		}
+	},
+	"actualFields": [
+		"monday",
+		"tuesday",
+		"wednesday",
+		"thursday",
+		"friday",
+		"saturday",
+		"sunday"
+	],
+	"params": [
+		{
+			"name": "required",
+			"type": "bool",
+			"default": false
+		}
+	],
+	"view": "autocrm:views/fields/week-int",
+	"notCreatable": false,
+	"hookClassName": "Espo\\Modules\\Autocrm\\Tools\\FieldManager\\Hooks\\WeekIntType"
+}

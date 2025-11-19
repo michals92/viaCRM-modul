@@ -1,0 +1,34 @@
+[
+	"__APPEND__",
+	{
+		"rows": [
+			[
+				{
+					"name": "allEmailFolderPermission"
+				},
+				false,
+				false
+			],
+			[
+				{
+					"name": "users"
+				}
+			]
+		]
+	},
+	{
+		"tabLabel": "$label:Appearance",
+		"tabBreak": true,
+		"rows": [
+			[
+				{
+					"name": "color"
+				},
+				{
+					"name": "iconClass"
+				}
+			]
+		],
+		"tabIconClass": "fas fa-paint-brush"
+	}
+]

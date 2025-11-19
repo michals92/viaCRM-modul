@@ -1,7 +1,41 @@
 {
     "system": {
         "itemList": [
-            "__APPEND__"
-        ]
+            "__APPEND__",
+			{
+				"description": "autocrm",
+				"iconClass": "fas fa-cog",
+				"label": "AutoCRM Settings",
+				"recordView": "autocrm:views/settings/record/autocrm",
+				"url": "#Admin/AutocrmSettings"
+			},
+			{
+				"description": "units",
+				"iconClass": "fas fa-cog",
+				"label": "Unit Settings",
+				"recordView": "autocrm:views/settings/record/units",
+				"url": "#Admin/UnitSettings"
+			},
+			{
+				"description": "recordTemplates",
+				"iconClass": "fas fa-file-export",
+				"label": "Record Templates",
+				"url": "#RecordTemplate"
+			},
+			{
+				"description": "recordRecurrence",
+				"iconClass": "fas fa-clock",
+				"label": "Records Recurrences",
+				"url": "#RecordRecurrence"
+			},
+			{
+				"description": "sharedWysiwygs",
+				"iconClass": "fas fa-file-alt",
+				"label": "Shared Wysiwygs",
+				"url": "#SharedWysiwyg"
+			}
+        ],
+		"label": "AutoCRM",
+		"order": 1
     }
 }

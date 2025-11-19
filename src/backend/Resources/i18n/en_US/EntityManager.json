@@ -1,0 +1,20 @@
+{
+	"fields": {
+		"filterHeaderLabel": "Filter Header Label",
+		"fullTextSearchEscapeSpecialCharacters": "Escape Special Characters in Fulltext Search",
+		"isWide": "Is Wide",
+		"listDefaultViewMode": "Default View Mode (List)",
+		"listHeaderLabel": "List Header Label",
+		"loaderCustomScript": "Loader Custom Script"
+	},
+	"options": {
+		"fullTextSearchMode": {
+			"AllWordsRequired": "All Words Required",
+			"Default": "Default"
+		}
+	},
+	"tooltips": {
+		"fullTextSearchEscapeSpecialCharacters": "Automatically removes special characters (+, -, *, \", (, ), @, <, >, ~) from fulltext search and switches to default search mode. This allows partial word matching and prevents special characters from being interpreted as operators.",
+		"isWide": "If checked, the detail view will be wide and side panels will be at the bottom"
+	}
+}

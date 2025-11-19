@@ -1,0 +1,61 @@
+{
+	"fields": {
+		"assignedUser": {
+			"type": "link",
+			"required": false,
+			"view": "views/fields/assigned-user"
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"description": {
+			"type": "text"
+		},
+		"entity": {
+			"type": "linkParent"
+		},
+		"expirationDate": {
+			"type": "datetime"
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar"
+		},
+		"subscriptionId": {
+			"type": "varchar"
+		}
+	},
+	"links": {
+		"assignedUser": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"entity": {
+			"type": "belongsToParent"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		}
+	},
+	"collection": {
+		"orderBy": "createdAt",
+		"asc": false
+	}
+}

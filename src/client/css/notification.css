@@ -1,0 +1,119 @@
+.popup-notification-alert {
+	justify-self: end;
+	width: unset;
+	padding: 0.2rem;
+	background: none;
+	border: none;
+}
+
+.popup-notification-message.alert-notification {
+    position: relative;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+    max-width: 350px;
+    padding: 12px 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+    border-radius: 0.2rem;
+    box-shadow:
+        0 10px 20px rgb(0,0,0,0.1),
+        0 6px 6px rgb(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.popup-notification-message.alert-notification:hover {
+    box-shadow:
+        0 12px 22px rgb(0,0,0,0.15),
+        0 8px 8px rgb(0,0,0,0.08);
+    transform: translateY(-5px);
+}
+
+.notification-content {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0; /* This ensures content can shrink below its natural width */
+}
+
+.notification-header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.badge-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #4a90e2;
+    background-color: rgb(74, 144, 226, 0.1);
+    border-radius: 50%;
+}
+
+.status-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a90e2;
+    text-transform: uppercase;
+}
+
+.popup-message {
+    font-size: 14px;
+    color: #2c3e50;
+    overflow-wrap: break-word;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.popup-message:hover {
+    color: #4a90e2;
+}
+
+.close-button {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: transform 0.2s ease;
+}
+
+.close-button:hover {
+    opacity: 0.7;
+    transform: scale(1.1);
+}
+
+.close-button svg {
+    fill: #95a5a6;
+}
+
+/* Animation Library (optional) */
+@keyframes fade-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate__animated {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+.animate__fadeInRight {
+    animation-name: fade-in-right;
+}

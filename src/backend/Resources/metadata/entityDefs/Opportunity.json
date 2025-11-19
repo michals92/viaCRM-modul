@@ -1,0 +1,22 @@
+{
+	"fields": {
+		"lastActivity": {
+			"type": "datetime",
+			"readOnly": true,
+			"notStorable": true,
+			"orderDisabled": true
+		},
+		"probability": {
+			"view": "autocrm:views/fields/percentage"
+		},
+		"stage": {
+			"style": {
+				"Prospecting": "info",
+				"Proposal": "primary",
+				"Negotiation": "warning",
+				"Closed Won": "success",
+				"Closed Lost": "danger"
+			}
+		}
+	}
+}

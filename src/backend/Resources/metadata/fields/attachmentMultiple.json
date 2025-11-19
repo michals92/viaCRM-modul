@@ -1,0 +1,39 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "copyAttachmentsButton",
+			"type": "bool",
+			"default": true
+		},
+		{
+			"name": "copyAttachmentsEntityList",
+			"type": "multiEnum",
+			"view": "views/admin/field-manager/fields/entity-list"
+		},
+		{
+			"name": "zipAttachmentsButton",
+			"type": "bool",
+			"default": true
+		},
+		{
+			"name": "forceDownload",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "showPreviewsInListMode",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "minCount",
+			"type": "int",
+			"required": false,
+			"default": null,
+			"min": 0,
+			"tooltip": true
+		}
+	]
+}

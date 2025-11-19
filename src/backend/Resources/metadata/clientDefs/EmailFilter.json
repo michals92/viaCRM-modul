@@ -1,0 +1,38 @@
+{
+	"dynamicLogic": {
+		"fields": {
+			"alertIconClass": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "and",
+							"value": [
+								{
+									"attribute": "action",
+									"type": "equals",
+									"value": "createAlert"
+								}
+							]
+						}
+					]
+				}
+			},
+			"alertMessage": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "and",
+							"value": [
+								{
+									"attribute": "action",
+									"type": "equals",
+									"value": "createAlert"
+								}
+							]
+						}
+					]
+				}
+			}
+		}
+	}
+}

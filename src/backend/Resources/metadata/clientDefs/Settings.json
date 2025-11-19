@@ -1,0 +1,16 @@
+{
+	"dynamicLogic": {
+		"fields": {
+			"addressCountryList": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "addressCountryAsEnum"
+						}
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"fields": {
+		"allEmailFolderPermission": "All Email Folder Permission"
+	},
+	"tooltips": {
+		"allEmailFolderPermission": "Defines whether users have access to the \"All\" folder in email, which displays all emails without filtering.\n\n* yes – \"All\" folder is visible\n* no – \"All\" folder is hidden"
+	}
+}

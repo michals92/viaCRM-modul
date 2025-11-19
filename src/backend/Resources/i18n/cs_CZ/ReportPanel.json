@@ -1,0 +1,33 @@
+{
+	"fields": {
+		"column": "Sloupec",
+		"columnList": "Seznam sloupců",
+		"displayOnlyTotal": "Zobrazit pouze celkem",
+		"displayTotal": "Zobrazit celkem",
+		"dynamicLogicVisible": "Podmínky zviditelnění panelu",
+		"entityType": "Typ entity",
+		"isActive": "Je povoleno",
+		"order": "Pořadí",
+		"reportEntityType": "Typ entity",
+		"reportType": "Typ reportu",
+		"type": "Typ"
+	},
+	"labels": {
+		"Create ReportPanel": "Vytvořit panel",
+		"Rebuild Panels": "Obnovit panely"
+	},
+	"links": {
+		"report": "Seznam"
+	},
+	"options": {
+		"type": {
+			"bottom": "Spodní",
+			"side": "Boční"
+		}
+	},
+	"tooltips": {
+		"order": "[0..1] - před panelem Stream; \n[3..4] - před panely vztahů; [6 ..] - po panelech vztahů",
+		"report": "Zpráva, která bude použita pro panel.",
+		"teams": "Týmy, pro které se zobrazí panel. Pokud není zadán žádný tým, nebude aplikováno žádné omezení ze strany týmu."
+	}
+}

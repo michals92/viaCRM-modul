@@ -1,0 +1,78 @@
+.email-list-container .list-row.being-dragged {
+	opacity: 0.5;
+}
+
+.email-list-container .draggable-helper {
+	max-width: 300px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.email-list-container .list-group-item.droppable.active {
+	background-color: #f5f5f5;
+}
+
+.email-list-container .list-group-item.droppable.success {
+	background-color: #dff0d8;
+}
+
+.email-list-container .list-group-item.drag-over {
+	background-color: #e8e8e8;
+}
+
+.email-list-container .list tbody tr[data-id] {
+	cursor: grab;
+}
+
+.email-list-container .list tbody tr[data-id].being-dragged {
+	cursor: grabbing;
+}
+
+.record-checkbox-container > .form-checkbox-small {
+	position: relative;
+
+	&.checkbox-small {
+		&::before {
+			padding: 0;
+		}
+	}
+
+	&.checkbox-medium {
+		&::before {
+			padding: 0.1rem;
+		}
+	}
+
+	&.checkbox-large {
+		&::before {
+			padding: 0.2rem;
+		}
+	}
+
+	&.checkbox-extra {
+		&::before {
+			padding: 0.3rem;
+		}
+	}
+}
+
+.select-all-container > .form-checkbox.form-checkbox-small {
+	position: relative;
+
+	&.checkbox-small::before {
+		padding: 0;
+	}
+
+	&.checkbox-medium::before {
+		padding: 0.1rem;
+	}
+
+	&.checkbox-large::before {
+		padding: 0.2rem;
+	}
+
+	&.checkbox-extra::before {
+		padding: 0.3rem;
+	}
+}

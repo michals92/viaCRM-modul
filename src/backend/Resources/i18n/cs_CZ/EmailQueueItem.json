@@ -1,0 +1,29 @@
+{
+	"fields": {
+		"attemptCount": "Počet pokusů",
+		"emailAddress": "Emailová adresa",
+		"isTest": "Je test",
+		"massEmail": "Hromadný email",
+		"name": "Jméno",
+		"sentAt": "Datum odeslání",
+		"status": "Stav",
+		"target": "Cíl"
+	},
+	"links": {
+		"massEmail": "Hromadný email",
+		"target": "Cíl"
+	},
+	"options": {
+		"status": {
+			"Failed": "Selhalo",
+			"Pending": "Ve frontě",
+			"Sending": "Odesílá se",
+			"Sent": "Odesláno"
+		}
+	},
+	"presetFilters": {
+		"failed": "Selhalo",
+		"pending": "Ve frontě",
+		"sent": "Odesláno"
+	}
+}

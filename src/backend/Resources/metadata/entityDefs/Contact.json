@@ -1,0 +1,10 @@
+{
+	"fields": {
+		"emailAddress": {
+			"tooltip": true
+		},
+		"phoneNumber": {
+			"tooltip": true
+		}
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"fields": {
+		"acceptanceStatus": "Stav přijetí",
+		"acceptanceStatusCalls": "Stav přijetí (Volání)",
+		"acceptanceStatusMeetings": "Stav přijetí (Schůzky)",
+		"accountIsInactive": "Neaktivní",
+		"emailAddress": "Email",
+		"hasPortalUser": "Má uživatele portálu",
+		"originalEmail": "Původní email",
+		"originalLead": "Původní Potenciál",
+		"portalUser": "Uživatel portálu"
+	},
+	"labels": {
+		"Create Contact": "Vytvořit Kontakt"
+	},
+	"links": {
+		"account": "Organizace (hlavní)",
+		"accounts": "Organizace",
+		"casesPrimary": "Případy (primární)",
+		"documents": "Documenty",
+		"invoicesBilling": "Faktury (vyúčtování)",
+		"invoicesShipping": "Faktury (přepravné)",
+		"opportunitiesPrimary": "Příležitosti (hlavní)",
+		"originalLead": "Původní Potenciál",
+		"portalUser": "Uživatel portálu",
+		"quotesShipping": "Nabídky (přepravné)",
+		"salesOrdersBilling": "Proforma faktury (vyúčtování)",
+		"salesOrdersShipping": "Proforma faktury (přepravné)",
+		"tasksPrimary": "Úkoly (rozšířené)"
+	},
+	"options": {
+		"opportunityRole": {
+			"": ""
+		}
+	},
+	"presetFilters": {
+		"accountActive": "Aktivní",
+		"notPortalUsers": "Není uživatel portálu",
+		"portalUsers": "Uživatelé portálu"
+	},
+	"tooltips": {
+		"emailAddress": "E-mailová adresa může být přiřazena k organizaci. Tuto funkci lze vypnout v [**nastavení Autocrm**](/#Admin/AutocrmSettings) pomocí volby 'Vypnout přiřazení emailů k organizaci'.",
+		"phoneNumber": "Telefonní číslo může být přiřazeno k organizaci. Tuto funkci lze vypnout v [**nastavení Autocrm**](/#Admin/AutocrmSettings) pomocí volby 'Vypnout přiřazení tel. čísel k organizaci'."
+	}
+}

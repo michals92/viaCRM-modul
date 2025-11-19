@@ -1,162 +1,180 @@
 [
     {
-        "route": "/Hr",
-        "method": "GET",
-        "params": {
-            "controller": "Hr",
-            "action": "list"
-        }
-    },
-    {
-        "route": "/Hr/:id",
-        "method": "GET",
-        "params": {
-            "controller": "Hr",
-            "action": "read"
-        }
-    },
-    {
-        "route": "/Hr",
-        "method": "POST",
-        "params": {
-            "controller": "Hr",
-            "action": "create"
-        }
-    },
-    {
-        "route": "/Hr/:id",
-        "method": "PUT",
-        "params": {
-            "controller": "Hr",
-            "action": "update"
-        }
-    },
-    {
-        "route": "/Hr/:id",
-        "method": "DELETE",
-        "params": {
-            "controller": "Hr",
-            "action": "delete"
-        }
-    },
-    {
-        "route": "/Absence",
-        "method": "GET",
-        "params": {
-            "controller": "Absence",
-            "action": "list"
-        }
-    },
-    {
-        "route": "/Absence/:id",
-        "method": "GET",
-        "params": {
-            "controller": "Absence",
-            "action": "read"
-        }
-    },
-    {
-        "route": "/Absence",
-        "method": "POST",
-        "params": {
-            "controller": "Absence",
-            "action": "create"
-        }
-    },
-    {
-        "route": "/Absence/:id",
-        "method": "PUT",
-        "params": {
-            "controller": "Absence",
-            "action": "update"
-        }
-    },
-    {
-        "route": "/Absence/:id",
-        "method": "DELETE",
-        "params": {
-            "controller": "Absence",
-            "action": "delete"
-        }
-    },
-    {
-        "route": "/Absence/action/approve",
-        "method": "POST",
-        "params": {
-            "controller": "Absence",
-            "action": "approve"
-        }
-    },
-    {
-        "route": "/Absence/action/reject",
-        "method": "POST",
-        "params": {
-            "controller": "Absence",
-            "action": "reject"
-        }
-    },
-    {
-        "route": "/Absence/action/cancel",
-        "method": "POST",
-        "params": {
-            "controller": "Absence",
-            "action": "cancel"
-        }
-    },
-    {
-        "route": "/Absence/action/myRequests",
-        "method": "GET",
-        "params": {
-            "controller": "Absence",
-            "action": "myRequests"
-        }
-    },
-    {
-        "route": "/Absence/action/pendingApprovals",
-        "method": "GET",
-        "params": {
-            "controller": "Absence",
-            "action": "pendingApprovals"
-        }
-    },
-    {
-        "route": "/Absence/action/calculateDays",
-        "method": "POST",
-        "params": {
-            "controller": "Absence",
-            "action": "calculateDays"
-        }
-    },
-    {
-        "route": "/EasyEmailEditor/action/saveTemplate",
-        "method": "POST",
-        "params": {
-            "controller": "EasyEmailEditor",
-            "action": "saveTemplate"
-        }
-    },
-    {
-        "route": "/EasyEmailEditor/action/saveEmail",
-        "method": "POST",
-        "params": {
-            "controller": "EasyEmailEditor",
-            "action": "saveEmail"
-        }
-    },
-    {
-        "route": "/EasyEmailEditor/:id",
-        "method": "GET",
-        "params": {
-            "controller": "EasyEmailEditor",
-            "action": "loadTemplate"
-        }
-    },
-    {
-        "route": "/EasyEmailEditor/action/uploadImage",
-        "method": "POST",
-        "params": {
-            "controller": "EasyEmailEditor",
-            "action": "uploadImage"
-        }
-    }
+		"route": "Holiday/layout/:name",
+		"method": "get",
+		"params": {
+			"controller": "Layout",
+			"action": "read",
+			"scope": "Holiday",
+			"name": ":name"
+		}
+	},
+	{
+		"route": ":entityType/partition/:by",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Partition\\GetData"
+	},
+	{
+		"route": ":scope/:id/:parentLink/related/:link",
+		"method": "get",
+		"params": {
+			"controller": "RelatedLinkLister",
+			"action": "listRelatedLink",
+			"scope": ":scope",
+			"id": ":id",
+			"parentLink": ":parentLink",
+			"link": ":link"
+		}
+	},
+	{
+		"route": "ActionHistoryRecord/massRevert",
+		"method": "post",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\ActionHistoryRecord\\MassRevert"
+	},
+	{
+		"route": "Aggregation/:scope",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Aggregation\\GetData"
+	},
+	{
+		"route": "Alert/toggleUser",
+		"method": "post",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Alert\\ToggleAlert"
+	},
+	{
+		"route": "/App/user",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\App\\GetUser"
+	},
+	{
+		"route": "/Ares/fill/:sicCode",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Ares\\GetFillData"
+	},
+	{
+		"route": "/Ares/suggest/:companyName",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Ares\\GetSuggestData"
+	},
+	{
+		"route": "Attachment/action/copy",
+		"method": "post",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\CopyAttachments"
+	},
+	{
+		"route": "Attachment/action/zip",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\ZipAttachments"
+	},
+	{
+		"route": "ColorizationDefs",
+		"method": "put",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\ColorizationDefs"
+	},
+	{
+		"route": "ConversionDefs",
+		"method": "put",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\ConversionDefs"
+	},
+	{
+		"route": "/ClearBrowserCache",
+		"method": "post",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\NavbarAction\\ClearBrowserCache"
+	},
+	{
+		"route": "Document/uploadFromZip/:categoryId",
+		"method": "post",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Document\\UploadFromZip"
+	},
+	{
+		"route": "Document/uploadFromZip",
+		"method": "post",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Document\\UploadFromZip"
+	},
+	{
+		"route": "EmailPdf/getAttributes",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\EmailPdfAttributes"
+	},
+	{
+		"route": "Extension/installedModules",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Extension\\GetInstalledModules"
+	},
+	{
+		"route": "/Finstat/fill/:sicCode",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Finstat\\GetFillData"
+	},
+	{
+		"route": "GetConvertAttributes/:entityType/:id/:foreignScope",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\GetConvertAttributes"
+	},
+	{
+		"route": "Mail/Account/GroupAccount/syncImap",
+		"method": "post",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Mail\\Account\\GroupAccount\\SyncImap"
+	},
+	{
+		"route": "Mail/Account/PersonalAccount/syncImap",
+		"method": "post",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Mail\\Account\\PersonalAccount\\SyncImap"
+	},
+	{
+		"route": "Mail/GetSignature",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Mail\\GetSignature"
+	},
+	{
+		"route": "/MicrosoftGraph/callback",
+		"method": "post",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\MicrosoftGraph\\Callback",
+		"noAuth": true
+	},
+	{
+		"route": "RecordList/:scope/:id/:link",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\RecordList\\GetData"
+	},
+	{
+		"route": "UserKanban/:entityType",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\UserKanban\\GetData"
+	},
+	{
+		"route": "UserKanban/order",
+		"method": "put",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\UserKanban\\PutOrder"
+	},
+	{
+		"route": "/Vies/verifyVatNumber/:countryCode/:vatNumber",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Vies\\Validate"
+	},
+	{
+		"route": "ZiveFirmy/lookup/:sicCode",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\ZiveFirmy"
+	},
+	{
+		"route": "Holiday/api/:year/:month/:day",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Holiday\\Get"
+	},
+	{
+		"route": "Holiday/api/:year/:month",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Holiday\\Get"
+	},
+	{
+		"route": "Holiday/api/:year",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Holiday\\Get"
+	},
+	{
+		"route": "StatusHistory",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\StatusHistory\\GetList"
+	}
 ]

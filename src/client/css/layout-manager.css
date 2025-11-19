@@ -133,3 +133,47 @@
     background: #f8d7da;
     color: #721c24;
 }
+
+ul.cells li.cell a.edit-field {
+	display: none;
+}
+
+ul.cells li.cell:hover a.remove-field,
+ul.cells li.cell:hover a.edit-field {
+	display: inline !important;
+}
+
+ul.cells li.cell a.remove-field {
+	margin-left: 2px;
+}
+
+#layout ul.disabled > li a {
+	display: none !important;
+}
+
+/* System panel styling - using both CSS class and data attribute */
+#layout ul > li.cell.system-panel,
+#layout ul > li.cell[data-issystem="true"] {
+	position: relative !important;
+	background-color: #fff3cd !important;
+	border-left: 4px solid #f0ad4e !important;
+	box-shadow: 0 1px 3px rgb(240, 173, 78, 0.2) !important;
+}
+
+#layout ul > li.cell.system-panel .left span,
+#layout ul > li.cell[data-issystem="true"] .left span {
+	font-weight: 500 !important;
+	color: #856404 !important;
+}
+
+#layout ul > li.cell.system-panel::after,
+#layout ul > li.cell[data-issystem="true"]::after {
+	position: absolute;
+	top: 50%;
+	right: 25px;
+	z-index: 1;
+	font-size: 12px;
+	content: "🔒";
+	opacity: 0.7;
+	transform: translateY(-50%);
+}

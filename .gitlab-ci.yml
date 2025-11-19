@@ -1,0 +1,69 @@
+# Pipeline using production templates with matrix functionality
+include:
+  - project: 'autocrm/espo-pipelines'
+    file:
+      - 'templates/database-matrix.yml'
+      - 'templates/espocrm-extension.yml'
+      - 'templates/build-stages.yml'
+    ref: 'v1.2.6'  # Latest stable release with EspoCRM 9.2.4 support
+
+# Prevent duplicate pipelines
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+    - if: '$CI_COMMIT_TAG'
+
+stages:
+  - build
+  - validate
+  - code_quality
+  - test
+  - prepare
+  - install
+  - push
+
+# Use shared build and prepare templates
+build:
+  extends: .build_template
+  artifacts:
+    expire_in: 1 hour
+  rules:
+    - when: always
+
+prepare_push:
+  extends: .prepare_push_template
+  rules:
+    - if: '$CI_COMMIT_TAG'
+      when: on_success
+    - when: never
+
+upload_package:
+  extends: .upload_package_template
+  stage: push
+  needs:
+    - prepare_push
+    - code_quality
+    - phpunit
+    - install_and_upgrade
+  rules:
+    - if: '$CI_COMMIT_TAG'
+      when: on_success
+    - when: never
+
+# Use production templates
+code_quality:
+  extends: .code_quality_template
+  rules:
+    - when: always
+
+phpunit:
+  extends: .phpunit_template
+
+install_and_upgrade:
+  extends: .install_and_upgrade_template
+
+check_translations:
+  extends: .check_translations_template

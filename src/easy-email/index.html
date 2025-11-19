@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="cs">
+	<head>
+		<meta charset="utf-8" />
+		<title>Easy Email</title>
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="editor"></div>
+		<script src="easy-email.min.js"></script>
+		<script>
+			(function () {
+				const editor = renderEasyEmailEditor(document.getElementById('editor'), {
+					height: '600px',
+				});
+			})();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,77 @@
+{
+	"view": "autocrm:views/dashlets/map",
+	"options": {
+		"defaults": {
+			"autorefreshInterval": 0.5,
+			"displayRecords": 200
+		},
+		"fields": {
+			"addressField": {
+				"type": "enum",
+				"view": "autocrm:views/dashlets/fields/map/address-field"
+			},
+			"autorefreshInterval": {
+				"type": "enumFloat",
+				"options": [
+					0,
+					0.5,
+					1,
+					2,
+					5,
+					10
+				]
+			},
+			"displayRecords": {
+				"type": "int",
+				"min": 1
+			},
+			"entityType": {
+				"type": "enum",
+				"view": "autocrm:views/dashlets/fields/map/entity-type"
+			},
+			"mapCenter": {
+				"type": "enum",
+				"default": "Czech Republic",
+				"options": [
+					"Czech Republic",
+					"Slovakia"
+				]
+			},
+			"title": {
+				"type": "varchar",
+				"required": true,
+				"trim": true
+			}
+		},
+		"layout": [
+			{
+				"rows": [
+					[
+						{
+							"name": "title"
+						},
+						{
+							"name": "autorefreshInterval"
+						}
+					],
+					[
+						{
+							"name": "entityType"
+						},
+						{
+							"name": "addressField"
+						}
+					],
+					[
+						{
+							"name": "mapCenter"
+						},
+						{
+							"name": "displayRecords"
+						}
+					]
+				]
+			}
+		]
+	}
+}

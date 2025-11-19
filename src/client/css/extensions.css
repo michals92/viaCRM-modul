@@ -52,19 +52,6 @@
     opacity: 0.7;
 }
 
-/* Formula Fields (準備) */
-.viacrm-formula-field {
-    background-color: #fff3cd;
-    border-left: 3px solid #ffc107;
-    padding-left: 8px;
-}
-
-.viacrm-formula-field-label::before {
-    content: "ƒ ";
-    font-weight: bold;
-    color: #e67e22;
-}
-
 /* Extension Status Indicator */
 .viacrm-extension-active::after {
     content: "VIA";

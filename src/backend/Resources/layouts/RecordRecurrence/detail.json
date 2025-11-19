@@ -1,0 +1,62 @@
+[
+	{
+		"label": "Overview",
+		"rows": [
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "entityType",
+					"readOnly": true
+				}
+			],
+			[
+				{
+					"name": "status"
+				},
+				false
+			]
+		]
+	},
+	{
+		"label": "Recurrence",
+		"rows": [
+			[
+				{
+					"name": "scheduling",
+					"fullWidth": true
+				}
+			],
+			[
+				{
+					"name": "infinite"
+				},
+				{
+					"name": "until"
+				}
+			]
+		]
+	},
+	{
+		"label": "Batching",
+		"rows": [
+			[
+				{
+					"name": "generateInBatches"
+				},
+				{
+					"name": "generateInAdvance"
+				}
+			]
+		],
+		"dynamicLogicVisible": {
+			"conditionGroup": [
+				{
+					"type": "isTrue",
+					"attribute": "generateInBatches"
+				}
+			]
+		}
+	}
+]

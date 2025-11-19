@@ -1,0 +1,82 @@
+{
+	"fields": {
+		"assignedUser": "Assigned User",
+		"bathroomCount": "Bathroom Count",
+		"bedroomCount": "Bedroom Count",
+		"contact": "Contact",
+		"contacts": "Contacts",
+		"floor": "Floor",
+		"floorCount": "Floor Count",
+		"fromBathroomCount": "Min Bathroom Count",
+		"fromBedroomCount": "Min Bedroom Count",
+		"fromFloor": "Min Floor",
+		"fromFloorCount": "Min Floor Count",
+		"fromPrice": "Min Price",
+		"fromPriceConverted": "Min Price (Converted)",
+		"fromSquare": "Min Square",
+		"fromYearBuilt": "Min Year Built",
+		"locations": "Locations",
+		"matchingProperty": "Matching Property",
+		"matchingPropertyCount": "Matching Count",
+		"number": "Number",
+		"price": "Price",
+		"propertyType": "Property Type",
+		"square": "Square",
+		"status": "Status",
+		"toBathroomCount": "Max Bathroom Count",
+		"toBedroomCount": "Max Bedroom Count",
+		"toFloor": "Max Floor",
+		"toFloorCount": "Max Floor Count",
+		"toPrice": "Max Price",
+		"toPriceConverted": "Max Price (Converted)",
+		"toSquare": "Max Square",
+		"toYearBuilt": "Max Year Built",
+		"type": "Type",
+		"yearBuilt": "Year Built"
+	},
+	"labels": {
+		"Create Opportunity": "Create Opportunity",
+		"Create RealEstateRequest": "Create Request",
+		"Locations": "Locations",
+		"Matching Properties": "Matching Properties",
+		"Max": "Max",
+		"Min": "Min",
+		"Not Interested": "Not Interested",
+		"Unset Not Interested": "Unset Not Interested"
+	},
+	"links": {
+		"contact": "Contact",
+		"contacts": "Contacts",
+		"locations": "Locations",
+		"matchingProperties": "Matching Properties",
+		"opportunities": "Opportunities"
+	},
+	"options": {
+		"propertyType": {
+			"Apartment": "Apartment",
+			"Farm": "Farm",
+			"Office": "Office",
+			"Retail": "Retail",
+			"Separate House": "Separate House",
+			"Warehouse": "Warehouse"
+		},
+		"status": {
+			"Assigned": "Assigned",
+			"Canceled": "Canceled",
+			"Completed": "Completed",
+			"In Process": "In Process",
+			"Lost": "Lost",
+			"New": "New"
+		},
+		"type": {
+			"Rent": "Rent",
+			"Sale": "Sale"
+		}
+	},
+	"presetFilters": {
+		"actual": "Actual",
+		"actualRent": "Rent Actual",
+		"actualSale": "Sale Actual",
+		"completed": "Completed"
+	}
+}

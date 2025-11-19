@@ -1,0 +1,130 @@
+{
+	"actionTypes": {
+		"applyAssignmentRule": "Použít pravidlo přiřazení",
+		"createAlert": "Vytvořit upozornění",
+		"createNotification": "Vytvořit notifikaci",
+		"duplicateEntity": "Duplikovat subjekt",
+		"executeFormula": "Vykonat formula skript",
+		"makeFollowed": "Začít sledovat",
+		"relateWithEntity": "Propojit s jiným záznamem",
+		"runService": "Spustit servisní akci",
+		"sendRequest": "Odeslat požadavek HTTP",
+		"startBpmnProcess": "Spusťit proces BPM",
+		"triggerWorkflow": "Spustit workflow",
+		"unrelateFromEntity": "Odpojit od jiného záznamu",
+		"updateCreatedEntity": "Aktualizovat vytvořený záznam",
+		"updateEntity": "Aktualizovat subjekt",
+		"updateProcessEntity": "Aktualizovat záznam procesu"
+	},
+	"emailAddressOptions": {
+		"": "Žádný",
+		"specifiedContacts": "Specifikované kontakty",
+		"system": "Systém"
+	},
+	"fields": {
+		"assignmentRule": "Pravidlo přiřazení",
+		"category": "Kategorie",
+		"headers": "Záhlaví",
+		"linkList": "Propojte s cílovou entitou prostřednictvím vztahů",
+		"linkListShort": "Odkazy",
+		"manualAccessRequiredInForm": "Vyžadovaná úroveň práv",
+		"manualConfirmationInForm": "Vyžadovat manuální potvrzení",
+		"manualConfirmationTextInForm": "Text při manuálním potvrzení",
+		"manualDynamicLogicInForm": "Podmínky pro zobrazení",
+		"manualElementTypeInForm": "Typ prvku ve formuláři",
+		"manualLabelInForm": "Název",
+		"manualStyleInForm": "Styl",
+		"manualTeamsInForm": "Pro týmy",
+		"name": "Název",
+		"optOutLink": "Odkaz pro odhlášení",
+		"processOrder": "Pořadí zpracování",
+		"requestContentType": "Typ obsahu",
+		"requestType": "Typ požadavku",
+		"target": "Cíl",
+		"targetTeam": "Cílový tým",
+		"targetUserPosition": "Cílová pozice uživatele"
+	},
+	"labels": {
+		"Actions": "Akce",
+		"Add Action": "Přidat akci",
+		"Add Condition": "Přidat podmínku",
+		"Created": "Vytvořeno",
+		"Email Template": "Emailová šablona",
+		"Entity Type": "Typ entity",
+		"Field": "Pole",
+		"Formula": "Vzorec",
+		"Manage Categories": "Spravovat kategorie",
+		"Manual Trigger": "Manuální spouštění",
+		"Process": "Proces",
+		"Scheduled Trigger": "Naplánované spuštění",
+		"Skip Hooks": "Přeskočit hooky",
+		"Workflow": "Workflow",
+		"Workflow Rule": "Pravidlo workflow",
+		"additionalParameters": "Další parametry (v JSON formátu)",
+		"changed": "Změněno",
+		"contains": "Obsahuje",
+		"doNotStore": "Neukládat odeslané e-maily",
+		"iconClass": "Ikona",
+		"months": "Měsíce",
+		"notChanged": "Není změněno",
+		"notContains": "Neobsahuje",
+		"today": "Dnes"
+	},
+	"messages": {
+		"alertTemplateHelpText": "Dostupné proměnné:\n{$fieldName} - Jakékoli pole entity (např. {$name}, {$status})\n{$$entityLink} - Kliknutelný odkaz na entitu\n{$$user} - Aktuální uživatel\n{$$entity} - Cílový záznam\n\nPříklad:\nPřidán nový záznam: {$name}\nZobrazit: {$$entityLink}",
+		"jsonInvalid": "Neplatný JSON"
+	},
+	"options": {
+		"manualAccessRequired": {
+			"admin": "Pouze Admin",
+			"edit": "K úpravě",
+			"read": "Ke čtení"
+		},
+		"manualElementType": {
+			"Button": "Tlačítko",
+			"Dropdown-Item": "V dropdownu"
+		},
+		"manualStyle": {
+			"danger": "Nebezpečí",
+			"default": "Výchozí",
+			"info": "Informace",
+			"primary": "Primární",
+			"success": "Úspěch",
+			"warning": "Varování"
+		},
+		"subjectType": {
+			"today": "Dnes/nyní",
+			"typeOf": "typu entity"
+		},
+		"type": {
+			"afterRecordCreated": "Po vytvoření záznamu",
+			"afterRecordSaved": "Po uložení záznamu (po aktualizaci nebo vytvoření)",
+			"afterRecordUpdated": "Po aktualizaci záznamu",
+			"manual": "Manuální"
+		}
+	},
+	"serviceActions": {
+		"convertCurrency": "Převést měnu",
+		"generateAndSendPassword": "Generovat heslo",
+		"optOut": "Odhlášení",
+		"sendEventInvitations": "Poslat pozvánky",
+		"sendInEmail": "Odeslat e-mailem"
+	},
+	"serviceActionsHelp": {
+		"addSalesOrderItemList": "Příklad: \n``` {\"itemList\": [{\"number\": 1, \"procuctId\": \"productId\", \"name\": \"název produktu\", \"listPrice\": 100, \"unitPrice\": 100}] } ``",
+		"convertCurrency": "Volitelný parametr: targetCurrency. Pokud není zadán, převede se na výchozí měnu.",
+		"generateAndSendPassword": "Bude vygenerováno nové heslo a odesláno na e-mailovou adresu uživatele.",
+		"optOut": "Volitelný parametr: targetListId. Pokud není zadán, označí odhlášenou e-mailovou adresu. \n Příklad: `` {\"targetListId\": \"TARGET_LIST_ID\"} `` \"",
+		"sendInEmail": "Parametry: \n * templateId - ID šablony PDF * emailTemplateId - ID šablony e-mailu * příjemci (volitelný parametr); ve výchozím nastavení bude odeslána na fakturační kontakt nebo na účet; příklad: `link: account.assignedUserʻExample:` `{\" templateId \":\" TEMPLATE_ID \",\" emailTemplateId \":\" EMAIL_TEMPLATE_ID \",\" to \":\" link: billingContact \"}\" \""
+	},
+	"texts": {
+		"allMustBeMet": "Všechny musí být splněny",
+		"atLeastOneMustBeMet": "Alespoň jedna musí být splněna",
+		"formulaInfo": "Podmínky jakékoli složitosti v Espo formula skriptu"
+	},
+	"tooltips": {
+		"manualElementType": "**Tlačítko**: Zobrazí se jako samostatné tlačítko v detailu záznamu\n**V dropdownu**: Zobrazí se jako položka v dropdown menu v detailu záznamu",
+		"requestContent": "Ve formátu JSON. \nDostupné zástupné symboly: * `{$ attribute}` * * {$$ variable} `",
+		"requestHeaders": "Další záhlaví. \nFormát: `` `klíč: hodnota``ʻDostupné zástupné symboly: *` {$ attribute} `* * {$$ variable}`"
+	}
+}

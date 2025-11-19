@@ -1,0 +1,60 @@
+{
+	"fieldTypes": {
+		"array": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/multi-enum"
+		},
+		"checklist": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/multi-enum"
+		},
+		"currentUserRoles": {
+			"typeList": [
+				"contains",
+				"notContains"
+			],
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/current-user-roles"
+		},
+		"currentUserTeams": {
+			"typeList": [
+				"contains",
+				"notContains"
+			],
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/current-user-teams"
+		},
+		"enum": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/enum"
+		},
+		"file": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/link"
+		},
+		"id": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/enum"
+		},
+		"image": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/link"
+		},
+		"link": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/link"
+		},
+		"linkMultiple": {
+			"typeList": [
+				"isEmpty",
+				"isNotEmpty",
+				"contains",
+				"notContains"
+			],
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/link-multiple"
+		},
+		"linkOne": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/link"
+		},
+		"linkParent": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/link-parent"
+		},
+		"multiEnum": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/multi-enum"
+		},
+		"urlMultiple": {
+			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/multi-enum"
+		}
+	}
+}

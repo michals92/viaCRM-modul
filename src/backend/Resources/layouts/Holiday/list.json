@@ -1,0 +1,13 @@
+[
+	{
+		"name": "date",
+		"link": true
+	},
+	{
+		"name": "name",
+		"link": true
+	},
+	{
+		"name": "langCode"
+	}
+]

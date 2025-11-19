@@ -1,0 +1,30 @@
+{
+	"acl": true,
+	"aclPortal": true,
+	"aclPortalLevelList": [
+		"all",
+		"account",
+		"contact",
+		"own",
+		"no"
+	],
+	"activity": true,
+	"activityStatusList": [
+		"active"
+	],
+	"calendar": true,
+	"comments": true,
+	"customizable": true,
+	"entity": true,
+	"importable": true,
+	"kanbanStatusIgnoreList": [
+		"Dropped"
+	],
+	"layouts": true,
+	"module": "Autocrm",
+	"notifications": true,
+	"object": true,
+	"stream": true,
+	"tab": true,
+	"type": "Event"
+}

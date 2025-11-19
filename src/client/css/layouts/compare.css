@@ -1,0 +1,55 @@
+.record-grid.record-grid-compare {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-gap: 10px;
+}
+
+/* New inner grid: middle (left column) and attachments (right column) */
+.left .content-wrapper {
+	display: grid;
+	grid-template-columns: 40% 60%;
+}
+
+/* Optionally, ensure that each column stretches to a minimum height */
+.left .content-wrapper > .middle,
+.left .content-wrapper > .attachments {
+	padding-right: 5px;
+}
+
+/* Existing panel styling can remain, or further adjustments can be made */
+.record-grid.record-grid-compare > .attachments > .panel.panel-default {
+	height: 100%;
+}
+
+.record-grid.record-grid-compare > .attachments > .panel.panel-default > .panel-body {
+	height: 100%;
+}
+
+.record-grid.record-grid-compare > .attachments > .panel.panel-default > .panel-body > .attachment-container {
+	height: 100%;
+}
+
+.record-grid.record-grid-compare .attachments > .panel.panel-default > .panel-body > .attachment-container {
+	height: 100%;
+}
+
+.record-grid.record-grid-compare .attachments {
+	display: contents;
+}
+
+.record-grid.record-grid-compare .attachments > .panel.panel-default {
+	height: auto;
+}
+
+.record-grid.record-grid-compare .attachments > .panel.panel-default > .panel-body {
+	height: 90%;
+	overflow: hidden !important;
+}
+
+.record-grid.record-grid-compare .attachments > .panel.panel-default > .panel-body > .panel-body iframe {
+	height: 95% !important;
+}
+
+div.attachments > div > div.panel-body > div.attachment-container > iframe {
+	height: 95% !important;
+}

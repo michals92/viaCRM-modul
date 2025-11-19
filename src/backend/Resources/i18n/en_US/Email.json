@@ -1,0 +1,17 @@
+{
+	"labels": {
+		"Create Meeting": "Create Meeting",
+		"View in Browser": "View email in Browser"
+	},
+	"messages": {
+		"attachmentsTotalSizeExceedsMaximum": "Total attachment size ({size}MB) exceeds the maximum allowed email size ({maxSize}MB). Please reduce the size or number of attachments."
+	},
+	"options": {
+		"takenStatus": {
+			"Accepted": "Accepted",
+			"BeingHandled": "Being handled",
+			"Taken": "Taken"
+		}
+	},
+	"takenStatus": "Taken Status"
+}

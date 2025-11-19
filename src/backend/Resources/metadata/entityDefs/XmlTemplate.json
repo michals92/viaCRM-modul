@@ -1,0 +1,64 @@
+{
+	"fields": {
+		"body": {
+			"type": "wysiwyg",
+			"view": "autocrm:views/xml-template/fields/body"
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"entityType": {
+			"type": "enum",
+			"required": true,
+			"view": "autocrm:views/xml-template/fields/entity-type",
+			"translation": "Global.scopeNames"
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"trim": true,
+			"pattern": "$noBadCharacters"
+		},
+		"title": {
+			"type": "varchar"
+		}
+	},
+	"links": {
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"teams": {
+			"type": "hasMany",
+			"entity": "Team",
+			"relationName": "entityTeam"
+		},
+		"xmlFeeds": {
+			"type": "hasMany",
+			"entity": "XmlFeed",
+			"foreign": "template"
+		}
+	},
+	"collection": {
+		"orderBy": "name",
+		"order": "asc"
+	},
+	"optimisticConcurrencyControl": true
+}

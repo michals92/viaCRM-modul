@@ -1,0 +1,16 @@
+{
+	"messages": {
+		"couldNotAddFollowerUserHasNoAccessToStream": "Nelze přidat uživatele '{userName}' k sledujícím. Uživatel nemá přístup 'stream' k záznamu.",
+		"infoMention": "Zadejte ** @ uživatelské jméno ** a uveďte uživatele v příspěvku.",
+		"infoSyntax": "K dispozici syntaxe markdown"
+	},
+	"syntaxItems": {
+		"blockquote": "bloková citace",
+		"code": "kód",
+		"deletedText": "smazaný text",
+		"emphasizedText": "zvýrazněný text",
+		"link": "odkaz",
+		"multilineCode": "víceřádkový kód",
+		"strongText": "tučný text"
+	}
+}

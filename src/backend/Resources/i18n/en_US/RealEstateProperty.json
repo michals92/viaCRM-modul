@@ -1,0 +1,71 @@
+{
+	"fields": {
+		"account": "Account",
+		"address": "Address",
+		"addressMap": "Map",
+		"assignedUser": "Assigned User",
+		"bathroomCount": "Bathroom Count",
+		"bedroomCount": "Bedroom Count",
+		"contactRole": "Role",
+		"contacts": "Contacts",
+		"documents": "Documents",
+		"floor": "Floor",
+		"floorCount": "Floor Count",
+		"images": "Images",
+		"location": "Location",
+		"matchingRequest": "Matching Request",
+		"matchingRequestCount": "Matching Count",
+		"number": "Number",
+		"price": "Price",
+		"priceConverted": "Price (Converted)",
+		"requestType": "Request Type",
+		"sellers": "Sellers",
+		"square": "Square",
+		"status": "Status",
+		"type": "Type",
+		"yearBuilt": "Year Built"
+	},
+	"labels": {
+		"Create RealEstateProperty": "Create Property",
+		"Locations": "Locations",
+		"Matching Requests": "Matching Requests"
+	},
+	"links": {
+		"account": "Account",
+		"contacts": "Contacts",
+		"documents": "Documents",
+		"location": "Location",
+		"matchingRequests": "Matching Requests",
+		"opportunities": "Opportunities"
+	},
+	"options": {
+		"requestType": {
+			"Rent": "Rent",
+			"Sale": "Sale"
+		},
+		"status": {
+			"Assigned": "Assigned",
+			"Canceled": "Canceled",
+			"Completed": "Completed",
+			"In Process": "In Process",
+			"Lost": "Lost",
+			"New": "New"
+		},
+		"type": {
+			"Apartment": "Apartment",
+			"Farm": "Farm",
+			"Land Lot": "Land Lot",
+			"Office": "Office",
+			"Retail": "Retail",
+			"Room": "Room",
+			"Separate House": "Separate House",
+			"Warehouse": "Warehouse"
+		}
+	},
+	"presetFilters": {
+		"actual": "Actual",
+		"actualRent": "Rent Actual",
+		"actualSale": "Sale Actual",
+		"completed": "Completed"
+	}
+}

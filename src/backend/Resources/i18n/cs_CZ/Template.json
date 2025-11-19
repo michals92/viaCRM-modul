@@ -1,0 +1,51 @@
+{
+	"fields": {
+		"body": "Tělo",
+		"bottomMargin": "Spodní okraj",
+		"entityType": "Typ entity",
+		"fontFace": "Písmo",
+		"footer": "Zápatí",
+		"footerPosition": "Pozice zápatí",
+		"header": "Záhlaví",
+		"headerPosition": "Pozice záhlaví",
+		"leftMargin": "Levý okraj",
+		"name": "Název",
+		"pageFormat": "Formát papíru",
+		"pageHeight": "Výška stránky (mm)",
+		"pageOrientation": "Orientace stránky",
+		"pageWidth": "Šířka stránky (mm)",
+		"printFooter": "Tisk zápatí",
+		"printHeader": "Tisknout záhlaví na každé stránce",
+		"rightMargin": "Pravý okraj",
+		"status": "Stav",
+		"style": "Styl",
+		"title": "Titul",
+		"topMargin": "Horní okraj",
+		"variables": "Dostupné zástupné symboly"
+	},
+	"labels": {
+		"Create Template": "Vytvořit šablonu"
+	},
+	"options": {
+		"pageFormat": {
+			"Custom": "Vlastní"
+		},
+		"pageOrientation": {
+			"Landscape": "Na šířku",
+			"Portrait": "Na výšku"
+		},
+		"placeholders": {
+			"now": "Nyní (datum-čas)",
+			"pagebreak": "Zalomení stránky",
+			"today": "Dnes (datum)"
+		},
+		"status": {
+			"Active": "Aktivní",
+			"Inactive": "Neaktivní"
+		}
+	},
+	"tooltips": {
+		"footer": "K vytištění čísla stránky použijte {pageNumber}.",
+		"variables": "Zkopírujte a vložte potřebný zástupný symbol do záhlaví, těla nebo zápatí."
+	}
+}

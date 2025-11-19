@@ -1,0 +1,8 @@
+.partitioned-container .partition .partition-header {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.partitioned-container .partition .list-buttons-container {
+	display: inline-block;
+}

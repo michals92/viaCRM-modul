@@ -1,0 +1,95 @@
+{
+	"fieldDefs": {
+		"readOnly": true
+	},
+	"params": [
+		{
+			"name": "currentValue",
+			"type": "varchar",
+			"required": true,
+			"view": "autocrm:views/admin/field-manager/fields/own-field/own-field"
+		},
+		{
+			"name": "targetValue",
+			"type": "varchar",
+			"required": true,
+			"view": "autocrm:views/admin/field-manager/fields/own-field/own-field"
+		},
+		{
+			"name": "labelsEnabled",
+			"type": "bool",
+			"required": true,
+			"default": true
+		},
+		{
+			"name": "labelsFontWidth",
+			"type": "int",
+			"required": true,
+			"default": 14
+		},
+		{
+			"name": "labelsFormat",
+			"type": "enum",
+			"required": true,
+			"default": "int",
+			"options": [
+				"int",
+				"float"
+			]
+		},
+		{
+			"name": "startColor",
+			"type": "colorpicker",
+			"required": true,
+			"default": "#e8e2ca"
+		},
+		{
+			"name": "endColor",
+			"type": "colorpicker",
+			"required": true,
+			"default": "#3e6c0a"
+		},
+		{
+			"name": "labelColor",
+			"type": "colorpicker",
+			"required": true,
+			"default": "#000000"
+		},
+		{
+			"name": "backgroundColor",
+			"type": "colorpicker",
+			"required": true,
+			"default": "#e0e0e0"
+		},
+		{
+			"name": "height",
+			"type": "int",
+			"required": true,
+			"default": 100
+		},
+		{
+			"name": "width",
+			"type": "int",
+			"required": true,
+			"default": 500
+		}
+	],
+	"view": "autocrm:views/fields/progress-bar",
+	"notCreatable": false,
+	"filter": true,
+	"readOnly": true,
+	"fieldTypeList": [
+		"int",
+		"float",
+		"number",
+		"currencyConverted"
+	],
+	"fieldTypeViewMap": {
+		"int": "views/fields/foreign-int",
+		"float": "views/fields/foreign-float",
+		"number": "views/fields/foreign-varchar",
+		"currencyConverted": "views/fields/foreign-currency-converted"
+	},
+	"notStorable": true,
+	"skipOrmDefs": true
+}

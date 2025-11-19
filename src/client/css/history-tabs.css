@@ -1,0 +1,108 @@
+.history-tabs-container {
+	flex: 1;
+	min-width: 0;
+	max-width: calc(100vw - 400px);
+	margin-left: 10px;
+	overflow: hidden;
+}
+
+.history-tabs-container .history-tabs {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: stretch;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+}
+
+.history-tabs-container .history-tab {
+	position: relative;
+	display: flex;
+	flex: 0 0 20%;
+	align-items: center;
+	justify-content: center;
+	min-width: 150px;
+	height: 100%;
+	padding: 0 10px;
+	cursor: pointer;
+	opacity: 0.5;
+	transition: opacity 0.2s ease-in-out;
+}
+
+.history-tabs-container .history-tab.active {
+	cursor: default;
+	border: 1px solid var(--panel-default-border);
+	border-bottom: 0;
+	opacity: 1;
+}
+
+.history-tabs-container .history-tab.active:active {
+	pointer-events: none;
+}
+
+.history-tabs-container .history-tab:hover {
+	opacity: 1;
+}
+
+.history-tabs-container .close-tab {
+	position: absolute;
+	top: 50%;
+	right: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 16px;
+	height: 16px;
+	pointer-events: all;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	opacity: 1;
+	transform: translateY(-50%);
+}
+
+.history-tabs-container .close-tab:hover {
+	background: #ff6b6b;
+	border-color: #ff6b6b;
+}
+
+.history-tabs-container .history-tab .title {
+	padding-right: 22px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.history-tabs-container .history-tab:hover .title {
+	max-width: calc(100% - 26px);
+}
+
+.history-tabs-container .close-tab i {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 0;
+	margin: 0;
+	font-size: 10px;
+	line-height: 1;
+	color: #666;
+	transform: translate(-50%, -50%);
+}
+
+.history-tabs-container .close-tab:hover i {
+	color: white;
+}
+
+/* When navbar is expanded (body without minimized class): hide history tabs under 1024px */
+@media screen and (width <= 1023px) {
+	body:not(.minimized) .history-tabs-container {
+		display: none !important;
+	}
+}
+
+/* When navbar is collapsed (body has minimized class): hide history tabs under 868px */
+@media screen and (width <= 867px) {
+	body.minimized .history-tabs-container {
+		display: none !important;
+	}
+}

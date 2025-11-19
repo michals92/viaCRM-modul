@@ -1,0 +1,16 @@
+{
+	"fields": {
+		"meetingType": {
+			"type": "enum",
+			"default": "",
+			"options": [
+				"",
+				"Project",
+				"Business",
+				"Acquisition",
+				"Maintenance",
+				"Social"
+			]
+		}
+	}
+}

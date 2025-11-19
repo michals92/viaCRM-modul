@@ -1,0 +1,48 @@
+{
+	"fields": {
+		"attachments": "Přílohy",
+		"body": "Text",
+		"bodyPlain": "Text (prostý)",
+		"categories": "Kategorie",
+		"description": "Popis",
+		"expirationDate": "Datum vypršení",
+		"language": "Jazyk",
+		"name": "Název",
+		"portals": "Portály",
+		"publishDate": "Datum publikování",
+		"status": "Stav",
+		"type": "Typ"
+	},
+	"labels": {
+		"Any": "Jakýkoliv",
+		"Create KnowledgeBaseArticle": "Vytvořit článek",
+		"Move Down": "Posunout dolů",
+		"Move Up": "Posunout nahoru",
+		"Move to Bottom": "Přesunout dolů",
+		"Move to Top": "Přesunout nahoru",
+		"Send in Email": "Odeslat emailem"
+	},
+	"links": {
+		"cases": "Případy",
+		"categories": "Kategorie",
+		"opportunities": "Příležitosti",
+		"portals": "Portály"
+	},
+	"options": {
+		"status": {
+			"Archived": "Archivováno",
+			"Draft": "Návrh",
+			"In Review": "Schvaluje se",
+			"Published": "Publikováno"
+		},
+		"type": {
+			"Article": "Článek"
+		}
+	},
+	"presetFilters": {
+		"published": "Publikováno"
+	},
+	"tooltips": {
+		"portals": "Článek bude k dispozici pouze na určených portálech."
+	}
+}

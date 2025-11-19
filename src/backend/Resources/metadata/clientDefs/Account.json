@@ -1,0 +1,19 @@
+{
+	"viewSetupHandlers": {
+		"record/edit": [
+			"autocrm:handlers/view-setup/account/record/edit/fill-from-ares"
+		]
+	},
+	"detailActionList": [
+		"__APPEND__",
+		{
+			"label": "Verify VAT Number",
+			"name": "verifyVatNumber",
+			"acl": "read",
+			"data": {
+				"handler": "autocrm:handlers/actions/verify-vat-number"
+			},
+			"checkVisibilityFunction": "visible"
+		}
+	]
+}

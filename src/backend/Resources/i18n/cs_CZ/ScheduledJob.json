@@ -1,0 +1,39 @@
+{
+	"fields": {
+		"scheduling": "Plánování",
+		"status": "Stav"
+	},
+	"labels": {
+		"As often as possible": "Tak často, jak je to možné",
+		"Create ScheduledJob": "Vytvořit naplánovanou úlohu"
+	},
+	"links": {
+		"log": "Log"
+	},
+	"options": {
+		"job": {
+			"AuthTokenControl": "Kontrola autentizačních tokenů",
+			"CNBSync": "Synchronizace měnových kurzů s CNB",
+			"CheckEmailAccounts": "Zkontrolovat osobní emaily (IMAP)",
+			"CheckEwsEmailAccounts": "Zkontrolovat osobní emaily (EWS)",
+			"CheckEwsInboundEmails": "Zkontrolovat skupinové emaily (EWS)",
+			"CheckInboundEmails": "Zkontrolovat skupinové emaily (IMAP)",
+			"CheckNewVersion": "Kontrola nové verzi",
+			"CheckRecurringRecords": "Naplánovat opakující se záznamy",
+			"ControlKnowledgeBaseArticleStatus": "Kontrola statusu článku znalostní báze",
+			"PreloadHolidays": "Předčítání svátků pro budoucí roky",
+			"ProcessMassEmail": "Posílání hromadných emailů",
+			"ProcessWebhookQueue": "Zpracování fronty webhooků",
+			"RefreshMicrosoftGraphSubscriptions": "Obnova Microsoft Graph odběry",
+			"SendEmailNotifications": "Odesílání emailových oznámení",
+			"SendScheduledEmails": "Posílání naplánovaných emailů"
+		},
+		"status": {
+			"Active": "Aktivní",
+			"Inactive": "Neaktivní"
+		}
+	},
+	"tooltips": {
+		"scheduling": "Crontabová notace. Definuje frekvenci spouštění úloh. \n` * / 5 * * * * `- každých 5 minut`0 * / 2 * * *` - každé 2 hodiny`30 1 * * * `- v 01:30 jednou denně` 0 0 1 * * `- první den v měsíci"
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"fields": {
+		"invalid": "Neplatný",
+		"lower": "Název malými písmeny",
+		"optOut": "Odhlášený"
+	},
+	"presetFilters": {
+		"orphan": "Sirotek"
+	}
+}

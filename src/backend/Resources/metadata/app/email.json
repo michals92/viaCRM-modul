@@ -1,0 +1,5 @@
+{
+	"actionClassNameMap": {
+		"createAlert": "Espo\\Modules\\Autocrm\\Core\\Email\\Actions\\CreateAlert"
+	}
+}

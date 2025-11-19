@@ -1,0 +1,74 @@
+{
+	"easyEmailEditorLabels": {
+		"Allows you to control on which breakpoint the layout should go desktop/mobile.": "Umožňuje nastavit breakpoint, na kterém se má layout přepnout na desktop nebo mobilní.",
+		"Background": "Pozadí",
+		"Breakpoint": "Breakpoint",
+		"Column": "Sloupec",
+		"Configuration": "Konfigurace",
+		"Content background": "Pozadí obsahu",
+		"Edit": "Editace",
+		"Email Setting": "Nastavení emailu",
+		"Exit Full Screen": "Ukončit celou obrazovku",
+		"Export Template": "Export šablony",
+		"Font family": "Font",
+		"Font size": "Velikost písma",
+		"Font weight": "Tloušťka písma",
+		"Full Screen": "Celá obrazovka",
+		"Import Template": "Import šablony",
+		"Import font": "Import fontu",
+		"Layer": "Vrstvy",
+		"No matching components": "Žádné odpovídající komponenty",
+		"Page": "Stránka",
+		"Points to a hosted css file": "Odkaz na css soubor",
+		"Section": "Sekce",
+		"Source code": "Zdrojový kód",
+		"SubTitle": "Podtitul",
+		"Subject": "Předmět",
+		"Text color": "Barva textu",
+		"Theme Setting": "Nastavení motivu",
+		"User style": "Uživatelské CSS",
+		"Width": "Šířka",
+		"attributes": "- atributy"
+	},
+	"fields": {
+		"bodyEasyEmail": "Tělo",
+		"category": "Kategorie",
+		"insertField": "Vložit pole",
+		"isHtml": "Je HTML",
+		"oneOff": "Jednorázový",
+		"status": "Stav"
+	},
+	"labels": {
+		"Available placeholders": "Dostupné zástupné symboly",
+		"Default": "Výchozí",
+		"Easy Email Editor": "Easy Email editor",
+		"Info": "Info"
+	},
+	"messages": {
+		"defaultTypeDescription": "Ideální pro jednoduché textové nebo HTML šablony emailů.",
+		"easyEmailTypeDescription": "Ideální pro komlexní HTML šablony emailů s obrázky, odkazy, složitým rozvržením a dalšími funkcemi. Používá plnohodnotný editor emailů.",
+		"infoText": "Dostupné zástupné symboly: \n{optOutUrl} &#8211; URL odkazu pro odhlášení z odběru; {optOutLink} &#8211; odkaz pro odhlášení."
+	},
+	"options": {
+		"status": {
+			"Active": "Aktivní",
+			"Inactive": "Neaktivní"
+		}
+	},
+	"placeholderTexts": {
+		"currentYear": "Aktuální rok",
+		"now": "Aktuální datum a čas",
+		"optOutLink": "Odkaz pro odhlášení",
+		"optOutUrl": "URL odkazu pro odhlášení",
+		"siteUrl": "URL stránky",
+		"today": "Dnešní datum",
+		"viewInBrowserLink": "odkaz na zobrazení emailu v prohlížeči"
+	},
+	"presetFilters": {
+		"actual": "Aktuální"
+	},
+	"tooltips": {
+		"body": "Můžete používat zástupné symboly ve formátu {Entity.field}:\nPříklady: {Account.name}, {Contact.emailAddress}, {Task.dateStart}\n\nEntity může být jakákoliv entita v systému.",
+		"oneOff": "Zkontrolujte, zda tuto šablonu použijete pouze jednou. Např. pro hromadný e-mail."
+	}
+}

@@ -1,0 +1,18 @@
+[
+	"__APPEND__",
+	{
+		"tabLabel": "$label:Appearance",
+		"tabBreak": true,
+		"rows": [
+			[
+				{
+					"name": "color"
+				},
+				{
+					"name": "iconClass"
+				}
+			]
+		],
+		"tabIconClass": "fas fa-paint-brush"
+	}
+]

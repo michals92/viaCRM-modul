@@ -1,0 +1,34 @@
+{
+	"fields": {
+		"sicCode": "SIC Code",
+		"slovakVatId": "Slovak VAT ID",
+		"vatId": "VAT ID"
+	},
+	"fillProviders": {
+		"Ares": "Fill from ARES",
+		"Finstat": "Fill from FinStat"
+	},
+	"labels": {
+		"Fill Data": "Fill Data",
+		"Verify VAT Number": "Verify VAT Number"
+	},
+	"links": {
+		"properties": "Properties"
+	},
+	"messages": {
+		"couldNotFindCompanyByName": "Could not find company with name \"{name}\"",
+		"couldNotFindCompanyBySicCode": "Could not find company with SIC code \"{sicCode}\"",
+		"errorWhileFetchingFinstat": "Error while fetching Finstat",
+		"invalidAresResponse": "Invalid ARES response",
+		"invalidFinstatResponse": "Invalid Finstat response",
+		"invalidSicCode": "Invalid SIC code",
+		"missingSicCode": "Please enter your SIC code",
+		"vatIdInvalidformat": "VAT ID is not in the correct format",
+		"vatNumberIsInvalid": "VAT number is invalid",
+		"vatNumberIsValid": "VAT number is valid",
+		"vatVerificationFailed": "VAT verification failed"
+	},
+	"tooltips": {
+		"slovakVatId": "\"IČ DPH\" is an identification number for VAT purposes in Slovakia. It is a 10-digit number starting with SK."
+	}
+}

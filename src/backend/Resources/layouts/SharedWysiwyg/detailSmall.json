@@ -1,0 +1,24 @@
+[
+	{
+		"rows": [
+			[
+				{
+					"name": "name"
+				},
+				false
+			],
+			[
+				{
+					"name": "content",
+					"fullWidth": true
+				}
+			],
+			[
+				{
+					"name": "description",
+					"fullWidth": true
+				}
+			]
+		]
+	}
+]

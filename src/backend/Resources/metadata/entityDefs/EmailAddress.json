@@ -1,0 +1,15 @@
+{
+	"fields": {
+		"account": {
+			"type": "link"
+		}
+	},
+	"links": {
+		"account": {
+			"type": "belongsTo",
+			"entity": "Account",
+			"foreign": "accountEmailAddresses"
+		}
+	},
+	"repositoryClassName": "Espo\\Modules\\Autocrm\\Classes\\Repositories\\EmailAddress"
+}

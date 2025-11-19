@@ -1,0 +1,25 @@
+{
+	"fieldDefs": {
+		"type": "jsonArray",
+		"storeArrayValues": true
+	},
+	"validationList": [
+		"array"
+	],
+	"mandatoryValidationList": [
+		"array"
+	],
+	"params": [
+		"__APPEND__",
+		{
+			"name": "targetEntityType",
+			"type": "varchar",
+			"required": false,
+			"view": "views/fields/entity-type"
+		}
+	],
+	"view": "autocrm:views/fields/array-of-arrays",
+	"notSortable": true,
+	"notMergeable": true,
+	"filter": false
+}

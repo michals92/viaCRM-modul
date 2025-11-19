@@ -1,0 +1,12 @@
+{
+	"fields": {
+		"description": "Description",
+		"iconType": "Icon Type",
+		"iconValue": "Icon Value",
+		"name": "Name"
+	},
+	"labels": {
+		"Create CustomIcon": "Create Custom Icon"
+	},
+	"links": {}
+}

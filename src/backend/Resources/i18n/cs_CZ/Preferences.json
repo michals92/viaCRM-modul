@@ -1,0 +1,93 @@
+{
+	"fields": {
+		"addCustomTabs": "Přidat vlastní záložky",
+		"assignmentEmailNotificationsIgnoreEntityTypeList": "Oznámení o přiřazení e-mailu",
+		"assignmentNotificationsIgnoreEntityTypeList": "Oznámení o přiřazení v aplikaci",
+		"autoFollowEntityTypeList": "Automatické sledování entit",
+		"calendarColors": "Barvy kalendáře",
+		"calendarMaxEventStack": "Maximální počet událostí v jedné buňce kalendáře před sloučením",
+		"calendarScrollHour": "Základní hodina kalendáře",
+		"calendarSlotDuration": "Délka políčka v kalendáři",
+		"collapsibleDashlets": "Schovávání dashletů",
+		"customFiltersAboveList": "Zobrazit vlastní filtry nad seznamem",
+		"dashboardLayout": "Rozvržení Dashboardu",
+		"dashboardLocked": "Uzamknout Dashboard",
+		"dashboardTabList": "Seznam záložek dashboardu",
+		"defaultEmailFolder": "Výchozí emailová složka",
+		"defaultRemindersTask": "Výchozí upozornění pro úkol",
+		"disableIntroGuide": "Zakázat úvodního průvodce",
+		"doNotFillAssignedUserIfNotRequired": "Při vytváření záznamu předem nevyplňujte přiřazeného uživatele",
+		"emailDoNotMarkAsReadList": "Ponechat nepřečteno v:",
+		"emailReplyForceHtml": "Odpovědět emailem v HTML",
+		"emailReplyToAllByDefault": "Odpovědět všem jako výchozí",
+		"emailUseExternalClient": "Použít externího emailového klienta",
+		"enableApertiaNewsInNavbar": "Zobrazovat Apertia novinky v horní liště",
+		"enableHistoryTabs": "Zapnout záložky s historií",
+		"enableHolidayInNavbar": "Zobrazovat svátky v horní liště",
+		"enableTeamSwitchingInNavbar": "Povolit přepínání týmů v horní liště",
+		"exportDelimiter": "Exportovat oddělovač",
+		"followCreatedEntities": "Automaticky sledovat vytvořené záznamy",
+		"followCreatedEntityTypeList": "Automaticky sledovat vytvořené záznamy konkrétních typů entit",
+		"followEntityOnStreamPost": "Automaticky sledovat záznam po zveřejnění ve streamu",
+		"listCheckboxSize": "Velikost checkboxu v seznamu",
+		"pageContentWidth": "Šířka obsahu",
+		"quickViewContextMenu": "Nahradit kontextové menu akcí zobrazení",
+		"reactionNotifications": "Notifikace v CRM ohledně reakcí",
+		"receiveAssignmentEmailNotifications": "E-mailová oznámení o přiřazení",
+		"receiveMentionEmailNotifications": "Emailová oznámení o zmínkách v příspěvcích",
+		"receiveStreamEmailNotifications": "Emailová upozornění na příspěvky a aktualizace stavu",
+		"scopeColorsDisabled": "Zakázat barvy rozsahu",
+		"signature": "Emailový podpis",
+		"signaturePosition": "Pozice podpisu",
+		"smtpUsername": "Uživatelské jméno",
+		"tabColorsDisabled": "Zakázat barvy záložek",
+		"tabList": "Seznam záložek",
+		"textSearchStoringDisabled": "Vypnout textové řazení filtrů",
+		"theme": "Téma",
+		"useCustomTabList": "Seznam vlastních záložek"
+	},
+	"labels": {
+		"AutoCRM": "AutoCRM",
+		"General": "Obecné",
+		"Locale": "Lokální nastavení",
+		"Misc": "Vedlejší",
+		"Navbar": "Navbar",
+		"Notifications": "Oznámení",
+		"Reset Dashboard to Default": "Nastavit Dashboard na Výchozí",
+		"User Interface": "Uživatelské prostředí"
+	},
+	"options": {
+		"listCheckboxSize": {
+			"extra": "Ohromný",
+			"large": "Velký",
+			"medium": "Střední",
+			"small": "Malý"
+		},
+		"pageContentWidth": {
+			"": "Normální",
+			"Wide": "Široký"
+		},
+		"readTypeList": {
+			"combinedView": "Kombinovaný režim",
+			"rightClickPreview": "Náhled při pravém kliknutí"
+		},
+		"signaturePosition": {
+			"append": "Pod odpovědí (na konci)",
+			"prepend": "Nad odpovědí (na začátku)"
+		}
+	},
+	"tabFields": {
+		"color": "Barva",
+		"iconClass": "Ikona",
+		"label": "Popisek"
+	},
+	"tooltips": {
+		"addCustomTabs": "Při zaškrtnutí budou vlastní záložky přidány k výchozím. V opačném případě nahradí výchozí záložky.",
+		"doNotFillAssignedUserIfNotRequired": "Při vytvoření záznamu nebude přiřazený uživatel vyplněn vlastním uživatelem, pokud není toto pole povinné.",
+		"emailDoNotMarkAsReadList": "Při zobrazení emailu jedním z těchto vybraných způsobů se stav emailu nenastaví na přečteno",
+		"followCreatedEntities": "Při vytváření nových záznamů budou automaticky sledovány, i když budou přiřazeny jinému uživateli.",
+		"followCreatedEntityTypeList": "Při vytváření nových záznamů vybraných typů entit budou automaticky sledovány, i když budou přiřazeny jinému uživateli.",
+		"listCheckboxSize": "Ovlivňuje checkbox v list layoutu- například v přehledu emailů.",
+		"signaturePosition": "Nastavte, kde se bude zobrazovat váš podpis při psaní e-mailů"
+	}
+}

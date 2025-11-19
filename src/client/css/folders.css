@@ -1,0 +1,26 @@
+.list-nested-categories .category-cell {
+	margin-top: 5px;
+}
+
+.list-nested-categories .category-cell .category-item {
+	padding-left: 10px;
+}
+
+.list-nested-categories .category-cell.has-color {
+	border-top-left-radius: var(--border-radius);
+	border-top-right-radius: var(--border-radius);
+	border-bottom-right-radius: var(--border-radius);
+	border-bottom-left-radius: var(--border-radius);
+}
+
+.folders-container .list-group > li[data-id='inbox'] > a > span.fas {
+	font-weight: 900;
+}
+
+.folders-container .list-group > li[data-id='important'] > a > span.fas,
+.folders-container .list-group > li[data-id='sent'] > a > span.fas,
+.folders-container .list-group > li[data-id='archive'] > a > span.fas,
+.folders-container .list-group > li[data-id='drafts'] > a > span.fas,
+.folders-container .list-group > li[data-id='trash'] > a > span.fas {
+	font-weight: 400;
+}

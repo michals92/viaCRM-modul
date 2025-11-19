@@ -1,0 +1,17 @@
+{
+	"labels": {
+		"RealEstate": "Nemovitosti"
+	},
+	"scopeNames": {
+		"RealEstateLocation": "Lokalita",
+		"RealEstateProperty": "Nemovitost",
+		"RealEstateRequest": "Požadavek",
+		"RealEstateSendMatchesQueueItem": "Položka fronty odesílání shod"
+	},
+	"scopeNamesPlural": {
+		"RealEstateLocation": "Lokality",
+		"RealEstateProperty": "Nemovitosti",
+		"RealEstateRequest": "Požadavky",
+		"RealEstateSendMatchesQueueItem": "Položky fronty odesílání shod"
+	}
+}

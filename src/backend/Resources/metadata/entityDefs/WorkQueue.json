@@ -1,0 +1,17 @@
+{
+	"fields": {
+		"assignedUser": {
+			"type": "link",
+			"view": "views/fields/assigned-user"
+		},
+		"name": {
+			"type": "varchar"
+		}
+	},
+	"links": {
+		"assignedUser": {
+			"type": "belongsTo",
+			"entity": "User"
+		}
+	}
+}

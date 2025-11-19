@@ -1,0 +1,19 @@
+[
+	"__APPEND__",
+	{
+		"rows": [
+			[
+				{
+					"name": "alertIconClass"
+				},
+				false,
+				false
+			],
+			[
+				{
+					"name": "alertMessage"
+				}
+			]
+		]
+	}
+]

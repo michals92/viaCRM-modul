@@ -1,0 +1,18 @@
+{
+	"labels": {
+		"Add User": "Přidat uživatele",
+		"Create Shared View": "Vytvořit sdílené zobrazení",
+		"Edit Shared View": "Upravit sdílené zobrazení",
+		"Manage Users": "Spravovat uživatele",
+		"Shared": "Sdílené",
+		"Shared Mode Options": "Možnosti sdíleného režimu",
+		"Toggle All Day": "Celodenní události",
+		"User List": "Seznam uživatelů",
+		"View Calendar": "Zobrazit kalendář",
+		"current": "aktuální",
+		"time": "čas"
+	},
+	"modes": {
+		"timeline": "Časová osa"
+	}
+}

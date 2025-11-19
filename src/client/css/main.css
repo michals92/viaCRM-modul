@@ -46,3 +46,387 @@ footer a[title*="EspoCRM"]::after {
     visibility: visible;
     font-size: 11px;
 }
+
+/* Imports - Keep in alphabetical order */
+@import 'aggregations.css';
+@import 'combined-email.css';
+@import 'custom-filters.css';
+@import 'email.css';
+@import 'field-highlighting.css';
+@import 'fields/bool.css';
+@import 'fields/dynamic-checklist.css';
+@import 'fields/electronic-signature.css';
+@import 'fields/link-multiple-with-columns.css';
+@import 'fields/wysiwyg.css';
+@import 'folders.css';
+@import 'history-tabs.css';
+@import 'layout-manager.css';
+@import 'layouts/compare.css';
+@import 'link-multiple-section.css';
+@import 'navbar/apertia-news.css';
+@import 'navbar/date-today.css';
+@import 'notification.css';
+@import 'partitioned-view.css';
+@import 'recurring-records.css';
+@import 'shepherd.css';
+@import 'tabs.css';
+@import 'team-switching.css';
+@import 'views/calendar.css';
+@import 'views/field-name.css';
+@import 'week-int.css';
+
+/* =================================================================
+   NAVBAR & UI COMPONENTS
+   ================================================================= */
+
+/* Enum */
+.enum-icon {
+    vertical-align: -0.4px;
+}
+
+/* Remove padding from email and phone field containers */
+.email-address-block.well,
+.phone-number-block.well {
+    padding: 0;
+    margin-bottom: 5px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Phone field border-radius adjustments when buttons are hidden */
+.phone-number.phone-no-left-radius {
+    border-top-left-radius: var(--border-radius) !important;
+    border-bottom-left-radius: var(--border-radius) !important;
+}
+
+.phone-number.phone-no-right-radius {
+    border-top-right-radius: var(--border-radius) !important;
+    border-bottom-right-radius: var(--border-radius) !important;
+}
+
+/* Email field border-radius adjustment when buttons are hidden */
+.email-address.email-no-right-radius {
+    border-top-right-radius: var(--border-radius) !important;
+    border-bottom-right-radius: var(--border-radius) !important;
+}
+
+/* Hide all buttons except add button on mobile viewports */
+@media screen and (width <= 767px) {
+    /* Hide email field buttons on mobile */
+    .email-address-block .input-group-btn .email-property,
+    .email-address-block .input-group-btn .btn-link {
+        display: none !important;
+    }
+
+    /* Hide phone field buttons and type selector on mobile */
+    .phone-number-block .input-group-btn .phone-property,
+    .phone-number-block .input-group-btn .btn-link,
+    .phone-number-block .input-group-item select[data-property-type="type"] {
+        display: none !important;
+    }
+
+    /* Adjust phone input border radius when type selector is hidden on mobile */
+    .phone-number-block .phone-number {
+        border-top-left-radius: var(--border-radius) !important;
+        border-bottom-left-radius: var(--border-radius) !important;
+    }
+
+    /* Ensure email and phone inputs take full width on mobile */
+    .email-address-block .email-address,
+    .phone-number-block .phone-number {
+        border-top-right-radius: var(--border-radius) !important;
+        border-bottom-right-radius: var(--border-radius) !important;
+    }
+}
+
+/* Email count badge */
+#email-count-badge {
+    position: absolute;
+    bottom: 5px;
+    left: 16px;
+    z-index: 10;
+    width: 26px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#email-count-badge .badge {
+    display: inline-block;
+    padding: 2px 5px;
+    font-size: 9px;
+    color: var(--white-color);
+    background-color: var(--brand-warning);
+}
+
+#content.container.content,
+.record-grid.record-grid-wide {
+    max-width: 100% !important;
+}
+
+/* Color picker */
+.colorpicker-selectors {
+    width: 138px;
+    height: auto;
+    text-align: center;
+}
+
+.colorpicker-selectors i {
+    float: none;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #555;
+}
+
+
+/* =================================================================
+   RECORD LISTS & FORMS
+   ================================================================= */
+
+/* Record list styles */
+table.table > tbody td[data-name='remove-cross'] > .list-row-buttons button,
+table.table > tbody td[data-name='sort-magnet'] > .list-row-buttons button {
+    padding: 0;
+}
+
+.list.edit-mode > table td {
+    overflow: visible;
+}
+
+.list:not(.edit-mode),
+.list-container:not(:has(.list.edit-mode)),
+.list-container:not(:has(.list.edit-mode)) > .list,
+.list:not(.edit-mode) > table {
+    overflow: visible !important;
+}
+
+.list.edit-mode {
+	overflow: visible !important;
+	scrollbar-width: auto !important;
+}
+
+.list-row-dropdown-menu {
+	position: fixed !important;
+    z-index: 1050;
+}
+
+.detail .panel,
+.detail .panel-body,
+.detail .record-grid {
+    overflow: visible !important;
+}
+
+.link-multiple-inline-edit {
+    position: absolute;
+    top: 0;
+    right: 8px;
+}
+
+/* Super compact view styles */
+.super-compact-summary:hover {
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.super-compact-size {
+    color: var(--link-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.super-compact-size:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/** ares field **/
+.sic-code-control .sic-fill-input {
+    display: inline-block;
+    width: calc(100% - 40px);
+}
+
+.sic-code-control .btn-fill-data {
+    float: right;
+}
+
+.sic-code-control {
+    clear: both;
+}
+
+.sic-fill-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/** easy email overlay (edit html) **/
+body .arco-drawer-wrapper {
+    z-index: 9999;
+
+    /* > espo navbar */
+}
+
+/* quick view */
+
+.quick-view-context-menu {
+    cursor: help;
+}
+
+.cell.horizontal-label {
+    display: flex;
+    align-items: center;
+}
+
+.cell.horizontal-label .control-label {
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.cell.horizontal-label .field {
+    flex-grow: 1;
+}
+
+.deadline-date {
+    color: var(--brand-danger);
+}
+
+.deadline-date-day-before {
+    color: var(--brand-warning);
+}
+
+.kanban-switcher {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Remove bottom margin from compact fields */
+.field .form-control.compact {
+    margin-bottom: 0;
+}
+
+.input-group.compact:has(.date-picker-btn) {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.input-group-link-parent.compact {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.input-group-link-parent.compact .input-group-item {
+    display: flex;
+    order: 2;
+}
+
+.input-group-item.compact > .selectize-control > .selectize-input {
+    width: unset;
+}
+
+.input-group-link-parent.compact .input-group-item-middle {
+    display: flex;
+    order: 0;
+}
+
+[class^='custom-icon-'],
+[class*=' custom-icon-'] {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: currentcolor;
+}
+
+
+/* =================================================================
+   RESPONSIVE LAYOUT FIXES
+   ================================================================= */
+
+/* Fix navbar toggle spam-clicking issue on mobile - disable transitions */
+@media screen and (width <= 767px) {
+    .navbar-collapse {
+        transition: none !important;
+    }
+
+    .navbar-collapse.collapsing {
+        height: auto !important;
+        transition: none !important;
+    }
+
+    .navbar-collapse.in {
+        transition: none !important;
+    }
+}
+
+/* Global search - responsive behavior when navbar is expanded */
+@media screen and (width <= 850px) {
+    body:not(.minimized) .global-search-container {
+        flex: 1 1 auto;
+        min-width: 140px;
+        max-width: none;
+        margin-left: 12px;
+    }
+
+    body:not(.minimized) .global-search-container .input-group {
+        display: flex;
+        width: 100%;
+    }
+
+    body:not(.minimized) .global-search-container .form-control {
+        flex: 1;
+        width: 100%;
+        min-width: 100px;
+    }
+
+    body:not(.minimized) .global-search-container .input-group-btn {
+        flex: 0 0 auto;
+        width: auto;
+    }
+
+    body:not(.minimized) .global-search-container .input-group-btn .btn {
+        min-width: 32px;
+        padding: 6px 8px;
+    }
+}
+
+/* Global search mobile fix - ensure button stays close to input */
+@media screen and (width <= 767px) {
+    .global-search-container .input-group {
+        display: flex;
+        width: 100%;
+    }
+
+    .global-search-container .form-control {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .global-search-container .input-group-btn {
+        flex: 0 0 auto;
+        margin-left: 0;
+    }
+
+    .global-search-container .input-group-btn .btn {
+        margin-left: 0;
+        border-left: 0;
+    }
+}
+
+.no-margin {
+    margin:0
+}
+
+:root {
+	--scroll-thumb-bg: #8e8e8e;
+}
+
+.filter-header-label, .list-header-label {
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.recordList.overflow {
+    overflow-x: auto !important;
+    overflow-y: visible !important;    
+}

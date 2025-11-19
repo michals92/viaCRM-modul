@@ -1,5 +1,18 @@
 {
+	"autoloadFileList": [
+		"application/Espo/Modules/Autocrm/vendor/psy/psysh/src/functions.php"
+	],
+	"classmap": {
+		"Espo\\Core\\Hooks\\Base": "application/Espo/Modules/Autocrm/Core/Hooks/Base.php",
+		"Espo\\Core\\ORM\\Repositories\\RDB": "application/Espo/Modules/Autocrm/Core/ORM/Repositories/RDB.php",
+		"Espo\\Core\\Services\\Base": "application/Espo/Modules/Autocrm/Core/Services/Base.php",
+		"Espo\\Core\\Utils\\File\\ZipArchive": "application/Espo/Modules/Autocrm/Core/Utils/File/ZipArchive.php"
+	},
 	"psr-4": {
+		"Brinley\\JSignature\\": "application/Espo/Modules/Autocrm/vendor/brinley/jsignature/extras/SignatureDataConversion_PHP/core",
+		"Laminas\\Code\\": "application/Espo/Modules/Autocrm/vendor/laminas/laminas-code/src",
+		"Psy\\": "application/Espo/Modules/Autocrm/vendor/psy/psysh/src",
+		"ZipStream\\": "application/Espo/Modules/Autocrm/vendor/maennchen/ZipStream/src",
 		"Espo\\Modules\\ViaCrm\\": ""
 	}
 }

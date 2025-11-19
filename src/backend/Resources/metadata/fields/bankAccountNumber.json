@@ -1,0 +1,28 @@
+{
+	"fieldDefs": {
+		"type": "bankAccountNumber",
+		"maxLength": 40,
+		"trim": true,
+		"pattern": "$noBadCharacters"
+	},
+	"params": [
+		{
+			"name": "required",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "maxLength",
+			"type": "int",
+			"default": 40,
+			"min": 0
+		}
+	],
+	"view": "autocrm:views/fields/bank-account-number",
+	"notCreatable": false,
+	"filter": true,
+	"validations": [
+		"required",
+		"bankAccountNumber"
+	]
+}

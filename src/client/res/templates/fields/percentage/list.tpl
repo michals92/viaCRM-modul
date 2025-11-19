@@ -1,0 +1,3 @@
+{{#if valueIsSet}}
+	{{value}}%
+{{/if}}

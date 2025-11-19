@@ -1,0 +1,116 @@
+{
+	"fields": {
+		"assignedUser": {
+			"type": "link",
+			"required": false,
+			"view": "views/fields/assigned-user"
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"dateEnd": {
+			"type": "datetime",
+			"default": "javascript: return moment().add(7, 'days').format(this.dateTime.internalDateTimeFormat);"
+		},
+		"dateStart": {
+			"type": "datetime",
+			"default": "javascript: return this.dateTime.getNow()"
+		},
+		"description": {
+			"type": "wysiwyg"
+		},
+		"iconClass": {
+			"type": "varchar",
+			"required": true,
+			"default": "fas fa-bell",
+			"view": "autocrm:views/fields/icon-class"
+		},
+		"message": {
+			"type": "wysiwyg",
+			"readonly": true
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"len": 255,
+			"pattern": "$noBadCharacters"
+		},
+		"parent": {
+			"type": "linkParent",
+			"readOnly": true
+		},
+		"showInCalendar": {
+			"type": "bool",
+			"default": true
+		},
+		"status": {
+			"type": "enum",
+			"default": "draft",
+			"options": [
+				"draft",
+				"active",
+				"resolved",
+				"archived"
+			],
+			"style": {
+				"draft": "warning",
+				"active": "success",
+				"resolved": "info",
+				"archived": "info"
+			},
+			"displayAsLabel": true,
+			"audited": true
+		},
+		"users": {
+			"type": "linkMultiple",
+			"columnListEnabled": true,
+			"columns": {
+				"alertActive": "alertActive"
+			},
+			"additionalAttributeList": [
+				"columns"
+			]
+		}
+	},
+	"links": {
+		"assignedUser": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"parent": {
+			"type": "belongsToParent"
+		},
+		"users": {
+			"type": "hasMany",
+			"entity": "User",
+			"foreign": "alerts"
+		}
+	},
+	"collection": {
+		"orderBy": "createdAt",
+		"order": "desc"
+	}
+}

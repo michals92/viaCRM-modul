@@ -1,0 +1,31 @@
+<?php
+
+namespace Espo\Modules\Autocrm\Core\FieldProcessing\PhoneNumber;
+
+use Espo\Core\FieldProcessing\Loader\Params as LoaderParams;
+use Espo\Core\ORM\EntityManager;
+use Espo\Core\Utils\Config;
+use Espo\ORM\Defs as OrmDefs;
+use Espo\ORM\Entity;
+
+class ListLoader extends \Espo\Core\FieldProcessing\PhoneNumber\Loader {
+
+	public function __construct(
+		OrmDefs $ormDefs,
+		EntityManager $entityManager,
+		private readonly Config $config
+	) {
+		parent::__construct($ormDefs, $entityManager);
+	}
+
+	public function process(Entity $entity, LoaderParams $params): void {
+		$disableAccountLinkToEmail = $this->config->get('disableAccountLinkToPhone', false);
+
+		if ($disableAccountLinkToEmail) {
+			return;
+		}
+
+		parent::process($entity, $params);
+	}
+
+}

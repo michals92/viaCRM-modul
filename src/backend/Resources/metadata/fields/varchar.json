@@ -1,0 +1,31 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "duplicateIgnore",
+			"type": "bool",
+			"tooltip": true
+		},
+		{
+			"name": "maxCharLength",
+			"type": "int",
+			"min": 1,
+			"tooltip": true
+		},
+		{
+			"name": "minCharLength",
+			"type": "int",
+			"min": 0,
+			"tooltip": true
+		},
+		{
+			"name": "relations",
+			"type": "array"
+		},
+		{
+			"name": "autoFill",
+			"type": "bool",
+			"default": false
+		}
+	]
+}

@@ -1,0 +1,7 @@
+[
+	{
+		"name": "name",
+		"link": true,
+		"view": "autocrm:views/work-queue/fields/name"
+	}
+]

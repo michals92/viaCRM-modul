@@ -1,0 +1,21 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "compact",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "copyToClipboard",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "datepickerOptions",
+			"type": "jsonObject",
+			"hidden": true
+		}
+	]
+}

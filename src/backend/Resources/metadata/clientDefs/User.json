@@ -1,0 +1,20 @@
+{
+	"aclPortal": "autocrm:acl-portal/user",
+	"color": "#a1ecfa",
+	"menu": {
+		"detail": {
+			"dropdown": [
+				"__APPEND__",
+				{
+					"label": "View as User",
+					"name": "viewAs",
+					"action": "viewAs",
+					"data": {
+						"handler": "autocrm:handlers/actions/view-as"
+					},
+					"initFunction": "init"
+				}
+			]
+		}
+	}
+}

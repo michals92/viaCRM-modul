@@ -1,0 +1,32 @@
+{
+	"fields": {
+		"allEmailFolderPermission": {
+			"type": "enum",
+			"default": "yes",
+			"options": [
+				"not-set",
+				"yes",
+				"no"
+			],
+			"view": "views/role/fields/permission",
+			"audited": true,
+			"tooltip": true,
+			"translation": "Role.options.levelList"
+		},
+		"color": {
+			"type": "colorpicker",
+			"tooltip": true
+		},
+		"iconClass": {
+			"type": "varchar",
+			"view": "autocrm:views/fields/icon-class",
+			"maxLength": 50
+		},
+		"name": {
+			"view": "autocrm:views/role/fields/name"
+		},
+		"users": {
+			"type": "linkMultiple"
+		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"fields": {
+		"ewsPassword": {
+			"type": "password"
+		},
+		"ewsServerUrl": {
+			"type": "varchar",
+			"maxLength": 255
+		},
+		"ewsUserName": {
+			"type": "varchar",
+			"maxLength": 100
+		},
+		"signature": {
+			"type": "wysiwyg",
+			"default": "",
+			"view": "views/preferences/fields/signature",
+			"tooltip": true
+		},
+		"useEws": {
+			"type": "bool",
+			"default": false
+		}
+	}
+}

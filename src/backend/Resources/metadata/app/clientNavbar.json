@@ -1,0 +1,72 @@
+{
+	"items": {
+		"apertiaNews": {
+			"order": 5,
+			"view": "autocrm:views/site/navbar/apertia-news"
+		},
+		"clearBrowserCache": {
+			"disabled": false,
+			"order": 6,
+			"view": "autocrm:views/site/navbar/clear-browser-cache"
+		},
+		"clearCache": {
+			"disabled": false,
+			"order": 7,
+			"view": "autocrm:views/site/navbar/clear-cache"
+		},
+		"dateToday": {
+			"order": 5,
+			"view": "autocrm:views/site/navbar/date-today"
+		},
+		"espoVersion": {
+			"disabled": false,
+			"order": 9,
+			"view": "autocrm:views/site/navbar/espo-version"
+		},
+		"isDeveloperMode": {
+			"disabled": false,
+			"order": 4,
+			"view": "autocrm:views/site/navbar/is-developer-mode"
+		},
+		"rebuild": {
+			"disabled": false,
+			"order": 8,
+			"view": "autocrm:views/site/navbar/rebuild"
+		},
+		"systemRequirements": {
+			"disabled": false,
+			"order": 8,
+			"view": "autocrm:views/site/navbar/system-requirements"
+		},
+		"teamSwitching": {
+			"disabled": false,
+			"order": 5,
+			"view": "autocrm:views/site/navbar/team-switching"
+		},
+		"toggleFieldNames": {
+			"disabled": false,
+			"order": 5,
+			"view": "autocrm:views/site/navbar/toggle-field-names"
+		}
+	},
+	"menuItems": {
+		"templates": {
+			"accessDataList": [
+				{
+					"action": "read",
+					"scope": "Template"
+				}
+			],
+			"groupIndex": 0,
+			"labelTranslation": "Global.scopeNamesPlural.Template",
+			"link": "#Template",
+			"order": 0
+		},
+		"users": {
+			"groupIndex": 0,
+			"labelTranslation": "Global.scopeNamesPlural.User",
+			"link": "#User",
+			"order": 0
+		}
+	}
+}

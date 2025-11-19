@@ -1,0 +1,24 @@
+{
+	"fields": {
+		"contact": "Kontakt",
+		"email": "Email",
+		"originalEmail": "Původní email",
+		"reminders": "Připomenutí",
+		"status": "Stav"
+	},
+	"labels": {
+		"overdue": "Po termínu"
+	},
+	"links": {
+		"account": "Organizace",
+		"contact": "Kontakt",
+		"email": "Email"
+	},
+	"nameOptions": {
+		"replyToEmail": "Odpovědět na email"
+	},
+	"presetFilters": {
+		"actual": "Aktuální",
+		"deferred": "Odložený"
+	}
+}

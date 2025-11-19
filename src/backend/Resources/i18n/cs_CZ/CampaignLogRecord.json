@@ -1,0 +1,29 @@
+{
+	"fields": {
+		"data": "Data",
+		"isTest": "Je Test",
+		"queueItem": "Položka fronty",
+		"stringAdditionalData": "string Additional Data",
+		"stringData": "Textová data"
+	},
+	"links": {
+		"campaign": "Kampaň",
+		"object": "Objekt",
+		"parent": "Rodič",
+		"queueItem": "Položka fronty"
+	},
+	"options": {
+		"action": {
+			"Opted In": "Příhlášené"
+		}
+	},
+	"presetFilters": {
+		"bounced": "Odraženo",
+		"clicked": "Kliknuto",
+		"leadCreated": "Potenciál vytvořen",
+		"opened": "Otevřeno",
+		"optedIn": "Přihlášeno",
+		"optedOut": "Odhlášeno",
+		"sent": "Posláno"
+	}
+}

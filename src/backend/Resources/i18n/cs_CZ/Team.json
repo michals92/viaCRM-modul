@@ -1,0 +1,27 @@
+{
+	"fields": {
+		"layoutSet": "Nastavení vzhledu",
+		"positionList": "Seznam pozic",
+		"userRole": "Role",
+		"users": "Uživatelé",
+		"workingTimeCalendar": "Pracovní kalendář"
+	},
+	"labels": {
+		"Create Team": "Vytvořit tým"
+	},
+	"links": {
+		"groupEmailFolders": "Skupinové emailové složky",
+		"inboundEmails": "Skupinové e-mailové účty",
+		"layoutSet": "Nastavení vzhledu",
+		"notes": "Poznámky",
+		"roles": "Role",
+		"users": "Uživatelé",
+		"workingTimeCalendar": "Pracovní kalendář"
+	},
+	"tooltips": {
+		"layoutSet": "Poskytuje možnost mít rozložení, která se liší od standardních. Sada rozložení bude použita pro uživatele, kteří mají tento tým nastavený jako Výchozí tým.",
+		"positionList": "Dostupné pozice v tomto týmu. Např. Prodavač, manažer.",
+		"roles": "Přístupové role. Uživatelé tohoto týmu získávají úroveň řízení přístupu z vybraných rolí.",
+		"workingTimeCalendar": "Kalendář bude aplikován pro uživatele, kteří mají tento tým přiřazený jako výchozí"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"fields": {
+		"assignedUser": "Assigned User",
+		"customTag": "Custom Root Tag",
+		"description": "Description",
+		"name": "Name",
+		"teams": "Teams"
+	},
+	"labels": {
+		"Create XmlFeed": "Create XML Feed",
+		"XmlFeed": "XML Feed",
+		"XmlFeeds": "XML Feeds"
+	},
+	"messages": {
+		"limitOneRecord": "Only one XmlFeed record can be created in free subscription. Please edit the existing record instead or consider upgrading to a paid subscription of this module."
+	}
+}

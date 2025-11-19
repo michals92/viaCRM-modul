@@ -1,0 +1,159 @@
+{
+	"massActionList": [
+		"__APPEND__",
+		"resyncImap"
+	],
+	"massActionDefs": {
+		"resyncImap": {
+			"handler": "autocrm:handlers/actions/mail/account/resync-imap",
+			"actionFunction": "massAction",
+			"initFunction": "isVisible"
+		}
+	},
+	"detailActionList": [
+		"__APPEND__",
+		{
+			"label": "Resync IMAP",
+			"name": "resyncImap",
+			"acl": "read",
+			"data": {
+				"handler": "autocrm:handlers/actions/mail/account/resync-imap"
+			},
+			"checkVisibilityFunction": "isVisible"
+		}
+	],
+	"dynamicLogic": {
+		"fields": {
+			"host": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useImap"
+						}
+					]
+				}
+			},
+			"security": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useImap"
+						}
+					]
+				}
+			},
+			"port": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useImap"
+						}
+					]
+				}
+			},
+			"username": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useImap"
+						}
+					]
+				}
+			},
+			"password": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useImap"
+						}
+					]
+				}
+			},
+			"monitoredFolders": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useImap"
+						}
+					]
+				}
+			},
+			"keepFetchedEmailsUnread": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useImap"
+						}
+					]
+				}
+			},
+			"storeSentEmails": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useImap"
+						}
+					]
+				}
+			},
+			"sentFolder": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useImap"
+						}
+					]
+				}
+			},
+			"testConnection": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useImap"
+						}
+					]
+				}
+			},
+			"ewsServerUrl": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useEws"
+						}
+					]
+				}
+			},
+			"ewsUserName": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useEws"
+						}
+					]
+				}
+			},
+			"ewsPassword": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "isTrue",
+							"attribute": "useEws"
+						}
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+[
+	"__APPEND__",
+	{
+		"label": "HR",
+		"style": "default",
+		"rows": [
+			[
+				{
+					"name": "humanResource"
+				},
+				{
+					"name": "stampWithSignature"
+				}
+			]
+		]
+	}
+]

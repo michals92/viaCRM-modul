@@ -1,0 +1,6 @@
+{
+	"updateHookClassNameList": [
+		"__APPEND__",
+		"Espo\\Modules\\Autocrm\\Tools\\EntityManager\\Hook\\AttachmentCompareViewModeUpdate"
+	]
+}

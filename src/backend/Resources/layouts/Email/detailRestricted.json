@@ -1,0 +1,66 @@
+[
+	{
+		"label": "",
+		"rows": [
+			[
+				{
+					"name": "subject",
+					"readOnly": true
+				}
+			],
+			[
+				{
+					"name": "dateSent",
+					"readOnly": true
+				},
+				{
+					"name": "from",
+					"readOnly": true
+				}
+			],
+			[
+				{
+					"name": "parent"
+				},
+				{
+					"name": "to",
+					"readOnly": true
+				}
+			],
+			[
+				{
+					"name": "takenStatus"
+				},
+				false
+			],
+			[
+				false,
+				{
+					"name": "cc",
+					"readOnly": true
+				}
+			],
+			[
+				false,
+				{
+					"name": "bcc",
+					"readOnly": true
+				}
+			],
+			[
+				{
+					"fullWidth": true,
+					"name": "body",
+					"readOnly": true
+				}
+			],
+			[
+				{
+					"fullWidth": true,
+					"name": "attachments",
+					"readOnly": true
+				}
+			]
+		]
+	}
+]

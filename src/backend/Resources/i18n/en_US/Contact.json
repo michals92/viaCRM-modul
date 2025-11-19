@@ -1,0 +1,19 @@
+{
+	"fields": {
+		"properties": "Properties",
+		"propertyRole": "Role"
+	},
+	"links": {
+		"properties": "Properties",
+		"requests": "Requests",
+		"requestsPrimary": "Requests (Primary)"
+	},
+	"options": {
+		"propertyRole": {
+			"Landlord": "Landlord",
+			"Property Manager": "Property Manager",
+			"Requester": "Requester",
+			"Tenant": "Tenant"
+		}
+	}
+}

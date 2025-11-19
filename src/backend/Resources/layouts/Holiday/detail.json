@@ -1,0 +1,31 @@
+[
+	"__APPEND__",
+	{
+		"rows": [
+			[
+				{
+					"name": "date"
+				},
+				{
+					"name": "name"
+				}
+			],
+			[
+				{
+					"name": "holidayName"
+				},
+				{
+					"name": "langCode"
+				}
+			],
+			[
+				{
+					"name": "genitive"
+				},
+				{
+					"name": "nominative"
+				}
+			]
+		]
+	}
+]

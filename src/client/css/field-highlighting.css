@@ -1,0 +1,367 @@
+/* Field Highlighting Styles for autocrm Extension */
+
+/* Base field highlighting container */
+.field-highlighted {
+    transition: all 0.3s ease;
+}
+
+/* Success styles */
+.field-highlight-success {
+    color: #155724 !important;
+    background-color: rgb(40, 167, 69, 0.7) !important;
+    border: 2px solid rgb(40, 167, 69, 0.8) !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-success-subtle {
+    padding-left: 8px !important;
+    background-color: rgb(40, 167, 69, 0.6) !important;
+    border-left: 4px solid rgb(40, 167, 69, 0.8) !important;
+}
+
+/* Warning styles */
+.field-highlight-warning {
+    color: #856404 !important;
+    background-color: rgb(255, 193, 7, 0.7) !important;
+    border: 2px solid rgb(255, 193, 7, 0.8) !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-warning-subtle {
+    padding-left: 8px !important;
+    background-color: rgb(255, 193, 7, 0.6) !important;
+    border-left: 4px solid rgb(255, 193, 7, 0.8) !important;
+}
+
+/* Danger/Error styles */
+.field-highlight-danger {
+    color: #721c24 !important;
+    background-color: rgb(220, 53, 69, 0.7) !important;
+    border: 2px solid rgb(220, 53, 69, 0.8) !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-danger-subtle {
+    padding-left: 8px !important;
+    background-color: rgb(220, 53, 69, 0.6) !important;
+    border-left: 4px solid rgb(220, 53, 69, 0.8) !important;
+}
+
+/* Info styles */
+.field-highlight-info {
+    color: #0c5460 !important;
+    background-color: rgb(23, 162, 184, 0.7) !important;
+    border: 2px solid rgb(23, 162, 184, 0.8) !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-info-subtle {
+    padding-left: 8px !important;
+    background-color: rgb(23, 162, 184, 0.6) !important;
+    border-left: 4px solid rgb(23, 162, 184, 0.8) !important;
+}
+
+/* Primary styles */
+.field-highlight-primary {
+    color: #004085 !important;
+    background-color: rgb(0, 123, 255, 0.7) !important;
+    border: 2px solid rgb(0, 123, 255, 0.8) !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-primary-subtle {
+    padding-left: 8px !important;
+    background-color: rgb(0, 123, 255, 0.6) !important;
+    border-left: 4px solid rgb(0, 123, 255, 0.8) !important;
+}
+
+/* Secondary/Gray styles */
+.field-highlight-secondary {
+    color: #383d41 !important;
+    background-color: #e2e3e5 !important;
+    border: 2px solid #6c757d !important;
+    border-radius: 4px !important;
+}
+
+/* Special emphasis styles */
+.field-highlight-emphasis {
+    font-size: 1.05em !important;
+    font-weight: bold !important;
+}
+
+.field-highlight-glow {
+    box-shadow: 0 0 10px rgb(40, 167, 69, 0.5) !important;
+}
+
+.field-highlight-pulse {
+    animation: field-pulse 2s infinite !important;
+}
+
+@keyframes field-pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Border variations */
+.field-highlight-border-thick {
+    border-width: 3px !important;
+}
+
+.field-highlight-border-dashed {
+    border-style: dashed !important;
+}
+
+.field-highlight-border-dotted {
+    border-style: dotted !important;
+}
+
+/* Text decorations */
+.field-highlight-strikethrough {
+    text-decoration: line-through !important;
+}
+
+.field-highlight-underline {
+    text-decoration: underline !important;
+}
+
+/* Status-specific styles */
+.field-highlight-completed {
+    font-weight: bold !important;
+    color: #155724 !important;
+    background-color: #d4edda !important;
+    border: 2px solid #28a745 !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-pending {
+    color: #856404 !important;
+    background-color: #fff3cd !important;
+    border: 2px solid #ffc107 !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-cancelled {
+    color: #721c24 !important;
+    text-decoration: line-through !important;
+    background-color: #f8d7da !important;
+    border: 2px solid #dc3545 !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-expired {
+    color: #fff !important;
+    background-color: #6c757d !important;
+    border: 2px solid #495057 !important;
+    border-radius: 4px !important;
+}
+
+/* Priority styles */
+.field-highlight-high-priority {
+    font-weight: bold !important;
+    color: #721c24 !important;
+    background-color: #f8d7da !important;
+    border: 3px solid #dc3545 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 8px rgb(220, 53, 69, 0.3) !important;
+}
+
+.field-highlight-medium-priority {
+    color: #856404 !important;
+    background-color: #fff3cd !important;
+    border: 2px solid #ffc107 !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-low-priority {
+    color: #6c757d !important;
+    background-color: #e2e3e5 !important;
+    border: 1px solid #adb5bd !important;
+    border-radius: 4px !important;
+}
+
+/* Financial/Amount styles */
+.field-highlight-profit {
+    font-weight: bold !important;
+    color: #155724 !important;
+    background-color: #d4edda !important;
+    border: 2px solid #28a745 !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-loss {
+    font-weight: bold !important;
+    color: #721c24 !important;
+    background-color: #f8d7da !important;
+    border: 2px solid #dc3545 !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-high-value {
+    font-size: 1.1em !important;
+    font-weight: bold !important;
+    color: #856404 !important;
+    background-color: #fff3cd !important;
+    border: 3px solid #ffc107 !important;
+    border-radius: 6px !important;
+}
+
+/* Contact/Communication styles */
+.field-highlight-opted-out {
+    color: #721c24 !important;
+    text-decoration: line-through !important;
+    background-color: #f8d7da !important;
+    opacity: 0.7 !important;
+}
+
+.field-highlight-do-not-contact {
+    color: #fff !important;
+    background-color: #343a40 !important;
+    border: 2px solid #495057 !important;
+    border-radius: 4px !important;
+}
+
+/* Date/Time styles */
+.field-highlight-overdue {
+    font-weight: bold !important;
+    color: #721c24 !important;
+    background-color: #f8d7da !important;
+    border: 2px solid #dc3545 !important;
+    border-radius: 4px !important;
+    animation: field-pulse 2s infinite !important;
+}
+
+.field-highlight-due-soon {
+    color: #856404 !important;
+    background-color: #fff3cd !important;
+    border: 2px solid #ffc107 !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-future {
+    color: #0c5460 !important;
+    background-color: #d1ecf1 !important;
+    border: 1px solid #17a2b8 !important;
+    border-radius: 4px !important;
+}
+
+/* Custom application-specific styles */
+.field-highlight-vip-customer {
+    font-weight: bold !important;
+    color: #856404 !important;
+    background: linear-gradient(45deg, rgb(255, 215, 0, 0.7), rgb(255, 237, 78, 0.7)) !important;
+    border: 3px solid rgb(255, 193, 7, 0.8) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 8px rgb(255, 193, 7, 0.4) !important;
+}
+
+.field-highlight-new-record {
+    color: #004085 !important;
+    background-color: rgb(0, 123, 255, 0.7) !important;
+    border: 2px solid rgb(0, 123, 255, 0.8) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 0 5px rgb(0, 123, 255, 0.5) !important;
+}
+
+/* Empty field highlighting styles */
+.field-highlight-empty-warning {
+    background-color: rgb(255, 193, 7, 0.6) !important;
+    border: 1px solid rgb(255, 193, 7, 0.8) !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-empty-danger {
+    font-weight: bold !important;
+    color: #721c24 !important;
+    background-color: rgb(220, 53, 69, 0.6) !important;
+    border: 2px solid rgb(220, 53, 69, 0.8) !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-empty-success {
+    background-color: rgb(40, 167, 69, 0.6) !important;
+    border: 2px solid rgb(40, 167, 69, 0.8) !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-empty-info {
+    background-color: rgb(23, 162, 184, 0.6) !important;
+    border: 3px dashed rgb(0, 123, 255, 0.8) !important;
+    border-radius: 4px !important;
+}
+
+.field-highlight-italic {
+    font-style: italic !important;
+    color: rgb(12, 84, 96, 0.8) !important;
+}
+
+/* Hover effects for interactive fields */
+.field-highlighted:hover {
+    box-shadow: 0 4px 8px rgb(0, 0, 0, 0.15) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Focus states for form fields */
+.field-highlighted input:focus,
+.field-highlighted textarea:focus,
+.field-highlighted select:focus {
+    outline: 2px solid #007bff !important;
+    outline-offset: 2px !important;
+}
+
+/* Mobile responsiveness */
+@media (width <= 768px) {
+    .field-highlighted {
+        margin: 2px 0 !important;
+    }
+    
+    .field-highlight-high-value {
+        font-size: 1em !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    .field-highlighted {
+        color: #000 !important;
+        background-color: transparent !important;
+        border: 2px solid #000 !important;
+        box-shadow: none !important;
+        animation: none !important;
+    }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+    .field-highlight-success {
+        color: #4ade80 !important;
+        background-color: #1e4a2e !important;
+        border-color: #22c55e !important;
+    }
+    
+    .field-highlight-warning {
+        color: #fbbf24 !important;
+        background-color: #4a3b1e !important;
+        border-color: #f59e0b !important;
+    }
+    
+    .field-highlight-danger {
+        color: #f87171 !important;
+        background-color: #4a1e23 !important;
+        border-color: #ef4444 !important;
+    }
+    
+    .field-highlight-info {
+        color: #38bdf8 !important;
+        background-color: #1e3a4a !important;
+        border-color: #0ea5e9 !important;
+    }
+}

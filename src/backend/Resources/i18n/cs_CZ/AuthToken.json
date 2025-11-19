@@ -1,0 +1,19 @@
+{
+	"fields": {
+		"isActive": "Je aktivní",
+		"portal": "Portál"
+	},
+	"labels": {
+		"Set Inactive": "Zneplatnit"
+	},
+	"links": {
+		"actionHistoryRecords": "Historie akcí"
+	},
+	"massActions": {
+		"setInactive": "Nastavit jako neplatný"
+	},
+	"presetFilters": {
+		"active": "Aktivní",
+		"inactive": "Neaktivní"
+	}
+}

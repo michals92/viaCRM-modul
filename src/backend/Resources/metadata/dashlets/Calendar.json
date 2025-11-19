@@ -1,0 +1,21 @@
+{
+	"view": "autocrm:views/dashlets/calendar",
+	"aclScope": "Calendar",
+	"options": {
+		"fields": {
+			"mode": {
+				"type": "enum",
+				"options": [
+					"basicWeek",
+					"agendaWeek",
+					"basicWeekDetailed",
+					"timeline",
+					"month",
+					"basicDay",
+					"agendaDay"
+				]
+			}
+		},
+		"view": "autocrm:views/dashlets/options/calendar"
+	}
+}

@@ -1,0 +1,24 @@
+{
+	"fields": {
+		"authorizationEndpoint": "Koncový bod autorizace",
+		"authorizationParams": "Parametry autorizace",
+		"authorizationPrompt": "Výzva k autorizaci",
+		"authorizationRedirectUri": "URI přesměrování autorizace",
+		"clientId": "ID klienta",
+		"clientSecret": "Tajný klíč klienta",
+		"hasAccessToken": "Má přístupový token",
+		"isActive": "Je aktivní",
+		"scopeSeparator": "Oddělovač rozsahu",
+		"scopes": "Rozsahy",
+		"tokenEndpoint": "Koncový bod tokenu"
+	},
+	"labels": {
+		"Create OAuthProvider": "Vytvořit OAuth poskytovatele"
+	},
+	"links": {
+		"accounts": "Účty"
+	},
+	"tooltips": {
+		"authorizationParams": "Dodatečné parametry dotazu, které mají být odeslány na koncový bod autorizace. Zadáno ve formátu JSON."
+	}
+}

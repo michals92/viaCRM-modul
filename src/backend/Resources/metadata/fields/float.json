@@ -1,0 +1,40 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "useUnits",
+			"type": "bool",
+			"default": false,
+			"view": "autocrm:views/admin/field-manager/fields/int/use-units"
+		},
+		{
+			"name": "physicalQuantity",
+			"type": "enum",
+			"default": "area",
+			"options": [
+				"area",
+				"time",
+				"volume",
+				"weight",
+				"length",
+				"quantity",
+				"current",
+				"power",
+				"energy",
+				"voltage"
+			]
+		},
+		{
+			"name": "unit",
+			"type": "enum",
+			"default": false,
+			"view": "autocrm:views/admin/field-manager/fields/unit"
+		}
+	],
+	"massUpdateActionList": [
+		"__APPEND__",
+		"update",
+		"increase",
+		"multiply"
+	]
+}

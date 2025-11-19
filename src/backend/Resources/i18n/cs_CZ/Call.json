@@ -1,0 +1,12 @@
+{
+	"fields": {
+		"acceptanceStatus": "Stav přijetí",
+		"status": "Stav",
+		"uid": "UID"
+	},
+	"options": {
+		"acceptanceStatus": {
+			"None": "Žádný"
+		}
+	}
+}

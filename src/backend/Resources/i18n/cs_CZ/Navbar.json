@@ -1,0 +1,6 @@
+{
+	"labels": {
+		"Today holiday pubic": "státní svátek {holidayName}",
+		"Today holiday user": "svátek má {name}"
+	}
+}

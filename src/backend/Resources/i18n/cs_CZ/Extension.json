@@ -1,0 +1,8 @@
+{
+	"fields": {
+		"checkVersionUrl": "URL pro kontrolu nových verzí"
+	},
+	"messages": {
+		"fileExceedsMaxUploadSize": "Velikost souboru překračuje maximální povolenou velikost {maxSize}. Zvažte zvýšení `post_max_size` nebo nainstalujte rozšíření přes CLI."
+	}
+}

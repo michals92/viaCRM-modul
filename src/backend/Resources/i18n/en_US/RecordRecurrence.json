@@ -1,0 +1,92 @@
+{
+	"cronLabels": {
+		"Every": "Every",
+		"Weekdays": "Weekdays",
+		"Weekends": "Weekends",
+		"at": "at",
+		"days": [
+			"Sunday",
+			"Monday",
+			"Tuesday",
+			"Wednesday",
+			"Thursday",
+			"Friday",
+			"Saturday"
+		],
+		"minutes past the hour": "minutes past the hour",
+		"months": [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December"
+		],
+		"nd": "nd",
+		"of": "of",
+		"on the": "on the",
+		"periods": [
+			"minute",
+			"hour",
+			"day",
+			"week",
+			"month",
+			"year"
+		],
+		"rd": "rd",
+		"st": "st",
+		"th": "th",
+		"unsupported": "Unsupported cron expression. Please use Advanced mode."
+	},
+	"fields": {
+		"entityType": "Entity Type",
+		"generateInAdvance": "Pre-generate in advance for",
+		"generateInBatches": "Pre-generate in batches",
+		"infinite": "Infinite",
+		"scheduling": "Scheduling",
+		"status": "Status",
+		"until": "Recur until"
+	},
+	"labels": {
+		"Batching": "Batching",
+		"Create RecordRecurrence": "Create Record Recurrence",
+		"Recurrence": "Recurrence",
+		"advanced": "Advanced",
+		"user-friendly": "User-friendly",
+		"viewMode": "view mode (click to toggle)"
+	},
+	"messages": {
+		"batchSizeLimitExceeded": "The number of records generated in one batch would exceed the limit set by the administrator. Please set a more frequent batch or reduce recurrence rate.",
+		"cronExprInvalid": "Invalid cron expression",
+		"invalidSchedulingExpression": "Invalid CRON expression",
+		"missingDateStart": "Record must have a start date."
+	},
+	"options": {
+		"generateInAdvance": {
+			"1_day": "1 day",
+			"1_month": "1 month",
+			"1_week": "1 week",
+			"1_year": "1 year",
+			"2_days": "2 days",
+			"2_months": "2 months",
+			"2_weeks": "2 weeks",
+			"3_months": "3 months",
+			"6_months": "6 months"
+		},
+		"status": {
+			"Active": "Active",
+			"Completed": "Completed",
+			"Draft": "Draft"
+		}
+	},
+	"tooltips": {
+		"generateInAdvance": "Time period for which records will be pre-generated in advance",
+		"scheduling": "Frequency of record recurring\n\n**User-friendly** mode - easy to use, but not as flexible\n\n**Advanced** mode - more flexible, uses cron expression"
+	}
+}

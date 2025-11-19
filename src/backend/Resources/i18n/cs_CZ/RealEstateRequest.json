@@ -1,0 +1,83 @@
+{
+	"fields": {
+		"assignedUser": "Přiřazený uživatel",
+		"bathroomCount": "Počet koupelen",
+		"bedroomCount": "Počet ložnic",
+		"contact": "Kontakt",
+		"contacts": "Kontakty",
+		"floor": "Patro",
+		"floorCount": "Počet pater",
+		"fromBathroomCount": "Min počet koupelen",
+		"fromBedroomCount": "Min počet ložnic",
+		"fromFloor": "Min patro",
+		"fromFloorCount": "Min počet pater",
+		"fromPrice": "Min cena",
+		"fromPriceConverted": "Min cena (konvertovaná)",
+		"fromSquare": "Min plocha",
+		"fromYearBuilt": "Min rok výstavby",
+		"locations": "Lokality",
+		"matchingProperty": "Odpovídající nemovitost",
+		"matchingPropertyCount": "Počet shod",
+		"number": "Číslo",
+		"price": "Cena",
+		"propertyType": "Typ nemovitosti",
+		"square": "Plocha",
+		"status": "Stav",
+		"toBathroomCount": "Max počet koupelen",
+		"toBedroomCount": "Max počet ložnic",
+		"toFloor": "Max patro",
+		"toFloorCount": "Max počet pater",
+		"toPrice": "Max cena",
+		"toPriceConverted": "Max cena (konvertovaná)",
+		"toSquare": "Max plocha",
+		"toYearBuilt": "Max rok výstavby",
+		"type": "Typ",
+		"yearBuilt": "Rok výstavby"
+	},
+	"labels": {
+		"Create Opportunity": "Vytvořit příležitost",
+		"Create RealEstateRequest": "Vytvořit požadavek",
+		"Locations": "Lokality",
+		"Matching Properties": "Odpovídající nemovitosti",
+		"Matching Requests": "Odpovídající požadavky",
+		"Max": "Max",
+		"Min": "Min",
+		"Not Interested": "Nemá zájem",
+		"Unset Not Interested": "Zrušit nemá zájem"
+	},
+	"links": {
+		"contact": "Kontakt",
+		"contacts": "Kontakty",
+		"locations": "Lokality",
+		"matchingProperties": "Odpovídající nemovitosti",
+		"opportunities": "Příležitosti"
+	},
+	"options": {
+		"propertyType": {
+			"Apartment": "Byt",
+			"Farm": "Farma",
+			"Office": "Kancelář",
+			"Retail": "Maloobchod",
+			"Separate House": "Rodinný dům",
+			"Warehouse": "Sklad"
+		},
+		"status": {
+			"Assigned": "Přiřazený",
+			"Canceled": "Zrušený",
+			"Completed": "Dokončený",
+			"In Process": "V procesu",
+			"Lost": "Ztracený",
+			"New": "Nový"
+		},
+		"type": {
+			"Rent": "Pronájem",
+			"Sale": "Prodej"
+		}
+	},
+	"presetFilters": {
+		"actual": "Aktuální",
+		"actualRent": "Aktuální pronájmy",
+		"actualSale": "Aktuální prodeje",
+		"completed": "Dokončené"
+	}
+}

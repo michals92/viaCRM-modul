@@ -1,0 +1,27 @@
+[
+	{
+		"label": "",
+		"rows": [
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "entityType"
+				}
+			],
+			[
+				{
+					"fullWidth": true,
+					"name": "title"
+				}
+			],
+			[
+				{
+					"fullWidth": true,
+					"name": "body"
+				}
+			]
+		]
+	}
+]

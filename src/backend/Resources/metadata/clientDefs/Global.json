@@ -1,13 +1,138 @@
 {
     "viewSetupHandlers": {
         "detail": [
+            "__APPEND__",
+			"autocrm:handlers/view-setup/edit-buttons",
+			"autocrm:handlers/view-setup/conversion-buttons",
+			"autocrm:handlers/view-setup/send-email",
+			"autocrm:handlers/view-setup/field-highlighting",
             "viacrm:handlers/view-setup/admin-buttons"
         ],
         "list": [
+            "__APPEND__",
+			"autocrm:handlers/view-setup/edit-buttons",
+			"autocrm:handlers/view-setup/field-highlighting",
             "viacrm:handlers/view-setup/admin-buttons"
         ],
         "edit": [
             "viacrm:handlers/view-setup/admin-buttons"
-        ]
-    }
+        ],
+		"record/detail": [
+			"__APPEND__",
+			"autocrm:handlers/view-setup/print-xml",
+			"autocrm:handlers/view-setup/field-highlighting"
+		],
+		"record/edit": [
+			"__APPEND__",
+			"autocrm:handlers/view-setup/field-highlighting"
+		],
+		"record/grid": [
+			"__APPEND__",
+			"autocrm:handlers/view-setup/record/grid/quick-view-context-menu",
+			"autocrm:handlers/view-setup/field-highlighting"
+		],
+		"record/list": [
+			"__APPEND__",
+			"autocrm:handlers/view-setup/record/list/quick-view-context-menu",
+			"autocrm:handlers/view-setup/field-highlighting"
+		]
+    },
+	"massActionList": [
+		"__APPEND__",
+		"bulkEmail",
+		"bulkEmailBcc",
+		"exportXml",
+		"zipAttachments"
+	],
+	"checkAllResultMassActionList": [
+		"__APPEND__",
+		"bulkEmail",
+		"bulkEmailBcc"
+	],
+	"massActionDefs": {
+		"bulkEmail": {
+			"handler": "autocrm:handlers/mass-actions/bulk-email",
+			"initFunction": "checkVisibility"
+		},
+		"bulkEmailBcc": {
+			"handler": "autocrm:handlers/mass-actions/bulk-email",
+			"initFunction": "checkVisibility"
+		},
+		"exportXml": {
+			"handler": "autocrm:handlers/mass-actions/export-xml",
+			"initFunction": "checkVisibility",
+			"acl": "read",
+			"aclScope": "XmlTemplate"
+		},
+		"zipAttachments": {
+			"handler": "autocrm:handlers/mass-actions/zip-attachments",
+			"initFunction": "checkVisibility"
+		}
+	},
+	"detailActionList": [
+		"__APPEND__",
+		{
+			"label": "Create Template",
+			"name": "createTemplate",
+			"data": {
+				"handler": "autocrm:handlers/detail-actions/create-template"
+			},
+			"initFunction": "init"
+		},
+		{
+			"label": "Schedule Recurrence",
+			"name": "scheduleRecurrence",
+			"acl": "edit",
+			"data": {
+				"handler": "autocrm:handlers/detail-actions/schedule-recurrence"
+			},
+			"checkVisibilityFunction": "checkVisibility"
+		}
+	],
+	"menu": {
+		"list": {
+			"buttons": [
+				"__APPEND__",
+				{
+					"label": "Create from Template",
+					"style": "default",
+					"iconHtml": "<i class=\"fas fa-file-export fa-sm\"></i>",
+					"name": "createFromTemplate",
+					"action": "createFromTemplate",
+					"acl": "create",
+					"data": {
+						"handler": "autocrm:handlers/actions/create-from-template"
+					},
+					"initFunction": "init",
+					"checkVisibilityFunction": "checkVisibility",
+					"auxClick": true
+				},
+				{
+					"label": "Scheduled Recurrences",
+					"style": "default",
+					"iconHtml": "<i class=\"fas fa-clock\"></i>",
+					"name": "listScheduledRecurrences",
+					"action": "listScheduledRecurrences",
+					"acl": "read",
+					"data": {
+						"handler": "autocrm:handlers/actions/list-scheduled-recurrences"
+					},
+					"initFunction": "init",
+					"auxClick": true
+				}
+			]
+		}
+	},
+	"modalDetailActionList": [
+		"__APPEND__",
+		{
+			"label": "Schedule Recurrence",
+			"name": "scheduleRecurrence",
+			"acl": "edit",
+			"data": {
+				"handler": "autocrm:handlers/detail-actions/schedule-recurrence"
+			},
+			"checkVisibilityFunction": "checkVisibility"
+		}
+	]
 }

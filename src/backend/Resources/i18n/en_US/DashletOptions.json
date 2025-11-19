@@ -1,0 +1,21 @@
+{
+	"fields": {
+		"addressField": "Address field",
+		"advancedFilters": "Advanced Filters",
+		"layout": "Layout",
+		"mapCenter": "Map center"
+	},
+	"messages": {
+		"selectAddressField": "Select address field",
+		"selectEntityType": "Select entity type"
+	},
+	"options": {
+		"mapCenter": {
+			"Czech Republic": "Czech Republic",
+			"Slovakia": "Slovakia"
+		},
+		"mode": {
+			"basicWeekDetailed": "Week (detailed)"
+		}
+	}
+}

@@ -1,0 +1,92 @@
+{
+	"fields": {
+		"assignedUser": {
+			"type": "link",
+			"required": false,
+			"view": "views/fields/assigned-user"
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"description": {
+			"type": "text"
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"pattern": "$noBadCharacters"
+		},
+		"rate": {
+			"type": "currency"
+		},
+		"teams": {
+			"type": "linkMultiple",
+			"view": "views/fields/teams"
+		}
+	},
+	"links": {
+		"assignedUser": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"teams": {
+			"type": "hasMany",
+			"entity": "Team",
+			"layoutRelationshipsDisabled": true,
+			"relationName": "entityTeam"
+		}
+	},
+	"collection": {
+		"orderBy": "createdAt",
+		"order": "desc"
+	},
+	"indexes": {
+		"assignedUser": {
+			"columns": [
+				"assignedUserId",
+				"deleted"
+			]
+		},
+		"createdAt": {
+			"columns": [
+				"createdAt"
+			]
+		},
+		"createdAtId": {
+			"columns": [
+				"createdAt",
+				"id"
+			],
+			"unique": true
+		},
+		"name": {
+			"columns": [
+				"name",
+				"deleted"
+			]
+		}
+	}
+}

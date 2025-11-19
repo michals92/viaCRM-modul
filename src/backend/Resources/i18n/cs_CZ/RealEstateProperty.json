@@ -1,0 +1,72 @@
+{
+	"fields": {
+		"account": "Účet",
+		"address": "Adresa",
+		"addressMap": "Mapa",
+		"assignedUser": "Přiřazený uživatel",
+		"bathroomCount": "Počet koupelen",
+		"bedroomCount": "Počet ložnic",
+		"contactRole": "Role",
+		"contacts": "Kontakty",
+		"documents": "Dokumenty",
+		"floor": "Patro",
+		"floorCount": "Počet pater",
+		"images": "Obrázky",
+		"location": "Lokalita",
+		"matchingRequest": "Odpovídající požadavek",
+		"matchingRequestCount": "Počet shod",
+		"number": "Číslo",
+		"price": "Cena",
+		"priceConverted": "Cena (konvertovaná)",
+		"requestType": "Typ požadavku",
+		"sellers": "Prodejci",
+		"square": "Plocha",
+		"status": "Stav",
+		"type": "Typ",
+		"yearBuilt": "Rok výstavby"
+	},
+	"labels": {
+		"Create RealEstateProperty": "Vytvořit nemovitost",
+		"Locations": "Lokality",
+		"Matching Properties": "Odpovídající nemovitosti",
+		"Matching Requests": "Odpovídající požadavky"
+	},
+	"links": {
+		"account": "Účet",
+		"contacts": "Kontakty",
+		"documents": "Dokumenty",
+		"location": "Lokalita",
+		"matchingRequests": "Odpovídající požadavky",
+		"opportunities": "Příležitosti"
+	},
+	"options": {
+		"requestType": {
+			"Rent": "Pronájem",
+			"Sale": "Prodej"
+		},
+		"status": {
+			"Assigned": "Přiřazený",
+			"Canceled": "Zrušený",
+			"Completed": "Dokončený",
+			"In Process": "V procesu",
+			"Lost": "Ztracený",
+			"New": "Nový"
+		},
+		"type": {
+			"Apartment": "Byt",
+			"Farm": "Farma",
+			"Land Lot": "Pozemek",
+			"Office": "Kancelář",
+			"Retail": "Maloobchod",
+			"Room": "Pokoj",
+			"Separate House": "Rodinný dům",
+			"Warehouse": "Sklad"
+		}
+	},
+	"presetFilters": {
+		"actual": "Aktuální",
+		"actualRent": "Aktuální pronájmy",
+		"actualSale": "Aktuální prodeje",
+		"completed": "Dokončené"
+	}
+}

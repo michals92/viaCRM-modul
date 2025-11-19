@@ -1,0 +1,81 @@
+[
+	"__APPEND__",
+	{
+		"tabLabel": "$label:AutoCRM",
+		"tabBreak": true,
+		"rows": [
+			[
+				{
+					"name": "quickViewContextMenu"
+				},
+				{
+					"name": "customFiltersAboveList"
+				}
+			],
+			[
+				{
+					"name": "collapsibleDashlets"
+				},
+				false
+			],
+			[
+				{
+					"name": "listCheckboxSize"
+				},
+				false
+			],
+			[
+				{
+					"name": "emailDoNotMarkAsReadList"
+				},
+				{
+					"name": "defaultEmailFolder"
+				},
+				{
+					"name": "signaturePosition"
+				}
+			],
+			[
+				{
+					"name": "calendarColors"
+				},
+				{
+					"name": "disableIntroGuide"
+				}
+			],
+			[
+				{
+					"name": "calendarMaxEventStack"
+				},
+				false
+			]
+		]
+	},
+	{
+		"tabLabel": "$label:Navbar",
+		"tabBreak": true,
+		"rows": [
+			[
+				{
+					"name": "enableHistoryTabs"
+				},
+				{
+					"name": "enableTeamSwitchingInNavbar"
+				},
+				false,
+				false
+			],
+			[
+				{
+					"name": "enableApertiaNewsInNavbar"
+				},
+				{
+					"name": "enableHolidayInNavbar"
+				},
+				false,
+				false
+			]
+		],
+		"tabIconClass": "fas fa-bars"
+	}
+]

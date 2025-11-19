@@ -1,0 +1,15 @@
+[
+	"__APPEND__",
+	{
+		"tabLabel": "$label:Stream",
+		"tabBreak": true,
+		"rows": [
+			[
+				{
+					"fullWidth": true,
+					"name": "streamRecordsPerPage"
+				}
+			]
+		]
+	}
+]

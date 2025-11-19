@@ -1,0 +1,63 @@
+[
+	{
+		"customLabel": "Info",
+		"noteText": "$Info",
+		"style": "success",
+		"rows": [
+			[
+				{
+					"name": "status"
+				},
+				{
+					"name": "iconClass"
+				}
+			],
+			[
+				{
+					"name": "dateStart"
+				},
+				{
+					"name": "dateEnd"
+				}
+			],
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "parent"
+				}
+			]
+		]
+	},
+	{
+		"customLabel": "Descriptions",
+		"noteText": "$Descriptions",
+		"style": "success",
+		"rows": [
+			[
+				{
+					"fullWidth": true,
+					"name": "message"
+				},
+				{
+					"fullWidth": true,
+					"name": "description"
+				}
+			]
+		]
+	},
+	{
+		"tabLabel": "$label:Users",
+		"tabBreak": true,
+		"rows": [
+			[
+				{
+					"fullWidth": true,
+					"name": "users"
+				}
+			]
+		],
+		"tabIconClass": "fas fa-users"
+	}
+]

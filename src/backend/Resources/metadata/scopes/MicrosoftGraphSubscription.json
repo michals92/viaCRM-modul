@@ -1,0 +1,10 @@
+{
+	"type": "Base",
+	"acl": true,
+	"aclPortal": false,
+	"customizable": false,
+	"entity": true,
+	"layouts": true,
+	"module": "Autocrm",
+	"tab": true
+}

@@ -1,0 +1,19 @@
+{
+	"type": "Base",
+	"acl": "recordAllTeamNo",
+	"aclPortal": true,
+	"aclPortalActionList": [
+		"read"
+	],
+	"aclPortalLevelList": [
+		"all",
+		"no"
+	],
+	"customizable": true,
+	"disabled": false,
+	"entity": true,
+	"importable": true,
+	"layouts": false,
+	"module": "Autocrm",
+	"tab": true
+}

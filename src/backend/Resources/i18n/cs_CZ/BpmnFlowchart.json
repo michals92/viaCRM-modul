@@ -1,0 +1,63 @@
+{
+	"elements": {
+		"callActivity": "Událost Volání",
+		"eventEnd": "Koncová událost",
+		"eventEndError": "Chyba koncové události",
+		"eventEndEscalation": "Eskalace koncové události",
+		"eventEndTerminate": "Konec koncové událost",
+		"eventIntermediateConditionalBoundary": "Podmíněná střední událost (Hraniční)",
+		"eventIntermediateConditionalCatch": "Podmíněná mezilehlá událost (Záchytná)",
+		"eventIntermediateErrorBoundary": "Mezilehlá událost chyby (Hraniční)",
+		"eventIntermediateEscalationBoundary": "Mezistupeň eskalace (Hraniční)",
+		"eventIntermediateEscalationThrow": "Mezistupeň eskalace (Vrhající)",
+		"eventIntermediateTimerCatch": "Časovaná mezilehlá událost (Záchytná)",
+		"eventStart": "Zahájení událost",
+		"eventStartConditional": "Podmíněná počáteční událost",
+		"eventStartConditionalEventSubProcess": "Podmíněná počáteční událost dílčího procesu",
+		"eventStartError": "Chyba při spuštění události",
+		"eventStartEscalation": "Eskalace počáteční události",
+		"eventStartTimer": "Časovač počáteční události",
+		"eventStartTimerEventSubProcess": "Počáteční událost časovače podprocesu",
+		"eventSubProcess": "Události dílčího procesu",
+		"flow": "Sekvenční flow",
+		"gatewayEventBased": "Brána na základě události",
+		"gatewayExclusive": "Exkluzivní brána",
+		"gatewayInclusive": "Inkluzivní brána",
+		"gatewayParallel": "Paralelní brána",
+		"subProcess": "Dílčí proces",
+		"task": "Akce",
+		"taskBusinessRule": "Úkol obchodního pravidla",
+		"taskScript": "Formula skript",
+		"taskSendMessage": "Odeslat zprávu",
+		"taskUser": "Uživatelský úkol"
+	},
+	"fields": {
+		"category": "Kategorie",
+		"hasNoneStartEvent": "Má počáteční událost typu None",
+		"isActive": "Aktivní",
+		"targetType": "Typ cílové entity"
+	},
+	"labels": {
+		"Activities": "Aktivity",
+		"Connect tool": "Spojování",
+		"Create Activity tool": "Tvorba aktivit",
+		"Create Event tool": "Tvorba událostí",
+		"Create Gateway tool": "Tvorba bran",
+		"Erase tool": "Guma",
+		"Events": "Události",
+		"Full Screen": "Na plnou obrazovku",
+		"Gateways": "Brány",
+		"Move to Center": "Přesunout doprostřed",
+		"Processes": "Procesy",
+		"Zoom In": "Přiblížit",
+		"Zoom Out": "Oddálit"
+	},
+	"links": {
+		"processes": "Procesy"
+	},
+	"presetFilters": {
+		"active": "Aktivní",
+		"activeHasNoneStartEvent": "Aktivní s žádnou počáteční událostí",
+		"isManuallyStartable": "Ruční spuštění"
+	}
+}

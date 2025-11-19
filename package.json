@@ -4,34 +4,41 @@
   "description": "VIA CRM module for EspoCRM",
   "author": "VIA Development Team",
   "scripts": {
-    "init": "echo 'ViaCRM module initialized'",
-    "build": "npm run clean-build && node tasks/build/simple-build.js",
-    "build:zip": "npm run build && node tasks/build/zip.js",
+    "init": "node tasks/init",
+    "build": "npm run clean-build && node tasks/build",
     "watch": "npm run clean-build && node tasks/watch",
-    "deploy": "npm run build:zip",
+    "deploy": "npm run clean-build && node tasks/deploy",
     "clean-build": "npx del-cli build",
     "clean-dist": "npx del-cli dist",
     "clean": "npm run clean-build && npm run clean-dist",
-    "prepare": "echo viaCRM ready",
+    "prepare": "echo ay ay",
     "lint:css": "stylelint \"src/client/css/**/*.css\"",
     "lint:css:fix": "stylelint \"src/client/css/**/*.css\" --fix",
     "lint:js": "eslint \"src/**/*.js\"",
     "lint:js:fix": "eslint \"src/**/*.js\" --fix",
-    "lint": "npm run lint:css && npm run lint:js",
+    "lint:ejs": "ejslint src/client/res/layout-types/*.tpl",
+    "lint": "npm run lint:css && npm run lint:js && npm run lint:ejs",
     "lint:fix": "npm run lint:css:fix && npm run lint:js:fix",
+    "build:zip": "npm run build && node tasks/build/zip.js",
     "build:easy-email": "node tasks/build/easy-email.js build/client/modules/viacrm/lib/easy-email-editor.js"
   },
   "type": "module",
   "keywords": [
     "crm",
+    "erp",
+    "viaerp",
     "espocrm",
     "module",
     "viacrm"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michals92/viaCRM-modul#"
+  },
   "license": "MIT",
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=20.19.0",
+    "npm": ">=9.8.0"
   },
   "devDependencies": {
     "@clack/prompts": "^0.7.0",
@@ -57,7 +64,25 @@
     "slash": "^5.1.0",
     "stylelint": "^16.19.1",
     "stylelint-config-standard": "^38.0.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "@apertia/extension-build-tools": "^5.0.0",
+    "@total-typescript/ts-reset": "^0.5.1",
+    "@tsconfig/node20": "^20.1.2",
+    "@tsconfig/strictest": "^2.0.2",
+    "@types/google.maps": "^3.58.1",
+    "@types/luxon": "^3.3.2",
+    "@types/postcss-prefix-selector": "^1.16.1",
+    "@types/ssh2-sftp-client": "^9.0.4",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
+    "anymatch": "^3.1.3",
+    "ejs-lint": "^2.0.0",
+    "lint-staged": "^15.0.1",
+    "ssh2-sftp-client": "^11.0.0",
+    "stylelint-config-recess-order": "^6.0.0",
+    "stylelint-order": "^7.0.0",
+    "typescript-eslint": "^8.35.0",
+    "@apertia/types-espocrm": "^3.2.15"
   },
   "dependencies": {
     "easy-email-core": "^4.16.4",
@@ -65,12 +90,56 @@
     "easy-email-extensions": "^4.16.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-final-form": "^6.5.9"
+    "react-final-form": "^6.5.9",
+    "@arco-design/web-react": "^2.54.0",
+    "@arco-themes/react-easy-email-theme": "^0.0.3",
+    "d3": "^7.8.5",
+    "easy-email-localization": "^4.14.0",
+    "fscreen": "^1.2.0",
+    "jsignature": "^2.1.3",
+    "luxon": "^3.4.3",
+    "mjml-browser": "^4.14.1",
+    "shepherd.js": "^11.1.1"
   },
   "espocrm": {
     "extensionName": "ViaCrm",
-    "phpVersion": "8.0",
-    "espocrmVersion": "8.0.0",
+    "phpVersion": "8.3.0",
+    "espocrmVersion": "8.4.0",
+    "libs": {
+      "jsignature": {
+        "cwd": "node_modules/jsignature/libs",
+        "src": [
+          "jSignature.min.js"
+        ]
+      },
+      "luxon": {
+        "cwd": "node_modules/luxon/build/global",
+        "src": [
+          "luxon.min.js",
+          "luxon.min.js.map"
+        ]
+      },
+      "shepherd": {
+        "cwd": "node_modules/shepherd.js/dist/js",
+        "src": [
+          "shepherd.min.js",
+          "shepherd.min.js.map"
+        ]
+      },
+      "d3": {
+        "cwd": "node_modules/d3/dist",
+        "src": [
+          "d3.min.js"
+        ]
+      }
+    },
     "isCustom": false
+  },
+  "overrides": {
+    "react-codemirror2": {
+      "react": "$react"
+    },
+    "simple-swizzle": "0.2.2",
+    "wrap-ansi": "8.1.0"
   }
 }

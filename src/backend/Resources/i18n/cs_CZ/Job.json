@@ -1,0 +1,32 @@
+{
+	"fields": {
+		"attempts": "Zbývající pokusy",
+		"className": "Název třídy",
+		"data": "Data",
+		"executeTime": "Provádět v",
+		"executedAt": "Provedeno v",
+		"failedAttempts": "Neúspěšné pokusy",
+		"group": "Skupina",
+		"job": "Úloha",
+		"method": "Metoda (zastaralé)",
+		"methodName": "Metoda",
+		"number": "Číslo",
+		"queue": "Fronta",
+		"scheduledJob": "Plánovaná úloha",
+		"scheduledJobJob": "Název naplánované úlohy",
+		"serviceName": "Servis",
+		"startedAt": "Zahájeno v",
+		"status": "Stav",
+		"targetGroup": "Cílová skupina",
+		"targetId": "Cílové ID",
+		"targetType": "Typ cíle"
+	},
+	"options": {
+		"status": {
+			"Failed": "Selhalo",
+			"Pending": "Čekající",
+			"Running": "V procesu",
+			"Success": "Úspěšně dokončeno"
+		}
+	}
+}

@@ -1,0 +1,46 @@
+{
+	"fields": {
+		"applicationName": "Název aplikace",
+		"authTokenLifetime": "Životnost ověřovacího tokenu (hodiny)",
+		"authTokenMaxIdleTime": "Maximální doba nečinnosti ověřovacího tokenu (hodiny)",
+		"authenticationProvider": "Poskytovatel ověřování",
+		"companyLogo": "Logo společnosti",
+		"customId": "Vlastní ID",
+		"customUrl": "Vlastní URL",
+		"dashboardLayout": "Rozvržení Dashboardu",
+		"dateFormat": "Formát datumu",
+		"defaultCurrency": "Výchozí měna",
+		"isActive": "Je aktivní",
+		"isDefault": "Výchozí",
+		"language": "Jazyk",
+		"layoutSet": "Sada layoutu",
+		"logo": "Logo",
+		"name": "Jméno",
+		"portalRoles": "Role",
+		"quickCreateList": "Rychlé vytvoření seznamu",
+		"tabList": "Seznam záložek",
+		"theme": "Téma",
+		"timeFormat": "Formát času",
+		"timeZone": "Časové pásmo",
+		"url": "URL",
+		"weekStart": "První den týdne"
+	},
+	"labels": {
+		"Create Portal": "Vytvořit portál",
+		"General": "Obecné",
+		"Settings": "Nastavení",
+		"User Interface": "Uživatelské prostředí"
+	},
+	"links": {
+		"articles": "Články znalostní báze",
+		"authenticationProvider": "Poskytovatel ověřování",
+		"layoutSet": "Sada layoutu",
+		"notes": "Poznámky",
+		"portalRoles": "Role",
+		"users": "Uživatelé"
+	},
+	"tooltips": {
+		"layoutSet": "Poskytuje možnost mít rozložení (layouty), která se liší od standardních.",
+		"portalRoles": "Určené role portálu budou použity pro všechny uživatele tohoto portálu."
+	}
+}

@@ -1,0 +1,52 @@
+{
+	"fields": {
+		"accountsTemplate": "Šablona organizací",
+		"budget": "Rozpočet",
+		"budgetConverted": "Rozpočet (převeden)",
+		"budgetCurrency": "Měna rozpočtu",
+		"contactsTemplate": "Šablona kontaktů",
+		"excludingTargetLists": "Vyloučené cílové seznamy",
+		"leadsTemplate": "Šablona potenciálů",
+		"mailMergeOnlyWithAddress": "Přeskočit záznamy bez vyplněné adresy",
+		"optedInCount": "Přihlášené",
+		"status": "Stav",
+		"usersTemplate": "Šablona uživatelů"
+	},
+	"labels": {
+		"Create Target List": "Vytvořit cílový seznam",
+		"Email Templates": "Šablony emailu",
+		"Generate Mail Merge PDF": "Generování hromadné korespondence PDF",
+		"Mail Merge": "Sloučení emailů",
+		"Mass Emails": "Hromadné e-maily",
+		"Subscribe again": "Přihlásit se znovu",
+		"Unsubscribe": "Odhlásit se",
+		"Unsubscribe again": "Znovu se odhlásit"
+	},
+	"links": {
+		"accountsTemplate": "Šablona organizací",
+		"campaignLogRecords": "Log",
+		"contactsTemplate": "Šablona kontaktů",
+		"excludingTargetLists": "Vyloučené cílové seznamy",
+		"leadsTemplate": "Šablony Potenciálů",
+		"massEmails": "Hromadné emaily",
+		"trackingUrls": "Sledovaná URL",
+		"usersTemplate": "Šablona uživatelů"
+	},
+	"messages": {
+		"cannotChangeType": "Nelze změnit typ",
+		"subscribedAgain": "Jste znovu přihlášeni k odběru.",
+		"unsubscribed": "Byli jste odhlášeni z našeho seznamu adresátů."
+	},
+	"options": {
+		"type": {
+			"Email": "Email",
+			"Informational Email": "Informační email",
+			"Newsletter": "Newsletter",
+			"Web": "Web"
+		}
+	},
+	"tooltips": {
+		"excludingTargetLists": "Cíle, které by neměly přijímat zprávy.",
+		"targetLists": "Cíle, které by měly přijímat zprávy."
+	}
+}

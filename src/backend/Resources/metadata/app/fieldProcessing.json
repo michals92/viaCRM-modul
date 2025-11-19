@@ -1,0 +1,17 @@
+{
+	"listLoaderClassNameList": [
+		"__APPEND__",
+		"Espo\\Modules\\Autocrm\\Core\\FieldProcessing\\EmailAddress\\ListLoader",
+		"Espo\\Modules\\Autocrm\\Core\\FieldProcessing\\PhoneNumber\\ListLoader"
+	],
+	"readLoaderClassNameList": [
+		"__APPEND__",
+		"Espo\\Modules\\Autocrm\\Classes\\FieldProcessing\\LinkMultiple\\Loader"
+	],
+	"saverClassNameList": [
+		"__APPEND__",
+		"Espo\\Modules\\Autocrm\\Classes\\FieldProcessing\\Relation\\LinkMultipleSaver",
+		"Espo\\Modules\\Autocrm\\Classes\\FieldProcessing\\EmailAddress\\Saver",
+		"Espo\\Modules\\Autocrm\\Classes\\FieldProcessing\\PhoneNumber\\Saver"
+	]
+}

@@ -5,5 +5,5 @@
     "author": "VIA CRM Team",
     "php": [">=7.4"],
     "dependencies": [],
-    "order": 20
+    "order": 16
 }

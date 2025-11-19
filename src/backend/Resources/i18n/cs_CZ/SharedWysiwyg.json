@@ -1,0 +1,18 @@
+{
+	"fields": {
+		"assignedUser": "Přiřazený uživatel",
+		"content": "Obsah",
+		"description": "Popis",
+		"name": "Název",
+		"teams": "Týmy"
+	},
+	"labels": {
+		"Create SharedWysiwyg": "Vytvořit sdílený WYSIWYG",
+		"Total": "Celkem",
+		"View List": "Zobrazit seznam"
+	},
+	"links": {
+		"assignedUser": "Přiřazený uživatel",
+		"teams": "Týmy"
+	}
+}

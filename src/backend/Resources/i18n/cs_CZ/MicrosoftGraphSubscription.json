@@ -1,0 +1,10 @@
+{
+	"fields": {
+		"description": "Popis",
+		"name": "Název"
+	},
+	"labels": {
+		"Create MicrosoftGraphSubscription": "Vytvořit Microsoft Graph odběr"
+	},
+	"links": {}
+}

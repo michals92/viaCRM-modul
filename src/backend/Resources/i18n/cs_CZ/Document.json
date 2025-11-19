@@ -1,0 +1,27 @@
+{
+	"fields": {
+		"status": "Stav"
+	},
+	"labels": {
+		"Upload From Zip": "Nahrát ze zipu"
+	},
+	"links": {
+		"contacts": "Kontakty",
+		"leads": "Potenciály"
+	},
+	"messages": {
+		"uploadZip": "Nahrát ze zipu"
+	},
+	"options": {
+		"status": {
+			"Draft": "Rozepsaný"
+		},
+		"type": {
+			"EULA": "EULA",
+			"NDA": "NDA"
+		}
+	},
+	"presetFilters": {
+		"draft": "Koncept"
+	}
+}

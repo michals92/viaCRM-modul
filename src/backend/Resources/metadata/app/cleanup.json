@@ -1,0 +1,5 @@
+{
+	"logsCleanup": {
+		"className": "Espo\\Modules\\Autocrm\\Classes\\Cleanup\\LogsCleanup"
+	}
+}

@@ -1,0 +1,37 @@
+
+/* Switch-style checkbox */
+input[type="checkbox"].form-checkbox.bool-display-switch {
+    position: relative;
+    width: calc(2 * var(--line-height-computed));
+    height: var(--line-height-computed);
+    appearance: none;
+    cursor: pointer;
+    background-color: var(--input-bg);
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s;
+}
+
+input[type="checkbox"].form-checkbox.bool-display-switch:checked {
+    background-color: var(--btn-primary-bg);
+}
+
+input[type="checkbox"].form-checkbox.bool-display-switch::before {
+    position: absolute;
+    top: 0.5px;
+    width: calc(var(--line-height-computed) - 2px);
+    height: calc(var(--line-height-computed) - 2px);
+    content: '';
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgb(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+input[type="checkbox"].form-checkbox.bool-display-switch:checked::before {
+    transform: translateX(var(--line-height-computed));
+}
+
+input[type="checkbox"].form-checkbox.bool-display-switch:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

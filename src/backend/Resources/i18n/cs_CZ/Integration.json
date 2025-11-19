@@ -1,0 +1,22 @@
+{
+	"fields": {
+		"apiKey": "API klíč",
+		"clientId": "ID klienta",
+		"clientSecret": "Client Secret",
+		"mapId": "ID mapy",
+		"scoreThreshold": "Prahová hodnota skóre",
+		"secretKey": "Tajný klíč",
+		"siteKey": "Klíč webu"
+	},
+	"help": {
+		"GoogleMaps": "Získejte klíč API [zde](https://developers.google.com/maps/documentation/javascript/get-api-key).",
+		"GoogleReCaptcha": "Získejte klíč webu a tajný klíč od [Google](https://www.google.com/recaptcha/).",
+		"Outlook": "Získejte přihlašovací údaje OAuth z [centra pro správu Azure Active Directory.](https://aad.portal.azure.com).",
+		"ZiveFirmy": "Získejte klíč API [zde](https://www.zivefirmy.cz)."
+	},
+	"titles": {
+		"GoogleMaps": "Google Maps",
+		"GoogleReCaptcha": "Google reCAPTCHA",
+		"ZiveFirmy": "Živé firmy"
+	}
+}

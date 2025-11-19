@@ -1,0 +1,18 @@
+{
+	"afterUpdateHookClassNameList": [
+		"__APPEND__",
+		"Espo\\Modules\\Autocrm\\Classes\\RecordHooks\\Alert\\Websocket"
+	],
+	"beforeUpdateHookClassNameList": [
+		"__APPEND__",
+		"Espo\\Classes\\RecordHooks\\Event\\BeforeUpdatePreserveDuration"
+	],
+	"readLoaderClassNameList": [
+		"__APPEND__",
+		"Espo\\Core\\FieldProcessing\\Reminder\\Loader"
+	],
+	"saverClassNameList": [
+		"__APPEND__",
+		"Espo\\Core\\FieldProcessing\\Reminder\\Saver"
+	]
+}

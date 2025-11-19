@@ -1,0 +1,9 @@
+{
+	"fields": {
+		"sicCode": "SIC Code",
+		"vatId": "VAT ID"
+	},
+	"labels": {
+		"Data Not Available": "Data Not Available"
+	}
+}

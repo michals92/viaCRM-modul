@@ -1,0 +1,20 @@
+{
+	"fields": {
+		"find": {
+			"type": "varchar"
+		},
+		"name": {
+			"type": "varchar"
+		},
+		"replace": {
+			"type": "varchar"
+		}
+	},
+	"links": {
+		"xmlTemplate": {
+			"type": "belongsTo",
+			"entity": "XmlTemplate",
+			"foreign": "replaceEntries"
+		}
+	}
+}

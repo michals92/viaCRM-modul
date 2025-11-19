@@ -1,0 +1,20 @@
+{
+	"controller": "controllers/record",
+	"iconClass": "far fa-file-code",
+	"boolFilterList": [
+		"onlyMy"
+	],
+	"menu": {
+		"detail": {
+			"buttons": [
+				"__APPEND__",
+				{
+					"label": "View Feed",
+					"name": "viewFeed",
+					"action": "viewFeed",
+					"handler": "autocrm:handlers/actions/xml-feed/view-feed"
+				}
+			]
+		}
+	}
+}

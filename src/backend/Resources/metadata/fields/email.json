@@ -1,0 +1,57 @@
+{
+	"fields": {
+		"account": {
+			"type": "link",
+			"entity": "Account",
+			"notStorable": true,
+			"layoutDetailDisabled": true,
+			"layoutDefaultSidePanelDisabled": true,
+			"mergeDisabled": true,
+			"customizationDefaultDisabled": true,
+			"customizationReadOnlyDisabled": true,
+			"customizationInlineEditDisabledDisabled": true
+		}
+	},
+	"params": [
+		"__APPEND__",
+		{
+			"name": "copyToClipboard",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "compact",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "hideOptOutButton",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "hideInvalidButton",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "hideAddButton",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "autocompleteMinChars",
+			"type": "int",
+			"min": 0,
+			"tooltip": true
+		}
+	],
+	"notCreatable": false,
+	"converterClassName": "Espo\\Modules\\Autocrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\Email",
+	"attributeExtractorClassName": "Espo\\Modules\\Autocrm\\Core\\Field\\EmailAddress\\EmailAddressGroupAttributeExtractor",
+	"paramsNameFieldView": "autocrm:views/admin/field-manager/fields/email/name"
+}

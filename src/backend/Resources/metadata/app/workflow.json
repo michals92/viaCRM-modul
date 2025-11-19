@@ -1,0 +1,7 @@
+{
+	"actionClassNameMap": {
+		"createAlert": "Espo\\Modules\\Autocrm\\Core\\Workflow\\Actions\\CreateAlert",
+		"duplicateEntity": "Espo\\Modules\\Autocrm\\Core\\Workflow\\Actions\\DuplicateEntity",
+		"updateEntity": "Espo\\Modules\\Autocrm\\Core\\Workflow\\Actions\\UpdateEntity"
+	}
+}

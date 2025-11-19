@@ -1,0 +1,15 @@
+{
+	"fields": {
+		"meetingType": "Meeting Type"
+	},
+	"options": {
+		"meetingType": {
+			"": "",
+			"Acquisition": "Acquisition",
+			"Business": "Business",
+			"Maintenance": "Maintenance",
+			"Project": "Project",
+			"Social": "Social"
+		}
+	}
+}

@@ -1,0 +1,37 @@
+[
+	{
+		"label": "",
+		"rows": [
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "template"
+				},
+				{
+					"name": "entityType"
+				}
+			],
+			[
+				{
+					"name": "filters"
+				},
+				{
+					"name": "isPublic"
+				}
+			],
+			[
+				{
+					"name": "replaceEntries"
+				}
+			],
+			[
+				{
+					"name": "customTag"
+				},
+				false
+			]
+		]
+	}
+]

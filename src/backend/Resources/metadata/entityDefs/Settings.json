@@ -1,0 +1,288 @@
+{
+	"fields": {
+		"addressCountryAsEnum": {
+			"type": "bool",
+			"default": true,
+			"tooltip": true
+		},
+		"addressCountryList": {
+			"type": "multiEnum",
+			"view": "autocrm:views/settings/fields/address-country-list"
+		},
+		"allowOtherUserReminders": {
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		"allowStreamPermissionLevelAboveRead": {
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		"areaUnitList": {
+			"type": "array"
+		},
+		"aresEnabled": {
+			"type": "bool",
+			"default": "true",
+			"tooltip": true
+		},
+		"aresIncludeHouseNumbersInAddress": {
+			"type": "bool",
+			"default": true,
+			"tooltip": true
+		},
+		"autoEmailRefresh": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"calendarAllDayScopeList": {
+			"type": "multiEnum",
+			"view": "autocrm:views/settings/fields/calendar-all-day-scope-list"
+		},
+		"calendarColors": {
+			"type": "jsonObject",
+			"view": "autocrm:views/fields/calendar-colors",
+			"tooltip": true
+		},
+		"calendarFontSize": {
+			"type": "int",
+			"min": 1,
+			"unit": "px"
+		},
+		"calendarMaxEventStack": {
+			"type": "int",
+			"default": 5
+		},
+		"calendarScopesDisabled": {
+			"type": "bool"
+		},
+		"cleanupAppLog": {
+			"type": "bool",
+			"default": true
+		},
+		"cleanupAppLogPeriod": {
+			"type": "enum",
+			"optionsReference": "Settings.cleanupJobPeriod"
+		},
+		"cleanupJobPeriod": {
+			"type": "enum",
+			"options": [
+				"1 hour",
+				"12 hours",
+				"1 day",
+				"2 days",
+				"10 days",
+				"15 days",
+				"1 month",
+				"2 months",
+				"6 months"
+			]
+		},
+		"cleanupWorkflowLogPeriod": {
+			"type": "enum",
+			"optionsReference": "Settings.cleanupJobPeriod"
+		},
+		"currencyRateDecimalSeparator": {
+			"type": "enum",
+			"default": ".",
+			"options": [
+				".",
+				","
+			]
+		},
+		"currentUnitList": {
+			"type": "array"
+		},
+		"defaultDetailLayout": {
+			"type": "enum",
+			"default": "record",
+			"options": [
+				"record",
+				"tab"
+			]
+		},
+		"defaultIsWide": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"disableAccountLinkToEmail": {
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		"disableAccountLinkToPhone": {
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		"disableConfirmInsertTemplate": {
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		"disableExtensionLicenseMessage": {
+			"type": "bool",
+			"default": true,
+			"tooltip": true
+		},
+		"disableFollow": {
+			"type": "bool",
+			"default": false
+		},
+		"disableIntroductoryGuide": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"editEntityEnabled": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"editFiltersEnabled": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"editLabelsEnabled": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"editLayoutEnabled": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"editNavbarEnabled": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"emailCheckInterval": {
+			"type": "int",
+			"tooltip": true
+		},
+		"emailParentFinderOrder": {
+			"type": "multiEnum",
+			"default": null,
+			"options": [
+				"References",
+				"From",
+				"To",
+				"FromReplied",
+				"ReplyTo",
+				"Default"
+			],
+			"tooltip": true
+		},
+		"energyUnitList": {
+			"type": "array"
+		},
+		"finstatEnabled": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"forcePhpMaxFileSize": {
+			"type": "bool",
+			"default": true,
+			"tooltip": true
+		},
+		"lengthUnitList": {
+			"type": "array"
+		},
+		"massActionMergeRecordLimit": {
+			"type": "int",
+			"default": 4,
+			"min": 2,
+			"tooltip": true
+		},
+		"notificationsCheckInterval": {
+			"type": "int",
+			"tooltip": true
+		},
+		"powerUnitList": {
+			"type": "array"
+		},
+		"quantityUnitList": {
+			"type": "array"
+		},
+		"recurrenceBatchSizeLimit": {
+			"type": "int",
+			"max": 10000,
+			"min": 0,
+			"tooltip": true
+		},
+		"refreshEntityEnabled": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"reportLargeModeFontPercentage": {
+			"type": "percentage"
+		},
+		"reportSmallModeFontPercentage": {
+			"type": "percentage"
+		},
+		"sanitizerAllowedUrlSchemes": {
+			"type": "array",
+			"allowCustomOptions": true,
+			"duplicateIgnore": true,
+			"noEmptyString": true
+		},
+		"saveAssignmentEmails": {
+			"type": "bool",
+			"default": true,
+			"tooltip": true
+		},
+		"showListScheduledRecurrencesButton": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"stickyHeader": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"stickyPdfView": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"streamRecordsPerPage": {
+			"type": "int"
+		},
+		"systemRequirementsInNavbarDisabled": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"timeUnitList": {
+			"type": "array"
+		},
+		"useLayoutsInCalendar": {
+			"type": "bool"
+		},
+		"viesEnabled": {
+			"type": "bool",
+			"tooltip": true
+		},
+		"viewApiEnabled": {
+			"type": "bool"
+		},
+		"voltageUnitList": {
+			"type": "array"
+		},
+		"volumeUnitList": {
+			"type": "array"
+		},
+		"webSocketPingTimeout": {
+			"type": "int",
+			"default": true,
+			"min": 1
+		},
+		"weightUnitList": {
+			"type": "array"
+		},
+		"workQueueEntityTypeList": {
+			"type": "multiEnum",
+			"view": "autocrm:views/settings/fields/work-queue-entity-type-list"
+		},
+		"ziveFirmyEnabled": {
+			"type": "bool",
+			"default": true,
+			"tooltip": true
+		}
+	}
+}

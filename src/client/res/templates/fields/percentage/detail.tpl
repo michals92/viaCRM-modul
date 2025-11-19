@@ -1,0 +1,3 @@
+{{#if isNotNull}}
+	{{value}}%
+{{/if}}

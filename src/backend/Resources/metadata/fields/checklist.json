@@ -1,0 +1,11 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "hideUncheckedInView",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		}
+	]
+}

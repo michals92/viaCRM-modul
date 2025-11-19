@@ -1,0 +1,79 @@
+{
+	"fields": {
+		"assignedUser": "Přiřazený uživatel",
+		"attachments": "Přílohy",
+		"body": "Tělo",
+		"connector": "Konektor",
+		"createdAt": "Vytvořeno",
+		"dateSent": "Datum odeslání",
+		"direction": "Směr",
+		"externalId": "Externí ID",
+		"from": "Od",
+		"modifiedAt": "Upraveno",
+		"numMedia": "Počet médií",
+		"numSegments": "Počet segmentů",
+		"replied": "Odpovězeno",
+		"replies": "Odpovědi",
+		"sentBy": "Odeslal",
+		"status": "Stav",
+		"to": "Komu",
+		"type": "Typ",
+		"voipRouter": "VoIP směrovač"
+	},
+	"labels": {
+		"Calling": "Odesílám...",
+		"Compose Message": "Napsat zprávu",
+		"Create VoipMessage": "Vytvořit zprávu",
+		"Download": "Stáhnout",
+		"Forward": "Přeposlat",
+		"Moved to Trash": "Přesunuto do koše",
+		"Reply": "Odpovědět",
+		"Retrieved from Trash": "Obnoveno z koše",
+		"Save Draft": "Uložit koncept",
+		"Send": "Odeslat",
+		"markAsNotRead": "Označit jako nepřečtené",
+		"markAsRead": "Označit jako přečtené"
+	},
+	"massActions": {
+		"markAsImportant": "Označit jako důležité",
+		"markAsNotImportant": "Označit jako nedůležité",
+		"markAsNotRead": "Označit jako nepřečtené",
+		"markAsRead": "Označit jako přečtené",
+		"moveToTrash": "Přesunout do koše",
+		"retrieveFromTrash": "Obnovit z koše"
+	},
+	"messages": {
+		"messageSent": "Zpráva byla odeslána",
+		"noSmsPhone": "Nemáte nakonfigurovaná telefonní čísla pro SMS/MMS",
+		"savedAsDraft": "Uloženo jako koncept"
+	},
+	"options": {
+		"direction": {
+			"incoming": "Příchozí",
+			"outgoing": "Odchozí"
+		},
+		"status": {
+			"accepted": "Přijato",
+			"delivered": "Doručeno",
+			"draft": "Koncept",
+			"failed": "Selhalo",
+			"queued": "Ve frontě",
+			"received": "Přijato",
+			"receiving": "Přijímá se",
+			"sending": "Odesílá se",
+			"sent": "Odesláno",
+			"undelivered": "Nedoručeno"
+		},
+		"type": {
+			"mms": "MMS",
+			"sms": "SMS"
+		}
+	},
+	"presetFilters": {
+		"drafts": "Koncepty",
+		"important": "Důležité",
+		"inbox": "Doručené",
+		"sent": "Odeslané",
+		"trash": "Koš"
+	}
+}

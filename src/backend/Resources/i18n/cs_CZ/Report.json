@@ -1,0 +1,90 @@
+{
+	"fields": {
+		"applyAcl": "Aplikovat práva",
+		"category": "Kategorie",
+		"chartColorList": "Seznam barev diagramu",
+		"column": "Sloupec",
+		"exportFormat": "Formát",
+		"joinedReports": "Dílčí reporty",
+		"orderBy": "Řadit podle",
+		"orderByList": "Seřadit dle",
+		"portals": "Portály",
+		"runtimeFilters": "Nastavitelné filtry"
+	},
+	"filtersGroupTypes": {
+		"and": "a",
+		"having": "Mající",
+		"not": "Ne z",
+		"or": "Nebo",
+		"subQueryIn": "V"
+	},
+	"functions": {
+		"QUARTER": "Čtvrtletí",
+		"QUARTER_FISCAL": "Fiskální čtvrtletí",
+		"WEEK": "Týden",
+		"YEAR_FISCAL": "Fiskální rok"
+	},
+	"labels": {
+		"Add AND group": "Přidat skupinu AND",
+		"Add Complex expression": "Přidat komplexní výraz",
+		"Add IN group": "Přidat skupinu IN",
+		"Add NOT group": "Přidat skupinu NOT",
+		"Add OR group": "Přidat skupinu OR",
+		"Columns": "Sloupce",
+		"Complex expression": "Komplexní výraz",
+		"Create Joint Grid Report": "Vytvořit spojený mřížkový report",
+		"Manage Categories": "Spravovat kategorie",
+		"Results View": "Zobrazení výsledků",
+		"Send Email": "Poslat Email"
+	},
+	"layoutFields": {
+		"align": "Zarovnání",
+		"exportOnly": "Pouze export",
+		"link": "Odkaz",
+		"notSortable": "Nelze třídit",
+		"width": "Šířka"
+	},
+	"options": {
+		"function": {
+			"DATE_NUMBER": "DATUM",
+			"DAYOFWEEK_NUMBER": "DEN V TÝDNU",
+			"HOUR_NUMBER": "HODINA",
+			"LENGTH": "DÉLKA",
+			"LOWER": "DOLNÍ",
+			"MINUTE_NUMBER": "MINUTA",
+			"MONTH_NUMBER": "MĚSÍC",
+			"QUARTER_NUMBER": "ČTVRTLETÍ",
+			"SUM": "SUMA",
+			"UPPER": "HORNÍ",
+			"WEEK_NUMBER_0": "TÝDEN (Neděle)",
+			"WEEK_NUMBER_1": "TÝDEN (Pondělí)",
+			"YEAR_NUMBER": "TÝDEN"
+		},
+		"layoutAlign": {
+			"left": "Vlevo",
+			"right": "Vpravo"
+		},
+		"operator": {
+			"equals": "Rovno",
+			"greaterThan": "Větší než",
+			"greaterThanOrEquals": "Větší nebo rovno",
+			"isNotNull": "Není nula",
+			"isNull": "Je nula",
+			"isTrue": "Je Pravda",
+			"lessThan": "Méně než",
+			"lessThanOrEquals": "Méně než nebo rovno",
+			"notEquals": "Nerovná se"
+		},
+		"type": {
+			"Grid": "Mřížka",
+			"List": "Seznam"
+		}
+	},
+	"tooltips": {
+		"applyAcl": "Výsledky reportu budou záviset na přístupu uživatele.",
+		"columns": "Jaká data se mají zobrazit.",
+		"groupBy": "Data budou agregována jednou nebo dvěma skupinami. Pokud jsou prázdné, nebudou data agregována, budou zobrazeny pouze součty. \n[Složité výrazy] (https://www.espocrm.com/documentation/user-guide/complex-expressions/) lze použít.",
+		"portals": "Report bude k dispozici pouze na určených portálech.",
+		"runtimeFilters": "Další filtry, které budou k dispozici v zobrazení přehledu."
+	}
+}

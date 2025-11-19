@@ -1,0 +1,13 @@
+{
+	"type": "Base",
+	"acl": true,
+	"aclActionList": [
+		"read"
+	],
+	"aclPortal": false,
+	"customizable": false,
+	"entity": false,
+	"layouts": false,
+	"module": "Autocrm",
+	"tab": true
+}

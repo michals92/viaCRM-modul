@@ -1,0 +1,10 @@
+{
+	"listLoaderClassNameList": [
+		"__APPEND__",
+		"Espo\\Modules\\Autocrm\\Classes\\FieldProcessing\\Opportunity\\LastActivityLoader"
+	],
+	"readLoaderClassNameList": [
+		"__APPEND__",
+		"Espo\\Modules\\Autocrm\\Classes\\FieldProcessing\\Opportunity\\LastActivityLoader"
+	]
+}

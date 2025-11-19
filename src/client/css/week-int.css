@@ -1,0 +1,25 @@
+.week-int .week-int-day {
+	margin-bottom: 5px;
+}
+
+.week-int .week-int-day > label {
+	width: 10%;
+}
+
+.week-int .week-int-day > input {
+	display: inline-block;
+	width: 85%;
+}
+
+.week-int-list {
+	display: flex;
+}
+
+.week-int-list > .week-int-day {
+	margin-right: 5px;
+}
+
+.week-int-list > .week-int-day > label,
+.week-int-list > .week-int-day > input {
+	display: block;
+}

@@ -1,0 +1,80 @@
+{
+	"fields": {
+		"assignedUser": {
+			"type": "link",
+			"required": false,
+			"view": "views/fields/assigned-user"
+		},
+		"content": {
+			"type": "wysiwyg",
+			"required": false
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"description": {
+			"type": "text"
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"maxLength": 255,
+			"trim": true
+		},
+		"teams": {
+			"type": "linkMultiple",
+			"view": "views/fields/teams"
+		}
+	},
+	"links": {
+		"assignedUser": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"teams": {
+			"type": "hasMany",
+			"entity": "Team",
+			"layoutRelationshipsDisabled": true,
+			"relationName": "EntityTeam"
+		}
+	},
+	"collection": {
+		"orderBy": "createdAt",
+		"order": "asc"
+	},
+	"indexes": {
+		"createdAt": {
+			"columns": [
+				"createdAt"
+			]
+		},
+		"name": {
+			"columns": [
+				"name"
+			]
+		}
+	}
+}

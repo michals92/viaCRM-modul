@@ -1,0 +1,64 @@
+{
+	"view": "autocrm:views/dashlets/records",
+	"options": {
+		"fields": {
+			"advancedFilters": {
+				"type": "jsonObject",
+				"view": "autocrm:views/dashlets/fields/records/advanced-filters"
+			}
+		},
+		"layout": [
+			{
+				"rows": [
+					[
+						{
+							"name": "title"
+						}
+					],
+					[
+						{
+							"name": "entityType"
+						},
+						false
+					],
+					[
+						{
+							"name": "primaryFilter"
+						},
+						{
+							"name": "sortBy"
+						}
+					],
+					[
+						{
+							"name": "boolFilterList"
+						},
+						{
+							"name": "sortDirection"
+						}
+					],
+					[
+						{
+							"name": "advancedFilters",
+							"fullWidth": true
+						}
+					],
+					[
+						{
+							"name": "displayRecords"
+						},
+						{
+							"name": "autorefreshInterval"
+						}
+					],
+					[
+						{
+							"name": "expandedLayout"
+						},
+						false
+					]
+				]
+			}
+		]
+	}
+}

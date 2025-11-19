@@ -1,0 +1,28 @@
+{
+	"easyEmailEditorLabels": {
+		"Edit": "Edit",
+		"Exit Full Screen": "Exit Full Screen",
+		"Export Template": "Export Template",
+		"Full Screen": "Full Screen",
+		"Import Template": "Import Template"
+	},
+	"fields": {
+		"bodyEasyEmail": "Body"
+	},
+	"labels": {
+		"Default": "Default",
+		"Easy Email Editor": "Easy Email Editor"
+	},
+	"messages": {
+		"defaultTypeDescription": "Ideal for simple plaintext or HTML email templates.",
+		"easyEmailTypeDescription": "Ideal for complex HTML email templates with images, links, complex layout and more. Uses fully-featured email editor."
+	},
+	"placeholderTexts": {
+		"siteUrl": "Site URL",
+		"viewInBrowserLink": "a link for viewing email in browser",
+		"viewInBrowserUrl": "URL for viewing email in browser"
+	},
+	"tooltips": {
+		"body": "You can use placeholders in format {Entity.field}:\nExamples: {Account.name}, {Contact.emailAddress}, {Task.dateStart}\n\nEntity can be any entity in the system."
+	}
+}

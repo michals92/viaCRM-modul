@@ -1,0 +1,1 @@
+Bylo vám přiřazeno: [{{entityType}}] {{name}}

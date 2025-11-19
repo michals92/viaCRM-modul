@@ -1,0 +1,24 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "compact",
+			"type": "bool",
+			"default": false,
+			"tooltip": true
+		},
+		{
+			"name": "decimalPlaces",
+			"type": "int",
+			"required": false,
+			"default": null,
+			"min": 0
+		}
+	],
+	"massUpdateActionList": [
+		"__APPEND__",
+		"update",
+		"increase",
+		"multiply"
+	]
+}

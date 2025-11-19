@@ -1,0 +1,13 @@
+{
+	"fields": {
+		"data": "Template data",
+		"entityType": "Entity type"
+	},
+	"labels": {
+		"Create RecordTemplate": "Create Record Template",
+		"Data": "Data",
+		"Select template entity type": "Select template entity type",
+		"Template Name": "Template Name",
+		"Template Settings": "Template Settings"
+	}
+}

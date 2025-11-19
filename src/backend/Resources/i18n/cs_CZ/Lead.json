@@ -1,0 +1,42 @@
+{
+	"actions": {
+		"pushToOutlook": "Odeslat do Outlooku"
+	},
+	"fields": {
+		"acceptanceStatus": "Stav přijetí",
+		"acceptanceStatusCalls": "Stav přijetí (Volání)",
+		"acceptanceStatusMeetings": "Stav přijetí (Schůzky)",
+		"convertedAt": "Převedeno na",
+		"emailAddress": "Email",
+		"industry": "Druh činnosti",
+		"opportunityAmountCurrency": "Částka příležitosti v měně",
+		"originalEmail": "Původní e-mail",
+		"sicCode": "IČ",
+		"status": "Stav",
+		"vatId": "DIČ"
+	},
+	"labels": {
+		"Create Lead": "Vytvořit Potenciál",
+		"Data Not Available": "Data nejsou k dispozici"
+	},
+	"links": {
+		"cases": "Případy",
+		"createdAccount": "Organizace",
+		"createdContact": "Kontakt",
+		"createdOpportunity": "Příležitost",
+		"documents": "Dokumenty"
+	},
+	"massActions": {
+		"pushToOutlook": "Odeslat do Outlooku"
+	},
+	"options": {
+		"source": {
+			"Email": "Email",
+			"Partner": "Partner",
+			"Public Relations": "Doporučení"
+		}
+	},
+	"presetFilters": {
+		"actual": "Aktuální"
+	}
+}

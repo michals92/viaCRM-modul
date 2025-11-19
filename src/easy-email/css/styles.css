@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+body.fullscreen-enabled {
+    overflow: hidden;
+}
+
+.easy-email-editor-wrapper[data-fullscreen=true] {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 2147483646;
+}
+
+body.fullscreen-enabled #FIXED_CONTAINER_ID > div,
+body.fullscreen-enabled .arco-tooltip,
+body.fullscreen-enabled .arco-trigger,
+body.fullscreen-enabled .arco-drawer-wrapper {
+    z-index: 2147483647;
+}
+
+.easy-email-editor-wrapper[data-fullscreen=true] .arco-card-body {
+    height: 100vh !important;
+    width: 100vw !important;
+}

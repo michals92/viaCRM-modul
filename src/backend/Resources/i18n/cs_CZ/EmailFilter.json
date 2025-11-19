@@ -1,0 +1,43 @@
+{
+	"fields": {
+		"action": "Akce",
+		"alertIconClass": "Ikonka upozornění",
+		"alertMessage": "Zpráva upozornění",
+		"bodyContains": "Tělo obsahuje",
+		"bodyContainsAll": "Tělo obsahuje vše",
+		"emailFolder": "Složka",
+		"from": "Od",
+		"groupEmailFolder": "Skupinová emailová složka",
+		"isGlobal": "Globální",
+		"markAsRead": "Označit jako přečtené",
+		"skipNotification": "Přeskočit notifikaci",
+		"subject": "Předmět",
+		"to": "Příjemce"
+	},
+	"labels": {
+		"Create EmailFilter": "Vytvořit emailový filter",
+		"Emails": "Emaily"
+	},
+	"links": {
+		"emailFolder": "Složka",
+		"groupEmailFolder": "Skupinová emailová složka"
+	},
+	"options": {
+		"action": {
+			"Move to Folder": "Přesunout do složky",
+			"Move to Group Folder": "Přesunout do skupinové složky",
+			"None": "Žádná",
+			"Skip": "Ignorovat",
+			"createAlert": "Upozornit"
+		}
+	},
+	"tooltips": {
+		"bodyContains": "Tělo zprávy obsahuje některé ze slov",
+		"bodyContainsAll": "Tělo e-mailu obsahuje všechna specifikovaná slova nebo fráze.",
+		"from": "Email je poslán z této adresy",
+		"isGlobal": "Platí pro všechny",
+		"name": "Popište filtr",
+		"subject": "Můžete používat zástupný znak *",
+		"to": "Komu je email poslán"
+	}
+}

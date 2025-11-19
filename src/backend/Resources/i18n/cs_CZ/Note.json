@@ -1,0 +1,66 @@
+{
+	"fields": {
+		"createdByGender": "Pohlaví tvůrce",
+		"data": "Data",
+		"isGlobal": "Globální",
+		"isInternal": "Interní (pro interní uživatele)",
+		"isPinned": "Je připnuto",
+		"number": "Číslo",
+		"portals": "Portály",
+		"post": "Příspěvek",
+		"related": "Související",
+		"targetType": "Cíl",
+		"teams": "Týmy",
+		"type": "Typ",
+		"users": "Uživatelé"
+	},
+	"filters": {
+		"activity": "Aktivita",
+		"all": "Vše",
+		"posts": "Příspěvky",
+		"updates": "Aktualizace"
+	},
+	"labels": {
+		"Pin": "Připnout",
+		"Pinned": "Připnuto",
+		"Quote Reply": "Odpovêdět s citací",
+		"Unpin": "Odepnout",
+		"View Activity": "Zobrazit aktivity",
+		"View Attachments": "Zobrazit přílohy",
+		"View Posts": "Zobrazit příspěvky"
+	},
+	"links": {
+		"attachments": "Přílohy",
+		"portals": "Portály",
+		"related": "Související",
+		"superParent": "Super rodič"
+	},
+	"messages": {
+		"pinnedMaxCountExceeded": "Nelze připnout více poznámek. Maximální povolený počet je {count}.",
+		"writeMessage": "Napište zprávu zde"
+	},
+	"options": {
+		"targetType": {
+			"all": "všem interním uživatelům",
+			"portals": "uživatelům portálu",
+			"self": "sobě",
+			"teams": "konkrétnímu týmu (týmům)",
+			"users": "konkrétnímu uživateli (uživatelům)"
+		},
+		"type": {
+			"Assign": "Přiřazení",
+			"Create": "Vytvoření",
+			"CreateRelated": "Vytvoření souvisejícího",
+			"EmailReceived": "E-mail přijat",
+			"EmailSent": "E-mail odeslán",
+			"Post": "Příspěvek",
+			"Relate": "Propojení",
+			"Status": "Stav",
+			"Unrelate": "Zrušení propojení",
+			"Update": "Aktualizace"
+		}
+	},
+	"otherFields": {
+		"to": "Komu"
+	}
+}

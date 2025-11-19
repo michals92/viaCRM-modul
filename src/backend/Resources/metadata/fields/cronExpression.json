@@ -1,0 +1,24 @@
+{
+	"fieldDefs": {
+		"type": "varchar",
+		"maxLength": 30
+	},
+	"params": [
+		{
+			"name": "required",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "default",
+			"type": "varchar"
+		},
+		{
+			"name": "readOnly",
+			"type": "bool"
+		}
+	],
+	"view": "autocrm:views/fields/cron-expression",
+	"notCreatable": true,
+	"filter": false
+}

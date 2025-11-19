@@ -1,0 +1,44 @@
+[
+	{
+		"rows": [
+			[
+				{
+					"name": "weightUnitList"
+				},
+				{
+					"name": "timeUnitList"
+				},
+				false,
+				false
+			],
+			[
+				{
+					"name": "lengthUnitList"
+				},
+				{
+					"name": "areaUnitList"
+				},
+				{
+					"name": "volumeUnitList"
+				},
+				{
+					"name": "quantityUnitList"
+				}
+			],
+			[
+				{
+					"name": "voltageUnitList"
+				},
+				{
+					"name": "currentUnitList"
+				},
+				{
+					"name": "energyUnitList"
+				},
+				{
+					"name": "powerUnitList"
+				}
+			]
+		]
+	}
+]

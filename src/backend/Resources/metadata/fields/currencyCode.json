@@ -1,0 +1,40 @@
+{
+	"fieldDefs": {
+		"type": "varchar",
+		"maxLength": 3
+	},
+	"validationList": [
+		"required"
+	],
+	"mandatoryValidationList": [
+		"valid",
+		"validCurrency"
+	],
+	"params": [
+		{
+			"name": "required",
+			"type": "bool",
+			"default": false
+		},
+		{
+			"name": "default",
+			"type": "enum",
+			"view": "views/admin/field-manager/fields/currency-default"
+		},
+		{
+			"name": "audited",
+			"type": "bool"
+		},
+		{
+			"name": "readOnly",
+			"type": "bool"
+		},
+		{
+			"name": "readOnlyAfterCreate",
+			"type": "bool"
+		}
+	],
+	"view": "autocrm:views/fields/currency-code",
+	"filter": true,
+	"personalData": false
+}

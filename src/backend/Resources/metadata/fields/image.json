@@ -1,0 +1,17 @@
+{
+	"params": [
+		"__APPEND__",
+		{
+			"name": "isPublic",
+			"type": "bool",
+			"default": true,
+			"view": "autocrm:views/admin/field-manager/fields/image/is-public"
+		},
+		{
+			"name": "publicDownloadToken",
+			"type": "varchar",
+			"required": true,
+			"default": true
+		}
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"fields": {
+		"processedAt": "Zpracováno v"
+	},
+	"options": {
+		"status": {
+			"Created": "Vytvořeno",
+			"Failed": "Selhalo",
+			"In Process": "V procesu",
+			"Interrupted": "Přerušeno",
+			"Pending": "Čekající",
+			"Processed": "Zpracováno",
+			"Rejected": "Odmítnuto",
+			"Standby": "Pohotovostní"
+		}
+	}
+}

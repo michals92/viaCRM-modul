@@ -1,0 +1,56 @@
+{
+	"fields": {
+		"addressField": "Pole s adresou",
+		"advancedFilters": "Pokročilé filtry",
+		"body": "Tělo",
+		"boolFilterList": "Další filtry",
+		"dateFilter": "Filtr datumů",
+		"displayOnlyCount": "Zobrazit pouze celkem",
+		"displayTotal": "Zobrazit celkem",
+		"enabledScopeList": "Co má být zobrazeno",
+		"entityType": "Typ entity",
+		"expandedLayout": "Vzhled",
+		"folder": "Složka",
+		"futureDays": "Dalších X dní",
+		"includeShared": "Zahrnout sdílené",
+		"layout": "Rozložení",
+		"mapCenter": "Střed mapy",
+		"primaryFilter": "Základní filter",
+		"sharedWysiwyg": "Sdílený Wysiwyg",
+		"skipOwn": "Nezobrazovat záznamy",
+		"sortBy": "Pořadí podle",
+		"sortDirection": "Typ řazení",
+		"team": "Tým",
+		"text": "Text",
+		"url": "URL",
+		"useLastStage": "Seskupit podle",
+		"users": "Uživatelé"
+	},
+	"messages": {
+		"selectAddressField": "Vyberte pole s adresou",
+		"selectEntityType": "Vyberte typ entity v dashletu"
+	},
+	"options": {
+		"mapCenter": {
+			"Czech Republic": "Česká republika",
+			"Slovakia": "Slovensko"
+		},
+		"mode": {
+			"agendaDay": "Den (agenda)",
+			"basicDay": "Den",
+			"basicWeekDetailed": "Týden (detailní)",
+			"timeline": "Časová osa"
+		},
+		"sortDirection": {
+			"asc": "Vzestupně",
+			"desc": "Sestupně"
+		}
+	},
+	"otherFields": {
+		"small": "Malý",
+		"soft": "Měkký"
+	},
+	"tooltips": {
+		"skipOwn": "Nezobrazovat moje akce"
+	}
+}

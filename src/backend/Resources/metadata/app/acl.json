@@ -1,0 +1,48 @@
+{
+	"valuePermissionList": [
+		"__APPEND__",
+		"allEmailFolder"
+	],
+	"valuePermissionHighestLevels": {
+		"allEmailFolder": "yes"
+	},
+	"valuePermissionDefaults": {
+		"allEmailFolder": "yes"
+	},
+	"adminMandatory": {
+		"scopeLevel": {
+			"PortalUser": {
+				"create": "yes",
+				"delete": "all",
+				"edit": "all",
+				"read": "all"
+			},
+			"WorkQueue": {
+				"read": "all"
+			}
+		}
+	},
+	"mandatory": {
+		"scopeLevel": {
+			"RecordRecurrence": {
+				"create": "yes",
+				"delete": "own",
+				"edit": "own",
+				"read": "own"
+			},
+			"RecordTemplate": {
+				"create": "no",
+				"delete": "no",
+				"edit": "no",
+				"read": "all"
+			}
+		}
+	},
+	"strictDefault": {
+		"scopeLevel": {
+			"WorkQueue": {
+				"read": "own"
+			}
+		}
+	}
+}

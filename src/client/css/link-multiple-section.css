@@ -1,0 +1,280 @@
+.field[data-name] .list-section-mode {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.field[data-name] .list-section-mode .section-item {
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.field[data-name] .list-section-mode .section-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: move;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.field[data-name] .list-section-mode .section-header .checkbox-cell {
+    margin-right: 10px;
+}
+
+.field[data-name] .list-section-mode .section-title {
+    flex: 1;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.field[data-name] .list-section-mode .section-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.field[data-name] .list-section-mode .section-title a:hover {
+    text-decoration: underline;
+}
+
+/* Collapse button styling */
+.field[data-name] .list-section-mode .collapse-toggle {
+    padding: 4px 8px;
+    color: #666;
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.field[data-name] .list-section-mode .collapse-toggle:hover {
+    color: #333;
+    background-color: rgb(0, 0, 0, 0.05);
+}
+
+.field[data-name] .list-section-mode .collapse-toggle i {
+    display: inline-block;
+    font-size: 12px;
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Icon rotation animation */
+.field[data-name] .list-section-mode .collapse-toggle i.fa-chevron-down {
+    transform: rotate(0deg);
+}
+
+.field[data-name] .list-section-mode .collapse-toggle i.fa-chevron-right {
+    transform: rotate(0deg);
+}
+
+/* Threshold mode - 45 degree rotation */
+.field[data-name] .list-section-mode .section-wrapper[data-collapse-mode="threshold"] .collapse-toggle i.fa-chevron-right {
+    transform: rotate(45deg);
+}
+
+/* Add smooth transition for mode changes */
+.field[data-name] .list-section-mode .section-wrapper[data-collapse-mode="threshold"] .collapse-toggle:hover i {
+    transform: rotate(50deg);
+}
+
+/* Section summary styling */
+.field[data-name] .list-section-mode .section-summary {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #888;
+}
+
+.field[data-name] .list-section-mode .section-summary .field-count {
+    padding: 2px 8px;
+    font-size: 12px;
+    background-color: rgb(0, 0, 0, 0.05);
+    border-radius: 12px;
+}
+
+/* Collapse animation */
+.field[data-name] .list-section-mode .section-content {
+    max-height: 2000px;
+    opacity: 1;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* Collapsed mode - hide everything */
+.field[data-name] .list-section-mode .section-wrapper.collapsed[data-collapse-mode="collapsed"] .section-content {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* Threshold mode - partially visible */
+.field[data-name] .list-section-mode .section-wrapper.collapsed[data-collapse-mode="threshold"] .section-content {
+    max-height: 500px; /* Enough for threshold fields */
+    opacity: 1;
+}
+
+/* Adjust header when collapsed */
+.field[data-name] .list-section-mode .section-wrapper.collapsed .section-header {
+    background-color: #f9f9f9;
+    border-bottom: none;
+}
+
+/* Smooth field appearance */
+.field[data-name] .list-section-mode .field-row {
+    /* Field row styles moved here from duplicate selector */
+    display: grid;
+    grid-template-columns: minmax(120px, 25%) 1fr;
+    gap: 15px;
+    align-items: start;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    animation: fade-in 0.3s ease-out;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.field[data-name] .list-section-mode .section-actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.field[data-name] .list-section-mode .section-actions .list-row-buttons {
+    float: none !important;
+    display: inline-flex;
+    gap: 4px;
+    margin: 0;
+}
+
+.field[data-name] .list-section-mode .section-actions .btn-group {
+    display: inline-flex;
+    gap: 4px;
+}
+
+.field[data-name] .list-section-mode .section-actions .btn {
+    flex-shrink: 0;
+    min-width: 32px;
+    padding: 6px 8px;
+}
+
+.field[data-name] .list-section-mode .section-actions .btn-link {
+    color: #666;
+    transition: color 0.2s;
+}
+
+.field[data-name] .list-section-mode .section-actions .btn-link:hover {
+    color: #333;
+}
+
+.field[data-name] .list-section-mode .section-fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 15px;
+}
+
+/* Field row styles moved to line 126 to avoid duplicate selector */
+
+.field[data-name] .list-section-mode .field-row:last-child {
+    border-bottom: none;
+}
+
+.field[data-name] .list-section-mode .field-label {
+    padding-top: 6px;
+    font-weight: 500;
+    color: #666;
+    text-align: left;
+}
+
+.field[data-name] .list-section-mode .field-value {
+    flex: 1;
+    min-width: 0;
+    color: #333;
+    hyphens: auto;
+    word-break: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Ensure consistent field alignment in both modes */
+.field[data-name] .list-section-mode .field-value > div {
+    word-break: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Fix for long text in detail mode */
+.field[data-name] .list-section-mode .field-value .field {
+    word-break: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.field[data-name] .list-section-mode .field-value .form-control {
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.field[data-name] .list-section-mode .field-value * {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Ensure uniform padding/margin for field values */
+.field[data-name] .list-section-mode .section-fields .field-value > div:first-child {
+    padding: 0;
+    margin: 0;
+}
+
+/* Support for compound fields like quantity with unit */
+.field[data-name] .list-section-mode .field-value .input-group-item {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.field[data-name] .list-section-mode .field-value .input-group-item + .input-group-item {
+    margin-left: -1px;
+}
+
+/* Compact inputs in section mode */
+.field[data-name] .list-section-mode .section-fields .form-control.compact {
+    width: auto;
+    min-width: 60px;
+}
+
+/* Ensure inline edit works properly */
+.field[data-name] .list-section-mode .field-value .inline-edit-link {
+    display: inline-block;
+}
+
+/* Sortable placeholder */
+.field[data-name] .list-section-mode .ui-sortable-placeholder {
+    visibility: visible !important;
+    height: 150px;
+    margin-bottom: 10px;
+    background-color: #e9ecef;
+    border: 2px dashed #adb5bd;
+    border-radius: 4px;
+}
+
+/* Dragging state */
+.field[data-name] .list-section-mode .ui-sortable-helper {
+    box-shadow: 0 5px 15px rgb(0, 0, 0, 0.3);
+    opacity: 0.8;
+}

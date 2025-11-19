@@ -3,5 +3,503 @@
         "__APPEND__",
         "client/custom/modules/viacrm/src/init.js",
         "client/custom/modules/viacrm/src/app.js"
-    ]
+    ],
+    "cssList": [
+		"__APPEND__",
+		"client/modules/autocrm/css/easy-email/editor.css",
+		"client/modules/autocrm/css/main.css"
+	],
+	"variableCssSources": [
+		"__APPEND__",
+		"Espo\\Modules\\Autocrm\\Classes\\VariableCss\\Sources\\CustomIcons",
+		"Espo\\Modules\\Autocrm\\Classes\\VariableCss\\Sources\\StickyHeader",
+		"Espo\\Modules\\Autocrm\\Classes\\VariableCss\\Sources\\StickyPdfView"
+	],
+	"viewExtensions": {
+		"advanced:handlers/manual-workflow": [
+			"__APPEND__",
+			"autocrm:extensions/handlers/manual-workflow"
+		],
+		"advanced:views/report/fields/columns": [
+			"__APPEND__",
+			"autocrm:extensions/views/report/fields/columns"
+		],
+		"advanced:views/report/reports/tables/grid1": [
+			"__APPEND__",
+			"autocrm:extensions/views/report/reports/tables/grid1"
+		],
+		"advanced:views/workflow/action-fields/add-field": [
+			"__APPEND__",
+			"autocrm:extensions/views/workflow/action-fields/add-field"
+		],
+		"advanced:views/workflow/action-modals/create-entity": [
+			"__APPEND__",
+			"autocrm:extensions/views/workflow/action-modals/create-entity"
+		],
+		"advanced:views/workflow/action-modals/update-entity": [
+			"__APPEND__",
+			"autocrm:extensions/views/workflow/action-modals/update-entity"
+		],
+		"advanced:views/workflow/record/actions": [
+			"__APPEND__",
+			"autocrm:extensions/views/workflow/record/actions"
+		],
+		"advanced:views/workflow/record/detail": [
+			"__APPEND__",
+			"autocrm:extensions/views/workflow/record/detail"
+		],
+		"app": [
+			"__APPEND__",
+			"autocrm:app"
+		],
+		"collections/tree": [
+			"__APPEND__",
+			"autocrm:extensions/collections/tree"
+		],
+		"controller": [
+			"__APPEND__",
+			"autocrm:extensions/controller"
+		],
+		"crm:handlers/event/reminders-handler": [
+			"__APPEND__",
+			"autocrm:extensions/handlers/event/reminders-handler"
+		],
+		"crm:handlers/task/reminders-handler": [
+			"__APPEND__",
+			"autocrm:extensions/handlers/task/reminders-handler"
+		],
+		"crm:views/calendar/mode-buttons": [
+			"__APPEND__",
+			"autocrm:extensions/views/calendar/mode-buttons"
+		],
+		"crm:views/calendar/timeline": [
+			"__APPEND__",
+			"autocrm:extensions/views/calendar/timeline"
+		],
+		"crm:views/lead/detail": [
+			"__APPEND__",
+			"autocrm:extensions/views/lead/detail"
+		],
+		"crm:views/record/panels/activities": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/panels/activities"
+		],
+		"crm:views/scheduler/scheduler": [
+			"__APPEND__",
+			"autocrm:extensions/views/scheduler/scheduler"
+		],
+		"dynamic-logic": [
+			"__APPEND__",
+			"autocrm:extensions/dynamic-logic"
+		],
+		"handlers/navbar-menu": [
+			"__APPEND__",
+			"autocrm:extensions/handlers/navbar-menu"
+		],
+		"handlers/record/view-user-access": [
+			"__APPEND__",
+			"autocrm:extensions/handlers/record/view-user-access"
+		],
+		"helpers/record-modal": [
+			"__APPEND__",
+			"autocrm:extensions/helpers/record-modal"
+		],
+		"helpers/record/create-related": [
+			"__APPEND__",
+			"autocrm:extensions/helpers/record/create-related"
+		],
+		"helpers/site/tabs": [
+			"__APPEND__",
+			"autocrm:extensions/helpers/site/tabs"
+		],
+		"model": [
+			"__APPEND__",
+			"autocrm:extensions/model"
+		],
+		"router": [
+			"__APPEND__",
+			"autocrm:extensions/router"
+		],
+		"ui/autocomplete": [
+			"__APPEND__",
+			"autocrm:extensions/ui/autocomplete"
+		],
+		"view": [
+			"__APPEND__",
+			"autocrm:extensions/views/view/string-listener",
+			"autocrm:extensions/views/view/field-name"
+		],
+		"view-helper": [
+			"__APPEND__",
+			"autocrm:extensions/view-helper"
+		],
+		"views/admin/dynamic-logic/conditions-string/item-base": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/dynamic-logic/conditions-string/item-base"
+		],
+		"views/admin/dynamic-logic/conditions/and": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/dynamic-logic/conditions/and"
+		],
+		"views/admin/dynamic-logic/conditions/field-types/base": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/dynamic-logic/conditions/field-types/base"
+		],
+		"views/admin/dynamic-logic/conditions/group-base": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/dynamic-logic/conditions/group-base"
+		],
+		"views/admin/dynamic-logic/conditions/not": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/dynamic-logic/conditions/not"
+		],
+		"views/admin/dynamic-logic/conditions/or": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/dynamic-logic/conditions/or"
+		],
+		"views/admin/entity-manager/edit": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/entity-manager/edit"
+		],
+		"views/admin/entity-manager/formula": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/entity-manager/formula"
+		],
+		"views/admin/entity-manager/index": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/entity-manager/index"
+		],
+		"views/admin/entity-manager/modals/select-icon": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/entity-manager/modals/select-icon"
+		],
+		"views/admin/entity-manager/record/edit": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/entity-manager/record/edit"
+		],
+		"views/admin/entity-manager/record/edit-formula": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/entity-manager/record/edit-formula"
+		],
+		"views/admin/entity-manager/scope": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/entity-manager/scope"
+		],
+		"views/admin/field-manager/edit": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/field-manager/edit"
+		],
+		"views/admin/field-manager/fields/link-multiple/default": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/field-manager/fields/link-multiple/default"
+		],
+		"views/admin/field-manager/fields/options-with-style": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/field-manager/fields/options-with-style"
+		],
+		"views/admin/field-manager/list": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/field-manager/list"
+		],
+		"views/admin/layouts/bottom-panels-detail": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/layouts/bottom-panels-detail"
+		],
+		"views/admin/layouts/detail": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/layouts/detail"
+		],
+		"views/admin/layouts/grid": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/layouts/grid"
+		],
+		"views/admin/layouts/list": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/layouts/list"
+		],
+		"views/admin/layouts/rows": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/layouts/rows"
+		],
+		"views/admin/layouts/side-panels-detail": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/layouts/side-panels-detail"
+		],
+		"views/admin/link-manager/modals/edit": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/link-manager/modals/edit"
+		],
+		"views/admin/link-manager/modals/edit-params": [
+			"__APPEND__",
+			"autocrm:extensions/views/admin/link-manager/modals/edit-params"
+		],
+		"views/dashboard": [
+			"__APPEND__",
+			"autocrm:extensions/views/dashboard"
+		],
+		"views/dashlet": [
+			"__APPEND__",
+			"autocrm:extensions/views/dashlet"
+		],
+		"views/dashlets/abstract/base": [
+			"__APPEND__",
+			"autocrm:extensions/views/dashlets/abstract/base"
+		],
+		"views/detail": [
+			"__APPEND__",
+			"autocrm:extensions/views/detail"
+		],
+		"views/email-folder/list-side": [
+			"__APPEND__",
+			"autocrm:extensions/views/email-folder/list-side"
+		],
+		"views/email/fields/email-address": [
+			"__APPEND__",
+			"autocrm:extensions/views/email/fields/email-address"
+		],
+		"views/email/fields/email-address-varchar": [
+			"__APPEND__",
+			"autocrm:extensions/views/email/fields/email-address-varchar"
+		],
+		"views/email/fields/from-address-varchar": [
+			"__APPEND__",
+			"autocrm:extensions/views/email/fields/from-address-varchar"
+		],
+		"views/email/fields/select-template": [
+			"__APPEND__",
+			"autocrm:extensions/views/email/fields/select-template"
+		],
+		"views/email/list": [
+			"__APPEND__",
+			"autocrm:extensions/views/email/list"
+		],
+		"views/email/modals/detail": [
+			"__APPEND__",
+			"autocrm:extensions/views/email/modals/detail"
+		],
+		"views/email/record/detail": [
+			"__APPEND__",
+			"autocrm:extensions/views/email/record/detail"
+		],
+		"views/fields/address": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/address"
+		],
+		"views/fields/address-country": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/address-country"
+		],
+		"views/fields/attachment-multiple": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/attachment-multiple"
+		],
+		"views/fields/base": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/base"
+		],
+		"views/fields/bool": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/bool"
+		],
+		"views/fields/checklist": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/checklist"
+		],
+		"views/fields/currency": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/currency"
+		],
+		"views/fields/date": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/date"
+		],
+		"views/fields/datetime": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/datetime"
+		],
+		"views/fields/duration": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/duration"
+		],
+		"views/fields/email": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/email"
+		],
+		"views/fields/enum": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/enum"
+		],
+		"views/fields/file": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/file"
+		],
+		"views/fields/int": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/int"
+		],
+		"views/fields/link": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/link"
+		],
+		"views/fields/link-multiple-with-primary": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/link-multiple-with-primary"
+		],
+		"views/fields/link-parent": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/link-parent"
+		],
+		"views/fields/phone": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/phone"
+		],
+		"views/fields/teams": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/teams"
+		],
+		"views/fields/varchar": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/varchar"
+		],
+		"views/fields/wysiwyg": [
+			"__APPEND__",
+			"autocrm:extensions/views/fields/wysiwyg"
+		],
+		"views/global-search/name-field": [
+			"__APPEND__",
+			"autocrm:extensions/views/global-search/name-field"
+		],
+		"views/header": [
+			"__APPEND__",
+			"autocrm:extensions/views/header"
+		],
+		"views/list": [
+			"__APPEND__",
+			"autocrm:extensions/views/list"
+		],
+		"views/list-with-categories": [
+			"__APPEND__",
+			"autocrm:extensions/views/list-with-categories"
+		],
+		"views/login": [
+			"__APPEND__",
+			"autocrm:extensions/views/login"
+		],
+		"views/main": [
+			"__APPEND__",
+			"autocrm:extensions/views/main"
+		],
+		"views/modals/compose-email": [
+			"__APPEND__",
+			"autocrm:extensions/views/modals/compose-email"
+		],
+		"views/modals/detail": [
+			"__APPEND__",
+			"autocrm:extensions/views/modals/detail"
+		],
+		"views/modals/duplicate": [
+			"__APPEND__",
+			"autocrm:extensions/views/modals/duplicate"
+		],
+		"views/modals/edit": [
+			"__APPEND__",
+			"autocrm:extensions/views/modals/edit"
+		],
+		"views/modals/image-preview": [
+			"__APPEND__",
+			"autocrm:extensions/views/modals/image-preview"
+		],
+		"views/modals/select-records": [
+			"__APPEND__",
+			"autocrm:extensions/views/modals/select-records"
+		],
+		"views/notification/record/list": [
+			"__APPEND__",
+			"autocrm:extensions/views/notification/record/list"
+		],
+		"views/record/detail": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/detail"
+		],
+		"views/record/detail-bottom": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/detail-bottom"
+		],
+		"views/record/detail-side": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/detail-side"
+		],
+		"views/record/edit": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/edit"
+		],
+		"views/record/kanban": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/kanban"
+		],
+		"views/record/list": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/list"
+		],
+		"views/record/list-nested-categories": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/list-nested-categories"
+		],
+		"views/record/panels-container": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/panels-container"
+		],
+		"views/record/panels/default-side": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/panels/default-side"
+		],
+		"views/record/panels/relationship": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/panels/relationship"
+		],
+		"views/record/row-actions/default": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/row-actions/default"
+		],
+		"views/record/search": [
+			"__APPEND__",
+			"autocrm:extensions/views/record/search"
+		],
+		"views/role/list": [
+			"__APPEND__",
+			"autocrm:extensions/views/role/list"
+		],
+		"views/role/record/table": [
+			"__APPEND__",
+			"autocrm:extensions/views/role/record/table"
+		],
+		"views/settings/fields/address-preview": [
+			"__APPEND__",
+			"autocrm:extensions/views/settings/fields/address-preview"
+		],
+		"views/settings/fields/currency-rates": [
+			"__APPEND__",
+			"autocrm:extensions/views/settings/fields/currency-rates"
+		],
+		"views/settings/fields/tab-list": [
+			"__APPEND__",
+			"autocrm:extensions/views/settings/fields/tab-list"
+		],
+		"views/site/master": [
+			"__APPEND__",
+			"autocrm:extensions/views/site/master"
+		],
+		"views/site/navbar": [
+			"__APPEND__",
+			"autocrm:extensions/views/site/navbar"
+		],
+		"views/stream/panel": [
+			"__APPEND__",
+			"autocrm:extensions/views/stream/panel"
+		],
+		"web-socket-manager": [
+			"__APPEND__",
+			"autocrm:web-socket-manager"
+		]
+	}
 }

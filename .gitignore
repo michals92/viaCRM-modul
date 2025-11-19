@@ -1,3 +1,9 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
 # Dependencies
 node_modules/
 vendor/
@@ -6,11 +12,9 @@ vendor/
 /build/
 /dist/
 
-# Claude Code
-.claude/
-
 # Environment
 .env
+.env.*
 
 # Logs
 npm-debug.log*
@@ -20,12 +24,37 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-
 # Temporary files
 *.tmp
 *.temp
+
+# Minified files
+*.min.css
+*.min.js
+
+# PHP CS Fixer
+.php-cs-fixer.cache
+
+# ESLint
+.eslintcache
+
+# AI tools
+.claude/
+.plandex
+.aider*
+.raider/
+
+# IntelliJ specific
+*.iws
+out/
+.idea_modules/
+atlassian-ide-plugin.xml
+cmake-build-*/
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Claude Flow
+system_metrics.json
+memory/

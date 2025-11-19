@@ -1,0 +1,10 @@
+{
+	"allDayScopeList": [
+		"Task"
+	],
+	"calendarView": "autocrm:views/calendar/calendar",
+	"modeList": [
+		"__APPEND__",
+		"basicWeekDetailed"
+	]
+}

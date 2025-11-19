@@ -1,0 +1,59 @@
+{
+	"fields": {
+		"bold": "Bold Text",
+		"color": "Color",
+		"css": "Additional CSS Classes",
+		"customLabel": "Custom Label",
+		"disabled": "Disabled",
+		"displayLinkButtonInToolbar": "Move link button to toolbar",
+		"filtersEnabled": "Enable filters",
+		"horizontalLabel": "Horizontal Label",
+		"isEditable": "Editable",
+		"isSystem": "Is System",
+		"layout": "Layout",
+		"noLabel": "Hide Label",
+		"screenSize": "Screen Size"
+	},
+	"labels": {
+		"Add Row": "Add Row",
+		"Bold": "Bold",
+		"Color": "Color",
+		"Column": "Column",
+		"Columns Count": "Column Count",
+		"Custom Label": "Custom Label",
+		"Edit Panel": "Edit Panel",
+		"Field": "Field",
+		"Insert New Panel": "Insert New Panel",
+		"Insert Row": "Insert Row",
+		"New Panel": "New Panel",
+		"Remove Panel": "Remove Panel",
+		"Remove Row": "Remove Row",
+		"Show Code": "Show Code",
+		"Width": "Width"
+	},
+	"messages": {
+		"cannotRemoveLastPanel": "At least one panel must be exist!"
+	},
+	"options": {
+		"bottomLayoutType": {
+			"default": "Default",
+			"tab": "Tabs"
+		},
+		"gridLayoutType": {
+			"record": "Default",
+			"tab": "Tabs"
+		},
+		"screenSize": {
+			"lg": "Large Desktop",
+			"md": "Desktop",
+			"sm": "Tablets",
+			"xs": "Smart Phones"
+		}
+	},
+	"tooltips": {
+		"disabled": "Disabled panels will not be displayed in the entity detail view, but will remain visible in the admin interface for potential configuration changes.",
+		"displayLinkButtonInToolbar": "Moves the link button from dropdown to button list",
+		"isEditable": "Whether the field is editable in the list layout. Bare in mind that not every field can be editable (e.g. read-only or link fields) and that editing in a list might cause missclicks and data-loss.",
+		"panelLayout": "Select which layout to use for displaying the related entity in this panel"
+	}
+}
