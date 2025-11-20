@@ -139,7 +139,6 @@ class UpdateVacationHours implements
             $oldUsedHours = $hrRecord->get('vacationHoursUsed');
             $hrRecord->set('vacationHoursUsed', $usedHours);
             
-            // Calculate remaining (will be done by HR hook/formula)
             $total = $hrRecord->get('vacationHoursTotal') ?? 0;
             $remaining = max(0, $total - $usedHours);
             $hrRecord->set('vacationHoursRemaining', $remaining);

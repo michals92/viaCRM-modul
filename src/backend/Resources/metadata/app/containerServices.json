@@ -64,9 +64,6 @@
 	"linkMultipleSaver": {
 		"className": "Espo\\Modules\\Autocrm\\Core\\FieldProcessing\\Relation\\LinkMultipleSaver"
 	},
-	"manualWorkflowService": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\ManualWorkflow\\Service"
-	},
 	"recordHookProvider": {
 		"className": "Espo\\Modules\\Autocrm\\Core\\Record\\Hook\\Provider"
 	},
@@ -90,8 +87,5 @@
 	},
 	"valueMapPreparator": {
 		"className": "Espo\\Modules\\Autocrm\\Tools\\MassUpdate\\ValueMapPreparator"
-	},
-	"workflowManager": {
-		"loaderClassName": "Espo\\Modules\\Autocrm\\Core\\Loaders\\WorkflowManager"
 	}
 }

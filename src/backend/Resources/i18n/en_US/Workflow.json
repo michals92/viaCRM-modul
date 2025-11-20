@@ -1,8 +1,0 @@
-{
-	"messages": {
-		"alertTemplateHelpText": "Available variables:\n{$fieldName} - Any entity field (e.g. {$name}, {$status})\n{$$entityLink} - Clickable link to entity\n{$$user} - Current user\n{$$entity} - Target record\n\nExample:\nNew record added: {$name}\nView: {$$entityLink}"
-	},
-	"tooltips": {
-		"manualElementType": "**Button**: Will appear as a standalone button in the record detail view\n**Dropdown-Item**: Will appear as an item in the dropdown menu in the record detail view"
-	}
-}

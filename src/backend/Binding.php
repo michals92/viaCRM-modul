@@ -16,7 +16,6 @@ use Espo\Core\Record\Hook\Provider as RecordHookProvider;
 use Espo\Core\Select\Applier\Factory as SelectApplierFactory;
 use Espo\Core\Select\Text\FullTextSearch\DataComposerFactory as FullTextSearchDataComposerFactory;
 use Espo\Core\Utils\Language;
-use Espo\Modules\Advanced\Core\Loaders\WorkflowManager;
 use Espo\Modules\Autocrm\Core\Acl\Table\DefaultTableFactory;
 use Espo\Modules\Autocrm\Core\Mail\Importer\DefaultParentFinder;
 use Espo\Modules\Autocrm\Core\Record\EntityAwareCreateParamsFetcher;
@@ -42,9 +41,6 @@ class Binding implements BindingProcessor {
 		$this->bindAcl($binder);
 		$this->bindCore($binder);
 		$this->bindEmail($binder);
-
-		// Advanced pack
-		$this->bindAdvanced($binder);
 	}
 
 	private function bindCore(Binder $binder): void {
@@ -128,11 +124,6 @@ class Binding implements BindingProcessor {
 		);
 
 		$binder->bindService(DataBuilder::class, 'aclDataBuilder');
-	}
-
-	// Advanced pack
-	private function bindAdvanced(Binder $binder): void {
-		$binder->bindService(WorkflowManager::class, 'workflowManager');
 	}
 
 	private function bindAssignmentProcessor(Binder $binder): void {

@@ -50,8 +50,6 @@ define(['views/modals/edit'], Dep => class extends Dep {
 		const foreignScope = this.model.get('foreignScope');
 		const data = this.model.get('actionData');
 
-		data.formula = this.model.get('formula');
-
 		this.getHelper().broadcastChannel.postMessage('update:metadata');
 
 		Espo.Ajax.putRequest('ConversionDefs', { scope, foreignScope, data }).then(() => {

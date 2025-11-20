@@ -169,10 +169,6 @@ define(['views/fields/base'], Dep => class extends Dep {
 			.filter(field => {
 				const type = fieldDefs[field].type;
 
-				if (fieldDefs[field].workflowDisabled) {
-					return false;
-				}
-
 				if (fieldDefs[field].disabled || fieldDefs[field].utility) {
 					return false;
 				}

@@ -11,9 +11,6 @@
 	"installedExtensions": {
 		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\InstalledExtensions"
 	},
-	"manualWorkflows": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\ManualWorkflows"
-	},
 	"recordTemplateEntityTypeList": {
 		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\RecordTemplateEntityTypeList"
 	},

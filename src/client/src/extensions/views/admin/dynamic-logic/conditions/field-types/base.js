@@ -83,7 +83,7 @@ extend(['ui/select'], (Dep, Select) => class extends Dep {
 	getSubjectTranslatedOptions() {
 		return this.subjectTypeList.reduce((p, it) => ({
 			...p,
-			[it]: this.getLanguage().translateOption(it, 'subjectType', 'Workflow'),
+			[it]: this.getLanguage().translateOption(it, 'subjectType', 'Global'),
 		}), {});
 	}
 

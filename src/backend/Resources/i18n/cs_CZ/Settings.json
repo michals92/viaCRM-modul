@@ -52,7 +52,6 @@
 		"cleanupAppLogPeriod": "Doba retence aplikačních logů",
 		"cleanupDeletedRecords": "Vyčistit smazané záznamy",
 		"cleanupJobPeriod": "Doba retence jobů",
-		"cleanupWorkflowLogPeriod": "Doba retence Workflow logů",
 		"cronDisabled": "Zakázat Cron",
 		"currencyDecimalPlaces": "Počet desetinných míst měny",
 		"currencyFormat": "Formát měny",

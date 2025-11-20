@@ -4,7 +4,7 @@ define(['views/modal', 'model'], (Dep, Model) => class extends Dep {
 	override backdrop = true;
 
 	override setup() {
-		this.header = this.translate('Select Related Field', 'labels', 'Workflow');
+		this.header = this.translate('Select Related Field', 'labels', 'Global');
 
 		const scope: any = this.options.scope;
 

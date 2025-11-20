@@ -16,18 +16,7 @@ define(['views/main', 'model'], (Dep, Model) => class extends Dep {
 
 			model.name = model.entityType = 'AttributeMapping';
 
-			model.defs = {
-				fields: {
-					formula: {
-						type: 'text',
-						view: 'views/fields/formula',
-					},
-				},
-				links: {},
-			};
-
 			model.set({
-				formula: scopeData.formula || '',
 				scope: this.scope,
 				foreignScope,
 				actionData: {
@@ -66,16 +55,9 @@ define(['views/main', 'model'], (Dep, Model) => class extends Dep {
 						const model = new Model();
 						model.name = model.entityType = 'AttributeMapping';
 						model.defs = {
-							fields: {
-								formula: {
-									type: 'text',
-									view: 'views/fields/formula',
-								},
-							},
 							links: {},
 						};
 						model.set({
-							formula: '',
 							scope: this.scope,
 							foreignScope,
 							actionData: {

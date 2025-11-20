@@ -14,7 +14,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `Controllers/` - API endpoints
   - `Services/` - Business logic
   - `Entities/` - ORM models
-  - `Core/` - Framework extensions (AclManager, Workflow, Email, Layout extensions)
+  - `Core/` - Framework extensions (AclManager, Email, Layout extensions)
   - `Classes/` - Utilities and helpers (AppParams, FieldProcessing, Jobs, Utils)
   - `Resources/` - Metadata, layouts, translations (cs_CZ, de_DE, en_US, sk_SK)
   - `EntryPoints/` - Direct access points (Download, Pdf, Xml, PublicDownload)
@@ -36,7 +36,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Easy Email Component
 - **Location**: `src/easy-email/`
 - **Technology**: React 18 + MJML + easy-email libraries
-- **Purpose**: Advanced email template editor with drag-and-drop functionality
+- **Purpose**: Better email template editor with drag-and-drop functionality
 
 
 
@@ -79,7 +79,6 @@ The module extends EspoCRM's layout manager to support:
 
 ### Important Services
 - `Tools/Aggregation/Service` - Data aggregation functionality
-- `Tools/ManualWorkflow/Service` - Manual workflow execution
 - `Tools/EmailFolder/Service` - Email folder management
 - `Tools/UserKanban/Service` - Kanban board functionality
 - `Tools/Partition/PartitionService` - Data partitioning
@@ -197,7 +196,7 @@ This creates:
 
 5. **Cache Collision**: Parallel jobs need unique cache keys to avoid conflicts
 
-### Development Workflow
+### Development flow
 
 1. Test changes with dummy jobs first
 2. Create new MR for each major change (avoids caching issues)
@@ -375,6 +374,5 @@ stages:
 
 1. Implement real translation checking logic
 2. Verify upgrade process works in Docker containers
-3. Add advanced-pack installation tests (already in main branch)
 4. Configure proper artifact handling for upgrade tests
 5. Add deployment stage for successful builds on main branch

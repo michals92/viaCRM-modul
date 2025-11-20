@@ -16,38 +16,6 @@
 		"Espo\\Modules\\Autocrm\\Classes\\VariableCss\\Sources\\StickyPdfView"
 	],
 	"viewExtensions": {
-		"advanced:handlers/manual-workflow": [
-			"__APPEND__",
-			"autocrm:extensions/handlers/manual-workflow"
-		],
-		"advanced:views/report/fields/columns": [
-			"__APPEND__",
-			"autocrm:extensions/views/report/fields/columns"
-		],
-		"advanced:views/report/reports/tables/grid1": [
-			"__APPEND__",
-			"autocrm:extensions/views/report/reports/tables/grid1"
-		],
-		"advanced:views/workflow/action-fields/add-field": [
-			"__APPEND__",
-			"autocrm:extensions/views/workflow/action-fields/add-field"
-		],
-		"advanced:views/workflow/action-modals/create-entity": [
-			"__APPEND__",
-			"autocrm:extensions/views/workflow/action-modals/create-entity"
-		],
-		"advanced:views/workflow/action-modals/update-entity": [
-			"__APPEND__",
-			"autocrm:extensions/views/workflow/action-modals/update-entity"
-		],
-		"advanced:views/workflow/record/actions": [
-			"__APPEND__",
-			"autocrm:extensions/views/workflow/record/actions"
-		],
-		"advanced:views/workflow/record/detail": [
-			"__APPEND__",
-			"autocrm:extensions/views/workflow/record/detail"
-		],
 		"app": [
 			"__APPEND__",
 			"autocrm:app"
@@ -161,10 +129,6 @@
 			"__APPEND__",
 			"autocrm:extensions/views/admin/entity-manager/edit"
 		],
-		"views/admin/entity-manager/formula": [
-			"__APPEND__",
-			"autocrm:extensions/views/admin/entity-manager/formula"
-		],
 		"views/admin/entity-manager/index": [
 			"__APPEND__",
 			"autocrm:extensions/views/admin/entity-manager/index"
@@ -176,10 +140,6 @@
 		"views/admin/entity-manager/record/edit": [
 			"__APPEND__",
 			"autocrm:extensions/views/admin/entity-manager/record/edit"
-		],
-		"views/admin/entity-manager/record/edit-formula": [
-			"__APPEND__",
-			"autocrm:extensions/views/admin/entity-manager/record/edit-formula"
 		],
 		"views/admin/entity-manager/scope": [
 			"__APPEND__",

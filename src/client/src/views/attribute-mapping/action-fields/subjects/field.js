@@ -22,7 +22,7 @@ define(['view'], Dep => class extends Dep {
 
 		var fieldType = this.getMetadata().get('entityDefs.' + scope + '.fields.' + field + '.type') || 'base';
 
-		var fieldTypeList = this.getMetadata().get('entityDefs.Workflow.fieldTypeComparison.' + fieldType) || [];
+		var fieldTypeList = [];
 
 		if (fieldType === 'link' || fieldType === 'linkMultiple') {
 			foreignScope = this.getMetadata().get('entityDefs.' + scope + '.links.' + field + '.entity');
@@ -32,14 +32,14 @@ define(['view'], Dep => class extends Dep {
 			if (~value.indexOf('.')) {
 				var values = value.split('.');
 				this.listHtml =
-						this.translate('Field', 'labels', 'Workflow') +
+						this.translate('Field', 'labels', 'Global') +
 						': ' +
 						this.translate(values[0], 'links', entityType) +
 						'.' +
 						this.translate(values[1], 'fields', foreignScope);
 			} else {
 				this.listHtml =
-						this.translate('Field', 'labels', 'Workflow') +
+						this.translate('Field', 'labels', 'Global') +
 						': ' +
 						this.translate(value, 'fields', entityType);
 			}
@@ -77,7 +77,7 @@ define(['view'], Dep => class extends Dep {
 		list.forEach(function (f, i) {
 			if (i == 0) {
 				const label =
-						this.translate('Target Entity', 'labels', 'Workflow') +
+						this.translate('Target Entity', 'labels', 'Global') +
 						' (' +
 						this.translate(entityType, 'scopeNames') +
 						')';

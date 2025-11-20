@@ -165,8 +165,5 @@
         "startDate": {
             "columns": ["startDate", "deleted"]
         }
-    },
-    "formula": {
-       
     }
 }

@@ -8,7 +8,6 @@
             "Espo\\": "/usr/src/espocrm/application/Espo/",
             "Espo\\Custom\\": "/usr/src/espocrm/custom/Espo/Custom/",
             "Espo\\Modules\\": "/usr/src/espocrm/custom/Espo/Modules/",
-            "Espo\\Modules\\Advanced\\": "phpstan/stubs/advanced/",
             "Espo\\Modules\\Outlook\\": "phpstan/stubs/outlook/"
         },
         "files": [

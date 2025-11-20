@@ -2,7 +2,6 @@
 	"additionalBuilderClassNameList": [
 		"__APPEND__",
 		"Espo\\Modules\\Autocrm\\Core\\Utils\\Metadata\\AdditionalBuilder\\ExtenderScript",
-		"Espo\\Modules\\Autocrm\\Core\\Utils\\Metadata\\AdditionalBuilder\\AdvancedPackExtensions",
 		"Espo\\Modules\\Autocrm\\Core\\Utils\\Metadata\\AdditionalBuilder\\AttachmentCompareViewMode",
 		"Espo\\Modules\\Autocrm\\Core\\Utils\\Metadata\\AdditionalBuilder\\CalendarEntityManagerParams",
 		"Espo\\Modules\\Autocrm\\Core\\Utils\\Metadata\\AdditionalBuilder\\ColorAndIcon",

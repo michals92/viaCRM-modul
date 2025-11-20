@@ -79,10 +79,6 @@
 				"6 months"
 			]
 		},
-		"cleanupWorkflowLogPeriod": {
-			"type": "enum",
-			"optionsReference": "Settings.cleanupJobPeriod"
-		},
 		"currencyRateDecimalSeparator": {
 			"type": "enum",
 			"default": ".",

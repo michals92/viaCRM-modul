@@ -530,44 +530,6 @@ extend(
 				});
 			}
 
-			/** This is the method that decides what's included */
-			fetchAttributeListFromLayout() {
-				const attributeList = super.fetchAttributeListFromLayout();
-
-				const manualWorkflows = this.getHelper().getAppParam('manualWorkflows');
-
-				if (!manualWorkflows || !Object.keys(manualWorkflows).length) {
-					return attributeList;
-				}
-
-				this.listLayout.forEach((item, i) => {
-					if (!item.name) {
-						return;
-					}
-
-					const field = item.name;
-
-					const fieldDefs = this.getMetadata().get(['entityDefs', this.entityType, 'fields', field]);
-					const fieldType = fieldDefs?.type;
-					const workflowId = fieldDefs?.workflowId;
-
-					if (fieldType === 'button' && workflowId) {
-						const conditionGroup = manualWorkflows[this.entityType].find(wf => wf.id === workflowId)
-							?.dynamicLogic?.conditionGroup;
-
-						if (conditionGroup) {
-							for (const condition of conditionGroup) {
-								if (condition && condition.attribute) {
-									attributeList[i].push(condition.attribute);
-								}
-							}
-						}
-					}
-				});
-
-				return attributeList;
-			}
-
 			// BIG OOF
 			/** @private */
 			setupMassActions() {

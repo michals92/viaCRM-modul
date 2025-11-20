@@ -164,8 +164,7 @@ define(['views/fields/float'], Dep => class extends Dep {
 			selectOnFocus: false,
 			decimalPlaces: this.decimalPlaces,
 			allowDecimalPadding: true,
-			showWarnings: false,
-			formulaMode: true,
+			showWarnings: false
 		};
 
 		if (this.decimalPlaces === null) {

@@ -5,7 +5,6 @@ namespace Espo\Modules\Autocrm\Classes\Utils\Common;
 final class Extension {
 
 	public const ACCOUNTING = 'Accounting';
-	public const ADVANCED_PACK = 'AdvancedPack';
 	public const AI_PARSING = 'AiParsing';
 	public const APPROVAL = 'Approval';
 	public const ASSET_MANAGEMENT = 'AssetManagement';

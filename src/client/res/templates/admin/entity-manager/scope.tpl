@@ -75,44 +75,6 @@
 							{{/if}}
 						</div>
 					</div>
-					<div class='row'>
-						<div class='cell col-sm-4 form-group'>
-							{{#if hasFormula}}
-								<div>
-									<a class='btn btn-default btn-lg action btn-full-wide' data-action='editFormula'>
-										<span class='fas fa-code'></span>
-										{{translate 'Formula' scope='EntityManager'}}
-									</a>
-								</div>
-							{{/if}}
-						</div>
-						<div class='cell col-sm-4 form-group'>
-							{{#if hasFormula}}
-								<div>
-									<a
-										class='btn btn-default btn-lg action btn-full-wide'
-										href='#Admin/conversions/scope={{scope}}'
-									>
-										<span class='fas fa-directions'></span>
-										{{translate 'Conversions' scope='EntityManager'}}
-									</a>
-								</div>
-							{{/if}}
-						</div>
-						<div class='cell col-sm-4 form-group'>
-							{{#if hasFormula}}
-								<div>
-									<a
-										class='btn btn-default btn-lg action btn-full-wide'
-										href='#Admin/colorization/scope={{scope}}'
-									>
-										<span class='fas fa-paint-brush'></span>
-										{{translate 'Colorization' scope='EntityManager'}}
-									</a>
-								</div>
-							{{/if}}
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

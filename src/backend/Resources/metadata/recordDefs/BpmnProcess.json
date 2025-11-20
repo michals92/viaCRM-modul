@@ -1,7 +1,0 @@
-{
-	"massActions": {
-		"stop": {
-			"implementationClassName": "Espo\\Modules\\Autocrm\\Classes\\MassAction\\BpmnProcess\\Stop"
-		}
-	}
-}

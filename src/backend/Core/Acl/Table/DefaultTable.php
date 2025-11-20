@@ -10,8 +10,7 @@ use Espo\Modules\Autocrm\Core\Di;
 use ReflectionClass;
 use stdClass;
 
-class DefaultTable extends \Espo\Core\Acl\Table\DefaultTable implements Di\ManualWorkflowServiceAware {
-	use Di\ManualWorkflowServiceSetter;
+class DefaultTable extends \Espo\Core\Acl\Table\DefaultTable {
 
 	const ACTION_PRINT = 'print';
 
@@ -42,28 +41,7 @@ class DefaultTable extends \Espo\Core\Acl\Table\DefaultTable implements Di\Manua
 		$fieldType = $this->metadata->get(['entityDefs', $scope, 'fields', $field, 'type'], null);
 
 		return match ($fieldType) {
-			'button' => $this->determineButtonFieldData($scope, $field),
 			default => parent::getFieldData($scope, $field),
 		};
 	}
-
-	protected function determineButtonFieldData(string $scope, string $field): FieldData {
-		$workflowId = $this->metadata->get(['entityDefs', $scope, 'fields', $field, 'workflowId'], null);
-
-		if (!$workflowId) {
-			return FieldData::fromRaw((object)[
-			    self::ACTION_READ => self::LEVEL_NO,
-			    self::ACTION_EDIT => self::LEVEL_NO,
-			]);
-		}
-
-		return $this->manualWorkflowService->checkAccess($workflowId) ? FieldData::fromRaw((object)[
-		    self::ACTION_READ => self::LEVEL_YES,
-		    self::ACTION_EDIT => self::LEVEL_YES,
-		]) : FieldData::fromRaw((object)[
-		    self::ACTION_READ => self::LEVEL_NO,
-		    self::ACTION_EDIT => self::LEVEL_NO,
-		]);
-	}
-
 }

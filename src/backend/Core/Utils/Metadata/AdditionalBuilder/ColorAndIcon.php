@@ -16,8 +16,7 @@ class ColorAndIcon implements AdditionalBuilder {
 		    'EmailFolder',
 		    'EmailTemplateCategory',
 		    'GroupEmailFolder',
-		    'KnowledgeBaseCategory',
-		    'WorkflowCategory'
+		    'KnowledgeBaseCategory'
 		];
 
 		foreach ($entities as $entity) {
