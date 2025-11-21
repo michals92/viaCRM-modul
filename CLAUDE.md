@@ -48,7 +48,7 @@ Alert, RecordTemplate, RecordRecurrence, XmlTemplate, XmlFeed, Holiday, CustomIc
 
 ## Known Issues & TODOs
 
-### Bulk Email Handler - Performance & Scalability Issues
+### 1. Bulk Email Handler - Performance & Scalability Issues
 
 **File**: `src/client/src/handlers/mass-actions/bulk-email.ts:31`
 
@@ -76,6 +76,71 @@ if (data.params.byWhere) {
 - Server handles pagination and large datasets efficiently
 
 **Status**: TODO - needs complete rewrite with backend endpoint
+
+---
+
+### 2. Email PDF Provider - Naive Email Recipient Selection
+
+**File**: `src/backend/Classes/EmailPdf/DefaultAttributeProvider.php:81`
+
+**Problem**: Hardcoded assumption that every entity has `account` relation with `emailAddress` field
+
+**Current Implementation (BROKEN)**:
+```php
+// TODO: implement some logic for selecting where to get the 'to' email address from
+try {
+    $account = $this->entityManager->getRelation($entity, 'account')->findOne();
+    $attributes['to'] = $account?->get('emailAddress');
+} catch (Exception) {
+    // Silent fail - email sent without recipient
+}
+```
+
+**Issues**:
+1. **Only works for entities with `account` relation** (Invoice, Quote, SalesOrder)
+2. **Ignores direct email fields** on entity (Contact.emailAddress, Lead.emailAddress)
+3. **Ignores other relations** (contact, assignedUser, parent)
+4. **Not configurable** per entity type
+5. **Silent failure** - if exception, email goes without recipient
+
+**Examples of broken entities**:
+- `Contact` → has own `emailAddress` field, no `account` relation
+- `Lead` → has own `emailAddress` field, no `account` relation
+- `Case` → has `contact` relation, not `account`
+- `Meeting` → has `users`, `contacts`, `leads` collections
+
+**Required Solution**:
+```php
+private function getToEmailAddress(Entity $entity): ?string
+{
+    // 1. Try direct emailAddress field on entity
+    if ($entity->hasAttribute('emailAddress') && $entity->get('emailAddress')) {
+        return $entity->get('emailAddress');
+    }
+
+    // 2. Try common relations (contact, account, parent, assignedUser)
+    $relationChecks = ['contact', 'account', 'parent', 'assignedUser'];
+    foreach ($relationChecks as $relation) {
+        try {
+            $related = $this->entityManager->getRelation($entity, $relation)->findOne();
+            if ($related?->get('emailAddress')) {
+                return $related->get('emailAddress');
+            }
+        } catch (Exception) {
+            continue;
+        }
+    }
+
+    // 3. Check metadata configuration (per-entity customization)
+    $emailSourceConfig = $this->metadata->get(
+        ['entityDefs', $entity->getEntityType(), 'emailPdfToSource']
+    );
+
+    return null; // No email found - throw exception instead of silent fail
+}
+```
+
+**Status**: TODO - needs flexible lookup logic with metadata configuration
 
 ## CI/CD & GitLab
 
