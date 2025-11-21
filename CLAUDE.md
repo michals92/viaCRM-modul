@@ -209,6 +209,159 @@ try {
 
 **Status**: TODO - implement real SMTP connection test using Symfony Mailer Transport
 
+---
+
+### 4. History Tabs - Replace Manual Promise with whenReady()
+
+**File**: `src/client/src/views/site/history-tabs.ts:175`
+
+**Problem**: Manual Promise creation for waiting on view readiness - verbose and outdated pattern
+
+**Current Implementation (BC/LEGACY)**:
+```typescript
+// TODO: BC, use `whenReady` later
+await new Promise<void>(resolve => {
+    if (this.isReady) {
+        return resolve();
+    } else {
+        this.once('ready', () => resolve());
+    }
+});
+```
+
+**Issues**:
+1. **Verbose**: 7 lines for simple readiness check
+2. **Outdated**: Written for backwards compatibility with older EspoCRM
+3. **Not DRY**: Pattern duplicated in other views
+4. **Less maintainable**: Manual event handling prone to errors
+
+**Required Solution**:
+```typescript
+await this.whenReady(); // ✅ Modern EspoCRM helper method
+```
+
+**Benefits**:
+- Single line instead of 7
+- Uses built-in EspoCRM helper
+- Consistent with other modern views
+- Better error handling in helper method
+
+**Status**: TODO - refactor to `whenReady()` after confirming minimum EspoCRM version
+
+---
+
+### 5. Layout Builder Bottom Panels - Conceptual Mismatch
+
+**File**: `src/backend/Tools/Layout/LayoutBuilder.php:278`
+
+**Problem**: Method `hasFieldInBottomsPanelLayout()` is conceptually wrong - bottom panels don't have fields, they have relationship panels
+
+**Current Implementation (CONCEPTUALLY WRONG)**:
+```php
+/**
+ * Checks if bottomsPanel layout contains a field with given name
+ */
+private function hasFieldInBottomsPanelLayout(string $fieldName): bool {
+    // TODO: Implement if needed for bottomsPanel layouts
+    return false;
+}
+```
+
+**Why it's wrong**:
+
+**Bottom Panels structure** (relationship panels, NOT fields):
+```json
+{
+    "bankTransactions": {      // ← Panel name (relation)
+        "index": 4,
+        "disabled": false
+    },
+    "payments": {              // ← Panel name (relation)
+        "index": 0
+    },
+    "creditNotes.summaryVatRates": {  // ← Nested panel
+        "disabled": true
+    }
+}
+```
+
+**Detail Layout structure** (has actual fields):
+```json
+[
+    {
+        "rows": [
+            [
+                {"name": "name"},      // ← Field!
+                {"name": "status"}     // ← Field!
+            ]
+        ]
+    }
+]
+```
+
+**Issues**:
+1. **Wrong abstraction**: Bottom panels are key-value map, not array of fields
+2. **Wrong concept**: Looking for "fields" in relationship panels doesn't make sense
+3. **Dead code**: `addField()` method throws for `bottomsPanel` type, so `hasField()` never called
+4. **Misleading TODO**: Suggests implementation needed, but concept is wrong
+
+**Code context**:
+```php
+// LayoutBuilder.php:289-296
+public function addField(array $field): self {
+    if ($this->type !== Layout\LikeType::list) {
+        throw new \LogicException('Cannot add field to non-list layout');
+        // ↑ Throws for bottomsPanel! So hasField() never used.
+    }
+}
+```
+
+**Required Solution**:
+
+Bottom panels need **different methods** for panel management:
+
+```php
+/**
+ * Checks if bottomPanels layout contains a panel with given name
+ */
+private function hasPanelInBottomsPanelLayout(string $panelName): bool {
+    // Bottom panels are object: { "panelName": { "index": 0 } }
+    return isset($this->layout[$panelName]);
+}
+
+/**
+ * Add or update a panel in bottomPanels layout
+ */
+public function addPanel(string $panelName, array $config): self {
+    if ($this->type !== Layout\LikeType::bottomsPanel) {
+        throw new \LogicException('Cannot add panel to non-bottomPanel layout');
+    }
+
+    $this->layout[$panelName] = $config;
+    return $this;
+}
+
+/**
+ * Remove a panel from bottomPanels layout
+ */
+public function removePanel(string $panelName): self {
+    if ($this->type !== Layout\LikeType::bottomsPanel) {
+        throw new \LogicException('Cannot remove panel from non-bottomPanel layout');
+    }
+
+    unset($this->layout[$panelName]);
+    return $this;
+}
+```
+
+**Refactoring needed**:
+1. Remove `hasFieldInBottomsPanelLayout()` - conceptually wrong
+2. Add `hasPanelInBottomsPanelLayout()` - check if panel exists
+3. Add `addPanel()`, `removePanel()`, `updatePanel()` methods
+4. Update `hasField()` to not call bottomPanel check (or remove case)
+
+**Status**: TODO - refactor from field-based to panel-based API for bottomPanels
+
 ## CI/CD & GitLab
 
 ### Pipeline
