@@ -32,7 +32,6 @@ class GetLayout implements Command {
 			$io->writeLine('  massUpdate       - Mass update form layout');
 			$io->writeLine('  filters          - Filter panel layout');
 			$io->writeLine('  relationships    - Relationship panels layout');
-			$io->writeLine('  sidePanels       - Side panels layout (deprecated)');
 			$io->writeLine('  sidePanelsDetail - Side panels for detail view');
 			$io->writeLine('  sidePanelsEdit   - Side panels for edit view');
 			$io->writeLine('  kanban           - Kanban view layout');
