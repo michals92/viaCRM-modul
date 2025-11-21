@@ -29,7 +29,6 @@ extend(['autocrm:helpers/logo'], (Dep, LogoHelper) => class extends Dep {
 		return document.cookie.indexOf('view-as-user-id') > -1;
 	}
 
-	// New versions
 	setupMenu() {
 		super.setupMenu();
 
@@ -42,22 +41,13 @@ extend(['autocrm:helpers/logo'], (Dep, LogoHelper) => class extends Dep {
 		}
 	}
 
-	// Old versions
-	getMenuDataList() {
-		const menuDataList = super.getMenuDataList();
-
-		if (this.isViewingAs()) {
-			const logoutItem = menuDataList.find(item => item.action === 'logout');
-
-			if (logoutItem) {
-				logoutItem.label = this.translate('Return to My Account');
-			}
-		}
-
-		return menuDataList;
-	}
-
-	// Old versions
+	/**
+	 * Custom logout handler for "view as user" feature
+	 * When admin is viewing as another user:
+	 * - Logout means "Return to admin account" (not actual logout)
+	 * - Clears view-as-user cookie
+	 * - Clears cache and reloads page
+	 */
 	actionLogout() {
 		if (!this.isViewingAs()) {
 			super.actionLogout();
