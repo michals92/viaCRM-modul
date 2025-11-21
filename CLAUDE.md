@@ -142,6 +142,73 @@ private function getToEmailAddress(Entity $entity): ?string
 
 **Status**: TODO - needs flexible lookup logic with metadata configuration
 
+---
+
+### 3. Email Health SMTP Test - Only Configuration Check, No Real Test
+
+**Files**: `src/backend/Classes/ConsoleCommands/EmailHealth.php:229,360`
+
+**Problem**: Command only checks if SMTP configuration exists, doesn't test actual connection
+
+**Current Implementation (INCOMPLETE)**:
+```php
+// For now, just check if configuration exists
+// TODO: Implement actual SMTP test without sending email
+$result['smtp'] = 'CONFIGURED';
+```
+
+**Issues**:
+1. **False positives**: Reports 'CONFIGURED' even when credentials are invalid
+2. **No connection test**: Doesn't verify SMTP server is reachable
+3. **No authentication test**: Doesn't verify username/password are correct
+4. **No error detection**: Can't detect expired OAuth tokens, IP bans, blocked ports
+
+**Examples of undetected failures**:
+- Invalid password → stored in DB but authentication fails
+- Firewall blocks port 587/465
+- SMTP server hostname changed/unavailable
+- OAuth token expired (stored but invalid)
+- Server blocked IP address
+
+**Required Solution**:
+```php
+try {
+    // Use Symfony Mailer Transport (already in EspoCRM)
+    $transport = Transport::fromDsn(
+        "smtp://{$username}:{$password}@{$host}:{$port}"
+    );
+
+    // Open connection and perform handshake (HELO/EHLO)
+    $transport->start();
+
+    // Verify connection is alive + test authentication
+    $transport->ping();
+
+    // Close connection
+    $transport->stop();
+
+    $result['smtp'] = 'OK';  // ✅ Actually tested and works!
+
+} catch (TransportException $e) {
+    $result['smtp'] = 'FAILED';
+    $result['errors'][] = 'SMTP: ' . $e->getMessage();
+}
+```
+
+**Test performs**:
+1. TCP connection to SMTP server
+2. SMTP handshake (HELO/EHLO)
+3. Authentication (AUTH LOGIN/PLAIN/CRAM-MD5/XOAUTH2)
+4. Connection close
+5. **NO EMAIL SENT** - just connection test
+
+**Benefits**:
+- Proactive detection of credential expiration
+- Monitoring can alert before users report issues
+- Validates configuration is actually functional, not just present
+
+**Status**: TODO - implement real SMTP connection test using Symfony Mailer Transport
+
 ## CI/CD & GitLab
 
 ### Pipeline
