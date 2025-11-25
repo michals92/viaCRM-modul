@@ -25,7 +25,7 @@
 			"ESNext"
 		],
 
-		"types": ["@apertia/types-espocrm"],
+		"types": ["@viacrm/types-espocrm"],
 
 		"noPropertyAccessFromIndexSignature": false,
 		"noImplicitAny": false
