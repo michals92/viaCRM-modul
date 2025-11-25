@@ -1,0 +1,5 @@
+includes:
+    - phpstan-base.neon
+    - phpstan-v9-common.neon
+parameters:
+    espoVersion: 9.2.4

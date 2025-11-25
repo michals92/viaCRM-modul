@@ -1,0 +1,31 @@
+includes:
+    - ../vendor/phpstan/phpstan-deprecation-rules/rules.neon
+parameters:
+    level: 8
+    paths:
+        - ../src/backend
+        - ../src/scripts
+    scanDirectories:
+        - /usr/src/espocrm
+        - /tmp/espo-dependencies
+    universalObjectCratesClasses:
+        - stdClass
+parametersSchema:
+    espoVersion: string()
+services:
+    -
+        class: ViacrmDev\PHPStan\Extensions\EntityManagerReturnType
+        tags:
+            - phpstan.broker.dynamicMethodReturnTypeExtension
+    -
+        class: ViacrmDev\PHPStan\Extensions\BindServiceKeyValidator
+        tags:
+            - phpstan.rules.rule
+    -
+        class: ViacrmDev\PHPStan\Extensions\ReflectionUtilReturnType
+        tags:
+            - phpstan.rules.rule
+    -
+        class: ViacrmDev\PHPStan\Extensions\EnforceHookDocCommentRule
+        tags:
+            - phpstan.rules.rule

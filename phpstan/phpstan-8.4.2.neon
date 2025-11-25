@@ -1,0 +1,5 @@
+includes:
+    - phpstan-base.neon
+    - phpstan-bindservice-error.neon
+parameters:
+    espoVersion: 8.4.2
