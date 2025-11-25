@@ -1,4 +1,4 @@
-define(['views/fields/varchar', 'autocrm:helpers/zive-firmy-integration'], (Dep, ZiveFirmyIntegration) => class extends Dep {
+define(['views/fields/varchar', 'viacrm:helpers/zive-firmy-integration'], (Dep, ZiveFirmyIntegration) => class extends Dep {
 	afterRender() {
 		super.afterRender();
 			

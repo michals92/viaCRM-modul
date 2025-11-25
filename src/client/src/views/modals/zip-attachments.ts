@@ -36,7 +36,7 @@ define(['views/modal', 'model'], (Modal, Model) => class extends Modal {
 				attachmentField: {
 					type: 'enum',
 					options: this.options.attachmentFields || [],
-					view: 'autocrm:views/modals/zip-attachments/fields/attachment-field',
+					view: 'viacrm:views/modals/zip-attachments/fields/attachment-field',
 				},
 			},
 		});

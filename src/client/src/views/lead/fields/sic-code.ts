@@ -1,4 +1,4 @@
-define(['autocrm:views/account/fields/sic-code', 'autocrm:helpers/zive-firmy-integration'], (
+define(['viacrm:views/account/fields/sic-code', 'viacrm:helpers/zive-firmy-integration'], (
 	SicCodeFieldView: any,
 	ZiveFirmyIntegration: any,
 ) =>

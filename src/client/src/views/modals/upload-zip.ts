@@ -5,7 +5,7 @@ export interface UploadZipModalEvents extends ModalEvents {
 }
 
 define(['views/modal'], Dep => class extends Dep {
-	override template = 'autocrm:modals/upload-zip';
+	override template = 'viacrm:modals/upload-zip';
 
 	private fileContents: any = '';
 

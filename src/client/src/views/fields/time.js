@@ -1,9 +1,9 @@
 define(['views/fields/base'], Dep => class extends Dep {
-	listTemplate = 'autocrm:fields/time/list';
-	listLinkTemplate = 'autocrm:fields/time/list-link';
-	detailTemplate = 'autocrm:fields/time/detail';
-	editTemplate = 'autocrm:fields/time/edit';
-	searchTemplate = 'autocrm:fields/time/search';
+	listTemplate = 'viacrm:fields/time/list';
+	listLinkTemplate = 'viacrm:fields/time/list-link';
+	detailTemplate = 'viacrm:fields/time/detail';
+	editTemplate = 'viacrm:fields/time/edit';
+	searchTemplate = 'viacrm:fields/time/search';
 
 	validations = ['required', 'time'];
 

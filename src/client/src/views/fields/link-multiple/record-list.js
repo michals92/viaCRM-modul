@@ -1,4 +1,4 @@
-define(['views/record/list', 'autocrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
+define(['views/record/list', 'viacrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
 	mode = 'list';
 
 	removeRowActionWidth = 25;
@@ -37,7 +37,7 @@ define(['views/record/list', 'autocrm:helpers/version'], (Dep, VersionHelper) =>
 		super.setup();
 
 		if (this.sectionMode) {
-			this.template = 'autocrm:fields/link-multiple/record-list-section';
+			this.template = 'viacrm:fields/link-multiple/record-list-section';
 			// Initialize rowList for section mode
 			this.rowList ??= [];
 		}
@@ -274,7 +274,7 @@ define(['views/record/list', 'autocrm:helpers/version'], (Dep, VersionHelper) =>
 
 		// Ensure we have the layout loaded
 		const createRowView = () => {
-			const viewName = 'autocrm:views/fields/link-multiple/record-list-row-section';
+			const viewName = 'viacrm:views/fields/link-multiple/record-list-row-section';
 
 			this.createView(key, viewName, {
 				model: model,
@@ -509,7 +509,7 @@ define(['views/record/list', 'autocrm:helpers/version'], (Dep, VersionHelper) =>
 				layout.push({
 					columnName: 'remove-cross',
 					name: 'removeCrossField',
-					view: 'autocrm:views/record/row-actions/remove-cross',
+					view: 'viacrm:views/record/row-actions/remove-cross',
 					options: {},
 				});
 			}
@@ -518,7 +518,7 @@ define(['views/record/list', 'autocrm:helpers/version'], (Dep, VersionHelper) =>
 				layout.push({
 					columnName: 'duplicate',
 					name: 'duplicateField',
-					view: 'autocrm:views/record/row-actions/duplicate',
+					view: 'viacrm:views/record/row-actions/duplicate',
 					options: {},
 				});
 			}
@@ -527,7 +527,7 @@ define(['views/record/list', 'autocrm:helpers/version'], (Dep, VersionHelper) =>
 				layout.push({
 					columnName: 'sort-magnet',
 					name: 'sortMagnetField',
-					view: 'autocrm:views/record/row-actions/sort-magnet',
+					view: 'viacrm:views/record/row-actions/sort-magnet',
 					options: {},
 				});
 			}
@@ -536,7 +536,7 @@ define(['views/record/list', 'autocrm:helpers/version'], (Dep, VersionHelper) =>
 				layout.push({
 					columnName: 'unlink-chain',
 					name: 'unlinkChainField',
-					view: 'autocrm:views/record/row-actions/unlink-chain',
+					view: 'viacrm:views/record/row-actions/unlink-chain',
 					options: {},
 				});
 			}

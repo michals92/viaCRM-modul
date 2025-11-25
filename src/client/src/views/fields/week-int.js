@@ -1,7 +1,7 @@
 define(['views/fields/base', 'views/fields/int'], (Dep, IntFieldView) => class extends Dep {
-	detailTemplate = 'autocrm:fields/week-int/detail';
-	editTemplate = 'autocrm:fields/week-int/edit';
-	listTemplate = 'autocrm:fields/week-int/list';
+	detailTemplate = 'viacrm:fields/week-int/detail';
+	editTemplate = 'viacrm:fields/week-int/edit';
+	listTemplate = 'viacrm:fields/week-int/list';
 
 	thousandSeparator = ',';
 

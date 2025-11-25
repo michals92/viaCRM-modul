@@ -5,7 +5,7 @@ define(['views/modal'], Dep => class extends Dep {
 
 	footer = false;
 
-	template = 'autocrm:modals/link-multiple/list';
+	template = 'viacrm:modals/link-multiple/list';
 
 	setup() {
 		super.setup();
@@ -23,7 +23,7 @@ define(['views/modal'], Dep => class extends Dep {
 
 		this.notify(this.translate(' ... '));
 
-		this.createView('list', 'autocrm:views/fields/link-multiple/record-list', {
+		this.createView('list', 'viacrm:views/fields/link-multiple/record-list', {
 			collection: this.collection,
 			layoutName: this.recordListLayoutSuperCompact,
 			selector: '.recordList',

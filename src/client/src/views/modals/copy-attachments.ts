@@ -40,12 +40,12 @@ define(['views/modal', 'model'], (Modal, Model) => class extends Modal {
 				entity: {
 					type: 'linkParent',
 					entityList: this.options.entityList || [],
-					view: 'autocrm:views/modals/copy-attachments/fields/entity',
+					view: 'viacrm:views/modals/copy-attachments/fields/entity',
 				},
 				attachmentField: {
 					type: 'enum',
 					options: [],
-					view: 'autocrm:views/modals/copy-attachments/fields/attachment-field',
+					view: 'viacrm:views/modals/copy-attachments/fields/attachment-field',
 				},
 			},
 		});

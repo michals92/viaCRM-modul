@@ -3,7 +3,7 @@ import type AdvancedFilter from 'espocrm/src/views/record/edit';
 
 type Filters = Record<string, AdvancedFilter>;
 
-define(['views/modals/related-list', 'autocrm:helpers/version'], (Dep, VersionHelper) => class AutocrmRelatedListModalView extends Dep {
+define(['views/modals/related-list', 'viacrm:helpers/version'], (Dep, VersionHelper) => class AutocrmRelatedListModalView extends Dep {
 	setup() {
 		this.filters = (this.options.filters ?? {}) as Filters;
 		this.primaryFilterName = this.options.primaryFilterName || null;

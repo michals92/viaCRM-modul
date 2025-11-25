@@ -1,6 +1,6 @@
 define(['views/fields/varchar', 'views/fields/phone'], (Dep, Phone) => class extends Dep {
-	detailTemplate = 'autocrm:fields/varchar-phone/detail';
-	listTemplate = 'autocrm:fields/varchar-phone/list';
+	detailTemplate = 'viacrm:fields/varchar-phone/detail';
+	listTemplate = 'viacrm:fields/varchar-phone/list';
 
 	setup() {
 		super.setup();

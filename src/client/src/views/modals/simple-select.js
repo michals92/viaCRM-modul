@@ -1,5 +1,5 @@
 define(['views/modal'], Dep => class extends Dep {
-	template = 'autocrm:modals/simple-select';
+	template = 'viacrm:modals/simple-select';
 	backdrop = true;
 
 	events = {

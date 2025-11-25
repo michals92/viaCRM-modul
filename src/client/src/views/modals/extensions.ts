@@ -1,5 +1,5 @@
 define(['views/modal'], Dep => class extends Dep {
-	override template = 'autocrm:modals/extensions';
+	override template = 'viacrm:modals/extensions';
 
 	packageContents: string | null = null;
 

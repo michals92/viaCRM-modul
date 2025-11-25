@@ -1,4 +1,4 @@
-define(['autocrm:views/modals/simple-select'], Dep => class extends Dep {
+define(['viacrm:views/modals/simple-select'], Dep => class extends Dep {
 	setup() {
 		const languageList = this.getMetadata().get(['app', 'language', 'list']) || [];
 		const translatedOptions = this.getLanguage().translate('language', 'options') || {};

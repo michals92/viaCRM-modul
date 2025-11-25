@@ -1,5 +1,5 @@
 define(['views/base'], Dep => class extends Dep {
-	template = 'autocrm:fields/link-multiple/record-list-row-section';
+	template = 'viacrm:fields/link-multiple/record-list-row-section';
 
 	init() {
 		this.scope = this.model.entityType || this.model.name;
@@ -55,28 +55,28 @@ define(['views/base'], Dep => class extends Dep {
 
 	createActionButtons() {
 		if (!this.options.removeActionDisabled) {
-			this.createView('removeButton', 'autocrm:views/record/row-actions/remove-cross', {
+			this.createView('removeButton', 'viacrm:views/record/row-actions/remove-cross', {
 				model: this.model,
 				noWrapper: true
 			});
 		}
 
 		if (!this.options.duplicateActionDisabled) {
-			this.createView('duplicateButton', 'autocrm:views/record/row-actions/duplicate', {
+			this.createView('duplicateButton', 'viacrm:views/record/row-actions/duplicate', {
 				model: this.model,
 				noWrapper: true
 			});
 		}
 
 		if (this.options.recordListOrderByField) {
-			this.createView('sortButton', 'autocrm:views/record/row-actions/sort-magnet', {
+			this.createView('sortButton', 'viacrm:views/record/row-actions/sort-magnet', {
 				model: this.model,
 				noWrapper: true
 			});
 		}
 
 		if (!this.options.unlinkActionDisabled) {
-			this.createView('unlinkButton', 'autocrm:views/record/row-actions/unlink-chain', {
+			this.createView('unlinkButton', 'viacrm:views/record/row-actions/unlink-chain', {
 				model: this.model,
 				noWrapper: true
 			});

@@ -1,5 +1,5 @@
 define(['views/modal'], Dep => class extends Dep {
-	override template = 'autocrm:modals/system-requirements';
+	override template = 'viacrm:modals/system-requirements';
 	
 	override className = 'dialog dialog-record';
 	
@@ -29,7 +29,7 @@ define(['views/modal'], Dep => class extends Dep {
 
 		this.wait(
 			templatePromise.then(template => {
-				this.createView('systemRequirements', 'autocrm:views/modals/system-requirements/system-requirements', {
+				this.createView('systemRequirements', 'viacrm:views/modals/system-requirements/system-requirements', {
 					el: this.getSelector() + ' .system-requirements-container',
 					template
 				});
