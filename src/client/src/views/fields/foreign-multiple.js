@@ -1,9 +1,9 @@
 define(['views/fields/link-multiple'], Dep => class extends Dep {
 	type = 'foreignMultiple';
 
-	listTemplate = 'autocrm:fields/foreign-multiple/list';
-	detailTemplate = 'autocrm:fields/foreign-multiple/detail';
-	searchTemplate = 'autocrm:fields/foreign-multiple/search';
+	listTemplate = 'viacrm:fields/foreign-multiple/list';
+	detailTemplate = 'viacrm:fields/foreign-multiple/detail';
+	searchTemplate = 'viacrm:fields/foreign-multiple/search';
 
 	collection = null;
 
