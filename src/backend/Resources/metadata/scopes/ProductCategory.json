@@ -1,0 +1,11 @@
+{
+	"acl": "recordAllTeamNo",
+	"customizable": true,
+	"entity": true,
+	"importable": true,
+	"layouts": true,
+	"module": "Viacrm",
+	"notifications": false,
+	"tab": false,
+	"type": "CategoryTree"
+}

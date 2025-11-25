@@ -1,11 +1,4 @@
 {
 	"databaseFunction": "min",
-	"types": [
-		"int",
-		"float",
-		"currency",
-		"currencyConverted",
-		"date",
-		"datetime"
-	]
+	"types": ["int", "float", "currency", "currencyConverted", "date", "datetime"]
 }

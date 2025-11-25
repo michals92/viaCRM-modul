@@ -1,0 +1,6 @@
+{
+	"productSupplierStrategyClassNameMap": {
+		"LowestPrice": "Espo\\Modules\\Viacrm\\Tools\\ProductSupplier\\Strategies\\LowestPriceStrategy",
+		"LowestPriceWithDeadline": "Espo\\Modules\\Viacrm\\Tools\\ProductSupplier\\Strategies\\LowestPriceWithDeadlineStrategy"
+	}
+}

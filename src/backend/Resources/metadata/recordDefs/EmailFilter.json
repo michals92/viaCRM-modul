@@ -1,8 +1,4 @@
 {
-	"beforeCreateSuppressClassNameList": [
-		"Espo\\Classes\\RecordHooks\\EmailFilter\\BeforeSave"
-	],
-	"beforeUpdateSuppressClassNameList": [
-		"Espo\\Classes\\RecordHooks\\EmailFilter\\BeforeSave"
-	]
+	"beforeCreateSuppressClassNameList": ["Espo\\Classes\\RecordHooks\\EmailFilter\\BeforeSave"],
+	"beforeUpdateSuppressClassNameList": ["Espo\\Classes\\RecordHooks\\EmailFilter\\BeforeSave"]
 }

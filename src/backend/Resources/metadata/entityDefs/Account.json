@@ -10,14 +10,14 @@
 			"tooltip": true
 		},
 		"name": {
-			"view": "autocrm:views/account/fields/name"
+			"view": "viacrm:views/account/fields/name"
 		},
 		"shippingAddress": {
 			"tooltip": true
 		},
 		"sicCode": {
 			"type": "varchar",
-			"view": "autocrm:views/account/fields/sic-code",
+			"view": "viacrm:views/account/fields/sic-code",
 			"maxLength": 40,
 			"trim": true,
 			"pattern": "$noBadCharacters",
@@ -34,10 +34,7 @@
 		"type": {
 			"type": "multiEnum",
 			"default": [],
-			"options": [
-				"__APPEND__",
-				"Supplier"
-			],
+			"options": ["__APPEND__", "Supplier"],
 			"style": {
 				"Customer": "success",
 				"Supplier": "info"
@@ -50,6 +47,57 @@
 			"trim": true,
 			"pattern": "$noBadCharacters",
 			"noSpellCheck": true
+		},
+		"productSupplierItems": {
+			"type": "linkMultiple",
+			"layoutDetailDisabled": false,
+			"layoutMassUpdateDisabled": false,
+			"layoutListDisabled": false,
+			"noLoad": false,
+			"importDisabled": false,
+			"exportDisabled": false,
+			"recordListEnabled": true,
+			"recordListLinkDisabled": false,
+			"recordListConfirmRemove": true,
+			"recordListLayout": "listSmall"
+		},
+		"supplierProductCode": {
+			"type": "varchar",
+			"notStorable": true,
+			"orderDisabled": true,
+			"layoutMassUpdateDisabled": true,
+			"layoutListDisabled": true,
+			"layoutDetailDisabled": true,
+			"customizationRequiredDisabled": true,
+			"customizationIsSortedDisabled": true,
+			"customizationAuditedDisabled": true,
+			"customizationReadOnlyDisabled": true
+		},
+		"supplierProductName": {
+			"type": "varchar",
+			"notStorable": true,
+			"orderDisabled": true,
+			"layoutMassUpdateDisabled": true,
+			"layoutListDisabled": true,
+			"layoutDetailDisabled": true,
+			"customizationRequiredDisabled": true,
+			"customizationIsSortedDisabled": true,
+			"customizationAuditedDisabled": true,
+			"customizationReadOnlyDisabled": true
+		},
+		"productSerials": {
+			"type": "linkMultiple",
+			"layoutDetailDisabled": false,
+			"layoutMassUpdateDisabled": true,
+			"layoutListDisabled": true,
+			"noLoad": false,
+			"importDisabled": false,
+			"exportDisabled": false,
+			"recordListEnabled": true
+		},
+		"products": {
+			"type": "linkMultiple",
+			"nonStorable": true
 		}
 	},
 	"links": {
@@ -62,6 +110,28 @@
 			"type": "hasMany",
 			"entity": "PhoneNumber",
 			"foreign": "account"
+		},
+		"primarySupplierOf": {
+			"type": "hasMany",
+			"entity": "Product",
+			"foreign": "primarySupplier"
+		},
+		"productSupplierItems": {
+			"type": "hasMany",
+			"entity": "ProductSupplierItem",
+			"foreign": "account",
+			"audited": false
+		},
+		"productSerials": {
+			"type": "hasMany",
+			"entity": "ProductSerial",
+			"foreign": "currentOwner"
+		},
+		"products": {
+			"type": "hasMany",
+			"entity": "Product",
+			"relationName": "productAccount",
+			"foreign": "suppliers"
 		}
 	}
 }

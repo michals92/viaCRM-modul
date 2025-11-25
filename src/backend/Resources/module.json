@@ -1,9 +1,9 @@
 {
-    "name": "ViaCrm",
-    "version": "2.5.0",
-    "description": "VIA CRM Extension Module with Easy Email Editor integration",
-    "author": "VIA CRM Team",
-    "php": [">=7.4"],
-    "dependencies": [],
-    "order": 16
+	"name": "ViaCrm",
+	"version": "2.5.0",
+	"description": "VIA CRM Extension Module with Easy Email Editor integration",
+	"author": "VIA CRM Team",
+	"php": [">=7.4"],
+	"dependencies": [],
+	"order": 16
 }

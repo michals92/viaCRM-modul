@@ -1,0 +1,77 @@
+{
+	"controller": "controllers/record",
+	"color": "#9570d0",
+	"iconClass": "fas fa-cube",
+	"isWide": false,
+	"views": {
+		"list": "viacrm:views/product/list"
+	},
+	"dynamicHandlerList": ["__APPEND__", "viacrm:handlers/product/price-dynamic-handler"],
+	"menu": {
+		"list": {
+			"dropdown": [
+				{
+					"label": "Categories",
+					"link": "#ProductCategory",
+					"acl": "edit",
+					"aclScope": "ProductCategory"
+				}
+			]
+		}
+	},
+	"dynamicLogic": {
+		"fields": {
+			"coefficient": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "in",
+							"subjectType": "value",
+							"attribute": "pricingType",
+							"value": ["Purchasing Coefficient", "Sales Coefficient"]
+						}
+					]
+				}
+			},
+			"priceMargin": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "notIn",
+							"subjectType": "value",
+							"attribute": "pricingType",
+							"value": ["Purchasing Coefficient", "Sales Coefficient"]
+						}
+					]
+				}
+			},
+			"priceMarkup": {
+				"visible": {
+					"conditionGroup": [
+						{
+							"type": "notIn",
+							"subjectType": "value",
+							"attribute": "pricingType",
+							"value": ["Purchasing Coefficient", "Sales Coefficient"]
+						}
+					]
+				}
+			}
+		}
+	},
+	"modalViews": {
+		"select": "views/modals/select-records-with-categories"
+	},
+	"kanbanViewMode": false,
+	"defaultAdvancedFilters": null,
+	"defaultFilterData": {
+		"primary": "",
+		"bool": {}
+	},
+	"duplicateCheckCreateButtonDisabled": false,
+	"gridViewMode": false,
+	"hidePdfButtonsInDetail": false,
+	"partitionedViewMode": false,
+	"pdfNameField": null,
+	"userKanbanViewMode": false
+}

@@ -3,13 +3,8 @@
 		"type": "varchar",
 		"maxLength": 3
 	},
-	"validationList": [
-		"required"
-	],
-	"mandatoryValidationList": [
-		"valid",
-		"validCurrency"
-	],
+	"validationList": ["required"],
+	"mandatoryValidationList": ["valid", "validCurrency"],
 	"params": [
 		{
 			"name": "required",

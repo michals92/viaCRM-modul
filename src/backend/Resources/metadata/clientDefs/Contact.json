@@ -1,6 +1,3 @@
 {
-	"dynamicHandlerList": [
-		"__APPEND__",
-		"autocrm:handlers/dynamic/contact/autofill-related-account"
-	]
+	"dynamicHandlerList": ["__APPEND__", "autocrm:handlers/dynamic/contact/autofill-related-account"]
 }

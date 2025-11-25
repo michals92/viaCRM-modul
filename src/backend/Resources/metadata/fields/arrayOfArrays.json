@@ -3,12 +3,8 @@
 		"type": "jsonArray",
 		"storeArrayValues": true
 	},
-	"validationList": [
-		"array"
-	],
-	"mandatoryValidationList": [
-		"array"
-	],
+	"validationList": ["array"],
+	"mandatoryValidationList": ["array"],
 	"params": [
 		"__APPEND__",
 		{

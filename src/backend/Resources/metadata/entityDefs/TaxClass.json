@@ -1,0 +1,58 @@
+{
+	"fields": {
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"description": {
+			"type": "text"
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"trim": true
+		},
+		"rate": {
+			"type": "percentage",
+			"required": true,
+			"min": 0,
+			"max": 100
+		}
+	},
+	"links": {
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"products": {
+			"type": "hasMany",
+			"entity": "Product",
+			"foreign": "taxClass"
+		},
+		"supplierInvoices": {
+			"type": "hasMany",
+			"entity": "SupplierInvoice",
+			"foreign": "taxClass"
+		}
+	},
+	"collection": {
+		"orderBy": "name",
+		"asc": true
+	}
+}

@@ -3,14 +3,7 @@
 		"meetingType": {
 			"type": "enum",
 			"default": "",
-			"options": [
-				"",
-				"Project",
-				"Business",
-				"Acquisition",
-				"Maintenance",
-				"Social"
-			]
+			"options": ["", "Project", "Business", "Acquisition", "Maintenance", "Social"]
 		}
 	}
 }

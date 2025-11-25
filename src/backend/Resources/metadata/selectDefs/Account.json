@@ -1,0 +1,5 @@
+{
+	"whereItemConverterClassNameMap": {
+		"products_linkedWith": "Espo\\Modules\\Viacrm\\Classes\\Select\\Account\\Where\\ItemConverters\\LinkedWith"
+	}
+}

@@ -31,10 +31,5 @@
 			"view": "autocrm:views/admin/field-manager/fields/unit"
 		}
 	],
-	"massUpdateActionList": [
-		"__APPEND__",
-		"update",
-		"increase",
-		"multiply"
-	]
+	"massUpdateActionList": ["__APPEND__", "update", "increase", "multiply"]
 }

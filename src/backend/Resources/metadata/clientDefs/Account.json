@@ -1,8 +1,6 @@
 {
 	"viewSetupHandlers": {
-		"record/edit": [
-			"autocrm:handlers/view-setup/account/record/edit/fill-from-ares"
-		]
+		"record/edit": ["viacrm:handlers/view-setup/account/record/edit/fill-from-ares"]
 	},
 	"detailActionList": [
 		"__APPEND__",
@@ -11,9 +9,23 @@
 			"name": "verifyVatNumber",
 			"acl": "read",
 			"data": {
-				"handler": "autocrm:handlers/actions/verify-vat-number"
+				"handler": "viacrm:handlers/actions/verify-vat-number"
 			},
 			"checkVisibilityFunction": "visible"
 		}
-	]
+	],
+	"bottomPanels": {
+		"detail": [
+			"__APPEND__",
+			{
+				"label": "Products",
+				"name": "productSupplierItems",
+				"reference": "productSupplierItems",
+				"view": "views/record/panels/relationship",
+				"sticked": true,
+				"isForm": true,
+				"disabled": true
+			}
+		]
+	}
 }

@@ -2,13 +2,7 @@
 	"type": "Base",
 	"acl": true,
 	"aclPortal": true,
-	"aclPortalLevelList": [
-		"all",
-		"account",
-		"contact",
-		"own",
-		"no"
-	],
+	"aclPortalLevelList": ["all", "account", "contact", "own", "no"],
 	"customizable": true,
 	"entity": true,
 	"importable": true,

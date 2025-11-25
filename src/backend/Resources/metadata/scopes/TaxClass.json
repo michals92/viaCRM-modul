@@ -1,0 +1,11 @@
+{
+	"type": "Base",
+	"acl": true,
+	"customizable": false,
+	"entity": true,
+	"importable": false,
+	"layouts": false,
+	"module": "Viacrm",
+	"notifications": false,
+	"tab": false
+}

@@ -16,10 +16,7 @@
 			"view": "autocrm:views/fields/int-with-unit"
 		}
 	},
-	"actualFields": [
-		"",
-		"unit"
-	],
+	"actualFields": ["", "unit"],
 	"params": [
 		{
 			"name": "required",

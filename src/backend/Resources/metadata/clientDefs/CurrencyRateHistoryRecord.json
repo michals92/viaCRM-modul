@@ -1,7 +1,5 @@
 {
 	"controller": "controllers/record",
 	"iconClass": "fas fa-dollar-sign",
-	"boolFilterList": [
-		"onlyMy"
-	]
+	"boolFilterList": ["onlyMy"]
 }

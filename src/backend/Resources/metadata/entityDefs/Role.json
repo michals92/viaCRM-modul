@@ -3,11 +3,7 @@
 		"allEmailFolderPermission": {
 			"type": "enum",
 			"default": "yes",
-			"options": [
-				"not-set",
-				"yes",
-				"no"
-			],
+			"options": ["not-set", "yes", "no"],
 			"view": "views/role/fields/permission",
 			"audited": true,
 			"tooltip": true,

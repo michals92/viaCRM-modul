@@ -10,20 +10,10 @@
 			"customizationInlineEditDisabledDisabled": true
 		}
 	},
-	"actualFields": [
-		""
-	],
-	"notActualFields": [
-		"Currency"
-	],
-	"validationList": [
-		"required",
-		"min",
-		"max"
-	],
-	"mandatoryValidationList": [
-		"valid"
-	],
+	"actualFields": [""],
+	"notActualFields": ["Currency"],
+	"validationList": ["required", "min", "max"],
+	"mandatoryValidationList": ["valid"],
 	"params": [
 		{
 			"name": "required",
@@ -88,9 +78,5 @@
 	"filter": true,
 	"converterClassName": "Espo\\Modules\\Viacrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\FloatCurrency",
 	"personalData": true,
-	"massUpdateActionList": [
-		"update",
-		"increase",
-		"multiply"
-	]
+	"massUpdateActionList": ["update", "increase", "multiply"]
 }

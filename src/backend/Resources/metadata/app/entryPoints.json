@@ -1,8 +1,8 @@
 {
-    "EasyEmailEditor": {
-        "noAuth": true
-    },
-    "TestEntryPoint": {
-        "noAuth": true
-    }
+	"EasyEmailEditor": {
+		"noAuth": true
+	},
+	"TestEntryPoint": {
+		"noAuth": true
+	}
 }

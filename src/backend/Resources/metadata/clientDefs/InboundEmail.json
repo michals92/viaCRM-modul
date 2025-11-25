@@ -1,8 +1,5 @@
 {
-	"massActionList": [
-		"__APPEND__",
-		"resyncImap"
-	],
+	"massActionList": ["__APPEND__", "resyncImap"],
 	"massActionDefs": {
 		"resyncImap": {
 			"handler": "autocrm:handlers/actions/mail/account/resync-imap",

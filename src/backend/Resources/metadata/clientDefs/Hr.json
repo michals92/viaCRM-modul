@@ -1,20 +1,20 @@
 {
-    "controller": "viacrm:controllers/hr",
-    "iconClass": "fas fa-users",
-    "color": "#3498DB",
-    "views": {
-        "list": "viacrm:views/hr/list"
-    },
-    "menu": {
-        "list": {
-            "buttons": [
-                {
-                    "label": "Create from User",
-                    "action": "createFromUser",
-                    "style": "default",
-                    "acl": "create"
-                }
-            ]
-        }
-    }
+	"controller": "viacrm:controllers/hr",
+	"iconClass": "fas fa-users",
+	"color": "#3498DB",
+	"views": {
+		"list": "viacrm:views/hr/list"
+	},
+	"menu": {
+		"list": {
+			"buttons": [
+				{
+					"label": "Create from User",
+					"action": "createFromUser",
+					"style": "default",
+					"acl": "create"
+				}
+			]
+		}
+	}
 }

@@ -2,13 +2,8 @@
 	"type": "Base",
 	"acl": "recordAllTeamNo",
 	"aclPortal": true,
-	"aclPortalActionList": [
-		"read"
-	],
-	"aclPortalLevelList": [
-		"all",
-		"no"
-	],
+	"aclPortalActionList": ["read"],
+	"aclPortalLevelList": ["all", "no"],
 	"customizable": true,
 	"disabled": false,
 	"entity": true,

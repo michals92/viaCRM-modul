@@ -61,11 +61,7 @@
 		"status": {
 			"type": "enum",
 			"default": "Draft",
-			"options": [
-				"Draft",
-				"Active",
-				"Completed"
-			],
+			"options": ["Draft", "Active", "Completed"],
 			"style": {
 				"Active": "warning",
 				"Completed": "success"
@@ -84,9 +80,7 @@
 	},
 	"indexes": {
 		"entityType": {
-			"columns": [
-				"entityType"
-			]
+			"columns": ["entityType"]
 		}
 	}
 }

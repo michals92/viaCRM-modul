@@ -33,9 +33,7 @@
 	},
 	"indexes": {
 		"entityType": {
-			"columns": [
-				"entityType"
-			]
+			"columns": ["entityType"]
 		}
 	},
 	"entityListToIgnore": [

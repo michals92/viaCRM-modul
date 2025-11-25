@@ -1,8 +1,5 @@
 {
-	"valuePermissionList": [
-		"__APPEND__",
-		"allEmailFolder"
-	],
+	"valuePermissionList": ["__APPEND__", "allEmailFolder"],
 	"valuePermissionHighestLevels": {
 		"allEmailFolder": "yes"
 	},

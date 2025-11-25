@@ -26,10 +26,7 @@
 			"type": "enum",
 			"required": true,
 			"default": "left",
-			"options": [
-				"left",
-				"right"
-			]
+			"options": ["left", "right"]
 		},
 		{
 			"name": "numberLineEnabled",
@@ -60,10 +57,7 @@
 			"type": "enum",
 			"required": true,
 			"default": "int",
-			"options": [
-				"int",
-				"float"
-			]
+			"options": ["int", "float"]
 		},
 		{
 			"name": "startColor",
@@ -88,12 +82,7 @@
 	"notCreatable": false,
 	"filter": true,
 	"readOnly": true,
-	"fieldTypeList": [
-		"int",
-		"float",
-		"number",
-		"currencyConverted"
-	],
+	"fieldTypeList": ["int", "float", "number", "currencyConverted"],
 	"fieldTypeViewMap": {
 		"int": "views/fields/foreign-int",
 		"float": "views/fields/foreign-float",

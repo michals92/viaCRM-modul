@@ -7,17 +7,11 @@
 			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/multi-enum"
 		},
 		"currentUserRoles": {
-			"typeList": [
-				"contains",
-				"notContains"
-			],
+			"typeList": ["contains", "notContains"],
 			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/current-user-roles"
 		},
 		"currentUserTeams": {
-			"typeList": [
-				"contains",
-				"notContains"
-			],
+			"typeList": ["contains", "notContains"],
 			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/current-user-teams"
 		},
 		"enum": {
@@ -36,12 +30,7 @@
 			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/link"
 		},
 		"linkMultiple": {
-			"typeList": [
-				"isEmpty",
-				"isNotEmpty",
-				"contains",
-				"notContains"
-			],
+			"typeList": ["isEmpty", "isNotEmpty", "contains", "notContains"],
 			"view": "autocrm:views/admin/dynamic-logic/conditions/field-types/link-multiple"
 		},
 		"linkOne": {

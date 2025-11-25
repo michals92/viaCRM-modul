@@ -14,9 +14,7 @@
 		"icon": {
 			"type": "file",
 			"required": true,
-			"accept": [
-				"image/svg+xml"
-			]
+			"accept": ["image/svg+xml"]
 		},
 		"iconClass": {
 			"type": "varchar",
@@ -57,9 +55,7 @@
 	},
 	"indexes": {
 		"name": {
-			"columns": [
-				"name"
-			]
+			"columns": ["name"]
 		}
 	}
 }

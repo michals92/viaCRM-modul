@@ -1,9 +1,7 @@
 {
 	"controller": "controllers/record",
 	"iconClass": "far fa-file-code",
-	"boolFilterList": [
-		"onlyMy"
-	],
+	"boolFilterList": ["onlyMy"],
 	"menu": {
 		"detail": {
 			"buttons": [

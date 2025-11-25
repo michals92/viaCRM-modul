@@ -1,0 +1,181 @@
+{
+	"fields": {
+		"assignedUser": {
+			"type": "link",
+			"required": false,
+			"view": "views/fields/assigned-user"
+		},
+		"batchNumber": {
+			"type": "varchar",
+			"maxLength": 50,
+			"trim": true,
+			"tooltip": true
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"currentOwner": {
+			"type": "link",
+			"audited": true,
+			"tooltip": true
+		},
+		"description": {
+			"type": "text",
+			"rows": 4
+		},
+		"documentation": {
+			"type": "attachmentMultiple",
+			"tooltip": true
+		},
+		"manufacturedDate": {
+			"type": "date",
+			"audited": true,
+			"tooltip": true
+		},
+		"manufactureYear": {
+			"type": "int"
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": false,
+			"maxLength": 100,
+			"trim": true,
+			"pattern": "$noBadCharacters"
+		},
+		"notes": {
+			"type": "text",
+			"rows": 6,
+			"tooltip": true
+		},
+		"product": {
+			"type": "link",
+			"required": true,
+			"audited": true,
+			"tooltip": true
+		},
+		"serialNumber": {
+			"type": "varchar",
+			"required": true,
+			"maxLength": 100,
+			"trim": true,
+			"pattern": "$noBadCharacters",
+			"index": true,
+			"unique": true,
+			"tooltip": true
+		},
+		"status": {
+			"type": "enum",
+			"required": true,
+			"default": "Active",
+			"options": ["Active", "Sold", "Defective", "Returned", "Scrapped"],
+			"style": {
+				"Active": "success",
+				"Sold": "primary",
+				"Defective": "danger",
+				"Returned": "warning",
+				"Scrapped": "default"
+			},
+			"audited": true,
+			"tooltip": true
+		},
+		"teams": {
+			"type": "linkMultiple",
+			"view": "views/fields/teams"
+		},
+		"warrantyUntil": {
+			"type": "date",
+			"audited": true,
+			"tooltip": true
+		},
+		"supplier": {
+			"type": "link"
+		}
+	},
+	"links": {
+		"assignedUser": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"currentOwner": {
+			"type": "belongsTo",
+			"entity": "Account",
+			"foreign": "productSerialsOwned",
+			"audited": true
+		},
+		"documentation": {
+			"type": "hasChildren",
+			"entity": "Attachment",
+			"foreign": "parent",
+			"layoutRelationshipsDisabled": true,
+			"relationName": "attachments",
+			"utility": true
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"product": {
+			"type": "belongsTo",
+			"entity": "Product",
+			"foreign": "productSerials",
+			"audited": true
+		},
+		"supplier": {
+			"type": "belongsTo",
+			"foreign": "productSerials",
+			"entity": "Account",
+			"audited": false
+		},
+		"teams": {
+			"type": "hasMany",
+			"entity": "Team",
+			"layoutRelationshipsDisabled": true,
+			"relationName": "entityTeam"
+		}
+	},
+	"collection": {
+		"orderBy": "serialNumber",
+		"order": "asc",
+		"textFilterFields": ["name", "serialNumber", "batchNumber"]
+	},
+	"indexes": {
+		"assignedUser": {
+			"columns": ["assignedUserId", "deleted"]
+		},
+		"manufacturedDate": {
+			"columns": ["manufacturedDate", "deleted"]
+		},
+		"product": {
+			"columns": ["productId", "deleted"]
+		},
+		"serialNumber": {
+			"columns": ["serialNumber", "deleted"],
+			"unique": true
+		},
+		"status": {
+			"columns": ["status", "deleted"]
+		},
+		"warrantyUntil": {
+			"columns": ["warrantyUntil", "deleted"]
+		}
+	}
+}

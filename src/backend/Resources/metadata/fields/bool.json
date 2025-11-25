@@ -4,10 +4,7 @@
 		{
 			"name": "display",
 			"type": "enum",
-			"options": [
-				"",
-				"Switch"
-			]
+			"options": ["", "Switch"]
 		},
 		{
 			"name": "directEdit",

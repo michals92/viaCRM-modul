@@ -1,13 +1,7 @@
 {
 	"acl": true,
 	"aclPortal": true,
-	"aclPortalLevelList": [
-		"all",
-		"account",
-		"contact",
-		"own",
-		"no"
-	],
+	"aclPortalLevelList": ["all", "account", "contact", "own", "no"],
 	"customizable": true,
 	"disabled": false,
 	"entity": true,

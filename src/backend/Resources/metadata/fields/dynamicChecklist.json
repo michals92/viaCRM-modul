@@ -3,9 +3,7 @@
 		"type": "jsonArray",
 		"storeArrayValues": false
 	},
-	"validationList": [
-		"required"
-	],
+	"validationList": ["required"],
 	"params": [
 		{
 			"name": "required",

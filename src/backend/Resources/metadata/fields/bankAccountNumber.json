@@ -21,8 +21,5 @@
 	"view": "autocrm:views/fields/bank-account-number",
 	"notCreatable": false,
 	"filter": true,
-	"validations": [
-		"required",
-		"bankAccountNumber"
-	]
+	"validations": ["required", "bankAccountNumber"]
 }

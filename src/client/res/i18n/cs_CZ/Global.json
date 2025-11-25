@@ -1,8 +1,8 @@
 {
-    "scopeNames": {
-        "Hr": "Zaměstnanec"
-    },
-    "scopeNamesPlural": {
-        "Hr": "Zaměstnanci"
-    }
+	"scopeNames": {
+		"Hr": "Zaměstnanec"
+	},
+	"scopeNamesPlural": {
+		"Hr": "Zaměstnanci"
+	}
 }

@@ -67,14 +67,10 @@
 	},
 	"indexes": {
 		"createdAt": {
-			"columns": [
-				"createdAt"
-			]
+			"columns": ["createdAt"]
 		},
 		"name": {
-			"columns": [
-				"name"
-			]
+			"columns": ["name"]
 		}
 	}
 }

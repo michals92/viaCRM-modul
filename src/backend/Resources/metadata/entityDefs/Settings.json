@@ -7,7 +7,7 @@
 		},
 		"addressCountryList": {
 			"type": "multiEnum",
-			"view": "autocrm:views/settings/fields/address-country-list"
+			"view": "viacrm:views/settings/fields/address-country-list"
 		},
 		"allowOtherUserReminders": {
 			"type": "bool",
@@ -38,11 +38,11 @@
 		},
 		"calendarAllDayScopeList": {
 			"type": "multiEnum",
-			"view": "autocrm:views/settings/fields/calendar-all-day-scope-list"
+			"view": "viacrm:views/settings/fields/calendar-all-day-scope-list"
 		},
 		"calendarColors": {
 			"type": "jsonObject",
-			"view": "autocrm:views/fields/calendar-colors",
+			"view": "viacrm:views/fields/calendar-colors",
 			"tooltip": true
 		},
 		"calendarFontSize": {
@@ -82,10 +82,7 @@
 		"currencyRateDecimalSeparator": {
 			"type": "enum",
 			"default": ".",
-			"options": [
-				".",
-				","
-			]
+			"options": [".", ","]
 		},
 		"currentUnitList": {
 			"type": "array"
@@ -93,10 +90,7 @@
 		"defaultDetailLayout": {
 			"type": "enum",
 			"default": "record",
-			"options": [
-				"record",
-				"tab"
-			]
+			"options": ["record", "tab"]
 		},
 		"defaultIsWide": {
 			"type": "bool",
@@ -157,14 +151,7 @@
 		"emailParentFinderOrder": {
 			"type": "multiEnum",
 			"default": null,
-			"options": [
-				"References",
-				"From",
-				"To",
-				"FromReplied",
-				"ReplyTo",
-				"Default"
-			],
+			"options": ["References", "From", "To", "FromReplied", "ReplyTo", "Default"],
 			"tooltip": true
 		},
 		"energyUnitList": {
@@ -273,11 +260,16 @@
 		},
 		"workQueueEntityTypeList": {
 			"type": "multiEnum",
-			"view": "autocrm:views/settings/fields/work-queue-entity-type-list"
+			"view": "viacrm:views/settings/fields/work-queue-entity-type-list"
 		},
 		"ziveFirmyEnabled": {
 			"type": "bool",
 			"default": true,
+			"tooltip": true
+		},
+		"productCurrencyRates": {
+			"type": "base",
+			"view": "viacrm:views/fields/currency-rates",
 			"tooltip": true
 		}
 	}

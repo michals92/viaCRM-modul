@@ -7,14 +7,7 @@
 		"fields": {
 			"autorefreshInterval": {
 				"type": "enumFloat",
-				"options": [
-					0,
-					0.5,
-					1,
-					2,
-					5,
-					10
-				]
+				"options": [0, 0.5, 1, 2, 5, 10]
 			},
 			"sharedWysiwyg": {
 				"type": "link",

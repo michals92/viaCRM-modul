@@ -25,15 +25,7 @@
 			"type": "int"
 		}
 	},
-	"actualFields": [
-		"monday",
-		"tuesday",
-		"wednesday",
-		"thursday",
-		"friday",
-		"saturday",
-		"sunday"
-	],
+	"actualFields": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
 	"params": [
 		{
 			"name": "required",

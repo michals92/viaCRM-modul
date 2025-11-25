@@ -2,16 +2,9 @@
 	"controller": "controllers/record",
 	"color": "#edc755",
 	"iconClass": "fas fa-exclamation-triangle",
-	"filterList": [
-		"__APPEND__",
-		"active"
-	],
+	"filterList": ["__APPEND__", "active"],
 	"forcePatchAttributeDependencyMap": {
-		"dateEnd": [
-			"dateStart"
-		],
-		"dateEndDate": [
-			"dateStartDate"
-		]
+		"dateEnd": ["dateStart"],
+		"dateEndDate": ["dateStartDate"]
 	}
 }

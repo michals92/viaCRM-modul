@@ -27,9 +27,7 @@
 		},
 		"emailDoNotMarkAsReadList": {
 			"type": "multiEnum",
-			"default": [
-				"rightClickPreview"
-			],
+			"default": ["rightClickPreview"],
 			"view": "autocrm:views/preferences/fields/read-type-list",
 			"tooltip": true
 		},
@@ -50,12 +48,7 @@
 		},
 		"listCheckboxSize": {
 			"type": "enum",
-			"options": [
-				"small",
-				"medium",
-				"large",
-				"extra"
-			],
+			"options": ["small", "medium", "large", "extra"],
 			"tooltip": true
 		},
 		"quickViewContextMenu": {
@@ -65,10 +58,7 @@
 		"signaturePosition": {
 			"type": "enum",
 			"default": "append",
-			"options": [
-				"prepend",
-				"append"
-			],
+			"options": ["prepend", "append"],
 			"tooltip": true
 		}
 	}

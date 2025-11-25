@@ -1,8 +1,8 @@
 {
-    "primaryFilterClassNameMap": {
-        "pending": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Absence\\PrimaryFilters\\Pending",
-        "approved": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Absence\\PrimaryFilters\\Approved",
-        "rejected": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Absence\\PrimaryFilters\\Rejected",
-        "cancelled": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Absence\\PrimaryFilters\\Cancelled"
-    }
+	"primaryFilterClassNameMap": {
+		"pending": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Absence\\PrimaryFilters\\Pending",
+		"approved": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Absence\\PrimaryFilters\\Approved",
+		"rejected": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Absence\\PrimaryFilters\\Rejected",
+		"cancelled": "Espo\\Modules\\ViaCrm\\Classes\\Select\\Absence\\PrimaryFilters\\Cancelled"
+	}
 }

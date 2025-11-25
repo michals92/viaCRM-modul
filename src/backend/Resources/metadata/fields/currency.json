@@ -15,10 +15,5 @@
 			"min": 0
 		}
 	],
-	"massUpdateActionList": [
-		"__APPEND__",
-		"update",
-		"increase",
-		"multiply"
-	]
+	"massUpdateActionList": ["__APPEND__", "update", "increase", "multiply"]
 }

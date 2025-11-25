@@ -1,0 +1,15 @@
+{
+	"controller": "controllers/record",
+	"iconClass": "fas fa-barcode",
+	"boolFilterList": ["onlyMy"],
+	"additionalLayouts": {
+		"detailSmall": {
+			"type": "detail"
+		},
+		"listSmall": {
+			"type": "list"
+		}
+	},
+	"searchPanelInDetailView": true,
+	"searchPanelInDetailViewDisabled": false
+}

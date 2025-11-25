@@ -1,6 +1,3 @@
 {
-	"listLoaderClassNameList": [
-		"__APPEND__",
-		"Espo\\Modules\\Viacrm\\Classes\\FieldProcessing\\Role\\UsersLoader"
-	]
+	"listLoaderClassNameList": ["__APPEND__", "Espo\\Modules\\Viacrm\\Classes\\FieldProcessing\\Role\\UsersLoader"]
 }

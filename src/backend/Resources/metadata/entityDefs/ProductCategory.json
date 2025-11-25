@@ -1,0 +1,103 @@
+{
+	"fields": {
+		"childList": {
+			"type": "jsonArray",
+			"notStorable": true,
+			"layoutDetailDisabled": true,
+			"layoutListDisabled": true
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"description": {
+			"type": "text"
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"trim": true
+		},
+		"order": {
+			"type": "int",
+			"required": true,
+			"minValue": 1
+		},
+		"parent": {
+			"type": "link"
+		},
+		"teams": {
+			"type": "linkMultiple"
+		}
+	},
+	"links": {
+		"children": {
+			"type": "hasMany",
+			"entity": "ProductCategory",
+			"foreign": "parent"
+		},
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"parent": {
+			"type": "belongsTo",
+			"entity": "ProductCategory",
+			"foreign": "children"
+		},
+		"products": {
+			"type": "hasMany",
+			"entity": "Product",
+			"foreign": "category"
+		},
+		"teams": {
+			"type": "hasMany",
+			"entity": "Team",
+			"layoutRelationshipsDisabled": true,
+			"relationName": "entityTeam"
+		}
+	},
+	"collection": {
+		"orderBy": "parent",
+		"asc": true
+	},
+	"additionalTables": {
+		"ProductCategoryPath": {
+			"fields": {
+				"id": {
+					"type": "id",
+					"dbType": "int",
+					"len": "20",
+					"autoincrement": true,
+					"unique": true
+				},
+				"ascendorId": {
+					"type": "varchar",
+					"len": "100",
+					"index": true
+				},
+				"descendorId": {
+					"type": "varchar",
+					"len": "24",
+					"index": true
+				}
+			}
+		}
+	}
+}

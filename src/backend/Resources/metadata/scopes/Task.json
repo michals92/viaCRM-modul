@@ -1,6 +1,4 @@
 {
 	"type": "Base",
-	"ongoingStatusList": [
-		"Started"
-	]
+	"ongoingStatusList": ["Started"]
 }

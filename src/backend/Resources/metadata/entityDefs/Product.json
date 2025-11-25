@@ -1,0 +1,277 @@
+{
+	"fields": {
+		"attachments": {
+			"type": "attachmentMultiple",
+			"sourceList": ["Document"]
+		},
+		"category": {
+			"type": "link",
+			"view": "views/fields/link-category-tree"
+		},
+		"ordered": {
+			"type": "bool",
+			"view": "viacrm:views/product/fields/ordered",
+			"tooltip": true,
+			"notStorable": true
+		},
+		"coefficient": {
+			"type": "float",
+			"default": 1
+		},
+		"costPrice": {
+			"type": "currency"
+		},
+		"costPriceWithTax": {
+			"type": "currency",
+			"view": "viacrm:views/fields/currency-amount-only"
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"description": {
+			"type": "wysiwyg"
+		},
+		"eans": {
+			"type": "linkMultiple",
+			"layoutDetailDisabled": false,
+			"layoutMassUpdateDisabled": false,
+			"layoutListDisabled": false,
+			"noLoad": false,
+			"importDisabled": false,
+			"exportDisabled": false,
+			"customizationDisabled": false,
+			"recordListEnabled": true,
+			"recordListLayout": "listSmall",
+			"defaultSelectFilters": {}
+		},
+		"measureUnit": {
+			"type": "enum",
+			"default": "",
+			"required": true,
+			"view": "viacrm:views/fields/measure-unit",
+			"readOnlyAfterCreate": true
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"trim": true
+		},
+		"photo": {
+			"type": "image",
+			"previewSize": "small"
+		},
+		"priceMargin": {
+			"type": "percentage",
+			"default": 0
+		},
+		"priceMarkup": {
+			"type": "percentage",
+			"default": 0
+		},
+		"pricingType": {
+			"type": "enum",
+			"default": "Fixed Sales Price",
+			"options": [
+				"No Price",
+				"Fixed Sales Price",
+				"Markup over Cost",
+				"Profit Margin",
+				"Same as Cost Price",
+				"Purchasing Coefficient",
+				"Sales Coefficient"
+			]
+		},
+		"primarySupplier": {
+			"type": "link"
+		},
+		"productSerials": {
+			"type": "linkMultiple",
+			"layoutDetailDisabled": false,
+			"layoutMassUpdateDisabled": false,
+			"layoutListDisabled": false,
+			"noLoad": false,
+			"importDisabled": false,
+			"exportDisabled": false,
+			"recordListEnabled": true,
+			"recordListLayout": "listSmall"
+		},
+		"productSupplierItems": {
+			"type": "linkMultiple",
+			"layoutDetailDisabled": false,
+			"layoutMassUpdateDisabled": false,
+			"layoutListDisabled": false,
+			"noLoad": false,
+			"importDisabled": false,
+			"exportDisabled": false,
+			"recordListEnabled": true,
+			"recordListLinkDisabled": false,
+			"recordListConfirmRemove": true,
+			"recordListLayout": "listSmall"
+		},
+		"referenceIdentifier": {
+			"type": "varchar",
+			"options": [],
+			"maxLength": 150
+		},
+		"salesPrice": {
+			"type": "currency"
+		},
+		"salesPriceWithTax": {
+			"type": "currency",
+			"view": "viacrm:views/fields/currency-amount-only"
+		},
+		"serialActiveCount": {
+			"type": "int",
+			"nonStorable": true,
+			"clientReadOnly": true,
+			"layoutListDisabled": false,
+			"layoutDetailDisabled": false,
+			"layoutMassUpdateDisabled": true,
+			"tooltip": true
+		},
+		"serialTotalCount": {
+			"type": "int",
+			"nonStorable": true,
+			"clientReadOnly": true,
+			"layoutListDisabled": false,
+			"layoutDetailDisabled": false,
+			"layoutMassUpdateDisabled": true,
+			"tooltip": true
+		},
+		"taxClass": {
+			"type": "link",
+			"view": "viacrm:views/fields/tax-class"
+		},
+		"taxRate": {
+			"type": "percentage",
+			"min": 0,
+			"max": 100
+		},
+		"teams": {
+			"type": "linkMultiple"
+		},
+		"type": {
+			"type": "enum",
+			"default": "",
+			"options": ["", "Warehouse Item", "Service"],
+			"readOnlyAfterCreate": true,
+			"required": true,
+			"style": {
+				"Warehouse Item": "default",
+				"Service": "default"
+			},
+			"icons": {
+				"Warehouse Item": "fas fa-boxes",
+				"Service": "fas fa-cogs"
+			}
+		},
+		"url": {
+			"type": "url"
+		},
+		"weight": {
+			"type": "float",
+			"default": 0
+		},
+		"suppliers": {
+			"type": "linkMultiple",
+			"nonStorable": true,
+			"view": "viacrm:views/product/fields/suppliers"
+		}
+	},
+	"links": {
+		"attachments": {
+			"type": "hasChildren",
+			"entity": "Attachment",
+			"foreign": "parent",
+			"layoutRelationshipsDisabled": true,
+			"relationName": "attachments",
+			"utility": true
+		},
+		"category": {
+			"type": "belongsTo",
+			"entity": "ProductCategory",
+			"foreign": "products"
+		},
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"eans": {
+			"type": "hasChildren",
+			"entity": "Ean",
+			"foreign": "parent",
+			"audited": false
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"photo": {
+			"type": "belongsTo",
+			"entity": "Attachment",
+			"skipOrmDefs": true,
+			"utility": true
+		},
+		"primarySupplier": {
+			"type": "belongsTo",
+			"entity": "Account",
+			"foreign": "primarySupplierOf"
+		},
+		"productSerials": {
+			"type": "hasMany",
+			"entity": "ProductSerial",
+			"foreign": "product",
+			"audited": false
+		},
+		"productSupplierItems": {
+			"type": "hasMany",
+			"entity": "ProductSupplierItem",
+			"foreign": "product",
+			"audited": false
+		},
+		"taxClass": {
+			"type": "belongsTo",
+			"entity": "TaxClass",
+			"foreign": "products"
+		},
+		"teams": {
+			"type": "hasMany",
+			"entity": "Team",
+			"layoutRelationshipsDisabled": true,
+			"relationName": "EntityTeam"
+		},
+		"suppliers": {
+			"type": "hasMany",
+			"entity": "Account",
+			"relationName": "productAccount",
+			"foreign": "products"
+		}
+	},
+	"collection": {
+		"orderBy": "name",
+		"order": "asc",
+		"textFilterFields": ["name"],
+		"fullTextSearch": true,
+		"countDisabled": false
+	},
+	"indexes": {
+		"name": {
+			"columns": ["name"]
+		}
+	},
+	"fullTextMinWordLength": null,
+	"optimisticConcurrencyControl": false
+}

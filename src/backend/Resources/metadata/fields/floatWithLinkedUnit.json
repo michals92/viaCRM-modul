@@ -16,11 +16,7 @@
 			"view": "autocrm:views/fields/float-with-linked-unit"
 		}
 	},
-	"actualFields": [
-		"",
-		"unit",
-		"linkedUnit"
-	],
+	"actualFields": ["", "unit", "linkedUnit"],
 	"params": [
 		{
 			"name": "required",

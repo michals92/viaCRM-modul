@@ -1,0 +1,19 @@
+{
+	"acl": true,
+	"aclPortal": true,
+	"activities": false,
+	"calendar": false,
+	"customizable": true,
+	"disabled": false,
+	"entity": true,
+	"historyDisabled": false,
+	"importable": true,
+	"isCustom": false,
+	"layouts": true,
+	"module": "Viacrm",
+	"notifications": false,
+	"object": true,
+	"stream": false,
+	"tab": true,
+	"type": "Base"
+}

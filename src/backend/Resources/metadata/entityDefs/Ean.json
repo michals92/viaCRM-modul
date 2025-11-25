@@ -1,0 +1,85 @@
+{
+	"fields": {
+		"assignedUser": {
+			"type": "link",
+			"required": false,
+			"view": "views/fields/assigned-user"
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"description": {
+			"type": "text"
+		},
+		"ean": {
+			"type": "barcode",
+			"len": 255,
+			"codeType": "CODE128"
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"trim": true,
+			"pattern": "$noBadCharacters"
+		},
+		"parent": {
+			"type": "linkParent",
+			"entityList": ["Product", "Warehouse", "WarehousePosition"]
+		},
+		"teams": {
+			"type": "linkMultiple",
+			"view": "views/fields/teams"
+		}
+	},
+	"links": {
+		"assignedUser": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"parent": {
+			"type": "belongsToParent",
+			"entityList": ["Product", "Warehouse", "WarehousePosition"]
+		},
+		"teams": {
+			"type": "hasMany",
+			"entity": "Team",
+			"layoutRelationshipsDisabled": true,
+			"relationName": "entityTeam"
+		}
+	},
+	"collection": {
+		"orderBy": "createdAt",
+		"order": "desc"
+	},
+	"indexes": {
+		"assignedUser": {
+			"columns": ["assignedUserId", "deleted"]
+		},
+		"name": {
+			"columns": ["name", "deleted"]
+		}
+	}
+}

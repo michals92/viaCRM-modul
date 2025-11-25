@@ -1,26 +1,23 @@
 {
-    "recordViews": {
-        "compose": "viacrm:views/email/record/compose-with-easy-email",
-        "combined": "autocrm:views/email/record/combined"
-    },
-    "fields": {
-        "bodyMjml": {
-            "type": "jsonObject",
-            "notStorable": false,
-            "readOnly": true
-        },
-        "usedEasyEmailEditor": {
-            "type": "bool",
-            "readOnly": true
-        }
-    },
-    "color": "#fcf003",
+	"recordViews": {
+		"compose": "viacrm:views/email/record/compose-with-easy-email",
+		"combined": "autocrm:views/email/record/combined"
+	},
+	"fields": {
+		"bodyMjml": {
+			"type": "jsonObject",
+			"notStorable": false,
+			"readOnly": true
+		},
+		"usedEasyEmailEditor": {
+			"type": "bool",
+			"readOnly": true
+		}
+	},
+	"color": "#fcf003",
 	"views": {
 		"list": "autocrm:views/email/list"
 	},
-	"listViewModeList": [
-		"list",
-		"combined"
-	],
+	"listViewModeList": ["list", "combined"],
 	"listDefaultViewMode": "combined"
 }

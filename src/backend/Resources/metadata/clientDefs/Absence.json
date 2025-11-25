@@ -1,33 +1,28 @@
 {
-    "controller": "controllers/record",
-    "iconClass": "fas fa-calendar-times",
-    "color": "#FF6B6B",
-    "quickCreate": true,
-    "filterList": [
-        "pending",
-        "approved", 
-        "rejected",
-        "cancelled"
-    ],
-    "defaultFilterData": {
-        "primary": "pending"
-    },
-    "dynamicLogic": {
-        "fields": {
-            "hours": {
-                "readOnly": {
-                    "conditionGroup": [
-                        {
-                            "type": "isNotEmpty",
-                            "attribute": "startDate"
-                        },
-                        {
-                            "type": "isNotEmpty",
-                            "attribute": "endDate"
-                        }
-                    ]
-                }
-            }
-        }
-    }
+	"controller": "controllers/record",
+	"iconClass": "fas fa-calendar-times",
+	"color": "#FF6B6B",
+	"quickCreate": true,
+	"filterList": ["pending", "approved", "rejected", "cancelled"],
+	"defaultFilterData": {
+		"primary": "pending"
+	},
+	"dynamicLogic": {
+		"fields": {
+			"hours": {
+				"readOnly": {
+					"conditionGroup": [
+						{
+							"type": "isNotEmpty",
+							"attribute": "startDate"
+						},
+						{
+							"type": "isNotEmpty",
+							"attribute": "endDate"
+						}
+					]
+				}
+			}
+		}
+	}
 }

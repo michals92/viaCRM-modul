@@ -1,9 +1,7 @@
 {
 	"type": "Base",
 	"acl": true,
-	"aclActionList": [
-		"read"
-	],
+	"aclActionList": ["read"],
 	"aclPortal": false,
 	"customizable": false,
 	"entity": false,

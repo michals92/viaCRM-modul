@@ -1,6 +1,3 @@
 {
-	"actionClassNameList": [
-		"__APPEND__",
-		"Espo\\Modules\\Viacrm\\Core\\Rebuild\\Actions\\ReloadActiveExtensions"
-	]
+	"actionClassNameList": ["__APPEND__", "Espo\\Modules\\Viacrm\\Core\\Rebuild\\Actions\\ReloadActiveExtensions"]
 }

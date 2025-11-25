@@ -19,10 +19,7 @@
 	},
 	"indexes": {
 		"entityTypeFieldName": {
-			"columns": [
-				"entityType",
-				"fieldName"
-			]
+			"columns": ["entityType", "fieldName"]
 		}
 	}
 }

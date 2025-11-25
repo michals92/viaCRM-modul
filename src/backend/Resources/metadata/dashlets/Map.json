@@ -12,14 +12,7 @@
 			},
 			"autorefreshInterval": {
 				"type": "enumFloat",
-				"options": [
-					0,
-					0.5,
-					1,
-					2,
-					5,
-					10
-				]
+				"options": [0, 0.5, 1, 2, 5, 10]
 			},
 			"displayRecords": {
 				"type": "int",
@@ -32,10 +25,7 @@
 			"mapCenter": {
 				"type": "enum",
 				"default": "Czech Republic",
-				"options": [
-					"Czech Republic",
-					"Slovakia"
-				]
+				"options": ["Czech Republic", "Slovakia"]
 			},
 			"title": {
 				"type": "varchar",

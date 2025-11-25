@@ -1,25 +1,15 @@
 {
 	"acl": true,
 	"aclPortal": true,
-	"aclPortalLevelList": [
-		"all",
-		"account",
-		"contact",
-		"own",
-		"no"
-	],
+	"aclPortalLevelList": ["all", "account", "contact", "own", "no"],
 	"activity": true,
-	"activityStatusList": [
-		"active"
-	],
+	"activityStatusList": ["active"],
 	"calendar": true,
 	"comments": true,
 	"customizable": true,
 	"entity": true,
 	"importable": true,
-	"kanbanStatusIgnoreList": [
-		"Dropped"
-	],
+	"kanbanStatusIgnoreList": ["Dropped"],
 	"layouts": true,
 	"module": "Viacrm",
 	"notifications": true,

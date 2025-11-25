@@ -22,22 +22,13 @@
 	},
 	"indexes": {
 		"entityType": {
-			"columns": [
-				"entityType"
-			]
+			"columns": ["entityType"]
 		},
 		"entityTypeUserId": {
-			"columns": [
-				"entityType",
-				"userId"
-			]
+			"columns": ["entityType", "userId"]
 		},
 		"entityUserId": {
-			"columns": [
-				"entityType",
-				"entityId",
-				"userId"
-			]
+			"columns": ["entityType", "entityId", "userId"]
 		}
 	}
 }

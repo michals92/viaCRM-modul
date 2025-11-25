@@ -16,10 +16,7 @@
 			"name": "advancedStyle",
 			"type": "enum",
 			"default": "",
-			"options": [
-				"",
-				"deadline"
-			]
+			"options": ["", "deadline"]
 		},
 		{
 			"name": "datepickerOptions",

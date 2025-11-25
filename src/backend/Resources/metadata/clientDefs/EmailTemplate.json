@@ -1,28 +1,24 @@
 {
-    "recordViews": {
-        "edit": "viacrm:views/email-template/record/edit-with-easy-email"
-    },
-    "views": {
-        "edit": "viacrm:views/email-template/edit",
+	"recordViews": {
+		"edit": "viacrm:views/email-template/record/edit-with-easy-email"
+	},
+	"views": {
+		"edit": "viacrm:views/email-template/edit",
 		"list": "autocrm:views/email-template/list"
-    },
-    "sidePanels": {
-        "edit": [
-            {
-                "name": "easyEmailOptions",
-                "label": "Easy Email Options",
-                "view": "viacrm:views/email-template/panels/easy-email-options",
-                "isForm": true
-            }
-        ]
-    },
-    "controller": "autocrm:controllers/email-template",
+	},
+	"sidePanels": {
+		"edit": [
+			{
+				"name": "easyEmailOptions",
+				"label": "Easy Email Options",
+				"view": "viacrm:views/email-template/panels/easy-email-options",
+				"isForm": true
+			}
+		]
+	},
+	"controller": "autocrm:controllers/email-template",
 	"color": "#fc9003",
 	"isWide": true,
 	"dynamicHandler": "autocrm:handlers/dynamic/email-template",
-	"placeholderList": [
-		"__APPEND__",
-		"viewInBrowserUrl",
-		"viewInBrowserLink"
-	]
+	"placeholderList": ["__APPEND__", "viewInBrowserUrl", "viewInBrowserLink"]
 }

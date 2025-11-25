@@ -1,0 +1,13 @@
+{
+	"listLoaderClassNameList": [
+		"__APPEND__",
+		"Espo\\Modules\\Viacrm\\Classes\\FieldProcessing\\Product\\OrderedLoader",
+		"Espo\\Modules\\Viacrm\\Classes\\FieldProcessing\\Product\\SerialCountLoader"
+	],
+	"mandatoryAttributeList": ["__APPEND__", "type", "rate", "costPrice", "costPriceCurrency", "measureUnit"],
+	"readLoaderClassNameList": [
+		"__APPEND__",
+		"Espo\\Modules\\Viacrm\\Classes\\FieldProcessing\\Product\\OrderedLoader",
+		"Espo\\Modules\\Viacrm\\Classes\\FieldProcessing\\Product\\SerialCountLoader"
+	]
+}

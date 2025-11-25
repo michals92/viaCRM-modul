@@ -1,38 +1,38 @@
 {
-    "fields": {
-        "name": "Celé jméno",
-        "firstName": "Křestní jméno",
-        "lastName": "Příjmení",
-        "email": "E-mail",
-        "phone": "Telefon",
-        "position": "Pozice",
-        "department": "Oddělení",
-        "employeeId": "Osobní číslo",
-        "hireDate": "Datum nástupu",
-        "salary": "Mzda",
-        "manager": "Nadřízený",
-        "notes": "Poznámky",
-        "status": "Stav",
-        "assignedUser": "Přiřazený uživatel"
-    },
-    "options": {
-        "department": {
-            "HR": "Lidské zdroje",
-            "IT": "Informační technologie",
-            "Finance": "Finance",
-            "Sales": "Prodej",
-            "Marketing": "Marketing",
-            "Operations": "Provoz",
-            "Management": "Vedení"
-        },
-        "status": {
-            "Active": "Aktivní",
-            "Inactive": "Neaktivní",
-            "Terminated": "Ukončen",
-            "On Leave": "Na dovolené"
-        }
-    },
-    "labels": {
-        "Create Hr": "Nový zaměstnanec"
-    }
+	"fields": {
+		"name": "Celé jméno",
+		"firstName": "Křestní jméno",
+		"lastName": "Příjmení",
+		"email": "E-mail",
+		"phone": "Telefon",
+		"position": "Pozice",
+		"department": "Oddělení",
+		"employeeId": "Osobní číslo",
+		"hireDate": "Datum nástupu",
+		"salary": "Mzda",
+		"manager": "Nadřízený",
+		"notes": "Poznámky",
+		"status": "Stav",
+		"assignedUser": "Přiřazený uživatel"
+	},
+	"options": {
+		"department": {
+			"HR": "Lidské zdroje",
+			"IT": "Informační technologie",
+			"Finance": "Finance",
+			"Sales": "Prodej",
+			"Marketing": "Marketing",
+			"Operations": "Provoz",
+			"Management": "Vedení"
+		},
+		"status": {
+			"Active": "Aktivní",
+			"Inactive": "Neaktivní",
+			"Terminated": "Ukončen",
+			"On Leave": "Na dovolené"
+		}
+	},
+	"labels": {
+		"Create Hr": "Nový zaměstnanec"
+	}
 }

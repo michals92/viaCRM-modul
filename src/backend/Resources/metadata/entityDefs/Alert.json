@@ -61,12 +61,7 @@
 		"status": {
 			"type": "enum",
 			"default": "draft",
-			"options": [
-				"draft",
-				"active",
-				"resolved",
-				"archived"
-			],
+			"options": ["draft", "active", "resolved", "archived"],
 			"style": {
 				"draft": "warning",
 				"active": "success",
@@ -82,9 +77,7 @@
 			"columns": {
 				"alertActive": "alertActive"
 			},
-			"additionalAttributeList": [
-				"columns"
-			]
+			"additionalAttributeList": ["columns"]
 		}
 	},
 	"links": {

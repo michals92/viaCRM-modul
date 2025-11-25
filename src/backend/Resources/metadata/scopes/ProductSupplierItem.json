@@ -1,0 +1,16 @@
+{
+	"acl": true,
+	"customizable": true,
+	"disabled": false,
+	"entity": true,
+	"importable": true,
+	"kanbanStatusIgnoreList": null,
+	"layouts": true,
+	"module": "Viacrm",
+	"notifications": true,
+	"object": true,
+	"statusField": null,
+	"stream": false,
+	"tab": true,
+	"type": "Base"
+}

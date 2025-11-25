@@ -4,10 +4,7 @@
 		"Espo\\Modules\\Viacrm\\Core\\FieldProcessing\\EmailAddress\\ListLoader",
 		"Espo\\Modules\\Viacrm\\Core\\FieldProcessing\\PhoneNumber\\ListLoader"
 	],
-	"readLoaderClassNameList": [
-		"__APPEND__",
-		"Espo\\Modules\\Viacrm\\Classes\\FieldProcessing\\LinkMultiple\\Loader"
-	],
+	"readLoaderClassNameList": ["__APPEND__", "Espo\\Modules\\Viacrm\\Classes\\FieldProcessing\\LinkMultiple\\Loader"],
 	"saverClassNameList": [
 		"__APPEND__",
 		"Espo\\Modules\\Viacrm\\Classes\\FieldProcessing\\Relation\\LinkMultipleSaver",

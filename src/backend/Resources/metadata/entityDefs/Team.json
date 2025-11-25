@@ -17,9 +17,7 @@
 			"columns": {
 				"role": "teamRole"
 			},
-			"additionalAttributeList": [
-				"columns"
-			],
+			"additionalAttributeList": ["columns"],
 			"recordListCreateDisabled": true,
 			"recordListEnabled": true,
 			"recordListLayout": "listForTeam"

@@ -1,0 +1,19 @@
+{
+	"acl": true,
+	"aclPortal": true,
+	"aclPortalLevelList": ["all", "no"],
+	"customizable": true,
+	"disabled": false,
+	"entity": true,
+	"importable": true,
+	"kanbanStatusIgnoreList": null,
+	"layouts": true,
+	"module": "Viacrm",
+	"notifications": false,
+	"object": true,
+	"stars": false,
+	"statusField": "",
+	"stream": false,
+	"tab": true,
+	"type": "Base"
+}

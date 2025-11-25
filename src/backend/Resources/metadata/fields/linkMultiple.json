@@ -1,9 +1,5 @@
 {
-	"actualFields": [
-		"__APPEND__",
-		"recordList",
-		"columnList"
-	],
+	"actualFields": ["__APPEND__", "recordList", "columnList"],
 	"params": [
 		"__APPEND__",
 		{
@@ -34,10 +30,7 @@
 			"name": "recordListButtonsPosition",
 			"type": "enum",
 			"default": "Bottom",
-			"options": [
-				"Top",
-				"Bottom"
-			]
+			"options": ["Top", "Bottom"]
 		},
 		{
 			"name": "recordListCreateDisabled",

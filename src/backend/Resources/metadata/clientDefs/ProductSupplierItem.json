@@ -1,0 +1,14 @@
+{
+	"controller": "controllers/record",
+	"color": null,
+	"iconClass": null,
+	"bottomLayoutType": "default",
+	"boolFilterList": ["onlyMy"],
+	"kanbanViewMode": false,
+	"relationshipPanels": {
+		"account": {
+			"layout": null,
+			"selectPrimaryFilterName": null
+		}
+	}
+}

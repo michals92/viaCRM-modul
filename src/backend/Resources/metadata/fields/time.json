@@ -3,12 +3,8 @@
 		"notNull": false,
 		"dbType": "time"
 	},
-	"validationList": [
-		"required"
-	],
-	"mandatoryValidationList": [
-		"valid"
-	],
+	"validationList": ["required"],
+	"mandatoryValidationList": ["valid"],
 	"params": [
 		{
 			"name": "required",
@@ -32,14 +28,7 @@
 		{
 			"name": "minuteStep",
 			"type": "enumInt",
-			"options": [
-				30,
-				15,
-				60,
-				10,
-				5,
-				1
-			]
+			"options": [30, 15, 60, 10, 5, 1]
 		},
 		{
 			"name": "readOnlyAfterCreate",

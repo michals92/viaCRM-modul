@@ -1,0 +1,6 @@
+{
+	"controller": "controllers/record",
+	"iconClass": "fas fa-barcode",
+	"bottomLayoutType": "default",
+	"boolFilterList": ["onlyMy"]
+}

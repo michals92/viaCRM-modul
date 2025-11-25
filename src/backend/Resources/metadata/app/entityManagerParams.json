@@ -122,10 +122,7 @@
 		"fullTextSearchMode": {
 			"fieldDefs": {
 				"default": "Default",
-				"options": [
-					"Default",
-					"AllWordsRequired"
-				],
+				"options": ["Default", "AllWordsRequired"],
 				"tooltip": true,
 				"type": "enum"
 			},

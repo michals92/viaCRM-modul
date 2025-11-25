@@ -1,0 +1,132 @@
+{
+	"fields": {
+		"account": {
+			"type": "link",
+			"required": true,
+			"compact": true,
+			"defaultSelectFilters": {
+				"type": {
+					"type": "arrayAnyOf",
+					"value": ["Supplier"],
+					"data": {
+						"type": "anyOf",
+						"valueList": ["Supplier"]
+					}
+				}
+			}
+		},
+		"assignedUser": {
+			"type": "link",
+			"required": false,
+			"view": "views/fields/assigned-user"
+		},
+		"costPrice": {
+			"type": "currency",
+			"default": -1,
+			"compact": true
+		},
+		"createdAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"createdBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"deliveryTime": {
+			"type": "int",
+			"default": -1
+		},
+		"catalogNumber": {
+			"type": "varchar",
+			"maxLength": 100,
+			"tooltip": true
+		},
+		"typeNumber": {
+			"type": "varchar",
+			"maxLength": 100,
+			"tooltip": true
+		},
+		"description": {
+			"type": "text"
+		},
+		"modifiedAt": {
+			"type": "datetime",
+			"readOnly": true
+		},
+		"modifiedBy": {
+			"type": "link",
+			"view": "views/fields/user",
+			"readOnly": true
+		},
+		"name": {
+			"type": "varchar",
+			"required": true,
+			"pattern": "$noBadCharacters"
+		},
+		"product": {
+			"type": "link",
+			"required": true
+		},
+		"teams": {
+			"type": "linkMultiple",
+			"view": "views/fields/teams"
+		}
+	},
+	"links": {
+		"account": {
+			"type": "belongsTo",
+			"entity": "Account",
+			"foreign": "productSupplierItems",
+			"audited": false
+		},
+		"assignedUser": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"createdBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"modifiedBy": {
+			"type": "belongsTo",
+			"entity": "User"
+		},
+		"product": {
+			"type": "belongsTo",
+			"entity": "Product",
+			"foreign": "productSupplierItems",
+			"audited": false
+		},
+		"teams": {
+			"type": "hasMany",
+			"entity": "Team",
+			"layoutRelationshipsDisabled": true,
+			"relationName": "entityTeam"
+		}
+	},
+	"collection": {
+		"orderBy": "createdAt",
+		"order": "desc",
+		"countDisabled": false,
+		"fullTextSearch": false,
+		"textFilterFields": ["name"]
+	},
+	"indexes": {
+		"assignedUser": {
+			"columns": ["assignedUserId", "deleted"]
+		},
+		"createdAt": {
+			"columns": ["createdAt"]
+		},
+		"createdAtId": {
+			"columns": ["createdAt", "id"],
+			"unique": true
+		},
+		"name": {
+			"columns": ["name", "deleted"]
+		}
+	},
+	"optimisticConcurrencyControl": false
+}

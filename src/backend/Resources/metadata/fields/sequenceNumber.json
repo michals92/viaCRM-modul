@@ -34,12 +34,7 @@
 			"name": "reset",
 			"type": "enum",
 			"default": "Yearly",
-			"options": [
-				"Daily",
-				"Monthly",
-				"Yearly",
-				"Never"
-			]
+			"options": ["Daily", "Monthly", "Yearly", "Never"]
 		}
 	],
 	"view": "autocrm:views/fields/sequence-number",

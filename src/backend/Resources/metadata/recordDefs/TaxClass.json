@@ -1,0 +1,3 @@
+{
+	"mandatoryAttributeList": ["__APPEND__", "rate", "costPrice", "costPriceCurrency"]
+}

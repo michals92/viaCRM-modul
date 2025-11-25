@@ -732,9 +732,9 @@ define(['views/email/record/compose'], Dep => class extends Dep {
 		if (this.model.get('bodyMjml')) {
 			this.showEasyEmailIndicator();
 		}
-	},
+	}
 
-	showEasyEmailIndicator: function () {
+	showEasyEmailIndicator() {
 	const $bodyField = this.$el.find('.field[data-name="body"]');
 
 	if(!$bodyField.find('.easy-email-indicator').length) {

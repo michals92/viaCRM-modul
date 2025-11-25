@@ -32,10 +32,7 @@
 	},
 	"indexes": {
 		"langCodeDate": {
-			"columns": [
-				"langCode",
-				"date"
-			],
+			"columns": ["langCode", "date"],
 			"unique": true
 		}
 	}

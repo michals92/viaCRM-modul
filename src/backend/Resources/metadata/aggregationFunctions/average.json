@@ -3,10 +3,5 @@
 	"outputTypeMap": {
 		"int": "float"
 	},
-	"types": [
-		"int",
-		"float",
-		"currency",
-		"currencyConverted"
-	]
+	"types": ["int", "float", "currency", "currencyConverted"]
 }

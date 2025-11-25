@@ -1,7 +1,5 @@
 {
 	"controller": "controllers/record",
 	"iconClass": "fas fa-rss",
-	"boolFilterList": [
-		"onlyMy"
-	]
+	"boolFilterList": ["onlyMy"]
 }

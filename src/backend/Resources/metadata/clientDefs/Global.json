@@ -1,31 +1,26 @@
 {
-    "viewSetupHandlers": {
-        "detail": [
-            "__APPEND__",
+	"viewSetupHandlers": {
+		"detail": [
+			"__APPEND__",
 			"autocrm:handlers/view-setup/edit-buttons",
 			"autocrm:handlers/view-setup/conversion-buttons",
 			"autocrm:handlers/view-setup/send-email",
 			"autocrm:handlers/view-setup/field-highlighting",
-            "viacrm:handlers/view-setup/admin-buttons"
-        ],
-        "list": [
-            "__APPEND__",
+			"viacrm:handlers/view-setup/admin-buttons"
+		],
+		"list": [
+			"__APPEND__",
 			"autocrm:handlers/view-setup/edit-buttons",
 			"autocrm:handlers/view-setup/field-highlighting",
-            "viacrm:handlers/view-setup/admin-buttons"
-        ],
-        "edit": [
-            "viacrm:handlers/view-setup/admin-buttons"
-        ],
+			"viacrm:handlers/view-setup/admin-buttons"
+		],
+		"edit": ["viacrm:handlers/view-setup/admin-buttons"],
 		"record/detail": [
 			"__APPEND__",
 			"autocrm:handlers/view-setup/print-xml",
 			"autocrm:handlers/view-setup/field-highlighting"
 		],
-		"record/edit": [
-			"__APPEND__",
-			"autocrm:handlers/view-setup/field-highlighting"
-		],
+		"record/edit": ["__APPEND__", "autocrm:handlers/view-setup/field-highlighting"],
 		"record/grid": [
 			"__APPEND__",
 			"autocrm:handlers/view-setup/record/grid/quick-view-context-menu",
@@ -36,19 +31,9 @@
 			"autocrm:handlers/view-setup/record/list/quick-view-context-menu",
 			"autocrm:handlers/view-setup/field-highlighting"
 		]
-    },
-	"massActionList": [
-		"__APPEND__",
-		"bulkEmail",
-		"bulkEmailBcc",
-		"exportXml",
-		"zipAttachments"
-	],
-	"checkAllResultMassActionList": [
-		"__APPEND__",
-		"bulkEmail",
-		"bulkEmailBcc"
-	],
+	},
+	"massActionList": ["__APPEND__", "bulkEmail", "bulkEmailBcc", "exportXml", "zipAttachments"],
+	"checkAllResultMassActionList": ["__APPEND__", "bulkEmail", "bulkEmailBcc"],
 	"massActionDefs": {
 		"bulkEmail": {
 			"handler": "autocrm:handlers/mass-actions/bulk-email",

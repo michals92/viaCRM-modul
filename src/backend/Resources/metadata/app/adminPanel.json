@@ -1,7 +1,7 @@
 {
-    "system": {
-        "itemList": [
-            "__APPEND__",
+	"system": {
+		"itemList": [
+			"__APPEND__",
 			{
 				"description": "autocrm",
 				"iconClass": "fas fa-cog",
@@ -34,8 +34,8 @@
 				"label": "Shared Wysiwygs",
 				"url": "#SharedWysiwyg"
 			}
-        ],
+		],
 		"label": "viaCRM",
 		"order": 1
-    }
+	}
 }
