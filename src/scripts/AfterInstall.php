@@ -9,14 +9,27 @@ use Espo\Core\Utils\Config\ConfigWriter;
 use Espo\Entities\Extension;
 use Espo\Entities\ExternalAccount;
 use Espo\Entities\Role;
-use Espo\Modules\Autocrm\Entities\Alert;
-use Espo\Modules\Autocrm\Entities\Holiday;
+use Espo\Modules\Viacrm\Entities\Alert;
+use Espo\Modules\Viacrm\Entities\Holiday;
 use Espo\ORM\EntityCollection;
 use Espo\ORM\EntityManager;
 
 class AfterInstall {
 
-	private const TAB_LIST_ENTITIES = [];
+	private const ID_PREFIX = '35';
+
+	private const TAB_LIST_ENTITIES = [
+		[
+			'type' => 'group',
+			'text' => 'Product Management',
+			'iconClass' => 'fas fa-cube',
+			'color' => null,
+			'id' => self::ID_PREFIX . '0001',
+			'itemList' => [
+				'Product', 'ProductCategory', 'ProductSerial', 'ProductSupplierItem', 'Ean', 'TaxClass',
+			],
+		],
+	];
 
 	protected const DEPRECATED_EXTENSIONS = [
 		'RecurringRecords'
@@ -558,10 +571,27 @@ class AfterInstall {
 	private function addEntitiesToTabList(): void {
 		$tabList = $this->config->get('tabList') ?? [];
 
-		// @phpstan-ignore-next-line Empty array passed to foreach - this is intentional, as entities may be added in the future
-		foreach (self::TAB_LIST_ENTITIES as $entity) {
-			if (!in_array($entity, $tabList, true)) {
-				$tabList[] = $entity;
+		foreach (self::TAB_LIST_ENTITIES as $item) {
+			// Handle group objects (product management)
+			if (is_array($item) && isset($item['type']) && $item['type'] === 'group') {
+				$existingIndex = $this->findExistingGroupIndex($tabList, $item['id']);
+
+				if ($existingIndex !== -1) {
+					// Update existing group
+					$tabList[$existingIndex] = $this->mergeGroupProperties(
+						$tabList[$existingIndex],
+						$item
+					);
+				} else {
+					// Add new group
+					$tabList[] = (object) $item;
+				}
+			}
+			// Handle simple entity strings
+			elseif (is_string($item)) {
+				if (!in_array($item, $tabList, true)) {
+					$tabList[] = $item;
+				}
 			}
 		}
 
@@ -747,4 +777,43 @@ class AfterInstall {
 		}
 	}
 
+	/**
+	 * @param array<int, object> $tabList
+	 */
+	private function findExistingGroupIndex(array $tabList, string $groupId): int
+	{
+		foreach ($tabList as $index => $item) {
+			if (isset($item->type, $item->id) &&
+				$item->type === 'group' &&
+				$item->id === $groupId) {
+				return $index;
+			}
+		}
+
+		return -1;
+	}
+
+	/**
+	 * @param array<string, mixed> $desired
+	 */
+	private function mergeGroupProperties(object $existing, array $desired): object
+	{
+		$merged = clone $existing;
+
+		// Update missing/null properties
+		foreach (['text', 'iconClass', 'color'] as $prop) {
+			if (!property_exists($merged, $prop) || $merged->$prop === null) {
+				/** @phpstan-ignore-next-line */
+				$merged->$prop = $desired[$prop] ?? null;
+			}
+		}
+
+		// Merge itemList - add missing entities
+		$existingItems = property_exists($merged, 'itemList') ? $merged->itemList : [];
+		$missingItems = array_diff($desired['itemList'], $existingItems);
+		/** @phpstan-ignore-next-line */
+		$merged->itemList = array_merge($existingItems, $missingItems);
+
+		return $merged;
+	}
 }

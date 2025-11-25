@@ -5,7 +5,7 @@ use Espo\Core\DataManager;
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Config\ConfigWriter;
-use Espo\Modules\Autocrm\Core\Log\AutocrmFormatter;
+use Espo\Modules\Viacrm\Core\Log\ViacrmFormatter;
 
 class AfterUninstall {
 
@@ -41,7 +41,7 @@ class AfterUninstall {
 		$handlerList = $loggerData['handlerList'];
 
 		foreach ($handlerList as $key => $handler) {
-			if ($handler['formatter'] && $handler['formatter']['className'] === AutocrmFormatter::class) {
+			if ($handler['formatter'] && $handler['formatter']['className'] === ViacrmFormatter::class) {
 				unset($handlerList[$key]['formatter']['className']);
 			}
 		}
