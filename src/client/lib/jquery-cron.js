@@ -2,7 +2,7 @@
  * jQuery gentleSelect plugin (version 0.1.4.1)
  * http://shawnchin.github.com/jquery-cron
  *
- * Changes by Apertia Tech s.r.o. (https://www.apertia.cz)
+ * Changes by ViaElement s.r.o.
  * List of changes:
  * - added support for localization
  * - added Espo classes
