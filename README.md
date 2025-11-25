@@ -27,8 +27,8 @@ npm run deploy # Deploy to EspoCRM (requires .env config)
 
 
 
-# Module - Autocrm
-> The base module for all AutoCRM modules.
+# Module - ViaCRM
+> The base module for all ViaCRM modules.
 
 ## Table of Contents
 
