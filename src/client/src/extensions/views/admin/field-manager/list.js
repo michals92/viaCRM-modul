@@ -1,3 +1,3 @@
 extend(Dep => class extends Dep {
-	template = 'autocrm:admin/field-manager/list';
+	template = 'viacrm:admin/field-manager/list';
 });

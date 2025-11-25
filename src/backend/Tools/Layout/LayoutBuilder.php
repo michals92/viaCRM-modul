@@ -207,7 +207,7 @@ class LayoutBuilder {
 		if ($translations = $this->translations[$this->language->getLanguage()]) {
 			$this->language->save();
 			$this->webSocketSubmission->submit(
-				'autocrm.language',
+				'viacrm.language',
 				$this->user->getId(),
 				(object)[
 					'data' => $translations,

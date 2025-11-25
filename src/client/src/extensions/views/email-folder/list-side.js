@@ -1,5 +1,5 @@
 extend(Dep => class extends Dep {
-	template = 'autocrm:email-folder/list-side';
+	template = 'viacrm:email-folder/list-side';
 
 	data() {
 		const data = super.data();

@@ -7,7 +7,7 @@ define(['controller'], Dep => class extends Dep {
 		}
 
 		this.entire(
-			'autocrm:views/email/view-in-browser',
+			'viacrm:views/email/view-in-browser',
 			{
 				emailBody: options.emailBody,
 			},

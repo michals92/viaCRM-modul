@@ -1,5 +1,5 @@
 extend(['ui/select'], (Dep, Select) => class extends Dep {
-	template = 'autocrm:admin/dynamic-logic/field-types/base';
+	template = 'viacrm:admin/dynamic-logic/field-types/base';
 
 	subjectTypeList = ['value', 'field'];
 
@@ -49,7 +49,7 @@ extend(['ui/select'], (Dep, Select) => class extends Dep {
 		} else {
 			this.createView(
 				'value',
-				'autocrm:views/admin/dynamic-logic/conditions/fields/field',
+				'viacrm:views/admin/dynamic-logic/conditions/fields/field',
 				{
 					name: 'value',
 					selector: '.value-container',

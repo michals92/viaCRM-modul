@@ -1,4 +1,4 @@
-extend(['autocrm:helpers/logo'], (Dep, LogoHelper) => class extends Dep {
+extend(['viacrm:helpers/logo'], (Dep, LogoHelper) => class extends Dep {
 	setup() {
 		super.setup();
 

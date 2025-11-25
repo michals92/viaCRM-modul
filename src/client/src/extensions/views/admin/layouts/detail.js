@@ -94,7 +94,7 @@ extend(Dep => class extends Dep {
 
 		this.panelDataAttributesDefs.tabIconClass = {
 			type: 'varchar',
-			view: 'autocrm:views/fields/icon-class'
+			view: 'viacrm:views/fields/icon-class'
 		};
 
 		this.panelDataAttributesDefs.tabColor = {
@@ -173,7 +173,7 @@ extend(Dep => class extends Dep {
 
 			this.createView(
 				'dialog',
-				'autocrm:views/admin/layouts/modals/cell-attributes',
+				'viacrm:views/admin/layouts/modals/cell-attributes',
 				{
 					attributeList: this.dataAttributeList,
 					attributeDefs: this.dataAttributesDefs,
@@ -226,7 +226,7 @@ extend(Dep => class extends Dep {
 
 			this.createView(
 				'dialog',
-				'autocrm:views/admin/layouts/modals/row-attributes',
+				'viacrm:views/admin/layouts/modals/row-attributes',
 				{
 					attributeList: this.rowAttributeList,
 					attributeDefs: this.rowAttributesDefs,
@@ -268,7 +268,7 @@ extend(Dep => class extends Dep {
 		});
 
 		this.createView = (name, view, options, callback) => {
-			options.template = 'autocrm:admin/layouts/grid-panel';
+			options.template = 'viacrm:admin/layouts/grid-panel';
 			options.data = data; // Pass the modified data to the template
 
 			createViewOrg.call(this, name, view, options, callback);

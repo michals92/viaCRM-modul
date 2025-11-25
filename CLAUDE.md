@@ -366,7 +366,7 @@ public function removePanel(string $panelName): self {
 
 ### Pipeline
 - Tests: EspoCRM 9.0.8, 9.1.7 × MariaDB, PostgreSQL
-- Config: `.gitlab-ci.yml` (centralized templates from `autocrm/espo-pipelines`)
+- Config: `.gitlab-ci.yml` (centralized templates from `viacrm/espo-pipelines`)
 
 ### GitLab Workflow
 - Tool: `glab` CLI

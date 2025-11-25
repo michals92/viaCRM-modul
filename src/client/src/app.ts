@@ -6,7 +6,7 @@ extend(Dep => class extends Dep {
 		if (this.webSocketManager) {
 			this.webSocketManager.connect(this.auth, this.user.id);
 
-			this.webSocketManager.subscribe('autocrm.language', (_topic: string, data: any) => {
+			this.webSocketManager.subscribe('viacrm.language', (_topic: string, data: any) => {
 				if (typeof data !== 'object' || !data.data || typeof data.data !== 'object') {
 					console.error("Typeof language data is not an object");
 					return;

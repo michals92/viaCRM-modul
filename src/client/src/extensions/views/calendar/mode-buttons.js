@@ -1,6 +1,6 @@
 extend(Dep => class extends Dep {
 	// Use the extended template
-	template = 'autocrm:calendar/mode-buttons';
+	template = 'viacrm:calendar/mode-buttons';
 
 	initialize(options) {
 		super.initialize(options);

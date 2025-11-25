@@ -1,5 +1,5 @@
 extend(Dep => class extends Dep {
-	template = 'autocrm:admin/layouts/rows';
+	template = 'viacrm:admin/layouts/rows';
 
 	setup() {
 		super.setup();

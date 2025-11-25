@@ -1,5 +1,5 @@
 extend(Dep => class extends Dep {
-	template = 'autocrm:admin/dynamic-logic/conditions/group-base';
+	template = 'viacrm:admin/dynamic-logic/conditions/group-base';
 
 	events = {
 		'click > div.group-head > [data-action="remove"]': function (e) {

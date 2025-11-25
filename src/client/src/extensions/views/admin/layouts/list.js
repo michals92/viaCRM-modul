@@ -46,7 +46,7 @@ extend(Dep => class extends Dep {
 		const currentLayout = this.fetch();
 		this.createView(
 			'modal',
-			'autocrm:views/admin/layouts/modals/add-related-field',
+			'viacrm:views/admin/layouts/modals/add-related-field',
 			{
 				scope: this.scope,
 				enabledFields: currentLayout,

@@ -1,5 +1,5 @@
-extend(['autocrm:helpers/quick-view-context-menu', 'helpers/record-modal'], (Dep, QuickViewHelper, RecordModal) => class extends Dep {
-	template = 'autocrm:calendar/timeline';
+extend(['viacrm:helpers/quick-view-context-menu', 'helpers/record-modal'], (Dep, QuickViewHelper, RecordModal) => class extends Dep {
+	template = 'viacrm:calendar/timeline';
 
 	groupScope = 'User';
 	scopeList = [];

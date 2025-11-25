@@ -1,4 +1,4 @@
-extend(['autocrm:helpers/version'], (Dep) => class extends Dep {
+extend(['viacrm:helpers/version'], (Dep) => class extends Dep {
 	setup() {
 		super.setup();
 

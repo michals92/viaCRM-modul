@@ -1,5 +1,5 @@
 extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
-	editTemplate = 'autocrm:email/fields/email-address-varchar/edit';
+	editTemplate = 'viacrm:email/fields/email-address-varchar/edit';
 
 	data() {
 		const targetListClientDefs = this.getMetadata().get(['clientDefs', 'TargetList'], {});

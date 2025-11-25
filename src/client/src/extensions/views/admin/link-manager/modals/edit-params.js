@@ -2,7 +2,7 @@ extend([
 	'model',
 	'views/record/edit-for-modal',
 	'views/fields/bool',
-	'autocrm:views/admin/link-manager/fields/foreign-name-field'
+	'viacrm:views/admin/link-manager/fields/foreign-name-field'
 ], (Dep, Model, EditForModal, BoolFieldView, ForeignNameFieldView) =>
 	Dep.extend({
 

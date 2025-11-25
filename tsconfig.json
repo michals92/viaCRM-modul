@@ -11,10 +11,10 @@
     	"verbatimModuleSyntax": true,
     	"allowJs": true,
     	"resolveJsonModule": true,
-    
+
 		"strict": true,
 		"noUncheckedIndexedAccess": true,
-    
+
 		"moduleResolution": "Bundler",
 		"module": "ESNext",
 		"noEmit": true,
@@ -26,6 +26,10 @@
 		],
 
 		"types": ["@viacrm/types-espocrm"],
+
+		"paths": {
+			"espocrm/src/*": ["./node_modules/@viacrm/types-espocrm/src/*"]
+		},
 
 		"noPropertyAccessFromIndexSignature": false,
 		"noImplicitAny": false

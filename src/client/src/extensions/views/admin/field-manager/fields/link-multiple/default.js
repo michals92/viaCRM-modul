@@ -1,4 +1,4 @@
-extend(['autocrm:views/fields/link-multiple'], (_Dep, AutocrmLinkMultiple) => class extends /* Dep intentionally left out */ AutocrmLinkMultiple {
+extend(['viacrm:views/fields/link-multiple'], (_Dep, AutocrmLinkMultiple) => class extends /* Dep intentionally left out */ AutocrmLinkMultiple {
 	init() {
 		super.init();
 

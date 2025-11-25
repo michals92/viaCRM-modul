@@ -1,6 +1,6 @@
 define(() => {
 	/**
-	 * @memberOf module:autocrm:record-list-dynamic-handler
+	 * @memberOf module:viacrm:record-list-dynamic-handler
 	 */
 	class Class {
 		constructor(rowView, parentView, parentModel) {

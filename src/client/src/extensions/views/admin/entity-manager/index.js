@@ -1,5 +1,5 @@
 extend(Dep => class extends Dep {
-	template = 'autocrm:admin/entity-manager/index';
+	template = 'viacrm:admin/entity-manager/index';
 
 	setup() {
 		super.setup();

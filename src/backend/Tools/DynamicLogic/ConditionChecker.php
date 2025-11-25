@@ -408,7 +408,7 @@ class ConditionChecker {
 		throw new BadCondition("Unimplemented type '$type->value'.");
 	}
 
-	private function getAttributeValue(string|null $attribute): mixed { //todo: implement autocrm customs: $settings, $installedExensions
+	private function getAttributeValue(string|null $attribute): mixed { //todo: implement viacrm customs: $settings, $installedExensions
 		if (is_null($attribute)) {
 			return null;
 		}

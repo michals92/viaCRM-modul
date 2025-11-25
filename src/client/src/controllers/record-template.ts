@@ -9,7 +9,7 @@ define(['controllers/record'], Dep => class extends Dep {
 			return;
 		}
 
-		this.main('autocrm:views/record-template/modals/select-scope', {}, view => {
+		this.main('viacrm:views/record-template/modals/select-scope', {}, view => {
 			this.hideLoadingNotification();
 			view.render();
 

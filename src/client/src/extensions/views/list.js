@@ -1,7 +1,7 @@
-extend(['autocrm:helpers/partitioned-view', 'autocrm:helpers/colorize'], (Dep, PartitionedViewHelper, ColorizeHelper) => class extends Dep {
-	recordPartitionedView = 'autocrm:views/record/partitioned';
-	recordGridView = 'autocrm:views/record/grid';
-	recordUserKanbanView = 'autocrm:views/record/user-kanban';
+extend(['viacrm:helpers/partitioned-view', 'viacrm:helpers/colorize'], (Dep, PartitionedViewHelper, ColorizeHelper) => class extends Dep {
+	recordPartitionedView = 'viacrm:views/record/partitioned';
+	recordGridView = 'viacrm:views/record/grid';
+	recordUserKanbanView = 'viacrm:views/record/user-kanban';
 
 	MODE_GRID = 'grid';
 	MODE_USER_KANBAN = 'userKanban';

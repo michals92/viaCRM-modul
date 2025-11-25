@@ -4,7 +4,7 @@ define(['controllers/admin'], Dep => class extends Dep {
 		const type = options.type || null;
 		const em = options.em || false;
 
-		this.main('autocrm:views/admin/layouts/index', {
+		this.main('viacrm:views/admin/layouts/index', {
 			scope,
 			type,
 			em,
@@ -14,7 +14,7 @@ define(['controllers/admin'], Dep => class extends Dep {
 	override actionLinkManager(options: any) {
 		const scope = options.scope || null;
 
-		this.main('autocrm:views/admin/link-manager/index', {
+		this.main('viacrm:views/admin/link-manager/index', {
 			scope,
 		});
 	}
@@ -22,7 +22,7 @@ define(['controllers/admin'], Dep => class extends Dep {
 	actionConversions(options: any) {
 		const scope = options.scope || null;
 
-		this.main('autocrm:views/admin/conversions', {
+		this.main('viacrm:views/admin/conversions', {
 			scope,
 		});
 	}
@@ -46,14 +46,14 @@ define(['controllers/admin'], Dep => class extends Dep {
 
 				model.defs.fields = {
 					rules: {
-						view: 'autocrm:views/admin/colorization/fields/colorization-rules'
+						view: 'viacrm:views/admin/colorization/fields/colorization-rules'
 					}
 				};
 
 				// @ts-ignore oof
 				model.parentEntityType = scope;
 
-				this.main('autocrm:views/admin/colorization', {
+				this.main('viacrm:views/admin/colorization', {
 					scope,
 					model
 				});
@@ -62,7 +62,7 @@ define(['controllers/admin'], Dep => class extends Dep {
 
 	override actionEntityManager(options: any) {
 		if (options.clone && options.fromScope) {
-			this.main('autocrm:views/admin/entity-manager/clone', { fromScope: options.fromScope });
+			this.main('viacrm:views/admin/entity-manager/clone', { fromScope: options.fromScope });
 		}
 
 		super.actionEntityManager(options);
