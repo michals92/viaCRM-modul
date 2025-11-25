@@ -56,7 +56,7 @@ class PopupNotificationsTest extends AbstractMetadataTest {
                 
 				// Check namespace pattern
 				$this->assertMatchesRegularExpression(
-					'/^Espo\\\\Modules\\\\Autocrm\\\\Tools\\\\[A-Za-z0-9]+\\\\NotificationProvider$/',
+					'/^Espo\\\\Modules\\\\Viacrm\\\\Tools\\\\[A-Za-z0-9]+\\\\NotificationProvider$/',
 					$providerClass,
 					"Provider class '$providerClass' does not follow expected namespace pattern"
 				);

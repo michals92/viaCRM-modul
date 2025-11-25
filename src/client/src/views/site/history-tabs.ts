@@ -13,7 +13,7 @@ interface Tab {
 }
 
 define(['view'], (Dep: typeof View) => class extends Dep {
-	override template = 'autocrm:site/history-tabs';
+	override template = 'viacrm:site/history-tabs';
 
 	tabsStorageKey = 'historyTabs';
 

@@ -48,7 +48,7 @@ class TemplateHelpersTest extends AbstractMetadataTest {
                 
 				// Check namespace pattern
 				$this->assertMatchesRegularExpression(
-					'/^Espo\\\\Modules\\\\Autocrm\\\\Classes\\\\TemplateHelpers\\\\[A-Za-z0-9]+$/',
+					'/^Espo\\\\Modules\\\\Viacrm\\\\Classes\\\\TemplateHelpers\\\\[A-Za-z0-9]+$/',
 					$helperClass,
 					"Template helper class '$helperClass' does not follow expected namespace pattern"
 				);

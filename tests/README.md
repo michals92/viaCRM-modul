@@ -1,6 +1,6 @@
-# Tests for AutoCRM
+# Tests for ViaCRM
 
-This directory contains tests for the AutoCRM project.
+This directory contains tests for the ViaCRM project.
 
 ## Unit Tests
 

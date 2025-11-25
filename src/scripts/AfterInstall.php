@@ -458,11 +458,11 @@ class AfterInstall {
 		exec('crmws restart 2>&1', $output, $exitCode);
 
 		if ($exitCode === 0) {
-			echo "[$exitCode] Websockets restarted by AutoCRM: " . implode("\n", $output) . "\n";
-			$GLOBALS['log']->notice("[$exitCode] Websockets restarted by AutoCRM: " . implode("\n", $output) . "\n");
+			echo "[$exitCode] Websockets restarted by ViaCRM: " . implode("\n", $output) . "\n";
+			$GLOBALS['log']->notice("[$exitCode] Websockets restarted by ViaCRM: " . implode("\n", $output) . "\n");
 		} else {
-			echo "[$exitCode] Failed to restart websockets by AutoCRM:\n" . implode("\n", $output) . "\n";
-			$GLOBALS['log']->error("[$exitCode] Failed to restart websockets by AutoCRM. Output:" . implode("\n", $output) . "\n");
+			echo "[$exitCode] Failed to restart websockets by ViaCRM:\n" . implode("\n", $output) . "\n";
+			$GLOBALS['log']->error("[$exitCode] Failed to restart websockets by ViaCRM. Output:" . implode("\n", $output) . "\n");
 		}
 	}
 
@@ -503,7 +503,7 @@ class AfterInstall {
 				'loaderClassName' => 'Espo\\Core\\Log\\EspoRotatingFileHandlerLoader',
 				'level' => 'NOTICE',
 				'formatter' => [
-					'className' => 'Espo\\Modules\\Autocrm\\Core\\Log\\AutocrmFormatter',
+					'className' => 'Espo\\Modules\\Viacrm\\Core\\Log\\ViacrmFormatter',
 				]
 			]
 		];

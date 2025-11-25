@@ -12,7 +12,7 @@ define([], function () {
 					label: 'Print to XML',
 					name: 'printXml',
 					data: {
-						handler: 'autocrm:handlers/actions/print-xml',
+						handler: 'viacrm:handlers/actions/print-xml',
 					},
 				});
 			}

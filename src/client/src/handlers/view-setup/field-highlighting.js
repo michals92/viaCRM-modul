@@ -1,4 +1,4 @@
-define(['autocrm:helpers/field-highlighter'], function (FieldHighlighter) {
+define(['viacrm:helpers/field-highlighter'], function (FieldHighlighter) {
 	/**
 	 * Field Highlighting View Setup Handler
 	 * Properly integrates field highlighting using view-setup pattern

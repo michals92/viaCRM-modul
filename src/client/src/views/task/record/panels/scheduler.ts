@@ -6,7 +6,7 @@ define(['views/record/panels/bottom'], Dep => class extends Dep {
 	override setup() {
 		super.setup();
 
-		this.createView('scheduler', 'autocrm:views/task/scheduler/scheduler', {
+		this.createView('scheduler', 'viacrm:views/task/scheduler/scheduler', {
 			selector: '.scheduler-container',
 			notToRender: true,
 			model: this.model,

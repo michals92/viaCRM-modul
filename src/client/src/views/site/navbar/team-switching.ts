@@ -1,8 +1,8 @@
 import type User from 'espocrm/src/models/user';
 import type View from 'espocrm/src/view';
 
-define(['autocrm:views/site/navbar/user-only'], (Dep: typeof View) => class extends Dep {
-	override template = 'autocrm:site/navbar/team-switching';
+define(['viacrm:views/site/navbar/user-only'], (Dep: typeof View) => class extends Dep {
+	override template = 'viacrm:site/navbar/team-switching';
 
 	private teams: any = {};
 	private defaultTeam: any = {};
@@ -55,7 +55,7 @@ define(['autocrm:views/site/navbar/user-only'], (Dep: typeof View) => class exte
 		$panel.appendTo($container);
 		this.createView(
 			'panel',
-			'autocrm:views/team-switcher/panel',
+			'viacrm:views/team-switcher/panel',
 			{
 				fullSelector: '#team-switcher-panel',
 				teams: this.teams,

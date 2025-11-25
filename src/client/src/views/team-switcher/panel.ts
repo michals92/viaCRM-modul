@@ -1,5 +1,5 @@
 define(['view'], Dep => class extends Dep {
-	override template = 'autocrm:team-switcher/panel';
+	override template = 'viacrm:team-switcher/panel';
 	private teams: any = {};
 	private defaultTeam: any = {};
 

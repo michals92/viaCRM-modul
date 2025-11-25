@@ -52,7 +52,7 @@ class RecordDefsMassActionsTest extends AbstractMetadataTest {
 					);
                     
 					// Check namespace pattern
-					$expectedNamespacePattern = "^Espo\\\\Modules\\\\Autocrm\\\\Classes\\\\MassAction\\\\{$entityType}\\\\";
+					$expectedNamespacePattern = "^Espo\\\\Modules\\\\Viacrm\\\\Classes\\\\MassAction\\\\{$entityType}\\\\";
 					$this->assertMatchesRegularExpression(
 						"/{$expectedNamespacePattern}[A-Za-z0-9]+$/",
 						$implementationClass,

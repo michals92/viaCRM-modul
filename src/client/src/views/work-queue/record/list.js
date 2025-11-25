@@ -1,4 +1,4 @@
-define(['autocrm:views/record/partitioned', 'helpers/record-modal'], (Dep, RecordModal) => class extends Dep {
+define(['viacrm:views/record/partitioned', 'helpers/record-modal'], (Dep, RecordModal) => class extends Dep {
 	// Prevents an empty space showing
 	data() {
 		return {

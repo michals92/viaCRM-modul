@@ -1,7 +1,7 @@
 define(['views/fields/varchar'], Dep => class extends Dep {
-	override detailTemplate = 'autocrm:teams/fields/name/detail';
-	override listTemplate = 'autocrm:teams/fields/name/list';
-	override listLinkTemplate = 'autocrm:teams/fields/name/list-link';
+	override detailTemplate = 'viacrm:teams/fields/name/detail';
+	override listTemplate = 'viacrm:teams/fields/name/list';
+	override listLinkTemplate = 'viacrm:teams/fields/name/list-link';
 
 	override data() {
 		return {

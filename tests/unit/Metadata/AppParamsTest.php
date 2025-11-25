@@ -46,7 +46,7 @@ class AppParamsTest extends AbstractMetadataTest {
                 
 				// Validate class name format (namespace pattern)
 				$this->assertMatchesRegularExpression(
-					'/^Espo\\\\Modules\\\\Autocrm\\\\Classes\\\\AppParams\\\\[A-Za-z0-9]+$/',
+					'/^Espo\\\\Modules\\\\Viacrm\\\\Classes\\\\AppParams\\\\[A-Za-z0-9]+$/',
 					$appParam['className'],
 					"App param '$key' className does not follow expected namespace pattern"
 				);

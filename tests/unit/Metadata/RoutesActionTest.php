@@ -83,12 +83,12 @@ class RoutesActionTest extends AbstractMetadataTest {
 					}
                     
 					// Check namespace pattern
-					$correctNamespace = str_starts_with($actionClass, 'Espo\\Modules\\Autocrm\\Api\\');
+					$correctNamespace = str_starts_with($actionClass, 'Espo\\Modules\\Viacrm\\Api\\');
 					if (!$correctNamespace) {
 						$classesWithIssues[] = [
 						    'class' => $actionClass, 
 						    'route' => $routePath,
-						    'issue' => 'Not in Espo\\Modules\\Autocrm\\Api namespace'
+						    'issue' => 'Not in Espo\\Modules\\Viacrm\\Api namespace'
 						];
 					}
 				}
@@ -141,7 +141,7 @@ class RoutesActionTest extends AbstractMetadataTest {
 				$reflection = new \ReflectionClass($actionClass);
                 
 				if ($reflection->implementsInterface(Action::class) &&
-				    str_starts_with($actionClass, 'Espo\\Modules\\Autocrm\\Api\\')) {
+				    str_starts_with($actionClass, 'Espo\\Modules\\Viacrm\\Api\\')) {
 					$validActionFound = true;
 					break;
 				}
@@ -151,7 +151,7 @@ class RoutesActionTest extends AbstractMetadataTest {
 		$this->assertTrue(
 			$validActionFound,
 			'At least one route action class should implement ' . Action::class . 
-			' and be in the Espo\\Modules\\Autocrm\\Api namespace'
+			' and be in the Espo\\Modules\\Viacrm\\Api namespace'
 		);
 	}
     

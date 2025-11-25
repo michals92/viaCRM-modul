@@ -1,7 +1,7 @@
 import type View from 'espocrm/src/view';
 
-define(['autocrm:views/site/navbar/user-only'], (Dep: typeof View) => class extends Dep {
-	override template = 'autocrm:site/navbar/date-today';
+define(['viacrm:views/site/navbar/user-only'], (Dep: typeof View) => class extends Dep {
+	override template = 'viacrm:site/navbar/date-today';
 	holiday: any = null;
 	year!: number;
 	month!: number;

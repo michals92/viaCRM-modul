@@ -63,7 +63,7 @@ class OrmFunctionConvertersTest extends AbstractMetadataTest {
 					);
                     
 					// Check that the namespace follows the expected pattern
-					$expectedNamespace = "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\$platformName";
+					$expectedNamespace = "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\$platformName";
 					$this->assertStringStartsWith(
 						$expectedNamespace,
 						$converterClass,

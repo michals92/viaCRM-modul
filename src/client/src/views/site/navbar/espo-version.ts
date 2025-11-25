@@ -1,5 +1,5 @@
 define(['view'], Dep => class extends Dep {
-	override template = 'autocrm:site/navbar/espo-version';
+	override template = 'viacrm:site/navbar/espo-version';
 
 	override data() {
 		return {
@@ -10,7 +10,7 @@ define(['view'], Dep => class extends Dep {
 	override setup() {
 		if (this.getUser().isAdmin()) {
 			this.addActionHandler('showExtensions', () =>
-				this.createView('extensionsDialog', 'autocrm:views/modals/extensions').then(view => view.render()),
+				this.createView('extensionsDialog', 'viacrm:views/modals/extensions').then(view => view.render()),
 			);
 		}
 	}

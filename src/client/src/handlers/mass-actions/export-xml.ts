@@ -24,7 +24,7 @@ define([], () => class {
 
 		this.view.createView(
 			'xmlTemplate',
-			'autocrm:views/modals/select-xml-template',
+			'viacrm:views/modals/select-xml-template',
 			{
 				entityType: this.view.collection.name,
 			},

@@ -71,7 +71,7 @@ class EmailTemplatePlaceholdersTest extends AbstractMetadataTest {
                 
 				// Validate class name format (namespace pattern)
 				$this->assertMatchesRegularExpression(
-					'/^Espo\\\\Modules\\\\Autocrm\\\\Tools\\\\EmailTemplate\\\\Placeholders\\\\[A-Za-z0-9]+$/',
+					'/^Espo\\\\Modules\\\\Viacrm\\\\Tools\\\\EmailTemplate\\\\Placeholders\\\\[A-Za-z0-9]+$/',
 					$placeholder['className'],
 					"Placeholder '$name' className does not follow expected namespace pattern"
 				);

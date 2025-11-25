@@ -1,5 +1,5 @@
 define(['view'], Dep => class extends Dep {
-	override template = 'autocrm:site/navbar/clear-browser-cache';
+	override template = 'viacrm:site/navbar/clear-browser-cache';
 
 	override setup() {
 		this.addActionHandler('clearBrowserCache', () => {

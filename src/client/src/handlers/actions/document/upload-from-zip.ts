@@ -16,7 +16,7 @@ define(['action-handler'], Dep => class extends Dep<ListWithCategoriesView> {
 	async actionUploadFromZip() {
 		const params: any = this.view.options.params;
 
-		const modal = (await this.view.createView('modal', 'autocrm:views/modals/upload-zip', {
+		const modal = (await this.view.createView('modal', 'viacrm:views/modals/upload-zip', {
 			categoryId: params.categoryId,
 		})) as unknown as ModalView;
 

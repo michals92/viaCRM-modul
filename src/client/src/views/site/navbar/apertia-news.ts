@@ -1,7 +1,7 @@
 import type View from 'espocrm/src/view';
 
-define(['autocrm:views/site/navbar/user-only'], (Dep: typeof View) => class extends Dep {
-	override template = 'autocrm:site/navbar/apertia-news';
+define(['viacrm:views/site/navbar/user-only'], (Dep: typeof View) => class extends Dep {
+	override template = 'viacrm:site/navbar/apertia-news';
 	iframeUrl!: string;
 	iframeHeight!: number;
 	iframeDisabled!: boolean;
@@ -42,7 +42,7 @@ define(['autocrm:views/site/navbar/user-only'], (Dep: typeof View) => class exte
 		$container.appendTo(this.$el.find('.ape-news-container'));
 		this.createView(
 			'panel',
-			'autocrm:views/apertia-news/panel',
+			'viacrm:views/apertia-news/panel',
 			{
 				fullSelector: '#ape-news-panel',
 				iframeUrl: this.iframeUrl,

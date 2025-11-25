@@ -51,7 +51,7 @@ class RebuildActionsTest extends AbstractMetadataTest {
                 
 				// Check namespace pattern
 				$this->assertMatchesRegularExpression(
-					'/^Espo\\\\Modules\\\\Autocrm\\\\Core\\\\Rebuild\\\\Actions\\\\[A-Za-z0-9]+$/',
+					'/^Espo\\\\Modules\\\\Viacrm\\\\Core\\\\Rebuild\\\\Actions\\\\[A-Za-z0-9]+$/',
 					$actionClass,
 					"Rebuild action class '$actionClass' does not follow expected namespace pattern"
 				);

@@ -10,8 +10,8 @@ interface SystemRequirementData {
 	permission?: Record<string, SystemRequirement>;
 }
 
-define(['autocrm:views/site/navbar/admin-only'], (Dep: typeof View) => class extends Dep {
-	override template = 'autocrm:site/navbar/system-requirements';
+define(['viacrm:views/site/navbar/admin-only'], (Dep: typeof View) => class extends Dep {
+	override template = 'viacrm:site/navbar/system-requirements';
 
 	allRequirementsMet = true;
 
@@ -34,7 +34,7 @@ define(['autocrm:views/site/navbar/admin-only'], (Dep: typeof View) => class ext
 		}
 		
 		this.addActionHandler('showSystemRequirements', () =>
-			this.createView('systemRequirementsModal', 'autocrm:views/modals/system-requirements').then(view => view.render()),
+			this.createView('systemRequirementsModal', 'viacrm:views/modals/system-requirements').then(view => view.render()),
 		);
 
 		// Check system requirements to determine icon color

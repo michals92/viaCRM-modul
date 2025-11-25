@@ -43,7 +43,7 @@ class SelectDefsPrimaryFiltersTest extends AbstractMetadataTest {
 				);
                 
 				// Check namespace pattern
-				$expectedNamespacePattern = "^Espo\\\\Modules\\\\Autocrm\\\\Classes\\\\Select\\\\{$entityType}\\\\PrimaryFilters\\\\";
+				$expectedNamespacePattern = "^Espo\\\\Modules\\\\Viacrm\\\\Classes\\\\Select\\\\{$entityType}\\\\PrimaryFilters\\\\";
 				$this->assertMatchesRegularExpression(
 					"/{$expectedNamespacePattern}[A-Za-z0-9]+$/",
 					$filterClass,

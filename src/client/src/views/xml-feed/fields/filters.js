@@ -1,4 +1,4 @@
-define(['autocrm:views/fields/advanced-filters', 'autocrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
+define(['viacrm:views/fields/advanced-filters', 'viacrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
 	detailTemplateContent = "{{translate 'displayableOnlyInEditMode' category='messages'}}";
 
 	setup() {

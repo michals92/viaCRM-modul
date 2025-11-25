@@ -99,7 +99,7 @@ class MetadataAdditionalBuildersTest extends AbstractMetadataTest {
                     
 					// Validate class name format (namespace pattern)
 					$this->assertMatchesRegularExpression(
-						'/^Espo\\\\Modules\\\\Autocrm\\\\Core\\\\Utils\\\\Metadata\\\\AdditionalBuilder\\\\[A-Za-z0-9]+$/',
+						'/^Espo\\\\Modules\\\\Viacrm\\\\Core\\\\Utils\\\\Metadata\\\\AdditionalBuilder\\\\[A-Za-z0-9]+$/',
 						$builderClass,
 						"Builder class '$builderClass' does not follow expected namespace pattern"
 					);

@@ -174,7 +174,7 @@ define(() => {
 		}
 
 		protected async editLayout(layoutType: string): Promise<void> {
-			const editLayoutView = (await this.view.createView('edit-layout', 'autocrm:views/modals/edit-layout', {
+			const editLayoutView = (await this.view.createView('edit-layout', 'viacrm:views/modals/edit-layout', {
 				scope: this.scope,
 				type: layoutType,
 			})) as unknown as ModalView;

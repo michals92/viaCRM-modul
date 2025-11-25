@@ -1,5 +1,5 @@
-define(['autocrm:views/site/navbar/admin-only'], (Dep: typeof import('espocrm/src/view').default) => class extends Dep {
-	override template = 'autocrm:site/navbar/clear-cache';
+define(['viacrm:views/site/navbar/admin-only'], (Dep: typeof import('espocrm/src/view').default) => class extends Dep {
+	override template = 'viacrm:site/navbar/clear-cache';
 
 	override setup() {
 		this.addActionHandler('clearCache', () => {

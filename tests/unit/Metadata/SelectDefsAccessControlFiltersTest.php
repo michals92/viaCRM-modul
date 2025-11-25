@@ -43,7 +43,7 @@ class SelectDefsAccessControlFiltersTest extends AbstractMetadataTest {
 				);
                 
 				// Check namespace pattern
-				$expectedNamespacePattern = "^Espo\\\\Modules\\\\Autocrm\\\\Classes\\\\Select\\\\{$entityType}\\\\AccessControlFilters\\\\";
+				$expectedNamespacePattern = "^Espo\\\\Modules\\\\Viacrm\\\\Classes\\\\Select\\\\{$entityType}\\\\AccessControlFilters\\\\";
 				$this->assertMatchesRegularExpression(
 					"/{$expectedNamespacePattern}[A-Za-z0-9]+$/",
 					$filterClass,
