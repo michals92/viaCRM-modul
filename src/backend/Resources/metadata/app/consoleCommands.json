@@ -1,59 +1,59 @@
 {
 	"aresLookup": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\AresLookup",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\AresLookup",
 		"listed": true
 	},
 	"autocomplete": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Console\\Commands\\Autocomplete"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Console\\Commands\\Autocomplete"
 	},
 	"configGet": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\ConfigGet",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\ConfigGet",
 		"listed": true
 	},
 	"emailHealth": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\EmailHealth",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\EmailHealth",
 		"listed": true
 	},
 	"getLayout": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\GetLayout",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\GetLayout",
 		"listed": true
 	},
 	"getSql": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\GetSql",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\GetSql",
 		"listed": true
 	},
 	"indexes": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\Indexes",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\Indexes",
 		"listed": true
 	},
 	"lastJobRun": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\LastJobRun",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\LastJobRun",
 		"listed": true
 	},
 	"listLayouts": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\ListLayouts",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\ListLayouts",
 		"listed": true
 	},
 	"metadataGet": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\MetadataGet",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\MetadataGet",
 		"listed": true
 	},
 	"runJob": {
-		"autocompleteClassName": "Espo\\Modules\\Autocrm\\Core\\Console\\CommandAutocomplete\\RunJob"
+		"autocompleteClassName": "Espo\\Modules\\Viacrm\\Core\\Console\\CommandAutocomplete\\RunJob"
 	},
 	"setPasswordNonInteractive": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\SetPasswordNonInteractive",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\SetPasswordNonInteractive",
 		"listed": true
 	},
 	"textSearch": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\TextSearch",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\TextSearch",
 		"listed": true
 	},
 	"tinker": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\ConsoleCommands\\Tinker",
+		"className": "Espo\\Modules\\Viacrm\\Classes\\ConsoleCommands\\Tinker",
 		"listed": true
 	},
 	"upgrade": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Console\\Commands\\Upgrade"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Console\\Commands\\Upgrade"
 	}
 }

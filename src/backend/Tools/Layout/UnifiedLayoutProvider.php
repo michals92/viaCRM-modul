@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Layout;
+namespace Espo\Modules\Viacrm\Tools\Layout;
 
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\File\Manager as FileManager;
@@ -9,11 +9,11 @@ use Espo\Core\Utils\Metadata;
 use Espo\Core\Utils\Resource\Reader as ResourceReader;
 use Espo\Core\Utils\Resource\Reader\Params as ResourceReaderParams;
 use Espo\Core\Utils\Util;
-use Espo\Modules\Autocrm\Core\Utils\LayoutProvider\AdditionalBuilder;
+use Espo\Modules\Viacrm\Core\Utils\LayoutProvider\AdditionalBuilder;
 
 class UnifiedLayoutProvider {
 
-	private string $defaultPath = 'application/Espo/Modules/Autocrm/Resources/defaults/layouts';
+	private string $defaultPath = 'application/Espo/Modules/Viacrm/Resources/defaults/layouts';
 
 	/** @var array<string, mixed> $data */
 	private array $data;
@@ -43,7 +43,7 @@ class UnifiedLayoutProvider {
 		if ($layout === null) {
 			$path = "$this->defaultPath/$name.json";
 
-			// 2. AutoCRM's default layout
+			// 2. viaCRM's default layout
 			if ($this->fileManager->isFile($path)) {
 				$layout = (array)JSON::decode($this->fileManager->getContents($path));
 			}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Layout;
+namespace Espo\Modules\Viacrm\Tools\Layout;
 
 use Espo\Core\Utils\FieldUtil;
 use Espo\Core\Utils\Json;

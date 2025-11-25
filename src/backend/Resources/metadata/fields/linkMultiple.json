@@ -166,8 +166,8 @@
 		}
 	],
 	"view": "autocrm:views/fields/link-multiple",
-	"duplicatorClassName": "Espo\\Modules\\Autocrm\\Classes\\FieldDuplicators\\LinkMultiple",
-	"converterClassName": "Espo\\Modules\\Autocrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\LinkMultiple",
-	"validatorClassName": "Espo\\Modules\\Autocrm\\Classes\\FieldValidators\\LinkMultipleType",
-	"valueFactoryClassName": "Espo\\Modules\\Autocrm\\Core\\Field\\LinkMultiple\\LinkMultipleFactory"
+	"duplicatorClassName": "Espo\\Modules\\Viacrm\\Classes\\FieldDuplicators\\LinkMultiple",
+	"converterClassName": "Espo\\Modules\\Viacrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\LinkMultiple",
+	"validatorClassName": "Espo\\Modules\\Viacrm\\Classes\\FieldValidators\\LinkMultipleType",
+	"valueFactoryClassName": "Espo\\Modules\\Viacrm\\Core\\Field\\LinkMultiple\\LinkMultipleFactory"
 }

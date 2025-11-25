@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\EmailTemplate\Placeholders;
+namespace Espo\Modules\Viacrm\Tools\EmailTemplate\Placeholders;
 
 use Espo\Core\Utils\Config;
 use Espo\Tools\EmailTemplate\Data as EmailTemplateData;

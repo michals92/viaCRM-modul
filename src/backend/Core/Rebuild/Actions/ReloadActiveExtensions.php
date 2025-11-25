@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Rebuild\Actions;
+namespace Espo\Modules\Viacrm\Core\Rebuild\Actions;
 
 use Espo\Core\Rebuild\RebuildAction;
 use Espo\Core\Utils\Config;

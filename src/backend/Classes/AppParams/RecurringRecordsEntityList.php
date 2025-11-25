@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\AppParams;
+namespace Espo\Modules\Viacrm\Classes\AppParams;
 
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Select\SelectBuilderFactory;
-use Espo\Modules\Autocrm\Entities\RecordRecurrence;
+use Espo\Modules\Viacrm\Entities\RecordRecurrence;
 use Espo\ORM\EntityManager;
 use Espo\Tools\App\AppParam;
 

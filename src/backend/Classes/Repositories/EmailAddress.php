@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Repositories;
+namespace Espo\Modules\Viacrm\Classes\Repositories;
 
 use Espo\Core\Di;
 use Espo\Entities\EmailAddress as EmailAddressEntity;

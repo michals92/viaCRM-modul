@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Hooks\EmailAccount;
+namespace Espo\Modules\Viacrm\Hooks\EmailAccount;
 
 use Espo\Core\Hook\Hook\BeforeSave;
 use Espo\Entities\EmailAccount;
-use Espo\Modules\Autocrm\Tools\MicrosoftGraph\Subscriber;
+use Espo\Modules\Viacrm\Tools\MicrosoftGraph\Subscriber;
 use Espo\ORM\Entity;
 use Espo\ORM\Repository\Option\SaveOptions;
 

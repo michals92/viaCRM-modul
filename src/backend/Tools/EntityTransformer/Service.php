@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\EntityTransformer;
+namespace Espo\Modules\Viacrm\Tools\EntityTransformer;
 
 use Espo\ORM\Entity;
 use Espo\ORM\EntityCollection;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api\MicrosoftGraph;
+namespace Espo\Modules\Viacrm\Api\MicrosoftGraph;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;

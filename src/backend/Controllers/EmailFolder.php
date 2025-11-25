@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Controllers;
+namespace Espo\Modules\Viacrm\Controllers;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Exceptions\NotFound;
-use Espo\Modules\Autocrm\Tools\EmailFolder\Service as AutocrmEmailFolderService;
+use Espo\Modules\Viacrm\Tools\EmailFolder\Service as ViacrmEmailFolderService;
 use stdClass;
 
 class EmailFolder extends \Espo\Controllers\EmailFolder {
@@ -22,8 +22,8 @@ class EmailFolder extends \Espo\Controllers\EmailFolder {
 		return (object) ['list' => $list];
 	}
 
-	private function getEmailFolderService(): AutocrmEmailFolderService {
-		return $this->injectableFactory->create(AutocrmEmailFolderService::class);
+	private function getEmailFolderService(): ViacrmEmailFolderService {
+		return $this->injectableFactory->create(ViacrmEmailFolderService::class);
 	}
 
 }

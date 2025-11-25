@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\EntryPoints;
+namespace Espo\Modules\Viacrm\EntryPoints;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
@@ -8,8 +8,8 @@ use Espo\Core\EntryPoint\EntryPoint;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\NotFound;
 use Espo\Core\ORM\EntityManager;
-use Espo\Modules\Autocrm\Entities\XmlTemplate;
-use Espo\Modules\Autocrm\Tools\Xml\Service as XmlService;
+use Espo\Modules\Viacrm\Entities\XmlTemplate;
+use Espo\Modules\Viacrm\Tools\Xml\Service as XmlService;
 
 class Xml implements EntryPoint {
 

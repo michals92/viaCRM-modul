@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api\Holiday;
+namespace Espo\Modules\Viacrm\Api\Holiday;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;
@@ -8,8 +8,8 @@ use Espo\Core\Api\Response;
 use Espo\Core\Api\ResponseComposer;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Field\Date;
-use Espo\Modules\Autocrm\Classes\Utils\Common\LangCode;
-use Espo\Modules\Autocrm\Classes\Utils\HolidayUtil;
+use Espo\Modules\Viacrm\Classes\Utils\Common\LangCode;
+use Espo\Modules\Viacrm\Classes\Utils\HolidayUtil;
 
 class Get implements Action {
 

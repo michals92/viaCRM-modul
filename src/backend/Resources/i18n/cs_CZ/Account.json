@@ -85,8 +85,8 @@
 		"Support": "Podpora"
 	},
 	"tooltips": {
-		"billingAddress": "Země, které lze vybírat v poli adresy, se definují v [Nastavení](#Admin/AutocrmSettings), v poli *Seznam zemí adresy*.",
-		"shippingAddress": "Země, které lze vybírat v poli adresy, se definují v [Nastavení](#Admin/AutocrmSettings), v poli *Seznam zemí adresy*.",
+		"billingAddress": "Země, které lze vybírat v poli adresy, se definují v [Nastavení](#Admin/ViacrmSettings), v poli *Seznam zemí adresy*.",
+		"shippingAddress": "Země, které lze vybírat v poli adresy, se definují v [Nastavení](#Admin/ViacrmSettings), v poli *Seznam zemí adresy*.",
 		"slovakVatId": "IČ DPH je slovenské identifikační číslo pro účely DPH"
 	}
 }

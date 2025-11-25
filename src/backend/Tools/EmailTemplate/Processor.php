@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\EmailTemplate;
+namespace Espo\Modules\Viacrm\Tools\EmailTemplate;
 
 use Espo\Core\Di;
 use Espo\Entities\EmailTemplate;
-use Espo\Modules\Autocrm\Tools\EmailTemplate\ViewInBrowser\Data as ViewInBrowserData;
-use Espo\Modules\Autocrm\Tools\EmailTemplate\ViewInBrowser\Processor as ViewInBrowserProcessor;
+use Espo\Modules\Viacrm\Tools\EmailTemplate\ViewInBrowser\Data as ViewInBrowserData;
+use Espo\Modules\Viacrm\Tools\EmailTemplate\ViewInBrowser\Processor as ViewInBrowserProcessor;
 use Espo\Tools\EmailTemplate\Data as EmailTemplateData;
 use Espo\Tools\EmailTemplate\Params as EmailTemplateParams;
 use Espo\Tools\EmailTemplate\Result;

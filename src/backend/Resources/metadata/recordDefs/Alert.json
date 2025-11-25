@@ -1,7 +1,7 @@
 {
 	"afterUpdateHookClassNameList": [
 		"__APPEND__",
-		"Espo\\Modules\\Autocrm\\Classes\\RecordHooks\\Alert\\Websocket"
+		"Espo\\Modules\\Viacrm\\Classes\\RecordHooks\\Alert\\Websocket"
 	],
 	"beforeUpdateHookClassNameList": [
 		"__APPEND__",

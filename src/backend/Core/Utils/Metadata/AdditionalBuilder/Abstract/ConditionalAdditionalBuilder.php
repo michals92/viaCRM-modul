@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Utils\Metadata\AdditionalBuilder\Abstract;
+namespace Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder\Abstract;
 
-use Espo\Modules\Autocrm\Classes\Utils\ExtensionUtil;
-use Espo\Modules\Autocrm\Classes\Utils\VersionUtil;
-use Espo\Modules\Autocrm\Core\Abstract\Traits\ConditionalExtension;
-use Espo\Modules\Autocrm\Core\Utils\Metadata\AdditionalBuilder\AdditionalBuilderWithConfig;
+use Espo\Modules\Viacrm\Classes\Utils\ExtensionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\VersionUtil;
+use Espo\Modules\Viacrm\Core\Abstract\Traits\ConditionalExtension;
+use Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder\AdditionalBuilderWithConfig;
 use stdClass;
 
 /**

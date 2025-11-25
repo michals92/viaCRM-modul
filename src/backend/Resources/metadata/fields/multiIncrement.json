@@ -21,6 +21,6 @@
 	"filter": true,
 	"textFilter": true,
 	"readOnly": true,
-	"hookClassName": "Espo\\Modules\\Autocrm\\Tools\\FieldManager\\Hooks\\MultiIncrementType",
+	"hookClassName": "Espo\\Modules\\Viacrm\\Tools\\FieldManager\\Hooks\\MultiIncrementType",
 	"default": null
 }

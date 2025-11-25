@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Controllers;
+namespace Espo\Modules\Viacrm\Controllers;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Record\SearchParamsFetcher;
-use Espo\Modules\Autocrm\Tools\WorkQueue\Service as WorkQueueService;
+use Espo\Modules\Viacrm\Tools\WorkQueue\Service as WorkQueueService;
 use stdClass;
 
 class WorkQueue {

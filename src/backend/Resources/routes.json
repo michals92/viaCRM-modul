@@ -12,7 +12,7 @@
 	{
 		"route": ":entityType/partition/:by",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Partition\\GetData"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Partition\\GetData"
 	},
 	{
 		"route": ":scope/:id/:parentLink/related/:link",
@@ -29,152 +29,152 @@
 	{
 		"route": "ActionHistoryRecord/massRevert",
 		"method": "post",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\ActionHistoryRecord\\MassRevert"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\ActionHistoryRecord\\MassRevert"
 	},
 	{
 		"route": "Aggregation/:scope",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Aggregation\\GetData"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Aggregation\\GetData"
 	},
 	{
 		"route": "Alert/toggleUser",
 		"method": "post",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Alert\\ToggleAlert"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Alert\\ToggleAlert"
 	},
 	{
 		"route": "/App/user",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\App\\GetUser"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\App\\GetUser"
 	},
 	{
 		"route": "/Ares/fill/:sicCode",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Ares\\GetFillData"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Ares\\GetFillData"
 	},
 	{
 		"route": "/Ares/suggest/:companyName",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Ares\\GetSuggestData"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Ares\\GetSuggestData"
 	},
 	{
 		"route": "Attachment/action/copy",
 		"method": "post",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\CopyAttachments"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\CopyAttachments"
 	},
 	{
 		"route": "Attachment/action/zip",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\ZipAttachments"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\ZipAttachments"
 	},
 	{
 		"route": "ColorizationDefs",
 		"method": "put",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\ColorizationDefs"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\ColorizationDefs"
 	},
 	{
 		"route": "ConversionDefs",
 		"method": "put",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\ConversionDefs"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\ConversionDefs"
 	},
 	{
 		"route": "/ClearBrowserCache",
 		"method": "post",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\NavbarAction\\ClearBrowserCache"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\NavbarAction\\ClearBrowserCache"
 	},
 	{
 		"route": "Document/uploadFromZip/:categoryId",
 		"method": "post",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Document\\UploadFromZip"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Document\\UploadFromZip"
 	},
 	{
 		"route": "Document/uploadFromZip",
 		"method": "post",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Document\\UploadFromZip"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Document\\UploadFromZip"
 	},
 	{
 		"route": "EmailPdf/getAttributes",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\EmailPdfAttributes"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\EmailPdfAttributes"
 	},
 	{
 		"route": "Extension/installedModules",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Extension\\GetInstalledModules"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Extension\\GetInstalledModules"
 	},
 	{
 		"route": "/Finstat/fill/:sicCode",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Finstat\\GetFillData"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Finstat\\GetFillData"
 	},
 	{
 		"route": "GetConvertAttributes/:entityType/:id/:foreignScope",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\GetConvertAttributes"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\GetConvertAttributes"
 	},
 	{
 		"route": "Mail/Account/GroupAccount/syncImap",
 		"method": "post",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Mail\\Account\\GroupAccount\\SyncImap"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Mail\\Account\\GroupAccount\\SyncImap"
 	},
 	{
 		"route": "Mail/Account/PersonalAccount/syncImap",
 		"method": "post",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Mail\\Account\\PersonalAccount\\SyncImap"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Mail\\Account\\PersonalAccount\\SyncImap"
 	},
 	{
 		"route": "Mail/GetSignature",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Mail\\GetSignature"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Mail\\GetSignature"
 	},
 	{
 		"route": "/MicrosoftGraph/callback",
 		"method": "post",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\MicrosoftGraph\\Callback",
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\MicrosoftGraph\\Callback",
 		"noAuth": true
 	},
 	{
 		"route": "RecordList/:scope/:id/:link",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\RecordList\\GetData"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\RecordList\\GetData"
 	},
 	{
 		"route": "UserKanban/:entityType",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\UserKanban\\GetData"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\UserKanban\\GetData"
 	},
 	{
 		"route": "UserKanban/order",
 		"method": "put",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\UserKanban\\PutOrder"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\UserKanban\\PutOrder"
 	},
 	{
 		"route": "/Vies/verifyVatNumber/:countryCode/:vatNumber",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Vies\\Validate"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Vies\\Validate"
 	},
 	{
 		"route": "ZiveFirmy/lookup/:sicCode",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\ZiveFirmy"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\ZiveFirmy"
 	},
 	{
 		"route": "Holiday/api/:year/:month/:day",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Holiday\\Get"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Holiday\\Get"
 	},
 	{
 		"route": "Holiday/api/:year/:month",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Holiday\\Get"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Holiday\\Get"
 	},
 	{
 		"route": "Holiday/api/:year",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\Holiday\\Get"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Holiday\\Get"
 	},
 	{
 		"route": "StatusHistory",
 		"method": "get",
-		"actionClassName": "Espo\\Modules\\Autocrm\\Api\\StatusHistory\\GetList"
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\StatusHistory\\GetList"
 	}
 ]

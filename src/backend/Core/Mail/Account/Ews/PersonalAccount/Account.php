@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Account\Ews\PersonalAccount;
+namespace Espo\Modules\Viacrm\Core\Mail\Account\Ews\PersonalAccount;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Field\Date;
@@ -13,7 +13,7 @@ use Espo\Core\Utils\Crypt;
 use Espo\Entities\Email;
 use Espo\Entities\EmailAccount;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Core\Mail\Account\Ews\FetchData;
+use Espo\Modules\Viacrm\Core\Mail\Account\Ews\FetchData;
 use Espo\ORM\EntityManager;
 
 /**

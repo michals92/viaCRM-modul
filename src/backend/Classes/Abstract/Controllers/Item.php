@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Abstract\Controllers;
+namespace Espo\Modules\Viacrm\Classes\Abstract\Controllers;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;

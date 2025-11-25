@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Jobs;
+namespace Espo\Modules\Viacrm\Classes\Jobs;
 
 use Espo\Core\Job\Job;
 use Espo\Core\Job\Job\Data as JobData;
-use Espo\Modules\Autocrm\Core\Mail\Account\Ews\PersonalAccount\Service;
+use Espo\Modules\Viacrm\Core\Mail\Account\Ews\PersonalAccount\Service;
 use RuntimeException;
 use Throwable;
 

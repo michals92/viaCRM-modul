@@ -1,5 +1,5 @@
 {
 	"actionClassNameMap": {
-		"createAlert": "Espo\\Modules\\Autocrm\\Core\\Email\\Actions\\CreateAlert"
+		"createAlert": "Espo\\Modules\\Viacrm\\Core\\Email\\Actions\\CreateAlert"
 	}
 }

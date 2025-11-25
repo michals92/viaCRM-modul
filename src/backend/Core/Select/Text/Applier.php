@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Select\Text;
+namespace Espo\Modules\Viacrm\Core\Select\Text;
 
 use Espo\Core\Di;
 use Espo\Core\Select\Text\FilterParams;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Query\SelectBuilder as QueryBuilder;
 use ReflectionException;
 

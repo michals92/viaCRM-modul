@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Layout\ContainerServices;
+namespace Espo\Modules\Viacrm\Tools\Layout\ContainerServices;
 
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\File\Manager as FileManager;
 use Espo\Core\Utils\Metadata;
 use Espo\Core\Utils\Resource\FileReader;
-use Espo\Modules\Autocrm\Tools\Layout\UnifiedLayoutProvider;
+use Espo\Modules\Viacrm\Tools\Layout\UnifiedLayoutProvider;
 
 class PortalLayoutProvider extends \Espo\Tools\Layout\PortalLayoutProvider {
 

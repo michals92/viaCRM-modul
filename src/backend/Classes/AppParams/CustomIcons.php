@@ -1,8 +1,8 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\AppParams;
+namespace Espo\Modules\Viacrm\Classes\AppParams;
 
-use Espo\Modules\Autocrm\Tools\CustomIcon\Service as CustomIconService;
+use Espo\Modules\Viacrm\Tools\CustomIcon\Service as CustomIconService;
 use Espo\Tools\App\AppParam;
 
 class CustomIcons implements AppParam {

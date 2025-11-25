@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api\Alert;
+namespace Espo\Modules\Viacrm\Api\Alert;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;
@@ -9,7 +9,7 @@ use Espo\Core\Api\ResponseComposer;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\ORM\EntityManager;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Entities\Alert;
+use Espo\Modules\Viacrm\Entities\Alert;
 
 class ToggleAlert implements Action {
 

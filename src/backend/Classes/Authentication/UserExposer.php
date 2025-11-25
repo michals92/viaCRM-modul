@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Authentication;
+namespace Espo\Modules\Viacrm\Classes\Authentication;
 
 use Espo\Core\Container;
 use Espo\Entities\User;

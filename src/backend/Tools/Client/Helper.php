@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Client;
+namespace Espo\Modules\Viacrm\Tools\Client;
 
 use Espo\Core\Utils\ClientManager;
 use Espo\Core\Utils\Config;
@@ -9,8 +9,8 @@ use Espo\Core\Utils\Language as LanguageUtil;
 use Espo\Core\Utils\Metadata;
 use Espo\Core\Utils\ThemeManager;
 use Espo\Entities\Preferences;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Autocrm\Classes\VariableCss\Provider as VariableCssProvider;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\VariableCss\Provider as VariableCssProvider;
 use RuntimeException;
 
 class Helper {

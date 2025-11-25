@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Field\EmailAddress;
+namespace Espo\Modules\Viacrm\Core\Field\EmailAddress;
 
 use Espo\Core\Field\EmailAddressGroup;
 use InvalidArgumentException;
@@ -29,7 +29,7 @@ class EmailAddressGroupAttributeExtractor extends \Espo\Core\Field\EmailAddress\
 				'primary' => $primaryAddress && $emailAddress->getAddress() === $primaryAddress,
 				'optOut' => $emailAddress->isOptedOut(),
 				'invalid' => $emailAddress->isInvalid(),
-				'accountId' => $emailAddress instanceof \Espo\Modules\Autocrm\Core\Field\EmailAddress
+				'accountId' => $emailAddress instanceof \Espo\Modules\Viacrm\Core\Field\EmailAddress
 					? $emailAddress->getAccountId()
 					: null,
 			];

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Extension;
+namespace Espo\Modules\Viacrm\Tools\Extension;
 
 use Espo\Core\Utils\Config;
 use Espo\Entities\Extension as ExtensionEntity;

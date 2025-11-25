@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\DynamicLogic\Exceptions;
+namespace Espo\Modules\Viacrm\Tools\DynamicLogic\Exceptions;
 
 use Exception;
 

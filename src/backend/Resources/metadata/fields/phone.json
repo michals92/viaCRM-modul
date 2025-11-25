@@ -51,7 +51,7 @@
 		}
 	],
 	"notCreatable": false,
-	"converterClassName": "Espo\\Modules\\Autocrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\Phone",
-	"attributeExtractorClassName": "Espo\\Modules\\Autocrm\\Core\\Field\\PhoneNumber\\PhoneNumberGroupAttributeExtractor",
+	"converterClassName": "Espo\\Modules\\Viacrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\Phone",
+	"attributeExtractorClassName": "Espo\\Modules\\Viacrm\\Core\\Field\\PhoneNumber\\PhoneNumberGroupAttributeExtractor",
 	"paramsNameFieldView": "autocrm:views/admin/field-manager/fields/phone/name"
 }

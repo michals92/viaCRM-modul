@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\MicrosoftGraph;
+namespace Espo\Modules\Viacrm\Tools\MicrosoftGraph;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\ExternalAccount\ClientManager;
@@ -10,8 +10,8 @@ use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Log;
 use Espo\Entities\ExternalAccount;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Autocrm\Entities\MicrosoftGraphSubscription;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Entities\MicrosoftGraphSubscription;
 use Espo\Modules\Outlook\Core\Outlook\Clients\Outlook;
 use Espo\ORM\Entity;
 use Exception;

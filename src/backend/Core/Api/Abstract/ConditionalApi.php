@@ -1,15 +1,15 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Api\Abstract;
+namespace Espo\Modules\Viacrm\Core\Api\Abstract;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
 use Espo\Core\Api\ResponseComposer;
 use Espo\Core\Utils\Config;
-use Espo\Modules\Autocrm\Classes\Utils\ExtensionUtil;
-use Espo\Modules\Autocrm\Classes\Utils\VersionUtil;
-use Espo\Modules\Autocrm\Core\Abstract\Traits\ConditionalExtension;
+use Espo\Modules\Viacrm\Classes\Utils\ExtensionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\VersionUtil;
+use Espo\Modules\Viacrm\Core\Abstract\Traits\ConditionalExtension;
 
 /**
  * Abstract class for API actions that need to be conditionally executed based on installed extensions.
@@ -45,8 +45,8 @@ use Espo\Modules\Autocrm\Core\Abstract\Traits\ConditionalExtension;
  * }
  * 
  * 
- * @see \Espo\Modules\Autocrm\Core\Hook\ConditionalHook\Abstract\ConditionalHook
- * @see \Espo\Modules\Autocrm\Core\Utils\Metadata\AdditionalBuilder\Abstract\ConditionalAdditionalBuilder
+ * @see \Espo\Modules\Viacrm\Core\Hook\ConditionalHook\Abstract\ConditionalHook
+ * @see \Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder\Abstract\ConditionalAdditionalBuilder
  */
 abstract class ConditionalApi implements Action {
 	use ConditionalExtension;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Finstat;
+namespace Espo\Modules\Viacrm\Tools\Finstat;
 
 use DOMDocument;
 use DOMXPath;

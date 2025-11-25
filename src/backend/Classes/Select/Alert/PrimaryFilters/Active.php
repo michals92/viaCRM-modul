@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Select\Alert\PrimaryFilters;
+namespace Espo\Modules\Viacrm\Classes\Select\Alert\PrimaryFilters;
 
 use Espo\Core\Select\Primary\Filter;
 use Espo\Core\Utils\Metadata;

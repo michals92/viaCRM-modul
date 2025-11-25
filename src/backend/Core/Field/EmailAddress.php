@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Field;
+namespace Espo\Modules\Viacrm\Core\Field;
 
 use Espo\Core\ORM\Entity;
 use ReflectionProperty;

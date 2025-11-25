@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\RecordHooks\Alert;
+namespace Espo\Modules\Viacrm\Classes\RecordHooks\Alert;
 
 use Espo\Core\Record\Hook\UpdateHook;
 use Espo\Core\Record\UpdateParams;
-use Espo\Modules\Autocrm\Entities\Alert;
-use Espo\Modules\Autocrm\Entities\User;
-use Espo\Modules\Autocrm\Tools\Alert\NotificationProvider;
+use Espo\Modules\Viacrm\Entities\Alert;
+use Espo\Modules\Viacrm\Entities\User;
+use Espo\Modules\Viacrm\Tools\Alert\NotificationProvider;
 use Espo\ORM\Entity;
 
 /**

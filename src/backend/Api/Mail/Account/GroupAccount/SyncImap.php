@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api\Mail\Account\GroupAccount;
+namespace Espo\Modules\Viacrm\Api\Mail\Account\GroupAccount;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;

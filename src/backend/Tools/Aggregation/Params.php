@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Aggregation;
+namespace Espo\Modules\Viacrm\Tools\Aggregation;
 
 use Espo\Core\Select\SearchParams;
 use RuntimeException;

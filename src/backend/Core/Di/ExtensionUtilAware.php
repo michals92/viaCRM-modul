@@ -1,8 +1,8 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Di;
+namespace Espo\Modules\Viacrm\Core\Di;
 
-use Espo\Modules\Autocrm\Classes\Utils\ExtensionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ExtensionUtil;
 
 interface ExtensionUtilAware {
 

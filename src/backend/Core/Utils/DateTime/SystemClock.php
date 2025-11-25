@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Utils\DateTime;
+namespace Espo\Modules\Viacrm\Core\Utils\DateTime;
 
 use DateTimeImmutable;
 use Espo\Core\Field\DateTime;

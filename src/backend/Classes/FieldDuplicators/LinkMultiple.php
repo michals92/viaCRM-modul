@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\FieldDuplicators;
+namespace Espo\Modules\Viacrm\Classes\FieldDuplicators;
 
 use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\FieldUtil;

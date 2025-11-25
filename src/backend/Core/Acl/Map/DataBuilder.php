@@ -1,9 +1,9 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Acl\Map;
+namespace Espo\Modules\Viacrm\Core\Acl\Map;
 
 use Espo\Core\InjectableFactory;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use ReflectionClass;
 
 class DataBuilder extends \Espo\Core\Acl\Map\DataBuilder {

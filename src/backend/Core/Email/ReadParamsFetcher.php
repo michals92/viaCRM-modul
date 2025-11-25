@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Email;
+namespace Espo\Modules\Viacrm\Core\Email;
 
 use Espo\Core\Api\Request;
 

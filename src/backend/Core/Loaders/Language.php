@@ -1,13 +1,13 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Loaders;
+namespace Espo\Modules\Viacrm\Core\Loaders;
 
 use Espo\Core\Container\Loader;
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Metadata as MetadataService;
 use Espo\Entities\Preferences;
-use Espo\Modules\Autocrm\Core\Utils\Language as LanguageService;
+use Espo\Modules\Viacrm\Core\Utils\Language as LanguageService;
 
 class Language implements Loader {
 

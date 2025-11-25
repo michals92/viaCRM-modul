@@ -86,7 +86,7 @@
 	"view": "autocrm:views/fields/float-currency",
 	"notCreatable": true,
 	"filter": true,
-	"converterClassName": "Espo\\Modules\\Autocrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\FloatCurrency",
+	"converterClassName": "Espo\\Modules\\Viacrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\FloatCurrency",
 	"personalData": true,
 	"massUpdateActionList": [
 		"update",

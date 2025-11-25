@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\CustomIcon;
+namespace Espo\Modules\Viacrm\Tools\CustomIcon;
 
 use Espo\Core\ORM\EntityManager;
 use PDO;

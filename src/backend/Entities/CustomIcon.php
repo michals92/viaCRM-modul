@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Entities;
+namespace Espo\Modules\Viacrm\Entities;
 
 class CustomIcon extends \Espo\Core\Templates\Entities\Base {
 

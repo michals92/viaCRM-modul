@@ -1,9 +1,9 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\DynamicLogic;
+namespace Espo\Modules\Viacrm\Tools\DynamicLogic;
 
 use Espo\Core\Select\Where\Item\Type as WhereType;
-use Espo\Modules\Autocrm\Tools\DynamicLogic\Type as DynamicLogicType;
+use Espo\Modules\Viacrm\Tools\DynamicLogic\Type as DynamicLogicType;
 
 /**
  * Helper class to convert between Where\Item\Type and DynamicLogic\Type

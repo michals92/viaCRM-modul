@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Layout;
+namespace Espo\Modules\Viacrm\Tools\Layout;
 
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Language;
 use Espo\Core\WebSocket\Submission as WebSocketSubmission;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Core\Layout;
+use Espo\Modules\Viacrm\Core\Layout;
 
 class LayoutBuilder {
 

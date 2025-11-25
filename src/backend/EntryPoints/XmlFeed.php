@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\EntryPoints;
+namespace Espo\Modules\Viacrm\EntryPoints;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
 use Espo\Core\EntryPoint\EntryPoint;
-use Espo\Modules\Autocrm\Tools\Xml\EntryPointProcessor;
+use Espo\Modules\Viacrm\Tools\Xml\EntryPointProcessor;
 
 class XmlFeed implements EntryPoint {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Account\PersonalAccount\Hooks;
+namespace Espo\Modules\Viacrm\Core\Mail\Account\PersonalAccount\Hooks;
 
 use Espo\Core\Mail\Account\Account;
 use Espo\Core\Mail\Account\Hook\BeforeFetch as BeforeFetchInterface;
@@ -8,7 +8,7 @@ use Espo\Core\Mail\Account\Hook\BeforeFetchResult;
 use Espo\Core\Mail\Message;
 use Espo\Core\Mail\MessageWrapper;
 use Espo\Core\Utils\Log;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 
 class BeforeFetch implements BeforeFetchInterface {
 

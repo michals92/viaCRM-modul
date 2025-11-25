@@ -1,13 +1,13 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Controllers;
+namespace Espo\Modules\Viacrm\Controllers;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Di;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Exceptions\Forbidden;
-use Espo\Modules\Autocrm\Tools\Layout\Service as LayoutService;
+use Espo\Modules\Viacrm\Tools\Layout\Service as LayoutService;
 
 class Layout extends \Espo\Controllers\Layout implements Di\UserAware, Di\InjectableFactoryAware {
 	use Di\UserSetter;

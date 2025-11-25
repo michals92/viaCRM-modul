@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Acl\AccessChecker\AccessCheckers;
+namespace Espo\Modules\Viacrm\Core\Acl\AccessChecker\AccessCheckers;
 
 use Espo\Core\Acl\AccessEntityCreateChecker;
 use Espo\Core\Acl\AccessEntityDeleteChecker;

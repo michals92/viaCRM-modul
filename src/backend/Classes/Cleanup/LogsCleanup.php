@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Cleanup;
+namespace Espo\Modules\Viacrm\Classes\Cleanup;
 
 use Espo\Core\Cleanup\Cleanup;
 use Espo\Core\Field\DateTime;

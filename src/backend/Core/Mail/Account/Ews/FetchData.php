@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Account\Ews;
+namespace Espo\Modules\Viacrm\Core\Mail\Account\Ews;
 
 use stdClass;
 

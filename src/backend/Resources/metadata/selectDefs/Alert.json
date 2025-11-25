@@ -1,5 +1,5 @@
 {
 	"primaryFilterClassNameMap": {
-		"active": "Espo\\Modules\\Autocrm\\Classes\\Select\\Alert\\PrimaryFilters\\Active"
+		"active": "Espo\\Modules\\Viacrm\\Classes\\Select\\Alert\\PrimaryFilters\\Active"
 	}
 }

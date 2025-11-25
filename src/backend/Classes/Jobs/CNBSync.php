@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Jobs;
+namespace Espo\Modules\Viacrm\Classes\Jobs;
 
 use Espo\Core\Job\JobDataLess;
 use Espo\Core\ORM\EntityManager;

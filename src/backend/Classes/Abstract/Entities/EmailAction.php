@@ -1,9 +1,9 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Abstract\Entities;
+namespace Espo\Modules\Viacrm\Classes\Abstract\Entities;
 
 use Espo\Entities\EmailFilter;
-use Espo\Modules\Autocrm\Entities\Email;
+use Espo\Modules\Viacrm\Entities\Email;
 
 interface EmailAction {
 

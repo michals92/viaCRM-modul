@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Account;
+namespace Espo\Modules\Viacrm\Core\Mail\Account;
 
 use DateTime;
 use Espo\Core\Exceptions\Error;
@@ -395,7 +395,7 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 		}
 
 		if ($size > $maxSize * 1024 * 1024) {
-			$GLOBALS['log']->debug("[AutoCRM] Fetcher stumbled upon size exceeding max size. size:$size maxSize:" . ($maxSize * 1024 * 1024));
+			$GLOBALS['log']->debug("[viaCRM] Fetcher stumbled upon size exceeding max size. size:$size maxSize:" . ($maxSize * 1024 * 1024));
 
 			return true;
 		}

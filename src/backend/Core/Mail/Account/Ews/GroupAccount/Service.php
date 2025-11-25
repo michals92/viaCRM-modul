@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Account\Ews\GroupAccount;
+namespace Espo\Modules\Viacrm\Core\Mail\Account\Ews\GroupAccount;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Utils\Log;
 use Espo\Entities\InboundEmail;
-use Espo\Modules\Autocrm\Core\Mail\Account\Ews\Fetcher;
+use Espo\Modules\Viacrm\Core\Mail\Account\Ews\Fetcher;
 use Espo\ORM\EntityManager;
 use Throwable;
 

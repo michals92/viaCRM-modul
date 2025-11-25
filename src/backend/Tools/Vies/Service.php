@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Vies;
+namespace Espo\Modules\Viacrm\Tools\Vies;
 
 use Error;
 use Espo\Core\Utils\Json;

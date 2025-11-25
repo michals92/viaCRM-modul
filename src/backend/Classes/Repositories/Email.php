@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Repositories;
+namespace Espo\Modules\Viacrm\Classes\Repositories;
 
 use Espo\Core\Di;
 use Espo\Entities\Email as EmailEntity;
-use Espo\Modules\Autocrm\Classes\Abstract\Entities\EmailAction;
-use Espo\Modules\Autocrm\Entities\EmailFilter;
+use Espo\Modules\Viacrm\Classes\Abstract\Entities\EmailAction;
+use Espo\Modules\Viacrm\Entities\EmailFilter;
 use ReflectionException;
 
 class Email extends \Espo\Repositories\Email implements Di\MetadataAware, Di\InjectableFactoryAware {
@@ -17,7 +17,7 @@ class Email extends \Espo\Repositories\Email implements Di\MetadataAware, Di\Inj
 	private array|null $actionClassNameMap = null;
 
 	/**
-	 * @param  \Espo\Modules\Autocrm\Entities\Email $entity
+	 * @param  \Espo\Modules\Viacrm\Entities\Email $entity
 	 * @throws ReflectionException
 	 */
 	public function applyUsersFilters(EmailEntity $entity): void {
@@ -57,7 +57,7 @@ class Email extends \Espo\Repositories\Email implements Di\MetadataAware, Di\Inj
 	}
 
 	/**
-	 * @param  \Espo\Modules\Autocrm\Entities\Email $email
+	 * @param  \Espo\Modules\Viacrm\Entities\Email $email
 	 * @throws ReflectionException
 	 */
 	private function handleAdditionalActions(EmailEntity $email, EmailFilter $filter, ?string $userId = null): void {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Log;
+namespace Espo\Modules\Viacrm\Core\Log;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Exceptions\HasBody;
@@ -9,7 +9,7 @@ use Monolog\LogRecord;
 use Throwable;
 
 /** @disregard */
-class AutocrmFormatter extends LineFormatter {
+class ViacrmFormatter extends LineFormatter {
 
 	// This is the only changed line from the original
 	private const LINE_FORMAT = "[%datetime%] %level_name%: %code% %message% %request% %exception% %context% %extra%\n";

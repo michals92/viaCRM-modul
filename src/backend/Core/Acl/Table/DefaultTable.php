@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Acl\Table;
+namespace Espo\Modules\Viacrm\Core\Acl\Table;
 
 use Espo\Core\Acl\FieldData;
 use Espo\Core\Binding\BindingContainer;
 use Espo\Core\InjectableFactory;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Autocrm\Core\Di;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Core\Di;
 use ReflectionClass;
 use stdClass;
 

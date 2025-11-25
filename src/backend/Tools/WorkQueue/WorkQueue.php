@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\WorkQueue;
+namespace Espo\Modules\Viacrm\Tools\WorkQueue;
 
 use Espo\Core\Acl;
 use Espo\Core\Exceptions\BadRequest;
@@ -14,7 +14,7 @@ use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Language;
 use Espo\Core\Utils\Metadata;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Entities\WorkQueue as WorkQueueEntity;
+use Espo\Modules\Viacrm\Entities\WorkQueue as WorkQueueEntity;
 use Espo\ORM\EntityCollection;
 use Espo\ORM\EntityManager;
 use Espo\ORM\Query\Part\Expression;

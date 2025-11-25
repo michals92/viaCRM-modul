@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Layout;
+namespace Espo\Modules\Viacrm\Tools\Layout;
 
 use Espo\Core\InjectableFactory;
 

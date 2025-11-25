@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Account\Ews\GroupAccount;
+namespace Espo\Modules\Viacrm\Core\Mail\Account\Ews\GroupAccount;
 
 use Espo\Core\Binding\BindingContainerBuilder;
 use Espo\Core\Binding\Factory;
 use Espo\Core\InjectableFactory;
-use Espo\Modules\Autocrm\Core\Mail\Account\Ews\Fetcher;
+use Espo\Modules\Viacrm\Core\Mail\Account\Ews\Fetcher;
 
 /**
  * Factory for creating EWS Fetcher instances.

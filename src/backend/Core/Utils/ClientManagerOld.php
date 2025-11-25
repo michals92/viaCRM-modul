@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Utils;
+namespace Espo\Modules\Viacrm\Core\Utils;
 
 use Espo\Core\Utils\Client\RenderParams;
 use Espo\Core\Utils\ClientManager;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use LogicException;
 
 if (ReflectionUtil::classMethodHasParamCount(ClientManager::class, 'render', 1)) {
@@ -26,7 +26,7 @@ if (ReflectionUtil::classMethodHasParamCount(ClientManager::class, 'render', 1))
 
 		/** @disregard */
 		public function render(?string $runScript = null, ?string $htmlFilePath = null, array $vars = []): string {
-			$htmlFilePath ??= 'application/Espo/Modules/Autocrm/Resources/html/main.tpl';
+			$htmlFilePath ??= 'application/Espo/Modules/Viacrm/Resources/html/main.tpl';
     
 			$vars = $this->clientHelper->prepareVars($this, $vars);
     

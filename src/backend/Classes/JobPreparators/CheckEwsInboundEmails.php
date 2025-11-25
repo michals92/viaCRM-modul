@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\JobPreparators;
+namespace Espo\Modules\Viacrm\Classes\JobPreparators;
 
 use DateTimeImmutable;
 use Espo\Core\Job\Preparator;

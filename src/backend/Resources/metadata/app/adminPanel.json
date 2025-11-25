@@ -5,9 +5,9 @@
 			{
 				"description": "autocrm",
 				"iconClass": "fas fa-cog",
-				"label": "AutoCRM Settings",
+				"label": "viaCRM Settings",
 				"recordView": "autocrm:views/settings/record/autocrm",
-				"url": "#Admin/AutocrmSettings"
+				"url": "#Admin/ViacrmSettings"
 			},
 			{
 				"description": "units",
@@ -35,7 +35,7 @@
 				"url": "#SharedWysiwyg"
 			}
         ],
-		"label": "AutoCRM",
+		"label": "viaCRM",
 		"order": 1
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Alert;
+namespace Espo\Modules\Viacrm\Tools\Alert;
 
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Entities\Alert;
+use Espo\Modules\Viacrm\Entities\Alert;
 
 class NotificationProvider implements \Espo\Tools\PopupNotification\Provider {
 

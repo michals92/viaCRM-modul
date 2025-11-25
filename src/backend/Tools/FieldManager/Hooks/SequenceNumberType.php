@@ -1,9 +1,9 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\FieldManager\Hooks;
+namespace Espo\Modules\Viacrm\Tools\FieldManager\Hooks;
 
 use Espo\Core\Utils\DateTime;
-use Espo\Modules\Autocrm\Entities\NextSequenceNumber;
+use Espo\Modules\Viacrm\Entities\NextSequenceNumber;
 use Espo\ORM\EntityManager;
 
 class SequenceNumberType {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Email;
+namespace Espo\Modules\Viacrm\Tools\Email;
 
 use Espo\Core\Acl;
 use Espo\Core\Exceptions\Error;
@@ -21,7 +21,7 @@ use Espo\Entities\Email;
 use Espo\Entities\EmailAccount;
 use Espo\Entities\InboundEmail;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\EntityManager;
 use Espo\Tools\Email\TestSendData;
 use Exception;

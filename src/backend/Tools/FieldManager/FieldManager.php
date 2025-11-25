@@ -1,8 +1,8 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\FieldManager;
+namespace Espo\Modules\Viacrm\Tools\FieldManager;
 
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Tools\FieldManager\FieldManager as FieldManagerTool;
 
 class FieldManager extends FieldManagerTool {

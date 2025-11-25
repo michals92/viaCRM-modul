@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Hooks\Common;
+namespace Espo\Modules\Viacrm\Hooks\Common;
 
 use Espo\Core\Hook\Hook\BeforeSave;
 use Espo\Core\Utils\Config;

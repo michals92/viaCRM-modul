@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Hooks\RecordRecurrence;
+namespace Espo\Modules\Viacrm\Hooks\RecordRecurrence;
 
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Error;
@@ -11,7 +11,7 @@ use Espo\Core\Exceptions\ForbiddenSilent;
 use Espo\Core\Exceptions\NotFound;
 use Espo\Core\Hook\Hook\BeforeSave;
 use Espo\Core\Record\ServiceContainer as RecordServiceContainer;
-use Espo\Modules\Autocrm\Entities\RecordRecurrence;
+use Espo\Modules\Viacrm\Entities\RecordRecurrence;
 use Espo\ORM\Entity;
 use Espo\ORM\Repository\Option\SaveOptions;
 

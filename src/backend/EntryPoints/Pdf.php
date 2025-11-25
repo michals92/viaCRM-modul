@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\EntryPoints;
+namespace Espo\Modules\Viacrm\EntryPoints;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
@@ -8,7 +8,7 @@ use Espo\Core\Di;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\NotFound;
 use Espo\Core\Utils\Util;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 
 class Pdf extends \Espo\EntryPoints\Pdf implements Di\MetadataAware {
 	use Di\MetadataSetter;

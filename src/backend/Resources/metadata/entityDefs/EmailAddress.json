@@ -11,5 +11,5 @@
 			"foreign": "accountEmailAddresses"
 		}
 	},
-	"repositoryClassName": "Espo\\Modules\\Autocrm\\Classes\\Repositories\\EmailAddress"
+	"repositoryClassName": "Espo\\Modules\\Viacrm\\Classes\\Repositories\\EmailAddress"
 }

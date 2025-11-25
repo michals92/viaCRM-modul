@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\FieldProcessing\Role;
+namespace Espo\Modules\Viacrm\Classes\FieldProcessing\Role;
 
 use Espo\Core\FieldProcessing\Loader as FieldLoader;
 use Espo\Core\FieldProcessing\Loader\Params as LoaderParams;

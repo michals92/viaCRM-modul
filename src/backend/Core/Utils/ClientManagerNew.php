@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Utils;
+namespace Espo\Modules\Viacrm\Core\Utils;
 
 use Espo\Core\Utils\Client\RenderParams;
 use Espo\Core\Utils\ClientManager;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use LogicException;
 
 // Detect old or new version (has to be here because of upgrades)

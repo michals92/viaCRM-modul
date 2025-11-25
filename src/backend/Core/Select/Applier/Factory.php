@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Select\Applier;
+namespace Espo\Modules\Viacrm\Core\Select\Applier;
 
 use Espo\Core\InjectableFactory;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Autocrm\Core\Select\Text\Applier as TextFilterApplier;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Core\Select\Text\Applier as TextFilterApplier;
 use ReflectionClass;
 use ReflectionException;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\ConsoleCommands;
+namespace Espo\Modules\Viacrm\Classes\ConsoleCommands;
 
 use Espo\Core\Console\Command;
 use Espo\Core\Console\Command\Params;
 use Espo\Core\Console\IO;
 use Espo\Core\Utils\Json;
-use Espo\Modules\Autocrm\Tools\Ares\Service as AresService;
+use Espo\Modules\Viacrm\Tools\Ares\Service as AresService;
 use Exception;
 
 class AresLookup implements Command {

@@ -1,9 +1,9 @@
 {
 	"beforeReadHookClassNameList": [
-		"Espo\\Modules\\Autocrm\\Classes\\RecordHooks\\Email\\MarkAsRead"
+		"Espo\\Modules\\Viacrm\\Classes\\RecordHooks\\Email\\MarkAsRead"
 	],
 	"beforeReadSuppressClassNameList": [
 		"Espo\\Classes\\RecordHooks\\Email\\MarkAsRead"
 	],
-	"readParamsFetcherClassName": "Espo\\Modules\\Autocrm\\Core\\Email\\ReadParamsFetcher"
+	"readParamsFetcherClassName": "Espo\\Modules\\Viacrm\\Core\\Email\\ReadParamsFetcher"
 }

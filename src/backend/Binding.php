@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm;
+namespace Espo\Modules\Viacrm;
 
 use Espo\Core\Acl\AccessChecker\AccessCheckerFactory;
 use Espo\Core\Acl\Map\DataBuilder;
@@ -16,13 +16,13 @@ use Espo\Core\Record\Hook\Provider as RecordHookProvider;
 use Espo\Core\Select\Applier\Factory as SelectApplierFactory;
 use Espo\Core\Select\Text\FullTextSearch\DataComposerFactory as FullTextSearchDataComposerFactory;
 use Espo\Core\Utils\Language;
-use Espo\Modules\Autocrm\Core\Acl\Table\DefaultTableFactory;
-use Espo\Modules\Autocrm\Core\Mail\Importer\DefaultParentFinder;
-use Espo\Modules\Autocrm\Core\Record\EntityAwareCreateParamsFetcher;
-use Espo\Modules\Autocrm\Core\Record\EntityAwareDeleteParamsFetcher;
-use Espo\Modules\Autocrm\Core\Record\EntityAwareReadParamsFetcher;
-use Espo\Modules\Autocrm\Core\Record\EntityAwareUpdateParamsFetcher;
-use Espo\Modules\Autocrm\Tools\Layout\UnifiedLayoutProvider;
+use Espo\Modules\Viacrm\Core\Acl\Table\DefaultTableFactory;
+use Espo\Modules\Viacrm\Core\Mail\Importer\DefaultParentFinder;
+use Espo\Modules\Viacrm\Core\Record\EntityAwareCreateParamsFetcher;
+use Espo\Modules\Viacrm\Core\Record\EntityAwareDeleteParamsFetcher;
+use Espo\Modules\Viacrm\Core\Record\EntityAwareReadParamsFetcher;
+use Espo\Modules\Viacrm\Core\Record\EntityAwareUpdateParamsFetcher;
+use Espo\Modules\Viacrm\Tools\Layout\UnifiedLayoutProvider;
 use Espo\Modules\Crm\Tools\Activities\Service as ActivitiesService;
 use Espo\Modules\Crm\Tools\Calendar\Service as CalendarService;
 use Espo\Tools\Email\InboxService;
@@ -91,29 +91,29 @@ class Binding implements BindingProcessor {
 			->for('Espo\\Core\\Mail\\Account\\PersonalAccount\\Service')
 			->bindFactory(
 				'Espo\\Core\\Mail\\Account\\Fetcher',
-				\Espo\Modules\Autocrm\Core\Mail\Account\PersonalAccount\FetcherFactory::class
+				\Espo\Modules\Viacrm\Core\Mail\Account\PersonalAccount\FetcherFactory::class
 			);
 
 		$binder
 			->for('Espo\\Core\\Mail\\Account\\GroupAccount\\Service')
 			->bindFactory(
 				'Espo\\Core\\Mail\\Account\\Fetcher',
-				\Espo\Modules\Autocrm\Core\Mail\Account\GroupAccount\FetcherFactory::class
+				\Espo\Modules\Viacrm\Core\Mail\Account\GroupAccount\FetcherFactory::class
 			);
 
 		// EWS Fetcher bindings for our EWS Services
 		$binder
-			->for('Espo\\Modules\\Autocrm\\Core\\Mail\\Account\\Ews\\PersonalAccount\\Service')
+			->for('Espo\\Modules\\Viacrm\\Core\\Mail\\Account\\Ews\\PersonalAccount\\Service')
 			->bindFactory(
-				'Espo\\Modules\\Autocrm\\Core\\Mail\\Account\\Ews\\Fetcher',
-				'Espo\\Modules\\Autocrm\\Core\\Mail\\Account\\Ews\\PersonalAccount\\FetcherFactory'
+				'Espo\\Modules\\Viacrm\\Core\\Mail\\Account\\Ews\\Fetcher',
+				'Espo\\Modules\\Viacrm\\Core\\Mail\\Account\\Ews\\PersonalAccount\\FetcherFactory'
 			);
 
 		$binder
-			->for('Espo\\Modules\\Autocrm\\Core\\Mail\\Account\\Ews\\GroupAccount\\Service')
+			->for('Espo\\Modules\\Viacrm\\Core\\Mail\\Account\\Ews\\GroupAccount\\Service')
 			->bindFactory(
-				'Espo\\Modules\\Autocrm\\Core\\Mail\\Account\\Ews\\Fetcher',
-				'Espo\\Modules\\Autocrm\\Core\\Mail\\Account\\Ews\\GroupAccount\\FetcherFactory'
+				'Espo\\Modules\\Viacrm\\Core\\Mail\\Account\\Ews\\Fetcher',
+				'Espo\\Modules\\Viacrm\\Core\\Mail\\Account\\Ews\\GroupAccount\\FetcherFactory'
 			);
 	}
 

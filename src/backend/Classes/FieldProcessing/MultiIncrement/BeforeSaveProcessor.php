@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\FieldProcessing\MultiIncrement;
+namespace Espo\Modules\Viacrm\Classes\FieldProcessing\MultiIncrement;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\ORM\Entity;

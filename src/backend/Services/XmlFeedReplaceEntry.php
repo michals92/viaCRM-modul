@@ -1,5 +1,5 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Services;
+namespace Espo\Modules\Viacrm\Services;
 
 class XmlFeedReplaceEntry extends \Espo\Core\Templates\Services\Base {}

@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\TemplateHelpers;
+namespace Espo\Modules\Viacrm\Classes\TemplateHelpers;
 
 use Espo\Core\Htmlizer\Helper;
 use Espo\Core\Htmlizer\Helper\Data;
 use Espo\Core\Htmlizer\Helper\Result;
-use Espo\Modules\Autocrm\Tools\Html\Composer as HtmlComposer;
+use Espo\Modules\Viacrm\Tools\Html\Composer as HtmlComposer;
 
 class Checkmark implements Helper {
 

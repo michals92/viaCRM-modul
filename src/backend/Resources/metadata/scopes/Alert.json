@@ -21,7 +21,7 @@
 		"Dropped"
 	],
 	"layouts": true,
-	"module": "Autocrm",
+	"module": "Viacrm",
 	"notifications": true,
 	"object": true,
 	"stream": true,

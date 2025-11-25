@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\TemplateHelpers;
+namespace Espo\Modules\Viacrm\Classes\TemplateHelpers;
 
 use Espo\Core\Htmlizer\Helper;
 use Espo\Core\Htmlizer\Helper\Data;

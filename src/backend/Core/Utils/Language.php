@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Utils;
+namespace Espo\Modules\Viacrm\Core\Utils;
 
 use Espo\Core\Utils\Config;
 use Espo\Core\Utils\DataCache;
@@ -374,7 +374,7 @@ class Language extends \Espo\Core\Utils\Language {
 			if (isset($value[$key])) {
 				$value = $value[$key];
 			} else {
-				$GLOBALS['log']->warning("[Autocrm|Utils/Language/$scope] TranslationKey value not found: $translationKey");
+				$GLOBALS['log']->warning("[Viacrm|Utils/Language/$scope] TranslationKey value not found: $translationKey");
 
 				return;
 			}

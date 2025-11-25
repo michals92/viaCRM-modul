@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Alert;
+namespace Espo\Modules\Viacrm\Tools\Alert;
 
 use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Log;
 use Espo\Core\WebSocket\Submission;
-use Espo\Modules\Autocrm\Entities\Alert;
+use Espo\Modules\Viacrm\Entities\Alert;
 use Espo\ORM\EntityCollection;
 use Espo\ORM\Query\Part\Condition;
 use Espo\ORM\Query\Part\Expression;
@@ -70,7 +70,7 @@ class AlertManager {
 
 			return $item;
 		} catch (\Exception $e) {
-			$this->log->error('[AutoCRM] Failed to submit Alert wss notification: ' . $e->getMessage());
+			$this->log->error('[viaCRM] Failed to submit Alert wss notification: ' . $e->getMessage());
 
 			return null;
 		}

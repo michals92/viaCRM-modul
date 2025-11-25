@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\EntryPoints;
+namespace Espo\Modules\Viacrm\EntryPoints;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
@@ -11,7 +11,7 @@ use Espo\Core\Exceptions\NotFound;
 use Espo\Core\Utils\Client\ActionRenderer;
 use Espo\Core\Utils\Crypt;
 use Espo\Core\Utils\Json;
-use Espo\Modules\Autocrm\Tools\EmailTemplate\ViewInBrowser\Data as ViewInBrowserData;
+use Espo\Modules\Viacrm\Tools\EmailTemplate\ViewInBrowser\Data as ViewInBrowserData;
 use Espo\ORM\EntityManager;
 use Espo\Tools\EmailTemplate\Data as EmailTemplateData;
 use Espo\Tools\EmailTemplate\Params as EmailTemplateParams;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\FieldProcessing\EmailAddress;
+namespace Espo\Modules\Viacrm\Core\FieldProcessing\EmailAddress;
 
 use Espo\Core\FieldProcessing\Loader\Params as LoaderParams;
 use Espo\Core\ORM\EntityManager;

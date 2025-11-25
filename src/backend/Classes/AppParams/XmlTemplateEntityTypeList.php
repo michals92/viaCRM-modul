@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\AppParams;
+namespace Espo\Modules\Viacrm\Classes\AppParams;
 
 use Espo\Core\Acl;
 use Espo\Core\Exceptions\BadRequest;
@@ -8,7 +8,7 @@ use Espo\Core\Exceptions\Error;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\ORM\EntityManager;
 use Espo\Core\Select\SelectBuilderFactory;
-use Espo\Modules\Autocrm\Entities\XmlTemplate;
+use Espo\Modules\Viacrm\Entities\XmlTemplate;
 use Espo\Tools\App\AppParam;
 use PDO;
 

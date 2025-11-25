@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\FieldProcessing\Opportunity;
+namespace Espo\Modules\Viacrm\Classes\FieldProcessing\Opportunity;
 
 use Espo\Core\FieldProcessing\Loader as FieldLoader;
 use Espo\Core\FieldProcessing\Loader\Params as LoaderParams;
@@ -8,7 +8,7 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Metadata;
 use Espo\Entities\Email;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Crm\Entities\Call;
 use Espo\Modules\Crm\Entities\Meeting;
 use Espo\Modules\Crm\Entities\Opportunity;

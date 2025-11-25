@@ -13,7 +13,7 @@
 	"entity": true,
 	"importable": true,
 	"layouts": true,
-	"module": "Autocrm",
+	"module": "Viacrm",
 	"notifications": true,
 	"tab": true
 }

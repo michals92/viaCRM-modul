@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Controllers;
+namespace Espo\Modules\Viacrm\Controllers;
 
 use Espo\Core\Acl;
 use Espo\Core\Api\Request;

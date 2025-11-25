@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\EmailTemplate\ViewInBrowser;
+namespace Espo\Modules\Viacrm\Tools\EmailTemplate\ViewInBrowser;
 
 class Data {
 

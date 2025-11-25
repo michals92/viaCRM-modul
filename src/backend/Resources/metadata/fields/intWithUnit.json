@@ -86,5 +86,5 @@
 		}
 	],
 	"view": "autocrm:views/fields/int-with-unit",
-	"converterClassName": "Espo\\Modules\\Autocrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\IntWithUnit"
+	"converterClassName": "Espo\\Modules\\Viacrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\IntWithUnit"
 }

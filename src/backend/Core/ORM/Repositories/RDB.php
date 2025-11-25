@@ -3,7 +3,7 @@
 namespace Espo\Core\ORM\Repositories;
 
 use Espo\Core\Traits\Injectable;
-use Espo\Modules\Autocrm\Core\Di;
+use Espo\Modules\Viacrm\Core\Di;
 use Espo\ORM\Entity;
 
 /**

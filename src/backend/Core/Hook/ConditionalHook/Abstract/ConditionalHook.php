@@ -1,8 +1,8 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Hook\ConditionalHook\Abstract;
+namespace Espo\Modules\Viacrm\Core\Hook\ConditionalHook\Abstract;
 
-use Espo\Modules\Autocrm\Core\Abstract\Traits\ConditionalExtension;
+use Espo\Modules\Viacrm\Core\Abstract\Traits\ConditionalExtension;
 
 abstract class ConditionalHook {
 	use ConditionalExtension;

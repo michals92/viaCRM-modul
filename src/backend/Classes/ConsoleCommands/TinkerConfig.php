@@ -5,7 +5,7 @@ use Psy\VersionUpdater\Checker;
 
 return [
     // Startup message with color
-    'startupMessage' => '<info>🚀 AutoCRM Tinker Console</info>' . PHP_EOL . 
+    'startupMessage' => '<info>🚀 viaCRM Tinker Console</info>' . PHP_EOL . 
                        '<comment>Available variables: $container, $entityManager, $config, $metadata</comment>' . PHP_EOL,
     
     // Theme and colors

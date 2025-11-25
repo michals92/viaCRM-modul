@@ -5,7 +5,7 @@
 	"entity": true,
 	"importable": false,
 	"layouts": false,
-	"module": "Autocrm",
+	"module": "Viacrm",
 	"notifications": false,
 	"object": true,
 	"tab": false

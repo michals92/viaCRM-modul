@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\UserKanban;
+namespace Espo\Modules\Viacrm\Tools\UserKanban;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\FieldProcessing\ListLoadProcessor;
@@ -15,7 +15,7 @@ use Espo\Core\Select\Where\Params as WhereParams;
 use Espo\Core\Utils\Metadata;
 use Espo\Entities\User;
 use Espo\EntryPoints\Avatar;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Collection as ORMCollection;
 use Espo\ORM\Entity;
 use Espo\ORM\EntityManager;

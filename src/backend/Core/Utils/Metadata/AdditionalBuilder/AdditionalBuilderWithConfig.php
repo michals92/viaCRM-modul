@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Utils\Metadata\AdditionalBuilder;
+namespace Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder;
 
 use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Config\ConfigFileManager;

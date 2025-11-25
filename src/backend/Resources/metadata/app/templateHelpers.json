@@ -1,13 +1,13 @@
 {
-	"amountToText": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\AmountToText",
-	"calendar": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\Calendar",
-	"checkmark": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\Checkmark",
-	"country": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\Country",
-	"electronicSignature": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\ElectronicSignature",
-	"imgTag": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\ImgTag",
-	"publicDownloadLink": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\PublicDownloadLink",
-	"smartPageBreak": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\SmartPageBreak",
-	"startsWith": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\StartsWith",
-	"translate": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\Translate",
-	"translateOption": "Espo\\Modules\\Autocrm\\Classes\\TemplateHelpers\\TranslateOption"
+	"amountToText": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\AmountToText",
+	"calendar": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\Calendar",
+	"checkmark": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\Checkmark",
+	"country": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\Country",
+	"electronicSignature": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\ElectronicSignature",
+	"imgTag": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\ImgTag",
+	"publicDownloadLink": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\PublicDownloadLink",
+	"smartPageBreak": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\SmartPageBreak",
+	"startsWith": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\StartsWith",
+	"translate": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\Translate",
+	"translateOption": "Espo\\Modules\\Viacrm\\Classes\\TemplateHelpers\\TranslateOption"
 }

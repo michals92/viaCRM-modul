@@ -11,5 +11,5 @@
 			"foreign": "accountPhoneNumbers"
 		}
 	},
-	"repositoryClassName": "Espo\\Modules\\Autocrm\\Classes\\Repositories\\PhoneNumber"
+	"repositoryClassName": "Espo\\Modules\\Viacrm\\Classes\\Repositories\\PhoneNumber"
 }

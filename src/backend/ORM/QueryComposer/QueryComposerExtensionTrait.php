@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\ORM\QueryComposer;
+namespace Espo\Modules\Viacrm\ORM\QueryComposer;
 
 use Espo\ORM\Query\Part\Expression;
 

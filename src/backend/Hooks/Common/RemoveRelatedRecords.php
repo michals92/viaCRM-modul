@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Hooks\Common;
+namespace Espo\Modules\Viacrm\Hooks\Common;
 
 use Espo\Core\Hook\Hook\AfterRemove;
 use Espo\Core\Utils\Log;

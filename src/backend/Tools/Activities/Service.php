@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Activities;
+namespace Espo\Modules\Viacrm\Tools\Activities;
 
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Crm\Entities\Meeting;
 use Espo\ORM\Query\Select;
 use RuntimeException;

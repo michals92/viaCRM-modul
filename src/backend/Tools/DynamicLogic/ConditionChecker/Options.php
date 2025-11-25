@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\DynamicLogic\ConditionChecker;
+namespace Espo\Modules\Viacrm\Tools\DynamicLogic\ConditionChecker;
 
 use DateTimeZone;
 

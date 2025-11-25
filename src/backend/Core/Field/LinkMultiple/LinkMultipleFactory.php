@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Field\LinkMultiple;
+namespace Espo\Modules\Viacrm\Core\Field\LinkMultiple;
 
 use Espo\Core\Field\LinkMultiple;
 use Espo\Core\Field\LinkMultipleItem;
 use Espo\Core\ORM\Entity as CoreEntity;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Entity;
 use InvalidArgumentException;
 use RuntimeException;

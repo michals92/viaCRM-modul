@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Xml\Data;
+namespace Espo\Modules\Viacrm\Tools\Xml\Data;
 
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Metadata;

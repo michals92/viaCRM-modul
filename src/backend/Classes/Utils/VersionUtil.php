@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Utils;
+namespace Espo\Modules\Viacrm\Classes\Utils;
 
 class VersionUtil {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\EntityManager\Hook;
+namespace Espo\Modules\Viacrm\Tools\EntityManager\Hook;
 
 use Espo\Core\Utils\Json;
 use Espo\Tools\EntityManager\Hook\UpdateHook;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api;
+namespace Espo\Modules\Viacrm\Api;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;
@@ -8,8 +8,8 @@ use Espo\Core\Api\Response;
 use Espo\Core\Api\ResponseComposer;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Utils\Log;
-use Espo\Modules\Autocrm\Tools\ZiveFirmy\IntegrationProxy;
-use Espo\Modules\Autocrm\Tools\ZiveFirmy\Service as ZiveFirmyService;
+use Espo\Modules\Viacrm\Tools\ZiveFirmy\IntegrationProxy;
+use Espo\Modules\Viacrm\Tools\ZiveFirmy\Service as ZiveFirmyService;
 
 class ZiveFirmy implements Action {
 

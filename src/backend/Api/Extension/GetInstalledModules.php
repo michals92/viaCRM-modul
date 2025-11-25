@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api\Extension;
+namespace Espo\Modules\Viacrm\Api\Extension;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
 use Espo\Core\Api\ResponseComposer;
-use Espo\Modules\Autocrm\Classes\Utils\ExtensionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ExtensionUtil;
 
 class GetInstalledModules implements Action {
 

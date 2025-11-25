@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\ConsoleCommands;
+namespace Espo\Modules\Viacrm\Classes\ConsoleCommands;
 
 use Espo\Core\Console\Command;
 use Espo\Core\Console\Command\Params;

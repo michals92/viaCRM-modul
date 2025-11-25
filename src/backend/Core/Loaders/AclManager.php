@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Loaders;
+namespace Espo\Modules\Viacrm\Core\Loaders;
 
 use Espo\Core\Container\Loader;
 use Espo\Core\InjectableFactory;
-use Espo\Modules\Autocrm\Core\AclManager as AclManagerService;
+use Espo\Modules\Viacrm\Core\AclManager as AclManagerService;
 
 class AclManager implements Loader {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Record\InboundEmail;
+namespace Espo\Modules\Viacrm\Classes\Record\InboundEmail;
 
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Record\Input\Data;

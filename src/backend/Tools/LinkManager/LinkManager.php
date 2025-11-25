@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Espo\Modules\Autocrm\Tools\LinkManager;
+namespace Espo\Modules\Viacrm\Tools\LinkManager;
 
 use Espo\Core\DataManager;
 use Espo\Core\Utils\Metadata;

@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Select\Text\FullTextSearch;
+namespace Espo\Modules\Viacrm\Core\Select\Text\FullTextSearch;
 
 use Espo\Core\Di;
 use Espo\Core\Select\Text\FullTextSearch\DataComposer;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use ReflectionException;
 
 class DataComposerFactory extends \Espo\Core\Select\Text\FullTextSearch\DataComposerFactory implements Di\MetadataAware {

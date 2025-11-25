@@ -1,13 +1,13 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\DynamicLogic;
+namespace Espo\Modules\Viacrm\Tools\DynamicLogic;
 
 use Espo\Core\InjectableFactory;
 use Espo\Core\Select\Where\Item\Type as WhereType;
 use Espo\Core\Utils\Config;
 use Espo\Entities\Team;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Entity;
 use Espo\ORM\EntityManager;
 use Espo\ORM\Query\Part\Condition as Cond;

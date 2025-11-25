@@ -1,8 +1,8 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Services;
+namespace Espo\Modules\Viacrm\Services;
 
-use Espo\Modules\Autocrm\Entities\CurrencyRateHistoryRecord as CurrencyRateHistoryRecordEntity;
+use Espo\Modules\Viacrm\Entities\CurrencyRateHistoryRecord as CurrencyRateHistoryRecordEntity;
 use Espo\ORM\Query\Part\Expression;
 use Espo\Services\Record;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Acl\AccessChecker;
+namespace Espo\Modules\Viacrm\Core\Acl\AccessChecker;
 
 use Espo\Core\InjectableFactory;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Autocrm\Core\Acl\DefaultAccessChecker;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Core\Acl\DefaultAccessChecker;
 use ReflectionClass;
 
 class AccessCheckerFactory extends \Espo\Core\Acl\AccessChecker\AccessCheckerFactory {

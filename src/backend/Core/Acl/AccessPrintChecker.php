@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Acl;
+namespace Espo\Modules\Viacrm\Core\Acl;
 
 use Espo\Core\Acl\AccessChecker;
 use Espo\Core\Acl\ScopeData;

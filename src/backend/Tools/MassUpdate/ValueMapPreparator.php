@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\MassUpdate;
+namespace Espo\Modules\Viacrm\Tools\MassUpdate;
 
 use Espo\ORM\Entity;
 use Espo\Tools\MassUpdate\Data;

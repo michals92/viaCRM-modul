@@ -1,5 +1,5 @@
 {
 	"accessControlFilterClassNameMap": {
-		"mandatory": "Espo\\Modules\\Autocrm\\Classes\\Select\\XmlTemplate\\AccessControlFilters\\Mandatory"
+		"mandatory": "Espo\\Modules\\Viacrm\\Classes\\Select\\XmlTemplate\\AccessControlFilters\\Mandatory"
 	}
 }

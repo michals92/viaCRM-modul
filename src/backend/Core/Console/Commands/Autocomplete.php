@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Console\Commands;
+namespace Espo\Modules\Viacrm\Core\Console\Commands;
 
 use Espo\Core\Console\Command\Params;
 use Espo\Core\Console\CommandManager;
@@ -10,8 +10,8 @@ use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\File\ClassMap;
 use Espo\Core\Utils\Metadata;
 use Espo\Core\Utils\Util;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Autocrm\Core\Console\CommandAutocomplete;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Core\Console\CommandAutocomplete;
 
 class Autocomplete extends \Espo\Core\Console\Commands\Upgrade {
 

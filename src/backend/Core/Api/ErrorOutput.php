@@ -1,13 +1,13 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Api;
+namespace Espo\Modules\Viacrm\Core\Api;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
 use Espo\Core\Exceptions\HasBody;
 use Espo\Core\Exceptions\HasLogMessage;
 use Espo\Core\Utils\Log;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Throwable;
 
 class ErrorOutput extends \Espo\Core\Api\ErrorOutput {

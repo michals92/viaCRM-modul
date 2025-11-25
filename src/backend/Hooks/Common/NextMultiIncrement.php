@@ -1,9 +1,9 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Hooks\Common;
+namespace Espo\Modules\Viacrm\Hooks\Common;
 
 use Espo\Core\Hook\Hook\BeforeSave;
-use Espo\Modules\Autocrm\Classes\FieldProcessing\MultiIncrement\BeforeSaveProcessor as Processor;
+use Espo\Modules\Viacrm\Classes\FieldProcessing\MultiIncrement\BeforeSaveProcessor as Processor;
 use Espo\ORM\Entity;
 use Espo\ORM\Repository\Option\SaveOptions;
 

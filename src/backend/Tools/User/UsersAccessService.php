@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\User;
+namespace Espo\Modules\Viacrm\Tools\User;
 
 use Espo\Core\Acl;
 use Espo\Core\Exceptions\BadRequest;
@@ -8,7 +8,7 @@ use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Record\Collection;
 use Espo\Core\Select\SearchParams;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Entity;
 
 /** @disregard */

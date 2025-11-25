@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Stream;
+namespace Espo\Modules\Viacrm\Tools\Stream;
 
 use Psr\Http\Message\StreamInterface;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core;
+namespace Espo\Modules\Viacrm\Core;
 
 use Espo\Core\InjectableFactory;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Autocrm\Core\Acl\AccessEntityPrintChecker;
-use Espo\Modules\Autocrm\Core\Acl\AccessPrintChecker;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Core\Acl\AccessEntityPrintChecker;
+use Espo\Modules\Viacrm\Core\Acl\AccessPrintChecker;
 use ReflectionClass;
 
 class AclManager extends \Espo\Core\AclManager {

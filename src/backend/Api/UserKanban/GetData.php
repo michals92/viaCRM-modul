@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api\UserKanban;
+namespace Espo\Modules\Viacrm\Api\UserKanban;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;
@@ -8,7 +8,7 @@ use Espo\Core\Api\Response;
 use Espo\Core\Api\ResponseComposer;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Record\SearchParamsFetcher;
-use Espo\Modules\Autocrm\Tools\UserKanban\Service as UserKanbanService;
+use Espo\Modules\Viacrm\Tools\UserKanban\Service as UserKanbanService;
 
 class GetData implements Action {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Partition;
+namespace Espo\Modules\Viacrm\Tools\Partition;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\FieldProcessing\ListLoadProcessor;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Jobs;
+namespace Espo\Modules\Viacrm\Classes\Jobs;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Job\Job;
 use Espo\Core\Job\Job\Data as JobData;
-use Espo\Modules\Autocrm\Entities\RecordRecurrence;
-use Espo\Modules\Autocrm\Services\RecordRecurrence as Service;
+use Espo\Modules\Viacrm\Entities\RecordRecurrence;
+use Espo\Modules\Viacrm\Services\RecordRecurrence as Service;
 use Espo\ORM\EntityManager;
 
 readonly class CheckRecurringRecords implements Job {

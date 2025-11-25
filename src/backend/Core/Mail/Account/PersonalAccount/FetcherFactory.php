@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Account\PersonalAccount;
+namespace Espo\Modules\Viacrm\Core\Mail\Account\PersonalAccount;
 
 use Espo\Core\Binding\BindingContainerBuilder;
 use Espo\Core\Binding\Factory;
@@ -11,7 +11,7 @@ use Espo\Core\Mail\Account\GroupAccount\StorageFactory as GroupAccountStorageFac
 use Espo\Core\Mail\Account\Hook\AfterFetch;
 use Espo\Core\Mail\Account\Hook\BeforeFetch;
 use Espo\Core\Mail\Account\StorageFactory;
-use Espo\Modules\Autocrm\Core\Mail\Account\PersonalAccount\Hooks\BeforeFetch as GroupAccountBeforeFetch;
+use Espo\Modules\Viacrm\Core\Mail\Account\PersonalAccount\Hooks\BeforeFetch as GroupAccountBeforeFetch;
 
 /**
  * @implements Factory<Fetcher>

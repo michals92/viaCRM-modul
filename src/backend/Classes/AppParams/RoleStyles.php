@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\AppParams;
+namespace Espo\Modules\Viacrm\Classes\AppParams;
 
 use Espo\Core\ORM\EntityManager;
 use Espo\ORM\Query\Part\Expression;

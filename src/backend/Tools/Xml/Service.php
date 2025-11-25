@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Xml;
+namespace Espo\Modules\Viacrm\Tools\Xml;
 
 use Espo\Core\Acl;
 use Espo\Core\Exceptions\Error;
@@ -9,9 +9,9 @@ use Espo\Core\Exceptions\NotFound;
 use Espo\Core\Htmlizer\TemplateRenderer;
 use Espo\Core\Htmlizer\TemplateRendererFactory;
 use Espo\Core\Record\ServiceContainer;
-use Espo\Modules\Autocrm\Entities\XmlTemplate as XmlTemplateEntity;
-use Espo\Modules\Autocrm\Tools\Xml\Contents as XmlContents;
-use Espo\Modules\Autocrm\Tools\Xml\Data\DataLoaderManager;
+use Espo\Modules\Viacrm\Entities\XmlTemplate as XmlTemplateEntity;
+use Espo\Modules\Viacrm\Tools\Xml\Contents as XmlContents;
+use Espo\Modules\Viacrm\Tools\Xml\Data\DataLoaderManager;
 use Espo\ORM\Entity;
 use Espo\ORM\EntityManager;
 use Espo\Tools\Pdf\Data as PdfData;

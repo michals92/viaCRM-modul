@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail;
+namespace Espo\Modules\Viacrm\Core\Mail;
 
 use Espo\Core\Di;
 use Espo\Core\Mail\EmailSender;

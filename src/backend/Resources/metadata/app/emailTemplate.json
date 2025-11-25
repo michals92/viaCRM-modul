@@ -1,7 +1,7 @@
 {
 	"placeholders": {
 		"siteUrl": {
-			"className": "Espo\\Modules\\Autocrm\\Tools\\EmailTemplate\\Placeholders\\SiteUrl",
+			"className": "Espo\\Modules\\Viacrm\\Tools\\EmailTemplate\\Placeholders\\SiteUrl",
 			"order": 10
 		}
 	}

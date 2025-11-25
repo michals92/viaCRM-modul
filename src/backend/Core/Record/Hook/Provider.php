@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Record\Hook;
+namespace Espo\Modules\Viacrm\Core\Record\Hook;
 
 use Espo\Core\Binding\BindingContainer;
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Metadata;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use ReflectionClass;
 use ReflectionException;
 use RuntimeException;

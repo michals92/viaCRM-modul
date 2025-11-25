@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Controllers;
+namespace Espo\Modules\Viacrm\Controllers;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Di;
@@ -10,8 +10,8 @@ use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Exceptions\NotFound;
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Json;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Autocrm\Tools\LinkManager\LinkManager;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Tools\LinkManager\LinkManager;
 use Espo\Tools\EntityManager\EntityManager as EntityManagerTool;
 use ReflectionClass;
 use stdClass;

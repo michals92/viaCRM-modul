@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api;
+namespace Espo\Modules\Viacrm\Api;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;
@@ -15,8 +15,8 @@ use Espo\Core\Exceptions\ServiceUnavailable;
 use Espo\Core\Exceptions\Unauthorized;
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Metadata;
-use Espo\Modules\Autocrm\Classes\EmailPdf\AttributeProvider;
-use Espo\Modules\Autocrm\Classes\EmailPdf\DefaultAttributeProvider;
+use Espo\Modules\Viacrm\Classes\EmailPdf\AttributeProvider;
+use Espo\Modules\Viacrm\Classes\EmailPdf\DefaultAttributeProvider;
 use stdClass;
 
 class EmailPdfAttributes implements Action {

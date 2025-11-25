@@ -1,5 +1,5 @@
 {
 	"layoutProvider": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\Layout\\ContainerServices\\PortalLayoutProvider"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\Layout\\ContainerServices\\PortalLayoutProvider"
 	}
 }

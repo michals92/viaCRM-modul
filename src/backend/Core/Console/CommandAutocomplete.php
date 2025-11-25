@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Console;
+namespace Espo\Modules\Viacrm\Core\Console;
 
 /**
  * Defines the contract for EspoCRM commands that can provide autocompletion suggestions.

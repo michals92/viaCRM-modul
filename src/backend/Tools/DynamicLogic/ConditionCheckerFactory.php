@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\DynamicLogic;
+namespace Espo\Modules\Viacrm\Tools\DynamicLogic;
 
 use DateTimeZone;
 use Espo\Core\ORM\Entity;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Core\Utils\Config\ApplicationConfig;
-use Espo\Modules\Autocrm\Tools\DynamicLogic\ConditionChecker\Options;
+use Espo\Modules\Viacrm\Core\Utils\Config\ApplicationConfig;
+use Espo\Modules\Viacrm\Tools\DynamicLogic\ConditionChecker\Options;
 use Exception;
 use RuntimeException;
 

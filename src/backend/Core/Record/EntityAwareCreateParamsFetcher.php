@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Record;
+namespace Espo\Modules\Viacrm\Core\Record;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Record\CreateParams;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\NavbarAction\Api;
+namespace Espo\Modules\Viacrm\Tools\NavbarAction\Api;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;

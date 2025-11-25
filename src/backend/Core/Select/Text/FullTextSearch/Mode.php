@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Select\Text\FullTextSearch;
+namespace Espo\Modules\Viacrm\Core\Select\Text\FullTextSearch;
 
 class Mode {
 

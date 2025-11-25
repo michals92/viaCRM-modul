@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Acl\RecordRecurrence;
+namespace Espo\Modules\Viacrm\Classes\Acl\RecordRecurrence;
 
 use Espo\Core\Acl\AccessEntityCREDSChecker;
 use Espo\Core\Acl\DefaultAccessChecker;
@@ -9,7 +9,7 @@ use Espo\Core\Acl\Table;
 use Espo\Core\Acl\Traits\DefaultAccessCheckerDependency;
 use Espo\Core\AclManager;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Entities\RecordRecurrence;
+use Espo\Modules\Viacrm\Entities\RecordRecurrence;
 use Espo\ORM\Entity;
 use Espo\ORM\EntityManager;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api\ActionHistoryRecord;
+namespace Espo\Modules\Viacrm\Api\ActionHistoryRecord;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;

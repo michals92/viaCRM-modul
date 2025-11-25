@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Job;
+namespace Espo\Modules\Viacrm\Core\Job;
 
 use Espo\Core\Job\Job\Status;
 use Espo\Entities\Job as JobEntity;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use LogicException;
 use RuntimeException;
 use Throwable;

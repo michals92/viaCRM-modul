@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Services;
+namespace Espo\Modules\Viacrm\Services;
 
 use Cron\CronExpression;
 use DateTimeImmutable;
@@ -14,7 +14,7 @@ use Espo\Core\Field\Date;
 use Espo\Core\Field\DateTime;
 use Espo\Core\Field\DateTimeOptional;
 use Espo\Core\Utils\DateTime as DateTimeUtil;
-use Espo\Modules\Autocrm\Entities\RecordRecurrence as RecordRecurrenceEntity;
+use Espo\Modules\Viacrm\Entities\RecordRecurrence as RecordRecurrenceEntity;
 use Espo\ORM\BaseEntity;
 use Espo\ORM\Entity;
 use Exception;

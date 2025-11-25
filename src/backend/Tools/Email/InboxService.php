@@ -1,14 +1,14 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Email;
+namespace Espo\Modules\Viacrm\Tools\Email;
 
 use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Json;
 use Espo\Entities\Email;
 use Espo\Entities\EmailAccount;
 use Espo\Entities\InboundEmail;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Autocrm\Core\Di;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Core\Di;
 use Espo\Modules\Outlook\Core\Outlook\Clients\Outlook;
 
 /**

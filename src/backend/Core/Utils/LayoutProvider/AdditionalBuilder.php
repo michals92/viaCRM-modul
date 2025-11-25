@@ -1,13 +1,13 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Utils\LayoutProvider;
+namespace Espo\Modules\Viacrm\Core\Utils\LayoutProvider;
 
 use Espo\Core\Utils\Config;
-use Espo\Modules\Autocrm\Classes\Utils\ExtensionUtil;
-use Espo\Modules\Autocrm\Classes\Utils\VersionUtil;
-use Espo\Modules\Autocrm\Core\Abstract\Traits\ConditionalExtension;
-use Espo\Modules\Autocrm\Core\Layout\LikeType;
-use Espo\Modules\Autocrm\Tools\Layout\LayoutBuilder;
+use Espo\Modules\Viacrm\Classes\Utils\ExtensionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\VersionUtil;
+use Espo\Modules\Viacrm\Core\Abstract\Traits\ConditionalExtension;
+use Espo\Modules\Viacrm\Core\Layout\LikeType;
+use Espo\Modules\Viacrm\Tools\Layout\LayoutBuilder;
 
 abstract class AdditionalBuilder {
 	use ConditionalExtension;

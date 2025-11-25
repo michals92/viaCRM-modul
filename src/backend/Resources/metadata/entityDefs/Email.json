@@ -46,5 +46,5 @@
             "foreign": "emails"
         }
     },
-    "repositoryClassName": "Espo\\Modules\\Autocrm\\Classes\\Repositories\\Email"
+    "repositoryClassName": "Espo\\Modules\\Viacrm\\Classes\\Repositories\\Email"
 }

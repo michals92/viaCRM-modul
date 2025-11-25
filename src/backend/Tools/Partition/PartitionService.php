@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Partition;
+namespace Espo\Modules\Viacrm\Tools\Partition;
 
 use Espo\Core\Acl\Table;
 use Espo\Core\AclManager;

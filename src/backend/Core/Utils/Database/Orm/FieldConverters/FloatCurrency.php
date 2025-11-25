@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Utils\Database\Orm\FieldConverters;
+namespace Espo\Modules\Viacrm\Core\Utils\Database\Orm\FieldConverters;
 
 use Espo\Core\Currency\ConfigDataProvider;
 use Espo\Core\Utils\Config;

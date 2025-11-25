@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Di;
+namespace Espo\Modules\Viacrm\Core\Di;
 
 use Espo\Core\ExternalAccount\ClientManager;
 

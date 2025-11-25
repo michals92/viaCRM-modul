@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Loaders;
+namespace Espo\Modules\Viacrm\Core\Loaders;
 
 use Espo\Core\Container\Loader;
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Config;
-use Espo\Modules\Autocrm\Core\Utils\ClientManagerNew;
-use Espo\Modules\Autocrm\Core\Utils\ClientManagerOld;
+use Espo\Modules\Viacrm\Core\Utils\ClientManagerNew;
+use Espo\Modules\Viacrm\Core\Utils\ClientManagerOld;
 
 class ClientManager implements Loader {
 

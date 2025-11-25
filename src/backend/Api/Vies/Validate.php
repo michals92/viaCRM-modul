@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api\Vies;
+namespace Espo\Modules\Viacrm\Api\Vies;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;
@@ -9,7 +9,7 @@ use Espo\Core\Api\ResponseComposer;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Utils\Config;
-use Espo\Modules\Autocrm\Tools\Vies\Service as ViesService;
+use Espo\Modules\Viacrm\Tools\Vies\Service as ViesService;
 
 class Validate implements Action {
 

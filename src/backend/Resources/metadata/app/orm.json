@@ -2,25 +2,25 @@
 	"platforms": {
 		"Mysql": {
 			"functionConverterClassNameMap": {
-				"DATE_ADD": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\DateAdd",
-				"DATE_FORMAT": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\DateFormat",
-				"DATE_SUB": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\DateSub",
-				"FOREIGN_FIELD": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\ForeignField",
-				"JSON_OBJECT": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\JsonObject",
-				"JSON_OBJECT_FIELD": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\JsonObjectField"
+				"DATE_ADD": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\DateAdd",
+				"DATE_FORMAT": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\DateFormat",
+				"DATE_SUB": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\DateSub",
+				"FOREIGN_FIELD": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\ForeignField",
+				"JSON_OBJECT": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\JsonObject",
+				"JSON_OBJECT_FIELD": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Mysql\\JsonObjectField"
 			},
-			"queryComposerClassName": "Espo\\Modules\\Autocrm\\ORM\\QueryComposer\\MysqlQueryComposer"
+			"queryComposerClassName": "Espo\\Modules\\Viacrm\\ORM\\QueryComposer\\MysqlQueryComposer"
 		},
 		"Postgresql": {
 			"functionConverterClassNameMap": {
-				"DATE_ADD": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\DateAdd",
-				"DATE_FORMAT": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\DateFormat",
-				"DATE_SUB": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\DateSub",
-				"FOREIGN_FIELD": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\ForeignField",
-				"JSON_OBJECT": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\JsonObject",
-				"JSON_OBJECT_FIELD": "Espo\\Modules\\Autocrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\JsonObjectField"
+				"DATE_ADD": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\DateAdd",
+				"DATE_FORMAT": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\DateFormat",
+				"DATE_SUB": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\DateSub",
+				"FOREIGN_FIELD": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\ForeignField",
+				"JSON_OBJECT": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\JsonObject",
+				"JSON_OBJECT_FIELD": "Espo\\Modules\\Viacrm\\Core\\ORM\\QueryComposer\\Part\\FunctionConverters\\Postgresql\\JsonObjectField"
 			},
-			"queryComposerClassName": "Espo\\Modules\\Autocrm\\ORM\\QueryComposer\\PostgresqlQueryComposer"
+			"queryComposerClassName": "Espo\\Modules\\Viacrm\\ORM\\QueryComposer\\PostgresqlQueryComposer"
 		}
 	}
 }

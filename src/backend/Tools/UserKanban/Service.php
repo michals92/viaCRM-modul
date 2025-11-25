@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\UserKanban;
+namespace Espo\Modules\Viacrm\Tools\UserKanban;
 
 use Espo\Core\Acl\Table;
 use Espo\Core\AclManager;

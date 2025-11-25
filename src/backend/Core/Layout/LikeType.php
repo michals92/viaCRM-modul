@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Layout;
+namespace Espo\Modules\Viacrm\Core\Layout;
 
 enum LikeType {
 

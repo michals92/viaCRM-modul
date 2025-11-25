@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Console\Commands;
+namespace Espo\Modules\Viacrm\Core\Console\Commands;
 
 use Espo\Core\Console\Command\Params;
 use Espo\Core\Console\IO;
 use Espo\Core\Exceptions\Error;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Throwable;
 use const FILTER_VALIDATE_URL;
 use const STDOUT;

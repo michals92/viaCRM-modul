@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\EntryPoints;
+namespace Espo\Modules\Viacrm\EntryPoints;
 
 use Espo\Core\Acl;
 use Espo\Core\Api\Request;
@@ -10,7 +10,7 @@ use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\NotFound;
 use Espo\Core\FileStorage\Manager as FileStorageManager;
 use Espo\Core\ORM\EntityManager;
-use Espo\Modules\Autocrm\Entities\CustomIcon as CustomIconEntity;
+use Espo\Modules\Viacrm\Entities\CustomIcon as CustomIconEntity;
 
 class CustomIcon implements EntryPoint {
 

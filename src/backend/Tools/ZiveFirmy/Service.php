@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\ZiveFirmy;
+namespace Espo\Modules\Viacrm\Tools\ZiveFirmy;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Utils\Json;

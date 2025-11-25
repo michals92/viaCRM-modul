@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Account\Ews\GroupAccount;
+namespace Espo\Modules\Viacrm\Core\Mail\Account\Ews\GroupAccount;
 
 use Espo\Core\Utils\Crypt;
 use Espo\Entities\InboundEmail;

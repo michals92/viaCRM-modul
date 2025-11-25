@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Jobs;
+namespace Espo\Modules\Viacrm\Classes\Jobs;
 
 use Espo\Core\ExternalAccount\ClientManager;
 use Espo\Core\Field\DateTime;

@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Email\Actions;
+namespace Espo\Modules\Viacrm\Core\Email\Actions;
 
 use Espo\Entities\EmailFilter;
-use Espo\Modules\Autocrm\Classes\Abstract\Entities\EmailAction;
-use Espo\Modules\Autocrm\Entities\Alert;
-use Espo\Modules\Autocrm\Entities\Email;
+use Espo\Modules\Viacrm\Classes\Abstract\Entities\EmailAction;
+use Espo\Modules\Viacrm\Entities\Alert;
+use Espo\Modules\Viacrm\Entities\Email;
 use Espo\ORM\EntityManager;
 
 class CreateAlert implements EmailAction {

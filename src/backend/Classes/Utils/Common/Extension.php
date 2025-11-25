@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Utils\Common;
+namespace Espo\Modules\Viacrm\Classes\Utils\Common;
 
 final class Extension {
 
@@ -8,7 +8,7 @@ final class Extension {
 	public const AI_PARSING = 'AiParsing';
 	public const APPROVAL = 'Approval';
 	public const ASSET_MANAGEMENT = 'AssetManagement';
-	public const AUTOCRM = 'Autocrm';
+	public const VIACRM = 'Viacrm';
 	public const BANKING = 'Banking';
 	public const CONTRACT_MANAGEMENT = 'ContractManagement';
 	public const PRODUCTION = 'Production';

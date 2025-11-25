@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Select\Where\ItemConverters;
+namespace Espo\Modules\Viacrm\Classes\Select\Where\ItemConverters;
 
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Field\DateTime;

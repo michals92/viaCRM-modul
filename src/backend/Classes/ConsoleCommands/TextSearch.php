@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\ConsoleCommands;
+namespace Espo\Modules\Viacrm\Classes\ConsoleCommands;
 
 use Espo\Core\Console\Command;
 use Espo\Core\Console\Command\Params;
@@ -9,7 +9,7 @@ use Espo\Core\Record\ServiceContainer as RecordServiceContainer;
 use Espo\Core\Select\SearchParams;
 use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Metadata;
-use Espo\Modules\Autocrm\Tools\Layout\AttributeExtractor;
+use Espo\Modules\Viacrm\Tools\Layout\AttributeExtractor;
 
 class TextSearch implements Command {
 

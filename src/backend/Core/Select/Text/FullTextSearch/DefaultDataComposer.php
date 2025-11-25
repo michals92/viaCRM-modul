@@ -1,13 +1,13 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Select\Text\FullTextSearch;
+namespace Espo\Modules\Viacrm\Core\Select\Text\FullTextSearch;
 
 use Espo\Core\Select\Text\FullTextSearch\DataComposer\Params;
 use Espo\Core\Select\Text\MetadataProvider;
 use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Database\Helper as DatabaseHelper;
 use Espo\Core\Utils\Metadata;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Query\Part\Expression;
 use Espo\ORM\Query\Part\Expression\Util as ExpressionUtil;
 use ReflectionException;

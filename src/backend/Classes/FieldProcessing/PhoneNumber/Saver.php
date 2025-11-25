@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\FieldProcessing\PhoneNumber;
+namespace Espo\Modules\Viacrm\Classes\FieldProcessing\PhoneNumber;
 
 use Espo\Core\ApplicationState;
 use Espo\Core\FieldProcessing\PhoneNumber\AccessChecker;
@@ -9,7 +9,7 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\ORM\Type\FieldType;
 use Espo\Core\Utils\Metadata;
 use Espo\Entities\PhoneNumber;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Entity;
 use Espo\ORM\Mapper\BaseMapper;
 use Espo\Repositories\PhoneNumber as PhoneNumberRepository;

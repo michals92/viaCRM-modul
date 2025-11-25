@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Acl\Table;
+namespace Espo\Modules\Viacrm\Core\Acl\Table;
 
 use Espo\Core\Acl\Table;
 use Espo\Core\Binding\Binder;
@@ -8,7 +8,7 @@ use Espo\Core\Binding\BindingContainer;
 use Espo\Core\Binding\BindingData;
 use Espo\Core\InjectableFactory;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 
 class DefaultTableFactory extends \Espo\Core\Acl\Table\DefaultTableFactory {
 

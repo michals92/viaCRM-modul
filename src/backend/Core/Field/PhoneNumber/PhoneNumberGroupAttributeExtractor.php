@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Field\PhoneNumber;
+namespace Espo\Modules\Viacrm\Core\Field\PhoneNumber;
 
 use Espo\Core\Field\PhoneNumberGroup;
 use InvalidArgumentException;
@@ -29,7 +29,7 @@ class PhoneNumberGroupAttributeExtractor extends \Espo\Core\Field\PhoneNumber\Ph
 			    'primary' => $primaryNumber && $phoneNumber->getNumber() === $primaryNumber,
 			    'optOut' => $phoneNumber->isOptedOut(),
 			    'invalid' => $phoneNumber->isInvalid(),
-			    'accountId' => $phoneNumber instanceof \Espo\Modules\Autocrm\Core\Field\PhoneNumber
+			    'accountId' => $phoneNumber instanceof \Espo\Modules\Viacrm\Core\Field\PhoneNumber
 			        ? $phoneNumber->getAccountId()
 			        : null,
 			];

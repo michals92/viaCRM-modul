@@ -1,15 +1,15 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Jobs;
+namespace Espo\Modules\Viacrm\Classes\Jobs;
 
 use Espo\Core\Job\Job;
 use Espo\Core\Job\Job\Data as JobData;
 use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Log;
-use Espo\Modules\Autocrm\Classes\Utils\Common\LangCode;
-use Espo\Modules\Autocrm\Classes\Utils\HolidayUtil;
-use Espo\Modules\Autocrm\Entities\Holiday;
+use Espo\Modules\Viacrm\Classes\Utils\Common\LangCode;
+use Espo\Modules\Viacrm\Classes\Utils\HolidayUtil;
+use Espo\Modules\Viacrm\Entities\Holiday;
 
 class PreloadHolidays implements Job {
 

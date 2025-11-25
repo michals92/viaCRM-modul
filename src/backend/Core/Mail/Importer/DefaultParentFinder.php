@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Importer;
+namespace Espo\Modules\Viacrm\Core\Mail\Importer;
 
 use Espo\Core\Mail\Message;
 use Espo\Core\Utils\Config;
@@ -8,8 +8,8 @@ use Espo\Core\Utils\Log;
 use Espo\Core\Utils\Metadata;
 use Espo\Entities\Email;
 use Espo\Entities\EmailAddress;
-use Espo\Modules\Autocrm\Classes\Repositories\EmailAddress as EmailAddressRepository;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Repositories\EmailAddress as EmailAddressRepository;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Crm\Entities\Account;
 use Espo\ORM\Entity;
 use Espo\ORM\EntityManager;

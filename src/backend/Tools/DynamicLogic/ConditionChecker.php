@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\DynamicLogic;
+namespace Espo\Modules\Viacrm\Tools\DynamicLogic;
 
 use DateTimeImmutable;
 use DateTimeZone;
@@ -8,10 +8,10 @@ use Espo\Core\Field\Date;
 use Espo\Core\ORM\Entity;
 use Espo\Core\Utils\Json;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Core\Field\DateTime;
-use Espo\Modules\Autocrm\Core\Utils\DateTime\SystemClock;
-use Espo\Modules\Autocrm\Tools\DynamicLogic\ConditionChecker\Options;
-use Espo\Modules\Autocrm\Tools\DynamicLogic\Exceptions\BadCondition;
+use Espo\Modules\Viacrm\Core\Field\DateTime;
+use Espo\Modules\Viacrm\Core\Utils\DateTime\SystemClock;
+use Espo\Modules\Viacrm\Tools\DynamicLogic\ConditionChecker\Options;
+use Espo\Modules\Viacrm\Tools\DynamicLogic\Exceptions\BadCondition;
 use Exception;
 use RuntimeException;
 
@@ -62,7 +62,7 @@ class ConditionChecker {
 			return $arg;
 		}, $args);
 
-		$GLOBALS['log']->debug('[Autocrm/ConditionChecker] ' . implode(' ', $formatted));
+		$GLOBALS['log']->debug('[Viacrm/ConditionChecker] ' . implode(' ', $formatted));
 	}
 
 	/**

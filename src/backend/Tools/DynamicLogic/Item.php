@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\DynamicLogic;
+namespace Espo\Modules\Viacrm\Tools\DynamicLogic;
 
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Json;
-use Espo\Modules\Autocrm\Tools\DynamicLogic\Exceptions\BadCondition;
+use Espo\Modules\Viacrm\Tools\DynamicLogic\Exceptions\BadCondition;
 use Espo\ORM\Query\Part\Where\AndGroup;
 use Espo\ORM\Query\Part\WhereClause;
 use Espo\ORM\Query\Part\WhereItem as WhereClauseItem;
@@ -61,7 +61,7 @@ readonly class Item {
 			return $arg;
 		}, $args);
 
-		$GLOBALS['log']->debug('[Autocrm/DynamicLogic/Item] ' . implode(' ', $formatted));
+		$GLOBALS['log']->debug('[Viacrm/DynamicLogic/Item] ' . implode(' ', $formatted));
 	}
 
 	/**
@@ -90,7 +90,7 @@ readonly class Item {
 			$this->debug('EntityType from query builder', $entityType);
 			assert($entityType !== null, 'EntityType cannot be null when creating a where converter.');
 			$conditionConverter = $injectableFactory->createWith(
-				\Espo\Modules\Autocrm\Tools\DynamicLogic\ConverterFactory::class,
+				\Espo\Modules\Viacrm\Tools\DynamicLogic\ConverterFactory::class,
 				['entityType' => $entityType],
 			);
 			$convertedConditions = [];

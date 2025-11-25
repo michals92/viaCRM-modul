@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\ZipStream;
+namespace Espo\Modules\Viacrm\Tools\ZipStream;
 
 use ReflectionClass;
 use RuntimeException;

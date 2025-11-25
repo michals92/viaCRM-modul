@@ -1,6 +1,6 @@
 {
 	"descriptions": {
-		"autocrm": "All config parameters for AutoCRM related extensions.",
+		"autocrm": "All config parameters for viaCRM related extensions.",
 		"propertyMatching": "Matching configuration.",
 		"realEstateLocations": "Manage Locations for Real Estate.",
 		"realEstateSettings": "Parameters for Real Estate extension.",
@@ -64,7 +64,7 @@
 	"labels": {
 		"Add Layout": "Add Layout",
 		"Add Related Field": "Add Related Field",
-		"AutoCRM Settings": "AutoCRM Settings",
+		"viaCRM Settings": "viaCRM Settings",
 		"Locations": "Locations",
 		"Property Matching": "Property Matching",
 		"Real Estate": "Real Estate",

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\WorkQueue;
+namespace Espo\Modules\Viacrm\Tools\WorkQueue;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Select\SearchParams;

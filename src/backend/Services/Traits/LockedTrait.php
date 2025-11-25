@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Services\Traits;
+namespace Espo\Modules\Viacrm\Services\Traits;
 
 use Espo\Core\Exceptions\Conflict;
 use Espo\Core\Exceptions\Error;

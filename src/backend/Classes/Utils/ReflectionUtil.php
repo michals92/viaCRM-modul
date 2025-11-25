@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Utils;
+namespace Espo\Modules\Viacrm\Classes\Utils;
 
 use ReflectionException;
 use ReflectionMethod;

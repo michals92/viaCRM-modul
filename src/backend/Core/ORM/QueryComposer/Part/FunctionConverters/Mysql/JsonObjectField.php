@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\ORM\QueryComposer\Part\FunctionConverters\Mysql;
+namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Mysql;
 
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 

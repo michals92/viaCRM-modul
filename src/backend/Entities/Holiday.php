@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Entities;
+namespace Espo\Modules\Viacrm\Entities;
 
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Field\Date;
-use Espo\Modules\Autocrm\Tools\Error\ErrorFactory;
+use Espo\Modules\Viacrm\Tools\Error\ErrorFactory;
 
 class Holiday extends \Espo\Core\Templates\Entities\Base {
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Layout;
+namespace Espo\Modules\Viacrm\Tools\Layout;
 
 use Espo\Core\InjectableFactory;
-use Espo\Modules\Autocrm\Core\Layout\LikeType;
+use Espo\Modules\Viacrm\Core\Layout\LikeType;
 
 class SectionBuilder {
 

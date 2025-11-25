@@ -5,6 +5,6 @@
 	"customizable": false,
 	"entity": true,
 	"layouts": true,
-	"module": "Autocrm",
+	"module": "Viacrm",
 	"tab": true
 }

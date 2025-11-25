@@ -71,5 +71,5 @@
 	"view": "autocrm:views/fields/float-with-linked-unit",
 	"notCreatable": false,
 	"filter": true,
-	"converterClassName": "Espo\\Modules\\Autocrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\FloatWithLinkedUnit"
+	"converterClassName": "Espo\\Modules\\Viacrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\FloatWithLinkedUnit"
 }

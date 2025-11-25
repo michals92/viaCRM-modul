@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\FieldProcessing\Reminder;
+namespace Espo\Modules\Viacrm\Core\FieldProcessing\Reminder;
 
 use Espo\Core\Field\DateTime;
 use Espo\Core\FieldProcessing\Saver\Params as SaverParams;
@@ -8,7 +8,7 @@ use Espo\Core\InjectableFactory;
 use Espo\Core\ORM\Entity as CoreEntity;
 use Espo\Core\Utils\Config;
 use Espo\Entities\User;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Entity;
 use ReflectionClass;
 

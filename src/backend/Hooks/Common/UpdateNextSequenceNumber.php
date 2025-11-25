@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Hooks\Common;
+namespace Espo\Modules\Viacrm\Hooks\Common;
 
 use Espo\Core\Field\Date;
 use Espo\Core\Hook\Hook\BeforeSave;
 use Espo\Core\ORM\Repository\Option\SaveOption;
 use Espo\Core\Utils\DateTime;
-use Espo\Modules\Autocrm\Entities\NextSequenceNumber;
+use Espo\Modules\Viacrm\Entities\NextSequenceNumber;
 use Espo\ORM\Defs\FieldDefs;
 use Espo\ORM\Entity;
 use Espo\ORM\EntityManager;

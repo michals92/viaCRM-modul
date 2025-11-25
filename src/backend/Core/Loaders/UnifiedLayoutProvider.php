@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Loaders;
+namespace Espo\Modules\Viacrm\Core\Loaders;
 
 use Espo\Core\Container\Loader;
 use Espo\Core\InjectableFactory;
-use Espo\Modules\Autocrm\Tools\Layout\UnifiedLayoutProvider as Service;
+use Espo\Modules\Viacrm\Tools\Layout\UnifiedLayoutProvider as Service;
 
 class UnifiedLayoutProvider implements Loader {
 

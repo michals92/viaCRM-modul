@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Select\XmlTemplate\AccessControlFilters;
+namespace Espo\Modules\Viacrm\Classes\Select\XmlTemplate\AccessControlFilters;
 
 use Espo\Core\Acl\Exceptions\NotImplemented;
 use Espo\Core\AclManager;

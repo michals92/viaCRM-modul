@@ -11,7 +11,7 @@
     "disabled": false,
     "searchable": true,
     "type": "Base",
-    "module": "Autocrm",
+    "module": "Viacrm",
     "object": true,
     "hasPersonalData": false
 }

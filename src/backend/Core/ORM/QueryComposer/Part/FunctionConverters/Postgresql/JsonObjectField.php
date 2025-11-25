@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\ORM\QueryComposer\Part\FunctionConverters\Postgresql;
+namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Postgresql;
 
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Account\Ews;
+namespace Espo\Modules\Viacrm\Core\Mail\Account\Ews;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Mail\Importer;
@@ -9,8 +9,8 @@ use Espo\Core\Mail\MessageWrapper;
 use Espo\Core\Mail\ParserFactory;
 use Espo\Core\Utils\Log;
 use Espo\Entities\Email;
-use Espo\Modules\Autocrm\Core\Mail\Account\Ews\GroupAccount\Account as GroupAccountAccount;
-use Espo\Modules\Autocrm\Core\Mail\Account\Ews\PersonalAccount\Account as PersonalAccountAccount;
+use Espo\Modules\Viacrm\Core\Mail\Account\Ews\GroupAccount\Account as GroupAccountAccount;
+use Espo\Modules\Viacrm\Core\Mail\Account\Ews\PersonalAccount\Account as PersonalAccountAccount;
 use Throwable;
 
 /**

@@ -44,7 +44,7 @@
 	],
 	"view": "autocrm:views/fields/sequence-number",
 	"filter": true,
-	"converterClassName": "Espo\\Modules\\Autocrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\SequenceNumber",
+	"converterClassName": "Espo\\Modules\\Viacrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\SequenceNumber",
 	"textFilter": true,
-	"hookClassName": "Espo\\Modules\\Autocrm\\Tools\\FieldManager\\Hooks\\SequenceNumberType"
+	"hookClassName": "Espo\\Modules\\Viacrm\\Tools\\FieldManager\\Hooks\\SequenceNumberType"
 }

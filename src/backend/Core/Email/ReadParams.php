@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Email;
+namespace Espo\Modules\Viacrm\Core\Email;
 
 class ReadParams extends \Espo\Core\Record\ReadParams {
 

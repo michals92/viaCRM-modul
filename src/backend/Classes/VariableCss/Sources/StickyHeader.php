@@ -1,9 +1,9 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\VariableCss\Sources;
+namespace Espo\Modules\Viacrm\Classes\VariableCss\Sources;
 
 use Espo\Core\Utils\Config;
-use Espo\Modules\Autocrm\Classes\VariableCss\Source as VariableCssSource;
+use Espo\Modules\Viacrm\Classes\VariableCss\Source as VariableCssSource;
 
 class StickyHeader implements VariableCssSource {
 

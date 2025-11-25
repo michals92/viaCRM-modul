@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Repositories;
+namespace Espo\Modules\Viacrm\Repositories;
 
 use Cron\CronExpression;
 use Espo\Core\Di;

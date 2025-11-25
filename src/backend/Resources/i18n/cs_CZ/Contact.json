@@ -39,7 +39,7 @@
 		"portalUsers": "Uživatelé portálu"
 	},
 	"tooltips": {
-		"emailAddress": "E-mailová adresa může být přiřazena k organizaci. Tuto funkci lze vypnout v [**nastavení Autocrm**](/#Admin/AutocrmSettings) pomocí volby 'Vypnout přiřazení emailů k organizaci'.",
-		"phoneNumber": "Telefonní číslo může být přiřazeno k organizaci. Tuto funkci lze vypnout v [**nastavení Autocrm**](/#Admin/AutocrmSettings) pomocí volby 'Vypnout přiřazení tel. čísel k organizaci'."
+		"emailAddress": "E-mailová adresa může být přiřazena k organizaci. Tuto funkci lze vypnout v [**nastavení viaCRM**](/#Admin/ViacrmSettings) pomocí volby 'Vypnout přiřazení emailů k organizaci'.",
+		"phoneNumber": "Telefonní číslo může být přiřazeno k organizaci. Tuto funkci lze vypnout v [**nastavení viaCRM**](/#Admin/ViacrmSettings) pomocí volby 'Vypnout přiřazení tel. čísel k organizaci'."
 	}
 }

@@ -51,7 +51,7 @@
 		}
 	],
 	"notCreatable": false,
-	"converterClassName": "Espo\\Modules\\Autocrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\Email",
-	"attributeExtractorClassName": "Espo\\Modules\\Autocrm\\Core\\Field\\EmailAddress\\EmailAddressGroupAttributeExtractor",
+	"converterClassName": "Espo\\Modules\\Viacrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\Email",
+	"attributeExtractorClassName": "Espo\\Modules\\Viacrm\\Core\\Field\\EmailAddress\\EmailAddressGroupAttributeExtractor",
 	"paramsNameFieldView": "autocrm:views/admin/field-manager/fields/email/name"
 }

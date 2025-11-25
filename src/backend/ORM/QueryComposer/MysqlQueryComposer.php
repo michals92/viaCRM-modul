@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\ORM\QueryComposer;
+namespace Espo\Modules\Viacrm\ORM\QueryComposer;
 
 /**
  * Extended MySQL query composer that adds support for expressions in insert queries.

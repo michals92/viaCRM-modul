@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\VariableCss;
+namespace Espo\Modules\Viacrm\Classes\VariableCss;
 
 interface Source {
 

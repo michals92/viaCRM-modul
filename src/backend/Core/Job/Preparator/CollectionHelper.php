@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Job\Preparator;
+namespace Espo\Modules\Viacrm\Core\Job\Preparator;
 
 use DateTimeImmutable;
 use Espo\Core\Job\Job\Status;

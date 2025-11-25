@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Utils;
+namespace Espo\Modules\Viacrm\Classes\Utils;
 
 use DateTime;
 use Espo\Core\Field\Date;
@@ -8,8 +8,8 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Log;
 use Espo\Core\Utils\Util;
-use Espo\Modules\Autocrm\Classes\Utils\Common\LangCode;
-use Espo\Modules\Autocrm\Entities\Holiday;
+use Espo\Modules\Viacrm\Classes\Utils\Common\LangCode;
+use Espo\Modules\Viacrm\Entities\Holiday;
 use Espo\ORM\EntityCollection;
 use Espo\ORM\Query\Part\Condition as Cond;
 use Espo\ORM\Query\Part\Expression as Expr;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\JobPreparators;
+namespace Espo\Modules\Viacrm\Classes\JobPreparators;
 
 use DateTimeImmutable;
 use Espo\Core\Job\Job\Status;
@@ -8,7 +8,7 @@ use Espo\Core\Job\Preparator;
 use Espo\Core\Job\Preparator\Data as PreparatorData;
 use Espo\Core\Utils\DateTime;
 use Espo\Entities\Job as JobEntity;
-use Espo\Modules\Autocrm\Entities\RecordRecurrence;
+use Espo\Modules\Viacrm\Entities\RecordRecurrence;
 use Espo\ORM\EntityManager;
 use Exception;
 use RuntimeException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Entities;
+namespace Espo\Modules\Viacrm\Entities;
 
 use Espo\ORM\Query\InsertBuilder;
 use Espo\ORM\Query\Part\Expression;
@@ -155,7 +155,7 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 		    ->into('AlertUser')
 		    ->columns(['alertId', 'userId', 'alertActive'])
 		    ->values($rows)
-			// @phpstan-ignore-next-line PHPStan detects an error here, because we extend the functionality of updateSet in Autocrm
+			// @phpstan-ignore-next-line PHPStan detects an error here, because we extend the functionality of updateSet in viaCRM
 		    ->updateSet([
 		        'alertActive' => Expression::not(Expression::column('alertActive'))
 		    ])

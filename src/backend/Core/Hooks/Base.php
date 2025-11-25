@@ -3,7 +3,7 @@
 namespace Espo\Core\Hooks;
 
 use Espo\Core\Traits\Injectable;
-use Espo\Modules\Autocrm\Core\Di;
+use Espo\Modules\Viacrm\Core\Di;
 /**
  * This keeps compatibility with older versions of modules
  */

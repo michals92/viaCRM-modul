@@ -11,9 +11,9 @@
 	],
 	"variableCssSources": [
 		"__APPEND__",
-		"Espo\\Modules\\Autocrm\\Classes\\VariableCss\\Sources\\CustomIcons",
-		"Espo\\Modules\\Autocrm\\Classes\\VariableCss\\Sources\\StickyHeader",
-		"Espo\\Modules\\Autocrm\\Classes\\VariableCss\\Sources\\StickyPdfView"
+		"Espo\\Modules\\Viacrm\\Classes\\VariableCss\\Sources\\CustomIcons",
+		"Espo\\Modules\\Viacrm\\Classes\\VariableCss\\Sources\\StickyHeader",
+		"Espo\\Modules\\Viacrm\\Classes\\VariableCss\\Sources\\StickyPdfView"
 	],
 	"viewExtensions": {
 		"app": [

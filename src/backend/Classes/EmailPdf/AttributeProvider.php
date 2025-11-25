@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\EmailPdf;
+namespace Espo\Modules\Viacrm\Classes\EmailPdf;
 
 use stdClass;
 

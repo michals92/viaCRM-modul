@@ -1,12 +1,12 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Hooks\XmlFeed;
+namespace Espo\Modules\Viacrm\Hooks\XmlFeed;
 
 use Espo\Core\Exceptions\Error\Body as ErrorBody;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Hook\Hook\BeforeSave;
 use Espo\Core\ORM\EntityManager;
-use Espo\Modules\Autocrm\Entities\XmlFeed;
+use Espo\Modules\Viacrm\Entities\XmlFeed;
 use Espo\ORM\Entity;
 use Espo\ORM\Repository\Option\SaveOptions;
 

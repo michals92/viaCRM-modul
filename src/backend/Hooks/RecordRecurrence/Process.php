@@ -1,11 +1,11 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Hooks\RecordRecurrence;
+namespace Espo\Modules\Viacrm\Hooks\RecordRecurrence;
 
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Hook\Hook\AfterSave;
-use Espo\Modules\Autocrm\Entities\RecordRecurrence;
-use Espo\Modules\Autocrm\Services\RecordRecurrence as Service;
+use Espo\Modules\Viacrm\Entities\RecordRecurrence;
+use Espo\Modules\Viacrm\Services\RecordRecurrence as Service;
 use Espo\ORM\Entity;
 use Espo\ORM\EntityManager;
 use Espo\ORM\Repository\Option\SaveOptions;

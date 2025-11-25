@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\FieldProcessing\PhoneNumber;
+namespace Espo\Modules\Viacrm\Core\FieldProcessing\PhoneNumber;
 
 use Espo\Core\FieldProcessing\Loader\Params as LoaderParams;
 use Espo\Core\ORM\EntityManager;

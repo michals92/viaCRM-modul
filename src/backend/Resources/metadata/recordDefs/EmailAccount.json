@@ -1,10 +1,10 @@
 {
 	"createInputFilterClassNameList": [
 		"__APPEND__",
-		"Espo\\Modules\\Autocrm\\Classes\\Record\\InboundEmail\\PasswordsInputFilter"
+		"Espo\\Modules\\Viacrm\\Classes\\Record\\InboundEmail\\PasswordsInputFilter"
 	],
 	"updateInputFilterClassNameList": [
 		"__APPEND__",
-		"Espo\\Modules\\Autocrm\\Classes\\Record\\InboundEmail\\PasswordsInputFilter"
+		"Espo\\Modules\\Viacrm\\Classes\\Record\\InboundEmail\\PasswordsInputFilter"
 	]
 }

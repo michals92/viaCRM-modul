@@ -1,10 +1,10 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Console\CommandAutocomplete;
+namespace Espo\Modules\Viacrm\Core\Console\CommandAutocomplete;
 
 use Espo\Core\Job\MetadataProvider;
 use Espo\Core\Utils\ClassFinder;
-use Espo\Modules\Autocrm\Core\Console\CommandAutocomplete;
+use Espo\Modules\Viacrm\Core\Console\CommandAutocomplete;
 
 class RunJob implements CommandAutocomplete {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\FieldProcessing\EmailAddress;
+namespace Espo\Modules\Viacrm\Classes\FieldProcessing\EmailAddress;
 
 use Espo\Core\ApplicationState;
 use Espo\Core\FieldProcessing\EmailAddress\AccessChecker;
@@ -8,7 +8,7 @@ use Espo\Core\FieldProcessing\Saver\Params as SaverParams;
 use Espo\Core\ORM\EntityManager;
 use Espo\Core\ORM\Type\FieldType;
 use Espo\Entities\EmailAddress;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Entity;
 use Espo\Repositories\EmailAddress as EmailAddressRepository;
 use ReflectionException;

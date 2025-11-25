@@ -1,8 +1,8 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Di;
+namespace Espo\Modules\Viacrm\Core\Di;
 
-use Espo\Modules\Autocrm\Tools\Client\Helper as ClientHelper;
+use Espo\Modules\Viacrm\Tools\Client\Helper as ClientHelper;
 
 interface ClientHelperAware {
 

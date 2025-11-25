@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Api\Partition;
+namespace Espo\Modules\Viacrm\Api\Partition;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;
@@ -10,7 +10,7 @@ use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Record\SearchParamsFetcher;
-use Espo\Modules\Autocrm\Tools\Partition\PartitionService;
+use Espo\Modules\Viacrm\Tools\Partition\PartitionService;
 
 class GetData implements Action {
 

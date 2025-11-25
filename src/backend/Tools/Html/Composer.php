@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Html;
+namespace Espo\Modules\Viacrm\Tools\Html;
 
 use Stringable;
 

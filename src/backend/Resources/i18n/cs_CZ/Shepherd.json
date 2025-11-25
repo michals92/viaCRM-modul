@@ -10,7 +10,7 @@
 		"Calendar": "Už nikdy nezmeškejte důležité schůzky! Naplánujte si schůzky nebo hovory pomocí našeho integrovaného kalendáře, používejte připomenutí prostřednictvím e-mailu, SMS nebo jako push-up okno na obrazovce. Nastavte si filtry. Samozřejmě si můžete nastavit i sdílený kalendář, abyste přesně viděli, kdo na čem pracuje nebo který zaměstnanec je pro daný úkol k dispozici. Propojení s kalendářem Google je samozřejmostí.",
 		"Campaigns": "Vždy sledujte rozpočet na marketingové projekty. Vytvořte měsíční zpravodaj, který posílí vztahy se zákazníky.",
 		"Contacts": "Kompletní přehled všech kontaktních osob / kontaktních osob, také můžete vidět historii komunikace.",
-		"DashboardAndDashlets": "Vítejte v AutoCRM, spustíme průvodce a krok za krokem vás provedeme naší intuitivní low-code platformou ({{dashboard_video}}).",
+		"DashboardAndDashlets": "Vítejte v viaCRM, spustíme průvodce a krok za krokem vás provedeme naší intuitivní low-code platformou ({{dashboard_video}}).",
 		"Emails": "Využijte integrovaného e-mailového klienta. Budete mít vždy přehled, protože e-maily jsou přímo spojeny s vašimi potenciálními zákazníky. Samozřejmě můžete také přímo z e-mailu vytvořit úkol, označit jej jako důležitý nebo jej přeposlat.",
 		"Entities": "Začněme od ovládacího panelu. Na levé straně najdete navigační panel. Každý modul (entita) je propojen s databází.",
 		"GlobalSearch": "Rychle najdete to, co hledáte, např. název organizace, potenciálu nebo projektu.",
@@ -29,9 +29,9 @@
 		"Quotes": "Několika kliknutími vytvoříte cenovou nabídku, kterou můžete vytisknout přímo v návrhu PDF nebo odeslat e-mailem. Vyberte položky ze šablon a přidejte je.",
 		"Reporting": "Vytvářejte reporty z libovolného subjektu a mějte kompletní přehled o svých provozních nákladech a zdrojích - měsíční uzávěrky se stanou hračkou.",
 		"SalesOrders": "Mějte přehled o svých objednávkách - propojte je přímo se souvisejícím projektem.",
-		"Settings": "Zde můžete např. spravovat svůj uživatelský účet. V části 'Administrace' se dostanete do nastavení AutoCRM.",
+		"Settings": "Zde můžete např. spravovat svůj uživatelský účet. V části 'Administrace' se dostanete do nastavení viaCRM.",
 		"WarehouseManagement": "Díky naskladnění a vyskladnění v reálném čase budete mít své zásoby vždy pod kontrolou a zjednodušíte si inventuru.",
-		"Welcome to AutoCRM": "Vítejte v AutoCRM.cz, softwaru na míru pro vaše podnikání. Tento CRM systém roste s vaším týmem a vašimi procesy."
+		"Welcome to viaCRM": "Vítejte v viaCRM.cz, softwaru na míru pro vaše podnikání. Tento CRM systém roste s vaším týmem a vašimi procesy."
 	},
 	"titles": {
 		"Accounts": "Organizace",
@@ -60,6 +60,6 @@
 		"SalesOrders": "Přijaté objednávky",
 		"Settings": "Nastavení",
 		"WarehouseManagement": "Řízení skladů",
-		"Welcome to AutoCRM": "Vítejte v AutoCRM"
+		"Welcome to viaCRM": "Vítejte v viaCRM"
 	}
 }

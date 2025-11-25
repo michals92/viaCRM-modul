@@ -30,7 +30,7 @@
 		"SalesOrders": "Keep track of your orders - link them directly to the associated project.",
 		"Settings": "Here you can e.g. manage your user account. Under 'Administration' you get to the back office of AutomaticERP.",
 		"WarehouseManagement": "Loading and unloading in real time, you always have your stock under control and simplify your inventory.",
-		"Welcome to AutoCRM": "Welcome to AutomaticERP.com, a customized software for your business. This CRM system grows with your team and your processes."
+		"Welcome to viaCRM": "Welcome to AutomaticERP.com, a customized software for your business. This CRM system grows with your team and your processes."
 	},
 	"titles": {
 		"Accounts": "Accounts",
@@ -59,6 +59,6 @@
 		"SalesOrders": "Sales Orders",
 		"Settings": "Settings",
 		"WarehouseManagement": "Warehouse Management",
-		"Welcome to AutoCRM": "Welcome to AutoCRM"
+		"Welcome to viaCRM": "Welcome to viaCRM"
 	}
 }

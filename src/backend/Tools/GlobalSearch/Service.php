@@ -1,13 +1,13 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\GlobalSearch;
+namespace Espo\Modules\Viacrm\Tools\GlobalSearch;
 
 use Espo\Core\InjectableFactory;
 use Espo\Core\Record\Collection;
 use Espo\Core\Utils\Config;
 use Espo\Core\Utils\FieldUtil;
 use Espo\Core\Utils\Metadata;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Entity;
 use Espo\ORM\EntityCollection;
 use Espo\ORM\EntityManager;

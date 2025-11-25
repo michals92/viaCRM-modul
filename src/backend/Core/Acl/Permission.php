@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Acl;
+namespace Espo\Modules\Viacrm\Core\Acl;
 
 use Espo\Core\Acl\Permission as CorePermission;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Mail\Account\GroupAccount;
+namespace Espo\Modules\Viacrm\Core\Mail\Account\GroupAccount;
 
 use Espo\Core\Binding\BindingContainerBuilder;
 use Espo\Core\Binding\Factory;
@@ -11,8 +11,8 @@ use Espo\Core\Mail\Account\GroupAccount\StorageFactory as GroupAccountStorageFac
 use Espo\Core\Mail\Account\Hook\AfterFetch;
 use Espo\Core\Mail\Account\Hook\BeforeFetch;
 use Espo\Core\Mail\Account\StorageFactory;
-use Espo\Modules\Autocrm\Core\Mail\Account\Fetcher as AutocrmFetcher;
-use Espo\Modules\Autocrm\Core\Mail\Account\GroupAccount\Hooks\BeforeFetch as GroupAccountBeforeFetch;
+use Espo\Modules\Viacrm\Core\Mail\Account\Fetcher as ViacrmFetcher;
+use Espo\Modules\Viacrm\Core\Mail\Account\GroupAccount\Hooks\BeforeFetch as GroupAccountBeforeFetch;
 
 /**
  * @implements Factory<Fetcher>
@@ -30,7 +30,7 @@ class FetcherFactory implements Factory {
 			->bindImplementation(StorageFactory::class, GroupAccountStorageFactory::class)
 			->build();
 
-		return $this->injectableFactory->createWithBinding(AutocrmFetcher::class, $binding);
+		return $this->injectableFactory->createWithBinding(ViacrmFetcher::class, $binding);
 	}
 
 }

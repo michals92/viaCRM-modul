@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\FieldManager\Hooks;
+namespace Espo\Modules\Viacrm\Tools\FieldManager\Hooks;
 
 use Espo\Core\Utils\Metadata;
 

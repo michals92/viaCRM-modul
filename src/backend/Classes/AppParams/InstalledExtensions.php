@@ -1,8 +1,8 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\AppParams;
+namespace Espo\Modules\Viacrm\Classes\AppParams;
 
-use Espo\Modules\Autocrm\Tools\Extension\Service as ExtensionService;
+use Espo\Modules\Viacrm\Tools\Extension\Service as ExtensionService;
 use Espo\Tools\App\AppParam;
 
 class InstalledExtensions implements AppParam {

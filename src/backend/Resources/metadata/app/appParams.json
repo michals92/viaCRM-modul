@@ -1,38 +1,38 @@
 {
 	"customIcons": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\CustomIcons"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\CustomIcons"
 	},
 	"emailFolders": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\EmailFolders"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\EmailFolders"
 	},
 	"extensions": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\Extensions"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\Extensions"
 	},
 	"installedExtensions": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\InstalledExtensions"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\InstalledExtensions"
 	},
 	"recordTemplateEntityTypeList": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\RecordTemplateEntityTypeList"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\RecordTemplateEntityTypeList"
 	},
 	"recurringRecordsEntityList": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\RecurringRecordsEntityList"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\RecurringRecordsEntityList"
 	},
 	"roleList": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\RoleList"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\RoleList"
 	},
 	"roleStyles": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\RoleStyles"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\RoleStyles"
 	},
 	"teamStyles": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\TeamStyles"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\TeamStyles"
 	},
 	"templateEntityTypeList": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\TemplateEntityTypeList"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\TemplateEntityTypeList"
 	},
 	"userList": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\UserList"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\UserList"
 	},
 	"xmlTemplateEntityTypeList": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\AppParams\\XmlTemplateEntityTypeList"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\AppParams\\XmlTemplateEntityTypeList"
 	}
 }

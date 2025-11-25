@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Core\Utils\Config;
+namespace Espo\Modules\Viacrm\Core\Utils\Config;
 
 use Espo\Core\Utils\Config;
 

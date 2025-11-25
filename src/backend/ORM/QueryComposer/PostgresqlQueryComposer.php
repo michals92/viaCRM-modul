@@ -1,8 +1,8 @@
 <?php
 
-namespace Espo\Modules\Autocrm\ORM\QueryComposer;
+namespace Espo\Modules\Viacrm\ORM\QueryComposer;
 
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Query\Insert as InsertQuery;
 use RuntimeException;
 

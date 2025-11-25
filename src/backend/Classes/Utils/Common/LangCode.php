@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Classes\Utils\Common;
+namespace Espo\Modules\Viacrm\Classes\Utils\Common;
 
 final class LangCode {
 

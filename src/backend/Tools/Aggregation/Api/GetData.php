@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Aggregation\Api;
+namespace Espo\Modules\Viacrm\Tools\Aggregation\Api;
 
 use Espo\Core\Api\Action;
 use Espo\Core\Api\Request;
@@ -8,8 +8,8 @@ use Espo\Core\Api\Response;
 use Espo\Core\Api\ResponseComposer;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\NotFound;
-use Espo\Modules\Autocrm\Tools\Aggregation\Params as AggregationParams;
-use Espo\Modules\Autocrm\Tools\Aggregation\Service as AggregationService;
+use Espo\Modules\Viacrm\Tools\Aggregation\Params as AggregationParams;
+use Espo\Modules\Viacrm\Tools\Aggregation\Service as AggregationService;
 
 class GetData implements Action {
 

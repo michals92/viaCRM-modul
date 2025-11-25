@@ -1,19 +1,19 @@
 {
 	"CNBSync": {
-		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\CNBSync"
+		"jobClassName": "Espo\\Modules\\Viacrm\\Classes\\Jobs\\CNBSync"
 	},
 	"CheckEwsEmailAccounts": {
-		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\CheckEwsEmailAccounts",
-		"preparatorClassName": "Espo\\Modules\\Autocrm\\Classes\\JobPreparators\\CheckEwsEmailAccounts"
+		"jobClassName": "Espo\\Modules\\Viacrm\\Classes\\Jobs\\CheckEwsEmailAccounts",
+		"preparatorClassName": "Espo\\Modules\\Viacrm\\Classes\\JobPreparators\\CheckEwsEmailAccounts"
 	},
 	"CheckEwsInboundEmails": {
-		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\CheckEwsInboundEmails",
-		"preparatorClassName": "Espo\\Modules\\Autocrm\\Classes\\JobPreparators\\CheckEwsInboundEmails"
+		"jobClassName": "Espo\\Modules\\Viacrm\\Classes\\Jobs\\CheckEwsInboundEmails",
+		"preparatorClassName": "Espo\\Modules\\Viacrm\\Classes\\JobPreparators\\CheckEwsInboundEmails"
 	},
 	"CheckRecurringRecords": {
 		"isSystem": true,
-		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\CheckRecurringRecords",
-		"preparatorClassName": "Espo\\Modules\\Autocrm\\Classes\\JobPreparators\\CheckRecurringRecords",
+		"jobClassName": "Espo\\Modules\\Viacrm\\Classes\\Jobs\\CheckRecurringRecords",
+		"preparatorClassName": "Espo\\Modules\\Viacrm\\Classes\\JobPreparators\\CheckRecurringRecords",
 		"scheduling": "*/1 * * * *"
 	},
 	"Cleanup": {
@@ -22,15 +22,15 @@
 	},
 	"PreloadHolidays": {
 		"isSystem": true,
-		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\PreloadHolidays",
+		"jobClassName": "Espo\\Modules\\Viacrm\\Classes\\Jobs\\PreloadHolidays",
 		"scheduling": "0 3 1 1 *"
 	},
 	"RecordCurrencyRates": {
-		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\RecordCurrencyRates"
+		"jobClassName": "Espo\\Modules\\Viacrm\\Classes\\Jobs\\RecordCurrencyRates"
 	},
 	"RefreshMicrosoftGraphSubscriptions": {
 		"isSystem": true,
-		"jobClassName": "Espo\\Modules\\Autocrm\\Classes\\Jobs\\RefreshMicrosoftGraphSubscriptions",
+		"jobClassName": "Espo\\Modules\\Viacrm\\Classes\\Jobs\\RefreshMicrosoftGraphSubscriptions",
 		"scheduling": "0 1 * * *"
 	}
 }

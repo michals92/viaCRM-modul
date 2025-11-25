@@ -1,6 +1,6 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\Xml;
+namespace Espo\Modules\Viacrm\Tools\Xml;
 
 use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
@@ -10,8 +10,8 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Select\SearchParams;
 use Espo\Core\Select\SelectBuilderFactory;
 use Espo\Core\Utils\Json;
-use Espo\Modules\Autocrm\Entities\XmlFeed as XmlFeedEntity;
-use Espo\Modules\Autocrm\Entities\XmlTemplate;
+use Espo\Modules\Viacrm\Entities\XmlFeed as XmlFeedEntity;
+use Espo\Modules\Viacrm\Entities\XmlTemplate;
 
 class EntryPointProcessor {
 

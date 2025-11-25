@@ -1,91 +1,91 @@
 {
 	"accessCheckerFactory": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Acl\\AccessChecker\\AccessCheckerFactory"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Acl\\AccessChecker\\AccessCheckerFactory"
 	},
 	"aclDataBuilder": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Acl\\Map\\DataBuilder"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Acl\\Map\\DataBuilder"
 	},
 	"aclManager": {
-		"loaderClassName": "Espo\\Modules\\Autocrm\\Core\\Loaders\\AclManager"
+		"loaderClassName": "Espo\\Modules\\Viacrm\\Core\\Loaders\\AclManager"
 	},
 	"activitiesService": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\Activities\\Service"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\Activities\\Service"
 	},
 	"authenticationFactory": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\Authentication\\AuthenticationFactory"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\Authentication\\AuthenticationFactory"
 	},
 	"calendarService": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\Calendar\\Service"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\Calendar\\Service"
 	},
 	"clientHelper": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\Client\\Helper"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\Client\\Helper"
 	},
 	"clientManager": {
-		"loaderClassName": "Espo\\Modules\\Autocrm\\Core\\Loaders\\ClientManager"
+		"loaderClassName": "Espo\\Modules\\Viacrm\\Core\\Loaders\\ClientManager"
 	},
 	"defaultLanguage": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Utils\\Language",
-		"loaderClassName": "Espo\\Modules\\Autocrm\\Core\\Loaders\\Language"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Utils\\Language",
+		"loaderClassName": "Espo\\Modules\\Viacrm\\Core\\Loaders\\Language"
 	},
 	"errorOutput": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Api\\ErrorOutput"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Api\\ErrorOutput"
 	},
 	"extensionUtil": {
-		"className": "Espo\\Modules\\Autocrm\\Classes\\Utils\\ExtensionUtil"
+		"className": "Espo\\Modules\\Viacrm\\Classes\\Utils\\ExtensionUtil"
 	},
 	"externalAccountClientManager": {
 		"className": "Espo\\Core\\ExternalAccount\\ClientManager"
 	},
 	"fieldManagerTool": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\FieldManager\\FieldManager"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\FieldManager\\FieldManager"
 	},
 	"fullTextSearchDataComposerFactory": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Select\\Text\\FullTextSearch\\DataComposerFactory"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Select\\Text\\FullTextSearch\\DataComposerFactory"
 	},
 	"generalInvoker": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Hook\\Hook\\GeneralInvoker"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Hook\\Hook\\GeneralInvoker"
 	},
 	"globalSearchService": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\GlobalSearch\\Service"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\GlobalSearch\\Service"
 	},
 	"inboxService": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\Email\\InboxService"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\Email\\InboxService"
 	},
 	"jobRunner": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Job\\JobRunner"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Job\\JobRunner"
 	},
 	"language": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Utils\\Language",
-		"loaderClassName": "Espo\\Modules\\Autocrm\\Core\\Loaders\\Language"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Utils\\Language",
+		"loaderClassName": "Espo\\Modules\\Viacrm\\Core\\Loaders\\Language"
 	},
 	"layoutProvider": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\Layout\\ContainerServices\\LayoutProvider"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\Layout\\ContainerServices\\LayoutProvider"
 	},
 	"linkMultipleSaver": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\FieldProcessing\\Relation\\LinkMultipleSaver"
+		"className": "Espo\\Modules\\Viacrm\\Core\\FieldProcessing\\Relation\\LinkMultipleSaver"
 	},
 	"recordHookProvider": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Record\\Hook\\Provider"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Record\\Hook\\Provider"
 	},
 	"savingEmailSender": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Mail\\SavingEmailSender"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Mail\\SavingEmailSender"
 	},
 	"selectApplierFactory": {
-		"className": "Espo\\Modules\\Autocrm\\Core\\Select\\Applier\\Factory"
+		"className": "Espo\\Modules\\Viacrm\\Core\\Select\\Applier\\Factory"
 	},
 	"sendService": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\Email\\SendService"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\Email\\SendService"
 	},
 	"templateProcessor": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\EmailTemplate\\Processor"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\EmailTemplate\\Processor"
 	},
 	"unifiedLayoutProvider": {
-		"loaderClassName": "Espo\\Modules\\Autocrm\\Core\\Loaders\\UnifiedLayoutProvider"
+		"loaderClassName": "Espo\\Modules\\Viacrm\\Core\\Loaders\\UnifiedLayoutProvider"
 	},
 	"usersAccessService": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\User\\UsersAccessService"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\User\\UsersAccessService"
 	},
 	"valueMapPreparator": {
-		"className": "Espo\\Modules\\Autocrm\\Tools\\MassUpdate\\ValueMapPreparator"
+		"className": "Espo\\Modules\\Viacrm\\Tools\\MassUpdate\\ValueMapPreparator"
 	}
 }

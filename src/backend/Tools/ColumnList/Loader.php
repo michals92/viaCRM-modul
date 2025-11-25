@@ -1,13 +1,13 @@
 <?php
 
-namespace Espo\Modules\Autocrm\Tools\ColumnList;
+namespace Espo\Modules\Viacrm\Tools\ColumnList;
 
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Error;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Exceptions\NotFound;
 use Espo\Core\Select\SearchParams;
-use Espo\Modules\Autocrm\Tools\RecordList\Service as RecordListService;
+use Espo\Modules\Viacrm\Tools\RecordList\Service as RecordListService;
 use Espo\ORM\Defs;
 use Espo\ORM\Entity;
 
