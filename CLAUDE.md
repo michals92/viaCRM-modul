@@ -4,13 +4,13 @@ This file provides guidance to Claude Code when working with this repository.
 
 ## Project Overview
 
-AutoCRM module for EspoCRM - enhanced functionality including view extensions, custom layouts, email templates, workflow automation.
+ViaCRM module for EspoCRM - enhanced functionality including view extensions, custom layouts, email templates, workflow automation.
 
 ## Architecture
 
 ### Backend (PHP)
 - **Location**: `src/backend/`
-- **Namespace**: `Espo\Modules\Autocrm\`
+- **Namespace**: `Espo\Modules\Viacrm\`
 - **Key Directories**: Controllers, Services, Entities, Core, Classes, Resources, EntryPoints, Hooks, Api
 
 ### Frontend (TypeScript/JavaScript)
