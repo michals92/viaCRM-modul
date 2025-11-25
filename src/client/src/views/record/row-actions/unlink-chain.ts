@@ -1,5 +1,5 @@
 define(['views/base'], Dep => class extends Dep {
-	override template = 'autocrm:record/row-actions/unlink-chain';
+	override template = 'viacrm:record/row-actions/unlink-chain';
 
 	override data() {
 		return {

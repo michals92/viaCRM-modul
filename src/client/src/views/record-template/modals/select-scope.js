@@ -1,6 +1,6 @@
 define(['views/modal'], Dep => class extends Dep {
 	className = 'select-scope';
-	template = 'autocrm:modals/record-template/select-scope';
+	template = 'viacrm:modals/record-template/select-scope';
 	escapeDisabled = true;
 	noCloseButton = true;
 

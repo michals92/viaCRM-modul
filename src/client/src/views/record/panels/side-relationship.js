@@ -1,5 +1,5 @@
 define(['views/record/panels/side'], Dep => class extends Dep {
-	template = 'autocrm:record/panels/side-relationship';
+	template = 'viacrm:record/panels/side-relationship';
 
 	actionList = [];
 	

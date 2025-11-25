@@ -1,8 +1,8 @@
 define(['view'], Dep => class extends Dep {
-	template = 'autocrm:search/aggregation-function';
+	template = 'viacrm:search/aggregation-function';
 
 	setup() {
-		/** @type {module:autocrm:helpers/aggregation} */
+		/** @type {module:viacrm:helpers/aggregation} */
 		this.aggregationHelper = this.options.aggregationHelper;
 
 		if (!this.aggregationHelper) {

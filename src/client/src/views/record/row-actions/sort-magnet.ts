@@ -1,5 +1,5 @@
 define(['views/base'], Dep => class extends Dep {
-	override template = 'autocrm:record/row-actions/sort-magnet';
+	override template = 'viacrm:record/row-actions/sort-magnet';
 
 	override data() {
 		return {

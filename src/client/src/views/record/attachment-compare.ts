@@ -1,5 +1,5 @@
 define(['views/record/detail'], Dep => class extends Dep {
-	override template = 'autocrm:abstract/record/compare';
+	override template = 'viacrm:abstract/record/compare';
 
 	override layoutName = 'attachmentCompare';
 
@@ -14,7 +14,7 @@ define(['views/record/detail'], Dep => class extends Dep {
 
 		this.createView(
 			'attachments',
-			'autocrm:views/abstract/record/attachments',
+			'viacrm:views/abstract/record/attachments',
 			{
 				model: this.model,
 				fullSelector: el + ' .attachments',

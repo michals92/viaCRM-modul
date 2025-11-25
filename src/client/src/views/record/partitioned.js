@@ -3,7 +3,7 @@ define(['views/record/kanban'], Dep => class extends Dep {
 
 	name = 'partitioned';
 
-	template = 'autocrm:record/partitioned';
+	template = 'viacrm:record/partitioned';
 
 	layoutName = 'list';
 

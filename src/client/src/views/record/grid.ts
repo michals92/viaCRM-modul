@@ -3,9 +3,9 @@ import type View from 'espocrm/src/view';
 import type { ColumnDefs } from 'espocrm/src/views/record/list';
 
 define(['views/record/list'], Dep => class extends Dep {
-	override template = 'autocrm:record/grid';
+	override template = 'viacrm:record/grid';
 
-	itemViewName = 'autocrm:views/record/grid-item';
+	itemViewName = 'viacrm:views/record/grid-item';
 
 	override layoutName = 'grid';
 
