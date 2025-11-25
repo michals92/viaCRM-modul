@@ -10,7 +10,6 @@ use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Utils\Metadata;
 
 class ColorizationDefs implements Action {
-
 	public function __construct(
 		private readonly Metadata $metadata
 	) {}
@@ -43,5 +42,4 @@ class ColorizationDefs implements Action {
 
 		return ResponseComposer::json(true);
 	}
-
 }

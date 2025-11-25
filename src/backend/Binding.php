@@ -16,6 +16,8 @@ use Espo\Core\Record\Hook\Provider as RecordHookProvider;
 use Espo\Core\Select\Applier\Factory as SelectApplierFactory;
 use Espo\Core\Select\Text\FullTextSearch\DataComposerFactory as FullTextSearchDataComposerFactory;
 use Espo\Core\Utils\Language;
+use Espo\Modules\Crm\Tools\Activities\Service as ActivitiesService;
+use Espo\Modules\Crm\Tools\Calendar\Service as CalendarService;
 use Espo\Modules\Viacrm\Core\Acl\Table\DefaultTableFactory;
 use Espo\Modules\Viacrm\Core\Mail\Importer\DefaultParentFinder;
 use Espo\Modules\Viacrm\Core\Record\EntityAwareCreateParamsFetcher;
@@ -23,8 +25,6 @@ use Espo\Modules\Viacrm\Core\Record\EntityAwareDeleteParamsFetcher;
 use Espo\Modules\Viacrm\Core\Record\EntityAwareReadParamsFetcher;
 use Espo\Modules\Viacrm\Core\Record\EntityAwareUpdateParamsFetcher;
 use Espo\Modules\Viacrm\Tools\Layout\UnifiedLayoutProvider;
-use Espo\Modules\Crm\Tools\Activities\Service as ActivitiesService;
-use Espo\Modules\Crm\Tools\Calendar\Service as CalendarService;
 use Espo\Tools\Email\InboxService;
 use Espo\Tools\Email\SendService;
 use Espo\Tools\EmailNotification\AssignmentProcessor;
@@ -34,7 +34,6 @@ use Espo\Tools\Layout\LayoutProvider;
 use Espo\Tools\User\UsersAccessService;
 
 class Binding implements BindingProcessor {
-
 	public function process(Binder $binder): void {
 		// Vanilla Espo Services
 		$this->bindAssignmentProcessor($binder);
@@ -130,5 +129,4 @@ class Binding implements BindingProcessor {
 		$binder->for(AssignmentProcessor::class)
 			->bindService(EmailSender::class, 'savingEmailSender');
 	}
-
 }
