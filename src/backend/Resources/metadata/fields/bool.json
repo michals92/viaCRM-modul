@@ -9,7 +9,7 @@
 		{
 			"name": "directEdit",
 			"type": "bool",
-			"view": "autocrm:views/admin/field-manager/fields/bool/direct-edit",
+			"view": "viacrm:views/admin/field-manager/fields/bool/direct-edit",
 			"tooltip": true
 		}
 	]

@@ -46,7 +46,7 @@ class AttachmentCompareViewMode implements AdditionalBuilderInterface {
 
 			// Add recordView for attachmentCompare mode
 			$clientDefs->recordViews ??= (object)[];
-			$clientDefs->recordViews->attachmentCompare = 'autocrm:views/record/attachment-compare';
+			$clientDefs->recordViews->attachmentCompare = 'viacrm:views/record/attachment-compare';
 
 			// Add additional layout for attachmentCompare
 			$clientDefs->additionalLayouts ??= (object)[];

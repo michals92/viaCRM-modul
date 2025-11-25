@@ -5,7 +5,7 @@
 			"name": "useUnits",
 			"type": "bool",
 			"default": false,
-			"view": "autocrm:views/admin/field-manager/fields/int/use-units"
+			"view": "viacrm:views/admin/field-manager/fields/int/use-units"
 		},
 		{
 			"name": "physicalQuantity",
@@ -28,7 +28,7 @@
 			"name": "unit",
 			"type": "enum",
 			"default": false,
-			"view": "autocrm:views/admin/field-manager/fields/unit"
+			"view": "viacrm:views/admin/field-manager/fields/unit"
 		}
 	],
 	"massUpdateActionList": ["__APPEND__", "update", "increase", "multiply"]

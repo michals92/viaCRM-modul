@@ -18,7 +18,7 @@
 		},
 		"iconClass": {
 			"type": "varchar",
-			"view": "autocrm:views/fields/icon-class-pure",
+			"view": "viacrm:views/fields/icon-class-pure",
 			"readOnly": true,
 			"notStorable": true,
 			"select": {

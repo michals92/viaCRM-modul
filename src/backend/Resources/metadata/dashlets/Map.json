@@ -1,5 +1,5 @@
 {
-	"view": "autocrm:views/dashlets/map",
+	"view": "viacrm:views/dashlets/map",
 	"options": {
 		"defaults": {
 			"autorefreshInterval": 0.5,
@@ -8,7 +8,7 @@
 		"fields": {
 			"addressField": {
 				"type": "enum",
-				"view": "autocrm:views/dashlets/fields/map/address-field"
+				"view": "viacrm:views/dashlets/fields/map/address-field"
 			},
 			"autorefreshInterval": {
 				"type": "enumFloat",
@@ -20,7 +20,7 @@
 			},
 			"entityType": {
 				"type": "enum",
-				"view": "autocrm:views/dashlets/fields/map/entity-type"
+				"view": "viacrm:views/dashlets/fields/map/entity-type"
 			},
 			"mapCenter": {
 				"type": "enum",

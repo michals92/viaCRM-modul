@@ -7,7 +7,7 @@
 			"orderDisabled": true
 		},
 		"probability": {
-			"view": "autocrm:views/fields/percentage"
+			"view": "viacrm:views/fields/percentage"
 		},
 		"stage": {
 			"style": {

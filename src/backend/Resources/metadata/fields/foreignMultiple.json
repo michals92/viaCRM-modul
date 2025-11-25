@@ -7,7 +7,7 @@
 			"name": "link",
 			"type": "varchar",
 			"required": true,
-			"view": "autocrm:views/admin/field-manager/fields/foreign-multiple/link"
+			"view": "viacrm:views/admin/field-manager/fields/foreign-multiple/link"
 		},
 		{
 			"name": "field",
@@ -28,11 +28,11 @@
 		{
 			"name": "view",
 			"type": "varchar",
-			"default": "autocrm:views/fields/foreign-multiple",
+			"default": "viacrm:views/fields/foreign-multiple",
 			"hidden": false
 		}
 	],
-	"view": "autocrm:views/fields/foreign-multiple",
+	"view": "viacrm:views/fields/foreign-multiple",
 	"notCreatable": false,
 	"filter": true
 }

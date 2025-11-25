@@ -1,3 +1,3 @@
 {
-	"controller": "autocrm:controllers/admin"
+	"controller": "viacrm:controllers/admin"
 }

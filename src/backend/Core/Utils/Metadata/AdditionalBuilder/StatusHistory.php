@@ -46,7 +46,7 @@ class StatusHistory implements AdditionalBuilder {
 				$data->clientDefs->$entityType->bottomPanels->detail[] = (object)[
 					'name' => 'statusHistory',
 					'label' => 'Status History',
-					'view' => 'autocrm:views/record/panels/status-history',
+					'view' => 'viacrm:views/record/panels/status-history',
 					'order' => 4,
 					'disabled' => true
 				];

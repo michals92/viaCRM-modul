@@ -37,7 +37,7 @@
 			"options": ["Daily", "Monthly", "Yearly", "Never"]
 		}
 	],
-	"view": "autocrm:views/fields/sequence-number",
+	"view": "viacrm:views/fields/sequence-number",
 	"filter": true,
 	"converterClassName": "Espo\\Modules\\Viacrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\SequenceNumber",
 	"textFilter": true,

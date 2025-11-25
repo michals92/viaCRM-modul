@@ -54,7 +54,7 @@ npm run deploy # Deploy to EspoCRM (requires .env config)
 
 ### Pre-build extension release
 
-1. Download the latest release from the [Releases](https://gitlab.apertia.cz/autocrm/modules/autocrm/-/releases) page.
+1. Download the latest release from the [Releases](https://gitlab.lelkomir.eu/viacrm/modules/viacrm/-/releases) page.
 2. Go to **Administration** -> **Extensions** and upload the downloaded archive.
 
 ### Build from source
@@ -78,7 +78,7 @@ npm run deploy
 ```
 
 ## Development
-This extension was created via the [Extension Template](https://gitlab.apertia.cz/autocrm/extension-template),
+This extension was created via the [Extension Template](https://gitlab.lelkomir.eu/viacrm/extension-template),
 all the necessary information about the development process can be found there.
 
 ## Features

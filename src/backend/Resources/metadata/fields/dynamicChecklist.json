@@ -17,7 +17,7 @@
 			"tooltip": true
 		}
 	],
-	"view": "autocrm:views/fields/dynamic-checklist",
+	"view": "viacrm:views/fields/dynamic-checklist",
 	"notCreatable": false,
 	"notSortable": true,
 	"filter": true,

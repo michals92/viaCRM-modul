@@ -18,7 +18,7 @@
 			"type": "bool"
 		}
 	],
-	"view": "autocrm:views/fields/cron-expression",
+	"view": "viacrm:views/fields/cron-expression",
 	"notCreatable": true,
 	"filter": false
 }

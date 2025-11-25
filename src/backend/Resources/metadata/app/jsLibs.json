@@ -1,33 +1,33 @@
 {
 	"JQueryCron": {
-		"devPath": "client/modules/autocrm/lib/jquery-cron.js",
+		"devPath": "client/modules/viacrm/lib/jquery-cron.js",
 		"exportsAs": "cron",
 		"exportsTo": "$.fn",
-		"path": "client/modules/autocrm/lib/jquery-cron.js"
+		"path": "client/modules/viacrm/lib/jquery-cron.js"
 	},
 	"d3": {
 		"exportsAs": "d3",
 		"exportsTo": "window",
-		"path": "client/modules/autocrm/lib/d3/d3.min.js"
+		"path": "client/modules/viacrm/lib/d3/d3.min.js"
 	},
 	"easy-email": {
 		"exportsAs": "EasyEmailEditor",
 		"exportsTo": "window",
-		"path": "client/modules/autocrm/lib/easy-email/editor.js"
+		"path": "client/modules/viacrm/lib/easy-email/editor.js"
 	},
 	"jsignature": {
 		"exportsAs": "jSignature",
 		"exportsTo": "$.fn",
-		"path": "client/modules/autocrm/lib/jsignature/jSignature.min.js"
+		"path": "client/modules/viacrm/lib/jsignature/jSignature.min.js"
 	},
 	"luxon": {
 		"exportsAs": "luxon",
 		"exportsTo": "window",
-		"path": "client/modules/autocrm/lib/luxon/luxon.min.js"
+		"path": "client/modules/viacrm/lib/luxon/luxon.min.js"
 	},
 	"shepherd": {
 		"exportsAs": "Shepherd",
 		"exportsTo": "window",
-		"path": "client/modules/autocrm/lib/shepherd/shepherd.min.js"
+		"path": "client/modules/viacrm/lib/shepherd/shepherd.min.js"
 	}
 }

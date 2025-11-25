@@ -39,7 +39,7 @@
 				{
 					"fullWidth": true,
 					"name": "bodyEasyEmail",
-					"view": "autocrm:views/email-template/fields/body-easy-email"
+					"view": "viacrm:views/email-template/fields/body-easy-email"
 				}
 			],
 			[

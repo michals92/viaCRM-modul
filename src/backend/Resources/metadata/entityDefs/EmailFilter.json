@@ -1,13 +1,13 @@
 {
 	"fields": {
 		"action": {
-			"view": "autocrm:views/email-filter/fields/action"
+			"view": "viacrm:views/email-filter/fields/action"
 		},
 		"alertIconClass": {
 			"type": "varchar",
 			"required": true,
 			"default": "fas fa-envelope",
-			"view": "autocrm:views/fields/icon-class"
+			"view": "viacrm:views/fields/icon-class"
 		},
 		"alertMessage": {
 			"type": "wysiwyg",

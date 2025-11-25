@@ -29,7 +29,7 @@ class ColorAndIcon implements AdditionalBuilder {
 				    'type' => 'varchar',
 				    'maxLength' => 50,
 				    'tooltip' => true,
-				    'view' => 'autocrm:views/fields/icon-class',
+				    'view' => 'viacrm:views/fields/icon-class',
 				];
 			}
 		}

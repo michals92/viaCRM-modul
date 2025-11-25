@@ -1,11 +1,11 @@
 {
-	"controller": "autocrm:controllers/record-template",
+	"controller": "viacrm:controllers/record-template",
 	"views": {
-		"edit": "autocrm:views/record-template/edit"
+		"edit": "viacrm:views/record-template/edit"
 	},
 	"recordViews": {
-		"edit": "autocrm:views/record-template/record/edit",
-		"detail": "autocrm:views/record-template/record/detail",
-		"editQuick": "autocrm:views/record-template/record/edit-small"
+		"edit": "viacrm:views/record-template/record/edit",
+		"detail": "viacrm:views/record-template/record/detail",
+		"editQuick": "viacrm:views/record-template/record/edit-small"
 	}
 }

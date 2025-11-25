@@ -35,7 +35,7 @@
 			"type": "bool"
 		}
 	],
-	"view": "autocrm:views/fields/time",
+	"view": "viacrm:views/fields/time",
 	"filter": true,
 	"personalData": true,
 	"default": null

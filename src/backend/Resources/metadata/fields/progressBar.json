@@ -7,13 +7,13 @@
 			"name": "currentValue",
 			"type": "varchar",
 			"required": true,
-			"view": "autocrm:views/admin/field-manager/fields/own-field/own-field"
+			"view": "viacrm:views/admin/field-manager/fields/own-field/own-field"
 		},
 		{
 			"name": "targetValue",
 			"type": "varchar",
 			"required": true,
-			"view": "autocrm:views/admin/field-manager/fields/own-field/own-field"
+			"view": "viacrm:views/admin/field-manager/fields/own-field/own-field"
 		},
 		{
 			"name": "labelsEnabled",
@@ -71,7 +71,7 @@
 			"default": 500
 		}
 	],
-	"view": "autocrm:views/fields/progress-bar",
+	"view": "viacrm:views/fields/progress-bar",
 	"notCreatable": false,
 	"filter": true,
 	"readOnly": true,

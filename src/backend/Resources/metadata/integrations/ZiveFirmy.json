@@ -5,5 +5,5 @@
 			"type": "varchar"
 		}
 	},
-	"view": "autocrm:views/integrations/zive-firmy"
+	"view": "viacrm:views/integrations/zive-firmy"
 }

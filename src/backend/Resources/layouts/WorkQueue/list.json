@@ -2,6 +2,6 @@
 	{
 		"name": "name",
 		"link": true,
-		"view": "autocrm:views/work-queue/fields/name"
+		"view": "viacrm:views/work-queue/fields/name"
 	}
 ]

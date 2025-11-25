@@ -1,5 +1,5 @@
 {
-	"view": "autocrm:views/dashlets/calendar",
+	"view": "viacrm:views/dashlets/calendar",
 	"aclScope": "Calendar",
 	"options": {
 		"fields": {
@@ -16,6 +16,6 @@
 				]
 			}
 		},
-		"view": "autocrm:views/dashlets/options/calendar"
+		"view": "viacrm:views/dashlets/options/calendar"
 	}
 }

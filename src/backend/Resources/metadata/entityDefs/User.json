@@ -9,13 +9,13 @@
 			"type": "linkMultiple"
 		},
 		"defaultTeam": {
-			"view": "autocrm:views/user/fields/default-team"
+			"view": "viacrm:views/user/fields/default-team"
 		},
 		"humanResource": {
 			"type": "link"
 		},
 		"roles": {
-			"view": "autocrm:views/user/fields/roles"
+			"view": "viacrm:views/user/fields/roles"
 		},
 		"stampWithSignature": {
 			"type": "file",
@@ -24,10 +24,10 @@
 			"isCustom": true
 		},
 		"teamRole": {
-			"view": "autocrm:views/user/fields/team-role"
+			"view": "viacrm:views/user/fields/team-role"
 		},
 		"teams": {
-			"view": "autocrm:views/user/fields/teams"
+			"view": "viacrm:views/user/fields/teams"
 		},
 		"type": {
 			"icons": {

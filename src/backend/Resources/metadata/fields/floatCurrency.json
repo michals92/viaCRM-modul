@@ -73,7 +73,7 @@
 			"type": "bool"
 		}
 	],
-	"view": "autocrm:views/fields/float-currency",
+	"view": "viacrm:views/fields/float-currency",
 	"notCreatable": true,
 	"filter": true,
 	"converterClassName": "Espo\\Modules\\Viacrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\FloatCurrency",

@@ -18,7 +18,7 @@
 			"min": 0
 		}
 	],
-	"view": "autocrm:views/fields/bank-account-number",
+	"view": "viacrm:views/fields/bank-account-number",
 	"notCreatable": false,
 	"filter": true,
 	"validations": ["required", "bankAccountNumber"]

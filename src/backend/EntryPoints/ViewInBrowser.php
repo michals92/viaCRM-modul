@@ -61,7 +61,7 @@ class ViewInBrowser implements EntryPoint {
 			throw new BadRequest();
 		}
 
-		$params = new ActionRenderer\Params('autocrm:controllers/view-in-browser', 'viewEmail', [
+		$params = new ActionRenderer\Params('viacrm:controllers/view-in-browser', 'viewEmail', [
 		    'emailBody' => $bodyContent,
 		]);
 

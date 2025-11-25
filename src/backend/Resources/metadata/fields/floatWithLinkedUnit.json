@@ -13,7 +13,7 @@
 			"layoutListDisabled": true,
 			"layoutMassUpdateDisabled": true,
 			"type": "enum",
-			"view": "autocrm:views/fields/float-with-linked-unit"
+			"view": "viacrm:views/fields/float-with-linked-unit"
 		}
 	},
 	"actualFields": ["", "unit", "linkedUnit"],
@@ -64,7 +64,7 @@
 			"tooltip": true
 		}
 	],
-	"view": "autocrm:views/fields/float-with-linked-unit",
+	"view": "viacrm:views/fields/float-with-linked-unit",
 	"notCreatable": false,
 	"filter": true,
 	"converterClassName": "Espo\\Modules\\Viacrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\FloatWithLinkedUnit"

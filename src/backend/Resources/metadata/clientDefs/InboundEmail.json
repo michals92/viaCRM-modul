@@ -2,7 +2,7 @@
 	"massActionList": ["__APPEND__", "resyncImap"],
 	"massActionDefs": {
 		"resyncImap": {
-			"handler": "autocrm:handlers/actions/mail/account/resync-imap",
+			"handler": "viacrm:handlers/actions/mail/account/resync-imap",
 			"actionFunction": "massAction",
 			"initFunction": "isVisible"
 		}
@@ -14,7 +14,7 @@
 			"name": "resyncImap",
 			"acl": "read",
 			"data": {
-				"handler": "autocrm:handlers/actions/mail/account/resync-imap"
+				"handler": "viacrm:handlers/actions/mail/account/resync-imap"
 			},
 			"checkVisibilityFunction": "isVisible"
 		}

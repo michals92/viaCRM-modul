@@ -53,5 +53,5 @@
 	"notCreatable": false,
 	"converterClassName": "Espo\\Modules\\Viacrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\Email",
 	"attributeExtractorClassName": "Espo\\Modules\\Viacrm\\Core\\Field\\EmailAddress\\EmailAddressGroupAttributeExtractor",
-	"paramsNameFieldView": "autocrm:views/admin/field-manager/fields/email/name"
+	"paramsNameFieldView": "viacrm:views/admin/field-manager/fields/email/name"
 }

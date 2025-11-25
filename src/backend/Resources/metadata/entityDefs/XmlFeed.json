@@ -30,7 +30,7 @@
 		},
 		"filters": {
 			"type": "jsonObject",
-			"view": "autocrm:views/xml-feed/fields/filters"
+			"view": "viacrm:views/xml-feed/fields/filters"
 		},
 		"filtersProcessed": {
 			"type": "jsonArray"

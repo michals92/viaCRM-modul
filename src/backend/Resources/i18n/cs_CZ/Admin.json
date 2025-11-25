@@ -8,7 +8,7 @@
 		"attachments": "Všechny přílohy souborů uložené v systému.",
 		"authLog": "Historie přihlášení.",
 		"authenticationProviders": "Další poskytovatelé autentizace pro portály.",
-		"autocrm": "Konfigurační parametry pro viaCRM rozšíření.",
+		"viacrm": "Konfigurační parametry pro ViaCRM rozšíření.",
 		"dashboardTemplates": "Umožňuje přidávat dashboardy uživatelům.",
 		"emailAddresses": "Všechny e-mailové adresy uložené v systému.",
 		"emailFilters": "E-mailové zprávy, které odpovídají zadanému filtru, nebudou importovány.",

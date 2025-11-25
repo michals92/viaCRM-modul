@@ -14,11 +14,11 @@ class ExtenderScript implements AdditionalBuilder {
 
 		// Prepend extender.js to scriptList (production mode)
 		$data->app->client->scriptList ??= [];
-		$data->app->client->scriptList = ['client/modules/autocrm/src/js/extender.js', ...$data->app->client->scriptList];
+		$data->app->client->scriptList = ['client/modules/viacrm/src/js/extender.js', ...$data->app->client->scriptList];
 
 		// Prepend extender.js to developerModeScriptList (developer mode)
 		$data->app->client->developerModeScriptList ??= [];
-		$data->app->client->developerModeScriptList = ['client/modules/autocrm/src/js/extender.js', ...$data->app->client->developerModeScriptList];
+		$data->app->client->developerModeScriptList = ['client/modules/viacrm/src/js/extender.js', ...$data->app->client->developerModeScriptList];
 	}
 
 }

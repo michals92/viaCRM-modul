@@ -33,7 +33,7 @@
 			"default": false
 		}
 	],
-	"view": "autocrm:views/fields/week-int",
+	"view": "viacrm:views/fields/week-int",
 	"notCreatable": false,
 	"hookClassName": "Espo\\Modules\\Viacrm\\Tools\\FieldManager\\Hooks\\WeekIntType"
 }

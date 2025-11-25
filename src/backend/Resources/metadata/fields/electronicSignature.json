@@ -21,7 +21,7 @@
 			"default": true
 		}
 	],
-	"view": "autocrm:views/fields/electronic-signature",
+	"view": "viacrm:views/fields/electronic-signature",
 	"notCreatable": false,
 	"filter": false,
 	"converterClassName": "Espo\\Modules\\Viacrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\ElectronicSignature",

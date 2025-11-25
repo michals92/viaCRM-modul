@@ -19,14 +19,14 @@ class CalendarEntityManagerParams extends AdditionalBuilderWithConfig {
 			$data->app->entityManagerParams->$scope->calendarDateStart = (object)[
 				'fieldDefs' => (object)[
 					'type' => 'enum',
-					'view' => 'autocrm:views/admin/entity-manager/fields/date-field',
+					'view' => 'viacrm:views/admin/entity-manager/fields/date-field',
 				],
 				'location' => 'clientDefs'
 			];
 			$data->app->entityManagerParams->$scope->calendarDateEnd = (object)[
 				'fieldDefs' => (object)[
 					'type' => 'enum',
-					'view' => 'autocrm:views/admin/entity-manager/fields/date-field',
+					'view' => 'viacrm:views/admin/entity-manager/fields/date-field',
 				],
 				'location' => 'clientDefs'
 			];

@@ -2,7 +2,7 @@
 	"fields": {
 		"calendarColors": {
 			"type": "jsonObject",
-			"view": "autocrm:views/fields/calendar-colors"
+			"view": "viacrm:views/fields/calendar-colors"
 		},
 		"calendarMaxEventStack": {
 			"type": "int",
@@ -19,7 +19,7 @@
 		"defaultEmailFolder": {
 			"type": "enum",
 			"default": "inbox",
-			"view": "autocrm:views/preferences/fields/default-email-folder"
+			"view": "viacrm:views/preferences/fields/default-email-folder"
 		},
 		"disableIntroGuide": {
 			"type": "bool",
@@ -28,7 +28,7 @@
 		"emailDoNotMarkAsReadList": {
 			"type": "multiEnum",
 			"default": ["rightClickPreview"],
-			"view": "autocrm:views/preferences/fields/read-type-list",
+			"view": "viacrm:views/preferences/fields/read-type-list",
 			"tooltip": true
 		},
 		"enableApertiaNewsInNavbar": {

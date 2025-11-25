@@ -29,7 +29,7 @@ class Callback implements Action {
 	public function process(Request $request): Response {
 		$validationToken = $request->getQueryParam('validationToken');
 
-		/** Create through injectable factory so that we do not get the overridden class that syncs the status back to autocrm */
+		/** Create through injectable factory so that we do not get the overridden class that syncs the status back to viacrm */
 		$inboxService = $this->injectableFactory->create(InboxService::class);
 
 		$body = $request->getParsedBody();

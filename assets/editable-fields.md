@@ -2,7 +2,7 @@
 
 ## Popis
 
-AutoCRM modul umožňuje nastavit pole jako upravitelná přímo v list view layoutu. Uživatel může editovat hodnotu kliknutím na pole bez nutnosti otevírat detail záznamu.
+ViaCRM modul umožňuje nastavit pole jako upravitelná přímo v list view layoutu. Uživatel může editovat hodnotu kliknutím na pole bez nutnosti otevírat detail záznamu.
 
 ## Nastavení v Layout Manageru
 

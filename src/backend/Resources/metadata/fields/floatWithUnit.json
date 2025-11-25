@@ -13,7 +13,7 @@
 			"layoutListDisabled": true,
 			"layoutMassUpdateDisabled": true,
 			"type": "enum",
-			"view": "autocrm:views/fields/float-with-unit"
+			"view": "viacrm:views/fields/float-with-unit"
 		}
 	},
 	"actualFields": ["", "unit"],
@@ -26,7 +26,7 @@
 		{
 			"name": "default",
 			"type": "floatWithUnit",
-			"view": "autocrm:views/admin/field-manager/fields/float-with-unit/default"
+			"view": "viacrm:views/admin/field-manager/fields/float-with-unit/default"
 		},
 		{
 			"name": "min",
@@ -73,7 +73,7 @@
 		{
 			"name": "units",
 			"type": "array",
-			"view": "autocrm:views/admin/field-manager/fields/units"
+			"view": "viacrm:views/admin/field-manager/fields/units"
 		},
 		{
 			"name": "compact",
@@ -82,6 +82,6 @@
 			"tooltip": true
 		}
 	],
-	"view": "autocrm:views/fields/float-with-unit",
+	"view": "viacrm:views/fields/float-with-unit",
 	"converterClassName": "Espo\\Modules\\Viacrm\\Core\\Utils\\Database\\Orm\\FieldConverters\\FloatWithUnit"
 }

@@ -4,7 +4,7 @@
 		{
 			"name": "defaultSelectFilters",
 			"type": "jsonObject",
-			"view": "autocrm:views/admin/field-manager/fields/link-multiple/advanced-filters",
+			"view": "viacrm:views/admin/field-manager/fields/link-multiple/advanced-filters",
 			"tooltip": true
 		},
 		{

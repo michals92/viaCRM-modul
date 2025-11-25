@@ -33,8 +33,8 @@ class EnforceHookDocCommentRule implements Rule
 
     // Adapted from EntityManagerReturnType
     private array $entityNamespaceList = [
-        // AutoCRM modules
-        '\\Espo\\Modules\\Autocrm\\Entities',
+        // ViaCRM modules
+        '\\Espo\\Modules\\Viacrm\\Entities',
         '\\Espo\\Modules\\WarehouseManagement\\Entities',
         '\\Espo\\Modules\\ProductBase\\Entities',
         '\\Espo\\Modules\\Accounting\\Entities',

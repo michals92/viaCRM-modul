@@ -1,5 +1,5 @@
 {
-	"view": "autocrm:views/dashlets/shared-wysiwyg",
+	"view": "viacrm:views/dashlets/shared-wysiwyg",
 	"options": {
 		"defaults": {
 			"autorefreshInterval": 0.5

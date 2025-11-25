@@ -5,7 +5,7 @@
 			"name": "isPublic",
 			"type": "bool",
 			"default": true,
-			"view": "autocrm:views/admin/field-manager/fields/image/is-public"
+			"view": "viacrm:views/admin/field-manager/fields/image/is-public"
 		},
 		{
 			"name": "publicDownloadToken",

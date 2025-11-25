@@ -1,5 +1,5 @@
 {
-	"aclPortal": "autocrm:acl-portal/user",
+	"aclPortal": "viacrm:acl-portal/user",
 	"color": "#a1ecfa",
 	"menu": {
 		"detail": {
@@ -10,7 +10,7 @@
 					"name": "viewAs",
 					"action": "viewAs",
 					"data": {
-						"handler": "autocrm:handlers/actions/view-as"
+						"handler": "viacrm:handlers/actions/view-as"
 					},
 					"initFunction": "init"
 				}

@@ -9,7 +9,7 @@
 		{
 			"name": "sequences",
 			"type": "text",
-			"view": "autocrm:views/admin/field-manager/fields/autoincrement-sequences"
+			"view": "viacrm:views/admin/field-manager/fields/autoincrement-sequences"
 		},
 		{
 			"name": "copyToClipboard",
@@ -17,7 +17,7 @@
 			"default": false
 		}
 	],
-	"view": "autocrm:views/fields/multi-increment",
+	"view": "viacrm:views/fields/multi-increment",
 	"filter": true,
 	"textFilter": true,
 	"readOnly": true,

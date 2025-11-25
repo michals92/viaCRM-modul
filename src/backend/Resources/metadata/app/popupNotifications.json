@@ -6,7 +6,7 @@
 		"portalDisabled": true,
 		"providerClassName": "Espo\\Modules\\Viacrm\\Tools\\Alert\\NotificationProvider",
 		"useWebSocket": true,
-		"view": "autocrm:views/alert/popup-notification",
+		"view": "viacrm:views/alert/popup-notification",
 		"webSocketCategory": "alert"
 	}
 }

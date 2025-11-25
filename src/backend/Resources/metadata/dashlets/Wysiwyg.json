@@ -1,11 +1,11 @@
 {
-	"view": "autocrm:views/dashlets/wysiwyg",
+	"view": "viacrm:views/dashlets/wysiwyg",
 	"options": {
 		"defaults": {},
 		"fields": {
 			"body": {
 				"type": "wysiwyg",
-				"view": "autocrm:views/dashlets/fields/wysiwyg/body"
+				"view": "viacrm:views/dashlets/fields/wysiwyg/body"
 			},
 			"title": {
 				"type": "varchar"

@@ -6,7 +6,7 @@
 		},
 		"iconClass": {
 			"type": "varchar",
-			"view": "autocrm:views/fields/icon-class",
+			"view": "viacrm:views/fields/icon-class",
 			"maxLength": 50,
 			"tooltip": true
 		}

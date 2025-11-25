@@ -1,7 +1,7 @@
 {
-	"controller": "autocrm:controllers/portal-user",
+	"controller": "viacrm:controllers/portal-user",
 	"color": "#c71818",
 	"recordViews": {
-		"detail": "autocrm:views/portal-user/record/detail"
+		"detail": "viacrm:views/portal-user/record/detail"
 	}
 }

@@ -6,10 +6,10 @@
 				"__APPEND__",
 				{
 					"label": "Upload From Zip",
-					"style": "primary",
+					"style": "default",
 					"name": "uploadFromZip",
 					"action": "uploadFromZip",
-					"handler": "autocrm:handlers/actions/document/upload-from-zip",
+					"handler": "viacrm:handlers/actions/document/upload-from-zip",
 					"initFunction": "init"
 				}
 			]

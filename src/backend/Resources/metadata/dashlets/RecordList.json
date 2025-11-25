@@ -1,5 +1,5 @@
 {
-	"view": "autocrm:views/dashlets/record-list",
+	"view": "viacrm:views/dashlets/record-list",
 	"options": {
 		"defaults": {
 			"displayRecords": 10,
@@ -8,7 +8,7 @@
 		"fields": {
 			"advancedFilters": {
 				"type": "jsonObject",
-				"view": "autocrm:views/dashlets/fields/records/advanced-filters"
+				"view": "viacrm:views/dashlets/fields/records/advanced-filters"
 			},
 			"autorefreshInterval": {
 				"type": "enumFloat",
@@ -29,7 +29,7 @@
 			},
 			"layout": {
 				"type": "enum",
-				"view": "autocrm:views/dashlets/fields/record-list/layout"
+				"view": "viacrm:views/dashlets/fields/record-list/layout"
 			},
 			"primaryFilter": {
 				"type": "enum",

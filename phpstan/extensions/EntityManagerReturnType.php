@@ -40,8 +40,8 @@ class EntityManagerReturnType implements DynamicMethodReturnTypeExtension
     ];
 
     private $entityNamespaceList = [
-        // AutoCRM modules
-        '\\Espo\\Modules\\Autocrm\\Entities',
+        // ViaCRM modules
+        '\\Espo\\Modules\\Viacrm\\Entities',
         '\\Espo\\Modules\\WarehouseManagement\\Entities',
         '\\Espo\\Modules\\ProductBase\\Entities',
         '\\Espo\\Modules\\Accounting\\Entities',

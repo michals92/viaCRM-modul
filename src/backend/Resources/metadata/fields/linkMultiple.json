@@ -6,7 +6,7 @@
 			"name": "recordListEnabled",
 			"type": "bool",
 			"required": true,
-			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-enabled",
+			"view": "viacrm:views/admin/field-manager/fields/link-multiple/record-list-enabled",
 			"tooltip": true
 		},
 		{
@@ -19,12 +19,12 @@
 			"name": "recordListLayout",
 			"type": "enum",
 			"required": true,
-			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-layout"
+			"view": "viacrm:views/admin/field-manager/fields/link-multiple/record-list-layout"
 		},
 		{
 			"name": "recordListLayoutSuperCompact",
 			"type": "enum",
-			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-layout"
+			"view": "viacrm:views/admin/field-manager/fields/link-multiple/record-list-layout"
 		},
 		{
 			"name": "recordListButtonsPosition",
@@ -70,13 +70,13 @@
 		{
 			"name": "recordListAllowedSuperCompact",
 			"type": "array",
-			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-layout-super-compact"
+			"view": "viacrm:views/admin/field-manager/fields/link-multiple/record-list-layout-super-compact"
 		},
 		{
 			"name": "recordListOrderByField",
 			"type": "varchar",
 			"required": false,
-			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-order-by-field",
+			"view": "viacrm:views/admin/field-manager/fields/link-multiple/record-list-order-by-field",
 			"maxLength": 60,
 			"tooltip": true
 		},
@@ -84,7 +84,7 @@
 			"name": "recordListKeepRemoved",
 			"type": "bool",
 			"required": true,
-			"view": "autocrm:views/admin/field-manager/fields/link-multiple/record-list-keep-removed",
+			"view": "viacrm:views/admin/field-manager/fields/link-multiple/record-list-keep-removed",
 			"tooltip": true
 		},
 		{
@@ -105,7 +105,7 @@
 		{
 			"name": "defaultSelectFilters",
 			"type": "jsonObject",
-			"view": "autocrm:views/admin/field-manager/fields/link-multiple/advanced-filters",
+			"view": "viacrm:views/admin/field-manager/fields/link-multiple/advanced-filters",
 			"tooltip": true
 		},
 		{
@@ -158,7 +158,7 @@
 			"default": false
 		}
 	],
-	"view": "autocrm:views/fields/link-multiple",
+	"view": "viacrm:views/fields/link-multiple",
 	"duplicatorClassName": "Espo\\Modules\\Viacrm\\Classes\\FieldDuplicators\\LinkMultiple",
 	"converterClassName": "Espo\\Modules\\Viacrm\\Classes\\Utils\\Database\\Orm\\FieldConverters\\LinkMultiple",
 	"validatorClassName": "Espo\\Modules\\Viacrm\\Classes\\FieldValidators\\LinkMultipleType",

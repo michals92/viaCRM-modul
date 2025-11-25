@@ -1,11 +1,11 @@
 {
 	"controller": "controllers/record",
 	"views": {
-		"list": "autocrm:views/record-recurrence/list"
+		"list": "viacrm:views/record-recurrence/list"
 	},
 	"recordViews": {
-		"editSmall": "autocrm:views/record-recurrence/record/edit-small"
+		"editSmall": "viacrm:views/record-recurrence/record/edit-small"
 	},
-	"dynamicHandler": "autocrm:handlers/dynamic/record-recurrence",
+	"dynamicHandler": "viacrm:handlers/dynamic/record-recurrence",
 	"createDisabled": true
 }

@@ -29,7 +29,7 @@
 			"type": "varchar",
 			"required": true,
 			"default": "fas fa-bell",
-			"view": "autocrm:views/fields/icon-class"
+			"view": "viacrm:views/fields/icon-class"
 		},
 		"message": {
 			"type": "wysiwyg",

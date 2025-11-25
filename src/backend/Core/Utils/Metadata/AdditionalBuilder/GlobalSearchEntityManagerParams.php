@@ -19,7 +19,7 @@ class GlobalSearchEntityManagerParams extends AdditionalBuilderWithConfig {
 			$data->app->entityManagerParams->$scope->globalSearchDisplayFields = (object)[
 				'fieldDefs' => (object)[
 					'type' => 'multiEnum',
-					'view' => 'autocrm:views/admin/entity-manager/fields/global-search-display-fields',
+					'view' => 'viacrm:views/admin/entity-manager/fields/global-search-display-fields',
 				],
 				'location' => 'clientDefs'
 			];

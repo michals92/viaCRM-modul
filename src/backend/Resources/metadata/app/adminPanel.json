@@ -3,17 +3,17 @@
 		"itemList": [
 			"__APPEND__",
 			{
-				"description": "autocrm",
+				"description": "viacrm",
 				"iconClass": "fas fa-cog",
 				"label": "viaCRM Settings",
-				"recordView": "autocrm:views/settings/record/autocrm",
+				"recordView": "viacrm:views/settings/record/viacrm",
 				"url": "#Admin/ViacrmSettings"
 			},
 			{
 				"description": "units",
 				"iconClass": "fas fa-cog",
 				"label": "Unit Settings",
-				"recordView": "autocrm:views/settings/record/units",
+				"recordView": "viacrm:views/settings/record/units",
 				"url": "#Admin/UnitSettings"
 			},
 			{

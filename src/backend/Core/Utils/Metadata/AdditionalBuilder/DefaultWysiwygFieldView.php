@@ -15,7 +15,7 @@ class DefaultWysiwygFieldView implements AdditionalBuilder {
 
 		foreach ($params as $i => $param) {
 			if ($param->name === 'default') {
-				$params[$i]->view = 'autocrm:views/admin/field-manager/fields/wysiwyg/default';
+				$params[$i]->view = 'viacrm:views/admin/field-manager/fields/wysiwyg/default';
 			}
 		}
 	}

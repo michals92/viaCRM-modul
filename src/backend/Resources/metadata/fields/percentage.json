@@ -39,7 +39,7 @@
 			"type": "bool"
 		}
 	],
-	"view": "autocrm:views/fields/percentage",
+	"view": "viacrm:views/fields/percentage",
 	"notCreatable": false,
 	"filter": true,
 	"textFilter": true,

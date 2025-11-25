@@ -7,13 +7,13 @@
 			"name": "currentValue",
 			"type": "varchar",
 			"required": true,
-			"view": "autocrm:views/admin/field-manager/fields/own-field/own-field"
+			"view": "viacrm:views/admin/field-manager/fields/own-field/own-field"
 		},
 		{
 			"name": "targetValue",
 			"type": "varchar",
 			"required": true,
-			"view": "autocrm:views/admin/field-manager/fields/own-field/own-field"
+			"view": "viacrm:views/admin/field-manager/fields/own-field/own-field"
 		},
 		{
 			"name": "height",
@@ -78,7 +78,7 @@
 			"default": "#000000"
 		}
 	],
-	"view": "autocrm:views/fields/speedometer-graph",
+	"view": "viacrm:views/fields/speedometer-graph",
 	"notCreatable": false,
 	"filter": true,
 	"readOnly": true,

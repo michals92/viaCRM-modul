@@ -1,6 +1,6 @@
 {
 	"descriptions": {
-		"autocrm": "All config parameters for viaCRM related extensions.",
+		"viacrm": "All config parameters for ViaCRM related extensions.",
 		"propertyMatching": "Matching configuration.",
 		"realEstateLocations": "Manage Locations for Real Estate.",
 		"realEstateSettings": "Parameters for Real Estate extension.",

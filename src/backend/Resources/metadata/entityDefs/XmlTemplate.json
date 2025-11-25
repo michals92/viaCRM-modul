@@ -2,7 +2,7 @@
 	"fields": {
 		"body": {
 			"type": "wysiwyg",
-			"view": "autocrm:views/xml-template/fields/body"
+			"view": "viacrm:views/xml-template/fields/body"
 		},
 		"createdAt": {
 			"type": "datetime",
@@ -15,7 +15,7 @@
 		"entityType": {
 			"type": "enum",
 			"required": true,
-			"view": "autocrm:views/xml-template/fields/entity-type",
+			"view": "viacrm:views/xml-template/fields/entity-type",
 			"translation": "Global.scopeNames"
 		},
 		"modifiedAt": {

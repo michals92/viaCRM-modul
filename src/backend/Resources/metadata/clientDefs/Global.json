@@ -2,55 +2,55 @@
 	"viewSetupHandlers": {
 		"detail": [
 			"__APPEND__",
-			"autocrm:handlers/view-setup/edit-buttons",
-			"autocrm:handlers/view-setup/conversion-buttons",
-			"autocrm:handlers/view-setup/send-email",
-			"autocrm:handlers/view-setup/field-highlighting",
+			"viacrm:handlers/view-setup/edit-buttons",
+			"viacrm:handlers/view-setup/conversion-buttons",
+			"viacrm:handlers/view-setup/send-email",
+			"viacrm:handlers/view-setup/field-highlighting",
 			"viacrm:handlers/view-setup/admin-buttons"
 		],
 		"list": [
 			"__APPEND__",
-			"autocrm:handlers/view-setup/edit-buttons",
-			"autocrm:handlers/view-setup/field-highlighting",
+			"viacrm:handlers/view-setup/edit-buttons",
+			"viacrm:handlers/view-setup/field-highlighting",
 			"viacrm:handlers/view-setup/admin-buttons"
 		],
 		"edit": ["viacrm:handlers/view-setup/admin-buttons"],
 		"record/detail": [
 			"__APPEND__",
-			"autocrm:handlers/view-setup/print-xml",
-			"autocrm:handlers/view-setup/field-highlighting"
+			"viacrm:handlers/view-setup/print-xml",
+			"viacrm:handlers/view-setup/field-highlighting"
 		],
-		"record/edit": ["__APPEND__", "autocrm:handlers/view-setup/field-highlighting"],
+		"record/edit": ["__APPEND__", "viacrm:handlers/view-setup/field-highlighting"],
 		"record/grid": [
 			"__APPEND__",
-			"autocrm:handlers/view-setup/record/grid/quick-view-context-menu",
-			"autocrm:handlers/view-setup/field-highlighting"
+			"viacrm:handlers/view-setup/record/grid/quick-view-context-menu",
+			"viacrm:handlers/view-setup/field-highlighting"
 		],
 		"record/list": [
 			"__APPEND__",
-			"autocrm:handlers/view-setup/record/list/quick-view-context-menu",
-			"autocrm:handlers/view-setup/field-highlighting"
+			"viacrm:handlers/view-setup/record/list/quick-view-context-menu",
+			"viacrm:handlers/view-setup/field-highlighting"
 		]
 	},
 	"massActionList": ["__APPEND__", "bulkEmail", "bulkEmailBcc", "exportXml", "zipAttachments"],
 	"checkAllResultMassActionList": ["__APPEND__", "bulkEmail", "bulkEmailBcc"],
 	"massActionDefs": {
 		"bulkEmail": {
-			"handler": "autocrm:handlers/mass-actions/bulk-email",
+			"handler": "viacrm:handlers/mass-actions/bulk-email",
 			"initFunction": "checkVisibility"
 		},
 		"bulkEmailBcc": {
-			"handler": "autocrm:handlers/mass-actions/bulk-email",
+			"handler": "viacrm:handlers/mass-actions/bulk-email",
 			"initFunction": "checkVisibility"
 		},
 		"exportXml": {
-			"handler": "autocrm:handlers/mass-actions/export-xml",
+			"handler": "viacrm:handlers/mass-actions/export-xml",
 			"initFunction": "checkVisibility",
 			"acl": "read",
 			"aclScope": "XmlTemplate"
 		},
 		"zipAttachments": {
-			"handler": "autocrm:handlers/mass-actions/zip-attachments",
+			"handler": "viacrm:handlers/mass-actions/zip-attachments",
 			"initFunction": "checkVisibility"
 		}
 	},
@@ -60,7 +60,7 @@
 			"label": "Create Template",
 			"name": "createTemplate",
 			"data": {
-				"handler": "autocrm:handlers/detail-actions/create-template"
+				"handler": "viacrm:handlers/detail-actions/create-template"
 			},
 			"initFunction": "init"
 		},
@@ -69,7 +69,7 @@
 			"name": "scheduleRecurrence",
 			"acl": "edit",
 			"data": {
-				"handler": "autocrm:handlers/detail-actions/schedule-recurrence"
+				"handler": "viacrm:handlers/detail-actions/schedule-recurrence"
 			},
 			"checkVisibilityFunction": "checkVisibility"
 		}
@@ -86,7 +86,7 @@
 					"action": "createFromTemplate",
 					"acl": "create",
 					"data": {
-						"handler": "autocrm:handlers/actions/create-from-template"
+						"handler": "viacrm:handlers/actions/create-from-template"
 					},
 					"initFunction": "init",
 					"checkVisibilityFunction": "checkVisibility",
@@ -100,7 +100,7 @@
 					"action": "listScheduledRecurrences",
 					"acl": "read",
 					"data": {
-						"handler": "autocrm:handlers/actions/list-scheduled-recurrences"
+						"handler": "viacrm:handlers/actions/list-scheduled-recurrences"
 					},
 					"initFunction": "init",
 					"auxClick": true
@@ -115,7 +115,7 @@
 			"name": "scheduleRecurrence",
 			"acl": "edit",
 			"data": {
-				"handler": "autocrm:handlers/detail-actions/schedule-recurrence"
+				"handler": "viacrm:handlers/detail-actions/schedule-recurrence"
 			},
 			"checkVisibilityFunction": "checkVisibility"
 		}

@@ -10,7 +10,7 @@
 					"label": "View Feed",
 					"name": "viewFeed",
 					"action": "viewFeed",
-					"handler": "autocrm:handlers/actions/xml-feed/view-feed"
+					"handler": "viacrm:handlers/actions/xml-feed/view-feed"
 				}
 			]
 		}

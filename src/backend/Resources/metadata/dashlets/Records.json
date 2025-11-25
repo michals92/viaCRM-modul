@@ -1,10 +1,10 @@
 {
-	"view": "autocrm:views/dashlets/records",
+	"view": "viacrm:views/dashlets/records",
 	"options": {
 		"fields": {
 			"advancedFilters": {
 				"type": "jsonObject",
-				"view": "autocrm:views/dashlets/fields/records/advanced-filters"
+				"view": "viacrm:views/dashlets/fields/records/advanced-filters"
 			}
 		},
 		"layout": [

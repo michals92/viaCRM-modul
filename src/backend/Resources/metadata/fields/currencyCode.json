@@ -29,7 +29,7 @@
 			"type": "bool"
 		}
 	],
-	"view": "autocrm:views/fields/currency-code",
+	"view": "viacrm:views/fields/currency-code",
 	"filter": true,
 	"personalData": false
 }

@@ -6,11 +6,11 @@
 		},
 		"iconClass": {
 			"type": "varchar",
-			"view": "autocrm:views/fields/icon-class",
+			"view": "viacrm:views/fields/icon-class",
 			"maxLength": 50
 		},
 		"name": {
-			"view": "autocrm:views/team/fields/name"
+			"view": "viacrm:views/team/fields/name"
 		},
 		"users": {
 			"type": "linkMultiple",

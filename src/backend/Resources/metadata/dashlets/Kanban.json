@@ -1,5 +1,5 @@
 {
-	"view": "autocrm:views/dashlets/kanban",
+	"view": "viacrm:views/dashlets/kanban",
 	"options": {
 		"defaults": {
 			"displayRecords": 10,
@@ -8,7 +8,7 @@
 		"fields": {
 			"advancedFilters": {
 				"type": "jsonObject",
-				"view": "autocrm:views/dashlets/fields/records/advanced-filters"
+				"view": "viacrm:views/dashlets/fields/records/advanced-filters"
 			},
 			"autorefreshInterval": {
 				"type": "enumFloat",
@@ -24,7 +24,7 @@
 			},
 			"entityType": {
 				"type": "enum",
-				"view": "autocrm:views/dashlets/fields/kanban/entity-type",
+				"view": "viacrm:views/dashlets/fields/kanban/entity-type",
 				"translation": "Global.scopeNames"
 			},
 			"primaryFilter": {

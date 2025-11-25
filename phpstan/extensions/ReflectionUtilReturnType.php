@@ -10,7 +10,7 @@ use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\ObjectType;
-use Espo\Modules\Autocrm\Classes\Utils\ReflectionUtil;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 
 /**
  * Rule that validates calls to static methods in ReflectionUtil
