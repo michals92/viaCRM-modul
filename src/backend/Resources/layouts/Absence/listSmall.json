@@ -1,18 +1,18 @@
 [
-    {
-        "name": "name",
-        "link": true
-    },
-    {
-        "name": "type"
-    },
-    {
-        "name": "status"
-    },
-    {
-        "name": "startDate"
-    },
-    {
-        "name": "endDate"
-    }
+	{
+		"name": "name",
+		"link": true
+	},
+	{
+		"name": "type"
+	},
+	{
+		"name": "status"
+	},
+	{
+		"name": "startDate"
+	},
+	{
+		"name": "endDate"
+	}
 ]

@@ -1,0 +1,141 @@
+[
+	{
+		"label": "Overview",
+		"rows": [
+			[
+				{
+					"name": "name",
+					"fullWidth": true
+				}
+			],
+			[
+				{
+					"name": "category"
+				},
+				{
+					"name": "type"
+				},
+				{
+					"name": "measureUnit"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		],
+		"tabLabel": "Overview"
+	},
+	{
+		"label": "Price",
+		"rows": [
+			[
+				{
+					"name": "costPrice"
+				},
+				false
+			],
+			[
+				false,
+				{
+					"name": "salesPrice"
+				}
+			],
+			[
+				{
+					"name": "pricingType"
+				},
+				{
+					"name": "priceMarkup"
+				}
+			],
+			[
+				false,
+				{
+					"name": "priceMargin"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		],
+		"tabLabel": "Price"
+	},
+	{
+		"label": "Details",
+		"rows": [
+			[
+				{
+					"name": "eans"
+				}
+			],
+			[
+				{
+					"name": "url"
+				}
+			],
+			[
+				{
+					"name": "description",
+					"fullWidth": true
+				}
+			],
+			[
+				{
+					"name": "attachments",
+					"fullWidth": true
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		],
+		"tabLabel": "Details"
+	}
+]

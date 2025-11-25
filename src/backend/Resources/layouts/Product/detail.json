@@ -1,0 +1,279 @@
+[
+	{
+		"customLabel": "Přehled",
+		"label": "Overview",
+		"tabLabel": "Přehled",
+		"tabBreak": true,
+		"noteText": null,
+		"style": "default",
+		"rows": [
+			[
+				{
+					"name": "photo",
+					"fullWidth": true
+				}
+			],
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "referenceIdentifier"
+				}
+			],
+			[
+				{
+					"name": "category"
+				},
+				{
+					"name": "type"
+				}
+			],
+			[
+				{
+					"name": "weight"
+				},
+				{
+					"name": "coefficient"
+				}
+			],
+			[
+				{
+					"name": "primarySupplier"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			}
+		],
+		"dynamicLogicStyled": null,
+		"dynamicLogicVisible": null,
+		"hidden": false
+	},
+	{
+		"customLabel": "Ceny",
+		"label": "Price",
+		"tabLabel": "Ceny",
+		"tabBreak": true,
+		"noteText": null,
+		"style": "default",
+		"rows": [
+			[
+				{
+					"name": "taxClass"
+				},
+				{
+					"name": "taxRate"
+				}
+			],
+			[
+				{
+					"name": "costPrice"
+				},
+				{
+					"name": "costPriceWithTax"
+				}
+			],
+			[
+				{
+					"css": "col-md-6",
+					"name": "pricingType"
+				},
+				{
+					"css": "col-md-3",
+					"name": "salesPrice"
+				},
+				{
+					"css": "col-md-3",
+					"name": "salesPriceWithTax"
+				}
+			],
+			[
+				{
+					"name": "priceMarkup"
+				}
+			],
+			[
+				false,
+				{
+					"name": "priceMargin"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			}
+		],
+		"dynamicLogicStyled": null,
+		"dynamicLogicVisible": null,
+		"hidden": false
+	},
+	{
+		"customLabel": "Detaily",
+		"label": "Details",
+		"tabLabel": "Detaily",
+		"tabBreak": true,
+		"noteText": null,
+		"style": "default",
+		"rows": [
+			[
+				{
+					"name": "eans"
+				},
+				{
+					"name": "measureUnit"
+				}
+			],
+			[
+				{
+					"name": "url"
+				},
+				false
+			],
+			[
+				{
+					"fullWidth": true,
+					"name": "description"
+				}
+			],
+			[
+				{
+					"fullWidth": true,
+					"name": "attachments"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			}
+		],
+		"dynamicLogicStyled": null,
+		"dynamicLogicVisible": null,
+		"hidden": false
+	},
+	{
+		"label": "Purchase",
+		"tabLabel": "$label:Purchase",
+		"tabBreak": true,
+		"style": "default",
+		"rows": [
+			[
+				{
+					"name": "productSupplierItems"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerColor": "",
+				"dividerWidth": null
+			}
+		],
+		"dynamicLogicVisible": null,
+		"hidden": false
+	},
+	{
+		"customLabel": "Sériová čísla",
+		"label": "Serial Numbers",
+		"tabLabel": "Sériová čísla",
+		"tabBreak": true,
+		"style": "default",
+		"rows": [
+			[
+				{
+					"name": "serialTotalCount"
+				},
+				{
+					"name": "serialActiveCount"
+				}
+			],
+			[
+				{
+					"name": "productSerials",
+					"noLabel": true,
+					"fullWidth": true
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			},
+			{
+				"divider": false,
+				"dividerColor": null,
+				"dividerWidth": null
+			}
+		],
+		"dynamicLogicVisible": null,
+		"hidden": false
+	}
+]

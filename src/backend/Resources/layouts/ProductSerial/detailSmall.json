@@ -1,0 +1,59 @@
+[
+	{
+		"label": "",
+		"rows": [
+			[
+				{
+					"name": "serialNumber"
+				},
+				{
+					"name": "status"
+				}
+			],
+			[
+				{
+					"name": "product"
+				},
+				{
+					"name": "name"
+				}
+			],
+			[
+				{
+					"name": "manufacturedDate"
+				},
+				{
+					"name": "warrantyUntil"
+				}
+			],
+			[
+				{
+					"name": "currentOwner"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		],
+		"tabLabel": ""
+	}
+]

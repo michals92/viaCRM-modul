@@ -1,0 +1,35 @@
+[
+	{
+		"name": "serialNumber"
+	},
+	{
+		"name": "product"
+	},
+	{
+		"name": "status"
+	},
+	{
+		"name": "batchNumber"
+	},
+	{
+		"name": "manufacturedDate"
+	},
+	{
+		"name": "warrantyUntil"
+	},
+	{
+		"name": "currentOwner"
+	},
+	{
+		"name": "assignedUser"
+	},
+	{
+		"name": "teams"
+	},
+	{
+		"name": "createdAt"
+	},
+	{
+		"name": "modifiedAt"
+	}
+]

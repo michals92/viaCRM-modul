@@ -1,0 +1,21 @@
+[
+	{
+		"name": "catalogNumber"
+	},
+	{
+		"name": "typeNumber"
+	},
+	{
+		"name": "name",
+		"link": true
+	},
+	{
+		"name": "account"
+	},
+	{
+		"name": "costPrice"
+	},
+	{
+		"name": "deliveryTime"
+	}
+]

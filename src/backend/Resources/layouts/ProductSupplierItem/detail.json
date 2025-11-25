@@ -1,0 +1,58 @@
+[
+	{
+		"label": "Overview",
+		"style": "default",
+		"rows": [
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "account"
+				}
+			],
+			[
+				{
+					"name": "product"
+				},
+				{
+					"name": "costPrice"
+				}
+			],
+			[
+				{
+					"name": "deliveryTime"
+				},
+				false
+			],
+			[
+				{
+					"name": "description",
+					"fullWidth": true
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		]
+	}
+]

@@ -1,122 +1,122 @@
 [
-    {
-        "rows": [
-            [
-                {
-                    "name": "name"
-                },
-                {
-                    "name": "status"
-                }
-            ],
-            [
-                {
-                    "name": "firstName"
-                },
-                {
-                    "name": "lastName"
-                }
-            ],
-            [
-                {
-                    "name": "email"
-                },
-                {
-                    "name": "phone"
-                }
-            ],
-            [
-                {
-                    "name": "position"
-                },
-                {
-                    "name": "department"
-                }
-            ],
-            [
-                {
-                    "name": "employeeId"
-                },
-                {
-                    "name": "hireDate"
-                }
-            ],
-            [
-                {
-                    "name": "salary"
-                },
-                {
-                    "name": "manager"
-                }
-            ],
-            [
-                {
-                    "name": "assignedUser"
-                },
-                false
-            ],
-            [
-                {
-                    "name": "workingHoursType"
-                },
-                {
-                    "name": "workingHours"
-                }
-            ],
-            [
-                {
-                    "name": "fte"
-                },
-                {
-                    "name": "workingDays"
-                }
-            ],
-            [
-                {
-                    "name": "partTimeStartDate"
-                },
-                {
-                    "name": "partTimeEndDate"
-                }
-            ],
-            [
-                {
-                    "name": "workingSchedule",
-                    "fullWidth": true
-                }
-            ],
-            [
-                {
-                    "name": "vacationHoursTotal"
-                },
-                {
-                    "name": "vacationHoursRemaining"
-                }
-            ],
-            [
-                {
-                    "name": "vacationHoursUsed"
-                },
-                false
-            ],
-            [
-                {
-                    "name": "sickLeaveHours"
-                },
-                false
-            ],
-            [
-                {
-                    "name": "documents",
-                    "fullWidth": true
-                }
-            ],
-            [
-                {
-                    "name": "notes",
-                    "fullWidth": true
-                }
-            ]
-        ]
-    }
+	{
+		"rows": [
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "status"
+				}
+			],
+			[
+				{
+					"name": "firstName"
+				},
+				{
+					"name": "lastName"
+				}
+			],
+			[
+				{
+					"name": "email"
+				},
+				{
+					"name": "phone"
+				}
+			],
+			[
+				{
+					"name": "position"
+				},
+				{
+					"name": "department"
+				}
+			],
+			[
+				{
+					"name": "employeeId"
+				},
+				{
+					"name": "hireDate"
+				}
+			],
+			[
+				{
+					"name": "salary"
+				},
+				{
+					"name": "manager"
+				}
+			],
+			[
+				{
+					"name": "assignedUser"
+				},
+				false
+			],
+			[
+				{
+					"name": "workingHoursType"
+				},
+				{
+					"name": "workingHours"
+				}
+			],
+			[
+				{
+					"name": "fte"
+				},
+				{
+					"name": "workingDays"
+				}
+			],
+			[
+				{
+					"name": "partTimeStartDate"
+				},
+				{
+					"name": "partTimeEndDate"
+				}
+			],
+			[
+				{
+					"name": "workingSchedule",
+					"fullWidth": true
+				}
+			],
+			[
+				{
+					"name": "vacationHoursTotal"
+				},
+				{
+					"name": "vacationHoursRemaining"
+				}
+			],
+			[
+				{
+					"name": "vacationHoursUsed"
+				},
+				false
+			],
+			[
+				{
+					"name": "sickLeaveHours"
+				},
+				false
+			],
+			[
+				{
+					"name": "documents",
+					"fullWidth": true
+				}
+			],
+			[
+				{
+					"name": "notes",
+					"fullWidth": true
+				}
+			]
+		]
+	}
 ]

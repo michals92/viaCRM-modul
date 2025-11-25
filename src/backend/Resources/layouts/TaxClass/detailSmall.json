@@ -1,0 +1,30 @@
+[
+	{
+		"label": "",
+		"rows": [
+			[
+				{
+					"name": "name"
+				}
+			],
+			[
+				{
+					"name": "rate"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		],
+		"tabLabel": ""
+	}
+]

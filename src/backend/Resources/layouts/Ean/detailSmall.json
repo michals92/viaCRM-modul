@@ -1,0 +1,24 @@
+[
+	{
+		"label": "",
+		"style": "default",
+		"rows": [
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "ean"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		],
+		"tabLabel": ""
+	}
+]

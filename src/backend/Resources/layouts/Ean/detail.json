@@ -1,0 +1,36 @@
+[
+	{
+		"label": "Overview",
+		"style": "default",
+		"rows": [
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "ean"
+				}
+			],
+			[
+				{
+					"name": "parent"
+				},
+				{
+					"name": "description"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		]
+	}
+]

@@ -1,0 +1,111 @@
+[
+	{
+		"label": "Overview",
+		"rows": [
+			[
+				{
+					"name": "serialNumber"
+				},
+				{
+					"name": "status"
+				}
+			],
+			[
+				{
+					"name": "product"
+				},
+				{
+					"name": "batchNumber"
+				}
+			],
+			[
+				{
+					"name": "manufacturedDate"
+				},
+				{
+					"name": "warrantyUntil"
+				}
+			],
+			[
+				{
+					"name": "currentOwner"
+				},
+				{
+					"name": "supplier"
+				}
+			],
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "manufactureYear"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		]
+	},
+	{
+		"label": "Notes & History",
+		"rows": [
+			[
+				{
+					"name": "documentation"
+				}
+			],
+			[
+				{
+					"name": "description"
+				}
+			],
+			[
+				{
+					"name": "notes"
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			},
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		]
+	}
+]

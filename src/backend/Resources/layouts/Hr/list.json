@@ -1,27 +1,27 @@
 [
-    {
-        "name": "name",
-        "link": true
-    },
-    {
-        "name": "position"
-    },
-    {
-        "name": "department"
-    },
-    {
-        "name": "workingHoursType"
-    },
-    {
-        "name": "workingHours"
-    },
-    {
-        "name": "status"
-    },
-    {
-        "name": "assignedUser"
-    },
-    {
-        "name": "createdAt"
-    }
+	{
+		"name": "name",
+		"link": true
+	},
+	{
+		"name": "position"
+	},
+	{
+		"name": "department"
+	},
+	{
+		"name": "workingHoursType"
+	},
+	{
+		"name": "workingHours"
+	},
+	{
+		"name": "status"
+	},
+	{
+		"name": "assignedUser"
+	},
+	{
+		"name": "createdAt"
+	}
 ]

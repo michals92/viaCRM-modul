@@ -1,0 +1,19 @@
+[
+	{
+		"name": "serialNumber",
+		"link": true,
+		"sort": true
+	},
+	{
+		"name": "status",
+		"sort": true
+	},
+	{
+		"name": "manufacturedDate",
+		"sort": true
+	},
+	{
+		"name": "warrantyUntil",
+		"sort": true
+	}
+]

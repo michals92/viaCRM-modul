@@ -1,0 +1,38 @@
+[
+	{
+		"name": "serialNumber",
+		"sort": true,
+		"link": true,
+		"width": 20
+	},
+	{
+		"name": "product",
+		"sort": true,
+		"width": 20
+	},
+	{
+		"name": "status",
+		"sort": true,
+		"width": 12
+	},
+	{
+		"name": "batchNumber",
+		"sort": true,
+		"width": 12
+	},
+	{
+		"name": "manufacturedDate",
+		"sort": true,
+		"width": 12
+	},
+	{
+		"name": "warrantyUntil",
+		"sort": true,
+		"width": 12
+	},
+	{
+		"name": "currentOwner",
+		"sort": true,
+		"width": 12
+	}
+]

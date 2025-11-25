@@ -1,0 +1,28 @@
+[
+	{
+		"name": "photo",
+		"width": 10
+	},
+	{
+		"name": "referenceIdentifier"
+	},
+	{
+		"name": "name",
+		"link": true
+	},
+	{
+		"name": "description"
+	},
+	{
+		"name": "category"
+	},
+	{
+		"name": "type"
+	},
+	{
+		"name": "costPrice"
+	},
+	{
+		"name": "salesPrice"
+	}
+]

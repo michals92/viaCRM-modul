@@ -1,0 +1,26 @@
+[
+	{
+		"label": "",
+		"rows": [
+			[
+				{
+					"name": "name"
+				},
+				{
+					"name": "rate"
+				},
+				{
+					"name": "description",
+					"fullWidth": true
+				}
+			]
+		],
+		"rowData": [
+			{
+				"divider": false,
+				"dividerWidth": null,
+				"dividerColor": ""
+			}
+		]
+	}
+]

@@ -1,64 +1,53 @@
 [
-    {
-        "rows": [
-            [
-                {
-                    "name": "name",
-                    "span": 12
-                }
-            ],
-            [
-                {
-                    "name": "type",
-                    "span": 6
-                },
-                {
-                    "name": "priority",
-                    "span": 6
-                }
-            ],
-            [
-                {
-                    "name": "startDate",
-                    "span": 4
-                },
-                {
-                    "name": "endDate",
-                    "span": 4
-                },
-                {
-                    "name": "hours",
-                    "span": 4
-                }
-            ],
-            [
-                {
-                    "name": "hrRecord",
-                    "span": 6
-                },
-                {
-                    "name": "substitute",
-                    "span": 6
-                }
-            ],
-            [
-                {
-                    "name": "reason",
-                    "span": 12
-                }
-            ],
-            [
-                {
-                    "name": "substituteInstructions",
-                    "span": 12
-                }
-            ],
-            [
-                {
-                    "name": "attachments",
-                    "span": 12
-                }
-            ]
-        ]
-    }
+	{
+		"rows": [
+			[
+				{
+					"name": "name"
+				}
+			],
+			[
+				{
+					"name": "type"
+				},
+				{
+					"name": "priority"
+				}
+			],
+			[
+				{
+					"name": "startDate"
+				},
+				{
+					"name": "endDate"
+				},
+				{
+					"name": "hours"
+				}
+			],
+			[
+				{
+					"name": "hrRecord"
+				},
+				{
+					"name": "substitute"
+				}
+			],
+			[
+				{
+					"name": "reason"
+				}
+			],
+			[
+				{
+					"name": "substituteInstructions"
+				}
+			],
+			[
+				{
+					"name": "attachments"
+				}
+			]
+		]
+	}
 ]

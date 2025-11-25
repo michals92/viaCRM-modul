@@ -1,94 +1,77 @@
 [
-    {
-        "rows": [
-            [
-                {
-                    "name": "name",
-                    "span": 12
-                }
-            ],
-            [
-                {
-                    "name": "type",
-                    "span": 6
-                },
-                {
-                    "name": "status",
-                    "span": 6
-                }
-            ],
-            [
-                {
-                    "name": "startDate",
-                    "span": 6
-                },
-                {
-                    "name": "endDate",
-                    "span": 6
-                }
-            ],
-            [
-                {
-                    "name": "days",
-                    "span": 4
-                },
-                {
-                    "name": "hours",
-                    "span": 4
-                },
-                {
-                    "name": "priority",
-                    "span": 4
-                }
-            ],
-            [
-                {
-                    "name": "requestedBy",
-                    "span": 6
-                },
-                {
-                    "name": "hrRecord",
-                    "span": 6
-                }
-            ],
-            [
-                {
-                    "name": "reason",
-                    "span": 12
-                }
-            ],
-            [
-                {
-                    "name": "substitute",
-                    "span": 6
-                },
-                {
-                    "name": "substituteInstructions",
-                    "span": 6
-                }
-            ],
-            [
-                {
-                    "name": "approvedBy",
-                    "span": 6
-                },
-                {
-                    "name": "approvedAt",
-                    "span": 6
-                }
-            ],
-            [
-                {
-                    "name": "approverComment",
-                    "span": 12
-                }
-            ],
-            [
-                {
-                    "name": "attachments",
-                    "span": 12
-                }
-            ]
-        ]
-    }
+	{
+		"rows": [
+			[
+				{
+					"name": "name"
+				}
+			],
+			[
+				{
+					"name": "type"
+				},
+				{
+					"name": "status"
+				}
+			],
+			[
+				{
+					"name": "startDate"
+				},
+				{
+					"name": "endDate"
+				}
+			],
+			[
+				{
+					"name": "days"
+				},
+				{
+					"name": "hours"
+				},
+				{
+					"name": "priority"
+				}
+			],
+			[
+				{
+					"name": "requestedBy"
+				},
+				{
+					"name": "hrRecord"
+				}
+			],
+			[
+				{
+					"name": "reason"
+				}
+			],
+			[
+				{
+					"name": "substitute"
+				},
+				{
+					"name": "substituteInstructions"
+				}
+			],
+			[
+				{
+					"name": "approvedBy"
+				},
+				{
+					"name": "approvedAt"
+				}
+			],
+			[
+				{
+					"name": "approverComment"
+				}
+			],
+			[
+				{
+					"name": "attachments"
+				}
+			]
+		]
+	}
 ]
