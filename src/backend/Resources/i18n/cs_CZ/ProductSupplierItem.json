@@ -1,0 +1,32 @@
+{
+	"fields": {
+		"account": "Dodavatel",
+		"assignedUser": "Přiřazený uživatel",
+		"catalogNumber": "Katalogové číslo",
+		"costPrice": "Nákupní cena",
+		"costPriceConverted": "Nákupní cena (Převedeno)",
+		"costPriceCurrency": "Nákupní cena (Měna)",
+		"createdAt": "Vytvořeno",
+		"createdBy": "Vytvořil",
+		"deliveryTime": "Dodací lhůta (dny)",
+		"description": "Popis",
+		"modifiedAt": "Upraveno",
+		"modifiedBy": "Upravil",
+		"name": "Název",
+		"product": "Produkt",
+		"purchaseOrderItem": "Položky nákupní objednávky",
+		"teams": "Týmy",
+		"typeNumber": "Typové číslo"
+	},
+	"labels": {
+		"Create ProductSupplierItem": "Vytvořit položku dodavatele produktu"
+	},
+	"links": {
+		"account": "Dodavatel",
+		"assignedUser": "Přiřazený uživatel",
+		"createdBy": "Vytvořil",
+		"modifiedBy": "Upravil",
+		"product": "Produkt",
+		"teams": "Týmy"
+	}
+}

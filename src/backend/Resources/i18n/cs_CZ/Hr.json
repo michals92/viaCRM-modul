@@ -1,70 +1,70 @@
 {
-    "fields": {
-        "name": "Celé jméno",
-        "firstName": "Křestní jméno",
-        "lastName": "Příjmení",
-        "email": "E-mail",
-        "phone": "Telefon",
-        "position": "Pozice",
-        "department": "Oddělení",
-        "employeeId": "Osobní číslo",
-        "hireDate": "Datum nástupu",
-        "salary": "Mzda",
-        "manager": "Nadřízený",
-        "notes": "Poznámky",
-        "status": "Stav",
-        "assignedUser": "Přiřazený uživatel",
-        "createdAt": "Vytvořeno",
-        "modifiedAt": "Upraveno",
-        "createdBy": "Vytvořil",
-        "modifiedBy": "Upravil",
-        "workingHours": "Pracovní hodiny",
-        "workingHoursType": "Typ úvazku",
-        "workingSchedule": "Pracovní rozvrh",
-        "fte": "FTE",
-        "workingDays": "Pracovní dny",
-        "partTimeStartDate": "Začátek částečného úvazku",
-        "partTimeEndDate": "Konec částečného úvazku",
-        "documents": "Dokumenty",
-        "vacationHoursTotal": "Celkový počet hodin dovolené",
-        "vacationHoursUsed": "Vyčerpané hodiny dovolené",
-        "vacationHoursRemaining": "Zbývající hodiny dovolené",
-        "sickLeaveHours": "Hodiny nemocenské"
-    },
-    "options": {
-        "department": {
-            "HR": "Lidské zdroje",
-            "IT": "Informační technologie", 
-            "Finance": "Finance",
-            "Sales": "Prodej",
-            "Marketing": "Marketing",
-            "Operations": "Provoz",
-            "Management": "Vedení"
-        },
-        "status": {
-            "Active": "Aktivní",
-            "Inactive": "Neaktivní",
-            "Terminated": "Ukončen",
-            "On Leave": "Na dovolené"
-        },
-        "workingHoursType": {
-            "Full-time": "Plný úvazek",
-            "Part-time": "Částečný úvazek"
-        },
-        "workingDays": {
-            "Monday": "Pondělí",
-            "Tuesday": "Úterý",
-            "Wednesday": "Středa",
-            "Thursday": "Čtvrtek",
-            "Friday": "Pátek",
-            "Saturday": "Sobota",
-            "Sunday": "Neděle"
-        }
-    },
-    "labels": {
-        "Create Hr": "Nový zaměstnanec",
-        "Create from User": "Vytvořit z uživatele",
-        "List View": "Seznam",
-        "Detail View": "Detail"
-    }
+	"fields": {
+		"name": "Celé jméno",
+		"firstName": "Křestní jméno",
+		"lastName": "Příjmení",
+		"email": "E-mail",
+		"phone": "Telefon",
+		"position": "Pozice",
+		"department": "Oddělení",
+		"employeeId": "Osobní číslo",
+		"hireDate": "Datum nástupu",
+		"salary": "Mzda",
+		"manager": "Nadřízený",
+		"notes": "Poznámky",
+		"status": "Stav",
+		"assignedUser": "Přiřazený uživatel",
+		"createdAt": "Vytvořeno",
+		"modifiedAt": "Upraveno",
+		"createdBy": "Vytvořil",
+		"modifiedBy": "Upravil",
+		"workingHours": "Pracovní hodiny",
+		"workingHoursType": "Typ úvazku",
+		"workingSchedule": "Pracovní rozvrh",
+		"fte": "FTE",
+		"workingDays": "Pracovní dny",
+		"partTimeStartDate": "Začátek částečného úvazku",
+		"partTimeEndDate": "Konec částečného úvazku",
+		"documents": "Dokumenty",
+		"vacationHoursTotal": "Celkový počet hodin dovolené",
+		"vacationHoursUsed": "Vyčerpané hodiny dovolené",
+		"vacationHoursRemaining": "Zbývající hodiny dovolené",
+		"sickLeaveHours": "Hodiny nemocenské"
+	},
+	"options": {
+		"department": {
+			"HR": "Lidské zdroje",
+			"IT": "Informační technologie",
+			"Finance": "Finance",
+			"Sales": "Prodej",
+			"Marketing": "Marketing",
+			"Operations": "Provoz",
+			"Management": "Vedení"
+		},
+		"status": {
+			"Active": "Aktivní",
+			"Inactive": "Neaktivní",
+			"Terminated": "Ukončen",
+			"On Leave": "Na dovolené"
+		},
+		"workingHoursType": {
+			"Full-time": "Plný úvazek",
+			"Part-time": "Částečný úvazek"
+		},
+		"workingDays": {
+			"Monday": "Pondělí",
+			"Tuesday": "Úterý",
+			"Wednesday": "Středa",
+			"Thursday": "Čtvrtek",
+			"Friday": "Pátek",
+			"Saturday": "Sobota",
+			"Sunday": "Neděle"
+		}
+	},
+	"labels": {
+		"Create Hr": "Nový zaměstnanec",
+		"Create from User": "Vytvořit z uživatele",
+		"List View": "Seznam",
+		"Detail View": "Detail"
+	}
 }

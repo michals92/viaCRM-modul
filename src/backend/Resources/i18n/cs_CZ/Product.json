@@ -1,0 +1,76 @@
+{
+	"fields": {
+		"attachments": "Přílohy",
+		"catalogNumber": "Katalogové číslo",
+		"category": "Kategorie",
+		"coefficient": "Koeficient",
+		"costPrice": "Nákladová cena",
+		"costPriceConverted": "Nákladová cena (převedená)",
+		"costPriceCurrency": "Měna nákladové ceny",
+		"costPriceWithTax": "Nákladová cena s DPH",
+		"costPriceWithTaxConverted": "Nákladová cena s DPH (převedená)",
+		"costPriceWithTaxCurrency": "Měna nákladové ceny s DPH",
+		"description": "Popis",
+		"eans": "EANy",
+		"primarySupplier": "Primární dodavatel",
+		"measureUnit": "Měrná jednotka",
+		"name": "Název",
+		"photo": "Fotka",
+		"ordered": "Objednáno",
+		"priceMargin": "Marže",
+		"priceMarkup": "Přirážka",
+		"pricingType": "Typ cenění",
+		"productSerials": "Sériová čísla",
+		"productSupplierItems": "Dodavatelé",
+		"referenceIdentifier": "Unikátní číslo produktu",
+		"salesPrice": "Prodejní cena",
+		"salesPriceConverted": "Prodejní cena (převedená)",
+		"salesPriceCurrency": "Měna prodejní ceny",
+		"salesPriceWithTax": "Prodejní cena s DPH",
+		"salesPriceWithTaxConverted": "Prodejní cena s DPH (převedená)",
+		"salesPriceWithTaxCurrency": "Měna prodejní ceny s DPH",
+		"serialActiveCount": "Aktivních sériových čísel",
+		"serialTotalCount": "Celkový počet sériových čísel",
+		"taxClass": "Daňová třída",
+		"taxRate": "Daňová sazba",
+		"type": "Typ",
+		"url": "URL",
+		"weight": "Hmotnost"
+	},
+	"labels": {
+		"Categories": "Kategorie",
+		"Create Product": "Vytvořit produkt",
+		"Price": "Ceny",
+		"Purchase": "Nákup"
+	},
+	"links": {
+		"attachments": "Přílohy",
+		"category": "Kategorie",
+		"eans": "EANy",
+		"productSerials": "Sériová čísla",
+		"taxClass": "Daňová třída"
+	},
+	"options": {
+		"pricingType": {
+			"Fixed Sales Price": "Pevná prodejní cena",
+			"Markup over Cost": "Obchodní přirážka",
+			"No Price": "Bez ceny",
+			"Profit Margin": "Marže",
+			"Purchasing Coefficient": "Nákupní koeficient",
+			"Sales Coefficient": "Prodejní koeficient",
+			"Same as Cost Price": "Stejná jako cena nákladů"
+		},
+		"type": {
+			"Warehouse Item": "Skladová položka",
+			"Service": "Služba"
+		}
+	},
+	"productSupplierStrategies": {
+		"LowestPrice": "Nejlevnější",
+		"LowestPriceWithDeadline": "Nejlevnější s ohledem na deadline"
+	},
+	"tooltips": {
+		"serialActiveCount": "Počet aktivních sériových čísel (neprodané, neoprávněné)",
+		"serialTotalCount": "Celkový počet všech vytvořených sériových čísel pro tento produkt"
+	}
+}

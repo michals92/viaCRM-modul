@@ -1,0 +1,54 @@
+{
+	"fields": {
+		"batchNumber": "Batch Number",
+		"currentOwner": "Current Owner",
+		"description": "Description",
+		"documentation": "Documentation",
+		"manufacturedDate": "Manufactured Date",
+		"notes": "Notes",
+		"product": "Product",
+		"serialNumber": "Serial Number",
+		"status": "Status",
+		"warrantyUntil": "Warranty Until"
+	},
+	"filters": {
+		"active": "Active",
+		"all": "All",
+		"defective": "Defective",
+		"sold": "Sold",
+		"warrantyExpiring": "Warranty Expiring"
+	},
+	"labels": {
+		"Change Status": "Change Status",
+		"Create Batch": "Create Serial Number Batch",
+		"Create ProductSerial": "Create Serial Number",
+		"Notes & History": "Notes & History",
+		"Overview": "Overview",
+		"Production Info": "Production Information",
+		"System Info": "System Information",
+		"Transfer Ownership": "Transfer Ownership",
+		"Warranty Report": "Warranty Report"
+	},
+	"links": {
+		"currentOwner": "Current Owner",
+		"product": "Product"
+	},
+	"options": {
+		"status": {
+			"Active": "Active",
+			"Defective": "Defective",
+			"Returned": "Returned",
+			"Scrapped": "Scrapped",
+			"Sold": "Sold"
+		}
+	},
+	"tooltips": {
+		"batchNumber": "Production batch this item belongs to",
+		"currentOwner": "Current owner of this specific item",
+		"documentation": "Related documents and files for this serial number",
+		"manufacturedDate": "Date when this item was manufactured",
+		"serialNumber": "Unique identifier for this specific product item",
+		"status": "Current status of the serial number",
+		"warrantyUntil": "Date until which warranty is valid"
+	}
+}

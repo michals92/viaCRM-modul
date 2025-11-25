@@ -1,7 +1,5 @@
 {
-	"autoloadFileList": [
-		"application/Espo/Modules/Viacrm/vendor/psy/psysh/src/functions.php"
-	],
+	"autoloadFileList": ["application/Espo/Modules/Viacrm/vendor/psy/psysh/src/functions.php"],
 	"classmap": {
 		"Espo\\Core\\Hooks\\Base": "application/Espo/Modules/Viacrm/Core/Hooks/Base.php",
 		"Espo\\Core\\ORM\\Repositories\\RDB": "application/Espo/Modules/Viacrm/Core/ORM/Repositories/RDB.php",

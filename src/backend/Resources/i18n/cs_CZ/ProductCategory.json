@@ -1,0 +1,10 @@
+{
+	"labels": {
+		"Create ProductCategory": "Vytvořit kategorii produktu",
+		"Manage Categories": "Spravovat kategorie",
+		"Products": "Produkty"
+	},
+	"links": {
+		"products": "Produkty"
+	}
+}

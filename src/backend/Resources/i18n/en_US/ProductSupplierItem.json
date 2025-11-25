@@ -1,0 +1,27 @@
+{
+	"fields": {
+		"account": "Supplier",
+		"assignedUser": "Assigned User",
+		"costPrice": "Cost Price",
+		"createdAt": "Created At",
+		"createdBy": "Created By",
+		"deliveryTime": "Delivery Time (days)",
+		"description": "Description",
+		"modifiedAt": "Modified At",
+		"modifiedBy": "Modified By",
+		"name": "Name",
+		"product": "Product",
+		"teams": "Teams"
+	},
+	"labels": {
+		"Create ProductSupplierItem": "Create Product Supplier Item"
+	},
+	"links": {
+		"account": "Supplier",
+		"assignedUser": "Assigned User",
+		"createdBy": "Created By",
+		"modifiedBy": "Modified By",
+		"product": "Product",
+		"teams": "Teams"
+	}
+}

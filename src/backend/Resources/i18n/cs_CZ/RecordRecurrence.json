@@ -4,15 +4,7 @@
 		"Weekdays": "Pracovní dny",
 		"Weekends": "Víkendy",
 		"at": "v",
-		"days": [
-			"Neděli",
-			"Pondělí",
-			"Úterý",
-			"Středu",
-			"Čtvrtek",
-			"Pátek",
-			"Sobotu"
-		],
+		"days": ["Neděli", "Pondělí", "Úterý", "Středu", "Čtvrtek", "Pátek", "Sobotu"],
 		"minutes past the hour": "minut(u/y)",
 		"months": [
 			"Ledna",
@@ -31,14 +23,7 @@
 		"nd": ".",
 		"of": "",
 		"on the": "na",
-		"periods": [
-			"minutu",
-			"hodinu",
-			"den",
-			"týden",
-			"měsíc",
-			"rok"
-		],
+		"periods": ["minutu", "hodinu", "den", "týden", "měsíc", "rok"],
 		"rd": ".",
 		"st": ".",
 		"th": ".",

@@ -1,5 +1,5 @@
 [
-    {
+	{
 		"route": "Holiday/layout/:name",
 		"method": "get",
 		"params": {
@@ -176,5 +176,10 @@
 		"route": "StatusHistory",
 		"method": "get",
 		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\StatusHistory\\GetList"
+	},
+	{
+		"route": "Product/:productId/selectAttributes",
+		"method": "get",
+		"actionClassName": "Espo\\Modules\\Viacrm\\Api\\Product\\GetSelectAttributes"
 	}
 ]

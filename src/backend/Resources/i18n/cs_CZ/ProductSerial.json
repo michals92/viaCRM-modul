@@ -1,0 +1,66 @@
+{
+	"fields": {
+		"assignedUser": "Přiřazený uživatel",
+		"batchNumber": "Číslo šarže",
+		"currentOwner": "Současný vlastník",
+		"description": "Popis",
+		"documentation": "Dokumentace",
+		"manufacturedDate": "Datum výroby",
+		"manufactureYear": "Rok výroby",
+		"name": "Název",
+		"notes": "Poznámky",
+		"product": "Produkt",
+		"serialNumber": "Sériové číslo",
+		"status": "Stav",
+		"supplier": "Dodavatel",
+		"warrantyUntil": "Garance do"
+	},
+	"filters": {
+		"active": "Aktivní",
+		"all": "Vše",
+		"defective": "Vadné",
+		"sold": "Prodané",
+		"warrantyExpiring": "Končící garance"
+	},
+	"labels": {
+		"Change Status": "Změnit stav",
+		"Create Batch": "Vytvořit šarži sériových čísel",
+		"Create ProductSerial": "Vytvořit sériové číslo",
+		"Notes & History": "Poznámky a historie",
+		"Overview": "Přehled",
+		"ProductSerial": "Sériové číslo",
+		"Production Info": "Informace o výrobě",
+		"System Info": "Systémové informace",
+		"Transfer Ownership": "Převést vlastnictví",
+		"Warranty Report": "Zpráva o garancích"
+	},
+	"links": {
+		"assignedUser": "Přiřazený uživatel",
+		"createdBy": "Vytvořil",
+		"currentOwner": "Současný vlastník",
+		"documentation": "Dokumentace",
+		"modifiedBy": "Upravil",
+		"product": "Produkt",
+		"supplier": "Dodavatel",
+		"teams": "Týmy"
+	},
+	"options": {
+		"status": {
+			"Active": "Aktivní",
+			"Defective": "Vadné",
+			"Returned": "Vráceno",
+			"Scrapped": "Vyřazeno",
+			"Sold": "Prodáno"
+		}
+	},
+	"tooltips": {
+		"batchNumber": "Výrobní šarže ke které tento kus patří",
+		"currentOwner": "Současný vlastník tohoto konkrétního kusu",
+		"documentation": "Související dokumenty a soubory pro toto sériové číslo",
+		"manufacturedDate": "Datum kdy byl tento kus vyroben",
+		"manufactureYear": "Rok výroby tohoto kusu",
+		"serialNumber": "Unikátní identifikátor pro tento konkrétní kus produktu",
+		"status": "Současný stav sériového čísla",
+		"warrantyUntil": "Datum do kdy platí garance"
+	}
+}

@@ -4,15 +4,7 @@
 		"Weekdays": "Weekdays",
 		"Weekends": "Weekends",
 		"at": "at",
-		"days": [
-			"Sunday",
-			"Monday",
-			"Tuesday",
-			"Wednesday",
-			"Thursday",
-			"Friday",
-			"Saturday"
-		],
+		"days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 		"minutes past the hour": "minutes past the hour",
 		"months": [
 			"January",
@@ -31,14 +23,7 @@
 		"nd": "nd",
 		"of": "of",
 		"on the": "on the",
-		"periods": [
-			"minute",
-			"hour",
-			"day",
-			"week",
-			"month",
-			"year"
-		],
+		"periods": ["minute", "hour", "day", "week", "month", "year"],
 		"rd": "rd",
 		"st": "st",
 		"th": "th",

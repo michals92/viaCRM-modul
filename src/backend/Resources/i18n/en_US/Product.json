@@ -1,0 +1,60 @@
+{
+	"fields": {
+		"attachments": "Attachments",
+		"category": "Category",
+		"costPrice": "Cost Price",
+		"costPriceConverted": "Cost Price (Converted)",
+		"costPriceCurrency": "Cost Price Currency",
+		"costPriceWithTax": "Cost Price with Tax",
+		"costPriceWithTaxConverted": "Cost Price with Tax (Converted)",
+		"costPriceWithTaxCurrency": "Cost Price with Tax Currency",
+		"description": "Description",
+		"ean": "EAN",
+		"measureUnit": "Measure Unit",
+		"name": "Name",
+		"priceMargin": "Price Margin",
+		"priceMarkup": "Price Markup",
+		"pricingType": "Pricing Type",
+		"productSerials": "Serial Numbers",
+		"salesPrice": "Sales Price",
+		"salesPriceConverted": "Sales Price (Converted)",
+		"salesPriceCurrency": "Sales Price Currency",
+		"salesPriceWithTax": "Sales Price with Tax",
+		"salesPriceWithTaxConverted": "Sales Price with Tax (Converted)",
+		"salesPriceWithTaxCurrency": "Sales Price with Tax Currency",
+		"serialActiveCount": "Active Serial Numbers",
+		"serialTotalCount": "Total Serial Numbers",
+		"taxClass": "Tax Class",
+		"taxRate": "Tax Rate",
+		"type": "Type",
+		"url": "URL"
+	},
+	"labels": {
+		"Categories": "Categories",
+		"Create Product": "Create Product",
+		"Price": "Price"
+	},
+	"links": {
+		"attachments": "Attachments",
+		"category": "Category",
+		"productSerials": "Serial Numbers",
+		"taxClass": "Tax Class"
+	},
+	"options": {
+		"pricingType": {
+			"Fixed Sales Price": "Fixed Sales Price",
+			"Markup over Cost": "Markup over Cost",
+			"No Price": "No Price",
+			"Profit Margin": "Profit Margin",
+			"Same as Cost Price": "Same as Cost Price"
+		},
+		"type": {
+			"Warehouse Item": "Warehouse Item",
+			"Service": "Service"
+		}
+	},
+	"tooltips": {
+		"serialActiveCount": "Number of active (available) serial numbers for this product",
+		"serialTotalCount": "Total number of serial numbers created for this product"
+	}
+}

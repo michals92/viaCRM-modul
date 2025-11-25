@@ -1,0 +1,13 @@
+{
+	"fields": {
+		"eans": "EANs",
+		"parent": "Parent"
+	},
+	"labels": {
+		"Create Ean": "Create EAN"
+	},
+	"links": {
+		"eans": "EANs",
+		"parent": "Parent"
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"fields": {
+		"ean": "EAN",
+		"parent": "Nadřazený"
+	},
+	"labels": {
+		"Create Ean": "Vytvořit EAN"
+	},
+	"links": {
+		"parent": "Nadřazený"
+	}
+}
