@@ -6,10 +6,10 @@ import { DateTime, Interval } from 'luxon';
 import { exit } from 'process';
 import { join } from 'path/posix';
 import { deleteAsync as del } from 'del';
-import { helpers, util } from '@apertia/extension-build-tools';
-import { tsContext } from '@apertia/extension-build-tools/dist/contexts/ts.js';
-import { cssContext } from '@apertia/extension-build-tools/dist/contexts/css.js';
-import { lessContexts } from '@apertia/extension-build-tools/dist/contexts/less.js';
+import { helpers, util } from '@viacrm/module-build-tools';
+import { tsContext } from '@viacrm/module-build-tools/dist/contexts/ts.js';
+import { cssContext } from '@viacrm/module-build-tools/dist/contexts/css.js';
+import { lessContexts } from '@viacrm/module-build-tools/dist/contexts/less.js';
 import { metadata } from '../util/metadata.js';
 import buildEasyEmail from './easy-email.js';
 

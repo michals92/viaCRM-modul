@@ -3,14 +3,14 @@ import SFTP from 'ssh2-sftp-client';
 import { packageDirectory as pkgDir } from 'pkg-dir';
 import { dirname, join, relative } from 'path/posix';
 import anymatch from 'anymatch';
-import { helpers } from '@apertia/extension-build-tools';
+import { helpers } from '@viacrm/module-build-tools';
 import { log } from '@clack/prompts';
 import cpy from 'cpy';
 import { env } from '../util/env.js';
 import { metadata } from '../util/metadata.js';
-import { tsContext } from '@apertia/extension-build-tools/dist/contexts/ts.js';
-import { lessContexts } from '@apertia/extension-build-tools/dist/contexts/less.js';
-import { cssContext } from '@apertia/extension-build-tools/dist/contexts/css.js';
+import { tsContext } from '@viacrm/module-build-tools/dist/contexts/ts.js';
+import { lessContexts } from '@viacrm/module-build-tools/dist/contexts/less.js';
+import { cssContext } from '@viacrm/module-build-tools/dist/contexts/css.js';
 import { platform } from 'os';
 import slash from 'slash';
 

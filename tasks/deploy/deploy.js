@@ -1,7 +1,7 @@
 import build from '../build/build.js';
 import { DateTime, Interval } from 'luxon';
 import { intro, outro } from '@clack/prompts';
-import { util, helpers } from '@apertia/extension-build-tools';
+import { util, helpers } from '@viacrm/module-build-tools';
 import { env } from '../util/env.js';
 
 /**
