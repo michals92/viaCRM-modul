@@ -137,9 +137,6 @@ const build = async () => {
 	log.step('Copying scripts directory');
 	await cpy(join(SRC_SCRIPTS, '**', '*'), join(OUTPUT_PATH, 'scripts'));
 
-	log.step('Copying autocomplete scripts');
-	await cpy('autocomplete', OUTPUT_PATH);
-
 	log.step('Creating manifest.json');
 	const manifest = createManifest(metadata);
 	await fs.writeJson(join(OUTPUT_PATH, 'manifest.json'), manifest, {
