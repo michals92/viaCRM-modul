@@ -7,7 +7,7 @@ define(['action-handler'], (Dep: typeof ActionHandler<ListView>) => class extend
 
 		this.view.createView(
 			'selectTemplateDialog',
-			'autocrm:views/modals/select-record-template',
+			'viacrm:views/modals/select-record-template',
 			{
 				entityType: this.view.scope,
 			},

@@ -1,5 +1,5 @@
-extend(['autocrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
-	template = 'autocrm:record/panels/relationship';
+extend(['viacrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
+	template = 'viacrm:record/panels/relationship';
 
 	searchView = 'views/record/search';
 

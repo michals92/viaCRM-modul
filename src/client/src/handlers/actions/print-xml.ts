@@ -6,7 +6,7 @@ define(['action-handler'], (Dep: typeof ActionHandler<DetailView>) => class exte
 	actionPrintXml() {
 		this.view.createView(
 			'xmlTemplate',
-			'autocrm:views/modals/select-xml-template',
+			'viacrm:views/modals/select-xml-template',
 			{
 				entityType: this.view.model.name,
 			},

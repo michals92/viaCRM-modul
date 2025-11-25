@@ -1,12 +1,12 @@
 extend(
 	[
-		'autocrm:helpers/aggregation',
-		'autocrm:helpers/partitioned-view',
-		'autocrm:models/aggregation',
+		'viacrm:helpers/aggregation',
+		'viacrm:helpers/partitioned-view',
+		'viacrm:models/aggregation',
 		'ui/autocomplete',
 	],
 	(Dep, AggregationHelper, PartitionedViewHelper, AggregationModel, Autocomplete) => class extends Dep {
-		template = 'autocrm:record/search';
+		template = 'viacrm:record/search';
 
 		selectedCustomFilter = null;
 		filterHeaderLabel = null;
@@ -265,7 +265,7 @@ extend(
 
 			this.createView(
 				'function-' + name,
-				'autocrm:views/search/aggregation-function',
+				'viacrm:views/search/aggregation-function',
 				{
 					el: this.options.el + ' .function[data-name="' + name + '"]',
 					name: name,

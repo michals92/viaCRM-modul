@@ -1,4 +1,4 @@
-extend(['autocrm:helpers/quick-view-context-menu', 'helpers/record-modal'], (Dep, QuickViewHelper, RecordModal) => class extends Dep {
+extend(['viacrm:helpers/quick-view-context-menu', 'helpers/record-modal'], (Dep, QuickViewHelper, RecordModal) => class extends Dep {
 	groupScope = 'User';
 
 	setup() {

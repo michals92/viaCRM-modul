@@ -1,6 +1,6 @@
-extend(['autocrm:helpers/logo'], (Dep, LogoHelper) => class extends Dep {
+extend(['viacrm:helpers/logo'], (Dep, LogoHelper) => class extends Dep {
 	emailCheckInterval = 60;
-	historyTabsView = 'autocrm:views/site/history-tabs';
+	historyTabsView = 'viacrm:views/site/history-tabs';
 
 	setup() {
 		super.setup();
@@ -251,7 +251,7 @@ extend(['autocrm:helpers/logo'], (Dep, LogoHelper) => class extends Dep {
 
 		if (!shepherdPath) {
 			if (showNotImplemented) {
-				shepherdPath = 'autocrm:shepherd/not-implemented';
+				shepherdPath = 'viacrm:shepherd/not-implemented';
 			} else {
 				return;
 			}
@@ -264,7 +264,7 @@ extend(['autocrm:helpers/logo'], (Dep, LogoHelper) => class extends Dep {
 
 	async startShepherdIntro(force = false) {
 		const shepherdPath =
-				this.getMetadata().get(['clientDefs', 'app', 'shepherd', 'intro']) || 'autocrm:shepherd/intro';
+				this.getMetadata().get(['clientDefs', 'app', 'shepherd', 'intro']) || 'viacrm:shepherd/intro';
 
 		const Shepherd = await Espo.loader.requirePromise(shepherdPath);
 
@@ -311,7 +311,7 @@ extend(['autocrm:helpers/logo'], (Dep, LogoHelper) => class extends Dep {
 	}
 
 	actionEditNavbar() {
-		this.createView('modal', 'autocrm:views/modals/edit-navbar', {}, view => {
+		this.createView('modal', 'viacrm:views/modals/edit-navbar', {}, view => {
 			view.render();
 		});
 	}

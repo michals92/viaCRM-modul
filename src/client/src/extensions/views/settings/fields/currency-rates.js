@@ -1,5 +1,5 @@
 extend(['views/fields/date'], (Dep, DateField) => class extends Dep {
-	editTemplate = 'autocrm:settings/fields/currency-rates/edit';
+	editTemplate = 'viacrm:settings/fields/currency-rates/edit';
 
 	setup() {
 		super.setup();

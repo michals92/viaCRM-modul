@@ -1,7 +1,7 @@
 extend(Dep => class extends Dep {
-	editCustomLinkView = 'autocrm:views/settings/modals/edit-custom-link';
+	editCustomLinkView = 'viacrm:views/settings/modals/edit-custom-link';
 
-	addItemModalView = 'autocrm:views/settings/modals/tab-list-field-add';
+	addItemModalView = 'viacrm:views/settings/modals/tab-list-field-add';
 
 	setup() {
 		this.events['click [data-action="editCustomLink"]'] = e => {
