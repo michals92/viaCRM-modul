@@ -1,6 +1,6 @@
 extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
-	editTemplate: string = 'autocrm:fields/link/edit';
-	listLinkTemplate: string = 'autocrm:fields/link/list-link';
+	editTemplate: string = 'viacrm:fields/link/edit';
+	listLinkTemplate: string = 'viacrm:fields/link/list-link';
 
 
 	getSelectFilters() {

@@ -1,6 +1,6 @@
 extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
-	editTemplate = 'autocrm:fields/link-parent/edit';
-	listLinkTemplate = 'autocrm:fields/link-parent/list-link';
+	editTemplate = 'viacrm:fields/link-parent/edit';
+	listLinkTemplate = 'viacrm:fields/link-parent/list-link';
 
 	afterRender() {
 		const minChars = this.params.autocompleteMinChars;

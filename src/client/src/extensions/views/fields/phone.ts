@@ -1,7 +1,7 @@
 extend(Dep => class extends Dep {
-	listTemplate = 'autocrm:fields/phone/list';
-	detailTemplate = 'autocrm:fields/phone/detail';
-	editTemplate = 'autocrm:fields/phone/edit';
+	listTemplate = 'viacrm:fields/phone/list';
+	detailTemplate = 'viacrm:fields/phone/detail';
+	editTemplate = 'viacrm:fields/phone/edit';
 
 	setup() {
 		super.setup();
