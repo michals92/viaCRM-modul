@@ -15,7 +15,6 @@ use Espo\ORM\EntityCollection;
 use Espo\ORM\EntityManager;
 
 class AfterInstall {
-
 	private const ID_PREFIX = '35';
 
 	private const TAB_LIST_ENTITIES = [
@@ -780,8 +779,7 @@ class AfterInstall {
 	/**
 	 * @param array<int, object> $tabList
 	 */
-	private function findExistingGroupIndex(array $tabList, string $groupId): int
-	{
+	private function findExistingGroupIndex(array $tabList, string $groupId): int {
 		foreach ($tabList as $index => $item) {
 			if (isset($item->type, $item->id) &&
 				$item->type === 'group' &&
@@ -796,8 +794,7 @@ class AfterInstall {
 	/**
 	 * @param array<string, mixed> $desired
 	 */
-	private function mergeGroupProperties(object $existing, array $desired): object
-	{
+	private function mergeGroupProperties(object $existing, array $desired): object {
 		$merged = clone $existing;
 
 		// Update missing/null properties

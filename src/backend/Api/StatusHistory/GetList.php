@@ -11,7 +11,6 @@ use Espo\ORM\EntityManager;
 use stdClass;
 
 class GetList implements Action {
-
 	public function __construct(
 		private readonly EntityManager $entityManager
 	) {}
@@ -107,5 +106,4 @@ class GetList implements Action {
 
 		return $list;
 	}
-
 }

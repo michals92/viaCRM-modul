@@ -13,6 +13,7 @@ use Espo\ORM\Repository\Option\SaveOptions;
  * @implements BeforeSave<Entity>
  */
 class CalculateCoordinates implements BeforeSave {
+	public static int $order = 9;
 
 	protected const FIELDS = ['Street', 'City', 'State', 'PostalCode', 'Country'];
 
@@ -151,5 +152,4 @@ class CalculateCoordinates implements BeforeSave {
 		// Join all parts with a comma and space
 		return implode(', ', $parts);
 	}
-
 }

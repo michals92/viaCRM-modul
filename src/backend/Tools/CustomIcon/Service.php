@@ -6,7 +6,6 @@ use Espo\Core\ORM\EntityManager;
 use PDO;
 
 class Service {
-
 	public function __construct(
 		private readonly EntityManager $entityManager
 	) {}
@@ -24,5 +23,4 @@ class Service {
 
 		return $this->entityManager->getQueryExecutor()->execute($query)->fetchAll(PDO::FETCH_COLUMN);
 	}
-
 }

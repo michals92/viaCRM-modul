@@ -13,7 +13,6 @@ use Espo\ORM\Query\SelectBuilder as QueryBuilder;
 use stdClass;
 
 readonly class Item {
-
 	const DEBUG_MODE = false;
 
 	/**
@@ -215,5 +214,4 @@ readonly class Item {
 			field: $field,
 		);
 	}
-
 }

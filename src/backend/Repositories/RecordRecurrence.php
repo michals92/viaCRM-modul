@@ -20,5 +20,4 @@ class RecordRecurrence extends \Espo\Core\Templates\Repositories\Base implements
 
 		parent::beforeSave($entity, $options);
 	}
-
 }

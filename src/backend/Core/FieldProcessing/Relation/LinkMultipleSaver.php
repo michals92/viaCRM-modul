@@ -9,7 +9,6 @@ use Espo\Core\ORM\EntityManager;
 use Espo\ORM\Entity;
 
 class LinkMultipleSaver extends BaseLinkMultipleSaver {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 	) {
@@ -28,5 +27,4 @@ class LinkMultipleSaver extends BaseLinkMultipleSaver {
 			parent::process($entity, $name, $params);
 		}
 	}
-
 }

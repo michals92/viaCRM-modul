@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Tools\Layout;
 use Espo\Core\InjectableFactory;
 
 class RowGroupBuilder {
-
 	/** @var array<array<string, mixed>|bool> $rows */
 	protected array $rows;
 
@@ -80,5 +79,4 @@ class RowGroupBuilder {
 
 		return $this->layoutBuilder;
 	}
-
 }

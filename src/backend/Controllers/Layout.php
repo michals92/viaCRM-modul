@@ -50,5 +50,4 @@ class Layout extends \Espo\Controllers\Layout implements Di\UserAware, Di\Inject
 	private function getService(): LayoutService {
 		return $this->service ??= $this->injectableFactory->create(LayoutService::class);
 	}
-
 }

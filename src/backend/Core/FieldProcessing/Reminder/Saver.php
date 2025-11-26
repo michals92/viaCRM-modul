@@ -13,7 +13,6 @@ use Espo\ORM\Entity;
 use ReflectionClass;
 
 class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
-
 	public function __construct(
 		InjectableFactory $injectableFactory,
 		private readonly Config $config
@@ -249,5 +248,4 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 			$item
 		);
 	}
-
 }

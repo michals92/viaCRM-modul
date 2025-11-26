@@ -12,7 +12,6 @@ if (ReflectionUtil::classMethodHasParamCount(ClientManager::class, 'render', 1))
 	/** The actual class
 	 */
 	class ClientManagerNew extends ClientManagerBase {
-
 		public function display(?string $runScript = null, ?string $htmlFilePath = null, array $vars = []): void {
 			$htmlFilePath ??= $this->mainHtmlFilePath;
     
@@ -35,18 +34,15 @@ if (ReflectionUtil::classMethodHasParamCount(ClientManager::class, 'render', 1))
 				$vars
 			);
 		}
-
 	}
 } else {
 	/**
 	 * Fake compat class for use when upgrading
 	 */
 	class ClientManagerNew extends ClientManagerBase {
-
 		/** @disregard */
 		public function render(?string $runScript = null, ?string $htmlFilePath = null, array $vars = []): string {
 			throw new LogicException();
 		}
-
 	}
 }

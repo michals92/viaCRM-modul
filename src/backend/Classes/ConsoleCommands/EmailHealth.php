@@ -16,7 +16,6 @@ use Espo\ORM\EntityManager;
 use Exception;
 
 class EmailHealth implements Command {
-
 	public function __construct(
 		private EntityManager $entityManager,
 		private PersonalAccountService $personalAccountService,
@@ -434,5 +433,4 @@ class EmailHealth implements Command {
 			$io->writeLine('All email accounts are healthy.');
 		}
 	}
-
 }

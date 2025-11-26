@@ -7,7 +7,6 @@ use Espo\Modules\Viacrm\Entities\NextSequenceNumber;
 use Espo\ORM\EntityManager;
 
 class SequenceNumberType {
-
 	public function __construct(
 		private readonly EntityManager $entityManager
 	) {}
@@ -89,6 +88,5 @@ class SequenceNumberType {
 
 		$this->entityManager->removeEntity($number);
 	}
-
 }
 

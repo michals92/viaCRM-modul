@@ -16,7 +16,6 @@ use Exception;
 use RuntimeException;
 
 class ConditionChecker {
-
 	const DEBUG_MODE = false;
 
 	/**
@@ -458,5 +457,4 @@ class ConditionChecker {
 
 		return Date::fromDateTime($dateTime);
 	}
-
 }

@@ -8,7 +8,6 @@ use Espo\Core\Utils\Config\ConfigWriter;
 use Espo\Modules\Viacrm\Core\Log\ViacrmFormatter;
 
 class AfterUninstall {
-
 	private Config $config;
 
 	private ConfigWriter $configWriter;
@@ -59,5 +58,4 @@ class AfterUninstall {
 		} catch (\Exception) {
 		}
 	}
-
 }

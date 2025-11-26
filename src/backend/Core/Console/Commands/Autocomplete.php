@@ -14,7 +14,6 @@ use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Viacrm\Core\Console\CommandAutocomplete;
 
 class Autocomplete extends \Espo\Core\Console\Commands\Upgrade {
-
 	public function __construct(
 		protected readonly CommandManager $commandManager,
 		protected readonly InjectableFactory $injectableFactory,
@@ -58,5 +57,4 @@ class Autocomplete extends \Espo\Core\Console\Commands\Upgrade {
 			}
 		}
 	}
-
 }

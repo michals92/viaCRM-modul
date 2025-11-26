@@ -14,11 +14,9 @@ use Espo\Core\Exceptions\NotFound;
 use Espo\Core\ORM\EntityManager;
 use Espo\Core\Record\ReadParams;
 use Espo\Core\Record\ServiceContainer;
-use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Metadata;
 
 readonly class GetConvertAttributes implements Action {
-
 	public function __construct(
 		private Acl              $acl,
 		private EntityManager    $entityManager,
@@ -162,5 +160,4 @@ readonly class GetConvertAttributes implements Action {
 		// Prepare the response
 		return ResponseComposer::json($attributes);
 	}
-
 }

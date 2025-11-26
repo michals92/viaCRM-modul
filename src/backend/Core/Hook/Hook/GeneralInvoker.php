@@ -26,5 +26,4 @@ class GeneralInvoker extends \Espo\Core\Hook\GeneralInvoker implements Di\Config
 
 		parent::invoke($hook, $name, $subject, $options, $hookData);
 	}
-
 }

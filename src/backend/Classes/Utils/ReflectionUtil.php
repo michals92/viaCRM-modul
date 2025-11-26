@@ -7,7 +7,6 @@ use ReflectionMethod;
 use ReflectionProperty;
 
 class ReflectionUtil {
-
 	/**
 	 * @param  class-string        $className
 	 * @param  mixed               ...$args
@@ -92,5 +91,4 @@ class ReflectionUtil {
 	public static function classMethodHasParamCount(string $className, string $methodName, int $count): bool {
 		return count((new ReflectionMethod($className, $methodName))->getParameters()) === $count;
 	}
-
 }

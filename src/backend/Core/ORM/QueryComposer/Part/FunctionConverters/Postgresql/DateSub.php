@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Pos
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 
 class DateSub implements FunctionConverter {
-
 	public function convert(string ...$argumentList): string {
 		if (count($argumentList) !== 3) {
 			throw new \InvalidArgumentException('DateSub function requires exactly three arguments: date, interval value, interval unit.');
@@ -29,5 +28,4 @@ class DateSub implements FunctionConverter {
 
 		return "($dateUpper - ($intervalValue || ' $intervalUnitFormatted')::interval)";
 	}
-
 }

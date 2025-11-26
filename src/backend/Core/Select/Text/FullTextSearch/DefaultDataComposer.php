@@ -13,7 +13,6 @@ use Espo\ORM\Query\Part\Expression\Util as ExpressionUtil;
 use ReflectionException;
 
 class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultDataComposer {
-
 	/** @var array<Mode::*, string> */
 	private array $functionMap = [
 		Mode::BOOLEAN => 'MATCH_BOOLEAN',
@@ -273,5 +272,4 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 	private function getTextFilterFieldList(): array {
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'getTextFilterFieldList');
 	}
-
 }

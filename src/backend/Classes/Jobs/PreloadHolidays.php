@@ -12,7 +12,6 @@ use Espo\Modules\Viacrm\Classes\Utils\HolidayUtil;
 use Espo\Modules\Viacrm\Entities\Holiday;
 
 class PreloadHolidays implements Job {
-
 	public function __construct(
 		private HolidayUtil $holidayUtil,
 		private EntityManager $entityManager,
@@ -170,5 +169,4 @@ class PreloadHolidays implements Job {
 		
 		return $czechMonths[$month] ?? ['nominative' => '', 'genitive' => ''];
 	}
-
 }

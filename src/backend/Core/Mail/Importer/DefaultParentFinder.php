@@ -8,14 +8,13 @@ use Espo\Core\Utils\Log;
 use Espo\Core\Utils\Metadata;
 use Espo\Entities\Email;
 use Espo\Entities\EmailAddress;
+use Espo\Modules\Crm\Entities\Account;
 use Espo\Modules\Viacrm\Classes\Repositories\EmailAddress as EmailAddressRepository;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Crm\Entities\Account;
 use Espo\ORM\Entity;
 use Espo\ORM\EntityManager;
 
 class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
-
 	private EmailAddressRepository $emailAddressRepository;
 
 	public function __construct(
@@ -168,5 +167,4 @@ class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
 		return $this->getByAddress($list[0]);
 	}
 	*/
-
 }

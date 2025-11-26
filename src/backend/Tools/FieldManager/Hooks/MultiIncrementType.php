@@ -67,5 +67,4 @@ class MultiIncrementType implements Di\EntityManagerAware {
 			$this->entityManager->saveEntity($nextNumber);
 		}
 	}
-
 }

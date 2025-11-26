@@ -7,7 +7,6 @@ use Espo\ORM\Entity;
 use stdClass;
 
 class GroupItem extends \Espo\Tools\Kanban\GroupItem {
-
 	/**
 	 * @param Collection<Entity> $collection
 	 */
@@ -28,5 +27,4 @@ class GroupItem extends \Espo\Tools\Kanban\GroupItem {
 
 		return $raw;
 	}
-
 }

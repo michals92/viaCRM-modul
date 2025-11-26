@@ -10,7 +10,6 @@ use Espo\Modules\Viacrm\Tools\WorkQueue\Service as WorkQueueService;
 use stdClass;
 
 class WorkQueue {
-
 	public function __construct(
 		protected readonly SearchParamsFetcher $searchParamsFetcher,
 		protected readonly WorkQueueService $workQueueService,
@@ -41,5 +40,4 @@ class WorkQueue {
 			'list' => $list,
 		];
 	}
-
 }

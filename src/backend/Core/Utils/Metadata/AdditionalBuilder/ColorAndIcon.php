@@ -9,7 +9,6 @@ use stdClass;
  *  but only if their entityDefs are defined.
  */
 class ColorAndIcon implements AdditionalBuilder {
-
 	public function build(stdClass $data): void {
 		$entities = [
 		    'DocumentFolder',
@@ -34,5 +33,4 @@ class ColorAndIcon implements AdditionalBuilder {
 			}
 		}
 	}
-
 }

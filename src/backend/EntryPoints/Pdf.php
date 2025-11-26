@@ -33,5 +33,4 @@ class Pdf extends \Espo\EntryPoints\Pdf implements Di\MetadataAware {
 			$response->setHeader('Content-Disposition', 'inline; filename="' . basename($fileName) . '"');
 		}
 	}
-
 }

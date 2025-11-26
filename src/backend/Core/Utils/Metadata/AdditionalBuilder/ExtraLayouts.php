@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder;
 use stdClass;
 
 class ExtraLayouts extends AdditionalBuilderWithConfig {
-
 	public function build(stdClass $data): void {
 		if (!isset($data->clientDefs)) {
 			return;
@@ -45,5 +44,4 @@ class ExtraLayouts extends AdditionalBuilderWithConfig {
 			}
 		}
 	}
-
 }

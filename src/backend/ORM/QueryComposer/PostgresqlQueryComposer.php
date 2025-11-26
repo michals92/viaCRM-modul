@@ -306,5 +306,4 @@ class PostgresqlQueryComposer extends \Espo\ORM\QueryComposer\PostgresqlQueryCom
 			$argumentPartList
 		);
 	}
-
 }

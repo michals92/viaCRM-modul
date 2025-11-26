@@ -9,7 +9,6 @@ use Espo\Core\Exceptions\NotFound;
  * This exists purely so that default hardcoded folders can have icons
  */
 class Service extends \Espo\Tools\EmailFolder\Service {
-
 	/**
 	 * @throws ForbiddenSilent
 	 * @throws NotFound
@@ -44,5 +43,4 @@ class Service extends \Espo\Tools\EmailFolder\Service {
 
 		return $list;
 	}
-
 }

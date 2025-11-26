@@ -7,7 +7,6 @@ use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Metadata;
 
 class AggregationFunctionFactory {
-
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
 		private readonly Metadata $metadata,
@@ -55,5 +54,4 @@ class AggregationFunctionFactory {
 			['recordDefs', $entityType, 'aggregationFunctions', $functionName, 'implementationClassName']
 		);
 	}
-
 }

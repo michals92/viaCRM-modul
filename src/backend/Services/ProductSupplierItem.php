@@ -9,18 +9,16 @@ use Espo\Services\Record;
 /**
  * @extends Record<ProductSupplierItemEntity>
  */
-class ProductSupplierItem extends Record
-{
-    /**
-     * Get the product associated with this supplier item.
-     */
-    public function getProduct(ProductSupplierItemEntity $supplierItem): ?Product
-    {
-        $product = $this->entityManager
-            ->getRelation($supplierItem, 'product')
-            ->findOne();
+class ProductSupplierItem extends Record {
+	/**
+	 * Get the product associated with this supplier item.
+	 */
+	public function getProduct(ProductSupplierItemEntity $supplierItem): ?Product {
+		$product = $this->entityManager
+		    ->getRelation($supplierItem, 'product')
+		    ->findOne();
 
-        /** @var ?Product $product */
-        return $product;
-    }
+		/** @var ?Product $product */
+		return $product;
+	}
 }

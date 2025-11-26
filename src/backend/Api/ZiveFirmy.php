@@ -12,7 +12,6 @@ use Espo\Modules\Viacrm\Tools\ZiveFirmy\IntegrationProxy;
 use Espo\Modules\Viacrm\Tools\ZiveFirmy\Service as ZiveFirmyService;
 
 class ZiveFirmy implements Action {
-
 	public function __construct(
 		private readonly ZiveFirmyService $ziveFirmyService,
 		private readonly IntegrationProxy $integrationProxy,
@@ -51,5 +50,4 @@ class ZiveFirmy implements Action {
 			return ResponseComposer::json($fallbackResponse);
 		}
 	}
-
 }

@@ -13,7 +13,6 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Modules\Viacrm\Entities\CustomIcon as CustomIconEntity;
 
 class CustomIcon implements EntryPoint {
-
 	public function __construct(
 		protected EntityManager $entityManager,
 		protected FileStorageManager $fileStorageManager,
@@ -122,5 +121,4 @@ class CustomIcon implements EntryPoint {
 
 		return $result !== false ? $result : '';
 	}
-
 }

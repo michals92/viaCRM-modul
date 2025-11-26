@@ -8,7 +8,6 @@ use Espo\Entities\User;
 use Espo\Tools\Kanban\Result;
 
 class Service {
-
 	public function __construct(
 		private readonly WorkQueue $workQueue,
 		private readonly User      $user,
@@ -24,5 +23,4 @@ class Service {
 				$searchParams
 			);
 	}
-
 }

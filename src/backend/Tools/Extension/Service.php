@@ -7,7 +7,6 @@ use Espo\Entities\Extension as ExtensionEntity;
 use Espo\ORM\EntityManager;
 
 class Service {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly Config $config
@@ -63,5 +62,4 @@ class Service {
 		
 		return $result;
 	}
-
 }

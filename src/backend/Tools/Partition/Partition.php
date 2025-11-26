@@ -17,7 +17,6 @@ use Espo\Tools\Kanban\Result;
 use RuntimeException;
 
 class Partition {
-
 	private const DEFAULT_MAX_ORDER_NUMBER = 50;
 	private const MAX_GROUP_LENGTH = 100;
 
@@ -230,5 +229,4 @@ class Partition {
 
 		return $this->metadata->get(['scopes', $this->entityType, 'kanbanStatusIgnoreList'], []);
 	}
-
 }

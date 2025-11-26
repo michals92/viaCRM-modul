@@ -10,7 +10,6 @@ use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Metadata;
 
 class Indexes implements Command {
-
 	public function __construct(
 		private readonly Metadata $metadata,
 		private readonly EntityManager $entityManager
@@ -40,5 +39,4 @@ class Indexes implements Command {
         
 		$io->writeLine($json);
 	}
-
 }

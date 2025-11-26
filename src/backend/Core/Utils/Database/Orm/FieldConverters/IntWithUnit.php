@@ -9,7 +9,6 @@ use Espo\ORM\Defs\FieldDefs;
 use Espo\ORM\Type\AttributeType;
 
 class IntWithUnit implements FieldConverter {
-
 	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs {
 		$name = $fieldDefs->getName();
 
@@ -38,5 +37,4 @@ class IntWithUnit implements FieldConverter {
 
 		return $entityDefs;
 	}
-
 }

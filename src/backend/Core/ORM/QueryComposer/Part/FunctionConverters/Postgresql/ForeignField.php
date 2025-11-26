@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Pos
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 
 class ForeignField implements FunctionConverter {
-
 	public function convert(string ...$argumentList): string {
 		if (count($argumentList) < 3) {
 			throw new \RuntimeException(
@@ -39,5 +38,4 @@ class ForeignField implements FunctionConverter {
 	private function toLowerCase(string $string): string {
 		return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $string) ?? $string);
 	}
-
 }

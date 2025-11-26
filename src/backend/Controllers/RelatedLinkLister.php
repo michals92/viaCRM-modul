@@ -22,7 +22,6 @@ use Espo\ORM\Repository\RDBSelectBuilder;
 use stdClass;
 
 class RelatedLinkLister {
-
 	public function __construct(
 		protected EntityManager $entityManager,
 		protected Acl $acl,
@@ -36,6 +35,7 @@ class RelatedLinkLister {
 	 * @throws Forbidden
 	 */
 	public function getActionListRelatedLink(Request $request): object {
+		$em = $this->entityManager;
 		$parentScope = $request->getRouteParam('scope');
 		$parentId = $request->getRouteParam('id');
 		$parentLink = $request->getRouteParam('parentLink');
@@ -45,15 +45,15 @@ class RelatedLinkLister {
 			throw new BadRequest();
 		}
 
-		$parentEntity = $this->entityManager->getEntityById($parentScope, $parentId) ?? throw new NotFound();
+		$parentEntity = $em->getEntityById($parentScope, $parentId) ?? throw new NotFound();
 
-		$parentLinkRelation = $this->entityManager->getDefs()
+		$parentLinkRelation = $em->getDefs()
 		    ->getEntity($parentScope)
 		    ->getRelation($parentLink);
 
 		$parentLinkScope = $parentLinkRelation->getForeignEntityType();
 
-		$linkRelation = $this->entityManager->getDefs()
+		$linkRelation = $em->getDefs()
 		    ->getEntity($parentLinkScope)
 		    ->getRelation($link);
 
@@ -310,16 +310,17 @@ class RelatedLinkLister {
 	 * @return string[]
 	 */
 	private function collectUniqueTargetIds(string $parentLinkScope, array $relatedEntityIds, string $link): array {
+		$em = $this->entityManager;
 		$uniqueTargetIds = [];
 
 		foreach ($relatedEntityIds as $entityId) {
-			$entity = $this->entityManager->getEntityById($parentLinkScope, $entityId);
+			$entity = $em->getEntityById($parentLinkScope, $entityId);
 
 			if (!$entity) {
 				continue;
 			}
 
-			$relatedEntities = $this->entityManager
+			$relatedEntities = $em
 			    ->getRelation($entity, $link)
 			    ->find();
 
@@ -343,15 +344,16 @@ class RelatedLinkLister {
 	 * @return EntityCollection<Entity>
 	 */
 	private function createTargetEntitiesCollection(string $scope, array $ids): EntityCollection {
+		$em = $this->entityManager;
 		/** @var EntityCollection<Entity> $collection */
-		$collection = $this->entityManager->getCollectionFactory()->create($scope);
+		$collection = $em->getCollectionFactory()->create($scope);
 
 		if (empty($ids)) {
 			return $collection;
 		}
 
 		foreach ($ids as $id) {
-			$entity = $this->entityManager->getEntityById($scope, $id);
+			$entity = $em->getEntityById($scope, $id);
 
 			if (!$entity) {
 				continue;
@@ -371,8 +373,9 @@ class RelatedLinkLister {
 	 * @return array{name: string, relation: RelationDefs}|null
 	 */
 	private function findIntermediateRelation(string $parentLinkScope, string $linkScope): ?array {
-		$parentLinkScopeEntity = $this->entityManager->getDefs()->getEntity($parentLinkScope);
-		$relationNames = array_keys($this->entityManager->getMetadata()->get($parentLinkScope, 'links') ?? []);
+		$em = $this->entityManager;
+		$parentLinkScopeEntity = $em->getDefs()->getEntity($parentLinkScope);
+		$relationNames = array_keys($em->getMetadata()->get($parentLinkScope, 'links') ?? []);
 
 		foreach ($relationNames as $relationName) {
 			if (!is_string($relationName)) {
@@ -447,7 +450,7 @@ class RelatedLinkLister {
 		array $relatedEntityIds
 	): void {
 		$relationshipName = $relation->getRelationshipName();
-		if ($relationshipName && is_string($relationshipName)) {
+		if ($relationshipName) {
 			$builder->join($relationshipName);
 			$whereConditions = [
 			    $relationshipName . '.' . $relation->getMidKey() . '=' => $relatedEntityIds,
@@ -610,6 +613,7 @@ class RelatedLinkLister {
 		array $sourceIds
 	): array {
 		// Early return if no source IDs are provided
+		$em = $this->entityManager;
 		if (empty($sourceIds)) {
 			return [];
 		}
@@ -620,7 +624,7 @@ class RelatedLinkLister {
 
 		try {
 			// Get the QueryBuilder instance from the EntityManager
-			$queryBuilder = $this->entityManager->getQueryBuilder();
+			$queryBuilder = $em->getQueryBuilder();
 
 			// Build the query:
 			// 1. Start with a SELECT query
@@ -642,13 +646,13 @@ class RelatedLinkLister {
 			    ->build();
 
 			// Get the actual SQL that will be executed for debugging
-			$sql = $this->entityManager->getQueryComposer()->compose($query);
+			$sql = $em->getQueryComposer()->compose($query);
 			$GLOBALS['log']->debug('RelatedLinkLister: Query SQL', [
 			    'sql' => $sql
 			]);
 
 			// Execute the query and fetch the results as a single column
-			$result = $this->entityManager
+			$result = $em
 			    ->getQueryExecutor()
 			    ->execute($query)
 			    ->fetchAll(\PDO::FETCH_COLUMN);
@@ -682,5 +686,4 @@ class RelatedLinkLister {
 
 		return $columnName;
 	}
-
 }

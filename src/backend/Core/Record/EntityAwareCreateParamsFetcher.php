@@ -23,5 +23,4 @@ class EntityAwareCreateParamsFetcher extends CreateParamsFetcher {
 		 */
 		return $this->fetchInternal($request);
 	}
-
 }

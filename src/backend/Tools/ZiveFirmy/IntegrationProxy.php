@@ -7,7 +7,6 @@ use Espo\Entities\Integration;
 use Espo\ORM\EntityManager;
 
 class IntegrationProxy {
-
 	public function __construct(
 		private EntityManager $entityManager
 	) {}
@@ -27,5 +26,4 @@ class IntegrationProxy {
 
 		return $apiToken;
 	}
-
 }

@@ -11,7 +11,6 @@ use Espo\Tools\LayoutManager\LayoutManager;
  * Creates attachmentCompare layout when the feature is enabled.
  */
 class AttachmentCompareViewModeUpdate implements UpdateHook {
-
 	private const LAYOUT_NAME = 'attachmentCompare';
 
 	public function __construct(
@@ -75,5 +74,4 @@ class AttachmentCompareViewModeUpdate implements UpdateHook {
 		$this->layoutManager->set($defaultLayout, $entityType, self::LAYOUT_NAME);
 		$this->layoutManager->save();
 	}
-
 }

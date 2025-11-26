@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Classes\Utils;
 use Espo\Core\Utils\Util;
 
 class ObjectUtil {
-
 	/**
 	 * Ensure that a nested chain of keys exists on a given object, with optional default values.
 	 *
@@ -72,5 +71,4 @@ class ObjectUtil {
 			$object = (object)$object->{$key};
 		}
 	}
-
 }

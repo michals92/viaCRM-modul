@@ -14,7 +14,6 @@ use Espo\Core\Utils\Crypt;
  * password and smtpPassword fields. We only need to handle ewsPassword.
  */
 class PasswordsInputFilter implements Filter {
-
 	public function __construct(
 		private Crypt $crypt
 	) {}
@@ -33,5 +32,4 @@ class PasswordsInputFilter implements Filter {
 			$data->set('ewsPassword', $this->crypt->encrypt($ewsPassword));
 		}
 	}
-
 }

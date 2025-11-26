@@ -11,7 +11,6 @@ use Espo\Core\Record\ServiceContainer as RecordServiceContainer;
 use Espo\Core\Select\SearchParams;
 
 class Service {
-
 	public function __construct(
 		private readonly RecordServiceContainer $recordServiceContainer
 	) {}
@@ -33,5 +32,4 @@ class Service {
 
 		return $service->findLinked($id, $link, $searchParams);
 	}
-
 }

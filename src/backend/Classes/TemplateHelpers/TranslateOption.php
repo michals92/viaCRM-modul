@@ -9,7 +9,6 @@ use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Language;
 
 class TranslateOption implements Helper {
-
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
 	) {}
@@ -37,5 +36,4 @@ class TranslateOption implements Helper {
 
 		return Result::createSafeString($translation);
 	}
-
 }

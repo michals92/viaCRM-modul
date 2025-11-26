@@ -10,7 +10,6 @@ use Espo\ORM\Defs;
 use Espo\ORM\Query\SelectBuilder;
 
 class Mandatory implements Filter {
-
 	public function __construct(
 		private readonly User $user,
 		private readonly Defs $defs,
@@ -41,5 +40,4 @@ class Mandatory implements Filter {
 		    'entityType!=' => $forbiddenEntityTypeList,
 		]);
 	}
-
 }

@@ -6,7 +6,6 @@ use Espo\Core\ORM\Entity;
 use ReflectionProperty;
 
 class PhoneNumber extends \Espo\Core\Field\PhoneNumber {
-
 	private ?string $accountId = null;
 
 	/**
@@ -47,5 +46,4 @@ class PhoneNumber extends \Espo\Core\Field\PhoneNumber {
 
 		return $obj;
 	}
-
 }

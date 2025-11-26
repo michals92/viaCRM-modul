@@ -6,7 +6,6 @@ use Espo\Entities\User;
 use Espo\Modules\Viacrm\Entities\Alert;
 
 class NotificationProvider implements \Espo\Tools\PopupNotification\Provider {
-
 	public function __construct(
 		private readonly AlertManager $alertManager,
 	) {}
@@ -26,5 +25,4 @@ class NotificationProvider implements \Espo\Tools\PopupNotification\Provider {
 
 		return $resultList;
 	}
-
 }

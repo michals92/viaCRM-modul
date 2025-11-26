@@ -14,7 +14,6 @@ use Espo\Tools\App\AppService as Service;
  * Gets user data.
  */
 class GetUser implements Action {
-
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
 		private readonly User $user,
@@ -36,5 +35,4 @@ class GetUser implements Action {
 
 		return ResponseComposer::json($data);
 	}
-
 }

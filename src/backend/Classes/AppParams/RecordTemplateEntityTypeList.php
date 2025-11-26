@@ -7,7 +7,6 @@ use Espo\ORM\EntityManager;
 use Espo\Tools\App\AppParam;
 
 class RecordTemplateEntityTypeList implements AppParam {
-
 	public function __construct(
 		private readonly SelectBuilderFactory $selectBuilderFactory,
 		private readonly EntityManager $entityManager,
@@ -35,5 +34,4 @@ class RecordTemplateEntityTypeList implements AppParam {
 
 		return $list;
 	}
-
 }

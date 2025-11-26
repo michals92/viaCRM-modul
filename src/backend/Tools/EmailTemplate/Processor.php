@@ -45,5 +45,4 @@ class Processor extends \Espo\Tools\EmailTemplate\Processor implements Di\Entity
 	private function getViewInBrowserProcessor(): ViewInBrowserProcessor {
 		return $this->viewInBrowserProcess ??= $this->injectableFactory->create(ViewInBrowserProcessor::class);
 	}
-
 }

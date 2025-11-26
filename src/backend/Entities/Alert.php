@@ -6,8 +6,9 @@ use Espo\ORM\Query\InsertBuilder;
 use Espo\ORM\Query\Part\Expression;
 
 class Alert extends \Espo\Core\Templates\Entities\Base {
+	public const string TEMPLATE_TYPE = 'Event';
 
-	public const ENTITY_TYPE = 'Alert';
+	public const string ENTITY_TYPE = 'Alert';
 	
 	public const LINK_USER_NAME = 'AlertUser';
 	public const LINK_USER_COLUMN_ACTIVE = 'alert_active';
@@ -46,9 +47,10 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 	 * @return void
 	 */
 	public function activateForUser(string $userId): void {
-		assert($this->entityManager !== null);
+		$em = $this->entityManager;
+		assert($em !== null);
 
-		$usersRelation = $this->entityManager
+		$usersRelation = $em
 			->getRelation($this, 'users');
 
 		if (!$usersRelation->isRelatedById($userId)) {
@@ -65,9 +67,10 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 	 * @return void
 	 */
 	public function deactivateForUser(string $userId): void {
-		assert($this->entityManager !== null);
+		$em = $this->entityManager;
+		assert($em !== null);
 
-		$usersRelation = $this->entityManager
+		$usersRelation = $em
 			->getRelation($this, 'users');
 
 		if (!$usersRelation->isRelatedById($userId)) {
@@ -81,7 +84,8 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
      * @param array<string> $userIds
      */
 	public function activateForUsers(array $userIds): void {
-		assert($this->entityManager !== null);
+		$em = $this->entityManager;
+		assert($em !== null);
 
 		$alertId = $this->getId();
 		$rows = array_map(function ($userId) use ($alertId) {
@@ -95,14 +99,15 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 		    ->updateSet(['alertActive' => true])
 		    ->build();
 
-		$this->entityManager->getQueryExecutor()->execute($query);
+		$em->getQueryExecutor()->execute($query);
 	}
 
 	/**
      * @param array<string> $userIds
      */
 	public function deactivateForUsers(array $userIds): void {
-		assert($this->entityManager !== null);
+		$em = $this->entityManager;
+		assert($em !== null);
 
 		$alertId = $this->getId();
 		$rows = array_map(function ($userId) use ($alertId) {
@@ -116,7 +121,7 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 		    ->updateSet(['alertActive' => false])
 		    ->build();
 
-		$this->entityManager->getQueryExecutor()->execute($query);
+		$em->getQueryExecutor()->execute($query);
 	}
 
 	/**
@@ -140,7 +145,8 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 	 * @return void
 	 */
 	public function toggleForUsers(array $userIds): void {
-		assert($this->entityManager !== null);
+		$em = $this->entityManager;
+		assert($em !== null);
 
 		if (empty($userIds)) {
 			return;
@@ -161,7 +167,6 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 		    ])
 		    ->build();
 			
-		$this->entityManager->getQueryExecutor()->execute($query);
+		$em->getQueryExecutor()->execute($query);
 	}
-
 }

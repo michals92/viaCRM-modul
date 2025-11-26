@@ -14,7 +14,6 @@ use Espo\ORM\EntityManager;
 use ReflectionClass;
 
 class Service extends \Espo\Tools\GlobalSearch\Service {
-
 	public function __construct(
 		InjectableFactory $injectableFactory,
 		protected readonly EntityManager $entityManager,
@@ -119,5 +118,4 @@ class Service extends \Espo\Tools\GlobalSearch\Service {
 
 		return Collection::createNoCount($collection, $maxSize);
 	}
-
 }

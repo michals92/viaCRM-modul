@@ -18,7 +18,6 @@ use Espo\Tools\Pdf\Data as PdfData;
 use Espo\Tools\Pdf\Params as PdfParams;
 
 class Service {
-
 	protected TemplateRenderer $templateRenderer;
 
 	public function __construct(
@@ -103,5 +102,4 @@ class Service {
 		    ->setData($data->getAdditionalTemplateData())
 		    ->render();
 	}
-
 }

@@ -11,6 +11,7 @@ use Espo\ORM\Repository\Option\SaveOptions;
  * @implements BeforeSave<Entity>
  */
 class NextMultiIncrement implements BeforeSave {
+	public static int $order = 9;
 
 	public function __construct(
 		private Processor $processor
@@ -21,5 +22,4 @@ class NextMultiIncrement implements BeforeSave {
 		$coreEntity = $entity;
 		$this->processor->process($coreEntity, $options->toAssoc());
 	}
-
 }

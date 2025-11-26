@@ -9,7 +9,6 @@ use Espo\Core\Select\SelectBuilder;
 use Espo\Tools\App\AppParam;
 
 class RoleList implements AppParam {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly SelectBuilder $selectBuilder
@@ -37,5 +36,4 @@ class RoleList implements AppParam {
 
 		return $roles->getValueMapList();
 	}
-
 }

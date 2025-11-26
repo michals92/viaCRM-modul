@@ -10,7 +10,6 @@ use Espo\ORM\EntityManager;
 use Espo\Tools\App\AppParam;
 
 readonly class RecurringRecordsEntityList implements AppParam {
-
 	public function __construct(
 		private SelectBuilderFactory $selectBuilderFactory,
 		private EntityManager $entityManager,
@@ -46,5 +45,4 @@ readonly class RecurringRecordsEntityList implements AppParam {
 
 		return $list;
 	}
-
 }

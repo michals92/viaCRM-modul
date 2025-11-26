@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Tools\FieldManager\Hooks;
 use Espo\Core\Utils\Metadata;
 
 class AddressType {
-
 	public function __construct(
 		private readonly Metadata $metadata
 	) {}
@@ -30,5 +29,4 @@ class AddressType {
 			$this->metadata->save();
 		}
 	}
-
 }

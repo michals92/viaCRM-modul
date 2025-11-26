@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Tools\DynamicLogic;
 use Espo\ORM\Query\SelectBuilder as QueryBuilder;
 
 interface ConditionConverter {
-
 	/**
 	 * Convert a dynamic logic condition to query parameters.
 	 *
@@ -15,5 +14,4 @@ interface ConditionConverter {
 	 * @return array<string, mixed>|null Converted condition or null if not applicable
 	 */
 	public function convert(QueryBuilder $queryBuilder, array $condition, array $options): null|array;
-
 }

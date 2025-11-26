@@ -18,7 +18,6 @@ use Espo\ORM\Query\Part\WhereItem as WhereClauseItem;
 use Espo\ORM\Query\SelectBuilder as QueryBuilder;
 
 class DefaultConditionConverter implements ConditionConverter {
-
 	public const ALIAS_USER = 'wiu'; // Where Item User
 	public const ALIAS_USER_ROLE = 'wiuru'; // Where Item User Role User
 	public const ALIAS_USER_TEAM = 'wiutu'; // Where Item User Team User
@@ -277,5 +276,4 @@ class DefaultConditionConverter implements ConditionConverter {
 				throw new \LogicException("Unsupported scope: $scope");
 		}
 	}
-
 }

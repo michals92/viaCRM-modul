@@ -10,7 +10,6 @@ use stdClass;
  * Extends MassActions with custom actions (addition, multiplication) for numeric fields.
  */
 class ValueMapPreparator extends \Espo\Tools\MassUpdate\ValueMapPreparator {
-
 	public const ACTION_INCREASE = 'increase';
 	public const ACTION_MULTIPLY = 'multiply';
 
@@ -67,5 +66,4 @@ class ValueMapPreparator extends \Espo\Tools\MassUpdate\ValueMapPreparator {
 
 		return in_array($type, ['int', 'float', 'currency'], true);
 	}
-
 }

@@ -10,7 +10,6 @@ use Espo\Core\Exceptions\BadRequest;
 use Espo\Modules\Viacrm\Tools\UserKanban\Service as UserKanbanService;
 
 class PutOrder implements Action {
-
 	public function __construct(
 		private readonly UserKanbanService $service
 	) {}
@@ -38,5 +37,4 @@ class PutOrder implements Action {
 
 		return ResponseComposer::json(true);
 	}
-
 }

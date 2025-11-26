@@ -7,8 +7,9 @@ use Espo\Core\Field\Date;
 use Espo\Modules\Viacrm\Tools\Error\ErrorFactory;
 
 class Holiday extends \Espo\Core\Templates\Entities\Base {
+	public const string TEMPLATE_TYPE = 'Base';
 
-	public const ENTITY_TYPE = 'Holiday';
+	public const string ENTITY_TYPE = 'Holiday';
 
 	/**
 	 * @throws BadRequest
@@ -34,5 +35,4 @@ class Holiday extends \Espo\Core\Templates\Entities\Base {
 	public function getLangCode(): string {
 		return $this->get('langCode') ?? ErrorFactory::throwBadRequest('LangCode is not present', 'LangCode is not present');
 	}
-
 }

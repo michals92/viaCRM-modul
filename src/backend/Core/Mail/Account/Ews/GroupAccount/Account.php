@@ -18,7 +18,6 @@ use Espo\ORM\EntityManager;
  * EWS Group Email Account (InboundEmail) wrapper.
  */
 class Account {
-
 	private const PORTION_LIMIT = 20;
 
 	/**
@@ -134,5 +133,4 @@ class Account {
 
 		return $this->crypt->decrypt($password);
 	}
-
 }

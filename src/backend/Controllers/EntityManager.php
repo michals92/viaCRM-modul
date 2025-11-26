@@ -86,7 +86,7 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 		// Get source entity metadata
 		$scopeData = $this->metadata->get(['scopes', $sourceEntityType], []);
 		$entityDefsData = $this->metadata->get(['entityDefs', $sourceEntityType], []);
-		$clientDefsData = $this->metadata->get(['clientDefs', $sourceEntityType]) ?? [];
+		$clientDefsData = $this->metadata->get(['clientDefs', $sourceEntityType]);
 		$selectDefsData = $this->metadata->get(['selectDefs', $sourceEntityType]);
 		$recordDefsData = $this->metadata->get(['recordDefs', $sourceEntityType]);
 		$aclDefsData = $this->metadata->get(['aclDefs', $sourceEntityType]);
@@ -170,7 +170,7 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 		$generatedForeignLinks = []; // Track foreign links we're creating in this operation
 		
 		if ($entityDefsData) {
-			$newEntityDefs = $this->metadata->get(['entityDefs', $actualName]) ?? [];
+			$newEntityDefs = $this->metadata->get(['entityDefs', $actualName]);
             
 			// Copy fields
 			if (!empty($entityDefsData['fields'])) {
@@ -181,7 +181,7 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 					}
 					
 					// Skip link-related fields - these will be created when links are established
-					$fieldType = $fieldDefs['type'] ?? '';
+					$fieldType = $fieldDefs['type'];
 					if (in_array($fieldType, ['link', 'linkMultiple', 'linkParent'])) {
 						continue;
 					}
@@ -215,7 +215,7 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 						$linkForeignBase = lcfirst($actualName);
 						
 						// For hasMany links, pluralize the name
-						if (($linkDefs['type'] ?? '') === 'hasMany') {
+						if (($linkDefs['type']) === 'hasMany') {
 							// Simple pluralization - add 's' if not already plural
 							if (!preg_match('/s$/', $linkForeignBase)) {
 								$linkForeignBase .= 's';
@@ -223,7 +223,7 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 						}
 						
 						// Check if this foreign link name already exists on the foreign entity
-						$foreignEntityDefs = $this->metadata->get(['entityDefs', $linkDefs['entity'], 'links']) ?? [];
+						$foreignEntityDefs = $this->metadata->get(['entityDefs', $linkDefs['entity'], 'links']);
 						$linkForeignUnique = $linkForeignBase;
 						$counter = 1;
 						
@@ -296,20 +296,20 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 					}
 					
 					// Check for linkMultiple fields
-					$fieldDefs = $this->metadata->get(['entityDefs', $sourceEntityType, 'fields', $linkName]) ?? [];
+					$fieldDefs = $this->metadata->get(['entityDefs', $sourceEntityType, 'fields', $linkName]);
 					if (($fieldDefs['type'] ?? null) === 'linkMultiple') {
 						$linkParams['linkMultipleField'] = true;
 					}
 					
 					if (!empty($linkDefs['foreign'])) {
-						$foreignFieldDefs = $this->metadata->get(['entityDefs', $linkDefs['entity'], 'fields', $linkDefs['foreign']]) ?? [];
+						$foreignFieldDefs = $this->metadata->get(['entityDefs', $linkDefs['entity'], 'fields', $linkDefs['foreign']]);
 						if (($foreignFieldDefs['type'] ?? null) === 'linkMultiple') {
 							$linkParams['linkMultipleFieldForeign'] = true;
 						}
 					}
 					
 					// Copy relationship panel settings
-					$panelDefs = $this->metadata->get(['clientDefs', $sourceEntityType, 'relationshipPanels', $linkName]) ?? [];
+					$panelDefs = $this->metadata->get(['clientDefs', $sourceEntityType, 'relationshipPanels', $linkName]);
 					if (!empty($panelDefs['layout'])) {
 						$linkParams['layout'] = $panelDefs['layout'];
 					}
@@ -317,7 +317,7 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 						$linkParams['selectFilter'] = $panelDefs['selectPrimaryFilterName'];
 					}
 					
-					$foreignPanelDefs = $this->metadata->get(['clientDefs', $linkDefs['entity'], 'relationshipPanels', $linkDefs['foreign'] ?? '']) ?? [];
+					$foreignPanelDefs = $this->metadata->get(['clientDefs', $linkDefs['entity'], 'relationshipPanels', $linkDefs['foreign']]) ?? [];
 					if (!empty($foreignPanelDefs['layout'])) {
 						$linkParams['layoutForeign'] = $foreignPanelDefs['layout'];
 					}
@@ -339,7 +339,7 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
         
 		// Copy client definitions
 		if ($clientDefsData) {
-			$newClientDefs = $this->metadata->get(['clientDefs', $actualName]) ?? [];
+			$newClientDefs = $this->metadata->get(['clientDefs', $actualName]);
             
 			// Copy views
 			if (!empty($clientDefsData['views'])) {
@@ -416,9 +416,6 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 			}
 		}
         
-        
-        
-        
 		// Save metadata
 		$this->metadata->save();
         
@@ -449,7 +446,7 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 						/** @phpstan-ignore-next-line */
 						'label' => (string) $linkParams['label'],
 						/** @phpstan-ignore-next-line */
-						'labelForeign' => (string) ($linkParams['labelForeign'] ?? ''),
+						'labelForeign' => (string) ($linkParams['labelForeign']),
 						'linkType' => (string) $linkParams['linkType'],
 					];
 					
@@ -501,9 +498,9 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 	 * @throws Error
 	 */
 	public function postActionUpdateLinkParams(Request $request): bool {
-		$entityType = $request->getParsedBody()->entityType ?? throw new BadRequest('No entityType.');
-		$link = $request->getParsedBody()->link ?? throw new BadRequest('No link.');
-		$rawParams = $request->getParsedBody()->params ?? throw new BadRequest('No params.');
+		$entityType = $request->getParsedBody()->entityType;
+		$link = $request->getParsedBody()->link;
+		$rawParams = $request->getParsedBody()->params;
 
 		if (!is_string($entityType) || !is_string($link) || !$rawParams instanceof stdClass) {
 			throw new BadRequest();
@@ -531,8 +528,8 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 	 * @throws Error
 	 */
 	public function postActionResetLinkParamsToDefault(Request $request): bool {
-		$entityType = $request->getParsedBody()->entityType ?? throw new BadRequest('No entityType.');
-		$link = $request->getParsedBody()->link ?? throw new BadRequest('No link.');
+		$entityType = $request->getParsedBody()->entityType;
+		$link = $request->getParsedBody()->link;
 
 		if (!is_string($entityType) || !is_string($link)) {
 			throw new BadRequest();
@@ -543,5 +540,4 @@ class EntityManager extends \Espo\Controllers\EntityManager implements
 
 		return true;
 	}
-
 }

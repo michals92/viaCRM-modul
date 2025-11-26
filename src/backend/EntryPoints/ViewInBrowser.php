@@ -72,8 +72,9 @@ class ViewInBrowser implements EntryPoint {
 	 * @throws NotFound
 	 */
 	private function handleEmailTemplate(string $templateId, string $parentId, string $parentType): string {
-		$templateEntity = $this->entityManager->getEntityById('EmailTemplate', $templateId);
-		$parentEntity = $this->entityManager->getEntityById($parentType, $parentId);
+		$em = $this->entityManager;
+		$templateEntity = $em->getEntityById('EmailTemplate', $templateId);
+		$parentEntity = $em->getEntityById($parentType, $parentId);
 
 		if (!$templateEntity || !$parentEntity) {
 			throw new NotFound();
@@ -85,5 +86,4 @@ class ViewInBrowser implements EntryPoint {
 			EmailTemplateData::create()->withParent($parentEntity),
 		)->getBody();
 	}
-
 }

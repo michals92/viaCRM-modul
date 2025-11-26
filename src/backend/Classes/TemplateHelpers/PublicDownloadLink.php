@@ -10,7 +10,6 @@ use Espo\Core\Utils\Config;
 use LogicException;
 
 class PublicDownloadLink implements Helper {
-
 	public function __construct(
 		private readonly Config $config,
 		private readonly EntityManager $entityManager,
@@ -47,5 +46,4 @@ class PublicDownloadLink implements Helper {
 
 		return Result::createSafeString($url);
 	}
-
 }

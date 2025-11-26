@@ -8,7 +8,6 @@ use Espo\Entities\User;
 use Espo\ORM\Query\SelectBuilder as QueryBuilder;
 
 class ConverterFactory {
-
 	public function __construct(
 		protected InjectableFactory                        $injectableFactory,
 		protected Metadata                                 $metadata,
@@ -79,5 +78,4 @@ class ConverterFactory {
 
 		return array_diff($classNameList, $suppressClassNameList);
 	}
-
 }

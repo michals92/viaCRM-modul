@@ -16,7 +16,6 @@ use Espo\Repositories\Attachment as AttachmentRepository;
 use ZipStream\ZipStream;
 
 class ZipAttachments implements Action {
-
 	private AttachmentRepository $attachmentRepository;
 
 	public function __construct(
@@ -123,5 +122,4 @@ class ZipAttachments implements Action {
 
 		$zip->addFile($fileName, $contents);
 	}
-
 }

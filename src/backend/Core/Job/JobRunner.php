@@ -13,7 +13,6 @@ use Throwable;
  * This class is here so that errors are logged with the full stack trace.
  */
 class JobRunner extends \Espo\Core\Job\JobRunner {
-
 	/**
 	 * Run a job entity. Does not throw exceptions.
 	 */
@@ -102,5 +101,4 @@ class JobRunner extends \Espo\Core\Job\JobRunner {
 			);
 		}
 	}
-
 }

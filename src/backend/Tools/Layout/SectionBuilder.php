@@ -6,7 +6,6 @@ use Espo\Core\InjectableFactory;
 use Espo\Modules\Viacrm\Core\Layout\LikeType;
 
 class SectionBuilder {
-
 	/** @var array<string, mixed> $section */
 	protected array $section;
 
@@ -201,5 +200,4 @@ class SectionBuilder {
 	public function getLayoutBuilder(): LayoutBuilder {
 		return $this->layoutBuilder;
 	}
-
 }

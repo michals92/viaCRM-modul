@@ -12,7 +12,6 @@ use Espo\Entities\NextNumber;
 use Espo\Entities\User;
 
 class BeforeSaveProcessor {
-
 	public function __construct(
 		private readonly Metadata $metadata,
 		private readonly EntityManager $entityManager,
@@ -255,9 +254,10 @@ class BeforeSaveProcessor {
 	 * @param array<string, mixed> $sequence
 	 */
 	protected function processSequence(Entity $entity, string $field, array $sequence, int $sequenceIndex): void {
-		$this->entityManager->getTransactionManager()->start();
+		$em = $this->entityManager;
+		$em->getTransactionManager()->start();
 
-		$nextNumber = $this->entityManager
+		$nextNumber = $em
 			->getRDBRepository(NextNumber::ENTITY_TYPE)
 			->where([
 				'fieldName' => $field,
@@ -268,7 +268,7 @@ class BeforeSaveProcessor {
 			->findOne();
 
 		if (!$nextNumber) {
-			$nextNumber = $this->entityManager->getNewEntity(NextNumber::ENTITY_TYPE);
+			$nextNumber = $em->getNewEntity(NextNumber::ENTITY_TYPE);
 
 			$nextNumber->set([
 				'entityType' => $entity->getEntityType(),
@@ -289,8 +289,8 @@ class BeforeSaveProcessor {
 
 		$nextNumber->set('value', $value);
 
-		$this->entityManager->saveEntity($nextNumber);
-		$this->entityManager->getTransactionManager()->commit();
+		$em->saveEntity($nextNumber);
+		$em->getTransactionManager()->commit();
 	}
 
 	/**
@@ -351,5 +351,4 @@ class BeforeSaveProcessor {
 
 		return $list;
 	}
-
 }

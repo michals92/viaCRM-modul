@@ -13,7 +13,6 @@ use Psy\Configuration;
 use Psy\Shell;
 
 class Tinker implements Command {
-
 	public function __construct(
 		private Container $container,
 		private Config $config,
@@ -62,5 +61,4 @@ class Tinker implements Command {
 
 		return null;
 	}
-
 }

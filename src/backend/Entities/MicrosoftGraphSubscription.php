@@ -3,7 +3,7 @@
 namespace Espo\Modules\Viacrm\Entities;
 
 class MicrosoftGraphSubscription extends \Espo\Core\Templates\Entities\Base {
+	public const string TEMPLATE_TYPE = 'Base';
 
-	public const ENTITY_TYPE = 'MicrosoftGraphSubscription';
-
+	public const string ENTITY_TYPE = 'MicrosoftGraphSubscription';
 }

@@ -11,24 +11,21 @@ use Espo\ORM\Entity;
 /**
  * @implements Loader<Product>
  */
-class OrderedLoader implements Loader
-{
-    public function __construct(
-        private readonly EntityManager $entityManager
-    ) {
-    }
+class OrderedLoader implements Loader {
+	public function __construct(
+		private readonly EntityManager $entityManager
+	) {}
 
-    public function process(Entity $entity, Params $params): void
-    {
-        $em = $this->entityManager;
-        if ($em->hasRepository('PurchaseOrderItem')) {
-            $ordered = (bool) $em
-                ->getRDBRepository('PurchaseOrderItem')
-                ->select(['id'])
-                ->where('productId', $entity->getId())
-                ->findOne();
+	public function process(Entity $entity, Params $params): void {
+		$em = $this->entityManager;
+		if ($em->hasRepository('PurchaseOrderItem')) {
+			$ordered = (bool) $em
+			    ->getRDBRepository('PurchaseOrderItem')
+			    ->select(['id'])
+			    ->where('productId', $entity->getId())
+			    ->findOne();
 
-            $entity->set('ordered', $ordered);
-        }
-    }
+			$entity->set('ordered', $ordered);
+		}
+	}
 }

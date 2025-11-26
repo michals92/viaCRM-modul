@@ -18,5 +18,4 @@ class XmlFeedPublic implements EntryPoint {
 	public function run(Request $request, Response $response): void {
 		$this->entryPointProcessor->process($request, $response, true);
 	}
-
 }

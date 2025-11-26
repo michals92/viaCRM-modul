@@ -12,7 +12,6 @@ use Espo\Core\ORM\EntityManager;
 use stdClass;
 
 readonly class Service {
-
 	private const URL = 'https://www.finstat.sk/';
 
 	public function __construct(
@@ -265,5 +264,4 @@ readonly class Service {
 			'body' => $body === false ? '' : $body
 		];
 	}
-
 }

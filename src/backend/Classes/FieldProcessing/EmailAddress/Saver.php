@@ -14,7 +14,6 @@ use Espo\Repositories\EmailAddress as EmailAddressRepository;
 use ReflectionException;
 
 class Saver extends \Espo\Core\FieldProcessing\EmailAddress\Saver {
-
 	public function __construct(
 		private EntityManager $entityManager,
 		ApplicationState $applicationState,
@@ -341,5 +340,4 @@ class Saver extends \Espo\Core\FieldProcessing\EmailAddress\Saver {
 			$entity->set('emailAddressData', $emailAddressData);
 		}
 	}
-
 }

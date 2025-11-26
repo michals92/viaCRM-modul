@@ -3,7 +3,6 @@
 namespace Espo\Modules\Viacrm\Tools\Aggregation;
 
 class AggregationEntry {
-
 	private string $name;
 
 	private string $function;
@@ -48,5 +47,4 @@ class AggregationEntry {
 	public function getField(): string {
 		return $this->field;
 	}
-
 }

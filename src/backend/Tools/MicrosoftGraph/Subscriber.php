@@ -10,14 +10,13 @@ use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Log;
 use Espo\Entities\ExternalAccount;
+use Espo\Modules\Outlook\Core\Outlook\Clients\Outlook;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Viacrm\Entities\MicrosoftGraphSubscription;
-use Espo\Modules\Outlook\Core\Outlook\Clients\Outlook;
 use Espo\ORM\Entity;
 use Exception;
 
 class Subscriber {
-
 	public function __construct(
 		private readonly ClientManager $clientManager,
 		private readonly Config $config,
@@ -166,5 +165,4 @@ class Subscriber {
 			}
 		}
 	}
-
 }

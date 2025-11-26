@@ -15,7 +15,6 @@ use Espo\ORM\Query\Part\Condition;
 use Espo\ORM\Query\Part\Expression;
 
 readonly class GetSignature implements Action {
-
 	public function __construct(
 		private EntityManager $entityManager,
 		private User          $user
@@ -97,5 +96,4 @@ readonly class GetSignature implements Action {
 
 		return $signature;
 	}
-
 }

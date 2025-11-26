@@ -11,7 +11,6 @@ use Espo\ORM\Defs;
 use Espo\ORM\Entity;
 
 class LinkMultipleType extends BaseLinkMultipleType {
-
 	public function __construct(
 		private readonly Metadata $metadata,
 		private readonly Defs $defs,
@@ -121,5 +120,4 @@ class LinkMultipleType extends BaseLinkMultipleType {
 			return parent::checkColumnsValid($entity, $field);
 		}
 	}
-
 }

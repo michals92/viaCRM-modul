@@ -23,5 +23,4 @@ class EntityAwareReadParamsFetcher extends ReadParamsFetcher {
 		 */
 		return $this->fetchInternal($request);
 	}
-
 }

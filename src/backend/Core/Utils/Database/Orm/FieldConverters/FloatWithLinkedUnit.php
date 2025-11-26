@@ -20,7 +20,6 @@ use Espo\ORM\Type\AttributeType;
  * }
  */
 class FloatWithLinkedUnit implements FieldConverter {
-
 	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs {
 		$name = $fieldDefs->getName();
 		$unitField = $fieldDefs->getParam('unitField');
@@ -93,5 +92,4 @@ class FloatWithLinkedUnit implements FieldConverter {
 
 		return $entityDefs;
 	}
-
 }

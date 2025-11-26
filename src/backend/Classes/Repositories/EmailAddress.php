@@ -69,5 +69,4 @@ class EmailAddress extends \Espo\Repositories\EmailAddress {
 	public function getEntityByAddress(string $address, ?string $entityType = null, ?array $order = null): ?Entity {
 		return parent::getEntityByAddress($address, $entityType, $order);
 	}
-
 }

@@ -12,7 +12,6 @@ use Espo\Modules\Viacrm\Entities\XmlTemplate;
 use Espo\Modules\Viacrm\Tools\Xml\Service as XmlService;
 
 class Xml implements EntryPoint {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly XmlService $xmlService
@@ -53,5 +52,4 @@ class Xml implements EntryPoint {
 
 		$response->writeBody($contents->getStream());
 	}
-
 }

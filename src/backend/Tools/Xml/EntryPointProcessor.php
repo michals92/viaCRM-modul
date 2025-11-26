@@ -14,7 +14,6 @@ use Espo\Modules\Viacrm\Entities\XmlFeed as XmlFeedEntity;
 use Espo\Modules\Viacrm\Entities\XmlTemplate;
 
 class EntryPointProcessor {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly SelectBuilderFactory $selectBuilderFactory,
@@ -92,5 +91,4 @@ class EntryPointProcessor {
 		    ->setHeader('Last-Modified', gmdate('D, d M Y H:i:s') . ' GMT')
 		    ->setHeader('Content-Disposition', 'inline; filename="' . 'feed.xml' . '"');
 	}
-
 }

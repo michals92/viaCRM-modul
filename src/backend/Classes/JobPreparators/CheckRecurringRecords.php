@@ -14,7 +14,6 @@ use Exception;
 use RuntimeException;
 
 readonly class CheckRecurringRecords implements Preparator {
-
 	public function __construct(
 		private EntityManager $entityManager,
 	) {}
@@ -77,5 +76,4 @@ readonly class CheckRecurringRecords implements Preparator {
 			]);
 		}
 	}
-
 }

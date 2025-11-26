@@ -56,5 +56,4 @@ class Applier extends \Espo\Core\Select\Text\Applier implements Di\MetadataAware
 			!str_contains($filter, '+') &&
 			!str_contains($filter, '-');
 	}
-
 }

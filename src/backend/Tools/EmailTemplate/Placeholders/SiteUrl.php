@@ -7,7 +7,6 @@ use Espo\Tools\EmailTemplate\Data as EmailTemplateData;
 use Espo\Tools\EmailTemplate\Placeholder;
 
 class SiteUrl implements Placeholder {
-
 	public function __construct(
 		private readonly Config $config
 	) {}
@@ -23,5 +22,4 @@ class SiteUrl implements Placeholder {
 
 		return $siteUrl;
 	}
-
 }

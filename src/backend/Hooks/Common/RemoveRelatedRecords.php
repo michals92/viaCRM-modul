@@ -13,6 +13,7 @@ use Espo\ORM\Repository\Option\RemoveOptions;
  * @implements AfterRemove<Entity>
  */
 class RemoveRelatedRecords implements AfterRemove {
+	public static int $order = 9;
 
 	public function __construct(
 		private readonly EntityManager $entityManager,
@@ -42,11 +43,12 @@ class RemoveRelatedRecords implements AfterRemove {
 	}
 
 	private function removeRelatedRecordsForField(Entity $entity, string $fieldName): void {
+		$em = $this->entityManager;
 		try {
-			$relatedRecords = $this->entityManager->getRelation($entity, $fieldName)->find();
+			$relatedRecords = $em->getRelation($entity, $fieldName)->find();
 
 			foreach ($relatedRecords as $relatedRecord) {
-				$this->entityManager->removeEntity($relatedRecord);
+				$em->removeEntity($relatedRecord);
 			}
 		} catch (\Throwable $e) {
 			$this->log->error('Failed to remove related records', [
@@ -57,5 +59,4 @@ class RemoveRelatedRecords implements AfterRemove {
 			]);
 		}
 	}
-
 }

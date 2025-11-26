@@ -6,7 +6,6 @@ use Espo\Core\Utils\Metadata\AdditionalBuilder;
 use stdClass;
 
 class ReminderSaver implements AdditionalBuilder {
-
 	public function build(stdClass $data): void {
 		$entitiesToModify = ['Task', 'Meeting', 'Call'];
 		$originalClass = 'Espo\\Core\\FieldProcessing\\Reminder\\Saver';
@@ -26,5 +25,4 @@ class ReminderSaver implements AdditionalBuilder {
 			}
 		}
 	}
-
 }

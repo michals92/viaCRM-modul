@@ -13,7 +13,6 @@ use Espo\ORM\Type\RelationType;
 use ReflectionException;
 
 class Email extends \Espo\Core\Utils\Database\Orm\FieldConverters\Email {
-
 	private const COLUMN_ENTITY_TYPE_LENGTH = 100;
 
 	/**
@@ -234,5 +233,4 @@ class Email extends \Espo\Core\Utils\Database\Orm\FieldConverters\Email {
 			],
 		];
 	}
-
 }

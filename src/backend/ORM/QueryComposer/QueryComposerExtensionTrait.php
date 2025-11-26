@@ -6,7 +6,6 @@ use Espo\ORM\Query\Part\Expression;
 
 /** This trait exists to avoid code duplication */
 trait QueryComposerExtensionTrait {
-
 	/** This function is extended to allow expressions
 	 * @param  string               $entityType
 	 * @param  array<string, mixed> $values
@@ -36,5 +35,4 @@ trait QueryComposerExtensionTrait {
     
 		return implode(', ', $list);
 	}
-
 }

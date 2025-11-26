@@ -10,8 +10,9 @@ use Exception;
 use RuntimeException;
 
 class RecordRecurrence extends \Espo\Core\Templates\Entities\Base {
+	public const string TEMPLATE_TYPE = 'Base';
 
-	public const ENTITY_TYPE = 'RecordRecurrence';
+	public const string ENTITY_TYPE = 'RecordRecurrence';
 
 	private ?CronExpression $cronExpression = null;
 
@@ -65,5 +66,4 @@ class RecordRecurrence extends \Espo\Core\Templates\Entities\Base {
 
 		return $until?->toDateTime();
 	}
-
 }

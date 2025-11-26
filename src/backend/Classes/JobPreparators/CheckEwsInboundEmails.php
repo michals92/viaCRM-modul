@@ -13,7 +13,6 @@ use Espo\ORM\EntityManager;
  * Prepares jobs for checking EWS group email accounts (InboundEmail).
  */
 class CheckEwsInboundEmails implements Preparator {
-
 	/**
 	 * @param CollectionHelper<InboundEmail> $helper
 	 */
@@ -33,5 +32,4 @@ class CheckEwsInboundEmails implements Preparator {
 
 		$this->helper->prepare($collection, $data, $executeTime);
 	}
-
 }

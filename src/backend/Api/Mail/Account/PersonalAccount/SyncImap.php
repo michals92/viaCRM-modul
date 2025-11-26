@@ -19,7 +19,6 @@ use Espo\ORM\EntityManager;
 use Exception;
 
 class SyncImap implements Action {
-
 	public function __construct(
 		private readonly EntityManager  $entityManager,
 		private readonly AccountFactory $accountFactory,
@@ -69,5 +68,4 @@ class SyncImap implements Action {
 		$fetcher->fetch($account);
 		$account->updateConnectedAt();
 	}
-
 }

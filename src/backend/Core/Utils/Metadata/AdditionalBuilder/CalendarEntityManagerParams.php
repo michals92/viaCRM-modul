@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder;
 use stdClass;
 
 class CalendarEntityManagerParams extends AdditionalBuilderWithConfig {
-
 	public function build(stdClass $data): void {
 		if (!isset($data->app) || !isset($data->app->entityManagerParams)) {
 			return;
@@ -32,5 +31,4 @@ class CalendarEntityManagerParams extends AdditionalBuilderWithConfig {
 			];
 		}
 	}
-
 }

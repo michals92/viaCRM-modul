@@ -10,7 +10,6 @@ use Throwable;
 
 /** @disregard */
 class ViacrmFormatter extends LineFormatter {
-
 	// This is the only changed line from the original
 	private const LINE_FORMAT = "[%datetime%] %level_name%: %code% %message% %request% %exception% %context% %extra%\n";
 	private const DATE_FORMAT = 'Y-m-d H:i:s';
@@ -104,5 +103,4 @@ class ViacrmFormatter extends LineFormatter {
 
 		return $line;
 	}
-
 }

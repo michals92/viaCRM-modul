@@ -7,7 +7,6 @@ use Espo\Core\Htmlizer\Helper\Data;
 use Espo\Core\Htmlizer\Helper\Result;
 
 class AmountToText implements Helper {
-
 	public function render(Data $data): Result {
 		$value = $data->getArgumentList()[0] ?? null;
 		$number = (int)$value;
@@ -188,5 +187,4 @@ class AmountToText implements Helper {
 			$minus . implode(' ', $words)
 		);
 	}
-
 }

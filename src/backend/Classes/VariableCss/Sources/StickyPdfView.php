@@ -6,7 +6,6 @@ use Espo\Core\Utils\Config;
 use Espo\Modules\Viacrm\Classes\VariableCss\Source as VariableCssSource;
 
 class StickyPdfView implements VariableCssSource {
-
 	public function __construct(
 		private readonly Config $config
 	) {}
@@ -31,5 +30,4 @@ class StickyPdfView implements VariableCssSource {
 
 		return '';
 	}
-
 } 

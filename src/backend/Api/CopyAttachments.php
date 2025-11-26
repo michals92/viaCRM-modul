@@ -15,7 +15,6 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Metadata;
 
 class CopyAttachments implements Action {
-
 	public function __construct(
 		private readonly Acl $acl,
 		private readonly EntityManager $entityManager,
@@ -23,6 +22,7 @@ class CopyAttachments implements Action {
 	) {}
 
 	public function process(Request $request): Response {
+		$em = $this->entityManager;
 		$data = $request->getParsedBody();
 
 		if (empty($data->ids) || !is_array($data->ids)) {
@@ -50,18 +50,18 @@ class CopyAttachments implements Action {
 		$copiedAttachmentsNames = [];
 
 		/** @var \Espo\Repositories\Attachment $attachmentRepository */
-		$attachmentRepository = $this->entityManager->getRepository('Attachment');
+		$attachmentRepository = $em->getRepository('Attachment');
 
 		if ($data->parentId) {
 			// Branch when parent is not null
-			$parentEntity = $this->entityManager->getEntityById($data->parentType, $data->parentId);
+			$parentEntity = $em->getEntityById($data->parentType, $data->parentId);
 
 			if (!$parentEntity) {
 				throw new NotFound('Parent entity not found');
 			}
 
 			foreach ($data->ids as $id) {
-				$attachment = $this->entityManager->getEntityById('Attachment', $id);
+				$attachment = $em->getEntityById('Attachment', $id);
 
 				if (!$attachment || !$this->acl->check($attachment, 'read')) {
 					continue;
@@ -72,7 +72,7 @@ class CopyAttachments implements Action {
 				$newAttachment->set('parentId', $data->parentId);
 				$newAttachment->set('field', $attachmentField);
 
-				$this->entityManager->saveEntity($newAttachment);
+				$em->saveEntity($newAttachment);
 
 				$copiedAttachments[] = $newAttachment->getId();
 				$copiedAttachmentsNames[$newAttachment->getId()] = $newAttachment->get('name');
@@ -82,11 +82,11 @@ class CopyAttachments implements Action {
 				}
 			}
 
-			$this->entityManager->saveEntity($parentEntity);
+			$em->saveEntity($parentEntity);
 		} else {
 			// Branch when parent is null
 			foreach ($data->ids as $id) {
-				$attachment = $this->entityManager->getEntityById('Attachment', $id);
+				$attachment = $em->getEntityById('Attachment', $id);
 
 				if (!$attachment || !$this->acl->check($attachment, 'read')) {
 					continue;
@@ -97,7 +97,7 @@ class CopyAttachments implements Action {
 				$newAttachment->set('parentId', null);
 				$newAttachment->set('field', $attachmentField);
 
-				$this->entityManager->saveEntity($newAttachment);
+				$em->saveEntity($newAttachment);
 
 				$copiedAttachments[] = $newAttachment->getId();
 				$copiedAttachmentsNames[$newAttachment->getId()] = $newAttachment->get('name');
@@ -111,5 +111,4 @@ class CopyAttachments implements Action {
 
 		return ResponseComposer::json($response);
 	}
-
 }

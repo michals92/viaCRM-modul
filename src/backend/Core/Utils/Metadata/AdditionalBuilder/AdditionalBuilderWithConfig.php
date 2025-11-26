@@ -13,7 +13,6 @@ use stdClass;
  *  To be extended by AdditionalBuilder implementors that need to use the Config class
  */
 abstract class AdditionalBuilderWithConfig implements AdditionalBuilder {
-
 	protected readonly Config $config;
 
 	protected FileManager $fileManager;
@@ -296,5 +295,4 @@ abstract class AdditionalBuilderWithConfig implements AdditionalBuilder {
 			$data->entityDefs->{$entityType}->fields->{$fieldName}->{$property} = $value;
 		}
 	}
-
 }

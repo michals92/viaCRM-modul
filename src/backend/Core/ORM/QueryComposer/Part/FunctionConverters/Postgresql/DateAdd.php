@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Pos
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 
 class DateAdd implements FunctionConverter {
-
 	public function convert(string ...$argumentList): string {
 		if (count($argumentList) !== 3) {
 			throw new \InvalidArgumentException('DateAdd function requires exactly three arguments: date, interval value, interval unit.');
@@ -28,5 +27,4 @@ class DateAdd implements FunctionConverter {
 
 		return "($date + ($intervalValue || ' $intervalUnitFormatted')::interval)";
 	}
-
 }

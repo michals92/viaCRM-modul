@@ -20,7 +20,6 @@ use Espo\Modules\Viacrm\Classes\EmailPdf\DefaultAttributeProvider;
 use stdClass;
 
 class EmailPdfAttributes implements Action {
-
 	public function __construct(
 		private readonly Metadata $metadata,
 		private readonly InjectableFactory $injectableFactory,
@@ -81,5 +80,4 @@ class EmailPdfAttributes implements Action {
 		// Return the response as JSON
 		return ResponseComposer::json($response);
 	}
-
 }

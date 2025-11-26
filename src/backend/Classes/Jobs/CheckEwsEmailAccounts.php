@@ -12,7 +12,6 @@ use Throwable;
  * Checks EWS personal email accounts for new messages.
  */
 class CheckEwsEmailAccounts implements Job {
-
 	public function __construct(
 		private Service $service
 	) {}
@@ -30,5 +29,4 @@ class CheckEwsEmailAccounts implements Job {
 			throw new RuntimeException("CheckEwsEmailAccounts job failed, $targetId; {$e->getMessage()}", 0, $e);
 		}
 	}
-
 }

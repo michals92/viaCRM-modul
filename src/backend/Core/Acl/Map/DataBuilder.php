@@ -7,7 +7,6 @@ use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use ReflectionClass;
 
 class DataBuilder extends \Espo\Core\Acl\Map\DataBuilder {
-
 	const ACTION_PRINT = 'print';
 
 	public function __construct(
@@ -20,5 +19,4 @@ class DataBuilder extends \Espo\Core\Acl\Map\DataBuilder {
 
 		parent::__construct(...$parentConstructorArgs);
 	}
-
 }

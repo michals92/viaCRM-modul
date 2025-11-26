@@ -14,7 +14,6 @@ use Espo\ORM\Query\Part\WhereItem as WhereClauseItem;
 use Espo\ORM\Query\SelectBuilder;
 
 class Yesterday implements ItemConverter {
-
 	public function __construct(
 		private readonly Config $config
 	) {}
@@ -55,5 +54,4 @@ class Yesterday implements ItemConverter {
 			throw new BadRequest($e->getMessage());
 		}
 	}
-
 }

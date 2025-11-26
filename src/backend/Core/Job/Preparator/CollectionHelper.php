@@ -19,7 +19,6 @@ use Espo\ORM\EntityManager;
  * @template TEntity of Entity
  */
 class CollectionHelper {
-
 	public const NAME = 'job';
 	public const CLASS_NAME = 'className';
 	public const SERVICE_NAME = 'serviceName';
@@ -182,5 +181,4 @@ class CollectionHelper {
 			$jobData['scheduledJobId'] = $data->getId();
 		}
 	}
-
 }

@@ -9,7 +9,6 @@ use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Language;
 
 class Processor {
-
 	public function __construct(
 		private readonly Config $config,
 		private readonly Crypt $crypt,
@@ -36,5 +35,4 @@ class Processor {
 			$content
 		);
 	}
-
 }

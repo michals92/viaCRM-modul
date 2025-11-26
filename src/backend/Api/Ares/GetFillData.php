@@ -11,7 +11,6 @@ use Espo\Core\Exceptions\Error;
 use Espo\Modules\Viacrm\Tools\Ares\Service as AresService;
 
 class GetFillData implements Action {
-
 	public function __construct(
 		private readonly AresService $aresService,
 	) {}
@@ -34,5 +33,4 @@ class GetFillData implements Action {
 		    'attributes' => $data,
 		]);
 	}
-
 }

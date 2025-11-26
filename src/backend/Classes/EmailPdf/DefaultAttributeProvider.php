@@ -19,7 +19,6 @@ use Exception;
 use stdClass;
 
 class DefaultAttributeProvider implements AttributeProvider {
-
 	public function __construct(
 		private readonly ServiceContainer $serviceContainer,
 		private readonly EntityManager $entityManager,
@@ -125,5 +124,4 @@ class DefaultAttributeProvider implements AttributeProvider {
 
 		return (object)$attributes;
 	}
-
 }

@@ -12,6 +12,7 @@ use Espo\ORM\Repository\Option\SaveOptions;
  * @implements BeforeSave<EmailAccount>
  */
 class SyncReadStatusHandler implements BeforeSave {
+	public static int $order = 9;
 
 	public function __construct(
 		private readonly Subscriber $subscriber
@@ -42,5 +43,4 @@ class SyncReadStatusHandler implements BeforeSave {
 	private function onSyncReadStatusDisabled(EmailAccount $entity): void {
 		$this->subscriber->unsubscribeAll($entity);
 	}
-
 }

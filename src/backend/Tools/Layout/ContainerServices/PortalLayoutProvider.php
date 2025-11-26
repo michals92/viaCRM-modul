@@ -9,7 +9,6 @@ use Espo\Core\Utils\Resource\FileReader;
 use Espo\Modules\Viacrm\Tools\Layout\UnifiedLayoutProvider;
 
 class PortalLayoutProvider extends \Espo\Tools\Layout\PortalLayoutProvider {
-
 	public function __construct(
 		private readonly UnifiedLayoutProvider $unifiedLayoutProvider,
 		FileManager $fileManager,
@@ -27,5 +26,4 @@ class PortalLayoutProvider extends \Espo\Tools\Layout\PortalLayoutProvider {
 		return $this->unifiedLayoutProvider
 			->get($scope, $name) ?? parent::get($scope, $name);
 	}
-
 }

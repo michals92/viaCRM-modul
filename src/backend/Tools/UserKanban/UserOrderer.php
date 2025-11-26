@@ -7,7 +7,6 @@ use Espo\Core\Utils\Id\RecordIdGenerator;
 use Espo\Core\Utils\Metadata;
 
 class UserOrderer {
-
 	public function __construct(
 		private EntityManager $entityManager,
 		private Metadata $metadata,
@@ -37,5 +36,4 @@ class UserOrderer {
 			$this->idGenerator
 		);
 	}
-
 }

@@ -9,7 +9,6 @@ use stdClass;
  * Automatically adds status-history panel to entities that have a statusField defined in scopes.
  */
 class StatusHistory implements AdditionalBuilder {
-
 	public function build(stdClass $data): void {
 		$data->clientDefs = $data->clientDefs ?? (object)[];
 
@@ -53,5 +52,4 @@ class StatusHistory implements AdditionalBuilder {
 			}
 		}
 	}
-
 }

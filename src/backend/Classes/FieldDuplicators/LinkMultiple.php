@@ -8,7 +8,6 @@ use Espo\ORM\Entity;
 use stdClass;
 
 class LinkMultiple extends \Espo\Classes\FieldDuplicators\LinkMultiple {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly FieldUtil $fieldUtil
@@ -64,5 +63,4 @@ class LinkMultiple extends \Espo\Classes\FieldDuplicators\LinkMultiple {
 			return $valueMap;
 		}
 	}
-
 }

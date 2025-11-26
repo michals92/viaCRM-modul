@@ -12,18 +12,15 @@ if (ReflectionUtil::classMethodHasParamCount(ClientManager::class, 'render', 1))
 	 * Fake compat class for use when upgrading
 	 */
 	class ClientManagerOld extends ClientManagerBase {
-
 		public function render(RenderParams $renderParams): string {
 			throw new LogicException();
 		}
-
 	}
 } else {
 	/** The actual class
 	 * This should only be used (and statically analyzed by phpstan for espo versions < 9.0.0)
 	 */
 	class ClientManagerOld extends ClientManagerBase {
-
 		/** @disregard */
 		public function render(?string $runScript = null, ?string $htmlFilePath = null, array $vars = []): string {
 			$htmlFilePath ??= 'application/Espo/Modules/Viacrm/Resources/html/main.tpl';
@@ -33,6 +30,5 @@ if (ReflectionUtil::classMethodHasParamCount(ClientManager::class, 'render', 1))
 			/** @disregard */
 			return parent::render($runScript, $htmlFilePath, $vars);
 		}
-
 	}
 }

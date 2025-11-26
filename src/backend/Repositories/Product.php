@@ -2,6 +2,4 @@
 
 namespace Espo\Modules\Viacrm\Repositories;
 
-class Product extends \Espo\Core\Templates\Repositories\Base
-{
-}
+class Product extends \Espo\Core\Templates\Repositories\Base {}

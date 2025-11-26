@@ -18,7 +18,8 @@ use Espo\ORM\Repository\Option\SaveOptions;
 /**
  * @implements BeforeSave<RecordRecurrence>
  */
-readonly class DuplicateData implements BeforeSave {
+class DuplicateData implements BeforeSave {
+	public static int $order = 9;
 
 	public function __construct(
 		private RecordServiceContainer $recordServiceContainer,
@@ -57,5 +58,4 @@ readonly class DuplicateData implements BeforeSave {
 
 		$entity->set('data', $duplicateAttributes);
 	}
-
 }

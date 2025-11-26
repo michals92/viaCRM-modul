@@ -8,7 +8,6 @@ use Espo\ORM\Defs\FieldDefs;
 use Espo\ORM\Type\AttributeType;
 
 class LinkMultiple extends \Espo\Core\Utils\Database\Orm\FieldConverters\LinkMultiple {
-
 	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs {
 		$entityDefs = parent::convert($fieldDefs, $entityType);
 
@@ -40,5 +39,4 @@ class LinkMultiple extends \Espo\Core\Utils\Database\Orm\FieldConverters\LinkMul
 
 		return $entityDefs;
 	}
-
 }

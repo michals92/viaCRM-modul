@@ -12,7 +12,6 @@ use Espo\Core\Utils\Util;
 use Espo\Modules\Viacrm\Core\Utils\LayoutProvider\AdditionalBuilder;
 
 class UnifiedLayoutProvider {
-
 	private string $defaultPath = 'application/Espo/Modules/Viacrm/Resources/defaults/layouts';
 
 	/** @var array<string, mixed> $data */
@@ -83,5 +82,4 @@ class UnifiedLayoutProvider {
 			$builder->apply();
 		}
 	}
-
 }

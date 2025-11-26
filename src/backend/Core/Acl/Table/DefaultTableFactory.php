@@ -11,7 +11,6 @@ use Espo\Entities\User;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 
 class DefaultTableFactory extends \Espo\Core\Acl\Table\DefaultTableFactory {
-
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory
 	) {}
@@ -32,5 +31,4 @@ class DefaultTableFactory extends \Espo\Core\Acl\Table\DefaultTableFactory {
 		// Have to create with InjectableFactory because of Di trait
 		return $this->injectableFactory->createWithBinding(DefaultTable::class, $bindingContainer);
 	}
-
 }

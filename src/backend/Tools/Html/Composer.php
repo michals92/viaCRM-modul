@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Tools\Html;
 use Stringable;
 
 class Composer {
-
 	/**
 	 * @param array<string, mixed> $attributes
 	 */
@@ -23,5 +22,4 @@ class Composer {
 
 		return $html;
 	}
-
 }

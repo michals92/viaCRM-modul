@@ -9,7 +9,6 @@ use ReflectionClass;
 use ReflectionException;
 
 class Factory extends \Espo\Core\Select\Applier\Factory {
-
 	/**
 	 * @var array<string, class-string<object>>
 	 */
@@ -31,5 +30,4 @@ class Factory extends \Espo\Core\Select\Applier\Factory {
 			return array_merge($defaultClassNameMap ?? [], $this->overrideDefaultClassNameMap);
 		});
 	}
-
 }

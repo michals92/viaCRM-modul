@@ -3,7 +3,6 @@
 namespace Espo\Modules\Viacrm\Tools\Layout;
 
 class RowBuilder {
-
 	/** @var array<string, mixed>|bool $row */
 	protected array|bool $row;
 
@@ -62,5 +61,4 @@ class RowBuilder {
 	public function getLayoutBuilder(): LayoutBuilder {
 		return $this->rowGroupBuilder->getLayoutBuilder();
 	}
-
 }

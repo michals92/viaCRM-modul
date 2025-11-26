@@ -10,7 +10,6 @@ use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Utils\Metadata;
 
 readonly class ConversionDefs implements Action {
-
 	public function __construct(
 		private Metadata $metadata
 	) {}
@@ -55,5 +54,4 @@ readonly class ConversionDefs implements Action {
 
 		return ResponseComposer::json(true);
 	}
-
 }

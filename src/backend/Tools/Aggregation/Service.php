@@ -8,7 +8,6 @@ use Espo\ORM\EntityManager;
 use stdClass;
 
 class Service {
-
 	public function __construct(
 		private readonly SelectBuilderFactory $selectBuilderFactory,
 		private readonly AggregationFunctionFactory $aggregationFunctionFactory,
@@ -43,5 +42,4 @@ class Service {
 
 		return $result !== false ? $result : new stdClass();
 	}
-
 }

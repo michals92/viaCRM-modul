@@ -7,7 +7,6 @@ use Espo\Core\Utils\Metadata;
 use Espo\ORM\Query\SelectBuilder;
 
 class BaseAggregationFunction implements AggregationFunction {
-
 	public function __construct(
 		private readonly Metadata $metadata,
 	) {}
@@ -24,5 +23,4 @@ class BaseAggregationFunction implements AggregationFunction {
 
 		$queryBuilder->select($databaseFunction . ':' . $field, $name);
 	}
-
 }

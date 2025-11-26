@@ -12,7 +12,6 @@ use Espo\Tools\LinkManager\LinkManager as CoreLinkManager;
  * Extended LinkManager to support foreignName parameter
  */
 class LinkManager extends CoreLinkManager {
-
 	public function __construct(
 		private Metadata $metadata,
 		private DataManager $dataManager,
@@ -69,5 +68,4 @@ class LinkManager extends CoreLinkManager {
 		$this->metadata->save();
 		$this->dataManager->clearCache();
 	}
-
 }

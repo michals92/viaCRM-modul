@@ -3,7 +3,6 @@
 namespace Espo\Modules\Viacrm\Classes\Utils\Common;
 
 final class Extension {
-
 	public const ACCOUNTING = 'Accounting';
 	public const AI_PARSING = 'AiParsing';
 	public const APPROVAL = 'Approval';
@@ -15,5 +14,4 @@ final class Extension {
 	public const PROJECT_MANAGEMENT = 'ProjectManagement';
 	public const SERVICE_MANAGEMENT = 'ServiceManagement';
 	public const WAREHOUSE_MANAGEMENT = 'WarehouseManagement';
-
 }

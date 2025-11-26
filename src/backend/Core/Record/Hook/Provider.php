@@ -11,7 +11,6 @@ use ReflectionException;
 use RuntimeException;
 
 class Provider extends \Espo\Core\Record\Hook\Provider {
-
 	/** @var array<string, object[]> */
 	private array $map = [];
 
@@ -86,5 +85,4 @@ class Provider extends \Espo\Core\Record\Hook\Provider {
 
 		return $list;
 	}
-
 }

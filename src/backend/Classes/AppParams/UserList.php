@@ -7,7 +7,6 @@ use Espo\Core\Select\SelectBuilder;
 use Espo\Tools\App\AppParam;
 
 class UserList implements AppParam {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly SelectBuilder $selectBuilder
@@ -31,5 +30,4 @@ class UserList implements AppParam {
 
 		return $users->getValueMapList();
 	}
-
 }

@@ -136,5 +136,4 @@ abstract class ConditionalApi implements Action {
 
 		return $result;
 	}
-
 }

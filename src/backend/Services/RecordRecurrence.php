@@ -21,7 +21,6 @@ use Exception;
 use RuntimeException;
 
 class RecordRecurrence extends \Espo\Core\Templates\Services\Base {
-
 	/**
 	 * @throws Error
 	 * @throws Exception
@@ -238,5 +237,4 @@ class RecordRecurrence extends \Espo\Core\Templates\Services\Base {
 	private function isValidDateField(object|null $orgValue): bool {
 		return $orgValue instanceof DateTime || $orgValue instanceof DateTimeOptional || $orgValue instanceof Date;
 	}
-
 }

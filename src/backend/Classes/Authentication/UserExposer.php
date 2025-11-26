@@ -6,7 +6,6 @@ use Espo\Core\Container;
 use Espo\Entities\User;
 
 class UserExposer {
-
 	public function __construct(
 		public readonly Container $container,
 	) {}
@@ -18,5 +17,4 @@ class UserExposer {
 
 		return $user;
 	}
-
 }

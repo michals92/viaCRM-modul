@@ -48,5 +48,4 @@ class Authentication extends \Espo\Core\Authentication\Authentication implements
 	private function getUserExposer(): UserExposer {
 		return $this->userExposer ??= $this->injectableFactory->create(UserExposer::class);
 	}
-
 }

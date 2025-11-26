@@ -26,7 +26,6 @@ use LogicException;
 use PDO;
 
 class WorkQueue {
-
 	public function __construct(
 		private readonly Metadata             $metadata,
 		private readonly EntityManager        $entityManager,
@@ -240,5 +239,4 @@ class WorkQueue {
 			$completed,
 		], Collection::TOTAL_HAS_MORE);
 	}
-
 }

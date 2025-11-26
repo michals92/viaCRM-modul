@@ -12,7 +12,6 @@ use Espo\Modules\Crm\Entities\Meeting;
 use Exception;
 
 class Calendar implements Helper {
-
 	private const STYLE_CALENDAR = 'display: flex;font-family: Arial, Helvetica, sans-serif; text-align: center;';
 	private const STYLE_LINK = 'text-decoration: none; color: dimgray; padding: 0.5em 0.7em; font-weight: bold; border: 1px solid lightgrey; background: white; margin: 2px; border-radius: 2px; width: 120px;';
 
@@ -135,5 +134,4 @@ class Calendar implements Helper {
 			return Result::createEmpty();
 		}
 	}
-
 }

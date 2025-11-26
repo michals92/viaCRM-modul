@@ -11,7 +11,6 @@ use Espo\Core\Record\SearchParamsFetcher;
 use Espo\Modules\Viacrm\Tools\UserKanban\Service as UserKanbanService;
 
 class GetData implements Action {
-
 	public function __construct(
 		private readonly UserKanbanService $userKanbanService,
 		private readonly SearchParamsFetcher $searchParamsFetcher
@@ -39,5 +38,4 @@ class GetData implements Action {
 		    'list' => $list,
 		]);
 	}
-
 }

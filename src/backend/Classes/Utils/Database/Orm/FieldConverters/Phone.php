@@ -13,7 +13,6 @@ use Espo\ORM\Type\RelationType;
 use ReflectionException;
 
 class Phone extends \Espo\Core\Utils\Database\Orm\FieldConverters\Phone {
-
 	private const COLUMN_ENTITY_TYPE_LENGTH = 100;
 
 	/**
@@ -288,5 +287,4 @@ class Phone extends \Espo\Core\Utils\Database\Orm\FieldConverters\Phone {
 		    ],
 		];
 	}
-
 }

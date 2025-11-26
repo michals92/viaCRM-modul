@@ -48,5 +48,4 @@ class AccessChecker implements AccessEntityCREDSChecker {
 
 		return true;
 	}
-
 }

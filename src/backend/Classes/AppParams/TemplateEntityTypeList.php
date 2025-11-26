@@ -11,7 +11,6 @@ use PDO;
 
 /** A more optimized and error-resistant version of the original */
 class TemplateEntityTypeList implements AppParam {
-
 	public function __construct(
 		private readonly Acl $acl,
 		private readonly SelectBuilderFactory $selectBuilderFactory,
@@ -39,5 +38,4 @@ class TemplateEntityTypeList implements AppParam {
 		    ->execute($query)
 		    ->fetchAll(PDO::FETCH_COLUMN);
 	}
-
 }

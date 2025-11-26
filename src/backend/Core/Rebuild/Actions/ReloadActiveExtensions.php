@@ -10,7 +10,6 @@ use Espo\ORM\Query\Part\Condition as Cond;
 use Espo\ORM\Query\Part\Expression as Expr;
 
 class ReloadActiveExtensions implements RebuildAction {
-
 	public function __construct(
 		private EntityManager       $entityManager,
 		private Config\ConfigWriter $configWriter,
@@ -34,5 +33,4 @@ class ReloadActiveExtensions implements RebuildAction {
 		$this->configWriter->set('installedExtensions', $installedExtensions);
 		$this->configWriter->save();
 	}
-
 }

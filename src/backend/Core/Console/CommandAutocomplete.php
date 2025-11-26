@@ -8,7 +8,6 @@ namespace Espo\Modules\Viacrm\Core\Console;
  * Implementing this interface allows a command to integrate with shell autocompletion
  */
 interface CommandAutocomplete {
-
 	/**
 	 * Generates autocompletion suggestions based on the current command input.
 	 *
@@ -27,5 +26,4 @@ interface CommandAutocomplete {
 	 *                  Example: ['value-so-far-optionA', 'value-so-far-optionB']
 	 */
 	public function getAutocompleteSuggestions(array $inputWords, string $currentWord): array;
-
 }

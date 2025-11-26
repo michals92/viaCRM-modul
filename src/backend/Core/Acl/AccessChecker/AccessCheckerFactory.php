@@ -8,7 +8,6 @@ use Espo\Modules\Viacrm\Core\Acl\DefaultAccessChecker;
 use ReflectionClass;
 
 class AccessCheckerFactory extends \Espo\Core\Acl\AccessChecker\AccessCheckerFactory {
-
 	public function __construct(
 		InjectableFactory $injectableFactory
 	) {
@@ -18,5 +17,4 @@ class AccessCheckerFactory extends \Espo\Core\Acl\AccessChecker\AccessCheckerFac
 
 		parent::__construct(...$parentConstructorArgs);
 	}
-
 }

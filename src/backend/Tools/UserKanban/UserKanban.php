@@ -24,7 +24,6 @@ use Espo\Tools\Kanban\Result;
 use RuntimeException;
 
 class UserKanban {
-
 	private ?string $entityType = null;
 
 	private bool $countDisabled = false;
@@ -252,5 +251,4 @@ class UserKanban {
 			->clone($query->build())
 			->find();
 	}
-
 }

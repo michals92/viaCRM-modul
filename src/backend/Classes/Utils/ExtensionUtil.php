@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Classes\Utils;
 use Espo\Core\Utils\Config;
 
 class ExtensionUtil {
-
 	/**
 	 * @var array<string, string> Key is module name, value is module version.
 	 */
@@ -59,5 +58,4 @@ class ExtensionUtil {
 
 		return true;
 	}
-
 }

@@ -8,7 +8,6 @@ use Espo\Core\Console\IO;
 use Espo\Core\ORM\EntityManager;
 
 class LastJobRun implements Command {
-
 	public function __construct(
 		private readonly EntityManager $entityManager
 	) {}
@@ -44,5 +43,4 @@ class LastJobRun implements Command {
 			$io->writeLine('Never');
 		}
 	}
-
 }

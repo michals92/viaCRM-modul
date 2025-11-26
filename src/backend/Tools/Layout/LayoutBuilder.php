@@ -9,7 +9,6 @@ use Espo\Entities\User;
 use Espo\Modules\Viacrm\Core\Layout;
 
 class LayoutBuilder {
-
 	protected readonly string $layoutName;
 
 	protected readonly string $scope;
@@ -336,5 +335,4 @@ class LayoutBuilder {
 
 		return $result;
 	}
-
 }

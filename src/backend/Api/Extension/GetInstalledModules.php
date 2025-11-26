@@ -9,7 +9,6 @@ use Espo\Core\Api\ResponseComposer;
 use Espo\Modules\Viacrm\Classes\Utils\ExtensionUtil;
 
 class GetInstalledModules implements Action {
-
 	public function __construct(
 		private readonly ExtensionUtil $extensionUtil,
 	) {}
@@ -21,5 +20,4 @@ class GetInstalledModules implements Action {
 		    'list' => $modules
 		]);
 	}
-
 }

@@ -10,7 +10,6 @@ use Espo\Core\Utils\Json;
 use Espo\Tools\Layout\LayoutProvider;
 
 class GetLayout implements Command {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly LayoutProvider $layoutProvider
@@ -63,5 +62,4 @@ class GetLayout implements Command {
         
 		$io->writeLine($prettyJson);
 	}
-
 }

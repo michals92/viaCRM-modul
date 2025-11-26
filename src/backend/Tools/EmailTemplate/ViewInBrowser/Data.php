@@ -3,7 +3,6 @@
 namespace Espo\Modules\Viacrm\Tools\EmailTemplate\ViewInBrowser;
 
 class Data {
-
 	private ?string $emailTemplateId = null;
 
 	private ?string $parentId = null;
@@ -53,5 +52,4 @@ class Data {
 	public function getValueMap(): array {
 		return array_filter(get_object_vars($this));
 	}
-
 }

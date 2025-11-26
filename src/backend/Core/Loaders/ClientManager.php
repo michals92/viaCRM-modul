@@ -9,7 +9,6 @@ use Espo\Modules\Viacrm\Core\Utils\ClientManagerNew;
 use Espo\Modules\Viacrm\Core\Utils\ClientManagerOld;
 
 class ClientManager implements Loader {
-
 	public function __construct(
 		private readonly Config $config,
 		private readonly InjectableFactory $injectableFactory,
@@ -25,5 +24,4 @@ class ClientManager implements Loader {
 			return $this->injectableFactory->create(ClientManagerOld::class);
 		}
 	}
-
 }

@@ -3,7 +3,6 @@
 namespace Espo\Modules\Viacrm\Tools\DynamicLogic;
 
 enum Type: string {
-
 	case And = 'and';
 	case Or = 'or';
 	case Not = 'not';
@@ -29,5 +28,4 @@ enum Type: string {
 	case IsToday = 'isToday';
 	case InFuture = 'inFuture';
 	case InPast = 'inPast';
-
 }

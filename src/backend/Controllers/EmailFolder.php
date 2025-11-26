@@ -9,7 +9,6 @@ use Espo\Modules\Viacrm\Tools\EmailFolder\Service as ViacrmEmailFolderService;
 use stdClass;
 
 class EmailFolder extends \Espo\Controllers\EmailFolder {
-
 	/**
 	 * @throws Forbidden
 	 * @throws NotFound
@@ -25,5 +24,4 @@ class EmailFolder extends \Espo\Controllers\EmailFolder {
 	private function getEmailFolderService(): ViacrmEmailFolderService {
 		return $this->injectableFactory->create(ViacrmEmailFolderService::class);
 	}
-
 }

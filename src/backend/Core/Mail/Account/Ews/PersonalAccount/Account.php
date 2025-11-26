@@ -20,7 +20,6 @@ use Espo\ORM\EntityManager;
  * EWS Personal Email Account wrapper.
  */
 class Account {
-
 	private const PORTION_LIMIT = 10;
 
 	private User $user;
@@ -166,5 +165,4 @@ class Account {
 
 		return $this->crypt->decrypt($password);
 	}
-
 }

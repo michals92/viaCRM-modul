@@ -11,7 +11,6 @@ use Espo\Core\Exceptions\Error;
 use Espo\Modules\Viacrm\Tools\Ares\Service as AresService;
 
 class GetSuggestData implements Action {
-
 	public function __construct(
 		private readonly AresService $aresService,
 	) {}
@@ -36,5 +35,4 @@ class GetSuggestData implements Action {
 
 		return ResponseComposer::json($data);
 	}
-
 }

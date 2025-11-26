@@ -30,7 +30,6 @@ use Exception;
  * This overrides the default because we need to backport this fix: https://github.com/espocrm/espocrm/commit/1d685dc7723a77e8c6691249a9abba62201ae671 to older versions
  */
 class SendService extends \Espo\Tools\Email\SendService {
-
 	/**
 	 * @throws Forbidden
 	 * @throws Error
@@ -195,5 +194,4 @@ class SendService extends \Espo\Tools\Email\SendService {
 
 		return $config->get('smtpPassword');
 	}
-
 }

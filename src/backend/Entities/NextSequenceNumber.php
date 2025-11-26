@@ -5,8 +5,9 @@ namespace Espo\Modules\Viacrm\Entities;
 use Espo\Core\Field\Date;
 
 class NextSequenceNumber extends \Espo\Core\Templates\Entities\Base {
+	public const string TEMPLATE_TYPE = 'Base';
 
-	public const ENTITY_TYPE = 'NextSequenceNumber';
+	public const string ENTITY_TYPE = 'NextSequenceNumber';
 
 	public const RESET_YEARLY = 'Yearly';
 	public const RESET_MONTHLY = 'Monthly';
@@ -32,5 +33,4 @@ class NextSequenceNumber extends \Espo\Core\Templates\Entities\Base {
 	public function setDate(Date $date): void {
 		$this->set('date', $date->toString());
 	}
-
 }

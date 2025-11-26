@@ -7,7 +7,6 @@ use InvalidArgumentException;
 use stdClass;
 
 class PhoneNumberGroupAttributeExtractor extends \Espo\Core\Field\PhoneNumber\PhoneNumberGroupAttributeExtractor {
-
 	/**
 	 * @param  object   $group (PhoneNumberGroup)
 	 * @param  string   $field
@@ -40,5 +39,4 @@ class PhoneNumberGroupAttributeExtractor extends \Espo\Core\Field\PhoneNumber\Ph
 		    $field . 'Data' => $dataList,
 		];
 	}
-
 }

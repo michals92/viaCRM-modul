@@ -14,7 +14,6 @@ use Espo\ORM\Repository\Option\SaveOptions;
  * @implements BeforeSave<XmlFeed>
  */
 class LimitToOneRecord implements BeforeSave {
-
 	public function __construct(
 		private readonly EntityManager $entityManager
 	) {}
@@ -40,5 +39,4 @@ class LimitToOneRecord implements BeforeSave {
 			);
 		}
 	}
-
 }

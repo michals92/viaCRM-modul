@@ -17,7 +17,6 @@ use Espo\Modules\Viacrm\Core\Mail\Account\PersonalAccount\Hooks\BeforeFetch as G
  * @implements Factory<Fetcher>
  */
 class FetcherFactory implements Factory {
-
 	public function __construct(
 		protected readonly InjectableFactory $injectableFactory
 	) {}
@@ -31,5 +30,4 @@ class FetcherFactory implements Factory {
 
 		return $this->injectableFactory->createWithBinding(Fetcher::class, $binding);
 	}
-
 }

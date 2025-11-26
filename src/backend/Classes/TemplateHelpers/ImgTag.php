@@ -8,7 +8,6 @@ use Espo\Core\Htmlizer\Helper\Result;
 use Espo\Modules\Viacrm\Tools\Html\Composer as HtmlComposer;
 
 class ImgTag implements Helper {
-
 	public function render(Data $data): Result {
 		$attachmentId = $data->getArgumentList()[0];
 
@@ -35,5 +34,4 @@ class ImgTag implements Helper {
 
 		return Result::createSafeString($html);
 	}
-
 }

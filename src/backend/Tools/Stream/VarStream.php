@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Tools\Stream;
 use Psr\Http\Message\StreamInterface;
 
 class VarStream {
-
 	/** @var resource */
 	public $context;
 
@@ -130,5 +129,4 @@ class VarStream {
 		    'blocks' => 0,
 		];
 	}
-
 }

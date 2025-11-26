@@ -23,5 +23,4 @@ class EntityAwareDeleteParamsFetcher extends DeleteParamsFetcher {
 		 */
 		return $this->fetchInternal($request);
 	}
-
 }

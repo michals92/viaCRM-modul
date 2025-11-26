@@ -9,7 +9,6 @@ use Espo\Modules\Viacrm\Entities\Email;
 use Espo\ORM\EntityManager;
 
 class CreateAlert implements EmailAction {
-
 	public function __construct(
 		private readonly EntityManager $entityManager
 	) {}
@@ -64,5 +63,4 @@ class CreateAlert implements EmailAction {
 			return $email->get($matches[1]);
 		}, $message);
 	}
-
 }

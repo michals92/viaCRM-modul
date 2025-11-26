@@ -12,7 +12,6 @@ use Espo\Entities\User;
 use Espo\Modules\Viacrm\Entities\Alert;
 
 class ToggleAlert implements Action {
-
 	public function __construct(
 		private readonly User          $user,
 		private readonly EntityManager $entityManager
@@ -39,5 +38,4 @@ class ToggleAlert implements Action {
 
 		return ResponseComposer::json(['isActive' => $isActive]);
 	}
-
 }

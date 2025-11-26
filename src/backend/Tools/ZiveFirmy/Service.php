@@ -7,7 +7,6 @@ use Espo\Core\Utils\Json;
 use stdClass;
 
 class Service {
-
 	public const ENDPOINT = 'https://api3.zivefirmy.cz/firmdata/';
 
 	public function getInfo(string $sicCode, string $token): stdClass {
@@ -47,5 +46,4 @@ class Service {
 			throw new Error('Failed to decode JSON response: ' . $e->getMessage());
 		}
 	}
-
 }

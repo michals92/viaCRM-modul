@@ -8,7 +8,6 @@ use Espo\ORM\Query\SelectBuilder;
 use PDO;
 
 class CustomIcons implements VariableCssSource {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 	) {}
@@ -34,5 +33,4 @@ class CustomIcons implements VariableCssSource {
 
 		return $styles;
 	}
-
 }

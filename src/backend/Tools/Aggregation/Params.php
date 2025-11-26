@@ -6,7 +6,6 @@ use Espo\Core\Select\SearchParams;
 use RuntimeException;
 
 class Params {
-
 	private string $entityType;
 
 	/**
@@ -77,5 +76,4 @@ class Params {
 	public function hasSearchParams(): bool {
 		return $this->searchParams !== null;
 	}
-
 }

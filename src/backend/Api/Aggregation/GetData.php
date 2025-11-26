@@ -12,7 +12,6 @@ use Espo\Modules\Viacrm\Tools\Aggregation\Params as AggregationParams;
 use Espo\Modules\Viacrm\Tools\Aggregation\Service as AggregationService;
 
 class GetData implements Action {
-
 	public function __construct(
 		private readonly AggregationService $aggregationService,
 	) {}
@@ -68,5 +67,4 @@ class GetData implements Action {
 
 		return $params;
 	}
-
 }

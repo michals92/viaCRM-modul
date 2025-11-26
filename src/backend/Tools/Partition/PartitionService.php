@@ -12,7 +12,6 @@ use Espo\Entities\User;
 use Espo\Tools\Kanban\Result;
 
 class PartitionService {
-
 	public function __construct(
 		private readonly AclManager $aclManager,
 		private readonly Metadata $metadata,
@@ -47,5 +46,4 @@ class PartitionService {
 			throw new ForbiddenSilent();
 		}
 	}
-
 }

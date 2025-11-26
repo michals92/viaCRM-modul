@@ -9,7 +9,6 @@ use Espo\Core\Utils\File\Manager as FileManager;
 use SplFileInfo;
 
 class LogsCleanup implements Cleanup {
-
 	private const PERIOD = '30 days';
 	private const LOG_DIR = 'data/logs';
 
@@ -61,5 +60,4 @@ class LogsCleanup implements Cleanup {
 
 		return DateTime::createNow()->modify('-' . $period);
 	}
-
 }

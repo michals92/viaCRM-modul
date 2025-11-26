@@ -13,7 +13,6 @@ use stdClass;
 
 /** This class backports some fixes from Espo 9 */
 class LinkMultipleFactory extends \Espo\Core\Field\LinkMultiple\LinkMultipleFactory {
-
 	public function createFromEntity(Entity $entity, string $field): LinkMultiple {
 		if (!$this->isCreatableFromEntity($entity, $field)) {
 			throw new RuntimeException();
@@ -120,5 +119,4 @@ class LinkMultipleFactory extends \Espo\Core\Field\LinkMultiple\LinkMultipleFact
 
 		return $columnData;
 	}
-
 }

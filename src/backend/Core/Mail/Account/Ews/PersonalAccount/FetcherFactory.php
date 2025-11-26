@@ -13,7 +13,6 @@ use Espo\Modules\Viacrm\Core\Mail\Account\Ews\Fetcher;
  * @implements Factory<Fetcher>
  */
 class FetcherFactory implements Factory {
-
 	public function __construct(
 		private InjectableFactory $injectableFactory
 	) {}
@@ -23,5 +22,4 @@ class FetcherFactory implements Factory {
 
 		return $this->injectableFactory->createWithBinding(Fetcher::class, $binding);
 	}
-
 }

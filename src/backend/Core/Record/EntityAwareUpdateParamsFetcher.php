@@ -23,5 +23,4 @@ class EntityAwareUpdateParamsFetcher extends UpdateParamsFetcher {
 		 */
 		return $this->fetchInternal($request);
 	}
-
 }

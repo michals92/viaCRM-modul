@@ -9,7 +9,6 @@ use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Metadata;
 
 class MetadataGet implements Command {
-
 	public function __construct(
 		private readonly Metadata $metadata
 	) {}
@@ -42,5 +41,4 @@ class MetadataGet implements Command {
 			$io->setExitStatus(1);
 		}
 	}
-
 }

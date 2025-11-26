@@ -11,7 +11,6 @@ use Espo\Core\Exceptions\NotFound;
 use Espo\Core\FieldValidation\Exceptions\ValidationError;
 
 class ErrorFactory {
-
 	/**
 	 * Create a standard Error with translation
 	 *
@@ -291,5 +290,4 @@ class ErrorFactory {
 	): never {
 		throw self::createValidationError($message, $translationKey, $scope, $data);
 	}
-
 }

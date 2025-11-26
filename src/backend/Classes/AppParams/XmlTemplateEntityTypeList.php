@@ -13,7 +13,6 @@ use Espo\Tools\App\AppParam;
 use PDO;
 
 class XmlTemplateEntityTypeList implements AppParam {
-
 	public function __construct(
 		private readonly Acl $acl,
 		private readonly SelectBuilderFactory $selectBuilderFactory,
@@ -47,5 +46,4 @@ class XmlTemplateEntityTypeList implements AppParam {
 		    ->execute($query)
 		    ->fetchAll(PDO::FETCH_COLUMN);
 	}
-
 }

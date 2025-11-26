@@ -30,5 +30,4 @@ class DataComposerFactory extends \Espo\Core\Select\Text\FullTextSearch\DataComp
 			'selectDefs', $entityType, 'fullTextSearchDataComposerClassName'
 		]) ?? DefaultDataComposer::class;
 	}
-
 }

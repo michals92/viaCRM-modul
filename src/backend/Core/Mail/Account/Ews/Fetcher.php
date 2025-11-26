@@ -17,7 +17,6 @@ use Throwable;
  * Lightweight EWS fetcher based on SOAP requests (FindItem + GetItem).
  */
 class Fetcher {
-
 	public function __construct(
 		private Importer $importer,
 		private Log $log,
@@ -333,5 +332,4 @@ XML;
 
 		return $data;
 	}
-
 }

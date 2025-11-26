@@ -11,7 +11,6 @@ use PDO;
  * AppParam to provide a mapping of team IDs to their styles (color and iconClass).
  */
 class TeamStyles implements AppParam {
-
 	public function __construct(
 		private readonly EntityManager $entityManager
 	) {}
@@ -35,5 +34,4 @@ class TeamStyles implements AppParam {
 		    ->execute($query)
 		    ->fetchAll(PDO::FETCH_UNIQUE | PDO::FETCH_OBJ);
 	}
-
 }

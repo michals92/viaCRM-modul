@@ -15,5 +15,4 @@ abstract class Base implements Di\ContainerAware {
 	public function getInjection(string $name): mixed {
 		return $this->container->get($name);
 	}
-
 }

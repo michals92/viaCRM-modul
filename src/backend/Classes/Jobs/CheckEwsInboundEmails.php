@@ -12,7 +12,6 @@ use Throwable;
  * Checks EWS group email accounts (InboundEmail) for new messages.
  */
 class CheckEwsInboundEmails implements Job {
-
 	public function __construct(
 		private Service $service
 	) {}
@@ -30,5 +29,4 @@ class CheckEwsInboundEmails implements Job {
 			throw new RuntimeException("CheckEwsInboundEmails job failed, $targetId; {$e->getMessage()}", 0, $e);
 		}
 	}
-
 }

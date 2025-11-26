@@ -112,5 +112,4 @@ abstract class AdditionalBuilder {
 		// Set the modified layout back to the property
 		$layoutProperty->setValue($this->layoutBuilder, $layout);
 	}
-
 }

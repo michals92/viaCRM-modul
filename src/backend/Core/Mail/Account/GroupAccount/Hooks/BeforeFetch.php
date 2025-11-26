@@ -12,7 +12,6 @@ use Espo\Core\Utils\Log;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 
 class BeforeFetch implements BeforeFetchInterface {
-
 	public function __construct(
 		protected readonly BeforeFetchHook $beforeFetchHook,
 		protected readonly Log $log
@@ -29,5 +28,4 @@ class BeforeFetch implements BeforeFetchInterface {
 
 		return $result;
 	}
-
 }

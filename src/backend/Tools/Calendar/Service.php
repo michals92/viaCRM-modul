@@ -11,13 +11,13 @@ use Espo\Core\ServiceFactory;
 use Espo\Core\Utils\FieldUtil;
 use Espo\Core\Utils\Json;
 use Espo\Entities\User;
-use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Crm\Entities\Call;
 use Espo\Modules\Crm\Entities\Meeting;
 use Espo\Modules\Crm\Entities\Task;
 use Espo\Modules\Crm\Tools\Calendar\FetchParams;
 use Espo\Modules\Crm\Tools\Calendar\Items\Event;
 use Espo\Modules\Crm\Tools\Calendar\Service as CalendarService;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Query\Part\Expression;
 use Espo\ORM\Query\Part\Expression\Util;
 use Espo\ORM\Query\Select;
@@ -29,7 +29,6 @@ use RuntimeException;
 use stdClass;
 
 class Service extends CalendarService {
-
 	public function __construct(
 		private readonly LayoutManager $layoutManager,
 		private readonly FieldUtil $fieldUtil,
@@ -629,5 +628,4 @@ class Service extends CalendarService {
 
 		return $queryBuilder->build();
 	}
-
 }

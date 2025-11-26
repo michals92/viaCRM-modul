@@ -10,7 +10,6 @@ use Espo\Core\Utils\PasswordHash;
 use Espo\Entities\User;
 
 class SetPasswordNonInteractive implements Command {
-
 	public function __construct(
 		private EntityManager $entityManager,
 		private PasswordHash $passwordHash
@@ -69,5 +68,4 @@ class SetPasswordNonInteractive implements Command {
 
 		$io->writeLine("Password for user '$userName' has been changed.");
 	}
-
 }

@@ -9,7 +9,6 @@ use InvalidArgumentException;
  * @immutable
  */
 class Data extends \Espo\Core\Select\Text\FullTextSearch\Data {
-
 	/**
 	 * @param Expression $expression
 	 * @param string[]   $fieldList
@@ -54,5 +53,4 @@ class Data extends \Espo\Core\Select\Text\FullTextSearch\Data {
 	public function getMode(): string {
 		return $this->mode;
 	}
-
 }

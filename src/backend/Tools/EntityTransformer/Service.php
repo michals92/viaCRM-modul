@@ -7,7 +7,6 @@ use Espo\ORM\EntityCollection;
 use Espo\ORM\EntityManager;
 
 class Service {
-
 	public function __construct(
 		private readonly EntityManager $entityManager
 	) {}
@@ -77,5 +76,4 @@ class Service {
 
 		return $targetEntities;
 	}
-
 }

@@ -20,5 +20,4 @@ class RDB extends \Espo\Core\Repositories\Database implements Di\ContainerAware 
 	public function getInjection(string $name): mixed {
 		return $this->container->get($name);
 	}
-
 }

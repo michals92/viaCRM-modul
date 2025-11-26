@@ -10,7 +10,6 @@ use Espo\Modules\Viacrm\Tools\Ares\Service as AresService;
 use Exception;
 
 class AresLookup implements Command {
-
 	public function __construct(
 		private readonly AresService $aresService
 	) {}
@@ -45,5 +44,4 @@ class AresLookup implements Command {
 			$io->setExitStatus(1);
 		}
 	}
-
 }

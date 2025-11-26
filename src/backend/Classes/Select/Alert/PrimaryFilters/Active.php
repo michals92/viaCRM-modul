@@ -7,7 +7,6 @@ use Espo\Core\Utils\Metadata;
 use Espo\ORM\Query\SelectBuilder;
 
 class Active implements Filter {
-
 	public const NAME = 'active';
 
 	public function __construct(
@@ -20,5 +19,4 @@ class Active implements Filter {
 
 		$queryBuilder->where(['status' => $statusList]);
 	}
-
 }

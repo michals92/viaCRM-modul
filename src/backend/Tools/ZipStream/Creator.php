@@ -8,7 +8,6 @@ use ZipStream\Option\Archive as ArchiveOptions;
 use ZipStream\ZipStream;
 
 class Creator {
-
 	/**
 	 * Creates a ZipStream instance using reflection to handle different versions of the ZipStream library.
 	 * 
@@ -37,5 +36,4 @@ class Creator {
 			return new ZipStream(outputName: $outputName, outputStream: $outputStream);
 		}
 	}
-
 }

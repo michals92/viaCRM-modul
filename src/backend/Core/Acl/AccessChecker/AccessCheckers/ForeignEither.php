@@ -177,5 +177,4 @@ class ForeignEither implements
 
 		return false;
 	}
-
 }

@@ -15,7 +15,6 @@ use Espo\ORM\Entity;
  * @implements FieldLoader<Entity>
  */
 class Loader implements FieldLoader {
-
 	/**
 	 * @var array<string,array{recordList: string[], columnList: string[]}>
 	 */
@@ -103,5 +102,4 @@ class Loader implements FieldLoader {
 
 		return $lists;
 	}
-
 }

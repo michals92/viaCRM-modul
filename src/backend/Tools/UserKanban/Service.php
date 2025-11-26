@@ -13,7 +13,6 @@ use Espo\Entities\User;
 use Espo\Tools\Kanban\Result;
 
 class Service {
-
 	public function __construct(
 		private readonly AclManager $aclManager,
 		private readonly Metadata $metadata,
@@ -71,5 +70,4 @@ class Service {
 			->setMaxNumber($maxOrderNumber)
 			->order($ids);
 	}
-
 }

@@ -2,83 +2,75 @@
 
 namespace Espo\Modules\ViaCrm\Controllers;
 
-use Espo\Core\Templates\Controllers\Base;
-use Espo\Core\Exceptions\BadRequest;
-use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Api\Request;
+use Espo\Core\Exceptions\BadRequest;
+use Espo\Core\Templates\Controllers\Base;
 
-class Absence extends Base
-{
-    public function actionApprove(Request $request): \stdClass
-    {
-        $id = $request->getRouteParam('id');
+class Absence extends Base {
+	public function actionApprove(Request $request): \stdClass {
+		$id = $request->getRouteParam('id');
         
-        if (!$id) {
-            throw new BadRequest('ID is required');
-        }
+		if (!$id) {
+			throw new BadRequest('ID is required');
+		}
 
-        $data = $request->getParsedBody();
-        $comment = $data->approverComment ?? null;
+		$data = $request->getParsedBody();
+		$comment = $data->approverComment ?? null;
 
-        return $this->getRecordService()->approve($id, $comment);
-    }
+		return $this->getRecordService()->approve($id, $comment);
+	}
 
-    public function actionReject(Request $request): \stdClass
-    {
-        $id = $request->getRouteParam('id');
+	public function actionReject(Request $request): \stdClass {
+		$id = $request->getRouteParam('id');
         
-        if (!$id) {
-            throw new BadRequest('ID is required');
-        }
+		if (!$id) {
+			throw new BadRequest('ID is required');
+		}
 
-        $data = $request->getParsedBody();
-        $comment = $data->approverComment ?? null;
+		$data = $request->getParsedBody();
+		$comment = $data->approverComment ?? null;
 
-        if (!$comment) {
-            throw new BadRequest('Approver comment is required for rejection');
-        }
+		if (!$comment) {
+			throw new BadRequest('Approver comment is required for rejection');
+		}
 
-        return $this->getRecordService()->reject($id, $comment);
-    }
+		return $this->getRecordService()->reject($id, $comment);
+	}
 
-    public function actionCancel(Request $request): \stdClass
-    {
-        $id = $request->getRouteParam('id');
+	public function actionCancel(Request $request): \stdClass {
+		$id = $request->getRouteParam('id');
         
-        if (!$id) {
-            throw new BadRequest('ID is required');
-        }
+		if (!$id) {
+			throw new BadRequest('ID is required');
+		}
 
-        return $this->getRecordService()->cancel($id);
-    }
+		return $this->getRecordService()->cancel($id);
+	}
 
-    public function actionMyRequests(Request $request): \stdClass
-    {
-        $searchParams = $this->fetchSearchParamsFromRequest($request);
+	public function actionMyRequests(Request $request): \stdClass {
+		$searchParams = $this->fetchSearchParamsFromRequest($request);
         
-        return $this->getRecordService()->getMyRequests($searchParams);
-    }
+		return $this->getRecordService()->getMyRequests($searchParams);
+	}
 
-    public function actionPendingApprovals(Request $request): \stdClass
-    {
-        $searchParams = $this->fetchSearchParamsFromRequest($request);
+	public function actionPendingApprovals(Request $request): \stdClass {
+		$searchParams = $this->fetchSearchParamsFromRequest($request);
         
-        return $this->getRecordService()->getPendingApprovals($searchParams);
-    }
+		return $this->getRecordService()->getPendingApprovals($searchParams);
+	}
 
-    public function actionCalculateDays(Request $request): \stdClass
-    {
-        $data = $request->getParsedBody();
+	public function actionCalculateDays(Request $request): \stdClass {
+		$data = $request->getParsedBody();
         
-        if (!isset($data->startDate) || !isset($data->endDate)) {
-            throw new BadRequest('Start date and end date are required');
-        }
+		if (!isset($data->startDate) || !isset($data->endDate)) {
+			throw new BadRequest('Start date and end date are required');
+		}
 
-        $days = $this->getRecordService()->calculateWorkingDays(
-            $data->startDate,
-            $data->endDate
-        );
+		$days = $this->getRecordService()->calculateWorkingDays(
+			$data->startDate,
+			$data->endDate
+		);
 
-        return (object) ['days' => $days];
-    }
+		return (object) ['days' => $days];
+	}
 }

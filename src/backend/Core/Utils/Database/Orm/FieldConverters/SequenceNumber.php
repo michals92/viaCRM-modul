@@ -9,7 +9,6 @@ use Espo\ORM\Defs\FieldDefs;
 use Espo\ORM\Type\AttributeType;
 
 class SequenceNumber implements FieldConverter {
-
 	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs {
 		$name = $fieldDefs->getName();
 
@@ -49,5 +48,4 @@ class SequenceNumber implements FieldConverter {
 
 		return $entityDefs;
 	}
-
 }

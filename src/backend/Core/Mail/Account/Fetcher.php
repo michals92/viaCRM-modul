@@ -30,7 +30,6 @@ use Espo\ORM\Query\Part\Order;
 use Throwable;
 
 class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
-
 	public function __construct(
 		private readonly Importer         $importer,
 		private readonly StorageFactory   $storageFactory,
@@ -433,5 +432,4 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 			array_diff($flags, [Flag::RECENT])
 		);
 	}
-
 }

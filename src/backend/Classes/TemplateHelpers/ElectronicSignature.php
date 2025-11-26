@@ -8,7 +8,6 @@ use Espo\Core\Htmlizer\Helper\Result;
 use Espo\Modules\Viacrm\Tools\Html\Composer as HtmlComposer;
 
 class ElectronicSignature implements Helper {
-
 	private const DEFAULT_WIDTH = 100;
 
 	private const DEFAULT_HEIGHT = 'auto';
@@ -39,5 +38,4 @@ class ElectronicSignature implements Helper {
 
 		return Result::createSafeString($html);
 	}
-
 }

@@ -29,5 +29,4 @@ class MysqlQueryComposer extends \Espo\ORM\QueryComposer\MysqlQueryComposer {
 
 		return $this->composeInsertQuery($this->toDb($entityType), $columnsPart, $valuesPart, $updatePart);
 	}
-
 }

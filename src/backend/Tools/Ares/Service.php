@@ -12,7 +12,6 @@ use Espo\Core\Utils\Json;
 use stdClass;
 
 class Service {
-
 	private const URL_BY_SIC = 'https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/';
 	private const URL_BY_NAME = 'https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/vyhledat';
 
@@ -330,5 +329,4 @@ class Service {
 
 		return $response === false ? '' : $response;
 	}
-
 }

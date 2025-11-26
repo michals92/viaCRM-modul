@@ -7,9 +7,9 @@ use Espo\Core\Utils\Json;
 use Espo\Entities\Email;
 use Espo\Entities\EmailAccount;
 use Espo\Entities\InboundEmail;
+use Espo\Modules\Outlook\Core\Outlook\Clients\Outlook;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Viacrm\Core\Di;
-use Espo\Modules\Outlook\Core\Outlook\Clients\Outlook;
 
 /**
  * This is overriden so that we can sync read status to Microsoft Graph
@@ -118,5 +118,4 @@ class InboxService extends \Espo\Tools\Email\InboxService implements Di\External
 			}
 		}
 	}
-
 }

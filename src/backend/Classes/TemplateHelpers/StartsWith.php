@@ -7,7 +7,6 @@ use Espo\Core\Htmlizer\Helper\Data;
 use Espo\Core\Htmlizer\Helper\Result;
 
 class StartsWith implements Helper {
-
 	public function render(Data $data): Result {
 		$argumentList = $data->getArgumentList();
 
@@ -24,5 +23,4 @@ class StartsWith implements Helper {
 
 		return Result::createEmpty();
 	}
-
 }

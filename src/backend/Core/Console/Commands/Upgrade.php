@@ -14,7 +14,6 @@ use const STDOUT;
  *  This class is extended from the base to return an error exit code on failure. This is fixed in newer Espo versions, but we need to backport it to older ones.
  **/
 class Upgrade extends \Espo\Core\Console\Commands\Upgrade {
-
 	/**
 	 * @throws Error
 	 */
@@ -117,5 +116,4 @@ class Upgrade extends \Espo\Core\Console\Commands\Upgrade {
 			fwrite(STDOUT, "You have the latest version.\n");
 		}
 	}
-
 }

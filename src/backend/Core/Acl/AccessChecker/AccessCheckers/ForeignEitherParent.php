@@ -178,5 +178,4 @@ class ForeignEitherParent implements
 
 		return false;
 	}
-
 }

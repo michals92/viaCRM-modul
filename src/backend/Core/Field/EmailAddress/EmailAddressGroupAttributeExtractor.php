@@ -7,7 +7,6 @@ use InvalidArgumentException;
 use stdClass;
 
 class EmailAddressGroupAttributeExtractor extends \Espo\Core\Field\EmailAddress\EmailAddressGroupAttributeExtractor {
-
 	/**
 	 * @param  object   $group (EmailAddressGroup)
 	 * @param  string   $field
@@ -40,5 +39,4 @@ class EmailAddressGroupAttributeExtractor extends \Espo\Core\Field\EmailAddress\
 			$field . 'Data' => $dataList,
 		];
 	}
-
 }

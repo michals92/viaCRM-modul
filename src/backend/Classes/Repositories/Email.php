@@ -82,5 +82,4 @@ class Email extends \Espo\Repositories\Email implements Di\MetadataAware, Di\Inj
 	public function getActionClassNameMap(): array {
 		return $this->actionClassNameMap ??= $this->metadata->get(['app', 'email', 'actionClassNameMap'], []);
 	}
-
 }

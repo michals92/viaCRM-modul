@@ -13,7 +13,6 @@ use Espo\Core\Record\SearchParamsFetcher;
 use Espo\Modules\Viacrm\Tools\Partition\PartitionService;
 
 class GetData implements Action {
-
 	public function __construct(
 		private readonly PartitionService $partitionService,
 		private readonly SearchParamsFetcher $searchParamsFetcher
@@ -47,5 +46,4 @@ class GetData implements Action {
 		    'list' => $list,
 		]);
 	}
-
 }

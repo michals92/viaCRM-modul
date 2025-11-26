@@ -14,7 +14,6 @@ use Espo\ORM\Entity;
 use Espo\ORM\Type\AttributeType;
 
 class Loader {
-
 	public function __construct(
 		private readonly Service $service,
 		private readonly Defs $defs,
@@ -124,5 +123,4 @@ class Loader {
 
 		$entity->set($attributeName, $valueMapList);
 	}
-
 }

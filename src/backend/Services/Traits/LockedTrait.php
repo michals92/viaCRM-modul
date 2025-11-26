@@ -7,7 +7,6 @@ use Espo\Core\Exceptions\Error;
 use Espo\ORM\Entity;
 
 trait LockedTrait {
-
 	/**
 	 * @return string[]
 	 */
@@ -75,5 +74,4 @@ trait LockedTrait {
 	public function process(Entity $entity): void {
 		$this->lockEntity(entity: $entity);
 	}
-
 }

@@ -5,8 +5,9 @@ namespace Espo\Modules\Viacrm\Entities;
 use stdClass;
 
 class WorkQueue extends \Espo\Core\Templates\Entities\Base {
+	public const string TEMPLATE_TYPE = 'Base';
 
-	public const ENTITY_TYPE = 'WorkQueue';
+	public const string ENTITY_TYPE = 'WorkQueue';
 
 	public function getValueMap(): stdClass {
 		$map = [];
@@ -25,5 +26,4 @@ class WorkQueue extends \Espo\Core\Templates\Entities\Base {
 
 		return (object) $map;
 	}
-
 }

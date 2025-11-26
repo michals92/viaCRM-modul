@@ -9,7 +9,6 @@ use stdClass;
  *  but only if their entityDefs are defined.
  */
 class DefaultWysiwygFieldView implements AdditionalBuilder {
-
 	public function build(stdClass $data): void {
 		$params = $data->fields->wysiwyg->params;
 
@@ -19,5 +18,4 @@ class DefaultWysiwygFieldView implements AdditionalBuilder {
 			}
 		}
 	}
-
 }

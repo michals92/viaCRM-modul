@@ -5,8 +5,8 @@ namespace Espo\Modules\Viacrm\Tools\Activities;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Entities\User;
-use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Crm\Entities\Meeting;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Query\Select;
 use RuntimeException;
 
@@ -15,7 +15,6 @@ use RuntimeException;
  * This exists only because of Postgres. Line 46 has to be changed from 'null' to 'false' to avoid an sql error.
  */
 class Service extends \Espo\Modules\Crm\Tools\Activities\Service {
-
 	/**
 	 * @param string[] $statusList
 	 */
@@ -84,5 +83,4 @@ class Service extends \Espo\Modules\Crm\Tools\Activities\Service {
 
 		return $builder->build();
 	}
-
 }

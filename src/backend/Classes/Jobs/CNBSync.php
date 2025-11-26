@@ -8,7 +8,6 @@ use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Config\ConfigWriter;
 
 class CNBSync implements JobDataLess {
-
 	protected const URL = 'https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt';
 	protected const ARCHIVE_URL = 'https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-ostatnich-men/kurzy-ostatnich-men/rok.txt?rok=2024&format=txt';
 
@@ -163,5 +162,4 @@ class CNBSync implements JobDataLess {
 			}
 		}
 	}
-
 }

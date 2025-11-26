@@ -11,7 +11,6 @@ use Espo\Core\Utils\Log;
 use Espo\Modules\Outlook\Core\Outlook\Clients\Outlook;
 
 class RefreshMicrosoftGraphSubscriptions implements JobDataLess {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly ClientManager $clientManager,
@@ -19,7 +18,8 @@ class RefreshMicrosoftGraphSubscriptions implements JobDataLess {
 	) {}
 
 	public function run(): void {
-		$subscriptions = $this->entityManager
+		$em = $this->entityManager;
+		$subscriptions = $em
 		    ->getRDBRepository('MicrosoftGraphSubscription')
 		    ->find();
 
@@ -59,7 +59,7 @@ class RefreshMicrosoftGraphSubscriptions implements JobDataLess {
 					    ->modify('+6 days')
 					    ->toString()
 				);
-				$this->entityManager->saveEntity($subscription);
+				$em->saveEntity($subscription);
 			} catch (\Exception $e) {
 				$this->log->error('Failed to refresh Microsoft Graph subscription: ' . $e->getMessage(), [
 				    'subscription' => $subscription->getId(),
@@ -68,5 +68,4 @@ class RefreshMicrosoftGraphSubscriptions implements JobDataLess {
 			}
 		}
 	}
-
 }

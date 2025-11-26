@@ -13,7 +13,6 @@ use Espo\ORM\Query\Part\Expression as Expr;
 use Espo\ORM\Type\AttributeType;
 
 class FloatCurrency implements FieldConverter {
-
 	// replace with AttributeParam::NOT_STORABLE in espo 9
 	public const NOT_STORABLE = 'notStorable';
 	public const DEFAULT_PRECISION = 13;
@@ -570,5 +569,4 @@ class FloatCurrency implements FieldConverter {
 			$this->buildExpression($currencyAttribute, $rates)
 		);
 	}
-
 }

@@ -6,12 +6,10 @@ use Espo\Core\Acl\FieldData;
 use Espo\Core\Binding\BindingContainer;
 use Espo\Core\InjectableFactory;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
-use Espo\Modules\Viacrm\Core\Di;
 use ReflectionClass;
 use stdClass;
 
 class DefaultTable extends \Espo\Core\Acl\Table\DefaultTable {
-
 	const ACTION_PRINT = 'print';
 
 	public function __construct(

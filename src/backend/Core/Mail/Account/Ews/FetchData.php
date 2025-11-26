@@ -9,7 +9,6 @@ use stdClass;
  * Stores the sync token/watermark for incremental synchronization.
  */
 class FetchData {
-
 	private function __construct(
 		private ?string $syncState = null,
 		private ?string $lastProcessedDate = null
@@ -54,5 +53,4 @@ class FetchData {
 
 		return $obj;
 	}
-
 }

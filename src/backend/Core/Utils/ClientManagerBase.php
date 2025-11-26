@@ -11,5 +11,4 @@ class ClientManagerBase extends ClientManager implements Di\ConfigAware, ViacrmD
 	use Di\ConfigSetter;
 
 	protected string $mainHtmlFilePath = 'application/Espo/Modules/Viacrm/Resources/html/main.tpl';
-
 }

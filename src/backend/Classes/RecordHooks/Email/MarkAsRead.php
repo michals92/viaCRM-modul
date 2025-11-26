@@ -14,7 +14,6 @@ use Espo\Tools\Email\InboxService;
  * @implements ReadHook<Email>
  */
 readonly class MarkAsRead implements ReadHook {
-
 	public function __construct(
 		private InboxService $inboxService,
 		private Preferences  $preferences
@@ -38,5 +37,4 @@ readonly class MarkAsRead implements ReadHook {
 
 		$this->inboxService->markAsRead($entity->getId());
 	}
-
 }

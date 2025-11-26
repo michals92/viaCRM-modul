@@ -19,7 +19,6 @@ use Espo\Core\Utils\Metadata;
  * @template TParams of ReadParams|CreateParams|UpdateParams|DeleteParams
  */
 trait ParamsFetcherTrait {
-
 	public function __construct(
 		protected readonly InjectableFactory $injectableFactory,
 		protected readonly Metadata          $metadata,
@@ -69,5 +68,4 @@ trait ParamsFetcherTrait {
 
 		return $paramsFetcher->fetch($request);
 	}
-
 }

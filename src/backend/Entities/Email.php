@@ -8,6 +8,8 @@ use LogicException;
 use stdClass;
 
 class Email extends \Espo\Entities\Email {
+	public const string ENTITY_TYPE = 'Email';
+	public const string TEMPLATE_TYPE = 'Base';
 
 	public function getBodyForSending(): string {
 		$body = parent::getBodyForSending();
@@ -69,11 +71,12 @@ class Email extends \Espo\Entities\Email {
 	 * This method exists in 8.4.2, but contains a bug that was fixed in 9.0.0
 	 */
 	public function loadLinkMultipleField(string $field, ?array $columns = null): void {
+		$em = $this->entityManager;
 		if (!$this->hasLinkMultipleField($field)) {
 			throw new LogicException("Called `loadLinkMultipleField` on non-link-multiple field `$field`.");
 		}
 
-		if (!$this->entityManager) {
+		if (!$em) {
 			throw new LogicException('No entity-manager.');
 		}
 
@@ -93,7 +96,7 @@ class Email extends \Espo\Entities\Email {
 			}
 		}
 
-		$selectBuilder = $this->entityManager
+		$selectBuilder = $em
 		    ->getRelation($this, $field)
 		    ->select($select);
 
@@ -189,11 +192,12 @@ class Email extends \Espo\Entities\Email {
      * @return string[]|null
      */
 	private function getLinkMultipleColumnsFromDefs(string $field): ?array {
-		if (!$this->entityManager) {
+		$em = $this->entityManager;
+		if (!$em) {
 			return null;
 		}
 
-		$entityDefs = $this->entityManager->getDefs()->getEntity($this->entityType);
+		$entityDefs = $em->getDefs()->getEntity($this->entityType);
 
 		/** @var ?array<string, string> $columns */
 		$columns = $entityDefs->tryGetField($field)?->getParam('columns');
@@ -205,7 +209,7 @@ class Email extends \Espo\Entities\Email {
 		$foreignEntityType = $entityDefs->tryGetRelation($field)?->tryGetForeignEntityType();
 
 		if ($foreignEntityType) {
-			$foreignEntityDefs = $this->entityManager->getDefs()->getEntity($foreignEntityType);
+			$foreignEntityDefs = $em->getDefs()->getEntity($foreignEntityType);
 
 			foreach ($columns as $column => $attribute) {
 				if (!$foreignEntityDefs->hasAttribute($attribute)) {
@@ -217,5 +221,4 @@ class Email extends \Espo\Entities\Email {
 
 		return $columns;
 	}
-
 }

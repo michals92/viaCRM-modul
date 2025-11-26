@@ -10,7 +10,6 @@ use Espo\Core\Utils\Metadata;
 use Espo\Tools\LayoutManager\LayoutManager;
 
 class Service {
-
 	public function __construct(
 		private readonly Metadata      $metadata,
 		private readonly Language      $language,
@@ -44,5 +43,4 @@ class Service {
 
 		return $this->layoutManager->get($scope, $name);
 	}
-
 }

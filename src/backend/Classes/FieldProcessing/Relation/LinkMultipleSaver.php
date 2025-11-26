@@ -15,7 +15,6 @@ use stdClass;
  * @implements SaverInterface<Entity>
  */
 class LinkMultipleSaver implements SaverInterface {
-
 	public const TRIGGERED_BY_RECORD_LIST = 'triggeredByRecordList';
 
 	/**
@@ -79,6 +78,7 @@ class LinkMultipleSaver implements SaverInterface {
 	}
 
 	private function processColumnList(Entity $entity, string $name): void {
+		$em = $this->entityManager;
 		$columnListField = $name . 'ColumnList';
 
 		if (!$entity->has($columnListField)) {
@@ -93,7 +93,7 @@ class LinkMultipleSaver implements SaverInterface {
 
 		/** @var array<stdClass> $columnList */
 
-		$entityDefs = $this->entityManager->getDefs()->getEntity($entity->getEntityType());
+		$entityDefs = $em->getDefs()->getEntity($entity->getEntityType());
 		$fieldDefs = $entityDefs->getField($name);
 		$relationDefs = $entityDefs->getRelation($name);
 
@@ -104,7 +104,7 @@ class LinkMultipleSaver implements SaverInterface {
 			$parentLinkDefs = $entityDefs->getRelation($columnListLink);
 			$parentEntityType = $parentLinkDefs->getForeignEntityType();
 
-			$targetFieldDefs = $this->entityManager
+			$targetFieldDefs = $em
 				->getDefs()
 				->getEntity($parentEntityType)
 				->getField($columnListForeign);
@@ -116,7 +116,7 @@ class LinkMultipleSaver implements SaverInterface {
 		$shouldUnrelate = $relationDefs->isManyToMany() || $targetFieldDefs->getParam('columnListKeepRemoved');
 		$allowedColumns = array_flip($targetFieldDefs->getParam('columns') ?? []);
 
-		$relation = $this->entityManager
+		$relation = $em
 			->getRelation($entity, $name);
 
 		$newIds = [];
@@ -130,12 +130,12 @@ class LinkMultipleSaver implements SaverInterface {
 				if (
 					(!empty($columnsData))
 					&& (
-						$parent = $this->entityManager
+						$parent = $em
 							->getRDBRepository($parentEntityType)
 							->getById($targetEntityId)
 					)
 				) {
-					$relation = $this->entityManager
+					$relation = $em
 						->getRelation($parent, $name);
 
 					if ($relation->isRelatedById($linkedEntity->id)) {
@@ -160,18 +160,18 @@ class LinkMultipleSaver implements SaverInterface {
 			}
 
 			if ($parentEntityId = $relatedEntityData->parentEntityId) {
-				if ($parentEntity = $this->entityManager->getEntityById($parentEntityType ,$parentEntityId)) {
-					$relation = $this->entityManager->getRelation($parentEntity, $name);
+				if ($parentEntity = $em->getEntityById($parentEntityType ,$parentEntityId)) {
+					$relation = $em->getRelation($parentEntity, $name);
 				}
 			}
 
 			if ($shouldUnrelate) {
 				$relation->unrelateById($relatedEntityId);
 			} else {
-				$toBeRemovedEntity = $this->entityManager->getEntityById($parentEntityType, $relatedEntityId);
+				$toBeRemovedEntity = $em->getEntityById($parentEntityType, $relatedEntityId);
 
 				if ($toBeRemovedEntity) {
-					$this->entityManager->removeEntity($toBeRemovedEntity);
+					$em->removeEntity($toBeRemovedEntity);
 				}
 			}
 		}
@@ -182,14 +182,15 @@ class LinkMultipleSaver implements SaverInterface {
 	 */
 	private function processItem(Entity $entity, string $name, array $options = []): void {
 		// Lock row
-		$this->entityManager
+		$em = $this->entityManager;
+		$em
 			->getRDBRepository($entity->getEntityType())
 			->select(['id'])
 			->forUpdate()
 			->where(Expr::equal(Expr::column('id'), $entity->getId()))
 			->findOne();
 
-		$entityDefs = $this->entityManager
+		$entityDefs = $em
 			->getDefs()
 			->getEntity($entity->getEntityType());
 
@@ -210,6 +211,7 @@ class LinkMultipleSaver implements SaverInterface {
 	 * @param array<string, mixed> $options
 	 */
 	private function processRecordList(Entity $entity, string $name, array $options): void {
+		$em = $this->entityManager;
 		$fieldName = $name . 'RecordList';
 
 		if (!$entity->has($fieldName)) {
@@ -219,11 +221,7 @@ class LinkMultipleSaver implements SaverInterface {
 		/** @var stdClass[] $recordList */
 		$recordList = $entity->get($fieldName);
 
-		if (!is_array($recordList)) {
-			return;
-		}
-
-		$entityDefs = $this->entityManager
+		$entityDefs = $em
 			->getDefs()
 			->getEntity($entity->getEntityType());
 
@@ -231,7 +229,7 @@ class LinkMultipleSaver implements SaverInterface {
 		$relationDefs = $entityDefs->getRelation($name);
 		$recordType = $relationDefs->getForeignEntityType();
 
-		$rdbRelation = $this->entityManager
+		$rdbRelation = $em
 			->getRelation($entity, $name);
 
 		$columns = array_flip($fieldDefs->getParam('columns') ?: []);
@@ -241,7 +239,7 @@ class LinkMultipleSaver implements SaverInterface {
 		$ids = array_column($recordList, 'id');
 
 		if (!empty($ids)) {
-			$existingRecords = $this->entityManager
+			$existingRecords = $em
 				->getRDBRepository($recordType)
 				->where(
 					Expr::in(
@@ -264,7 +262,7 @@ class LinkMultipleSaver implements SaverInterface {
 			if ($recordId) {
 				$recordEntity = $existingRecordMap[$recordId] ?? null;
 			} else {
-				$recordEntity = $this->entityManager->getNewEntity($recordType);
+				$recordEntity = $em->getNewEntity($recordType);
 			}
 
 			if (!$recordEntity) {
@@ -288,7 +286,7 @@ class LinkMultipleSaver implements SaverInterface {
 			// Remove duplicateIgnore fields ONLY when creating records during duplication
 			// (not for manually created records)
 			if (!$recordId && !empty($options[SaveOption::DUPLICATE_SOURCE_ID])) {
-				$foreignEntityDefs = $this->entityManager->getDefs()->getEntity($recordType);
+				$foreignEntityDefs = $em->getDefs()->getEntity($recordType);
 				foreach ($foreignEntityDefs->getFieldList() as $childFieldDefs) {
 					if ($childFieldDefs->getParam('duplicateIgnore')) {
 						$fieldName = $childFieldDefs->getName();
@@ -315,7 +313,7 @@ class LinkMultipleSaver implements SaverInterface {
 				}
 			}
 
-			$this->entityManager->saveEntity($recordEntity, $options);
+			$em->saveEntity($recordEntity, $options);
 
 			if (!$recordId) {
 				$recordData->id = $recordEntity->getId();
@@ -347,9 +345,8 @@ class LinkMultipleSaver implements SaverInterface {
 			if ($shouldUnrelate) {
 				$rdbRelation->unrelate($toRemoveEntity, $options);
 			} else {
-				$this->entityManager->removeEntity($toRemoveEntity, $options);
+				$em->removeEntity($toRemoveEntity, $options);
 			}
 		}
 	}
-
 }

@@ -16,6 +16,7 @@ use Espo\ORM\Repository\Option\SaveOptions;
  * @implements BeforeSave<Entity>
  */
 class UpdateNextSequenceNumber implements BeforeSave {
+	public static int $order = 9;
 
 	/**
 	 * @var array<string,FieldDefs[]>
@@ -39,6 +40,7 @@ class UpdateNextSequenceNumber implements BeforeSave {
 	 * @param array<string,mixed> $options
 	 */
 	private function processItem(Entity $entity, FieldDefs $defs, array $options): void {
+		$em = $this->entityManager;
 		$field = $defs->getName();
 		$allowCustomValue = $defs->getParam('allowCustomValue') ?? false;
 
@@ -71,10 +73,10 @@ class UpdateNextSequenceNumber implements BeforeSave {
 			}
 		}
 
-		$this->entityManager->getTransactionManager()->start();
+		$em->getTransactionManager()->start();
 
 		/** @var NextSequenceNumber|null $nextNumber */
-		$nextNumber = $this->entityManager
+		$nextNumber = $em
 		    ->getRDBRepository(NextSequenceNumber::ENTITY_TYPE)
 		    ->where([
 		        'fieldName' => $field,
@@ -85,7 +87,7 @@ class UpdateNextSequenceNumber implements BeforeSave {
 
 		if ($nextNumber === null) {
 			/** @var NextSequenceNumber $nextNumber */
-			$nextNumber = $this->entityManager->getNewEntity(NextSequenceNumber::ENTITY_TYPE);
+			$nextNumber = $em->getNewEntity(NextSequenceNumber::ENTITY_TYPE);
 
 			$nextNumber->set([
 			    'entityType' => $entity->getEntityType(),
@@ -132,9 +134,9 @@ class UpdateNextSequenceNumber implements BeforeSave {
 		$nextNumber->setNumberValue($numberValue + 1);
 		$nextNumber->setDate($dateNow);
 
-		$this->entityManager->saveEntity($nextNumber);
+		$em->saveEntity($nextNumber);
 
-		$this->entityManager->getTransactionManager()->commit();
+		$em->getTransactionManager()->commit();
 	}
 
 	/**
@@ -163,5 +165,4 @@ class UpdateNextSequenceNumber implements BeforeSave {
 
 		return $list;
 	}
-
 }

@@ -10,7 +10,6 @@ use Espo\Core\Utils\Metadata;
 use Espo\Tools\Layout\LayoutProvider;
 
 class ListLayouts implements Command {
-
 	// Base layout types from EspoCRM frontend
 	private const BASE_LAYOUT_TYPES = [
 		'list',
@@ -106,5 +105,4 @@ class ListLayouts implements Command {
         
 		return array_values($filteredLayouts);
 	}
-
 }

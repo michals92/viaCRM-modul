@@ -9,7 +9,6 @@ use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Json;
 
 class ConfigGet implements Command {
-
 	public function __construct(
 		private readonly Config $config
 	) {}
@@ -38,5 +37,4 @@ class ConfigGet implements Command {
 			$io->setExitStatus(1);
 		}
 	}
-
 }

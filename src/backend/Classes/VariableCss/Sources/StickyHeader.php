@@ -6,7 +6,6 @@ use Espo\Core\Utils\Config;
 use Espo\Modules\Viacrm\Classes\VariableCss\Source as VariableCssSource;
 
 class StickyHeader implements VariableCssSource {
-
 	public function __construct(
 		private readonly Config $config
 	) {}
@@ -32,5 +31,4 @@ class StickyHeader implements VariableCssSource {
 
 		return '';
 	}
-
 }

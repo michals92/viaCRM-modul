@@ -9,7 +9,6 @@ use stdClass;
  * Adds attachmentCompare view mode to entities with the feature enabled.
  */
 class AttachmentCompareViewMode implements AdditionalBuilderInterface {
-
 	public function build(stdClass $data): void {
 		$data->clientDefs ??= (object)[];
 
@@ -55,5 +54,4 @@ class AttachmentCompareViewMode implements AdditionalBuilderInterface {
 			];
 		}
 	}
-
 }

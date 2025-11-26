@@ -109,5 +109,4 @@ class PublicDownload implements EntryPoint {
 		    ->setHeader('Content-Length', (string) $size)
 		    ->setBody($stream);
 	}
-
 }

@@ -10,5 +10,4 @@ class AuthenticationFactory extends \Espo\Core\Authentication\AuthenticationFact
 	public function create(): Authentication {
 		return $this->injectableFactory->create(Authentication::class);
 	}
-
 }

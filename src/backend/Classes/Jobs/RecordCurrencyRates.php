@@ -8,7 +8,6 @@ use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Log;
 
 class RecordCurrencyRates implements JobDataLess {
-
 	public function __construct(
 		private readonly Config $config,
 		private readonly EntityManager $entityManager,
@@ -39,5 +38,4 @@ class RecordCurrencyRates implements JobDataLess {
 			]);
 		}
 	}
-
 }

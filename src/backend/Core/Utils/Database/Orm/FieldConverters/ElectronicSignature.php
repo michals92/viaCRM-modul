@@ -9,7 +9,6 @@ use Espo\ORM\Defs\FieldDefs;
 use Espo\ORM\Type\AttributeType;
 
 class ElectronicSignature implements FieldConverter {
-
 	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs {
 		$name = $fieldDefs->getName();
 
@@ -48,5 +47,4 @@ class ElectronicSignature implements FieldConverter {
 
 		return $entityDefs;
 	}
-
 }

@@ -11,7 +11,6 @@ use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Throwable;
 
 class ErrorOutput extends \Espo\Core\Api\ErrorOutput {
-
 	public function __construct(
 		private Log $log
 	) {
@@ -126,5 +125,4 @@ class ErrorOutput extends \Espo\Core\Api\ErrorOutput {
 	private function getLevel(Throwable $exception): string {
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'getLevel', $exception);
 	}
-
 }

@@ -127,5 +127,4 @@ class ForeignParent implements
 
 		return $this->defaultAccessChecker->checkEntityStream($user, $foreign, $data);
 	}
-
 }

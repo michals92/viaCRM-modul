@@ -14,7 +14,6 @@ use Espo\ORM\Repository\Option\SaveOptions;
  * @implements AfterSave<RecordRecurrence>
  */
 readonly class Process implements AfterSave {
-
 	public function __construct(
 		private Service $service,
 		private EntityManager $entityManager,
@@ -36,5 +35,4 @@ readonly class Process implements AfterSave {
 			}
 		}
 	}
-
 }

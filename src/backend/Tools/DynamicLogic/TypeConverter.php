@@ -9,7 +9,6 @@ use Espo\Modules\Viacrm\Tools\DynamicLogic\Type as DynamicLogicType;
  * Helper class to convert between Where\Item\Type and DynamicLogic\Type
  */
 class TypeConverter {
-
 	/**
 	 * Mapping between Where\Item\Type constants and DynamicLogic\Type enum values
 	 * @var array<string, string>
@@ -87,5 +86,4 @@ class TypeConverter {
 
 		return isset($flipped[$dynamicLogicType->value]);
 	}
-
 }

@@ -12,7 +12,6 @@ use Espo\Core\Utils\Metadata;
 use Espo\Modules\Viacrm\Tools\Layout\AttributeExtractor;
 
 class TextSearch implements Command {
-
 	public function __construct(
 		private readonly RecordServiceContainer $recordServiceContainer,
 		private readonly Metadata $metadata,
@@ -84,5 +83,4 @@ class TextSearch implements Command {
 			return;
 		}
 	}
-
 }

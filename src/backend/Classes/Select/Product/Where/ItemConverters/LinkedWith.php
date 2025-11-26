@@ -19,38 +19,35 @@ use Espo\ORM\Query\SelectBuilder as QueryBuilder;
  * This replaces the old product_suppliers middle table approach
  * with the new ProductSupplierItem entity-based relationship.
  */
-class LinkedWith implements ItemConverter
-{
-    public function convert(QueryBuilder $queryBuilder, Item $item): WhereClauseItem
-    {
-        $value = $item->getValue();
+class LinkedWith implements ItemConverter {
+	public function convert(QueryBuilder $queryBuilder, Item $item): WhereClauseItem {
+		$value = $item->getValue();
 
-        // Handle array values
-        $accountIds = is_array($value) ? $value : [$value];
+		// Handle array values
+		$accountIds = is_array($value) ? $value : [$value];
 
-        return $this->convertAccountsLinkedWith($accountIds);
-    }
+		return $this->convertAccountsLinkedWith($accountIds);
+	}
 
-    /**
-     * Filter Products by linked Accounts (suppliers) through ProductSupplierItem.
-     *
-     * @param array<mixed> $accountIds
-     */
-    private function convertAccountsLinkedWith(array $accountIds): WhereClauseItem
-    {
-        // Subquery to find Product IDs that have ProductSupplierItems for the given Accounts
-        $subQuery = QueryBuilder::create()
-            ->from('ProductSupplierItem')
-            ->select('productId')
-            ->where([
-                'accountId' => $accountIds,
-                'deleted' => false,
-            ])
-            ->build();
+	/**
+	 * Filter Products by linked Accounts (suppliers) through ProductSupplierItem.
+	 *
+	 * @param array<mixed> $accountIds
+	 */
+	private function convertAccountsLinkedWith(array $accountIds): WhereClauseItem {
+		// Subquery to find Product IDs that have ProductSupplierItems for the given Accounts
+		$subQuery = QueryBuilder::create()
+		    ->from('ProductSupplierItem')
+		    ->select('productId')
+		    ->where([
+		        'accountId' => $accountIds,
+		        'deleted' => false,
+		    ])
+		    ->build();
 
-        return Cond::in(
-            Expr::column('id'),
-            $subQuery
-        );
-    }
+		return Cond::in(
+			Expr::column('id'),
+			$subQuery
+		);
+	}
 }

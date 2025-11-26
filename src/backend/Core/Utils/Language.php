@@ -13,7 +13,6 @@ use Espo\Entities\Preferences;
 use RuntimeException;
 
 class Language extends \Espo\Core\Utils\Language {
-
 	/** @var array<string, array<string, mixed>> */
 	private array $data = [];
 
@@ -428,5 +427,4 @@ class Language extends \Espo\Core\Utils\Language {
 			}
 		}
 	}
-
 }

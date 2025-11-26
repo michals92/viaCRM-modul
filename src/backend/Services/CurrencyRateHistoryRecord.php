@@ -10,7 +10,6 @@ use Espo\Services\Record;
  * @extends Record<CurrencyRateHistoryRecordEntity>
  */
 class CurrencyRateHistoryRecord extends Record {
-
 	/**
 	 * Get historical currency rate for a given currency code and date.
 	 *
@@ -33,5 +32,4 @@ class CurrencyRateHistoryRecord extends Record {
 		    ->findOne()
 		    ?->get('rate');
 	}
-
 }

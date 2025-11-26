@@ -18,7 +18,6 @@ use Espo\Tools\Email\InboxService;
 use stdClass;
 
 class Callback implements Action {
-
 	public function __construct(
 		private readonly Log $log,
 		private readonly EntityManager $entityManager,
@@ -27,6 +26,7 @@ class Callback implements Action {
 	) {}
 
 	public function process(Request $request): Response {
+		$em = $this->entityManager;
 		$validationToken = $request->getQueryParam('validationToken');
 
 		/** Create through injectable factory so that we do not get the overridden class that syncs the status back to viacrm */
@@ -61,7 +61,7 @@ class Callback implements Action {
 				}
 
 				// Should be either an EmailAccount or an InboundEmail
-				$entity = $this->entityManager
+				$entity = $em
 				    ->getEntityById($clientState->entityType, $clientState->entityId);
 
 				if (!$entity) {
@@ -90,7 +90,7 @@ class Callback implements Action {
 
 				// Find our email by Message-ID
 				/** @var Email|null $email */
-				$email = $this->entityManager
+				$email = $em
 				    ->getRDBRepository(Email::ENTITY_TYPE)
 				    ->where(['messageId' => $messageData['internetMessageId']])
 				    ->findOne();
@@ -126,5 +126,4 @@ class Callback implements Action {
 
 		return ResponseComposer::json(null);
 	}
-
 }

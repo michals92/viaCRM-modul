@@ -12,7 +12,6 @@ use Espo\Modules\Viacrm\Classes\Utils\Common\LangCode;
 use Espo\Modules\Viacrm\Classes\Utils\HolidayUtil;
 
 class Get implements Action {
-
 	private Request $request;
 
 	public function __construct(
@@ -85,5 +84,4 @@ class Get implements Action {
 
 		return $value;
 	}
-
 }

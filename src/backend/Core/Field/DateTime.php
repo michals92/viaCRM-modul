@@ -13,7 +13,6 @@ use RuntimeException;
  * A date-time value object. Immutable.
  */
 class DateTime implements DateTimeable {
-
 	private string $value;
 
 	private DateTimeImmutable $dateTime;
@@ -345,5 +344,4 @@ class DateTime implements DateTimeable {
 	public function getTimestamp(): int {
 		return $this->toTimestamp();
 	}
-
 }

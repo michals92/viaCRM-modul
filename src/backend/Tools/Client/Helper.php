@@ -14,7 +14,6 @@ use Espo\Modules\Viacrm\Classes\VariableCss\Provider as VariableCssProvider;
 use RuntimeException;
 
 class Helper {
-
 	public function __construct(
 		private readonly Metadata $metadata,
 		private readonly Config $config,
@@ -57,5 +56,4 @@ class Helper {
 
 		return $vars;
 	}
-
 }

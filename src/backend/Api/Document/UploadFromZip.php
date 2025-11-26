@@ -13,7 +13,6 @@ use Espo\Modules\Crm\Entities\Document;
 use Espo\Modules\Crm\Entities\DocumentFolder;
 
 class UploadFromZip implements Action {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 	) {}
@@ -82,6 +81,7 @@ class UploadFromZip implements Action {
 	}
 
 	private function lookupFolder(string $path, ?string $parentId): ?DocumentFolder {
+		$em = $this->entityManager;
 		$segments = explode('/', trim($path, '/'));
 		$currentParentId = $parentId;
 
@@ -99,7 +99,7 @@ class UploadFromZip implements Action {
 				continue;
 			}
 
-			$folder = $this->entityManager
+			$folder = $em
 			    ->getRDBRepository(DocumentFolder::ENTITY_TYPE)
 			    ->where(['name' => $segment, 'parentId' => $currentParentId])
 			    ->findOne();
@@ -116,7 +116,8 @@ class UploadFromZip implements Action {
 			return null;
 		}
 
-		return $this->entityManager->getEntityById(DocumentFolder::ENTITY_TYPE, $currentParentId);
+		/** @var DocumentFolder|null */
+		return $em->getEntityById(DocumentFolder::ENTITY_TYPE, $currentParentId);
 	}
 
 	private function lookupOrCreateFolder(string $path, ?string $categoryId): ?DocumentFolder {
@@ -151,19 +152,21 @@ class UploadFromZip implements Action {
 	}
 
 	private function lookupFolderById(string $id): ?DocumentFolder {
+		/** @var DocumentFolder|null */
 		return $this->entityManager->getEntityById(DocumentFolder::ENTITY_TYPE, $id);
 	}
 
 	private function createDocument(\ZipArchive $zip, string $path, int $index, ?string $categoryId): void {
+		$em = $this->entityManager;
 		$folderPath = dirname($path);
 		$folder = $this->lookupOrCreateFolder($folderPath, $categoryId);
 
-		$attachment = $this->entityManager->createEntity(Attachment::ENTITY_TYPE, [
+		$attachment = $em->createEntity(Attachment::ENTITY_TYPE, [
 		    'name' => basename($path),
 		    'contents' => $zip->getFromIndex($index),
 		]);
 
-		$this->entityManager->createEntity(Document::ENTITY_TYPE, [
+		$em->createEntity(Document::ENTITY_TYPE, [
 		    'name' => basename($path),
 		    'fileId' => $attachment->getId(),
 		    'folderId' => $folder?->getId()
@@ -179,5 +182,4 @@ class UploadFromZip implements Action {
 
 		return $folder ? $folder->get('parentId') : null;
 	}
-
 }

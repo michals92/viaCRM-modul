@@ -3,7 +3,6 @@
 namespace Espo\Modules\Viacrm\Core\Layout;
 
 enum LikeType {
-
 	case detail;
 	case list;
 	case bottomsPanel;
@@ -71,5 +70,4 @@ enum LikeType {
 	public function hasRows(): bool {
 		return $this === self::list;
 	}
-
 }

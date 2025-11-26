@@ -7,7 +7,6 @@ use Espo\Core\Htmlizer\Helper\Data;
 use Espo\Core\Htmlizer\Helper\Result;
 
 class SmartPageBreak implements Helper {
-
 	public function __construct(
 	) {}
 
@@ -51,5 +50,4 @@ TEXT;
 
 		return Result::createSafeString($script);
 	}
-
 }

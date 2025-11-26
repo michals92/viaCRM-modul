@@ -13,7 +13,6 @@ use Throwable;
  * EWS Group Email Account (InboundEmail) fetching service.
  */
 class Service {
-
 	public function __construct(
 		private EntityManager $entityManager,
 		private AccountFactory $accountFactory,
@@ -62,5 +61,4 @@ class Service {
 			throw new Error("EWS fetch failed for InboundEmail {$id}: " . $e->getMessage(), 0, $e);
 		}
 	}
-
 }

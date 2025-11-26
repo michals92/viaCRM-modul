@@ -28,5 +28,4 @@ class SavingEmailSender extends EmailSender implements Di\ConfigAware, Di\Entity
 			}
 		}
 	}
-
 }

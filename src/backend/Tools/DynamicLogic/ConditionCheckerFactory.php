@@ -15,7 +15,6 @@ use RuntimeException;
  */
 
 readonly class ConditionCheckerFactory {
-
 	public function __construct(
 		private User              $user,
 		private ApplicationConfig $applicationConfig,
@@ -39,5 +38,4 @@ readonly class ConditionCheckerFactory {
 			),
 		);
 	}
-
 }

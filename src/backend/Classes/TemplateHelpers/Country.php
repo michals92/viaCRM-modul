@@ -9,7 +9,6 @@ use Espo\Core\Utils\Language;
 use Espo\Entities\Settings;
 
 class Country implements Helper {
-
 	public function __construct(
 		private readonly Language $language
 	) {}
@@ -21,5 +20,4 @@ class Country implements Helper {
 
 		return Result::createSafeString($translated);
 	}
-
 }

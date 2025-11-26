@@ -7,15 +7,13 @@ use Espo\Core\Api\Response;
 use Espo\Core\EntryPoint\EntryPoint;
 use Espo\Core\EntryPoint\Traits\NoAuth;
 
-class TestEntryPoint implements EntryPoint
-{
-    use NoAuth;
+class TestEntryPoint implements EntryPoint {
+	use NoAuth;
 
-    public function run(Request $request, Response $response): void
-    {
-        $response->setHeader('Content-Type', 'text/html; charset=utf-8');
+	public function run(Request $request, Response $response): void {
+		$response->setHeader('Content-Type', 'text/html; charset=utf-8');
         
-        $response->writeBody('<!DOCTYPE html>
+		$response->writeBody('<!DOCTYPE html>
 <html>
 <head>
     <title>Test Entry Point</title>
@@ -27,5 +25,5 @@ class TestEntryPoint implements EntryPoint
     <pre>' . print_r($request->getQueryParams(), true) . '</pre>
 </body>
 </html>');
-    }
+	}
 }

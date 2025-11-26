@@ -12,7 +12,6 @@ use Espo\ORM\Query\Part\Expression;
 use Espo\Tools\PopupNotification\Item;
 
 class AlertManager {
-
 	public function __construct(
 		private readonly Submission    $webSocketSubmission,
 		private readonly EntityManager $entityManager,
@@ -90,5 +89,4 @@ class AlertManager {
 
 		return new Item($alertId, $data);
 	}
-
 }

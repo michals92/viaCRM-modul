@@ -8,7 +8,6 @@ use Espo\Core\EntryPoint\EntryPoint;
 use Espo\Modules\Viacrm\Tools\Xml\EntryPointProcessor;
 
 class XmlFeed implements EntryPoint {
-
 	public function __construct(
 		private readonly EntryPointProcessor $entryPointProcessor
 	) {}
@@ -16,5 +15,4 @@ class XmlFeed implements EntryPoint {
 	public function run(Request $request, Response $response): void {
 		$this->entryPointProcessor->process($request, $response, false);
 	}
-
 }

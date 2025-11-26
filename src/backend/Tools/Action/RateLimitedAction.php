@@ -122,5 +122,4 @@ abstract class RateLimitedAction implements Action, Di\DataCacheAware {
 			]
 		];
 	}
-
 }

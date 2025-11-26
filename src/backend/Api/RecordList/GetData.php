@@ -11,7 +11,6 @@ use Espo\Core\Record\SearchParamsFetcher;
 use Espo\Modules\Viacrm\Tools\RecordList\Service as RecordListService;
 
 class GetData implements Action {
-
 	public function __construct(
 		private readonly SearchParamsFetcher $searchParamsFetcher,
 		private readonly RecordListService   $service,
@@ -34,5 +33,4 @@ class GetData implements Action {
 		    'list' => $recordCollection->getValueMapList(),
 		]);
 	}
-
 }

@@ -18,7 +18,6 @@ use Espo\ORM\Repository\Option\SaveOptions;
  * @implements AfterRemove<RecordRecurrence>
  */
 readonly class RemoveScheduledJobs implements AfterSave, AfterRemove {
-
 	public function __construct(
 		private EntityManager $entityManager,
 	) {}
@@ -61,5 +60,4 @@ readonly class RemoveScheduledJobs implements AfterSave, AfterRemove {
 			->where('name', 'CheckRecurringRecords')
 			->findOne();
 	}
-
 }

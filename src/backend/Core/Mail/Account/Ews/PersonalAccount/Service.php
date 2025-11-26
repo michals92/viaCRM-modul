@@ -13,7 +13,6 @@ use Throwable;
  * EWS Personal Email Account fetching service.
  */
 class Service {
-
 	public function __construct(
 		private EntityManager $entityManager,
 		private AccountFactory $accountFactory,
@@ -62,5 +61,4 @@ class Service {
 			throw new Error("EWS fetch failed for EmailAccount {$id}: " . $e->getMessage(), 0, $e);
 		}
 	}
-
 }

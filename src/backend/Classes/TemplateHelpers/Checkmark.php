@@ -8,7 +8,6 @@ use Espo\Core\Htmlizer\Helper\Result;
 use Espo\Modules\Viacrm\Tools\Html\Composer as HtmlComposer;
 
 class Checkmark implements Helper {
-
 	public function render(Data $data): Result {
 		$value = $data->getArgumentList()[0] ? '√' : '×';
 
@@ -22,5 +21,4 @@ class Checkmark implements Helper {
 
 		return Result::create($html);
 	}
-
 }

@@ -16,7 +16,6 @@ use Espo\ORM\Query\Part\Expression as Expr;
 use Espo\ORM\Query\Part\WhereItem;
 
 readonly class HolidayUtil {
-
 	public function __construct(
 		private EntityManager $entityManager,
 		private Log           $log
@@ -208,5 +207,4 @@ readonly class HolidayUtil {
 
 		return $month;
 	}
-
 }

@@ -6,7 +6,6 @@ use Espo\Core\ORM\Entity;
 use ReflectionProperty;
 
 class EmailAddress extends \Espo\Core\Field\EmailAddress {
-
 	private ?string $accountId = null;
 
 	/**
@@ -46,5 +45,4 @@ class EmailAddress extends \Espo\Core\Field\EmailAddress {
 
 		return $obj;
 	}
-
 }

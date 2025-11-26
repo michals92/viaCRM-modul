@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder;
 use stdClass;
 
 class GlobalSearchEntityManagerParams extends AdditionalBuilderWithConfig {
-
 	public function build(stdClass $data): void {
 		if (!isset($data->app) || !isset($data->app->entityManagerParams)) {
 			return;
@@ -25,5 +24,4 @@ class GlobalSearchEntityManagerParams extends AdditionalBuilderWithConfig {
 			];
 		}
 	}
-
 }

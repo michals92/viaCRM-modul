@@ -9,7 +9,6 @@ use Espo\Tools\Pdf\Data as PdfData;
 use Espo\Tools\Pdf\Params as PdfParams;
 
 class DataLoaderManager {
-
 	public function __construct(
 		private Metadata $metadata,
 		private InjectableFactory $injectableFactory
@@ -44,5 +43,4 @@ class DataLoaderManager {
 	private function createLoader(string $className): DataLoader {
 		return $this->injectableFactory->create($className);
 	}
-
 }

@@ -3,7 +3,6 @@
 namespace Espo\Modules\Viacrm\Core\Email;
 
 class ReadParams extends \Espo\Core\Record\ReadParams {
-
 	private ?string $readType = null;
 
 	public static function create(): self {
@@ -19,5 +18,4 @@ class ReadParams extends \Espo\Core\Record\ReadParams {
 
 		return $this;
 	}
-
 }

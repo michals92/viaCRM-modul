@@ -6,7 +6,6 @@ use Espo\Core\Utils\File\Manager as FileManager;
 use RuntimeException;
 
 class ZipArchive {
-
 	private FileManager $fileManager;
 
 	public function __construct(
@@ -80,13 +79,10 @@ class ZipArchive {
 					fwrite(STDERR, 'Entry has been deleted' . PHP_EOL);
 					break;
 				default:
-					if (method_exists($zip, 'getStatusString')) {
-						fwrite(STDERR, $zip->getStatusString() . PHP_EOL);
-					}
+					fwrite(STDERR, $zip->getStatusString() . PHP_EOL);
 			}
 
 			return false;
 		}
 	}
-
 }

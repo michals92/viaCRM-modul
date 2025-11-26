@@ -63,5 +63,4 @@ class PhoneNumber extends \Espo\Repositories\PhoneNumber {
 
 		return $dataList;
 	}
-
 }

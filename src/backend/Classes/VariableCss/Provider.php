@@ -7,7 +7,6 @@ use Espo\Core\Utils\Log;
 use Espo\Core\Utils\Metadata;
 
 class Provider {
-
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
 		private readonly Metadata $metadata,
@@ -46,5 +45,4 @@ class Provider {
 
 		return $css;
 	}
-
 }

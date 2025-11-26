@@ -13,7 +13,6 @@ use Espo\ORM\Entity;
  * @implements UpdateHook<Alert>
  */
 readonly class Websocket implements UpdateHook {
-
 	public function __construct(
 		private NotificationProvider $notificationProvider,
 		private User                 $user,
@@ -29,5 +28,4 @@ readonly class Websocket implements UpdateHook {
 
 		$this->notificationProvider->get($this->user);
 	}
-
 }

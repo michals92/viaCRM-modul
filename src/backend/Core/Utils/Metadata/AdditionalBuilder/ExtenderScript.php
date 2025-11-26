@@ -6,7 +6,6 @@ use Espo\Core\Utils\Metadata\AdditionalBuilder;
 use stdClass;
 
 class ExtenderScript implements AdditionalBuilder {
-
 	public function build(stdClass $data): void {
 		// Initialize app.client if not present
 		$data->app ??= (object)[];
@@ -20,5 +19,4 @@ class ExtenderScript implements AdditionalBuilder {
 		$data->app->client->developerModeScriptList ??= [];
 		$data->app->client->developerModeScriptList = ['client/modules/viacrm/src/js/extender.js', ...$data->app->client->developerModeScriptList];
 	}
-
 }

@@ -7,7 +7,6 @@ use Espo\Core\Utils\Json;
 use Espo\Tools\Layout\LayoutProvider;
 
 class AttributeExtractor {
-
 	public function __construct(
 		private readonly LayoutProvider $layoutProvider,
 		private readonly FieldUtil $fieldUtil
@@ -55,5 +54,4 @@ class AttributeExtractor {
         
 		return $attributes;
 	}
-
 }

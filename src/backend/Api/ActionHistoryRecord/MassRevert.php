@@ -12,7 +12,6 @@ use Espo\Core\Record\ServiceContainer;
 use Espo\Entities\ActionHistoryRecord;
 
 class MassRevert implements Action {
-
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly ServiceContainer $serviceContainer
@@ -51,5 +50,4 @@ class MassRevert implements Action {
 		    'count' => $count,
 		]);
 	}
-
 }

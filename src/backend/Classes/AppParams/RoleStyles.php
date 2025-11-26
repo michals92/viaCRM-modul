@@ -11,7 +11,6 @@ use PDO;
  * AppParam to provide a mapping of role IDs to their styles (color and iconClass).
  */
 class RoleStyles implements AppParam {
-
 	public function __construct(
 		private readonly EntityManager $entityManager
 	) {}
@@ -35,5 +34,4 @@ class RoleStyles implements AppParam {
 		    ->execute($query)
 		    ->fetchAll(PDO::FETCH_UNIQUE | PDO::FETCH_OBJ);
 	}
-
 }

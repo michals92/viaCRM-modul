@@ -16,7 +16,6 @@ use Espo\Repositories\PhoneNumber as PhoneNumberRepository;
 use ReflectionException;
 
 class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
-
 	private const ATTR_PHONE_NUMBER = 'phoneNumber';
 	private const ATTR_PHONE_NUMBER_DATA = 'phoneNumberData';
 	private const ATTR_PHONE_NUMBER_IS_OPTED_OUT = 'phoneNumberIsOptedOut';
@@ -396,5 +395,4 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 			$entity->set(self::ATTR_PHONE_NUMBER_DATA, $phoneNumberData);
 		}
 	}
-
 }

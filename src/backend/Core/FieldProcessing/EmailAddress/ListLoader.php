@@ -9,7 +9,6 @@ use Espo\ORM\Defs as OrmDefs;
 use Espo\ORM\Entity;
 
 class ListLoader extends \Espo\Core\FieldProcessing\EmailAddress\Loader {
-
 	public function __construct(
 		OrmDefs $ormDefs,
 		EntityManager $entityManager,
@@ -27,5 +26,4 @@ class ListLoader extends \Espo\Core\FieldProcessing\EmailAddress\Loader {
 
 		parent::process($entity, $params);
 	}
-
 }

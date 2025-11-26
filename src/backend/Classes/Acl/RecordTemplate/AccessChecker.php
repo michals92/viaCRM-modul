@@ -30,5 +30,4 @@ class AccessChecker implements AccessEntityCREDSChecker {
 
 		return !$scope || $this->aclManager->checkScope($user, $scope, TABLE::ACTION_READ);
 	}
-
 }

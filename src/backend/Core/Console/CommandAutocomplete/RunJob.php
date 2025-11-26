@@ -7,7 +7,6 @@ use Espo\Core\Utils\ClassFinder;
 use Espo\Modules\Viacrm\Core\Console\CommandAutocomplete;
 
 class RunJob implements CommandAutocomplete {
-
 	public function __construct(
 		private readonly ClassFinder $classFinder,
 		private readonly MetadataProvider $metadataProvider
@@ -28,5 +27,4 @@ class RunJob implements CommandAutocomplete {
 
 		return $list;
 	}
-
 }

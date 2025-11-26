@@ -22,7 +22,6 @@ ReflectionUtil::createClassIfNotExists(
 );
 
 class UsersAccessService extends \Espo\Tools\User\UsersAccessService {
-
 	/**
 	 * @throws Forbidden
 	 * @throws BadRequest
@@ -58,5 +57,4 @@ class UsersAccessService extends \Espo\Tools\User\UsersAccessService {
 
 		$user->set('recordAccessLevels', $levels);
 	}
-
 }

@@ -12,7 +12,6 @@ use Espo\Core\Utils\Config;
 use Espo\Modules\Viacrm\Tools\Vies\Service as ViesService;
 
 class Validate implements Action {
-
 	public function __construct(
 		private readonly ViesService $viesService,
 		private readonly Config      $config,
@@ -45,5 +44,4 @@ class Validate implements Action {
 		    'valid' => $valid,
 		]);
 	}
-
 }

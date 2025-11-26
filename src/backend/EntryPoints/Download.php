@@ -15,7 +15,6 @@ use Espo\Core\Utils\Metadata;
 use Espo\Entities\Attachment as AttachmentEntity;
 
 class Download implements EntryPoint {
-
 	public function __construct(
 		protected FileStorageManager $fileStorageManager,
 		protected Acl $acl,
@@ -82,5 +81,4 @@ class Download implements EntryPoint {
 		    ->setHeader('Content-Length', (string) $size)
 		    ->setBody($stream);
 	}
-
 }

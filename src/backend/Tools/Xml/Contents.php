@@ -7,7 +7,6 @@ use Psr\Http\Message\StreamInterface;
 use RuntimeException;
 
 class Contents implements \Espo\Tools\Pdf\Contents {
-
 	public function __construct(
 		private readonly string $fileName,
 		private readonly string $contents,
@@ -41,5 +40,4 @@ class Contents implements \Espo\Tools\Pdf\Contents {
 	private function getContents(): string {
 		return $this->contents;
 	}
-
 }

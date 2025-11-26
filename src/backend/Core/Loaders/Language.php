@@ -10,7 +10,6 @@ use Espo\Entities\Preferences;
 use Espo\Modules\Viacrm\Core\Utils\Language as LanguageService;
 
 class Language implements Loader {
-
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
 		private readonly Config            $config,
@@ -28,5 +27,4 @@ class Language implements Loader {
 			'metadata' => $metadata,
 		]);
 	}
-
 }

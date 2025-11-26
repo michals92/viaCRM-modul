@@ -9,7 +9,6 @@ use Espo\Modules\Viacrm\Entities\UserKanbanOrder;
 use LogicException;
 
 class UserOrdererProcessor {
-
 	private const MAX_GROUP_LENGTH = 100;
 	private const DEFAULT_MAX_NUMBER = 50;
 
@@ -186,5 +185,4 @@ class UserOrdererProcessor {
 			throw new LogicException('Order is disabled.');
 		}
 	}
-
 }

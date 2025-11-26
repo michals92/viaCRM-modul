@@ -10,7 +10,6 @@ use Espo\Modules\Viacrm\Services\RecordRecurrence as Service;
 use Espo\ORM\EntityManager;
 
 readonly class CheckRecurringRecords implements Job {
-
 	public function __construct(
 		private Service $service,
 		private EntityManager $entityManager,
@@ -39,5 +38,4 @@ readonly class CheckRecurringRecords implements Job {
 			$this->entityManager->saveEntity($recordRecurrence);
 		}
 	}
-
 }

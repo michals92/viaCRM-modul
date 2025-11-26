@@ -2,159 +2,156 @@
 
 namespace Espo\Modules\ViaCrm\Hooks\Absence;
 
-use Espo\Core\Hook\Hook\AfterSave;
-use Espo\Core\Hook\Hook\AfterRemove;
-use Espo\ORM\Entity;
-use Espo\ORM\Repository\Option\SaveOptions;
-use Espo\ORM\Repository\Option\RemoveOptions;
 use Espo\Core\Di;
-use Espo\Core\Utils\Log;
+use Espo\Core\Hook\Hook\AfterRemove;
+use Espo\Core\Hook\Hook\AfterSave;
+use Espo\ORM\Entity;
+use Espo\ORM\Repository\Option\RemoveOptions;
+use Espo\ORM\Repository\Option\SaveOptions;
 
 class UpdateVacationHours implements 
-    AfterSave,
-    AfterRemove,
-    Di\EntityManagerAware,
-    Di\LogAware
-{
-    use Di\EntityManagerSetter;
-    use Di\LogSetter;
+	AfterSave,
+	AfterRemove,
+	Di\EntityManagerAware,
+	Di\LogAware {
+	use Di\EntityManagerSetter;
+	use Di\LogSetter;
 
-    public static int $order = 10;
+	public static int $order = 10;
 
-    public function afterSave(Entity $entity, SaveOptions $options): void
-    {
-        $this->log->debug('UpdateVacationHours: afterSave called for Absence ' . $entity->getId());
+	public function afterSave(Entity $entity, SaveOptions $options): void {
+		$this->log->debug('UpdateVacationHours: afterSave called for Absence ' . $entity->getId());
         
-        // Only process vacation type absences
-        if ($entity->get('type') !== 'vacation') {
-            $this->log->debug('UpdateVacationHours: Not a vacation type, skipping');
-            return;
-        }
+		// Only process vacation type absences
+		if ($entity->get('type') !== 'vacation') {
+			$this->log->debug('UpdateVacationHours: Not a vacation type, skipping');
 
-        $hrRecordId = $entity->get('hrRecordId');
-        if (!$hrRecordId) {
-            $this->log->debug('UpdateVacationHours: No hrRecordId, skipping');
-            return;
-        }
+			return;
+		}
 
-        // Set default hours if not set
-        if (!$entity->has('hours') || $entity->get('hours') === null) {
-            $entity->set('hours', 8);
-            $this->log->debug('UpdateVacationHours: Set default hours to 8');
-        }
+		$hrRecordId = $entity->get('hrRecordId');
+		if (!$hrRecordId) {
+			$this->log->debug('UpdateVacationHours: No hrRecordId, skipping');
 
-        $currentStatus = $entity->get('status');
-        $previousStatus = $entity->isNew() ? null : $entity->getFetched('status');
+			return;
+		}
+
+		// Set default hours if not set
+		if (!$entity->has('hours') || $entity->get('hours') === null) {
+			$entity->set('hours', 8);
+			$this->log->debug('UpdateVacationHours: Set default hours to 8');
+		}
+
+		$currentStatus = $entity->get('status');
+		$previousStatus = $entity->isNew() ? null : $entity->getFetched('status');
         
-        $this->log->debug('UpdateVacationHours: Status change from ' . ($previousStatus ?? 'new') . ' to ' . $currentStatus);
+		$this->log->debug('UpdateVacationHours: Status change from ' . ($previousStatus ?? 'new') . ' to ' . $currentStatus);
         
-        // Check if we need to update HR record
-        $needsUpdate = false;
+		// Check if we need to update HR record
+		$needsUpdate = false;
         
-        if ($entity->isNew() && $currentStatus === 'approved') {
-            // New approved absence
-            $needsUpdate = true;
-        } elseif (!$entity->isNew()) {
-            if ($currentStatus !== $previousStatus) {
-                // Status changed
-                if ($currentStatus === 'approved' || $previousStatus === 'approved') {
-                    $needsUpdate = true;
-                }
-            } elseif ($currentStatus === 'approved') {
-                // Check if hours changed for approved absences
-                $currentHours = (float)($entity->get('hours') ?? 8);
-                $previousHours = (float)($entity->getFetched('hours') ?? 8);
+		if ($entity->isNew() && $currentStatus === 'approved') {
+			// New approved absence
+			$needsUpdate = true;
+		} elseif (!$entity->isNew()) {
+			if ($currentStatus !== $previousStatus) {
+				// Status changed
+				if ($currentStatus === 'approved' || $previousStatus === 'approved') {
+					$needsUpdate = true;
+				}
+			} elseif ($currentStatus === 'approved') {
+				// Check if hours changed for approved absences
+				$currentHours = (float)($entity->get('hours') ?? 8);
+				$previousHours = (float)($entity->getFetched('hours') ?? 8);
                 
-                if ($currentHours !== $previousHours) {
-                    $this->log->debug('UpdateVacationHours: Hours changed from ' . $previousHours . ' to ' . $currentHours);
-                    $needsUpdate = true;
-                }
-            }
-        }
+				if ($currentHours !== $previousHours) {
+					$this->log->debug('UpdateVacationHours: Hours changed from ' . $previousHours . ' to ' . $currentHours);
+					$needsUpdate = true;
+				}
+			}
+		}
         
-        if ($needsUpdate) {
-            $this->log->debug('UpdateVacationHours: Updating HR record ' . $hrRecordId);
-            $this->updateHrVacationHours($hrRecordId);
-        }
-    }
+		if ($needsUpdate) {
+			$this->log->debug('UpdateVacationHours: Updating HR record ' . $hrRecordId);
+			$this->updateHrVacationHours($hrRecordId);
+		}
+	}
 
-    public function afterRemove(Entity $entity, RemoveOptions $options): void
-    {
-        $this->log->debug('UpdateVacationHours: afterRemove called for Absence ' . $entity->getId());
+	public function afterRemove(Entity $entity, RemoveOptions $options): void {
+		$this->log->debug('UpdateVacationHours: afterRemove called for Absence ' . $entity->getId());
         
-        // Only process approved vacation type absences
-        if ($entity->get('type') !== 'vacation' || $entity->get('status') !== 'approved') {
-            return;
-        }
+		// Only process approved vacation type absences
+		if ($entity->get('type') !== 'vacation' || $entity->get('status') !== 'approved') {
+			return;
+		}
 
-        $hrRecordId = $entity->get('hrRecordId');
-        if (!$hrRecordId) {
-            return;
-        }
+		$hrRecordId = $entity->get('hrRecordId');
+		if (!$hrRecordId) {
+			return;
+		}
 
-        $this->updateHrVacationHours($hrRecordId);
-    }
+		$this->updateHrVacationHours($hrRecordId);
+	}
 
-    private function updateHrVacationHours(string $hrRecordId): void
-    {
-        try {
-            $entityManager = $this->entityManager;
+	private function updateHrVacationHours(string $hrRecordId): void {
+		try {
+			$entityManager = $this->entityManager;
             
-            // Get HR record
-            $hrRecord = $entityManager->getEntityById('Hr', $hrRecordId);
-            if (!$hrRecord) {
-                $this->log->warning('UpdateVacationHours: HR record not found: ' . $hrRecordId);
-                return;
-            }
+			// Get HR record
+			$hrRecord = $entityManager->getEntityById('Hr', $hrRecordId);
+			if (!$hrRecord) {
+				$this->log->warning('UpdateVacationHours: HR record not found: ' . $hrRecordId);
 
-            // Calculate total used vacation hours from approved absences
-            $absenceRepository = $entityManager->getRDBRepository('Absence');
-            
-            $query = $absenceRepository
-                ->where([
-                    'hrRecordId' => $hrRecordId,
-                    'status' => 'approved',
-                    'type' => 'vacation',
-                    'deleted' => false
-                ])
-                ->select(['id', 'hours', 'startDate', 'endDate']);
-            
-            $absences = $query->find();
-            
-            $this->log->debug('UpdateVacationHours: Found ' . count($absences) . ' approved vacation absences');
-            
-            $usedHours = 0;
-            foreach ($absences as $absence) {
-                $hours = $absence->get('hours');
-                if ($hours === null || $hours === '') {
-                    $hours = 8; // Default to 8 hours if not set
-                }
-                $usedHours += (float)$hours;
-                $this->log->debug('UpdateVacationHours: Absence ' . $absence->getId() . ' has ' . $hours . ' hours');
-            }
+				return;
+			}
 
-            $this->log->debug('UpdateVacationHours: Total used hours: ' . $usedHours);
+			// Calculate total used vacation hours from approved absences
+			$absenceRepository = $entityManager->getRDBRepository('Absence');
             
-            // Update HR record
-            $oldUsedHours = $hrRecord->get('vacationHoursUsed');
-            $hrRecord->set('vacationHoursUsed', $usedHours);
+			$query = $absenceRepository
+			    ->where([
+			        'hrRecordId' => $hrRecordId,
+			        'status' => 'approved',
+			        'type' => 'vacation',
+			        'deleted' => false
+			    ])
+			    ->select(['id', 'hours', 'startDate', 'endDate']);
             
-            $total = $hrRecord->get('vacationHoursTotal') ?? 0;
-            $remaining = max(0, $total - $usedHours);
-            $hrRecord->set('vacationHoursRemaining', $remaining);
+			$absences = $query->find();
             
-            $this->log->debug('UpdateVacationHours: Updating HR record - used: ' . $usedHours . ', remaining: ' . $remaining);
+			$this->log->debug('UpdateVacationHours: Found ' . count($absences) . ' approved vacation absences');
             
-            // Save HR record
-            $entityManager->saveEntity($hrRecord, [
-                'skipHooks' => false,
-                'silent' => false
-            ]);
+			$usedHours = 0;
+			foreach ($absences as $absence) {
+				$hours = $absence->get('hours');
+				if ($hours === null || $hours === '') {
+					$hours = 8; // Default to 8 hours if not set
+				}
+				$usedHours += (float)$hours;
+				$this->log->debug('UpdateVacationHours: Absence ' . $absence->getId() . ' has ' . $hours . ' hours');
+			}
+
+			$this->log->debug('UpdateVacationHours: Total used hours: ' . $usedHours);
             
-            $this->log->debug('UpdateVacationHours: HR record updated successfully');
+			// Update HR record
+			$oldUsedHours = $hrRecord->get('vacationHoursUsed');
+			$hrRecord->set('vacationHoursUsed', $usedHours);
             
-        } catch (\Exception $e) {
-            $this->log->error('UpdateVacationHours: Error updating HR vacation hours: ' . $e->getMessage());
-        }
-    }
+			$total = $hrRecord->get('vacationHoursTotal') ?? 0;
+			$remaining = max(0, $total - $usedHours);
+			$hrRecord->set('vacationHoursRemaining', $remaining);
+            
+			$this->log->debug('UpdateVacationHours: Updating HR record - used: ' . $usedHours . ', remaining: ' . $remaining);
+            
+			// Save HR record
+			$entityManager->saveEntity($hrRecord, [
+			    'skipHooks' => false,
+			    'silent' => false
+			]);
+            
+			$this->log->debug('UpdateVacationHours: HR record updated successfully');
+		} catch (\Exception $e) {
+			$this->log->error('UpdateVacationHours: Error updating HR vacation hours: ' . $e->getMessage());
+		}
+	}
 }

@@ -6,7 +6,6 @@ use Espo\Core\Utils\Metadata\AdditionalBuilder;
 use stdClass;
 
 class EmailFilterAction implements AdditionalBuilder {
-
 	public function build(stdClass $data): void {
 		if (
 			(isset($data->entityDefs->EmailFilter)) &&
@@ -24,5 +23,4 @@ class EmailFilterAction implements AdditionalBuilder {
 				]);
 		}
 	}
-
 }

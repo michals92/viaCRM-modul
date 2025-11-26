@@ -5,7 +5,6 @@ namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Pos
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 
 class JsonObjectField implements FunctionConverter {
-
 	public function convert(string ...$argumentList): string {
 		if (count($argumentList) !== 2) {
 			throw new \RuntimeException('JSON_OBJECT_FIELD function requires exactly 2 arguments: json_column and field_name');
@@ -17,5 +16,4 @@ class JsonObjectField implements FunctionConverter {
 		// The field name comes as a quoted string, we use it directly
 		return "({$jsonColumn}::jsonb->>{$fieldName})";
 	}
-
 }

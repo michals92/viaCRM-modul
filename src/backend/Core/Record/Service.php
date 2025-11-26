@@ -9,7 +9,6 @@ use stdClass;
  * @extends BaseService<\Espo\ORM\Entity>
  */
 class Service extends BaseService {
-
 	public function getDuplicateAttributes(string $id): stdClass {
 		$attributes = parent::getDuplicateAttributes($id);
         
@@ -42,5 +41,4 @@ class Service extends BaseService {
         
 		return $attributes;
 	}
-
 }

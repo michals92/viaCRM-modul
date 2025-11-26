@@ -11,7 +11,6 @@ use Espo\Core\Exceptions\Error;
 use Espo\Modules\Viacrm\Tools\Finstat\Service as FinstatService;
 
 readonly class GetFillData implements Action {
-
 	public function __construct(
 		private FinstatService $finstatService,
 	) {}
@@ -34,5 +33,4 @@ readonly class GetFillData implements Action {
 		    'attributes' => $data,
 		]);
 	}
-
 }

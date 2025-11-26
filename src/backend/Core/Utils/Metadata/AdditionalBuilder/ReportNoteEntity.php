@@ -9,7 +9,6 @@ use stdClass;
  * Removes Note from Report's entityListToIgnore to allow Notes in reports.
  */
 class ReportNoteEntity implements AdditionalBuilder {
-
 	public function build(stdClass $data): void {
 		// Initialize entityDefs if not exists
 		$data->entityDefs = $data->entityDefs ?? (object)[];
@@ -41,5 +40,4 @@ class ReportNoteEntity implements AdditionalBuilder {
 			$data->entityDefs->Report->entityListAllowed = ['Note'];
 		}
 	}
-
 }

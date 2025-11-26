@@ -9,7 +9,6 @@ use Espo\Tools\App\AppParam;
 use stdClass;
 
 class Extensions implements AppParam {
-
 	public function __construct(
 		protected readonly User $user,
 		protected readonly EntityManager $entityManager
@@ -55,5 +54,4 @@ class Extensions implements AppParam {
 
 		return $list;
 	}
-
 }

@@ -10,5 +10,4 @@ use Espo\Core\Traits\Injectable;
 abstract class Base {
 	// @phpstan-ignore traitUse.deprecated
 	use Injectable;
-
 }

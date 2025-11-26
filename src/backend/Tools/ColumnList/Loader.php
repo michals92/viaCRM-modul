@@ -12,7 +12,6 @@ use Espo\ORM\Defs;
 use Espo\ORM\Entity;
 
 class Loader {
-
 	public function __construct(
 		private readonly RecordListService $recordListService,
 		private readonly Defs $defs
@@ -130,5 +129,4 @@ class Loader {
 			$records[] = $record;
 		}
 	}
-
 }

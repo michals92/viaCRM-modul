@@ -8,7 +8,6 @@ use Espo\Core\Utils\Log;
 use Espo\Entities\User;
 
 class Service {
-
 	private const API_URL = 'https://ec.europa.eu/taxation_customs/vies/rest-api/ms/%s/vat/%s';
 
 	public function __construct(
@@ -52,5 +51,4 @@ class Service {
 
 		return $result->isValid ?? false;
 	}
-
 }

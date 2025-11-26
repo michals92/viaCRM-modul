@@ -8,7 +8,6 @@ use Espo\Core\Utils\Config;
  * @since 9.0.0
  */
 class ApplicationConfig {
-
 	public function __construct(
 		private readonly Config $config,
 	) {}
@@ -32,5 +31,4 @@ class ApplicationConfig {
 	public function getLanguage(): string {
 		return $this->config->get('language') ?? 'en_US';
 	}
-
 }

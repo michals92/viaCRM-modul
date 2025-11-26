@@ -3,7 +3,7 @@
 namespace Espo\Modules\Viacrm\Entities;
 
 class SharedWysiwyg extends \Espo\Core\Templates\Entities\Base {
+	public const string TEMPLATE_TYPE = 'Base';
 
-	public const ENTITY_TYPE = 'SharedWysiwyg';
-
+	public const string ENTITY_TYPE = 'SharedWysiwyg';
 }

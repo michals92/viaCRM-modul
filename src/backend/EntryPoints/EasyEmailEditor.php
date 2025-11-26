@@ -7,38 +7,34 @@ use Espo\Core\Api\Response;
 use Espo\Core\EntryPoint\EntryPoint;
 use Espo\Core\EntryPoint\Traits\NoAuth;
 
-class EasyEmailEditor implements EntryPoint
-{
-    use NoAuth;
+class EasyEmailEditor implements EntryPoint {
+	use NoAuth;
 
-    public function run(Request $request, Response $response): void
-    {
-        $response->setHeader('Content-Type', 'text/html; charset=utf-8');
+	public function run(Request $request, Response $response): void {
+		$response->setHeader('Content-Type', 'text/html; charset=utf-8');
         
-        try {
-            $templateId = $request->getQueryParam('templateId') ?? 'new';
-            $timestamp = date('Y-m-d H:i:s');
+		try {
+			$templateId = $request->getQueryParam('templateId') ?? 'new';
+			$timestamp = date('Y-m-d H:i:s');
             
-            // Generate the mighty email editor
-            $html = $this->generateEditorHTML($templateId, $timestamp);
-            $response->writeBody($html);
-
-        } catch (\Exception $e) {
-            error_log('EasyEmailEditor error: ' . $e->getMessage());
-            $response->writeBody('<!DOCTYPE html>
+			// Generate the mighty email editor
+			$html = $this->generateEditorHTML($templateId, $timestamp);
+			$response->writeBody($html);
+		} catch (\Exception $e) {
+			error_log('EasyEmailEditor error: ' . $e->getMessage());
+			$response->writeBody('<!DOCTYPE html>
 <html><head><title>Error</title></head><body>
 <h1>Error</h1><p>Message: ' . htmlspecialchars($e->getMessage()) . '</p>
 </body></html>');
-        }
-    }
+		}
+	}
 
-    private function generateEditorHTML($templateId, $timestamp): string
-    {
-        $cssStyles = $this->getAdvancedStyles();
-        $htmlStructure = $this->getHTMLStructure($templateId);
-        $javascript = $this->getAdvancedJavaScript($templateId, $timestamp);
+	private function generateEditorHTML($templateId, $timestamp): string {
+		$cssStyles = $this->getAdvancedStyles();
+		$htmlStructure = $this->getHTMLStructure($templateId);
+		$javascript = $this->getAdvancedJavaScript($templateId, $timestamp);
 
-        return "<!DOCTYPE html>
+		return "<!DOCTYPE html>
 <html lang=\"en\">
 <head>
     <meta charset=\"UTF-8\">
@@ -53,11 +49,10 @@ class EasyEmailEditor implements EntryPoint
     <script>{$javascript}</script>
 </body>
 </html>";
-    }
+	}
 
-    private function getAdvancedStyles(): string
-    {
-        return '
+	private function getAdvancedStyles(): string {
+		return '
         :root {
             --primary: #667eea;
             --primary-dark: #5a6fd8;
@@ -746,11 +741,10 @@ class EasyEmailEditor implements EntryPoint
                 gap: 20px;
             }
         }';
-    }
+	}
 
-    private function getHTMLStructure($templateId): string
-    {
-        return '
+	private function getHTMLStructure($templateId): string {
+		return '
         <div class="legendary-header">
             <div class="header-left">
                 <div class="legendary-logo">
@@ -961,11 +955,10 @@ class EasyEmailEditor implements EntryPoint
             transform: translateY(-1px);
         }
         </style>';
-    }
+	}
 
-    private function getAdvancedJavaScript($templateId, $timestamp): string
-    {
-        return '
+	private function getAdvancedJavaScript($templateId, $timestamp): string {
+		return '
         // 🚀 LEGENDARY EMAIL EDITOR - ADVANCED JAVASCRIPT ENGINE
         let componentCounter = 0;
         let selectedComponent = null;
@@ -2025,5 +2018,5 @@ class EasyEmailEditor implements EntryPoint
                 }
             }
         }';
-    }
+	}
 }

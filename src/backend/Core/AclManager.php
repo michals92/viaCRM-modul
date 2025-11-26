@@ -9,7 +9,6 @@ use Espo\Modules\Viacrm\Core\Acl\AccessPrintChecker;
 use ReflectionClass;
 
 class AclManager extends \Espo\Core\AclManager {
-
 	public function __construct(
 		InjectableFactory $injectableFactory
 	) {
@@ -29,5 +28,4 @@ class AclManager extends \Espo\Core\AclManager {
 
 		parent::__construct(...$parentConstructorArgs);
 	}
-
 }

@@ -8,11 +8,11 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Metadata;
 use Espo\Entities\Email;
-use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Crm\Entities\Call;
 use Espo\Modules\Crm\Entities\Meeting;
 use Espo\Modules\Crm\Entities\Opportunity;
 use Espo\Modules\Crm\Tools\Activities\Service as ActivitiesService;
+use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Entity;
 use Espo\ORM\Query\Part\Expression;
 use Espo\ORM\Query\Part\Selection;
@@ -21,7 +21,6 @@ use Espo\ORM\Query\Part\Selection;
  * @implements FieldLoader<Opportunity>
  */
 class LastActivityLoader implements FieldLoader {
-
 	public function __construct(
 		protected readonly ActivitiesService $activitiesService,
 		protected readonly Config $config,
@@ -99,5 +98,4 @@ class LastActivityLoader implements FieldLoader {
 
 		$entity->set('lastActivity', $result);
 	}
-
 }
