@@ -3,15 +3,15 @@
  */
 
 .viacrm-enhanced .viacrm-layout-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
     padding: 15px 20px;
-    border-radius: 8px;
     margin-bottom: 20px;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
 }
 
 .viacrm-layout-header h4 {
-    margin: 0 0 5px 0;
+    margin: 0 0 5px;
     font-weight: 600;
 }
 
@@ -22,8 +22,8 @@
 
 /* Feature Status Indicators */
 .viacrm-features-status {
-    margin: 20px 0;
     padding: 15px;
+    margin: 20px 0;
     background: #f8f9fa;
     border-radius: 6px;
 }
@@ -32,8 +32,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
     padding: 10px;
+    text-align: center;
     border-radius: 4px;
     transition: background-color 0.3s;
 }
@@ -43,31 +43,31 @@
 }
 
 .feature-icon {
-    font-size: 24px;
     margin-bottom: 5px;
+    font-size: 24px;
 }
 
 .feature-name {
-    font-weight: 500;
     margin-bottom: 3px;
     font-size: 12px;
+    font-weight: 500;
 }
 
 .feature-status.active {
-    color: #28a745;
-    font-weight: bold;
     font-size: 10px;
+    font-weight: bold;
+    color: #28a745;
 }
 
 .feature-status.inactive {
-    color: #6c757d;
     font-size: 10px;
+    color: #6c757d;
 }
 
 /* Quick Actions */
 .viacrm-quick-actions {
-    margin-top: 30px;
     padding: 20px;
+    margin-top: 30px;
     background: white;
     border: 1px solid #dee2e6;
     border-radius: 6px;
@@ -84,14 +84,14 @@
 
 /* Enhanced Field Options */
 .viacrm-field-options {
-    border-left: 3px solid #007bff;
     padding-left: 10px;
     margin: 10px 0;
+    border-left: 3px solid #007bff;
 }
 
 .viacrm-field-option {
-    margin: 8px 0;
     padding: 8px;
+    margin: 8px 0;
     background: #f8f9fa;
     border-radius: 4px;
 }
@@ -102,31 +102,31 @@
 }
 
 .viacrm-field-option .help-text {
+    margin-top: 2px;
     font-size: 11px;
     color: #6c757d;
-    margin-top: 2px;
 }
 
 /* Layout Type Indicators */
 .viacrm-layout-type {
     display: inline-block;
     padding: 2px 6px;
-    background: #e7f3ff;
-    color: #0066cc;
-    border-radius: 10px;
+    margin-left: 8px;
     font-size: 10px;
     font-weight: 500;
-    margin-left: 8px;
+    color: #06c;
+    background: #e7f3ff;
+    border-radius: 10px;
 }
 
 .viacrm-layout-type.related {
-    background: #fff3cd;
     color: #856404;
+    background: #fff3cd;
 }
 
 .viacrm-layout-type.editable {
-    background: #d4edda;
     color: #155724;
+    background: #d4edda;
 }
 
 ul.cells li.cell a.edit-field {

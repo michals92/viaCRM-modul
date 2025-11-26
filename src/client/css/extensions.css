@@ -22,12 +22,12 @@
 }
 
 .viacrm-list-header::after {
-    content: "";
     position: absolute;
     top: 2px;
     right: 2px;
     width: 4px;
     height: 4px;
+    content: "";
     background-color: #3498db;
     border-radius: 50%;
     opacity: 0.7;
@@ -43,8 +43,8 @@
 
 /* Related Fields (準備) */
 .viacrm-related-field {
-    color: #6c757d;
     font-style: italic;
+    color: #6c757d;
 }
 
 .viacrm-related-field-label::before {
@@ -54,16 +54,16 @@
 
 /* Extension Status Indicator */
 .viacrm-extension-active::after {
-    content: "VIA";
     position: fixed;
-    bottom: 10px;
     right: 10px;
-    background: #28a745;
-    color: white;
+    bottom: 10px;
+    z-index: 1000;
     padding: 2px 6px;
-    border-radius: 3px;
     font-size: 10px;
     font-weight: bold;
-    z-index: 1000;
+    color: white;
+    content: "VIA";
+    background: #28a745;
+    border-radius: 3px;
     opacity: 0.8;
 }

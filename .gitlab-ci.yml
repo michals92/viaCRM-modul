@@ -1,6 +1,6 @@
 # Pipeline using production templates with matrix functionality
 include:
-  - project: 'autocrm/espo-pipelines'
+  - project: 'viacrm/espo-pipelines'
     file:
       - 'templates/database-matrix.yml'
       - 'templates/espocrm-extension.yml'

@@ -3,33 +3,33 @@
  */
 
 .viacrm-related-panel {
+    margin-bottom: 20px;
     border: 1px solid #e3e6f0;
     border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgb(0,0,0,0.05);
     transition: box-shadow 0.3s ease;
 }
 
 .viacrm-related-panel:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgb(0,0,0,0.1);
 }
 
 /* Panel Header Enhancements */
 .viacrm-related-panel .panel-heading {
+    padding: 15px 20px;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-bottom: 1px solid #dee2e6;
-    padding: 15px 20px;
 }
 
 .viacrm-panel-icon {
-    font-size: 18px;
     margin-right: 8px;
+    font-size: 18px;
 }
 
 .viacrm-related-panel .panel-title {
+    margin: 0;
     font-weight: 600;
     color: #495057;
-    margin: 0;
 }
 
 .viacrm-related-panel .panel-actions .btn {
@@ -38,30 +38,30 @@
 
 /* Panel Stats */
 .viacrm-panel-stats {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #dee2e6;
-    background: rgba(255,255,255,0.7);
-    border-radius: 4px;
     padding: 8px 12px;
+    padding-top: 10px;
+    margin-top: 10px;
+    background: rgb(255,255,255,0.7);
+    border-top: 1px solid #dee2e6;
+    border-radius: 4px;
 }
 
 .viacrm-panel-stats .stat-label {
     font-size: 11px;
-    color: #6c757d;
     font-weight: 500;
+    color: #6c757d;
 }
 
 .viacrm-panel-stats .stat-value {
+    margin-left: 4px;
     font-weight: bold;
     color: #495057;
-    margin-left: 4px;
 }
 
 /* Panel Body */
 .viacrm-panel-body {
-    padding: 20px;
     min-height: 100px;
+    padding: 20px;
 }
 
 /* Empty State */
@@ -71,15 +71,15 @@
 }
 
 .viacrm-empty-icon {
+    margin-bottom: 15px;
     font-size: 48px;
     color: #dee2e6;
-    margin-bottom: 15px;
 }
 
 .viacrm-panel-empty p {
+    margin: 0;
     font-size: 16px;
     color: #6c757d;
-    margin: 0;
 }
 
 .viacrm-panel-empty small {
@@ -88,8 +88,8 @@
 
 /* Enhanced Row Interactions */
 .viacrm-related-panel .list-row {
-    transition: background-color 0.2s ease, transform 0.1s ease;
     cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .viacrm-related-panel .list-row:hover,
@@ -105,20 +105,20 @@
 /* Show More Button */
 .viacrm-show-more {
     padding: 15px 0;
-    border-top: 1px solid #f1f3f4;
     margin-top: 15px;
+    border-top: 1px solid #f1f3f4;
 }
 
 .viacrm-show-more .btn {
-    border-radius: 20px;
     padding: 6px 20px;
+    border-radius: 20px;
 }
 
 /* Panel Footer */
 .viacrm-panel-footer {
+    padding: 12px 20px;
     background: #f8f9fa;
     border-top: 1px solid #dee2e6;
-    padding: 12px 20px;
     border-radius: 0 0 8px 8px;
 }
 
@@ -128,8 +128,8 @@
 }
 
 .viacrm-panel-footer .footer-info {
-    font-size: 12px;
     margin-top: 8px;
+    font-size: 12px;
 }
 
 /* Custom Panel Types */
@@ -154,7 +154,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .viacrm-related-panel .panel-heading {
         padding: 10px 15px;
     }
