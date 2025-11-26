@@ -10,28 +10,31 @@ use PDO;
 /**
  * AppParam to provide a mapping of team IDs to their styles (color and iconClass).
  */
-class TeamStyles implements AppParam {
+class TeamStyles implements AppParam
+{
 	public function __construct(
 		private readonly EntityManager $entityManager
-	) {}
+	) {
+	}
 
 	/**
 	 * Retrieves a map of team IDs to their respective color and iconClass.
 	 *
-	 * @return array<string, array<string, string>> The team styles map.
+	 * @return array<string, array<string, string>> the team styles map
 	 */
-	public function get(): array {
+	public function get(): array
+	{
 		$query = $this->entityManager->getQueryBuilder()
-		    ->select(Expression::column('id'))
-		    ->select(Expression::column('color'))
-		    ->select(Expression::column('iconClass'))
-		    ->from('Team')
-		    ->build();
+			->select(Expression::column('id'))
+			->select(Expression::column('color'))
+			->select(Expression::column('iconClass'))
+			->from('Team')
+			->build();
 
 		return $this
-		    ->entityManager
-		    ->getQueryExecutor()
-		    ->execute($query)
-		    ->fetchAll(PDO::FETCH_UNIQUE | PDO::FETCH_OBJ);
+			->entityManager
+			->getQueryExecutor()
+			->execute($query)
+			->fetchAll(PDO::FETCH_UNIQUE | PDO::FETCH_OBJ);
 	}
 }

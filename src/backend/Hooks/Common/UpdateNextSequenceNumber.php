@@ -15,7 +15,8 @@ use Espo\ORM\Repository\Option\SaveOptions;
 /**
  * @implements BeforeSave<Entity>
  */
-class UpdateNextSequenceNumber implements BeforeSave {
+class UpdateNextSequenceNumber implements BeforeSave
+{
 	public static int $order = 9;
 
 	/**
@@ -25,9 +26,11 @@ class UpdateNextSequenceNumber implements BeforeSave {
 
 	public function __construct(
 		private readonly EntityManager $entityManager
-	) {}
+	) {
+	}
 
-	public function beforeSave(Entity $entity, SaveOptions $options): void {
+	public function beforeSave(Entity $entity, SaveOptions $options): void
+	{
 		$fieldList = $this->getFieldList($entity->getEntityType());
 		$optionsArray = $options->toAssoc();
 
@@ -39,7 +42,8 @@ class UpdateNextSequenceNumber implements BeforeSave {
 	/**
 	 * @param array<string,mixed> $options
 	 */
-	private function processItem(Entity $entity, FieldDefs $defs, array $options): void {
+	private function processItem(Entity $entity, FieldDefs $defs, array $options): void
+	{
 		$em = $this->entityManager;
 		$field = $defs->getName();
 		$allowCustomValue = $defs->getParam('allowCustomValue') ?? false;
@@ -77,22 +81,22 @@ class UpdateNextSequenceNumber implements BeforeSave {
 
 		/** @var NextSequenceNumber|null $nextNumber */
 		$nextNumber = $em
-		    ->getRDBRepository(NextSequenceNumber::ENTITY_TYPE)
-		    ->where([
-		        'fieldName' => $field,
-		        'entityType' => $entity->getEntityType(),
-		    ])
-		    ->forUpdate()
-		    ->findOne();
+			->getRDBRepository(NextSequenceNumber::ENTITY_TYPE)
+			->where([
+				'fieldName' => $field,
+				'entityType' => $entity->getEntityType(),
+			])
+			->forUpdate()
+			->findOne();
 
 		if ($nextNumber === null) {
 			/** @var NextSequenceNumber $nextNumber */
 			$nextNumber = $em->getNewEntity(NextSequenceNumber::ENTITY_TYPE);
 
 			$nextNumber->set([
-			    'entityType' => $entity->getEntityType(),
-			    'fieldName' => $field,
-			    'date' => DateTime::getSystemTodayString(),
+				'entityType' => $entity->getEntityType(),
+				'fieldName' => $field,
+				'date' => DateTime::getSystemTodayString(),
 			]);
 		}
 
@@ -116,11 +120,11 @@ class UpdateNextSequenceNumber implements BeforeSave {
 		}
 
 		$replaces = [
-		    'YYYY' => date('Y'),
-		    'YY' => date('y'),
-		    'MM' => date('m'),
-		    'DD' => date('d'),
-		    'number' => str_pad((string)$numberValue, $padLength, '0', STR_PAD_LEFT),
+			'YYYY' => date('Y'),
+			'YY' => date('y'),
+			'MM' => date('m'),
+			'DD' => date('d'),
+			'number' => str_pad((string) $numberValue, $padLength, '0', STR_PAD_LEFT),
 		];
 
 		$composedNumber = $format;
@@ -142,14 +146,15 @@ class UpdateNextSequenceNumber implements BeforeSave {
 	/**
 	 * @return FieldDefs[]
 	 */
-	private function getFieldList(string $entityType): array {
+	private function getFieldList(string $entityType): array
+	{
 		if (array_key_exists($entityType, $this->fieldListMapCache)) {
 			return $this->fieldListMapCache[$entityType];
 		}
 
 		$entityDefs = $this->entityManager
-		    ->getDefs()
-		    ->getEntity($entityType);
+			->getDefs()
+			->getEntity($entityType);
 
 		$list = [];
 

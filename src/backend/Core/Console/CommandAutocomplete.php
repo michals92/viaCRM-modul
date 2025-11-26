@@ -7,7 +7,8 @@ namespace Espo\Modules\Viacrm\Core\Console;
  *
  * Implementing this interface allows a command to integrate with shell autocompletion
  */
-interface CommandAutocomplete {
+interface CommandAutocomplete
+{
 	/**
 	 * Generates autocompletion suggestions based on the current command input.
 	 *
@@ -15,12 +16,13 @@ interface CommandAutocomplete {
 	 * word fragment the user is currently trying to complete. It should return
 	 * an array of suggestion strings.
 	 *
-	 * @param  string[] $inputWords  An ordered list of words/tokens from the current command line input.
-	 *                               Example: ['your-command', '--option1', 'value-so-far']
-	 * @param  string   $currentWord The specific word/token fragment that the user is currently trying to complete.
-	 *                               This is usually the last element of $inputWords if completing at the end,
-	 *                               or a word from the middle if the cursor is elsewhere.
-	 *                               Example: 'value-so-far'
+	 * @param string[] $inputWords  An ordered list of words/tokens from the current command line input.
+	 *                              Example: ['your-command', '--option1', 'value-so-far']
+	 * @param string   $currentWord The specific word/token fragment that the user is currently trying to complete.
+	 *                              This is usually the last element of $inputWords if completing at the end,
+	 *                              or a word from the middle if the cursor is elsewhere.
+	 *                              Example: 'value-so-far'
+	 *
 	 * @return string[] An array of suggestion strings. These strings will be presented to the user
 	 *                  as possible completions.
 	 *                  Example: ['value-so-far-optionA', 'value-so-far-optionB']

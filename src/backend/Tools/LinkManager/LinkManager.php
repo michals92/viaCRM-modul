@@ -9,9 +9,10 @@ use Espo\Core\Utils\Metadata;
 use Espo\Tools\LinkManager\LinkManager as CoreLinkManager;
 
 /**
- * Extended LinkManager to support foreignName parameter
+ * Extended LinkManager to support foreignName parameter.
  */
-class LinkManager extends CoreLinkManager {
+class LinkManager extends CoreLinkManager
+{
 	public function __construct(
 		private Metadata $metadata,
 		private DataManager $dataManager,
@@ -21,11 +22,12 @@ class LinkManager extends CoreLinkManager {
 	}
 
 	/**
-	 * Update link parameters including foreignName
+	 * Update link parameters including foreignName.
 	 *
 	 * @param array{readOnly?: bool, foreignName?: string} $params
 	 */
-	public function updateParams(string $entityType, string $link, array $params): void {
+	public function updateParams(string $entityType, string $link, array $params): void
+	{
 		$type = $this->metadata->get("entityDefs.$entityType.links.$link.type");
 
 		$defs = [];
@@ -57,9 +59,10 @@ class LinkManager extends CoreLinkManager {
 	}
 
 	/**
-	 * Reset link parameters to default including foreignName
+	 * Reset link parameters to default including foreignName.
 	 */
-	public function resetToDefault(string $entityType, string $link): void {
+	public function resetToDefault(string $entityType, string $link): void
+	{
 		$this->metadata->delete('entityDefs', $entityType, [
 			"links.$link.readOnly",      // CORE
 			"links.$link.foreignName",   // EXTENDED

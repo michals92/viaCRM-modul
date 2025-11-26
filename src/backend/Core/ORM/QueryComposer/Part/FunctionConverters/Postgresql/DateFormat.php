@@ -4,8 +4,10 @@ namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Pos
 
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 
-class DateFormat implements FunctionConverter {
-	public function convert(string ...$argumentList): string {
+class DateFormat implements FunctionConverter
+{
+	public function convert(string ...$argumentList): string
+	{
 		if (count($argumentList) !== 2) {
 			throw new \InvalidArgumentException('DateFormat function requires exactly two arguments: date, format.');
 		}

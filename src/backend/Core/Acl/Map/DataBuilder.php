@@ -6,8 +6,9 @@ use Espo\Core\InjectableFactory;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use ReflectionClass;
 
-class DataBuilder extends \Espo\Core\Acl\Map\DataBuilder {
-	const ACTION_PRINT = 'print';
+class DataBuilder extends \Espo\Core\Acl\Map\DataBuilder
+{
+	public const ACTION_PRINT = 'print';
 
 	public function __construct(
 		InjectableFactory $injectableFactory

@@ -6,7 +6,8 @@ use Espo\Core\Api\Request;
 use Espo\Core\Record\ReadParams;
 use Espo\Core\Record\ReadParamsFetcher;
 
-class EntityAwareReadParamsFetcher extends ReadParamsFetcher {
+class EntityAwareReadParamsFetcher extends ReadParamsFetcher
+{
 	/**
 	 * @use ParamsFetcherTrait<ReadParamsFetcher, ReadParams>
 	 */
@@ -17,7 +18,8 @@ class EntityAwareReadParamsFetcher extends ReadParamsFetcher {
 	/**
 	 * @throws \Exception
 	 */
-	public function fetch(Request $request): ReadParams {
+	public function fetch(Request $request): ReadParams
+	{
 		/**
 		 * @var ReadParams
 		 */

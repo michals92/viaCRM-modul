@@ -8,7 +8,8 @@ use Espo\Core\ORM\Entity as CoreEntity;
 use Espo\Core\ORM\EntityManager;
 use Espo\ORM\Entity;
 
-class LinkMultipleSaver extends BaseLinkMultipleSaver {
+class LinkMultipleSaver extends BaseLinkMultipleSaver
+{
 	public function __construct(
 		private readonly EntityManager $entityManager,
 	) {
@@ -18,7 +19,8 @@ class LinkMultipleSaver extends BaseLinkMultipleSaver {
 	/**
 	 * @param CoreEntity $entity
 	 */
-	public function process(Entity $entity, string $name, SaverParams $params): void {
+	public function process(Entity $entity, string $name, SaverParams $params): void
+	{
 		$defs = $this->entityManager->getDefs()->getEntity($entity->getEntityType());
 
 		$recordListEnabled = $defs->tryGetField($name)?->getParam('recordListEnabled') ?? false;

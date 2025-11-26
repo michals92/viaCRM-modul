@@ -13,7 +13,8 @@ use Espo\ORM\EntityCollection;
 use Espo\ORM\EntityManager;
 use ReflectionClass;
 
-class Service extends \Espo\Tools\GlobalSearch\Service {
+class Service extends \Espo\Tools\GlobalSearch\Service
+{
 	public function __construct(
 		InjectableFactory $injectableFactory,
 		protected readonly EntityManager $entityManager,
@@ -31,12 +32,14 @@ class Service extends \Espo\Tools\GlobalSearch\Service {
 	}
 
 	/**
-	 * @param  string             $filter  A search query.
-	 * @param  int|null           $offset  An offset.
-	 * @param  ?int               $maxSize A limit.
+	 * @param string   $filter  a search query
+	 * @param int|null $offset  an offset
+	 * @param ?int     $maxSize a limit
+	 *
 	 * @return Collection<Entity>
 	 */
-	public function find(string $filter, ?int $offset = 0, ?int $maxSize = null): Collection {
+	public function find(string $filter, ?int $offset = 0, ?int $maxSize = null): Collection
+	{
 		$entityTypeList = $this->config->get('globalSearchEntityList', []);
 		$maxSize ??= (int) $this->config->get('recordsPerPage');
 		$offset ??= 0;
@@ -55,7 +58,7 @@ class Service extends \Espo\Tools\GlobalSearch\Service {
 				$filter,
 				$offset,
 				$maxSize,
-				&$hasFullTextSearch
+				&$hasFullTextSearch,
 			]);
 
 			if (!$query) {
@@ -70,9 +73,9 @@ class Service extends \Espo\Tools\GlobalSearch\Service {
 		}
 
 		$builder = $this->entityManager->getQueryBuilder()
-		    ->union()
-		    ->all()
-		    ->limit($offset, $maxSize + 1);
+			->union()
+			->all()
+			->limit($offset, $maxSize + 1);
 
 		foreach ($queryList as $query) {
 			$builder->query($query);
@@ -104,10 +107,10 @@ class Service extends \Espo\Tools\GlobalSearch\Service {
 			}
 
 			$entity = $this->entityManager
-			    ->getRDBRepository($row['entityType'])
-			    ->select(['id', 'name', ...$additionalAttributes])
-			    ->where(['id' => $row['id']])
-			    ->findOne();
+				->getRDBRepository($row['entityType'])
+				->select(['id', 'name', ...$additionalAttributes])
+				->where(['id' => $row['id']])
+				->findOne();
 
 			if (!$entity) {
 				continue;

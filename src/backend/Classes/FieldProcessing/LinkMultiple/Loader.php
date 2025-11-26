@@ -14,7 +14,8 @@ use Espo\ORM\Entity;
 /**
  * @implements FieldLoader<Entity>
  */
-class Loader implements FieldLoader {
+class Loader implements FieldLoader
+{
 	/**
 	 * @var array<string,array{recordList: string[], columnList: string[]}>
 	 */
@@ -24,13 +25,15 @@ class Loader implements FieldLoader {
 		private readonly OrmDefs $ormDefs,
 		private readonly RecordListLoader $recordListLoader,
 		private readonly ColumnListLoader $columnListLoader
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws Forbidden
 	 * @throws NotFound
 	 */
-	public function process(Entity $entity, LoaderParams $params): void {
+	public function process(Entity $entity, LoaderParams $params): void
+	{
 		$entityType = $entity->getEntityType();
 		$fieldLists = $this->getFieldLists($entityType);
 
@@ -39,7 +42,7 @@ class Loader implements FieldLoader {
 				try {
 					$this->recordListLoader->load($entity, $field);
 				} catch (\Exception $ex) {
-					$GLOBALS['log']->error($ex->getMessage().' '.$ex->getTraceAsString());
+					$GLOBALS['log']->error($ex->getMessage() . ' ' . $ex->getTraceAsString());
 				}
 			}
 		}
@@ -49,7 +52,7 @@ class Loader implements FieldLoader {
 				try {
 					$this->columnListLoader->load($entity, $field);
 				} catch (\Exception $ex) {
-					$GLOBALS['log']->error($ex->getMessage().' '.$ex->getTraceAsString());
+					$GLOBALS['log']->error($ex->getMessage() . ' ' . $ex->getTraceAsString());
 				}
 			}
 		}
@@ -58,14 +61,15 @@ class Loader implements FieldLoader {
 	/**
 	 * @return array{recordList: string[], columnList: string[]}
 	 */
-	private function getFieldLists(string $entityType): array {
+	private function getFieldLists(string $entityType): array
+	{
 		if (array_key_exists($entityType, $this->fieldListCacheMap)) {
 			return $this->fieldListCacheMap[$entityType];
 		}
 
 		$lists = [
-		    'recordList' => [],
-		    'columnList' => []
+			'recordList' => [],
+			'columnList' => [],
 		];
 
 		$entityDefs = $this->ormDefs->getEntity($entityType);

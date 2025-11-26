@@ -12,7 +12,8 @@ use Espo\Core\Utils\Metadata;
 use Espo\Entities\User;
 use Espo\Tools\Kanban\Result;
 
-class Service {
+class Service
+{
 	public function __construct(
 		private readonly AclManager $aclManager,
 		private readonly Metadata $metadata,
@@ -20,30 +21,33 @@ class Service {
 		private readonly User $user,
 		private readonly UserOrderer $userOrderer,
 		private readonly Config $config
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws Error
 	 * @throws ForbiddenSilent
 	 */
-	public function getData(string $entityType, SearchParams $searchParams): Result {
+	public function getData(string $entityType, SearchParams $searchParams): Result
+	{
 		$this->processAccessCheck($entityType);
 
 		$disableCount = $this->metadata
-		    ->get(['entityDefs', $entityType, 'collection', 'countDisabled']) ?? false;
+			->get(['entityDefs', $entityType, 'collection', 'countDisabled']) ?? false;
 
 		return $this->userKanban
-		    ->setEntityType($entityType)
-		    ->setSearchParams($searchParams)
-		    ->setCountDisabled($disableCount)
-		    ->setUserId($this->user->getId())
-		    ->getResult();
+			->setEntityType($entityType)
+			->setSearchParams($searchParams)
+			->setCountDisabled($disableCount)
+			->setUserId($this->user->getId())
+			->getResult();
 	}
 
 	/**
 	 * @throws ForbiddenSilent
 	 */
-	protected function processAccessCheck(string $entityType): void {
+	protected function processAccessCheck(string $entityType): void
+	{
 		if (!$this->aclManager->check($this->user, $entityType, Table::ACTION_READ)) {
 			throw new ForbiddenSilent();
 		}
@@ -54,7 +58,8 @@ class Service {
 	 *
 	 * @throws ForbiddenSilent
 	 */
-	public function order(string $entityType, string $group, array $ids): void {
+	public function order(string $entityType, string $group, array $ids): void
+	{
 		$this->processAccessCheck($entityType);
 
 		if ($this->user->isPortal()) {

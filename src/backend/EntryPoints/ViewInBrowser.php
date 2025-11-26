@@ -19,7 +19,8 @@ use Espo\Tools\EmailTemplate\Processor as EmailTemplateProcessor;
 use JsonException;
 use RuntimeException;
 
-class ViewInBrowser implements EntryPoint {
+class ViewInBrowser implements EntryPoint
+{
 	use NoAuth;
 
 	public function __construct(
@@ -27,13 +28,15 @@ class ViewInBrowser implements EntryPoint {
 		private readonly EntityManager $entityManager,
 		private readonly ActionRenderer $actionRenderer,
 		private readonly EmailTemplateProcessor $emailTemplateProcessor,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 * @throws NotFound
 	 */
-	public function run(Request $request, Response $response): void {
+	public function run(Request $request, Response $response): void
+	{
 		$encryptedData = $request->getQueryParam('data');
 
 		if (!$encryptedData) {
@@ -47,9 +50,9 @@ class ViewInBrowser implements EntryPoint {
 		}
 
 		$data = ViewInBrowserData::create()
-		    ->withEmailTemplateId($decryptedData->emailTemplateId ?? null)
-		    ->withParentId($decryptedData->parentId ?? null)
-		    ->withParentType($decryptedData->parentType ?? null);
+			->withEmailTemplateId($decryptedData->emailTemplateId ?? null)
+			->withParentId($decryptedData->parentId ?? null)
+			->withParentType($decryptedData->parentType ?? null);
 
 		$bodyContent = null;
 
@@ -62,7 +65,7 @@ class ViewInBrowser implements EntryPoint {
 		}
 
 		$params = new ActionRenderer\Params('viacrm:controllers/view-in-browser', 'viewEmail', [
-		    'emailBody' => $bodyContent,
+			'emailBody' => $bodyContent,
 		]);
 
 		$this->actionRenderer->write($response, $params);
@@ -71,7 +74,8 @@ class ViewInBrowser implements EntryPoint {
 	/**
 	 * @throws NotFound
 	 */
-	private function handleEmailTemplate(string $templateId, string $parentId, string $parentType): string {
+	private function handleEmailTemplate(string $templateId, string $parentId, string $parentType): string
+	{
 		$em = $this->entityManager;
 		$templateEntity = $em->getEntityById('EmailTemplate', $templateId);
 		$parentEntity = $em->getEntityById($parentType, $parentId);

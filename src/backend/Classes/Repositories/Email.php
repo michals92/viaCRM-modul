@@ -8,7 +8,8 @@ use Espo\Modules\Viacrm\Classes\Abstract\Entities\EmailAction;
 use Espo\Modules\Viacrm\Entities\EmailFilter;
 use ReflectionException;
 
-class Email extends \Espo\Repositories\Email implements Di\MetadataAware, Di\InjectableFactoryAware {
+class Email extends \Espo\Repositories\Email implements Di\MetadataAware, Di\InjectableFactoryAware
+{
 	use Di\EmailFilterManagerSetter;
 	use Di\MetadataSetter;
 	use Di\InjectableFactorySetter;
@@ -17,10 +18,12 @@ class Email extends \Espo\Repositories\Email implements Di\MetadataAware, Di\Inj
 	private array|null $actionClassNameMap = null;
 
 	/**
-	 * @param  \Espo\Modules\Viacrm\Entities\Email $entity
+	 * @param \Espo\Modules\Viacrm\Entities\Email $entity
+	 *
 	 * @throws ReflectionException
 	 */
-	public function applyUsersFilters(EmailEntity $entity): void {
+	public function applyUsersFilters(EmailEntity $entity): void
+	{
 		foreach ($entity->getUsers()->getIdList() as $userId) {
 			if (
 				$entity->getStatus() === EmailEntity::STATUS_SENT &&
@@ -57,10 +60,12 @@ class Email extends \Espo\Repositories\Email implements Di\MetadataAware, Di\Inj
 	}
 
 	/**
-	 * @param  \Espo\Modules\Viacrm\Entities\Email $email
+	 * @param \Espo\Modules\Viacrm\Entities\Email $email
+	 *
 	 * @throws ReflectionException
 	 */
-	private function handleAdditionalActions(EmailEntity $email, EmailFilter $filter, ?string $userId = null): void {
+	private function handleAdditionalActions(EmailEntity $email, EmailFilter $filter, ?string $userId = null): void
+	{
 		$actionClassNameMap = $this->getActionClassNameMap();
 		$actionName = $filter->getAction();
 
@@ -69,7 +74,7 @@ class Email extends \Espo\Repositories\Email implements Di\MetadataAware, Di\Inj
 			/** @var EmailAction $obj */
 			$obj = $this->injectableFactory->create($className);
 			$obj->process($email, $filter, $userId);
-		} else if ($actionName === 'None') {
+		} elseif ($actionName === 'None') {
 			return;
 		} else {
 			$GLOBALS['log']->error("handleAdditionalActions unknown emailFilter action:$actionName in emailFilter:" . $filter->getId());
@@ -79,7 +84,8 @@ class Email extends \Espo\Repositories\Email implements Di\MetadataAware, Di\Inj
 	/**
 	 * @return array<string, class-string<EmailAction>>
 	 */
-	public function getActionClassNameMap(): array {
+	public function getActionClassNameMap(): array
+	{
 		return $this->actionClassNameMap ??= $this->metadata->get(['app', 'email', 'actionClassNameMap'], []);
 	}
 }

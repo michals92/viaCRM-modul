@@ -13,15 +13,18 @@ use Espo\ORM\Query\Part\WhereClause;
 use Espo\ORM\Query\Part\WhereItem as WhereClauseItem;
 use Espo\ORM\Query\SelectBuilder;
 
-class Tomorrow implements ItemConverter {
+class Tomorrow implements ItemConverter
+{
 	public function __construct(
 		private readonly Config $config
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 */
-	public function convert(SelectBuilder $queryBuilder, WhereItem $item): WhereClauseItem {
+	public function convert(SelectBuilder $queryBuilder, WhereItem $item): WhereClauseItem
+	{
 		$attribute = $item->getAttribute();
 
 		if (!$attribute) {
@@ -30,18 +33,19 @@ class Tomorrow implements ItemConverter {
 
 		$timeZone = $this->getTimeZone($item->getData());
 		$tomorrow = DateTime::createNow()
-		    ->withTimezone($timeZone)
-		    ->addDays(1);
+			->withTimezone($timeZone)
+			->addDays(1);
 
 		return WhereClause::fromRaw([
-		    $attribute . '=' => $tomorrow->toDateTime()->format(DateTimeUtil::SYSTEM_DATE_FORMAT),
+			$attribute . '=' => $tomorrow->toDateTime()->format(DateTimeUtil::SYSTEM_DATE_FORMAT),
 		]);
 	}
 
 	/**
 	 * @throws BadRequest
 	 */
-	private function getTimeZone(?Data $data): \DateTimeZone {
+	private function getTimeZone(?Data $data): \DateTimeZone
+	{
 		$timeZone = $data instanceof Data\Date ? $data->getTimeZone() : null;
 
 		if (!$timeZone) {

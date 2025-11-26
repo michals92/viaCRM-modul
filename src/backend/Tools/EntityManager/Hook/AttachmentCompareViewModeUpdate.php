@@ -10,14 +10,17 @@ use Espo\Tools\LayoutManager\LayoutManager;
 /**
  * Creates attachmentCompare layout when the feature is enabled.
  */
-class AttachmentCompareViewModeUpdate implements UpdateHook {
+class AttachmentCompareViewModeUpdate implements UpdateHook
+{
 	private const LAYOUT_NAME = 'attachmentCompare';
 
 	public function __construct(
 		private readonly LayoutManager $layoutManager
-	) {}
+	) {
+	}
 
-	public function process(EntityManagerParams $params, EntityManagerParams $previousParams): void {
+	public function process(EntityManagerParams $params, EntityManagerParams $previousParams): void
+	{
 		$entityType = $params->getName();
 
 		$attachmentCompareViewMode = $params->get('attachmentCompareViewMode');
@@ -60,15 +63,16 @@ class AttachmentCompareViewModeUpdate implements UpdateHook {
 		$this->layoutManager->save();
 	}
 
-	private function createDefaultLayout(string $entityType): void {
+	private function createDefaultLayout(string $entityType): void
+	{
 		$defaultLayout = [
 			[
 				'rows' => [
 					[
-						['name' => 'name']
-					]
-				]
-			]
+						['name' => 'name'],
+					],
+				],
+			],
 		];
 
 		$this->layoutManager->set($defaultLayout, $entityType, self::LAYOUT_NAME);

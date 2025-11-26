@@ -18,27 +18,32 @@ use Espo\Tools\Pdf\Service as PdfService;
 use Exception;
 use stdClass;
 
-class DefaultAttributeProvider implements AttributeProvider {
+class DefaultAttributeProvider implements AttributeProvider
+{
 	public function __construct(
 		private readonly ServiceContainer $serviceContainer,
 		private readonly EntityManager $entityManager,
 		private readonly FileStorageManager $fileStorageManager,
 		private readonly PdfService $pdfService
-	) {}
+	) {
+	}
 
 	/**
 	 * Gets attributes for email PDF generation.
 	 *
-	 * @param  string          $entityType
-	 * @param  string          $id
-	 * @param  string          $templateId
+	 * @param string $entityType
+	 * @param string $id
+	 * @param string $templateId
+	 *
 	 * @throws Forbidden
 	 * @throws NotFound
 	 * @throws ForbiddenSilent
 	 * @throws Error
+	 *
 	 * @return stdClass
 	 */
-	public function getAttributes(string $entityType, string $id, string $templateId): stdClass {
+	public function getAttributes(string $entityType, string $id, string $templateId): stdClass
+	{
 		try {
 			$service = $this->serviceContainer->get($entityType);
 
@@ -57,16 +62,19 @@ class DefaultAttributeProvider implements AttributeProvider {
 	/**
 	 * Default implementation of getAttributesForEmail.
 	 *
-	 * @param  string          $entityType
-	 * @param  string          $id
-	 * @param  string          $templateId
+	 * @param string $entityType
+	 * @param string $id
+	 * @param string $templateId
+	 *
 	 * @throws Forbidden
 	 * @throws NotFound
 	 * @throws ForbiddenSilent
 	 * @throws Error
+	 *
 	 * @return stdClass
 	 */
-	private function getDefaultAttributesForEmail(string $entityType, string $id, string $templateId): stdClass {
+	private function getDefaultAttributesForEmail(string $entityType, string $id, string $templateId): stdClass
+	{
 		$attributes = [];
 
 		// Fetch the entity and template
@@ -82,8 +90,8 @@ class DefaultAttributeProvider implements AttributeProvider {
 		// Catch when the relation doesn't exist
 		try {
 			$account = $this->entityManager
-			    ->getRelation($entity, 'account')
-			    ->findOne();
+				->getRelation($entity, 'account')
+				->findOne();
 
 			$attributes['to'] = $account?->get('emailAddress');
 		} catch (Exception) {
@@ -106,11 +114,11 @@ class DefaultAttributeProvider implements AttributeProvider {
 		/** @var Attachment $attachment */
 		$attachment = $this->entityManager->getNewEntity(Attachment::ENTITY_TYPE);
 		$attachment
-		    ->setName($fileName)
-		    ->setType('application/pdf')
-		    ->setSize($contents->getStream()->getSize())
-		    ->setRelated(LinkParent::create($entity->getEntityType(), $entity->getId()))
-		    ->setRole(Attachment::ROLE_ATTACHMENT);
+			->setName($fileName)
+			->setType('application/pdf')
+			->setSize($contents->getStream()->getSize())
+			->setRelated(LinkParent::create($entity->getEntityType(), $entity->getId()))
+			->setRole(Attachment::ROLE_ATTACHMENT);
 
 		$this->entityManager->saveEntity($attachment);
 
@@ -119,9 +127,9 @@ class DefaultAttributeProvider implements AttributeProvider {
 
 		$attributes['attachmentsIds'] = [$attachment->getId()];
 		$attributes['attachmentsNames'] = [
-		    $attachment->getId() => $attachment->get('name'),
+			$attachment->getId() => $attachment->get('name'),
 		];
 
-		return (object)$attributes;
+		return (object) $attributes;
 	}
 }

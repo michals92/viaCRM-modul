@@ -2,4 +2,6 @@
 
 namespace Espo\Modules\Viacrm\Controllers;
 
-class CurrencyRateHistoryRecord extends \Espo\Core\Templates\Controllers\Base {}
+class CurrencyRateHistoryRecord extends \Espo\Core\Templates\Controllers\Base
+{
+}

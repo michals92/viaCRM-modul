@@ -23,7 +23,8 @@ use Espo\ORM\Query\Part\Expression;
 use Espo\Tools\Kanban\Result;
 use RuntimeException;
 
-class UserKanban {
+class UserKanban
+{
 	private ?string $entityType = null;
 
 	private bool $countDisabled = false;
@@ -47,27 +48,32 @@ class UserKanban {
 		private readonly Metadata $metadata,
 		private readonly User $user,
 		private readonly Avatar $avatarEntryPoint,
-	) {}
+	) {
+	}
 
-	public function setEntityType(string $entityType): self {
+	public function setEntityType(string $entityType): self
+	{
 		$this->entityType = $entityType;
 
 		return $this;
 	}
 
-	public function setSearchParams(SearchParams $searchParams): self {
+	public function setSearchParams(SearchParams $searchParams): self
+	{
 		$this->searchParams = $searchParams;
 
 		return $this;
 	}
 
-	public function setCountDisabled(bool $countDisabled): self {
+	public function setCountDisabled(bool $countDisabled): self
+	{
 		$this->countDisabled = $countDisabled;
 
 		return $this;
 	}
 
-	public function setUserId(string $userId): self {
+	public function setUserId(string $userId): self
+	{
 		$this->userId = $userId;
 
 		return $this;
@@ -76,7 +82,8 @@ class UserKanban {
 	/**
 	 * @throws Error
 	 */
-	public function getResult(): Result {
+	public function getResult(): Result
+	{
 		if (!$this->entityType) {
 			throw new Error('Entity type is not specified.');
 		}
@@ -111,24 +118,24 @@ class UserKanban {
 		}
 
 		$query = $this->selectBuilderFactory
-		    ->create()
-		    ->from($this->entityType)
-		    ->withStrictAccessControl()
-		    ->withSearchParams($searchParams)
-		    ->buildQueryBuilder();
+			->create()
+			->from($this->entityType)
+			->withStrictAccessControl()
+			->withSearchParams($searchParams)
+			->buildQueryBuilder();
 
 		$statusField = $this->metadata->get(['scopes', $this->entityType, 'statusField'], null);
 		$userKanbanStatusIgnoreList = $this->metadata->get(['scopes', $this->entityType, 'userKanbanStatusIgnoreList'], []);
 
 		if ($statusField && !empty($userKanbanStatusIgnoreList)) {
-			$query->where(Expression::notIn(Expression::column($statusField),  $userKanbanStatusIgnoreList));
+			$query->where(Expression::notIn(Expression::column($statusField), $userKanbanStatusIgnoreList));
 		}
 
 		$query = $query->build();
 
 		$collection = $this->entityManager
-		    ->getCollectionFactory()
-		    ->create($this->entityType);
+			->getCollectionFactory()
+			->create($this->entityType);
 
 		$users = $this->getUsers($userWhere);
 
@@ -142,12 +149,12 @@ class UserKanban {
 			$userId = $user->getId();
 
 			$itemSelectBuilder = $this->entityManager
-			    ->getQueryBuilder()
-			    ->select()
-			    ->clone($query);
+				->getQueryBuilder()
+				->select()
+				->clone($query);
 
 			$itemSelectBuilder->where([
-			    'assignedUserId' => $userId,
+				'assignedUserId' => $userId,
 			]);
 
 			$itemQuery = $itemSelectBuilder->build();
@@ -160,9 +167,9 @@ class UserKanban {
 
 			if ($this->userId && !$this->orderDisabled) {
 				$itemQuery = $this->entityManager
-				    ->getQueryBuilder()
-				    ->select()
-				    ->clone($itemQuery)
+					->getQueryBuilder()
+					->select()
+					->clone($itemQuery)
 					->order($newOrder)
 					->leftJoin(
 						'UserKanbanOrder',
@@ -178,8 +185,8 @@ class UserKanban {
 			}
 
 			$collectionSub = $repository
-			    ->clone($itemQuery)
-			    ->find();
+				->clone($itemQuery)
+				->find();
 
 			if (!$this->countDisabled) {
 				$totalSub = $repository->clone($itemQuery)->count();
@@ -194,9 +201,8 @@ class UserKanban {
 				}
 			}
 
-			$loadProcessorParams = LoaderParams
-			    ::create()
-			    ->withSelect($searchParams->getSelect());
+			$loadProcessorParams = LoaderParams::create()
+				->withSelect($searchParams->getSelect());
 
 			foreach ($collectionSub as $e) {
 				$this->listLoadProcessor->process($e, $loadProcessorParams);
@@ -215,27 +221,30 @@ class UserKanban {
 		}
 
 		$total = !$this->countDisabled ?
-		    $repository->clone($query)->count() : ($hasMore ? Collection::TOTAL_HAS_MORE : Collection::TOTAL_HAS_NO_MORE);
+			$repository->clone($query)->count() : ($hasMore ? Collection::TOTAL_HAS_MORE : Collection::TOTAL_HAS_NO_MORE);
 
 		return new Result($groupList, $total);
 	}
 
 	/**
-	 * @param  array<string, mixed>|null $userWhere
+	 * @param array<string, mixed>|null $userWhere
+	 *
 	 * @throws Error
+	 *
 	 * @return ORMCollection<User>
 	 */
-	private function getUsers(?array $userWhere): ORMCollection {
+	private function getUsers(?array $userWhere): ORMCollection
+	{
 		$query = $this
-		    ->selectBuilderFactory
-		    ->create()
-		    ->from(User::ENTITY_TYPE)
-		    ->withStrictAccessControl()
-		    ->buildQueryBuilder();
+			->selectBuilderFactory
+			->create()
+			->from(User::ENTITY_TYPE)
+			->withStrictAccessControl()
+			->buildQueryBuilder();
 
 		$query = $query
-		    ->where('isActive', true)
-		    ->where('type!=', ['portal', 'system', 'api']);
+			->where('isActive', true)
+			->where('type!=', ['portal', 'system', 'api']);
 
 		if ($userWhere) {
 			$entityType = $this->entityType ?? throw new RuntimeException('Entity type is not specified.');
@@ -246,8 +255,8 @@ class UserKanban {
 		}
 
 		return $this
-		    ->entityManager
-		    ->getRDBRepository(User::ENTITY_TYPE)
+			->entityManager
+			->getRDBRepository(User::ENTITY_TYPE)
 			->clone($query->build())
 			->find();
 	}

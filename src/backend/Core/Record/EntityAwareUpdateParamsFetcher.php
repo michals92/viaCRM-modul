@@ -6,7 +6,8 @@ use Espo\Core\Api\Request;
 use Espo\Core\Record\UpdateParams;
 use Espo\Core\Record\UpdateParamsFetcher;
 
-class EntityAwareUpdateParamsFetcher extends UpdateParamsFetcher {
+class EntityAwareUpdateParamsFetcher extends UpdateParamsFetcher
+{
 	/**
 	 * @use ParamsFetcherTrait<UpdateParamsFetcher, UpdateParams>
 	 */
@@ -17,7 +18,8 @@ class EntityAwareUpdateParamsFetcher extends UpdateParamsFetcher {
 	/**
 	 * @throws \Exception
 	 */
-	public function fetch(Request $request): UpdateParams {
+	public function fetch(Request $request): UpdateParams
+	{
 		/**
 		 * @var UpdateParams
 		 */

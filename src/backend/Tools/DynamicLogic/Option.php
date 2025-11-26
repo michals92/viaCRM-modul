@@ -2,7 +2,8 @@
 
 namespace Espo\Modules\Viacrm\Tools\DynamicLogic;
 
-readonly class Option {
+readonly class Option
+{
 	public const USER = 'user';
 	public const USERS_IDS = 'usersIds';
 	public const CONFIG = 'config';

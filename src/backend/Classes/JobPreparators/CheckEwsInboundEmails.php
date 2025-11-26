@@ -12,23 +12,26 @@ use Espo\ORM\EntityManager;
 /**
  * Prepares jobs for checking EWS group email accounts (InboundEmail).
  */
-class CheckEwsInboundEmails implements Preparator {
+class CheckEwsInboundEmails implements Preparator
+{
 	/**
 	 * @param CollectionHelper<InboundEmail> $helper
 	 */
 	public function __construct(
 		private EntityManager $entityManager,
 		private CollectionHelper $helper
-	) {}
+	) {
+	}
 
-	public function prepare(Data $data, DateTimeImmutable $executeTime): void {
+	public function prepare(Data $data, DateTimeImmutable $executeTime): void
+	{
 		$collection = $this->entityManager
-		    ->getRDBRepositoryByClass(InboundEmail::class)
-		    ->where([
-		        'status' => InboundEmail::STATUS_ACTIVE,
-		        'useEws' => true,
-		    ])
-		    ->find();
+			->getRDBRepositoryByClass(InboundEmail::class)
+			->where([
+				'status' => InboundEmail::STATUS_ACTIVE,
+				'useEws' => true,
+			])
+			->find();
 
 		$this->helper->prepare($collection, $data, $executeTime);
 	}

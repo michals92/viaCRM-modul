@@ -8,19 +8,22 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Select\SelectBuilder;
 use Espo\Tools\App\AppParam;
 
-class RoleList implements AppParam {
+class RoleList implements AppParam
+{
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly SelectBuilder $selectBuilder
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 * @throws Forbidden
-	 * @return mixed
 	 *
+	 * @return mixed
 	 */
-	public function get(): mixed {
+	public function get(): mixed
+	{
 		$query = $this
 			->selectBuilder
 			->from('Role')

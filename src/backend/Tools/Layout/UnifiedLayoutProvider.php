@@ -11,16 +11,17 @@ use Espo\Core\Utils\Resource\Reader\Params as ResourceReaderParams;
 use Espo\Core\Utils\Util;
 use Espo\Modules\Viacrm\Core\Utils\LayoutProvider\AdditionalBuilder;
 
-class UnifiedLayoutProvider {
+class UnifiedLayoutProvider
+{
 	private string $defaultPath = 'application/Espo/Modules/Viacrm/Resources/defaults/layouts';
 
-	/** @var array<string, mixed> $data */
+	/** @var array<string, mixed> */
 	private array $data;
 
 	public function __construct(
-		private readonly FileManager       $fileManager,
-		private readonly ResourceReader    $resourceReader,
-		private readonly Metadata          $metadata,
+		private readonly FileManager $fileManager,
+		private readonly ResourceReader $resourceReader,
+		private readonly Metadata $metadata,
 		private readonly InjectableFactory $injectableFactory
 	) {
 		$this->data = $this->resourceReader->readAsArray(
@@ -44,7 +45,7 @@ class UnifiedLayoutProvider {
 
 			// 2. viaCRM's default layout
 			if ($this->fileManager->isFile($path)) {
-				$layout = (array)JSON::decode($this->fileManager->getContents($path));
+				$layout = (array) JSON::decode($this->fileManager->getContents($path));
 			}
 		}
 
@@ -57,7 +58,7 @@ class UnifiedLayoutProvider {
 		}
 
 		if (!is_array($layout)) {
-			$layout = (array)$layout;
+			$layout = (array) $layout;
 		}
 
 		$layoutBuilder = $this->injectableFactory->createWith(LayoutBuilder::class, ['scope' => $scope, 'layoutName' => $name]);
@@ -68,13 +69,14 @@ class UnifiedLayoutProvider {
 		return JSON::encode($layout);
 	}
 
-	private function applyAdditional(LayoutBuilder $layoutBuilder): void {
+	private function applyAdditional(LayoutBuilder $layoutBuilder): void
+	{
 		/** @var class-string<AdditionalBuilder>[] $builderClassNameList */
 		$builderClassNameList = $this->metadata->get(['app', 'layout', 'additionalBuilderClassNameList'], []);
 
 		/** @var AdditionalBuilder[] $builderList */
 		$builderList = array_map(
-			fn($className) => $this->injectableFactory->createWith($className, ['layoutBuilder' => $layoutBuilder]),
+			fn ($className) => $this->injectableFactory->createWith($className, ['layoutBuilder' => $layoutBuilder]),
 			$builderClassNameList
 		);
 

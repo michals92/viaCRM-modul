@@ -6,6 +6,7 @@ use Espo\ORM\Entity;
 use Espo\Tools\Pdf\Params as PdfParams;
 use stdClass;
 
-interface DataLoader {
+interface DataLoader
+{
 	public function load(Entity $entity, PdfParams $params): stdClass;
 }

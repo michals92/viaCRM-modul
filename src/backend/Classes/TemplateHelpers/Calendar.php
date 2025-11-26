@@ -11,7 +11,8 @@ use Espo\Modules\Crm\Entities\Call;
 use Espo\Modules\Crm\Entities\Meeting;
 use Exception;
 
-class Calendar implements Helper {
+class Calendar implements Helper
+{
 	private const STYLE_CALENDAR = 'display: flex;font-family: Arial, Helvetica, sans-serif; text-align: center;';
 	private const STYLE_LINK = 'text-decoration: none; color: dimgray; padding: 0.5em 0.7em; font-weight: bold; border: 1px solid lightgrey; background: white; margin: 2px; border-radius: 2px; width: 120px;';
 
@@ -29,27 +30,30 @@ class Calendar implements Helper {
 	public function __construct(
 		private readonly Config $config,
 		private readonly Language $language
-	) {}
+	) {
+	}
 
-	private function setUTC(\DateTime ...$dts): void {
+	private function setUTC(\DateTime ...$dts): void
+	{
 		foreach ($dts as $dt) {
 			$dt->setTimezone(new \DateTimeZone('UTC'));
 		}
 	}
 
-	private function outlookCal(): string {
+	private function outlookCal(): string
+	{
 		$dateFormat = 'Y-m-d\TH:i:s\Z';
 
 		$url = 'https://outlook.live.com/calendar/0/deeplink/compose?' .
-		    http_build_query([
-		        'rru' => 'addevent',
-		        'path' => '/calendar/action/compose',
-		        'subject' => $this->name,
-		        'body' => $this->description,
-		        'startdt' => $this->dateStart->format($dateFormat),
-		        'enddt' => $this->dateEnd->format($dateFormat),
-		        'allday' => 'false',
-		    ]);
+			http_build_query([
+				'rru' => 'addevent',
+				'path' => '/calendar/action/compose',
+				'subject' => $this->name,
+				'body' => $this->description,
+				'startdt' => $this->dateStart->format($dateFormat),
+				'enddt' => $this->dateEnd->format($dateFormat),
+				'allday' => 'false',
+			]);
 
 		$label = $this->language->translateLabel('Outlook Calendar');
 
@@ -62,16 +66,17 @@ class Calendar implements Helper {
         HTML;
 	}
 
-	private function googleCal(): string {
+	private function googleCal(): string
+	{
 		$dateFormat = 'Ymd\THis\Z';
 
 		$url = 'https://calendar.google.com/calendar/event?' .
-		    http_build_query([
-		        'action' => 'TEMPLATE',
-		        'text' => $this->name,
-		        'details' => $this->description,
-		        'dates' => $this->dateStart->format($dateFormat) . '/' . $this->dateEnd->format($dateFormat)
-		    ]);
+			http_build_query([
+				'action' => 'TEMPLATE',
+				'text' => $this->name,
+				'details' => $this->description,
+				'dates' => $this->dateStart->format($dateFormat) . '/' . $this->dateEnd->format($dateFormat),
+			]);
 
 		$label = $this->language->translateLabel('Google Calendar');
 
@@ -84,7 +89,8 @@ class Calendar implements Helper {
         HTML;
 	}
 
-	public function render(Data $data): Result {
+	public function render(Data $data): Result
+	{
 		try {
 			$rootContext = $data->getRootContext();
 			$entityType = $rootContext['__entityType'] ?? '';
@@ -116,7 +122,7 @@ class Calendar implements Helper {
 					};
 				}
 
-				$providers = array_filter($providers, fn($provider) => !empty($provider));
+				$providers = array_filter($providers, fn ($provider) => !empty($provider));
 
 				if (empty($providers)) {
 					throw new Exception('Providers are invalid/not supported');
@@ -125,7 +131,7 @@ class Calendar implements Helper {
 
 			return Result::createSafeString(
 				'<div style="' . self::STYLE_CALENDAR . '">'
-				    . implode('', $providers) .
+					. implode('', $providers) .
 				'</div>'
 			);
 		} catch (Exception $e) {

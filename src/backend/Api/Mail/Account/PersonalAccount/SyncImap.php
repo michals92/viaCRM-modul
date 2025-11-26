@@ -18,28 +18,31 @@ use Espo\Entities\User;
 use Espo\ORM\EntityManager;
 use Exception;
 
-class SyncImap implements Action {
+class SyncImap implements Action
+{
 	public function __construct(
-		private readonly EntityManager  $entityManager,
+		private readonly EntityManager $entityManager,
 		private readonly AccountFactory $accountFactory,
 		private readonly FetcherFactory $fetcherFactory,
-		private readonly User           $user
-	) {}
+		private readonly User $user
+	) {
+	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		if ($this->user->isAdmin() !== true) {
 			throw new \LogicException('Admin only');
 		}
-		
+
 		$body = $request->getParsedBody();
 		$ids = $body->ids;
-		$hours = (int)$body->hours;
+		$hours = (int) $body->hours;
 		$fetcher = $this->fetcherFactory->create();
 		$allGood = true;
 
 		foreach ($ids as $id) {
 			try {
-				$this->syncAccount($fetcher, (string)$id, $hours);
+				$this->syncAccount($fetcher, (string) $id, $hours);
 			} catch (Exception $ex) {
 				$allGood = false;
 				$GLOBALS['log']->error($ex->getMessage());
@@ -55,7 +58,8 @@ class SyncImap implements Action {
 	 * @throws Error
 	 * @throws Exception
 	 */
-	protected function syncAccount(Fetcher $fetcher, string $id, int $hours): void {
+	protected function syncAccount(Fetcher $fetcher, string $id, int $hours): void
+	{
 		/** @var EmailAccount|null $emailAccount */
 		$emailAccount = $this->entityManager->getEntityById(EmailAccount::ENTITY_TYPE, $id);
 

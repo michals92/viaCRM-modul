@@ -13,20 +13,23 @@ use Espo\Tools\App\AppService as Service;
 /**
  * Gets user data.
  */
-class GetUser implements Action {
+class GetUser implements Action
+{
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
 		private readonly User $user,
-	) {}
+	) {
+	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		if (!$this->user->has('rolesIds')) {
 			$this->user->loadLinkMultipleField('roles');
 		}
 
 		$data = $this->injectableFactory
-		    ->create(Service::class)
-		    ->getUserData();
+			->create(Service::class)
+			->getUserData();
 
 		if ($data['user']) {
 			$data['user']->rolesIds = $this->user->get('rolesIds');

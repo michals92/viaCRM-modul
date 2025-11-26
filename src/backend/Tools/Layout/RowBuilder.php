@@ -2,24 +2,28 @@
 
 namespace Espo\Modules\Viacrm\Tools\Layout;
 
-class RowBuilder {
-	/** @var array<string, mixed>|bool $row */
+class RowBuilder
+{
+	/** @var array<string, mixed>|bool */
 	protected array|bool $row;
 
 	public function __construct(
 		protected readonly RowGroupBuilder $rowGroupBuilder
-	) {}
+	) {
+	}
 
 	/**
 	 * @param array<string, mixed>|bool $row
 	 */
-	public function &setRow(array|bool &$row): self {
+	public function &setRow(array|bool &$row): self
+	{
 		$this->row = &$row;
 
 		return $this;
 	}
 
-	public function getName(): ?string {
+	public function getName(): ?string
+	{
 		if ($this->isEmpty()) {
 			return null;
 		}
@@ -31,7 +35,8 @@ class RowBuilder {
 	/**
 	 * @param null|array<string, string> $translations (key - language shortcode, value - translation)
 	 */
-	public function setName(string $name, ?array $translations = null): self {
+	public function setName(string $name, ?array $translations = null): self
+	{
 		if ($this->isEmpty()) {
 			$row = [];
 			$this->row = &$row;
@@ -44,21 +49,25 @@ class RowBuilder {
 		return $this;
 	}
 
-	public function &setEmpty(): self {
+	public function &setEmpty(): self
+	{
 		$this->row = false;
 
 		return $this;
 	}
 
-	public function isEmpty(): bool {
+	public function isEmpty(): bool
+	{
 		return is_bool($this->row);
 	}
 
-	public function build(): RowGroupBuilder {
+	public function build(): RowGroupBuilder
+	{
 		return $this->rowGroupBuilder;
 	}
 
-	public function getLayoutBuilder(): LayoutBuilder {
+	public function getLayoutBuilder(): LayoutBuilder
+	{
 		return $this->rowGroupBuilder->getLayoutBuilder();
 	}
 }

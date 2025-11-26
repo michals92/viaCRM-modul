@@ -6,7 +6,8 @@ use Espo\Core\Exceptions\Conflict;
 use Espo\Core\Exceptions\Error;
 use Espo\ORM\Entity;
 
-trait LockedTrait {
+trait LockedTrait
+{
 	/**
 	 * @return string[]
 	 */
@@ -17,7 +18,8 @@ trait LockedTrait {
 	 */
 	abstract protected function getLockedStates(): array;
 
-	protected function getCancelState(): string {
+	protected function getCancelState(): string
+	{
 		return 'Canceled';
 	}
 
@@ -26,22 +28,26 @@ trait LockedTrait {
 	 * @param object $data
 	 *
 	 * @throws Conflict
+	 *
 	 * @return void
 	 */
-	protected function beforeUpdateEntity(Entity $entity, $data): void {
+	protected function beforeUpdateEntity(Entity $entity, $data): void
+	{
 		$this->lockEntity(entity: $entity);
 	}
 
-	protected function shouldEnforceLocking(Entity $entity): bool {
+	protected function shouldEnforceLocking(Entity $entity): bool
+	{
 		// Get entity-specific locking setting name (e.g., "enforcePurchaseOrderLocking")
 		$settingName = 'enforce' . $this->entityType . 'Locking';
 
 		return $this->config->get($settingName, true);
 	}
-	
-	private function lockEntity(Entity $entity): void {
+
+	private function lockEntity(Entity $entity): void
+	{
 		$reasonPrefix = lcfirst(string: $this->entityType);
-		
+
 		if (!$this->shouldEnforceLocking($entity)) {
 			return;
 		}
@@ -71,7 +77,8 @@ trait LockedTrait {
 		}
 	}
 
-	public function process(Entity $entity): void {
+	public function process(Entity $entity): void
+	{
 		$this->lockEntity(entity: $entity);
 	}
 }

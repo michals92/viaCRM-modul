@@ -9,7 +9,8 @@ use Espo\Modules\Viacrm\Core\Abstract\Traits\ConditionalExtension;
 use Espo\Modules\Viacrm\Core\Layout\LikeType;
 use Espo\Modules\Viacrm\Tools\Layout\LayoutBuilder;
 
-abstract class AdditionalBuilder {
+abstract class AdditionalBuilder
+{
 	use ConditionalExtension;
 
 	protected readonly string $layoutName;
@@ -19,13 +20,13 @@ abstract class AdditionalBuilder {
 	protected readonly ExtensionUtil $extensionUtil;
 
 	/**
-	 * @var array<string, string> Key is module name, value is module version.
+	 * @var array<string, string> key is module name, value is module version
 	 */
 	protected array $installedExtensions;
 
 	public function __construct(
 		public readonly LayoutBuilder $layoutBuilder,
-		protected readonly Config     $config
+		protected readonly Config $config
 	) {
 		$this->scope = $layoutBuilder->getScope();
 		$this->layoutName = $layoutBuilder->getLayoutName();
@@ -35,11 +36,12 @@ abstract class AdditionalBuilder {
 		$this->requiredExtensions ??= [];
 	}
 
-	public function apply(): void {
+	public function apply(): void
+	{
 		$allPresent = true;
 
 		foreach ($this->requiredExtensions as $extensionName => $requiredVersion) {
-			$extensionName = (string)$extensionName;
+			$extensionName = (string) $extensionName;
 
 			if (!isset($this->installedExtensions[$extensionName])) {
 				$allPresent = false;
@@ -67,7 +69,9 @@ abstract class AdditionalBuilder {
 		$this->layoutBuilder->submitTranslationsToFrontend();
 	}
 
-	public function allPresentBuild(): void {}
+	public function allPresentBuild(): void
+	{
+	}
 
 	/**
 	 * Adds or updates a bottom panel in the layout while respecting user customizations.
@@ -76,7 +80,8 @@ abstract class AdditionalBuilder {
 	 * @param string               $panelName   Panel name (key in layout array)
 	 * @param array<string, mixed> $panelConfig Panel configuration
 	 */
-	protected function addOrUpdateBottomPanelInLayoutBuilder(string $panelName, array $panelConfig): void {
+	protected function addOrUpdateBottomPanelInLayoutBuilder(string $panelName, array $panelConfig): void
+	{
 		// Validate layout type
 		if ($this->layoutBuilder->getType() !== LikeType::bottomsPanel) {
 			throw new \LogicException(

@@ -7,8 +7,10 @@ use Espo\Core\Htmlizer\Helper\Data;
 use Espo\Core\Htmlizer\Helper\Result;
 use Espo\Modules\Viacrm\Tools\Html\Composer as HtmlComposer;
 
-class ImgTag implements Helper {
-	public function render(Data $data): Result {
+class ImgTag implements Helper
+{
+	public function render(Data $data): Result
+	{
 		$attachmentId = $data->getArgumentList()[0];
 
 		$width = $data->getArgumentList()[1] ?? null;
@@ -19,7 +21,7 @@ class ImgTag implements Helper {
 		}
 
 		$attributes = [
-		    'src' => "?entryPoint=attachment&id=$attachmentId",
+			'src' => "?entryPoint=attachment&id=$attachmentId",
 		];
 
 		if (!empty($width)) {

@@ -7,17 +7,20 @@ use Espo\Core\Console\IO;
 use Espo\Core\Exceptions\Error;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Throwable;
+
 use const FILTER_VALIDATE_URL;
 use const STDOUT;
 
 /**
  *  This class is extended from the base to return an error exit code on failure. This is fixed in newer Espo versions, but we need to backport it to older ones.
  **/
-class Upgrade extends \Espo\Core\Console\Commands\Upgrade {
+class Upgrade extends \Espo\Core\Console\Commands\Upgrade
+{
 	/**
 	 * @throws Error
 	 */
-	public function run(Params $params, IO $io): void {
+	public function run(Params $params, IO $io): void
+	{
 		$options = $params->getOptions();
 		$flagList = $params->getFlagList();
 		$argumentList = $params->getArgumentList();

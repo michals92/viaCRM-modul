@@ -7,7 +7,8 @@ use Espo\Entities\EmailAddress as EmailAddressEntity;
 use Espo\ORM\Entity;
 use stdClass;
 
-class EmailAddress extends \Espo\Repositories\EmailAddress {
+class EmailAddress extends \Espo\Repositories\EmailAddress
+{
 	use Di\ApplicationStateSetter;
 	use Di\AclManagerSetter;
 	use Di\ConfigSetter;
@@ -15,7 +16,8 @@ class EmailAddress extends \Espo\Repositories\EmailAddress {
 	/**
 	 * @return stdClass[]
 	 */
-	public function getEmailAddressData(Entity $entity): array {
+	public function getEmailAddressData(Entity $entity): array
+	{
 		if (!$entity->hasId()) {
 			return [];
 		}
@@ -36,7 +38,7 @@ class EmailAddress extends \Espo\Repositories\EmailAddress {
 				'account',
 				[
 					'account.id:' => 'accountId',
-					'account.deleted' => false
+					'account.deleted' => false,
 				]
 			)
 			->where([
@@ -48,7 +50,7 @@ class EmailAddress extends \Espo\Repositories\EmailAddress {
 			->find();
 
 		foreach ($emailAddressList as $emailAddress) {
-			$item = (object)[
+			$item = (object) [
 				'emailAddress' => $emailAddress->get('name'),
 				'lower' => $emailAddress->get('lower'),
 				'primary' => $emailAddress->get('primary'),
@@ -66,7 +68,8 @@ class EmailAddress extends \Espo\Repositories\EmailAddress {
 	/**
 	 * @param string[] $order
 	 */
-	public function getEntityByAddress(string $address, ?string $entityType = null, ?array $order = null): ?Entity {
+	public function getEntityByAddress(string $address, ?string $entityType = null, ?array $order = null): ?Entity
+	{
 		return parent::getEntityByAddress($address, $entityType, $order);
 	}
 }

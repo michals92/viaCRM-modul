@@ -6,10 +6,12 @@ use Espo\Core\Exceptions\Error;
 use Espo\Core\Utils\Json;
 use stdClass;
 
-class Service {
+class Service
+{
 	public const ENDPOINT = 'https://api3.zivefirmy.cz/firmdata/';
 
-	public function getInfo(string $sicCode, string $token): stdClass {
+	public function getInfo(string $sicCode, string $token): stdClass
+	{
 		$request = curl_init(self::ENDPOINT . $sicCode);
 
 		if ($request === false) {
@@ -39,7 +41,7 @@ class Service {
 		if (!is_string($data)) {
 			throw new Error('Invalid response type from API');
 		}
-        
+
 		try {
 			return Json::decode($data);
 		} catch (\Exception $e) {

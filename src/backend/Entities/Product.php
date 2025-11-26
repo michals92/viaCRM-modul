@@ -4,7 +4,8 @@ namespace Espo\Modules\Viacrm\Entities;
 
 use Espo\Core\Field\Currency;
 
-class Product extends \Espo\Core\Templates\Entities\Base {
+class Product extends \Espo\Core\Templates\Entities\Base
+{
 	public const string TEMPLATE_TYPE = 'Base';
 
 	public const string ENTITY_TYPE = 'Product';
@@ -17,87 +18,107 @@ class Product extends \Espo\Core\Templates\Entities\Base {
 	public const PRICING_TYPE_PURCHASING_COEFFICIENT = 'Purchasing Coefficient';
 	public const PRICING_TYPE_SALES_COEFFICIENT = 'Sales Coefficient';
 
-	public function setPricingType(string $pricingType): void {
+	public function setPricingType(string $pricingType): void
+	{
 		$this->set('pricingType', $pricingType);
 	}
 
-	public function setSalesPrice(?Currency $salesPrice): void {
+	public function setSalesPrice(?Currency $salesPrice): void
+	{
 		$this->setValueObject('salesPrice', $salesPrice);
 	}
 
-	public function setPriceMarkup(?float $markup): void {
+	public function setPriceMarkup(?float $markup): void
+	{
 		$this->set('priceMarkup', $markup);
 	}
 
-	public function setPriceMargin(?float $margin): void {
+	public function setPriceMargin(?float $margin): void
+	{
 		$this->set('priceMargin', $margin);
 	}
 
-	public function setCostPrice(?Currency $costPrice): void {
+	public function setCostPrice(?Currency $costPrice): void
+	{
 		$this->setValueObject('costPrice', $costPrice);
 	}
 
-	public function setCostPriceWithTax(?Currency $costPriceWithTax): void {
+	public function setCostPriceWithTax(?Currency $costPriceWithTax): void
+	{
 		$this->setValueObject('costPriceWithTax', $costPriceWithTax);
 	}
 
-	public function setTaxRate(float $taxRate): void {
+	public function setTaxRate(float $taxRate): void
+	{
 		$this->set('taxRate', $taxRate);
 	}
 
-	public function getPricingType(): string {
+	public function getPricingType(): string
+	{
 		return $this->get('pricingType');
 	}
 
-	public function getSalesPrice(): ?Currency {
+	public function getSalesPrice(): ?Currency
+	{
 		/** @var ?Currency */
 		return $this->getValueObject('salesPrice');
 	}
 
-	public function getSalesPriceWithTax(): ?Currency {
+	public function getSalesPriceWithTax(): ?Currency
+	{
 		/** @var ?Currency */
 		return $this->getValueObject('salesPriceWithTax');
 	}
 
-	public function setSalesPriceWithTax(?Currency $salesPriceWithTax): void {
+	public function setSalesPriceWithTax(?Currency $salesPriceWithTax): void
+	{
 		$this->setValueObject('salesPriceWithTax', $salesPriceWithTax);
 	}
 
-	public function getPriceMarkup(): ?float {
+	public function getPriceMarkup(): ?float
+	{
 		return $this->get('priceMarkup');
 	}
 
-	public function getWeight(): ?float {
+	public function getWeight(): ?float
+	{
 		return $this->get('weight');
 	}
 
-	public function getPriceMargin(): ?float {
+	public function getPriceMargin(): ?float
+	{
 		return $this->get('priceMargin');
 	}
 
-	public function getCostPrice(): ?Currency {
+	public function getCostPrice(): ?Currency
+	{
 		/** @var ?Currency */
 		return $this->getValueObject('costPrice');
 	}
 
-	public function getCostPriceWithTax(): ?Currency {
+	public function getCostPriceWithTax(): ?Currency
+	{
 		/** @var ?Currency */
 		return $this->getValueObject('costPriceWithTax');
 	}
 
-	public function getTaxRate(): float {
+	public function getTaxRate(): float
+	{
 		return $this->get('taxRate') ?? 0.0;
 	}
 
-	public function getType(): string {
+	public function getType(): string
+	{
 		return $this->get('type');
 	}
 
-	public function getCoefficient(): ?float {
+	public function getCoefficient(): ?float
+	{
 		return $this->get('coefficient');
 	}
 
-	public function getName(): string {
+	public function getName(): string
+	{
 		return $this->get('name');
 	}
 }

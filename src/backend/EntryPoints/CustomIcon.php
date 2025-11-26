@@ -12,14 +12,17 @@ use Espo\Core\FileStorage\Manager as FileStorageManager;
 use Espo\Core\ORM\EntityManager;
 use Espo\Modules\Viacrm\Entities\CustomIcon as CustomIconEntity;
 
-class CustomIcon implements EntryPoint {
+class CustomIcon implements EntryPoint
+{
 	public function __construct(
 		protected EntityManager $entityManager,
 		protected FileStorageManager $fileStorageManager,
 		protected Acl $acl
-	) {}
+	) {
+	}
 
-	public function run(Request $request, Response $response): void {
+	public function run(Request $request, Response $response): void
+	{
 		$id = $request->getQueryParam('id');
 
 		if (!$id) {
@@ -84,12 +87,14 @@ class CustomIcon implements EntryPoint {
 	}
 
 	/**
-	 * Optimize SVG by removing width and height attributes
+	 * Optimize SVG by removing width and height attributes.
 	 *
-	 * @param  string $svgContent
+	 * @param string $svgContent
+	 *
 	 * @return string
 	 */
-	protected function optimizeSvg(string $svgContent): string {
+	protected function optimizeSvg(string $svgContent): string
+	{
 		$dom = new \DOMDocument();
 
 		// Suppress errors due to malformed SVGs
@@ -98,7 +103,7 @@ class CustomIcon implements EntryPoint {
 		libxml_clear_errors();
 
 		$svg = $dom->getElementsByTagName('svg')->item(0);
-        
+
 		if ($svg) {
 			// Remove width and height attributes
 			if ($svg->hasAttribute('width')) {

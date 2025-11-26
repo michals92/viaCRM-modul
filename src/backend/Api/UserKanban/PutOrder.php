@@ -9,12 +9,15 @@ use Espo\Core\Api\ResponseComposer;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Modules\Viacrm\Tools\UserKanban\Service as UserKanbanService;
 
-class PutOrder implements Action {
+class PutOrder implements Action
+{
 	public function __construct(
 		private readonly UserKanbanService $service
-	) {}
+	) {
+	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$data = $request->getParsedBody();
 
 		$entityType = $data->entityType ?? null;

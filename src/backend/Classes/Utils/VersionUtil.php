@@ -2,8 +2,10 @@
 
 namespace Espo\Modules\Viacrm\Classes\Utils;
 
-class VersionUtil {
-	public static function satisfiesVersionRequirement(string $currentVersion, string $requirement): bool {
+class VersionUtil
+{
+	public static function satisfiesVersionRequirement(string $currentVersion, string $requirement): bool
+	{
 		$requirement = trim($requirement);
 		$operator = substr($requirement, 0, 2);
 

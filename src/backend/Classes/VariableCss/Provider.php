@@ -6,14 +6,17 @@ use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Log;
 use Espo\Core\Utils\Metadata;
 
-class Provider {
+class Provider
+{
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
 		private readonly Metadata $metadata,
 		private readonly Log $log,
-	) {}
+	) {
+	}
 
-	public function getCss(): string {
+	public function getCss(): string
+	{
 		/** class-string<Source> */
 		$sources = $this->metadata->get(['app', 'client', 'variableCssSources'], []);
 

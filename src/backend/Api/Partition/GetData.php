@@ -12,17 +12,20 @@ use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Record\SearchParamsFetcher;
 use Espo\Modules\Viacrm\Tools\Partition\PartitionService;
 
-class GetData implements Action {
+class GetData implements Action
+{
 	public function __construct(
 		private readonly PartitionService $partitionService,
 		private readonly SearchParamsFetcher $searchParamsFetcher
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 * @throws Forbidden|Error
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$entityType = $request->getRouteParam('entityType');
 		$by = $request->getRouteParam('by');
 
@@ -33,7 +36,7 @@ class GetData implements Action {
 		$searchParams = $this->searchParamsFetcher->fetch($request);
 		$result = $this->partitionService->getData($entityType, $searchParams, $by);
 
-		// Kanban (which is the basis for partitions) got reworked in 8.4.0 
+		// Kanban (which is the basis for partitions) got reworked in 8.4.0
 		$list = [];
 
 		foreach ($result->getGroups() as $group) {
@@ -41,9 +44,9 @@ class GetData implements Action {
 		}
 
 		return ResponseComposer::json([
-		    'total' => $result->getTotal(),
-		    'groups' => array_map(fn($it) => $it->toRaw(), $result->getGroups()),
-		    'list' => $list,
+			'total' => $result->getTotal(),
+			'groups' => array_map(fn ($it) => $it->toRaw(), $result->getGroups()),
+			'list' => $list,
 		]);
 	}
 }

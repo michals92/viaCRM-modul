@@ -9,12 +9,15 @@ use Espo\Core\Utils\Json;
 use Espo\Modules\Viacrm\Tools\Ares\Service as AresService;
 use Exception;
 
-class AresLookup implements Command {
+class AresLookup implements Command
+{
 	public function __construct(
 		private readonly AresService $aresService
-	) {}
+	) {
+	}
 
-	public function run(Params $params, IO $io): void {
+	public function run(Params $params, IO $io): void
+	{
 		$sicCode = $params->getArgument(0);
 
 		if (!$sicCode) {

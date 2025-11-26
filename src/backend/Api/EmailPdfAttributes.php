@@ -19,17 +19,20 @@ use Espo\Modules\Viacrm\Classes\EmailPdf\AttributeProvider;
 use Espo\Modules\Viacrm\Classes\EmailPdf\DefaultAttributeProvider;
 use stdClass;
 
-class EmailPdfAttributes implements Action {
+class EmailPdfAttributes implements Action
+{
 	public function __construct(
 		private readonly Metadata $metadata,
 		private readonly InjectableFactory $injectableFactory,
 		private readonly DefaultAttributeProvider $defaultAttributeProvider
-	) {}
+	) {
+	}
 
 	/**
 	 * Processes the request to fetch email PDF attributes.
 	 *
-	 * @param  Request             $request
+	 * @param Request $request
+	 *
 	 * @throws BadRequest
 	 * @throws Forbidden
 	 * @throws NotFound
@@ -37,9 +40,11 @@ class EmailPdfAttributes implements Action {
 	 * @throws ServiceUnavailable
 	 * @throws InternalServerError
 	 * @throws Unauthorized
+	 *
 	 * @return Response
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		// Initialize an empty response object
 		$response = new stdClass();
 

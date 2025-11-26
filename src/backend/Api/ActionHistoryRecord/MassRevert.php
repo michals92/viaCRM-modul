@@ -11,13 +11,16 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Record\ServiceContainer;
 use Espo\Entities\ActionHistoryRecord;
 
-class MassRevert implements Action {
+class MassRevert implements Action
+{
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly ServiceContainer $serviceContainer
-	) {}
+	) {
+	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$data = $request->getParsedBody();
 
 		if (empty($data->idList)) {
@@ -25,20 +28,20 @@ class MassRevert implements Action {
 		}
 
 		$actionHistoryRecords = $this
-		    ->entityManager
-		    ->getRDBRepository(ActionHistoryRecord::ENTITY_TYPE)
-		    ->where('id', $data->idList)
-		    ->where('action', 'delete')
-		    ->find();
+			->entityManager
+			->getRDBRepository(ActionHistoryRecord::ENTITY_TYPE)
+			->where('id', $data->idList)
+			->where('action', 'delete')
+			->find();
 
 		$count = 0;
 
 		foreach ($actionHistoryRecords as $actionHistoryRecord) {
 			try {
 				$this
-				    ->serviceContainer
-				    ->get($actionHistoryRecord->get('targetType'))
-				    ->restoreDeleted($actionHistoryRecord->get('targetId'));
+					->serviceContainer
+					->get($actionHistoryRecord->get('targetType'))
+					->restoreDeleted($actionHistoryRecord->get('targetId'));
 
 				$count++;
 			} catch (\Exception) {
@@ -47,7 +50,7 @@ class MassRevert implements Action {
 		}
 
 		return ResponseComposer::json([
-		    'count' => $count,
+			'count' => $count,
 		]);
 	}
 }

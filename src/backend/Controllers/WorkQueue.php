@@ -9,18 +9,21 @@ use Espo\Core\Record\SearchParamsFetcher;
 use Espo\Modules\Viacrm\Tools\WorkQueue\Service as WorkQueueService;
 use stdClass;
 
-class WorkQueue {
+class WorkQueue
+{
 	public function __construct(
 		protected readonly SearchParamsFetcher $searchParamsFetcher,
 		protected readonly WorkQueueService $workQueueService,
-	) {}
+	) {
+	}
 
 	public static string $defaultAction = 'list';
 
 	/**
 	 * @throws Error
 	 */
-	public function getActionList(Request $request, Response $response): stdClass {
+	public function getActionList(Request $request, Response $response): stdClass
+	{
 		$searchParams = $this->searchParamsFetcher->fetch($request);
 
 		$result = $this->workQueueService->getData($searchParams);
@@ -31,10 +34,10 @@ class WorkQueue {
 			$list = [...$list, ...$group->collection->getValueMapList()];
 		}
 
-		return (object)[
+		return (object) [
 			'total' => $result->getTotal(),
 			'groups' => array_map(
-				static fn($it) => $it->toRaw(),
+				static fn ($it) => $it->toRaw(),
 				$result->getGroups()
 			),
 			'list' => $list,

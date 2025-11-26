@@ -12,29 +12,29 @@ use Espo\ORM\Type\AttributeType;
 use Espo\ORM\Type\RelationType;
 use ReflectionException;
 
-class Email extends \Espo\Core\Utils\Database\Orm\FieldConverters\Email {
+class Email extends \Espo\Core\Utils\Database\Orm\FieldConverters\Email
+{
 	private const COLUMN_ENTITY_TYPE_LENGTH = 100;
 
 	/**
-	 * accountEmailAddresses in EmailAddress entity mustn't be changed to emailAddresses
+	 * accountEmailAddresses in EmailAddress entity mustn't be changed to emailAddresses.
 	 *
 	 * @throws ReflectionException
 	 */
-	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs {
+	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs
+	{
 		$name = $fieldDefs->getName();
 
 		$foreignJoinAlias = "$name$entityType{alias}Foreign";
 		$foreignJoinMiddleAlias = "$name$entityType{alias}ForeignMiddle";
 
-		$emailAddressDefs = AttributeDefs
-			::create($name)
+		$emailAddressDefs = AttributeDefs::create($name)
 			->withType(AttributeType::VARCHAR)
 			->withParamsMerged(
 				$this->getEmailAddressParams($entityType, $foreignJoinAlias, $foreignJoinMiddleAlias)
 			);
 
-		$dataDefs = AttributeDefs
-			::create($name . 'Data')
+		$dataDefs = AttributeDefs::create($name . 'Data')
 			->withType(AttributeType::JSON_ARRAY)
 			->withNotStorable()
 			->withParamsMerged([
@@ -43,44 +43,38 @@ class Email extends \Espo\Core\Utils\Database\Orm\FieldConverters\Email {
 				'field' => $name,
 			]);
 
-		$isOptedOutDefs = AttributeDefs
-			::create($name . 'IsOptedOut')
+		$isOptedOutDefs = AttributeDefs::create($name . 'IsOptedOut')
 			->withType(AttributeType::BOOL)
 			->withNotStorable()
 			->withParamsMerged(
 				ReflectionUtil::callClassMethod(self::class, $this, 'getIsOptedOutParams', $foreignJoinAlias, $foreignJoinMiddleAlias)
 			);
 
-		$isInvalidDefs = AttributeDefs
-			::create($name . 'IsInvalid')
+		$isInvalidDefs = AttributeDefs::create($name . 'IsInvalid')
 			->withType(AttributeType::BOOL)
 			->withNotStorable()
 			->withParamsMerged(
 				ReflectionUtil::callClassMethod(self::class, $this, 'getIsInvalidParams', $foreignJoinAlias, $foreignJoinMiddleAlias)
 			);
 
-		$relationDefs = RelationDefs
-			::create('emailAddresses')
+		$relationDefs = RelationDefs::create('emailAddresses')
 			->withType(RelationType::MANY_MANY)
 			->withForeignEntityType(EmailAddress::ENTITY_TYPE)
 			->withRelationshipName('entityEmailAddress')
 			->withMidKeys('entityId', 'emailAddressId')
 			->withConditions(['entityType' => $entityType])
 			->withAdditionalColumn(
-				AttributeDefs
-					::create('entityType')
+				AttributeDefs::create('entityType')
 					->withType(AttributeType::VARCHAR)
 					->withLength(self::COLUMN_ENTITY_TYPE_LENGTH)
 			)
 			->withAdditionalColumn(
-				AttributeDefs
-					::create('primary')
+				AttributeDefs::create('primary')
 					->withType(AttributeType::BOOL)
 					->withDefault(false)
 			)
 			->withAdditionalColumn(
-				AttributeDefs
-					::create('accountId')
+				AttributeDefs::create('accountId')
 					->withType(AttributeType::VARCHAR)
 					->withLength(24)
 					->withDefault(null)
@@ -117,7 +111,7 @@ class Email extends \Espo\Core\Utils\Database\Orm\FieldConverters\Email {
 							"$foreignJoinMiddleAlias.entityId:" => '{alias}.id',
 							"$foreignJoinMiddleAlias.primary" => true,
 							"$foreignJoinMiddleAlias.deleted" => false,
-						]
+						],
 					],
 					[
 						EmailAddress::ENTITY_TYPE,
@@ -125,8 +119,8 @@ class Email extends \Espo\Core\Utils\Database\Orm\FieldConverters\Email {
 						[
 							"$foreignJoinAlias.id:" => "$foreignJoinMiddleAlias.emailAddressId",
 							"$foreignJoinAlias.deleted" => false,
-						]
-					]
+						],
+					],
 				],
 			],
 			'fieldType' => 'email',
@@ -144,7 +138,7 @@ class Email extends \Espo\Core\Utils\Database\Orm\FieldConverters\Email {
 										'emailAddress.id:' => 'emailAddressId',
 										'emailAddress.deleted' => false,
 									],
-								]
+								],
 							],
 							'whereClause' => [
 								'deleted' => false,
@@ -167,7 +161,7 @@ class Email extends \Espo\Core\Utils\Database\Orm\FieldConverters\Email {
 										'emailAddress.id:' => 'emailAddressId',
 										'emailAddress.deleted' => false,
 									],
-								]
+								],
 							],
 							'whereClause' => [
 								'deleted' => false,
@@ -181,7 +175,7 @@ class Email extends \Espo\Core\Utils\Database\Orm\FieldConverters\Email {
 					'leftJoins' => [['emailAddresses', 'emailAddressesMultiple']],
 					'whereClause' => [
 						'EQUAL:(emailAddressesMultiple.lower, LOWER:({value})):' => null,
-					]
+					],
 				],
 				'<>' => [
 					'leftJoins' => [['emailAddresses', 'emailAddressesMultiple']],

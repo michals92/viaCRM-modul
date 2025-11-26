@@ -7,13 +7,15 @@ use Espo\Modules\Viacrm\Entities\ProductSerial as ProductSerialEntity;
 use Espo\ORM\Collection;
 use Espo\ORM\Entity;
 
-class ProductSerial extends \Espo\Core\Templates\Repositories\Base {
+class ProductSerial extends \Espo\Core\Templates\Repositories\Base
+{
 	/**
 	 * Find serial by serial number.
 	 *
 	 * @return ?ProductSerialEntity
 	 */
-	public function findBySerialNumber(string $serialNumber): ?Entity {
+	public function findBySerialNumber(string $serialNumber): ?Entity
+	{
 		/** @var ?ProductSerialEntity */
 		$entity = $this->where(['serialNumber' => $serialNumber])->findOne();
 
@@ -27,7 +29,8 @@ class ProductSerial extends \Espo\Core\Templates\Repositories\Base {
 	 *
 	 * @return Collection<ProductSerialEntity>
 	 */
-	public function findByProduct(string $productId, array $params = []): Collection {
+	public function findByProduct(string $productId, array $params = []): Collection
+	{
 		$query = $this->where(['productId' => $productId]);
 
 		if (isset($params['status'])) {
@@ -47,7 +50,8 @@ class ProductSerial extends \Espo\Core\Templates\Repositories\Base {
 	/**
 	 * Check if serial number already exists for a specific product.
 	 */
-	public function serialNumberExists(string $serialNumber, ?string $excludeId = null, ?string $productId = null): bool {
+	public function serialNumberExists(string $serialNumber, ?string $excludeId = null, ?string $productId = null): bool
+	{
 		$query = $this->where(['serialNumber' => $serialNumber]);
 
 		if ($productId) {
@@ -64,7 +68,8 @@ class ProductSerial extends \Espo\Core\Templates\Repositories\Base {
 	/**
 	 * Get next serial number for product.
 	 */
-	public function getNextSerialNumber(string $productId): string {
+	public function getNextSerialNumber(string $productId): string
+	{
 		$product = $this->entityManager->getEntityById('Product', $productId);
 
 		if (!$product) {
@@ -85,11 +90,11 @@ class ProductSerial extends \Espo\Core\Templates\Repositories\Base {
 
 		// Find highest existing number for this prefix
 		$lastSerial = $this->where([
-		    'productId' => $productId,
-		    'serialNumber*' => $prefix . '%',
+			'productId' => $productId,
+			'serialNumber*' => $prefix . '%',
 		])
-		    ->order('serialNumber', 'DESC')
-		    ->findOne();
+			->order('serialNumber', 'DESC')
+			->findOne();
 
 		$nextNumber = 1;
 
@@ -111,7 +116,8 @@ class ProductSerial extends \Espo\Core\Templates\Repositories\Base {
 	 *
 	 * @throws BadRequest
 	 */
-	protected function beforeSave(Entity $entity, array $options = []): void {
+	protected function beforeSave(Entity $entity, array $options = []): void
+	{
 		parent::beforeSave($entity, $options);
 
 		// Auto-generate serial number if not provided
@@ -143,7 +149,8 @@ class ProductSerial extends \Espo\Core\Templates\Repositories\Base {
 	/**
 	 * Set default warranty period based on product.
 	 */
-	private function setDefaultWarranty(Entity $entity): void {
+	private function setDefaultWarranty(Entity $entity): void
+	{
 		$product = $this->entityManager->getEntityById('Product', $entity->get('productId'));
 
 		if (!$product) {
@@ -164,10 +171,11 @@ class ProductSerial extends \Espo\Core\Templates\Repositories\Base {
 	/**
 	 * Get count by status for product.
 	 */
-	public function getStatusCount(string $productId, string $status): int {
+	public function getStatusCount(string $productId, string $status): int
+	{
 		return $this->where([
-		    'productId' => $productId,
-		    'status' => $status,
+			'productId' => $productId,
+			'status' => $status,
 		])->count();
 	}
 
@@ -176,15 +184,16 @@ class ProductSerial extends \Espo\Core\Templates\Repositories\Base {
 	 *
 	 * @return Collection<ProductSerialEntity>
 	 */
-	public function getWarrantyExpiring(int $daysAhead = 30): Collection {
+	public function getWarrantyExpiring(int $daysAhead = 30): Collection
+	{
 		$timestamp = strtotime("+$daysAhead days");
 		$dateLimit = $timestamp !== false ? date('Y-m-d', $timestamp) : date('Y-m-d');
 
 		/** @var Collection<ProductSerialEntity> */
 		$collection = $this->where([
-		    'warrantyUntil<=' => $dateLimit,
-		    'warrantyUntil>' => date('Y-m-d'),
-		    'status' => ['Active', 'Sold'],
+			'warrantyUntil<=' => $dateLimit,
+			'warrantyUntil>' => date('Y-m-d'),
+			'status' => ['Active', 'Sold'],
 		])->find();
 
 		return $collection;

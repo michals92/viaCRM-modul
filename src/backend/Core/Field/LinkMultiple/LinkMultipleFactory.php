@@ -12,8 +12,10 @@ use RuntimeException;
 use stdClass;
 
 /** This class backports some fixes from Espo 9 */
-class LinkMultipleFactory extends \Espo\Core\Field\LinkMultiple\LinkMultipleFactory {
-	public function createFromEntity(Entity $entity, string $field): LinkMultiple {
+class LinkMultipleFactory extends \Espo\Core\Field\LinkMultiple\LinkMultipleFactory
+{
+	public function createFromEntity(Entity $entity, string $field): LinkMultiple
+	{
 		if (!$this->isCreatableFromEntity($entity, $field)) {
 			throw new RuntimeException();
 		}
@@ -36,8 +38,8 @@ class LinkMultipleFactory extends \Espo\Core\Field\LinkMultiple\LinkMultipleFact
 
 		if ($entity->hasAttribute($field . 'Columns')) {
 			$columnData = $entity->get($field . 'Columns') ?
-			    $entity->get($field . 'Columns') :
-			    $this->loadColumnData($entity, $field);
+				$entity->get($field . 'Columns') :
+				$this->loadColumnData($entity, $field);
 		}
 
 		foreach ($idList as $id) {
@@ -59,11 +61,13 @@ class LinkMultipleFactory extends \Espo\Core\Field\LinkMultiple\LinkMultipleFact
 		return new LinkMultiple($itemList);
 	}
 
-	private function loadLinkMultipleField(CoreEntity $entity, string $field): void {
+	private function loadLinkMultipleField(CoreEntity $entity, string $field): void
+	{
 		$entity->loadLinkMultipleField($field);
 	}
 
-	private function loadColumnData(Entity $entity, string $field): stdClass {
+	private function loadColumnData(Entity $entity, string $field): stdClass
+	{
 		if ($entity->isNew()) {
 			return (object) [];
 		}
@@ -73,7 +77,7 @@ class LinkMultipleFactory extends \Espo\Core\Field\LinkMultiple\LinkMultipleFact
 		$select = ['id'];
 
 		$entityDefs = ReflectionUtil::getClassProperty(parent::class, $this, 'ormDefs')
-		    ->getEntity($entity->getEntityType());
+			->getEntity($entity->getEntityType());
 
 		$columns = $entityDefs->getField($field)->getParam('columns') ?? [];
 
@@ -82,7 +86,6 @@ class LinkMultipleFactory extends \Espo\Core\Field\LinkMultiple\LinkMultipleFact
 		}
 
 		/** This part is backported from Espo 9 */
-        
 		$foreignEntityType = $entityDefs->tryGetRelation($field)?->tryGetForeignEntityType();
 
 		if ($foreignEntityType) {
@@ -97,15 +100,14 @@ class LinkMultipleFactory extends \Espo\Core\Field\LinkMultiple\LinkMultipleFact
 		}
 
 		/** End of backported code */
-
 		foreach ($columns as $item) {
 			$select[] = $item;
 		}
 
 		$collection = ReflectionUtil::getClassProperty(parent::class, $this, 'entityManager')
-		    ->getRelation($entity, $field)
-		    ->select($select)
-		    ->find();
+			->getRelation($entity, $field)
+			->select($select)
+			->find();
 
 		foreach ($collection as $itemEntity) {
 			$id = $itemEntity->getId();

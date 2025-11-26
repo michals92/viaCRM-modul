@@ -5,7 +5,8 @@ namespace Espo\Core\Utils\File;
 use Espo\Core\Utils\File\Manager as FileManager;
 use RuntimeException;
 
-class ZipArchive {
+class ZipArchive
+{
 	private FileManager $fileManager;
 
 	public function __construct(
@@ -17,16 +18,18 @@ class ZipArchive {
 	/**
 	 * Unzip archive.
 	 *
-	 * @param  string $file            Path to .zip file.
-	 * @param  string $destinationPath Destination path.
+	 * @param string $file            Path to .zip file.
+	 * @param string $destinationPath destination path
+	 *
 	 * @return bool
 	 */
-	public function unzip($file, $destinationPath) {
+	public function unzip($file, $destinationPath)
+	{
 		if (!class_exists('\ZipArchive')) {
 			throw new RuntimeException('php-zip extension is not installed. Cannot unzip the file. Your php version is: ' . phpversion());
 		}
 
-		$zip = new \ZipArchive;
+		$zip = new \ZipArchive();
 
 		$res = $zip->open($file);
 

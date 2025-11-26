@@ -14,7 +14,8 @@ use Espo\ORM\EntityCollection;
  * Abstract class for product supplier strategies.
  * Provides common functionality for different supplier selection strategies.
  */
-abstract class ProductSupplierStrategy implements Di\EntityManagerAware {
+abstract class ProductSupplierStrategy implements Di\EntityManagerAware
+{
 	use Di\EntityManagerSetter;
 
 	/** @var array<string, array<ProductSupplierItem>> */
@@ -35,7 +36,8 @@ abstract class ProductSupplierStrategy implements Di\EntityManagerAware {
 	/**
 	 * @param EntityCollection<Product> $products Collection of products to process
 	 */
-	public function withProducts(EntityCollection $products): self {
+	public function withProducts(EntityCollection $products): self
+	{
 		if ($this->products !== null) {
 			return $this;
 		}
@@ -47,12 +49,12 @@ abstract class ProductSupplierStrategy implements Di\EntityManagerAware {
 	}
 
 	/**
-	 *
 	 * @param array<string, mixed> $data
 	 *
 	 * @return self
 	 */
-	public function withData(array $data): self {
+	public function withData(array $data): self
+	{
 		$this->data = $data;
 
 		return $this;
@@ -76,7 +78,8 @@ abstract class ProductSupplierStrategy implements Di\EntityManagerAware {
 	 *
 	 * @return self The current instance for method chaining
 	 */
-	public function withRelatedEntity(Entity $entity): self {
+	public function withRelatedEntity(Entity $entity): self
+	{
 		$this->relatedEntity = $entity;
 
 		return $this;
@@ -93,7 +96,8 @@ abstract class ProductSupplierStrategy implements Di\EntityManagerAware {
 	 *
 	 * @return SupplierGroup Products grouped by supplier with references to supplier items
 	 */
-	public function group(): SupplierGroup {
+	public function group(): SupplierGroup
+	{
 		$supplierGroup = new SupplierGroup();
 		$alreadyGroupedProducts = [];
 
@@ -129,14 +133,15 @@ abstract class ProductSupplierStrategy implements Di\EntityManagerAware {
 	 *
 	 * @return array<ProductSupplierItem> Array of supplier items for the product
 	 */
-	public function getProductSupplierItems(Product $product): array {
+	public function getProductSupplierItems(Product $product): array
+	{
 		$productId = $product->getId();
 		if (empty($this->productSupplierItems)) {
 			/** @var EntityCollection<ProductSupplierItem> $productSupplierItems */
 			$productSupplierItems = $this->entityManager
-			    ->getRDBRepository(ProductSupplierItem::ENTITY_TYPE)
-			    ->where(['productId' => $this->productsIds])
-			    ->find();
+				->getRDBRepository(ProductSupplierItem::ENTITY_TYPE)
+				->where(['productId' => $this->productsIds])
+				->find();
 
 			$this->productSupplierItems = [];
 
@@ -155,6 +160,7 @@ abstract class ProductSupplierStrategy implements Di\EntityManagerAware {
 	}
 }
 
-class ProductSupplierStrategyData {
+class ProductSupplierStrategyData
+{
 	public const DEADLINE = 'deadline';
 }

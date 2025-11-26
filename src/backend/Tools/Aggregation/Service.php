@@ -7,22 +7,25 @@ use Espo\Core\Select\SelectBuilderFactory;
 use Espo\ORM\EntityManager;
 use stdClass;
 
-class Service {
+class Service
+{
 	public function __construct(
 		private readonly SelectBuilderFactory $selectBuilderFactory,
 		private readonly AggregationFunctionFactory $aggregationFunctionFactory,
 		private readonly EntityManager $entityManager,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws NotFound
 	 */
-	public function aggregate(Params $params): stdClass {
+	public function aggregate(Params $params): stdClass
+	{
 		$entityType = $params->getEntityType();
 		$selectBuilder = $this->selectBuilderFactory
-		    ->create()
-		    ->from($entityType)
-		    ->withStrictAccessControl();
+			->create()
+			->from($entityType)
+			->withStrictAccessControl();
 
 		if ($params->hasSearchParams()) {
 			$selectBuilder->withSearchParams($params->getSearchParams());

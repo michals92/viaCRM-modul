@@ -6,15 +6,18 @@ use Espo\Core\Exceptions\ForbiddenSilent;
 use Espo\Core\Exceptions\NotFound;
 
 /**
- * This exists purely so that default hardcoded folders can have icons
+ * This exists purely so that default hardcoded folders can have icons.
  */
-class Service extends \Espo\Tools\EmailFolder\Service {
+class Service extends \Espo\Tools\EmailFolder\Service
+{
 	/**
 	 * @throws ForbiddenSilent
 	 * @throws NotFound
+	 *
 	 * @return array<array<string, mixed>>
 	 */
-	public function listAll(?string $userId = null) {
+	public function listAll(?string $userId = null)
+	{
 		$list = parent::listAll($userId);
 
 		foreach ($list as &$folder) {

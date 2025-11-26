@@ -7,12 +7,14 @@ use Espo\Core\Api\Response;
 use Espo\Core\EntryPoint\EntryPoint;
 use Espo\Core\EntryPoint\Traits\NoAuth;
 
-class TestEntryPoint implements EntryPoint {
+class TestEntryPoint implements EntryPoint
+{
 	use NoAuth;
 
-	public function run(Request $request, Response $response): void {
+	public function run(Request $request, Response $response): void
+	{
 		$response->setHeader('Content-Type', 'text/html; charset=utf-8');
-        
+
 		$response->writeBody('<!DOCTYPE html>
 <html>
 <head>

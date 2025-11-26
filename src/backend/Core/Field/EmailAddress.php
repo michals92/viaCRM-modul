@@ -5,13 +5,15 @@ namespace Espo\Modules\Viacrm\Core\Field;
 use Espo\Core\ORM\Entity;
 use ReflectionProperty;
 
-class EmailAddress extends \Espo\Core\Field\EmailAddress {
+class EmailAddress extends \Espo\Core\Field\EmailAddress
+{
 	private ?string $accountId = null;
 
 	/**
 	 * Clone with linked account.
 	 */
-	public function withAccount(?Entity $account): self {
+	public function withAccount(?Entity $account): self
+	{
 		$obj = $this->clone();
 
 		$obj->accountId = $account?->getId();
@@ -22,11 +24,13 @@ class EmailAddress extends \Espo\Core\Field\EmailAddress {
 	/**
 	 * Get linked account ID.
 	 */
-	public function getAccountId(): ?string {
+	public function getAccountId(): ?string
+	{
 		return $this->accountId;
 	}
 
-	private function clone(): self {
+	private function clone(): self
+	{
 		$obj = new self($this->getAddress());
 
 		// Get reflection properties

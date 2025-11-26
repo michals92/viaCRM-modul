@@ -11,12 +11,14 @@ use Espo\Core\Utils\Metadata;
 use Espo\Entities\NextNumber;
 use Espo\Entities\User;
 
-class BeforeSaveProcessor {
+class BeforeSaveProcessor
+{
 	public function __construct(
 		private readonly Metadata $metadata,
 		private readonly EntityManager $entityManager,
 		private readonly User $user
-	) {}
+	) {
+	}
 
 	/**
 	 * @var array<string, string[]>
@@ -25,9 +27,11 @@ class BeforeSaveProcessor {
 
 	/**
 	 * For an existing record.
+	 *
 	 * @throws Error
 	 */
-	public function processPopulate(Entity $entity, string $field): void {
+	public function processPopulate(Entity $entity, string $field): void
+	{
 		$fieldList = $this->getFieldList($entity->getEntityType());
 
 		if (!in_array($field, $fieldList)) {
@@ -40,7 +44,8 @@ class BeforeSaveProcessor {
 	/**
 	 * @param array<string, mixed> $options
 	 */
-	public function process(Entity $entity, array $options): void {
+	public function process(Entity $entity, array $options): void
+	{
 		$fieldList = $this->getFieldList($entity->getEntityType());
 
 		foreach ($fieldList as $field) {
@@ -51,7 +56,8 @@ class BeforeSaveProcessor {
 	/**
 	 * @param array<string, mixed> $options
 	 */
-	private function processItem(Entity $entity, string $field, array $options, bool $populate = false): void {
+	private function processItem(Entity $entity, string $field, array $options, bool $populate = false): void
+	{
 		if (!empty($options[SaveOption::IMPORT])) {
 			if ($entity->has($field)) {
 				return;
@@ -82,7 +88,8 @@ class BeforeSaveProcessor {
 	/**
 	 * @param array<string, mixed> $conditionGroup
 	 */
-	protected function checkConditionGroupApplies(Entity $entity, array $conditionGroup): bool {
+	protected function checkConditionGroupApplies(Entity $entity, array $conditionGroup): bool
+	{
 		$type = $conditionGroup['type'] ?? 'and';
 
 		$result = false;
@@ -118,7 +125,8 @@ class BeforeSaveProcessor {
 	/**
 	 * @param array<string, mixed> $condition
 	 */
-	protected function checkConditionApplies(Entity $entity, array $condition): bool {
+	protected function checkConditionApplies(Entity $entity, array $condition): bool
+	{
 		$type = $condition['type'] ?? 'equals';
 
 		switch ($type) {
@@ -236,7 +244,8 @@ class BeforeSaveProcessor {
 		}
 	}
 
-	protected function getAttributeValue(Entity $entity, string $attribute): mixed {
+	protected function getAttributeValue(Entity $entity, string $attribute): mixed
+	{
 		if (str_starts_with($attribute, '$')) {
 			if ($attribute === '$user.id') {
 				return $this->user->getId();
@@ -253,7 +262,8 @@ class BeforeSaveProcessor {
 	/**
 	 * @param array<string, mixed> $sequence
 	 */
-	protected function processSequence(Entity $entity, string $field, array $sequence, int $sequenceIndex): void {
+	protected function processSequence(Entity $entity, string $field, array $sequence, int $sequenceIndex): void
+	{
 		$em = $this->entityManager;
 		$em->getTransactionManager()->start();
 
@@ -296,7 +306,8 @@ class BeforeSaveProcessor {
 	/**
 	 * @param array<string, mixed> $sequence
 	 */
-	private function composeNumberAttribute(NextNumber $nextNumber, array $sequence): string {
+	private function composeNumberAttribute(NextNumber $nextNumber, array $sequence): string
+	{
 		$value = $nextNumber->get('value');
 		$padLength = $sequence['padLength'] ?? 0;
 
@@ -311,13 +322,13 @@ class BeforeSaveProcessor {
 				'{number}',
 				'{MM}',
 				'{YYYY}',
-				'{YY}'
+				'{YY}',
 			],
 			[
 				$numberPart,
 				$month,
 				$year,
-				$yearTwoDigits
+				$yearTwoDigits,
 			],
 			$sequence['format']
 		);
@@ -326,7 +337,8 @@ class BeforeSaveProcessor {
 	/**
 	 * @return string[]
 	 */
-	private function getFieldList(string $entityType): array {
+	private function getFieldList(string $entityType): array
+	{
 		if (array_key_exists($entityType, $this->fieldListMapCache)) {
 			return $this->fieldListMapCache[$entityType];
 		}

@@ -5,11 +5,12 @@ namespace Espo\Modules\Viacrm\Entities;
 use Espo\ORM\Query\InsertBuilder;
 use Espo\ORM\Query\Part\Expression;
 
-class Alert extends \Espo\Core\Templates\Entities\Base {
+class Alert extends \Espo\Core\Templates\Entities\Base
+{
 	public const string TEMPLATE_TYPE = 'Event';
 
 	public const string ENTITY_TYPE = 'Alert';
-	
+
 	public const LINK_USER_NAME = 'AlertUser';
 	public const LINK_USER_COLUMN_ACTIVE = 'alert_active';
 
@@ -18,23 +19,27 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 	public const STATUS_RESOLVED = 'resolved';
 	public const STATUS_ARCHIVED = 'archived';
 
-	public function setMessage(?string $message): self {
+	public function setMessage(?string $message): self
+	{
 		$this->set('message', $message);
 
 		return $this;
 	}
 
-	public function setIconClass(?string $iconClassName): self {
+	public function setIconClass(?string $iconClassName): self
+	{
 		$this->set('iconClass', $iconClassName);
 
 		return $this;
 	}
 
-	public function getStatus(): ?string {
+	public function getStatus(): ?string
+	{
 		return $this->get('status');
 	}
 
-	public function toggleUser(string $userId): bool {
+	public function toggleUser(string $userId): bool
+	{
 		$this->toggleForUsers([$userId]);
 
 		return false;
@@ -42,11 +47,13 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 
 	/**
 	 * Activates the alert for a specific user.
-	 * 
-	 * @param  string $userId The ID of the user
+	 *
+	 * @param string $userId The ID of the user
+	 *
 	 * @return void
 	 */
-	public function activateForUser(string $userId): void {
+	public function activateForUser(string $userId): void
+	{
 		$em = $this->entityManager;
 		assert($em !== null);
 
@@ -62,11 +69,13 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 
 	/**
 	 * Deactivates the alert for a specific user.
-	 * 
-	 * @param  string $userId The ID of the user
+	 *
+	 * @param string $userId The ID of the user
+	 *
 	 * @return void
 	 */
-	public function deactivateForUser(string $userId): void {
+	public function deactivateForUser(string $userId): void
+	{
 		$em = $this->entityManager;
 		assert($em !== null);
 
@@ -81,9 +90,10 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 	}
 
 	/**
-     * @param array<string> $userIds
-     */
-	public function activateForUsers(array $userIds): void {
+	 * @param array<string> $userIds
+	 */
+	public function activateForUsers(array $userIds): void
+	{
 		$em = $this->entityManager;
 		assert($em !== null);
 
@@ -93,19 +103,20 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 		}, $userIds);
 
 		$query = InsertBuilder::create()
-		    ->into('AlertUser')
-		    ->columns(['alertId', 'userId', 'alertActive'])
-		    ->values($rows)
-		    ->updateSet(['alertActive' => true])
-		    ->build();
+			->into('AlertUser')
+			->columns(['alertId', 'userId', 'alertActive'])
+			->values($rows)
+			->updateSet(['alertActive' => true])
+			->build();
 
 		$em->getQueryExecutor()->execute($query);
 	}
 
 	/**
-     * @param array<string> $userIds
-     */
-	public function deactivateForUsers(array $userIds): void {
+	 * @param array<string> $userIds
+	 */
+	public function deactivateForUsers(array $userIds): void
+	{
 		$em = $this->entityManager;
 		assert($em !== null);
 
@@ -115,11 +126,11 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 		}, $userIds);
 
 		$query = InsertBuilder::create()
-		    ->into('AlertUser')
-		    ->columns(['alertId', 'userId', 'alertActive'])
-		    ->values($rows)
-		    ->updateSet(['alertActive' => false])
-		    ->build();
+			->into('AlertUser')
+			->columns(['alertId', 'userId', 'alertActive'])
+			->values($rows)
+			->updateSet(['alertActive' => false])
+			->build();
 
 		$em->getQueryExecutor()->execute($query);
 	}
@@ -128,45 +139,48 @@ class Alert extends \Espo\Core\Templates\Entities\Base {
 	 * Toggles the alert status for multiple users.
 	 * If a user has the alert active, it will be deactivated.
 	 * If a user doesn't have the alert active, it will be activated.
-	 * 
-	 * @param  array $userIds Array of user IDs
+	 *
+	 * @param array $userIds Array of user IDs
+	 *
 	 * @return void
 	 */
 	/**
 	 * Toggles the alert status for multiple users.
 	 * If a user has the alert active, it will be deactivated.
 	 * If a user doesn't have the alert active, it will be activated.
-	 * 
+	 *
 	 * IMPORTANT: This method is used in hooks to activate alerts for users.
 	 * When called from hooks, it should only activate alerts for new users,
 	 * not reactivate alerts for users who have already dismissed them.
-	 * 
-	 * @param  array<string> $userIds Array of user IDs
+	 *
+	 * @param array<string> $userIds Array of user IDs
+	 *
 	 * @return void
 	 */
-	public function toggleForUsers(array $userIds): void {
+	public function toggleForUsers(array $userIds): void
+	{
 		$em = $this->entityManager;
 		assert($em !== null);
 
 		if (empty($userIds)) {
 			return;
 		}
-	    
+
 		$alertId = $this->getId();
 		$rows = array_map(function ($userId) use ($alertId) {
 			return ['alertId' => $alertId, 'userId' => $userId, 'alertActive' => true];
 		}, $userIds);
 
 		$query = InsertBuilder::create()
-		    ->into('AlertUser')
-		    ->columns(['alertId', 'userId', 'alertActive'])
-		    ->values($rows)
+			->into('AlertUser')
+			->columns(['alertId', 'userId', 'alertActive'])
+			->values($rows)
 			// @phpstan-ignore-next-line PHPStan detects an error here, because we extend the functionality of updateSet in viaCRM
-		    ->updateSet([
-		        'alertActive' => Expression::not(Expression::column('alertActive'))
-		    ])
-		    ->build();
-			
+			->updateSet([
+				'alertActive' => Expression::not(Expression::column('alertActive')),
+			])
+			->build();
+
 		$em->getQueryExecutor()->execute($query);
 	}
 }

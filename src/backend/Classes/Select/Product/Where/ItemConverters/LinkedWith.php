@@ -19,8 +19,10 @@ use Espo\ORM\Query\SelectBuilder as QueryBuilder;
  * This replaces the old product_suppliers middle table approach
  * with the new ProductSupplierItem entity-based relationship.
  */
-class LinkedWith implements ItemConverter {
-	public function convert(QueryBuilder $queryBuilder, Item $item): WhereClauseItem {
+class LinkedWith implements ItemConverter
+{
+	public function convert(QueryBuilder $queryBuilder, Item $item): WhereClauseItem
+	{
 		$value = $item->getValue();
 
 		// Handle array values
@@ -34,16 +36,17 @@ class LinkedWith implements ItemConverter {
 	 *
 	 * @param array<mixed> $accountIds
 	 */
-	private function convertAccountsLinkedWith(array $accountIds): WhereClauseItem {
+	private function convertAccountsLinkedWith(array $accountIds): WhereClauseItem
+	{
 		// Subquery to find Product IDs that have ProductSupplierItems for the given Accounts
 		$subQuery = QueryBuilder::create()
-		    ->from('ProductSupplierItem')
-		    ->select('productId')
-		    ->where([
-		        'accountId' => $accountIds,
-		        'deleted' => false,
-		    ])
-		    ->build();
+			->from('ProductSupplierItem')
+			->select('productId')
+			->where([
+				'accountId' => $accountIds,
+				'deleted' => false,
+			])
+			->build();
 
 		return Cond::in(
 			Expr::column('id'),

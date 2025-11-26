@@ -16,7 +16,8 @@ use Espo\ORM\EntityManager;
 /**
  * @implements AccessEntityCREDSChecker<RecordRecurrence>
  */
-class AccessChecker implements AccessEntityCREDSChecker {
+class AccessChecker implements AccessEntityCREDSChecker
+{
 	use DefaultAccessCheckerDependency;
 
 	public function __construct(
@@ -27,7 +28,8 @@ class AccessChecker implements AccessEntityCREDSChecker {
 		$this->defaultAccessChecker = $defaultAccessChecker;
 	}
 
-	public function checkEntityCreate(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityCreate(User $user, Entity $entity, ScopeData $data): bool
+	{
 		if (!$this->defaultAccessChecker->checkEntityCreate($user, $entity, $data)) {
 			return false;
 		}

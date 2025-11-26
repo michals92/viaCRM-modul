@@ -13,13 +13,16 @@ use Espo\ORM\Repository\Option\SaveOptions;
 /**
  * @implements AfterSave<RecordRecurrence>
  */
-readonly class Process implements AfterSave {
+readonly class Process implements AfterSave
+{
 	public function __construct(
 		private Service $service,
 		private EntityManager $entityManager,
-	) {}
+	) {
+	}
 
-	public function afterSave(Entity $entity, SaveOptions $options): void {
+	public function afterSave(Entity $entity, SaveOptions $options): void
+	{
 		if (!$entity->isNew() || $entity->get('status') !== 'Draft') {
 			return;
 		}

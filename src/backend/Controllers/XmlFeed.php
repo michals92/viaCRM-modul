@@ -2,4 +2,6 @@
 
 namespace Espo\Modules\Viacrm\Controllers;
 
-class XmlFeed extends \Espo\Core\Templates\Controllers\Base {}
+class XmlFeed extends \Espo\Core\Templates\Controllers\Base
+{
+}

@@ -10,7 +10,8 @@ use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Defs;
 use Espo\ORM\Entity;
 
-class LinkMultipleType extends BaseLinkMultipleType {
+class LinkMultipleType extends BaseLinkMultipleType
+{
 	public function __construct(
 		private readonly Metadata $metadata,
 		private readonly Defs $defs,
@@ -20,11 +21,12 @@ class LinkMultipleType extends BaseLinkMultipleType {
 	}
 
 	/** @noinspection PhpUnused */
-	public function checkRequired(Entity $entity, string $field): bool {
+	public function checkRequired(Entity $entity, string $field): bool
+	{
 		$recordListEnabled = $this->entityManager->getDefs()
-		    ->getEntity($entity->getEntityType())
-		    ->getField($field)
-		    ->getParam('recordListEnabled');
+			->getEntity($entity->getEntityType())
+			->getField($field)
+			->getParam('recordListEnabled');
 
 		if ($recordListEnabled) {
 			$recordList = $entity->get($field . 'RecordList') ?: [];
@@ -36,15 +38,16 @@ class LinkMultipleType extends BaseLinkMultipleType {
 	}
 
 	/** @noinspection PhpUnused */
-	public function checkMaxCount(Entity $entity, string $field, ?int $maxCount): bool {
+	public function checkMaxCount(Entity $entity, string $field, ?int $maxCount): bool
+	{
 		if ($maxCount === null) {
 			return true;
 		}
 
 		$recordListEnabled = $this->entityManager->getDefs()
-		    ->getEntity($entity->getEntityType())
-		    ->getField($field)
-		    ->getParam('recordListEnabled');
+			->getEntity($entity->getEntityType())
+			->getField($field)
+			->getParam('recordListEnabled');
 
 		if ($recordListEnabled) {
 			$recordList = $entity->get($field . 'RecordList') ?: [];
@@ -56,11 +59,12 @@ class LinkMultipleType extends BaseLinkMultipleType {
 	}
 
 	/** @noinspection PhpUnused */
-	public function checkColumnsValid(Entity $entity, string $field): bool {
+	public function checkColumnsValid(Entity $entity, string $field): bool
+	{
 		$recordListEnabled = $this->entityManager->getDefs()
-		    ->getEntity($entity->getEntityType())
-		    ->getField($field)
-		    ->getParam('recordListEnabled');
+			->getEntity($entity->getEntityType())
+			->getField($field)
+			->getParam('recordListEnabled');
 
 		if ($recordListEnabled) {
 			if (!$entity instanceof CoreEntity) {

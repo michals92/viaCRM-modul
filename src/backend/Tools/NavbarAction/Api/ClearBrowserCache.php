@@ -7,10 +7,12 @@ use Espo\Core\Api\Request;
 use Espo\Core\Api\Response;
 use Espo\Core\Api\ResponseComposer;
 
-class ClearBrowserCache implements Action {
-	public function process(Request $request): Response {
+class ClearBrowserCache implements Action
+{
+	public function process(Request $request): Response
+	{
 		$response = ResponseComposer::json([
-		    'success' => true
+			'success' => true,
 		]);
 
 		$response->addHeader('Clear-Site-Data', 'cache');

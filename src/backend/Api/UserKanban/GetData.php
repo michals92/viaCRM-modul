@@ -10,13 +10,16 @@ use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Record\SearchParamsFetcher;
 use Espo\Modules\Viacrm\Tools\UserKanban\Service as UserKanbanService;
 
-class GetData implements Action {
+class GetData implements Action
+{
 	public function __construct(
 		private readonly UserKanbanService $userKanbanService,
 		private readonly SearchParamsFetcher $searchParamsFetcher
-	) {}
+	) {
+	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$entityType = $request->getRouteParam('entityType');
 
 		if (!$entityType) {
@@ -33,9 +36,9 @@ class GetData implements Action {
 		}
 
 		return ResponseComposer::json([
-		    'total' => $result->getTotal(),
-		    'groups' => array_map(fn($it) => $it->toRaw(), $result->getGroups()),
-		    'list' => $list,
+			'total' => $result->getTotal(),
+			'groups' => array_map(fn ($it) => $it->toRaw(), $result->getGroups()),
+			'list' => $list,
 		]);
 	}
 }

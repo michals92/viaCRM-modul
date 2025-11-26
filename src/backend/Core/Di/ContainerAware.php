@@ -4,6 +4,7 @@ namespace Espo\Modules\Viacrm\Core\Di;
 
 use Espo\Core\Container\Container;
 
-interface ContainerAware {
+interface ContainerAware
+{
 	public function setContainer(Container $container): void;
 }

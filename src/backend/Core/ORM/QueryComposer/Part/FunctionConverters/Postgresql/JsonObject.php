@@ -4,8 +4,10 @@ namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Pos
 
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 
-class JsonObject implements FunctionConverter {
-	public function convert(string ...$argumentList): string {
+class JsonObject implements FunctionConverter
+{
+	public function convert(string ...$argumentList): string
+	{
 		$string = 'jsonb_build_object(';
 
 		foreach ($argumentList as $argument) {

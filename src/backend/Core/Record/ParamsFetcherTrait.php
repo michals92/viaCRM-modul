@@ -18,14 +18,17 @@ use Espo\Core\Utils\Metadata;
  * @template TParamsFetcher of ReadParamsFetcher|CreateParamsFetcher|UpdateParamsFetcher|DeleteParamsFetcher
  * @template TParams of ReadParams|CreateParams|UpdateParams|DeleteParams
  */
-trait ParamsFetcherTrait {
+trait ParamsFetcherTrait
+{
 	public function __construct(
 		protected readonly InjectableFactory $injectableFactory,
-		protected readonly Metadata          $metadata,
-	) {}
+		protected readonly Metadata $metadata,
+	) {
+	}
 
 	/**
 	 * @throws \Exception
+	 *
 	 * @return TParams
 	 */
 	protected function fetchInternal(
@@ -52,6 +55,7 @@ trait ParamsFetcherTrait {
 
 		/**
 		 * @phpstan-var class-string<TParamsFetcher> $paramsFetcherClassName
+		 *
 		 * @var TParamsFetcher $paramsFetcher
 		 */
 		$paramsFetcher = $this->injectableFactory->create($paramsFetcherClassName);

@@ -10,18 +10,21 @@ use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Log;
 use Espo\Modules\Outlook\Core\Outlook\Clients\Outlook;
 
-class RefreshMicrosoftGraphSubscriptions implements JobDataLess {
+class RefreshMicrosoftGraphSubscriptions implements JobDataLess
+{
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly ClientManager $clientManager,
 		private readonly Log $log,
-	) {}
+	) {
+	}
 
-	public function run(): void {
+	public function run(): void
+	{
 		$em = $this->entityManager;
 		$subscriptions = $em
-		    ->getRDBRepository('MicrosoftGraphSubscription')
-		    ->find();
+			->getRDBRepository('MicrosoftGraphSubscription')
+			->find();
 
 		foreach ($subscriptions as $subscription) {
 			try {
@@ -35,15 +38,15 @@ class RefreshMicrosoftGraphSubscriptions implements JobDataLess {
 
 				// Format expiration date for Graph API
 				$expirationDate = DateTime::createNow()
-				    ->modify('+6 days')
-				    ->toDateTime()
-				    ->format('Y-m-d\TH:i:s.u\Z');
+					->modify('+6 days')
+					->toDateTime()
+					->format('Y-m-d\TH:i:s.u\Z');
 
-				$subscriptionEndpoint = 'https://graph.microsoft.com/v1.0/subscriptions/' . 
-				    $subscription->get('subscriptionId');
+				$subscriptionEndpoint = 'https://graph.microsoft.com/v1.0/subscriptions/' .
+					$subscription->get('subscriptionId');
 
 				$body = [
-				    'expirationDateTime' => $expirationDate
+					'expirationDateTime' => $expirationDate,
 				];
 
 				$outlookClient->request(
@@ -54,16 +57,17 @@ class RefreshMicrosoftGraphSubscriptions implements JobDataLess {
 				);
 
 				// Update subscription entity with new expiration date
-				$subscription->set('expirationDate',
+				$subscription->set(
+					'expirationDate',
 					DateTime::createNow()
-					    ->modify('+6 days')
-					    ->toString()
+						->modify('+6 days')
+						->toString()
 				);
 				$em->saveEntity($subscription);
 			} catch (\Exception $e) {
 				$this->log->error('Failed to refresh Microsoft Graph subscription: ' . $e->getMessage(), [
-				    'subscription' => $subscription->getId(),
-				    'exception' => $e
+					'subscription' => $subscription->getId(),
+					'exception' => $e,
 				]);
 			}
 		}

@@ -6,16 +6,17 @@ use Espo\Core\Di;
 use Espo\Modules\Viacrm\Classes\Utils\ExtensionUtil;
 use Espo\Modules\Viacrm\Core\Hook\ConditionalHook\Abstract\ConditionalHook;
 
-class GeneralInvoker extends \Espo\Core\Hook\GeneralInvoker implements Di\ConfigAware {
+class GeneralInvoker extends \Espo\Core\Hook\GeneralInvoker implements Di\ConfigAware
+{
 	use Di\ConfigSetter;
 
 	/** @inheritDoc */
 	public function invoke(
 		object $hook,
 		string $name,
-		mixed  $subject,
-		array  $options,
-		array  $hookData,
+		mixed $subject,
+		array $options,
+		array $hookData,
 	): void {
 		if (
 			($hook instanceof ConditionalHook) &&

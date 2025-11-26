@@ -19,27 +19,29 @@ use Espo\ORM\Type\AttributeType;
  *   "unitLinkName": "product",         // Link name to entity with unit
  * }
  */
-class FloatWithLinkedUnit implements FieldConverter {
-	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs {
+class FloatWithLinkedUnit implements FieldConverter
+{
+	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs
+	{
 		$name = $fieldDefs->getName();
 		$unitField = $fieldDefs->getParam('unitField');
 		$unitLinkName = $fieldDefs->getParam('unitLinkName');
 
 		// Value attribute (the float number)
 		$valueDefs = AttributeDefs::create($name)
-		    ->withType(AttributeType::FLOAT)
-		    ->withParamsMerged([
-		        'attributeRole' => 'value',
-		        'fieldType' => 'floatWithLinkedUnit',
-		    ]);
+			->withType(AttributeType::FLOAT)
+			->withParamsMerged([
+				'attributeRole' => 'value',
+				'fieldType' => 'floatWithLinkedUnit',
+			]);
 
 		// Unit attribute (stores the actual unit string)
 		$unitDefs = AttributeDefs::create($name . 'Unit')
-		    ->withType(AttributeType::VARCHAR)
-		    ->withParamsMerged([
-		        'attributeRole' => 'unit',
-		        'fieldType' => 'floatWithLinkedUnit',
-		    ]);
+			->withType(AttributeType::VARCHAR)
+			->withParamsMerged([
+				'attributeRole' => 'unit',
+				'fieldType' => 'floatWithLinkedUnit',
+			]);
 
 		// Handle notStorable flag
 		if ($fieldDefs->isNotStorable()) {
@@ -48,8 +50,8 @@ class FloatWithLinkedUnit implements FieldConverter {
 		}
 
 		$entityDefs = EntityDefs::create()
-		    ->withAttribute($valueDefs)
-		    ->withAttribute($unitDefs);
+			->withAttribute($valueDefs)
+			->withAttribute($unitDefs);
 
 		// Add shared FOREIGN attribute for the link (e.g., productMeasureUnit)
 		// This is shared by ALL floatWithLinkedUnit fields using the same link+field combination
@@ -68,24 +70,24 @@ class FloatWithLinkedUnit implements FieldConverter {
 					$unitLinkName,  // Relation name
 					$alias,         // Alias
 					[
-						$alias . '.id:' => $unitLinkName . 'Id'  // Join condition
-					]
-				]
+						$alias . '.id:' => $unitLinkName . 'Id',  // Join condition
+					],
+				],
 			];
 
 			// Create FOREIGN attribute with explicit LEFT JOIN definition
 			$sharedForeignDefs = AttributeDefs::create($sharedAttributeName)
-			    ->withType(AttributeType::FOREIGN)
-			    ->withNotStorable()
-			    ->withParamsMerged([
-			        'relation' => $unitLinkName,   // Link name (e.g., 'product')
-			        'foreign' => $unitField,       // Field on linked entity (e.g., 'measureUnit')
-			        'attributeRole' => 'foreign',
-			        'select' => [
-			            'select' => $alias . '.' . $unitField,  // SELECT alias.measureUnit
-			            'leftJoins' => $leftJoins,               // Explicit LEFT JOIN
-			        ],
-			    ]);
+				->withType(AttributeType::FOREIGN)
+				->withNotStorable()
+				->withParamsMerged([
+					'relation' => $unitLinkName,   // Link name (e.g., 'product')
+					'foreign' => $unitField,       // Field on linked entity (e.g., 'measureUnit')
+					'attributeRole' => 'foreign',
+					'select' => [
+						'select' => $alias . '.' . $unitField,  // SELECT alias.measureUnit
+						'leftJoins' => $leftJoins,               // Explicit LEFT JOIN
+					],
+				]);
 
 			$entityDefs = $entityDefs->withAttribute($sharedForeignDefs);
 		}

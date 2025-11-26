@@ -10,8 +10,10 @@ use Espo\ORM\Entity;
 /**
  * @implements FieldLoader<Role>
  */
-class UsersLoader implements FieldLoader {
-	public function process(Entity $entity, LoaderParams $params): void {
+class UsersLoader implements FieldLoader
+{
+	public function process(Entity $entity, LoaderParams $params): void
+	{
 		$entity->loadLinkMultipleField('users');
 	}
 }

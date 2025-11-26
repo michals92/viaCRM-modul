@@ -12,7 +12,8 @@ use Espo\ORM\Repository\Option\SaveOptions;
 /**
  * @implements BeforeSave<Entity>
  */
-class CalculateCoordinates implements BeforeSave {
+class CalculateCoordinates implements BeforeSave
+{
 	public static int $order = 9;
 
 	protected const FIELDS = ['Street', 'City', 'State', 'PostalCode', 'Country'];
@@ -22,9 +23,11 @@ class CalculateCoordinates implements BeforeSave {
 	public function __construct(
 		private readonly Metadata $metadata,
 		private readonly Config $config
-	) {}
+	) {
+	}
 
-	public function beforeSave(Entity $entity, SaveOptions $options): void {
+	public function beforeSave(Entity $entity, SaveOptions $options): void
+	{
 		$addressFieldList = $this->getFieldList($entity->getEntityType());
 
 		foreach ($addressFieldList as $addressField) {
@@ -43,18 +46,20 @@ class CalculateCoordinates implements BeforeSave {
 	/**
 	 * @return array<int, string>
 	 */
-	private function getFieldList(string $entityType): array {
+	private function getFieldList(string $entityType): array
+	{
 		$all = $this->metadata->get(['entityDefs', $entityType, 'fields'], []);
 
 		$filtered = array_filter(
 			$all,
-			static fn($fieldDef) => $fieldDef['type'] === 'address' && !empty($fieldDef['saveCoordinates'])
+			static fn ($fieldDef) => $fieldDef['type'] === 'address' && !empty($fieldDef['saveCoordinates'])
 		);
 
 		return array_keys($filtered);
 	}
 
-	private function adjustCoordinates(Entity $entity, string $addressField): void {
+	private function adjustCoordinates(Entity $entity, string $addressField): void
+	{
 		$apiKey = $this->config->get('googleMapsApiKey');
 
 		if (!$apiKey) {
@@ -68,9 +73,9 @@ class CalculateCoordinates implements BeforeSave {
 		}
 
 		$params = [
-		    'key' => $apiKey,
-		    'address' => $address,
-		    'sensor' => false,
+			'key' => $apiKey,
+			'address' => $address,
+			'sensor' => false,
 		];
 
 		$url = self::URL . http_build_query($params);
@@ -107,7 +112,8 @@ class CalculateCoordinates implements BeforeSave {
 		}
 	}
 
-	private function composeAddress(Entity $entity, string $addressField): string {
+	private function composeAddress(Entity $entity, string $addressField): string
+	{
 		$parts = [];
 
 		// Street

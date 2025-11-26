@@ -15,7 +15,8 @@ use Espo\ORM\Mapper\BaseMapper;
 use Espo\Repositories\PhoneNumber as PhoneNumberRepository;
 use ReflectionException;
 
-class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
+class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver
+{
 	private const ATTR_PHONE_NUMBER = 'phoneNumber';
 	private const ATTR_PHONE_NUMBER_DATA = 'phoneNumberData';
 	private const ATTR_PHONE_NUMBER_IS_OPTED_OUT = 'phoneNumberIsOptedOut';
@@ -24,8 +25,8 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 	public function __construct(
 		private EntityManager $entityManager,
 		ApplicationState $applicationState,
-		readonly AccessChecker $accessChecker,
-		readonly Metadata $metadata,
+		public readonly AccessChecker $accessChecker,
+		public readonly Metadata $metadata,
 	) {
 		parent::__construct(
 			$entityManager,
@@ -38,7 +39,8 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 	/**
 	 * @throws ReflectionException
 	 */
-	public function process(Entity $entity, SaverParams $params): void {
+	public function process(Entity $entity, SaverParams $params): void
+	{
 		$entityType = $entity->getEntityType();
 
 		$defs = $this->entityManager->getDefs()->getEntity($entityType);
@@ -71,7 +73,8 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 	/**
 	 * @throws ReflectionException
 	 */
-	private function storeData(Entity $entity): void {
+	private function storeData(Entity $entity): void
+	{
 		if (!$entity->has(self::ATTR_PHONE_NUMBER_DATA)) {
 			return;
 		}
@@ -88,7 +91,7 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 			return;
 		}
 
-		$noPrimary = array_filter($phoneNumberData, static fn($item) => !empty($item->primary)) === [];
+		$noPrimary = array_filter($phoneNumberData, static fn ($item) => !empty($item->primary)) === [];
 
 		if ($noPrimary && $phoneNumberData !== []) {
 			$phoneNumberData[0]->primary = true;
@@ -116,15 +119,15 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 			}
 
 			$type = $row->type ??
-			    $this->metadata
-			    ->get(['entityDefs', $entity->getEntityType(), 'fields', 'phoneNumber', 'defaultType']);
+				$this->metadata
+				->get(['entityDefs', $entity->getEntityType(), 'fields', 'phoneNumber', 'defaultType']);
 
 			$hash->$key = [
-			    'primary' => !empty($row->primary),
-			    'type' => $type,
-			    'optOut' => !empty($row->optOut),
-			    'invalid' => !empty($row->invalid),
-			    'accountId' => $row->accountId ?? null
+				'primary' => !empty($row->primary),
+				'type' => $type,
+				'optOut' => !empty($row->optOut),
+				'invalid' => !empty($row->invalid),
+				'accountId' => $row->accountId ?? null,
 			];
 
 			$keyList[] = $key;
@@ -172,12 +175,12 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 			}
 
 			$hashPrevious->$key = [
-			    'primary' => (bool) $row->primary,
-			    'type' => $row->type,
-			    'optOut' => (bool) $row->optOut,
-			    'invalid' => (bool) $row->invalid,
-			    'accountId' => $row->accountId ?? null,
-			    'accountName' => $row->accountName ?? null,
+				'primary' => (bool) $row->primary,
+				'type' => $row->type,
+				'optOut' => (bool) $row->optOut,
+				'invalid' => (bool) $row->invalid,
+				'accountId' => $row->accountId ?? null,
+				'accountName' => $row->accountName ?? null,
 			];
 
 			$keyPreviousList[] = $key;
@@ -203,10 +206,10 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 				$new = false;
 
 				$changed =
-				    $hash->{$key}['type'] !== $hashPrevious->{$key}['type'] ||
-				    $hash->{$key}['optOut'] !== $hashPrevious->{$key}['optOut'] ||
-				    $hash->{$key}['invalid'] !== $hashPrevious->{$key}['invalid'] ||
-				    $hash->{$key}['accountId'] !== $hashPrevious->{$key}['accountId'];
+					$hash->{$key}['type'] !== $hashPrevious->{$key}['type'] ||
+					$hash->{$key}['optOut'] !== $hashPrevious->{$key}['optOut'] ||
+					$hash->{$key}['invalid'] !== $hashPrevious->{$key}['invalid'] ||
+					$hash->{$key}['accountId'] !== $hashPrevious->{$key}['accountId'];
 
 				if (
 					$hash->{$key}['primary'] &&
@@ -239,14 +242,14 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 			}
 
 			$delete = $this->entityManager->getQueryBuilder()
-			    ->delete()
-			    ->from('EntityPhoneNumber')
-			    ->where([
-			        'entityId' => $entity->getId(),
-			        'entityType' => $entity->getEntityType(),
-			        'phoneNumberId' => $phoneNumber->getId(),
-			    ])
-			    ->build();
+				->delete()
+				->from('EntityPhoneNumber')
+				->where([
+					'entityId' => $entity->getId(),
+					'entityType' => $entity->getEntityType(),
+					'phoneNumberId' => $phoneNumber->getId(),
+				])
+				->build();
 
 			$this->entityManager->getQueryExecutor()->execute($delete);
 		}
@@ -259,19 +262,19 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 
 				if (!$skipSave) {
 					$phoneNumber->set([
-					    'type' => $hash->{$number}['type'],
-					    'optOut' => $hash->{$number}['optOut'],
-					    'invalid' => $hash->{$number}['invalid'],
-					    'accountId' => $hash->{$number}['accountId'],
+						'type' => $hash->{$number}['type'],
+						'optOut' => $hash->{$number}['optOut'],
+						'invalid' => $hash->{$number}['invalid'],
+						'accountId' => $hash->{$number}['accountId'],
 					]);
 
 					$this->entityManager->saveEntity($phoneNumber);
 				} else {
 					$revertData[$number] = [
-					    'type' => $phoneNumber->get('type'),
-					    'optOut' => $phoneNumber->get('optOut'),
-					    'invalid' => $phoneNumber->get('invalid'),
-					    'accountId' => $phoneNumber->get('accountId')
+						'type' => $phoneNumber->get('type'),
+						'optOut' => $phoneNumber->get('optOut'),
+						'invalid' => $phoneNumber->get('invalid'),
+						'accountId' => $phoneNumber->get('accountId'),
 					];
 				}
 			}
@@ -284,11 +287,11 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 				$phoneNumber = $this->entityManager->getNewEntity(PhoneNumber::ENTITY_TYPE);
 
 				$phoneNumber->set([
-				    'name' => $number,
-				    'type' => $hash->{$number}['type'],
-				    'optOut' => $hash->{$number}['optOut'],
-				    'invalid' => $hash->{$number}['invalid'],
-				    'accountId' => $hash->{$number}['accountId'],
+					'name' => $number,
+					'type' => $hash->{$number}['type'],
+					'optOut' => $hash->{$number}['optOut'],
+					'invalid' => $hash->{$number}['invalid'],
+					'accountId' => $hash->{$number}['accountId'],
 				]);
 
 				$this->entityManager->saveEntity($phoneNumber);
@@ -303,20 +306,20 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 						$phoneNumber->get('accountId') != $hash->{$number}['accountId']
 					) {
 						$phoneNumber->set([
-						    'type' => $hash->{$number}['type'],
-						    'optOut' => $hash->{$number}['optOut'],
-						    'invalid' => $hash->{$number}['invalid'],
-						    'accountId' => $hash->{$number}['accountId'],
+							'type' => $hash->{$number}['type'],
+							'optOut' => $hash->{$number}['optOut'],
+							'invalid' => $hash->{$number}['invalid'],
+							'accountId' => $hash->{$number}['accountId'],
 						]);
 
 						$this->entityManager->saveEntity($phoneNumber);
 					}
 				} else {
 					$revertData[$number] = [
-					    'type' => $phoneNumber->getType(),
-					    'optOut' => $phoneNumber->isOptedOut(),
-					    'invalid' => $phoneNumber->isInvalid(),
-					    'accountId' => $phoneNumber->get('accountId'),
+						'type' => $phoneNumber->getType(),
+						'optOut' => $phoneNumber->isOptedOut(),
+						'invalid' => $phoneNumber->isInvalid(),
+						'accountId' => $phoneNumber->get('accountId'),
 					];
 				}
 			}
@@ -324,21 +327,21 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 			$entityPhoneNumber = $this->entityManager->getNewEntity('EntityPhoneNumber');
 
 			$entityPhoneNumber->set([
-			    'entityId' => $entity->getId(),
-			    'entityType' => $entity->getEntityType(),
-			    'phoneNumberId' => $phoneNumber->getId(),
-			    'primary' => $number === $primary,
-			    'deleted' => false,
-			    'accountId' => $hash->{$number}['accountId'],
+				'entityId' => $entity->getId(),
+				'entityType' => $entity->getEntityType(),
+				'phoneNumberId' => $phoneNumber->getId(),
+				'primary' => $number === $primary,
+				'deleted' => false,
+				'accountId' => $hash->{$number}['accountId'],
 			]);
 
 			/** @var BaseMapper $mapper */
 			$mapper = $this->entityManager->getMapper();
 
 			$mapper->insertOnDuplicateUpdate($entityPhoneNumber, [
-			    'primary',
-			    'deleted',
-			    'accountId'
+				'primary',
+				'deleted',
+				'accountId',
 			]);
 		}
 
@@ -349,32 +352,32 @@ class Saver extends \Espo\Core\FieldProcessing\PhoneNumber\Saver {
 
 			if ($phoneNumber) {
 				$update1 = $this->entityManager
-				    ->getQueryBuilder()
-				    ->update()
-				    ->in('EntityPhoneNumber')
-				    ->set(['primary' => false])
-				    ->where([
-				        'entityId' => $entity->getId(),
-				        'entityType' => $entity->getEntityType(),
-				        'primary' => true,
-				        'deleted' => false,
-				    ])
-				    ->build();
+					->getQueryBuilder()
+					->update()
+					->in('EntityPhoneNumber')
+					->set(['primary' => false])
+					->where([
+						'entityId' => $entity->getId(),
+						'entityType' => $entity->getEntityType(),
+						'primary' => true,
+						'deleted' => false,
+					])
+					->build();
 
 				$this->entityManager->getQueryExecutor()->execute($update1);
 
 				$update2 = $this->entityManager
-				    ->getQueryBuilder()
-				    ->update()
-				    ->in('EntityPhoneNumber')
-				    ->set(['primary' => true])
-				    ->where([
-				        'entityId' => $entity->getId(),
-				        'entityType' => $entity->getEntityType(),
-				        'phoneNumberId' => $phoneNumber->getId(),
-				        'deleted' => false,
-				    ])
-				    ->build();
+					->getQueryBuilder()
+					->update()
+					->in('EntityPhoneNumber')
+					->set(['primary' => true])
+					->where([
+						'entityId' => $entity->getId(),
+						'entityType' => $entity->getEntityType(),
+						'phoneNumberId' => $phoneNumber->getId(),
+						'deleted' => false,
+					])
+					->build();
 
 				$this->entityManager->getQueryExecutor()->execute($update2);
 			}

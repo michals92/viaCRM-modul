@@ -29,24 +29,27 @@ use Espo\ORM\Query\Part\Expression;
 use Espo\ORM\Query\Part\Order;
 use Throwable;
 
-class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
+class Fetcher extends \Espo\Core\Mail\Account\Fetcher
+{
 	public function __construct(
-		private readonly Importer         $importer,
-		private readonly StorageFactory   $storageFactory,
-		private readonly Config           $config,
-		private readonly Log              $log,
-		private readonly EntityManager    $entityManager,
-		private readonly ParserFactory    $parserFactory,
+		private readonly Importer $importer,
+		private readonly StorageFactory $storageFactory,
+		private readonly Config $config,
+		private readonly Log $log,
+		private readonly EntityManager $entityManager,
+		private readonly ParserFactory $parserFactory,
 		private readonly ?BeforeFetchHook $beforeFetchHook,
-		private readonly ?AfterFetchHook  $afterFetchHook
-	) {}
+		private readonly ?AfterFetchHook $afterFetchHook
+	) {
+	}
 
 	/**
 	 * @throws Error
 	 * @throws ImapError
 	 * @throws NoImap
 	 */
-	public function fetch(Account $account): void {
+	public function fetch(Account $account): void
+	{
 		if (!$account->isAvailableForFetching()) {
 			throw new Error("{$account->getEntityType()} {$account->getId()} is not active.");
 		}
@@ -69,13 +72,14 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 	}
 
 	/**
-	 * @param  Collection<EmailFilter> $filterList
+	 * @param Collection<EmailFilter> $filterList
+	 *
 	 * @throws Error
 	 */
 	private function fetchFolder(
-		Account    $account,
-		string     $folderOriginal,
-		Storage    $storage,
+		Account $account,
+		string $folderOriginal,
+		Storage $storage,
 		Collection $filterList
 	): void {
 		$fetchData = $account->getFetchData();
@@ -136,7 +140,7 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 			if ($forceByDate && $previousLastUniqueId) {
 				$uid = $storage->getUniqueId($id);
 
-				if ((int)$uid <= (int)$previousLastUniqueId) {
+				if ((int) $uid <= (int) $previousLastUniqueId) {
 					$counter++;
 
 					continue;
@@ -178,7 +182,7 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 			if (count($idList)) {
 				$uid1 = $storage->getUniqueId($idList[0]);
 
-				if ((int)$uid1 > (int)$previousLastUniqueId) {
+				if ((int) $uid1 > (int) $previousLastUniqueId) {
 					$fetchData->setForceByDate($folder, false);
 				}
 			}
@@ -187,7 +191,7 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 		if (
 			!$forceByDate &&
 			$previousLastUniqueId &&
-			(int)$previousLastUniqueId >= (int)$lastUniqueId &&
+			(int) $previousLastUniqueId >= (int) $lastUniqueId &&
 			count($idList)
 		) {
 			// Handling broken numbering. Next time fetch since the last date rather than the last UID.
@@ -199,14 +203,15 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 
 	/**
 	 * @throws Error
+	 *
 	 * @return int[]
 	 */
 	private function getIdList(
-		Account        $account,
-		Storage        $storage,
-		?string        $lastUID,
+		Account $account,
+		Storage $storage,
+		?string $lastUID,
 		?DateTimeField $lastDate,
-		bool           $forceByDate
+		bool $forceByDate
 	): array {
 		if (!empty($lastUID) && !$forceByDate) {
 			return $storage->getIdsFromUniqueId($lastUID);
@@ -231,9 +236,9 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 	 * @param Collection<EmailFilter> $filterList
 	 */
 	private function fetchEmail(
-		Account    $account,
-		Storage    $storage,
-		int        $id,
+		Account $account,
+		Storage $storage,
+		int $id,
 		Collection $filterList
 	): ?Email {
 		$teamIdList = $account->getTeams()->getIdList();
@@ -254,8 +259,7 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 
 		$parser = $this->parserFactory->create();
 
-		$importerData = ImporterData
-			::create()
+		$importerData = ImporterData::create()
 			->withTeamIdList($teamIdList)
 			->withFilterList($filterList)
 			->withFetchOnlyHeader($fetchOnlyHeader)
@@ -325,7 +329,8 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 		return $email;
 	}
 
-	private function processBeforeFetchHook(Account $account, MessageWrapper $message): BeforeFetchHookResult {
+	private function processBeforeFetchHook(Account $account, MessageWrapper $message): BeforeFetchHookResult
+	{
 		assert($this->beforeFetchHook !== null);
 
 		try {
@@ -343,7 +348,8 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 	/**
 	 * @return Collection<EmailFilter>
 	 */
-	private function getFilterList(Account $account): Collection {
+	private function getFilterList(Account $account): Collection
+	{
 		$actionList = [EmailFilter::ACTION_SKIP];
 
 		if ($account->getEntityType() === InboundEmail::ENTITY_TYPE) {
@@ -364,7 +370,7 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 						'parentId' => null,
 						'action' => EmailFilter::ACTION_SKIP,
 					],
-				]
+				],
 			]);
 
 		if (count($actionList) > 1) {
@@ -380,7 +386,8 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 		return $builder->find();
 	}
 
-	private function checkFetchOnlyHeader(Storage $storage, int $id): bool {
+	private function checkFetchOnlyHeader(Storage $storage, int $id): bool
+	{
 		$maxSize = $this->config->get('emailMessageMaxSize');
 
 		if (!$maxSize) {
@@ -403,9 +410,9 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 	}
 
 	private function importMessage(
-		Account        $account,
+		Account $account,
 		MessageWrapper $message,
-		ImporterData   $data
+		ImporterData $data
 	): ?Email {
 		try {
 			return $this->importer->import($message, $data);
@@ -424,10 +431,12 @@ class Fetcher extends \Espo\Core\Mail\Account\Fetcher {
 	}
 
 	/**
-	 * @param  string[] $flags
+	 * @param string[] $flags
+	 *
 	 * @return string[]
 	 */
-	private static function flagsWithoutRecent(array $flags): array {
+	private static function flagsWithoutRecent(array $flags): array
+	{
 		return array_values(
 			array_diff($flags, [Flag::RECENT])
 		);

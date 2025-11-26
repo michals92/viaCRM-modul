@@ -8,7 +8,8 @@ use Espo\Core\ORM\Entity;
  * Class ProductSupplierItem
  * Represents a link between a product and a supplier with additional attributes.
  */
-class ProductSupplierItem extends Entity {
+class ProductSupplierItem extends Entity
+{
 	public const string TEMPLATE_TYPE = 'Base';
 
 	public const string ENTITY_TYPE = 'ProductSupplierItem';
@@ -21,7 +22,8 @@ class ProductSupplierItem extends Entity {
 	 *
 	 * @return string The supplier ID
 	 */
-	public function getSupplierId(): string {
+	public function getSupplierId(): string
+	{
 		$accountId = $this->get('accountId');
 
 		if ($accountId === null) {
@@ -39,7 +41,8 @@ class ProductSupplierItem extends Entity {
 	 *
 	 * @return float|null The cost price or null if not set
 	 */
-	public function getCostPrice(): ?float {
+	public function getCostPrice(): ?float
+	{
 		return $this->get('costPrice');
 	}
 
@@ -48,7 +51,8 @@ class ProductSupplierItem extends Entity {
 	 *
 	 * @return int|null The delivery time in days or null if not set
 	 */
-	public function getDeliveryTime(): ?int {
+	public function getDeliveryTime(): ?int
+	{
 		return $this->get('deliveryTime');
 	}
 
@@ -60,7 +64,8 @@ class ProductSupplierItem extends Entity {
 	 *
 	 * @return bool True if the supplier can deliver in time
 	 */
-	public function canMeetDeadline(int $daysRemaining): bool {
+	public function canMeetDeadline(int $daysRemaining): bool
+	{
 		$deliveryTime = $this->getDeliveryTime();
 		// If delivery time is not specified, we cannot guarantee delivery by deadline
 		if ($deliveryTime === null) {

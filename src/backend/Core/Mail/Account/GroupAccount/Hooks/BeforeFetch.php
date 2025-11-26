@@ -11,20 +11,23 @@ use Espo\Core\Mail\MessageWrapper;
 use Espo\Core\Utils\Log;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 
-class BeforeFetch implements BeforeFetchInterface {
+class BeforeFetch implements BeforeFetchInterface
+{
 	public function __construct(
 		protected readonly BeforeFetchHook $beforeFetchHook,
 		protected readonly Log $log
-	) {}
+	) {
+	}
 
-	public function process(Account $account, Message $message): BeforeFetchResult {
+	public function process(Account $account, Message $message): BeforeFetchResult
+	{
 		$result = $this->beforeFetchHook->process($account, $message);
 
 		$this->log->debug('Email BeforeFetch: ', [
-		    'int' => $message instanceOf MessageWrapper ? ReflectionUtil::getProperty($message, 'id') : null,
-		    'isFetched' => $message->isFetched(),
-		    'flags' => $message->getFlags(),
-		]);  
+			'int' => $message instanceof MessageWrapper ? ReflectionUtil::getProperty($message, 'id') : null,
+			'isFetched' => $message->isFetched(),
+			'flags' => $message->getFlags(),
+		]);
 
 		return $result;
 	}

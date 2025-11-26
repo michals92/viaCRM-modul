@@ -16,17 +16,20 @@ use Throwable;
 /**
  * Lightweight EWS fetcher based on SOAP requests (FindItem + GetItem).
  */
-class Fetcher {
+class Fetcher
+{
 	public function __construct(
 		private Importer $importer,
 		private Log $log,
 		private ParserFactory $parserFactory
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws Error
 	 */
-	public function fetch(PersonalAccountAccount|GroupAccountAccount $account): void {
+	public function fetch(PersonalAccountAccount|GroupAccountAccount $account): void
+	{
 		if (!$account->isAvailableForFetching()) {
 			throw new Error("{$account->getEntityType()} {$account->getId()} is not active.");
 		}
@@ -113,9 +116,11 @@ class Fetcher {
 
 	/**
 	 * @throws Error
+	 *
 	 * @return array<int, array{id:string, changeKey:string, received:string}>
 	 */
-	private function findItems(string $url, string $username, string $password, int $limit): array {
+	private function findItems(string $url, string $username, string $password, int $limit): array
+	{
 		$body = $this->buildFindItemEnvelope($limit);
 		$response = $this->sendSoapRequest($url, $username, $password, 'FindItem', $body);
 
@@ -139,9 +144,9 @@ class Fetcher {
 			}
 
 			$items[] = [
-			    'id' => html_entity_decode($idMatch[1]),
-			    'changeKey' => html_entity_decode($idMatch[2]),
-			    'received' => $received,
+				'id' => html_entity_decode($idMatch[1]),
+				'changeKey' => html_entity_decode($idMatch[2]),
+				'received' => $received,
 			];
 		}
 
@@ -201,17 +206,17 @@ class Fetcher {
 		$ch = curl_init($url);
 
 		curl_setopt_array($ch, [
-		    CURLOPT_POST => true,
-		    CURLOPT_POSTFIELDS => $body,
-		    CURLOPT_RETURNTRANSFER => true,
-		    CURLOPT_HTTPAUTH => CURLAUTH_BASIC | CURLAUTH_NTLM,
-		    CURLOPT_USERPWD => $username . ':' . $password,
-		    CURLOPT_HTTPHEADER => [
-		        'Content-Type: text/xml; charset=utf-8',
-		        'SOAPAction: http://schemas.microsoft.com/exchange/services/2006/messages/' . $action,
-		    ],
-		    CURLOPT_SSL_VERIFYPEER => false,
-		    CURLOPT_SSL_VERIFYHOST => false,
+			CURLOPT_POST => true,
+			CURLOPT_POSTFIELDS => $body,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_HTTPAUTH => CURLAUTH_BASIC | CURLAUTH_NTLM,
+			CURLOPT_USERPWD => $username . ':' . $password,
+			CURLOPT_HTTPHEADER => [
+				'Content-Type: text/xml; charset=utf-8',
+				'SOAPAction: http://schemas.microsoft.com/exchange/services/2006/messages/' . $action,
+			],
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST => false,
 		]);
 
 		$response = curl_exec($ch);
@@ -232,7 +237,8 @@ class Fetcher {
 		return $response;
 	}
 
-	private function buildFindItemEnvelope(int $limit): string {
+	private function buildFindItemEnvelope(int $limit): string
+	{
 		$max = max(1, $limit);
 
 		return <<<XML
@@ -263,7 +269,8 @@ class Fetcher {
 XML;
 	}
 
-	private function buildGetItemEnvelope(string $itemId, string $changeKey): string {
+	private function buildGetItemEnvelope(string $itemId, string $changeKey): string
+	{
 		$itemIdEscaped = htmlspecialchars($itemId, ENT_XML1);
 		$changeKeyEscaped = htmlspecialchars($changeKey, ENT_XML1);
 
@@ -291,7 +298,8 @@ XML;
 XML;
 	}
 
-	private function ensureResponseSuccess(string $response, string $action): void {
+	private function ensureResponseSuccess(string $response, string $action): void
+	{
 		if (!preg_match('/<m:ResponseCode>([^<]+)<\/m:ResponseCode>/', $response, $match)) {
 			$this->log->warning("EWS {$action} response has no ResponseCode");
 
@@ -305,7 +313,8 @@ XML;
 		}
 	}
 
-	private function createImporterData(PersonalAccountAccount|GroupAccountAccount $account): ImporterData {
+	private function createImporterData(PersonalAccountAccount|GroupAccountAccount $account): ImporterData
+	{
 		$data = ImporterData::create();
 
 		if ($account->getAssignedUser()) {
@@ -326,7 +335,7 @@ XML;
 
 		if ($account->getEmailFolder()) {
 			$data = $data->withFolderData([
-			    $account->getEmailFolder()->getId() => 'all',
+				$account->getEmailFolder()->getId() => 'all',
 			]);
 		}
 

@@ -17,30 +17,36 @@ use Espo\ORM\Query\Part\WhereClause;
 use Espo\ORM\Query\Part\WhereItem as WhereClauseItem;
 use Espo\ORM\Query\SelectBuilder as QueryBuilder;
 
-class DefaultConditionConverter implements ConditionConverter {
+class DefaultConditionConverter implements ConditionConverter
+{
 	public const ALIAS_USER = 'wiu'; // Where Item User
 	public const ALIAS_USER_ROLE = 'wiuru'; // Where Item User Role User
 	public const ALIAS_USER_TEAM = 'wiutu'; // Where Item User Team User
 	protected const ALIAS_ENTITY_TEAM = 'wiet';
 
 	protected string $entityType;
+
 	protected Entity $seedEntity;
 
 	public function __construct(
 		private readonly EntityManager $entityManager
-	) {}
+	) {
+	}
 
 	/**
 	 * Convert a dynamic logic condition to query parameters.
 	 *
-	 * @param  QueryBuilder                  $queryBuilder The query builder instance
-	 * @param  array<string, mixed>          $condition    The condition data to convert
-	 * @param  array<string, mixed>          $options      The options for conversion
+	 * @param QueryBuilder         $queryBuilder The query builder instance
+	 * @param array<string, mixed> $condition    The condition data to convert
+	 * @param array<string, mixed> $options      The options for conversion
+	 *
 	 * @throws \ReflectionException
 	 * @throws \ReflectionException
+	 *
 	 * @return array<string|int, mixed>|null Converted condition or null if not applicable
 	 */
-	public function convert(QueryBuilder $queryBuilder, array $condition, array $options): null|array {
+	public function convert(QueryBuilder $queryBuilder, array $condition, array $options): null|array
+	{
 		$attribute = $condition['attribute'];
 		$value = $condition['value'] ?? null;
 		$this->entityType ??= $queryBuilder->build()->getFrom() ?? throw new \LogicException('EntityType cannot be null in ConditionConverter.');
@@ -56,7 +62,7 @@ class DefaultConditionConverter implements ConditionConverter {
 				if ($scope === '$user') {
 					return $this->convertUserScopeAttribute($queryBuilder, $property, $value, $options, $condition)->getRaw();
 				}
-			} else if (
+			} elseif (
 				($value) &&
 				(
 					str_starts_with($attribute, '$installedExtensions') ||
@@ -92,20 +98,22 @@ class DefaultConditionConverter implements ConditionConverter {
 	 * Handles attribute processing and JOIN additions for the '$user' scope.
 	 * Returns the potentially modified attribute name to use in the WHERE clause.
 	 *
-	 * @param  QueryBuilder              $queryBuilder
-	 * @param  string                    $property
-	 * @param  array<string>|string|null $value
-	 * @param  array<string, mixed>      $options
-	 * @param  array<string, mixed>      $originalCondition The full original condition array
-	 * @return WhereClauseItem           The attribute name (possibly aliased)
+	 * @param QueryBuilder              $queryBuilder
+	 * @param string                    $property
+	 * @param array<string>|string|null $value
+	 * @param array<string, mixed>      $options
+	 * @param array<string, mixed>      $originalCondition The full original condition array
+	 *
+	 * @return WhereClauseItem The attribute name (possibly aliased)
+	 *
 	 * @internal
 	 */
 	private function convertUserScopeAttribute(
-		QueryBuilder      $queryBuilder,
-		string            $property,
+		QueryBuilder $queryBuilder,
+		string $property,
 		null|array|string $value,
-		array             $options,
-		array             $originalCondition
+		array $options,
+		array $originalCondition
 	): WhereClauseItem {
 		if (!$queryBuilder->hasLeftJoinAlias(self::ALIAS_USER)) {
 			if (
@@ -116,7 +124,7 @@ class DefaultConditionConverter implements ConditionConverter {
 			}
 			$usersIds = $options[Option::USERS_IDS];
 			if (!is_array($usersIds)) {
-				$usersIds = [(string)$usersIds];
+				$usersIds = [(string) $usersIds];
 			}
 			$queryBuilder->leftJoin(
 				Join::createWithTableTarget(User::ENTITY_TYPE, self::ALIAS_USER)
@@ -192,7 +200,7 @@ class DefaultConditionConverter implements ConditionConverter {
 		if (!$userFieldColumn || !$entityFieldName) {
 			throw new \LogicException('User field column or entity field name not set.');
 		}
-		
+
 		$conditionType = $originalCondition['type'] ?? WhereType::EQUALS;
 		if ($conditionType === WhereType::NOT_CONTAINS || $conditionType === WhereType::NOT_IN || $conditionType === WhereType::NOT_EQUALS) {
 			return Cond::notEqual(
@@ -210,7 +218,8 @@ class DefaultConditionConverter implements ConditionConverter {
 	/**
 	 * @todo: enhance
 	 */
-	protected function tryJoinLinkField(QueryBuilder $queryBuilder, string $fieldName, ?string $middleTableFieldName = null, ?string $middleTableName = null, ?string $alias = null): string {
+	protected function tryJoinLinkField(QueryBuilder $queryBuilder, string $fieldName, ?string $middleTableFieldName = null, ?string $middleTableName = null, ?string $alias = null): string
+	{
 		if ($relationType = $this->seedEntity->getRelationType($fieldName)) {
 			if ($relationType === 'manyMany') {
 				if (!isset($middleTableFieldName, $middleTableName, $alias)) {
@@ -234,14 +243,17 @@ class DefaultConditionConverter implements ConditionConverter {
 	}
 
 	/**
-	 * @param  QueryBuilder         $queryBuilder
-	 * @param  string               $attribute
-	 * @param  string               $value
-	 * @param  array<string, mixed> $options
+	 * @param QueryBuilder         $queryBuilder
+	 * @param string               $attribute
+	 * @param string               $value
+	 * @param array<string, mixed> $options
+	 *
 	 * @return WhereClauseItem
+	 *
 	 * @internal
 	 */
-	private function convertConfigAttribute(QueryBuilder $queryBuilder, string $attribute, string $value, array $options): WhereClauseItem {
+	private function convertConfigAttribute(QueryBuilder $queryBuilder, string $attribute, string $value, array $options): WhereClauseItem
+	{
 		if (
 			!isset($options[Option::CONFIG]) && !isset($options[Option::INJECTABLE_FACTORY])
 		) {

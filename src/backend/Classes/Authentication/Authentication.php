@@ -8,13 +8,15 @@ use Espo\Core\Authentication\AuthenticationData;
 use Espo\Core\Authentication\Result;
 use Espo\Core\Di;
 
-class Authentication extends \Espo\Core\Authentication\Authentication implements Di\EntityManagerAware, Di\InjectableFactoryAware {
+class Authentication extends \Espo\Core\Authentication\Authentication implements Di\EntityManagerAware, Di\InjectableFactoryAware
+{
 	use Di\EntityManagerSetter;
 	use Di\InjectableFactorySetter;
 
 	private ?UserExposer $userExposer = null;
 
-	public function login(AuthenticationData $data, Request $request, Response $response): Result {
+	public function login(AuthenticationData $data, Request $request, Response $response): Result
+	{
 		$result = parent::login(
 			$data,
 			$request,
@@ -45,7 +47,8 @@ class Authentication extends \Espo\Core\Authentication\Authentication implements
 		return $result;
 	}
 
-	private function getUserExposer(): UserExposer {
+	private function getUserExposer(): UserExposer
+	{
 		return $this->userExposer ??= $this->injectableFactory->create(UserExposer::class);
 	}
 }

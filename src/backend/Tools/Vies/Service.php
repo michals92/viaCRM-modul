@@ -7,18 +7,21 @@ use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Log;
 use Espo\Entities\User;
 
-class Service {
+class Service
+{
 	private const API_URL = 'https://ec.europa.eu/taxation_customs/vies/rest-api/ms/%s/vat/%s';
 
 	public function __construct(
 		private readonly User $user,
-		private readonly Log  $log,
-	) {}
+		private readonly Log $log,
+	) {
+	}
 
 	/**
 	 * @throws \JsonException
 	 */
-	public function verifyVatNumber(string $countryCode, string $vatNumber): bool {
+	public function verifyVatNumber(string $countryCode, string $vatNumber): bool
+	{
 		$this->log->debug("User {$this->user->get('name')} ({$this->user->getId()}) is verifying VAT number", [
 			'countryCode' => $countryCode,
 			'vatNumber' => $vatNumber,
@@ -44,7 +47,7 @@ class Service {
 		if ($statusCode !== 200) {
 			throw new Error('VIES API Error: ' . $response);
 		}
-		
+
 		assert(is_string($response));
 
 		$result = Json::decode($response);

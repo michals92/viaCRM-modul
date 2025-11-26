@@ -15,18 +15,21 @@ use Espo\Entities\InboundEmail;
 use Espo\ORM\EntityManager;
 use Exception;
 
-class EmailHealth implements Command {
+class EmailHealth implements Command
+{
 	public function __construct(
 		private EntityManager $entityManager,
 		private PersonalAccountService $personalAccountService,
 		private GroupAccountService $groupAccountService
-	) {}
+	) {
+	}
 
-	public function run(Params $params, IO $io): void {
+	public function run(Params $params, IO $io): void
+	{
 		$format = $params->getOption('format') ?? 'detailed';
 		$onlyErrors = $params->hasFlag('errors-only');
 		$accountType = $params->getOption('type'); // 'personal', 'group', or null for both
-        
+
 		$io->writeLine('Checking email account health...');
 		$io->writeLine('');
 
@@ -34,7 +37,7 @@ class EmailHealth implements Command {
 		$scheduledJobsInfo = $this->checkScheduledJobs($io, $format);
 
 		$results = [
-			'scheduledJobs' => $scheduledJobsInfo
+			'scheduledJobs' => $scheduledJobsInfo,
 		];
 
 		if (!$accountType || $accountType === 'personal') {
@@ -51,7 +54,7 @@ class EmailHealth implements Command {
 		}
 
 		$io->writeLine('');
-        
+
 		if ($format === 'json') {
 			$io->writeLine(Json::encode($results, JSON_PRETTY_PRINT));
 		} else {
@@ -62,21 +65,22 @@ class EmailHealth implements Command {
 	/**
 	 * @return array{checkEmailAccounts: array{exists: bool, status?: string, lastRun?: ?string}, checkInboundEmails: array{exists: bool, status?: string, lastRun?: ?string}}
 	 */
-	private function checkScheduledJobs(IO $io, string $format): array {
+	private function checkScheduledJobs(IO $io, string $format): array
+	{
 		if ($format !== 'json') {
 			$io->writeLine('=== Scheduled Jobs Status ===');
 		}
 
 		$result = [
 			'checkEmailAccounts' => ['exists' => false],
-			'checkInboundEmails' => ['exists' => false]
+			'checkInboundEmails' => ['exists' => false],
 		];
 
 		// Check for CheckEmailAccounts job
 		$checkEmailAccountsJob = $this->entityManager
-		    ->getRDBRepository('ScheduledJob')
-		    ->where(['job' => 'CheckEmailAccounts'])
-		    ->findOne();
+			->getRDBRepository('ScheduledJob')
+			->where(['job' => 'CheckEmailAccounts'])
+			->findOne();
 
 		if ($checkEmailAccountsJob) {
 			$lastRun = $checkEmailAccountsJob->get('lastRun');
@@ -84,9 +88,9 @@ class EmailHealth implements Command {
 			$result['checkEmailAccounts'] = [
 				'exists' => true,
 				'status' => $status,
-				'lastRun' => $lastRun
+				'lastRun' => $lastRun,
 			];
-			
+
 			if ($format !== 'json') {
 				$io->writeLine('✓ CheckEmailAccounts job exists');
 				$io->writeLine("  Status: {$status}");
@@ -100,9 +104,9 @@ class EmailHealth implements Command {
 
 		// Check for CheckInboundEmails job
 		$checkInboundEmailsJob = $this->entityManager
-		    ->getRDBRepository('ScheduledJob')
-		    ->where(['job' => 'CheckInboundEmails'])
-		    ->findOne();
+			->getRDBRepository('ScheduledJob')
+			->where(['job' => 'CheckInboundEmails'])
+			->findOne();
 
 		if ($checkInboundEmailsJob) {
 			$lastRun = $checkInboundEmailsJob->get('lastRun');
@@ -110,9 +114,9 @@ class EmailHealth implements Command {
 			$result['checkInboundEmails'] = [
 				'exists' => true,
 				'status' => $status,
-				'lastRun' => $lastRun
+				'lastRun' => $lastRun,
 			];
-			
+
 			if ($format !== 'json') {
 				$io->writeLine('✓ CheckInboundEmails job exists');
 				$io->writeLine("  Status: {$status}");
@@ -134,22 +138,23 @@ class EmailHealth implements Command {
 	/**
 	 * @return array{total: int, healthy: int, errors: int, accounts: array<int, array<string, mixed>>}
 	 */
-	private function checkEmailAccounts(IO $io, string $format, bool $onlyErrors): array {
+	private function checkEmailAccounts(IO $io, string $format, bool $onlyErrors): array
+	{
 		if ($format !== 'json') {
 			$io->writeLine('=== Personal Email Accounts (EmailAccount) ===');
 		}
-        
+
 		/** @var \Espo\ORM\EntityCollection<EmailAccount> $emailAccounts */
 		$emailAccounts = $this->entityManager
-		    ->getRDBRepository(EmailAccount::ENTITY_TYPE)
-		    ->where(['status' => EmailAccount::STATUS_ACTIVE])
-		    ->find();
+			->getRDBRepository(EmailAccount::ENTITY_TYPE)
+			->where(['status' => EmailAccount::STATUS_ACTIVE])
+			->find();
 
 		$results = [
-		    'total' => $emailAccounts->count(),
-		    'healthy' => 0,
-		    'errors' => 0,
-		    'accounts' => []
+			'total' => $emailAccounts->count(),
+			'healthy' => 0,
+			'errors' => 0,
+			'accounts' => [],
 		];
 
 		if ($emailAccounts->count() === 0) {
@@ -168,42 +173,43 @@ class EmailHealth implements Command {
 		foreach ($emailAccounts as $account) {
 			$accountResult = $this->checkEmailAccount($account, $io, $format, $onlyErrors);
 			$results['accounts'][] = $accountResult;
-            
+
 			if ($accountResult['healthy']) {
 				$results['healthy']++;
 			} else {
 				$results['errors']++;
 			}
 		}
-        
+
 		return $results;
 	}
 
 	/**
 	 * @return array{id: string, name: string, email: string, healthy: bool, imap: ?string, smtp: ?string, errors: array<int, string>}
 	 */
-	private function checkEmailAccount(EmailAccount $account, IO $io, string $format, bool $onlyErrors): array {
+	private function checkEmailAccount(EmailAccount $account, IO $io, string $format, bool $onlyErrors): array
+	{
 		$name = $account->get('name') ?: 'Unnamed';
 		$email = $account->getEmailAddress() ?: 'No email';
 		$id = $account->getId();
-        
+
 		$result = [
-		    'id' => $id,
-		    'name' => $name,
-		    'email' => $email,
-		    'healthy' => true,
-		    'imap' => null,
-		    'smtp' => null,
-		    'errors' => []
+			'id' => $id,
+			'name' => $name,
+			'email' => $email,
+			'healthy' => true,
+			'imap' => null,
+			'smtp' => null,
+			'errors' => [],
 		];
 
 		// Check IMAP if enabled
 		if ($account->get('useImap')) {
 			try {
 				$params = StorageParams::createBuilder()
-				    ->setId($id)
-				    ->build();
-                
+					->setId($id)
+					->build();
+
 				$this->personalAccountService->testConnection($params);
 				$result['imap'] = 'OK';
 			} catch (Exception $e) {
@@ -218,13 +224,13 @@ class EmailHealth implements Command {
 			try {
 				$host = $account->getSmtpHost();
 				$port = $account->getSmtpPort();
-                
+
 				if ($host && $port) {
 					$smtpParams = SmtpParams::create($host, $port)
-					    ->withAuth($account->getSmtpAuth())
-					    ->withSecurity($account->getSmtpSecurity())
-					    ->withUsername($account->getSmtpUsername())
-					    ->withAuthMechanism($account->getSmtpAuthMechanism());
+						->withAuth($account->getSmtpAuth())
+						->withSecurity($account->getSmtpSecurity())
+						->withUsername($account->getSmtpUsername())
+						->withAuthMechanism($account->getSmtpAuthMechanism());
 				}
 
 				// For now, just check if configuration exists
@@ -241,14 +247,14 @@ class EmailHealth implements Command {
 		if ($format !== 'json') {
 			if (!$onlyErrors || !$result['healthy']) {
 				$io->write("[$id] $name ($email): ");
-                
+
 				if ($result['imap']) {
 					$io->write("[IMAP: {$result['imap']}] ");
 				}
 				if ($result['smtp']) {
 					$io->write("[SMTP: {$result['smtp']}] ");
 				}
-                
+
 				if ($result['healthy']) {
 					$io->writeLine('✓');
 				} else {
@@ -259,29 +265,30 @@ class EmailHealth implements Command {
 				}
 			}
 		}
-        
+
 		return $result;
 	}
 
 	/**
 	 * @return array{total: int, healthy: int, errors: int, accounts: array<int, array<string, mixed>>}
 	 */
-	private function checkInboundEmails(IO $io, string $format, bool $onlyErrors): array {
+	private function checkInboundEmails(IO $io, string $format, bool $onlyErrors): array
+	{
 		if ($format !== 'json') {
 			$io->writeLine('=== Group Email Accounts (InboundEmail) ===');
 		}
-        
+
 		/** @var \Espo\ORM\EntityCollection<InboundEmail> $inboundEmails */
 		$inboundEmails = $this->entityManager
-		    ->getRDBRepository(InboundEmail::ENTITY_TYPE)
-		    ->where(['status' => InboundEmail::STATUS_ACTIVE])
-		    ->find();
+			->getRDBRepository(InboundEmail::ENTITY_TYPE)
+			->where(['status' => InboundEmail::STATUS_ACTIVE])
+			->find();
 
 		$results = [
-		    'total' => $inboundEmails->count(),
-		    'healthy' => 0,
-		    'errors' => 0,
-		    'accounts' => []
+			'total' => $inboundEmails->count(),
+			'healthy' => 0,
+			'errors' => 0,
+			'accounts' => [],
 		];
 
 		if ($inboundEmails->count() === 0) {
@@ -300,42 +307,43 @@ class EmailHealth implements Command {
 		foreach ($inboundEmails as $account) {
 			$accountResult = $this->checkInboundEmail($account, $io, $format, $onlyErrors);
 			$results['accounts'][] = $accountResult;
-            
+
 			if ($accountResult['healthy']) {
 				$results['healthy']++;
 			} else {
 				$results['errors']++;
 			}
 		}
-        
+
 		return $results;
 	}
 
 	/**
 	 * @return array{id: string, name: string, email: string, healthy: bool, imap: ?string, smtp: ?string, errors: array<int, string>}
 	 */
-	private function checkInboundEmail(InboundEmail $account, IO $io, string $format, bool $onlyErrors): array {
+	private function checkInboundEmail(InboundEmail $account, IO $io, string $format, bool $onlyErrors): array
+	{
 		$name = $account->getName() ?: 'Unnamed';
 		$email = $account->getEmailAddress() ?: 'No email';
 		$id = $account->getId();
-        
+
 		$result = [
-		    'id' => $id,
-		    'name' => $name,
-		    'email' => $email,
-		    'healthy' => true,
-		    'imap' => null,
-		    'smtp' => null,
-		    'errors' => []
+			'id' => $id,
+			'name' => $name,
+			'email' => $email,
+			'healthy' => true,
+			'imap' => null,
+			'smtp' => null,
+			'errors' => [],
 		];
 
 		// Check IMAP if enabled
 		if ($account->get('useImap')) {
 			try {
 				$params = StorageParams::createBuilder()
-				    ->setId($id)
-				    ->build();
-                
+					->setId($id)
+					->build();
+
 				$this->groupAccountService->testConnection($params);
 				$result['imap'] = 'OK';
 			} catch (Exception $e) {
@@ -350,13 +358,13 @@ class EmailHealth implements Command {
 			try {
 				$host = $account->getSmtpHost();
 				$port = $account->getSmtpPort();
-                
+
 				if ($host && $port) {
 					$smtpParams = SmtpParams::create($host, $port)
-					    ->withAuth($account->getSmtpAuth())
-					    ->withSecurity($account->getSmtpSecurity())
-					    ->withUsername($account->getSmtpUsername())
-					    ->withAuthMechanism($account->getSmtpAuthMechanism());
+						->withAuth($account->getSmtpAuth())
+						->withSecurity($account->getSmtpSecurity())
+						->withUsername($account->getSmtpUsername())
+						->withAuthMechanism($account->getSmtpAuthMechanism());
 				}
 
 				// For now, just check if configuration exists
@@ -373,14 +381,14 @@ class EmailHealth implements Command {
 		if ($format !== 'json') {
 			if (!$onlyErrors || !$result['healthy']) {
 				$io->write("[$id] $name ($email): ");
-                
+
 				if ($result['imap']) {
 					$io->write("[IMAP: {$result['imap']}] ");
 				}
 				if ($result['smtp']) {
 					$io->write("[SMTP: {$result['smtp']}] ");
 				}
-                
+
 				if ($result['healthy']) {
 					$io->writeLine('✓');
 				} else {
@@ -391,41 +399,42 @@ class EmailHealth implements Command {
 				}
 			}
 		}
-        
+
 		return $result;
 	}
 
 	/**
 	 * @param array{scheduledJobs: array{checkEmailAccounts: array{exists: bool, status?: string, lastRun?: ?string}, checkInboundEmails: array{exists: bool, status?: string, lastRun?: ?string}}, personal?: array{total: int, healthy: int, errors: int, accounts: array<int, array<string, mixed>>}, group?: array{total: int, healthy: int, errors: int, accounts: array<int, array<string, mixed>>}} $results
 	 */
-	private function printSummary(array $results, IO $io): void {
+	private function printSummary(array $results, IO $io): void
+	{
 		$io->writeLine('=== Summary ===');
-        
+
 		$totalAccounts = 0;
 		$totalHealthy = 0;
 		$totalErrors = 0;
-        
+
 		if (isset($results['personal'])) {
 			$personal = $results['personal'];
 			$totalAccounts += $personal['total'];
 			$totalHealthy += $personal['healthy'];
 			$totalErrors += $personal['errors'];
-            
+
 			$io->writeLine("Personal accounts: {$personal['healthy']}/{$personal['total']} healthy");
 		}
-        
+
 		if (isset($results['group'])) {
 			$group = $results['group'];
 			$totalAccounts += $group['total'];
 			$totalHealthy += $group['healthy'];
 			$totalErrors += $group['errors'];
-            
+
 			$io->writeLine("Group accounts: {$group['healthy']}/{$group['total']} healthy");
 		}
-        
+
 		$io->writeLine('');
 		$io->writeLine("Total: $totalHealthy/$totalAccounts healthy");
-        
+
 		if ($totalErrors > 0) {
 			$io->writeLine("Found $totalErrors account(s) with errors.");
 			$io->setExitStatus(1);

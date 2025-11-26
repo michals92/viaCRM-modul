@@ -2,4 +2,6 @@
 
 namespace Espo\Modules\Viacrm\Services;
 
-class SharedWysiwyg extends \Espo\Core\Templates\Services\Base {}
+class SharedWysiwyg extends \Espo\Core\Templates\Services\Base
+{
+}

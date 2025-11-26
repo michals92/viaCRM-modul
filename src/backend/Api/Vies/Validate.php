@@ -11,18 +11,21 @@ use Espo\Core\Exceptions\Forbidden;
 use Espo\Core\Utils\Config;
 use Espo\Modules\Viacrm\Tools\Vies\Service as ViesService;
 
-class Validate implements Action {
+class Validate implements Action
+{
 	public function __construct(
 		private readonly ViesService $viesService,
-		private readonly Config      $config,
-	) {}
+		private readonly Config $config,
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 * @throws Forbidden
 	 * @throws \JsonException
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		if (empty($this->config->get('viesEnabled'))) {
 			throw new Forbidden('VIES is not enabled');
 		}
@@ -41,7 +44,7 @@ class Validate implements Action {
 		$valid = $this->viesService->verifyVatNumber($countryCode, $vatNumber);
 
 		return ResponseComposer::json([
-		    'valid' => $valid,
+			'valid' => $valid,
 		]);
 	}
 }

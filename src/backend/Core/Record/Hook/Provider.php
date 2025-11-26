@@ -10,15 +10,18 @@ use ReflectionClass;
 use ReflectionException;
 use RuntimeException;
 
-class Provider extends \Espo\Core\Record\Hook\Provider {
+class Provider extends \Espo\Core\Record\Hook\Provider
+{
 	/** @var array<string, object[]> */
 	private array $map = [];
 
 	/**
 	 * @throws ReflectionException
+	 *
 	 * @return object[]
 	 */
-	public function getList(string $entityType, string $type): array {
+	public function getList(string $entityType, string $type): array
+	{
 		$key = $entityType . '_' . $type;
 
 		if (!array_key_exists($key, $this->map)) {
@@ -30,9 +33,11 @@ class Provider extends \Espo\Core\Record\Hook\Provider {
 
 	/**
 	 * @throws ReflectionException
+	 *
 	 * @return object[]
 	 */
-	private function loadList(string $entityType, string $type): array {
+	private function loadList(string $entityType, string $type): array
+	{
 		$key = $type . 'HookClassNameList';
 		$suppressKey = $type . 'SuppressClassNameList';
 

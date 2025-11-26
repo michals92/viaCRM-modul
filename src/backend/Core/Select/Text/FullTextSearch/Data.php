@@ -8,7 +8,8 @@ use InvalidArgumentException;
 /**
  * @immutable
  */
-class Data extends \Espo\Core\Select\Text\FullTextSearch\Data {
+class Data extends \Espo\Core\Select\Text\FullTextSearch\Data
+{
 	/**
 	 * @param Expression $expression
 	 * @param string[]   $fieldList
@@ -18,39 +19,43 @@ class Data extends \Espo\Core\Select\Text\FullTextSearch\Data {
 	public function __construct(
 		private Expression $expression,
 		/** @var string[] */
-		private array              $fieldList,
+		private array $fieldList,
 		/** @var string[] */
-		private array              $columnList,
+		private array $columnList,
 		/** @var string */
-		private string             $mode
+		private string $mode
 	) {
 		if (!in_array($mode, Mode::ALLOWED_MODES)) {
 			throw new InvalidArgumentException("Mode not allowed: $mode.");
 		}
 	}
 
-	public function getExpression(): Expression {
+	public function getExpression(): Expression
+	{
 		return $this->expression;
 	}
 
 	/**
 	 * @return string[]
 	 */
-	public function getFieldList(): array {
+	public function getFieldList(): array
+	{
 		return $this->fieldList;
 	}
 
 	/**
 	 * @return string[]
 	 */
-	public function getColumnList(): array {
+	public function getColumnList(): array
+	{
 		return $this->columnList;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getMode(): string {
+	public function getMode(): string
+	{
 		return $this->mode;
 	}
 }

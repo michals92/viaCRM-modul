@@ -7,7 +7,8 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Config\ConfigWriter;
 
-class CNBSync implements JobDataLess {
+class CNBSync implements JobDataLess
+{
 	protected const URL = 'https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-devizoveho-trhu/kurzy-devizoveho-trhu/denni_kurz.txt';
 	protected const ARCHIVE_URL = 'https://www.cnb.cz/cs/financni-trhy/devizovy-trh/kurzy-ostatnich-men/kurzy-ostatnich-men/rok.txt?rok=2024&format=txt';
 
@@ -22,7 +23,8 @@ class CNBSync implements JobDataLess {
 		$this->currentRates = $config->get('currencyRates', []);
 	}
 
-	public function run(): void {
+	public function run(): void
+	{
 		// Process the first URL (original data)
 		$response = file_get_contents(self::URL);
 		if ($response === false) {
@@ -47,7 +49,7 @@ class CNBSync implements JobDataLess {
 
 		$exchangeMap = [];
 		foreach ($exchangeRates as [,, $amount, $code, $rate]) {
-			$exchangeMap[$code] = round((float)$rate / floatval($amount), 10);
+			$exchangeMap[$code] = round((float) $rate / floatval($amount), 10);
 		}
 
 		// Process the second URL (additional currencies)
@@ -118,11 +120,11 @@ class CNBSync implements JobDataLess {
 			$amountString = str_replace(',', '.', $parts[0]);
 			$currencyCode = $parts[1];
 
-			$amount = (float)$amountString;
+			$amount = (float) $amountString;
 
 			// Replace comma with dot in data item for correct float conversion
 			$rateString = str_replace(',', '.', $dataItem);
-			$rate = (float)$rateString;
+			$rate = (float) $rateString;
 
 			// Calculate rate per unit
 			$ratePerUnit = $rate / $amount;
@@ -146,12 +148,12 @@ class CNBSync implements JobDataLess {
 		$this->configWriter->save();
 
 		$currencyRepository = $this
-		    ->entityManager
-		    ->getRDBRepository('Currency');
+			->entityManager
+			->getRDBRepository('Currency');
 
 		$currencies = $currencyRepository->select()
-		    ->where(['id!=' => 'CZK'])
-		    ->find();
+			->where(['id!=' => 'CZK'])
+			->find();
 
 		foreach ($currencies as $currency) {
 			$currencyCode = $currency->getId();

@@ -13,16 +13,18 @@ use Espo\ORM\EntityManager;
 use Exception;
 use RuntimeException;
 
-readonly class CheckRecurringRecords implements Preparator {
+readonly class CheckRecurringRecords implements Preparator
+{
 	public function __construct(
 		private EntityManager $entityManager,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws Exception
 	 */
-	public function prepare(PreparatorData $data, DateTimeImmutable $executeTime): void { // $executeTime will contain approximate current time
-		$jobRepository = $this->entityManager->getRDBRepository(JobEntity::ENTITY_TYPE);
+	public function prepare(PreparatorData $data, DateTimeImmutable $executeTime): void // $executeTime will contain approximate current time
+	{$jobRepository = $this->entityManager->getRDBRepository(JobEntity::ENTITY_TYPE);
 		$collection = $this->entityManager->getRDBRepository(RecordRecurrence::ENTITY_TYPE)
 			->where([
 				'status' => 'Active',

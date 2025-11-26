@@ -9,7 +9,8 @@ use Espo\Modules\Viacrm\Tools\ProductSupplier\Abstract\ProductSupplierStrategy;
 /**
  * Factory for creating product supplier strategy instances.
  */
-class Factory {
+class Factory
+{
 	/**
 	 * Constructor.
 	 *
@@ -19,7 +20,8 @@ class Factory {
 	public function __construct(
 		private readonly Metadata $metadata,
 		private readonly InjectableFactory $injectableFactory
-	) {}
+	) {
+	}
 
 	/**
 	 * Get the class name for a product supplier strategy.
@@ -28,7 +30,8 @@ class Factory {
 	 *
 	 * @return string|null The class name or null if not found
 	 */
-	public function getClassName(string $strategyName): ?string {
+	public function getClassName(string $strategyName): ?string
+	{
 		return $this->metadata->get(['app', 'product', 'productSupplierStrategyClassNameMap', $strategyName]);
 	}
 
@@ -39,7 +42,8 @@ class Factory {
 	 *
 	 * @return ProductSupplierStrategy|null The created strategy instance or null if not found
 	 */
-	public function create(string $strategyName): ?ProductSupplierStrategy {
+	public function create(string $strategyName): ?ProductSupplierStrategy
+	{
 		$className = $this->getClassName($strategyName);
 
 		if ($className === null) {

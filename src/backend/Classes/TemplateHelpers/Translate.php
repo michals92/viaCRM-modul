@@ -9,13 +9,16 @@ use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Language;
 
-class Translate implements Helper {
+class Translate implements Helper
+{
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
 		private readonly Config $config
-	) {}
+	) {
+	}
 
-	public function render(Data $data): Result {
+	public function render(Data $data): Result
+	{
 		$params = $data->getArgumentList();
 
 		if (count($params) !== 3 && count($params) !== 4) {

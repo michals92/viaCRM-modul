@@ -9,19 +9,24 @@ use Espo\Core\Api\ResponseComposer;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Utils\Metadata;
 
-readonly class ConversionDefs implements Action {
+readonly class ConversionDefs implements Action
+{
 	public function __construct(
 		private Metadata $metadata
-	) {}
+	) {
+	}
 
 	/**
 	 * Processes the PUT request to update conversion definitions.
 	 *
-	 * @param  Request    $request
+	 * @param Request $request
+	 *
 	 * @throws BadRequest
+	 *
 	 * @return Response
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$data = $request->getParsedBody();
 
 		if (
@@ -39,7 +44,7 @@ readonly class ConversionDefs implements Action {
 		$conversionDefs = $this->metadata->get(['conversionDefs', $scope]);
 
 		if (!$conversionDefs) {
-			$conversionDefs = $this->metadata->getCustom('conversionDefs', $scope, (object)[]);
+			$conversionDefs = $this->metadata->getCustom('conversionDefs', $scope, (object) []);
 			$isCustom = true;
 		}
 

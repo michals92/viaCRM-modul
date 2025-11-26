@@ -11,20 +11,23 @@ use Espo\ORM\Query\Part\Condition;
 use Espo\ORM\Query\Part\Expression;
 use Espo\Tools\PopupNotification\Item;
 
-class AlertManager {
+class AlertManager
+{
 	public function __construct(
-		private readonly Submission    $webSocketSubmission,
+		private readonly Submission $webSocketSubmission,
 		private readonly EntityManager $entityManager,
-		private readonly Log           $log
-	) {}
+		private readonly Log $log
+	) {
+	}
 
 	/**
 	 * @return EntityCollection<Alert>
 	 */
-	public function getActive(?string $userId = null): EntityCollection {
+	public function getActive(?string $userId = null): EntityCollection
+	{
 		$cond = [
 			'alertActive' => true,
-			'deleted' => false
+			'deleted' => false,
 		];
 
 		if ($userId !== null) {
@@ -51,18 +54,19 @@ class AlertManager {
 		return $collection;
 	}
 
-	public function submitWebSocketNotification(?string $userId, Alert $alert): ?Item {
+	public function submitWebSocketNotification(?string $userId, Alert $alert): ?Item
+	{
 		try {
 			$item = $this->createNotificationItem($alert);
 			$this->webSocketSubmission->submit(
 				'popupNotifications.alert',
 				$userId,
-				(object)[
+				(object) [
 					'list' => [
 						[
 							'id' => $item->getId(),
 							'data' => $item->getData(),
-						]
+						],
 					],
 				]
 			);
@@ -75,9 +79,10 @@ class AlertManager {
 		}
 	}
 
-	private function createNotificationItem(Alert $alert): Item {
+	private function createNotificationItem(Alert $alert): Item
+	{
 		$alertId = $alert->getId();
-		$data = (object)[
+		$data = (object) [
 			'id' => $alertId,
 			'entityType' => 'Alert',
 			'status' => $alert->getStatus(),

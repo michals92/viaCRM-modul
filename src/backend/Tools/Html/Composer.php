@@ -4,11 +4,13 @@ namespace Espo\Modules\Viacrm\Tools\Html;
 
 use Stringable;
 
-class Composer {
+class Composer
+{
 	/**
 	 * @param array<string, mixed> $attributes
 	 */
-	public static function compose(string $tag, array $attributes = [], null|string|Stringable $inner = null): string {
+	public static function compose(string $tag, array $attributes = [], null|string|Stringable $inner = null): string
+	{
 		$html = "<$tag";
 		foreach ($attributes as $key => $value) {
 			$html .= " $key=\"$value\"";

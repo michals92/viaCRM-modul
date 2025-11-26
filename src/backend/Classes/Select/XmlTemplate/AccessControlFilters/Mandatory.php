@@ -9,14 +9,17 @@ use Espo\Entities\User;
 use Espo\ORM\Defs;
 use Espo\ORM\Query\SelectBuilder;
 
-class Mandatory implements Filter {
+class Mandatory implements Filter
+{
 	public function __construct(
 		private readonly User $user,
 		private readonly Defs $defs,
 		private readonly AclManager $aclManager
-	) {}
+	) {
+	}
 
-	public function apply(SelectBuilder $queryBuilder): void {
+	public function apply(SelectBuilder $queryBuilder): void
+	{
 		if ($this->user->isAdmin()) {
 			return;
 		}
@@ -37,7 +40,7 @@ class Mandatory implements Filter {
 		}
 
 		$queryBuilder->where([
-		    'entityType!=' => $forbiddenEntityTypeList,
+			'entityType!=' => $forbiddenEntityTypeList,
 		]);
 	}
 }

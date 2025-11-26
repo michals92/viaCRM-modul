@@ -6,16 +6,19 @@ use Espo\Core\Exceptions\NotFound;
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Metadata;
 
-class AggregationFunctionFactory {
+class AggregationFunctionFactory
+{
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
 		private readonly Metadata $metadata,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws NotFound
 	 */
-	public function create(string $functionName, ?string $entityType = null): AggregationFunction {
+	public function create(string $functionName, ?string $entityType = null): AggregationFunction
+	{
 		$className = $this->getClassName($functionName, $entityType);
 
 		if (!$className) {
@@ -28,7 +31,8 @@ class AggregationFunctionFactory {
 	/**
 	 * @return ?class-string<AggregationFunction>
 	 */
-	private function getClassName(string $functionName, ?string $entityType = null): ?string {
+	private function getClassName(string $functionName, ?string $entityType = null): ?string
+	{
 		if ($entityType) {
 			$className = $this->getEntityTypeClassName($functionName, $entityType);
 
@@ -49,7 +53,8 @@ class AggregationFunctionFactory {
 	/**
 	 * @return ?class-string<AggregationFunction>
 	 */
-	private function getEntityTypeClassName(string $functionName, string $entityType): ?string {
+	private function getEntityTypeClassName(string $functionName, string $entityType): ?string
+	{
 		return $this->metadata->get(
 			['recordDefs', $entityType, 'aggregationFunctions', $functionName, 'implementationClassName']
 		);

@@ -7,7 +7,8 @@ use Espo\Core\Utils\FieldUtil;
 use Espo\ORM\Entity;
 use stdClass;
 
-class LinkMultiple extends \Espo\Classes\FieldDuplicators\LinkMultiple {
+class LinkMultiple extends \Espo\Classes\FieldDuplicators\LinkMultiple
+{
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly FieldUtil $fieldUtil
@@ -15,13 +16,14 @@ class LinkMultiple extends \Espo\Classes\FieldDuplicators\LinkMultiple {
 		parent::__construct($entityManager);
 	}
 
-	public function duplicate(Entity $entity, string $field): stdClass {
+	public function duplicate(Entity $entity, string $field): stdClass
+	{
 		$entityType = $entity->getEntityType();
 		$defs = $this->entityManager->getDefs();
 
 		$fieldDefs = $defs
-		    ->getEntity($entityType)
-		    ->getField($field);
+			->getEntity($entityType)
+			->getField($field);
 
 		if (!$fieldDefs->getParam('recordListEnabled')) {
 			return parent::duplicate($entity, $field);

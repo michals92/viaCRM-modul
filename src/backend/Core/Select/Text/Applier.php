@@ -8,13 +8,15 @@ use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Query\SelectBuilder as QueryBuilder;
 use ReflectionException;
 
-class Applier extends \Espo\Core\Select\Text\Applier implements Di\MetadataAware {
+class Applier extends \Espo\Core\Select\Text\Applier implements Di\MetadataAware
+{
 	use Di\MetadataSetter;
 
 	/**
 	 * @throws ReflectionException
 	 */
-	public function apply(QueryBuilder $queryBuilder, string $filter, FilterParams $params): void {
+	public function apply(QueryBuilder $queryBuilder, string $filter, FilterParams $params): void
+	{
 		$forceFullText = false;
 
 		if (mb_strpos($filter, 'ft:') === 0) {
@@ -40,7 +42,8 @@ class Applier extends \Espo\Core\Select\Text\Applier implements Di\MetadataAware
 	/**
 	 * @throws ReflectionException
 	 */
-	private function toSkipFullText(string $filter): bool {
+	private function toSkipFullText(string $filter): bool
+	{
 		$entityType = ReflectionUtil::getClassProperty(parent::class, $this, 'entityType');
 		$config = ReflectionUtil::getClassProperty(parent::class, $this, 'config');
 

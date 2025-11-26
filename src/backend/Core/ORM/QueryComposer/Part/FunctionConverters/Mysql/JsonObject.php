@@ -4,8 +4,10 @@ namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Mys
 
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 
-class JsonObject implements FunctionConverter {
-	public function convert(string ...$argumentList): string {
+class JsonObject implements FunctionConverter
+{
+	public function convert(string ...$argumentList): string
+	{
 		$string = 'JSON_OBJECT(';
 
 		foreach ($argumentList as $argument) {

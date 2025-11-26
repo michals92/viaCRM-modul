@@ -31,7 +31,8 @@ class ForeignEither implements
 	AccessEntityReadChecker,
 	AccessEntityEditChecker,
 	AccessEntityDeleteChecker,
-	AccessEntityStreamChecker {
+	AccessEntityStreamChecker
+{
 	use DefaultAccessCheckerDependency;
 
 	public function __construct(
@@ -45,51 +46,54 @@ class ForeignEither implements
 	/**
 	 * Get foreign entities related to the entity through the links defined in aclDefs.
 	 * Returns an array of entities, which can be empty if no related entities are found.
+	 *
 	 * @return Entity[]
 	 */
-	private function getForeignEntities(Entity $entity): array {
+	private function getForeignEntities(Entity $entity): array
+	{
 		$entityType = $entity->getEntityType();
 		$links = $this->metadata->get(['aclDefs', $entityType, 'links']);
-        
+
 		if (!$links || !is_array($links)) {
 			throw new LogicException("No `links` array in aclDefs for {$entityType}.");
 		}
-        
+
 		$foreignEntities = [];
-        
+
 		foreach ($links as $link) {
 			if ($entity->isNew()) {
 				$foreignEntityType = $this->entityManager
-				    ->getDefs()
-				    ->getEntity($entityType)
-				    ->getRelation($link)
-				    ->getForeignEntityType();
+					->getDefs()
+					->getEntity($entityType)
+					->getRelation($link)
+					->getForeignEntityType();
 
 				/** @var ?string $id */
 				$id = $entity->get($link . 'Id');
 
 				if ($id) {
 					$foreignEntity = $this->entityManager->getEntityById($foreignEntityType, $id);
-                    
+
 					if ($foreignEntity) {
 						$foreignEntities[] = $foreignEntity;
 					}
 				}
 			} else {
 				$foreignEntity = $this->entityManager
-				    ->getRelation($entity, $link)
-				    ->findOne();
-                    
+					->getRelation($entity, $link)
+					->findOne();
+
 				if ($foreignEntity) {
 					$foreignEntities[] = $foreignEntity;
 				}
 			}
 		}
-        
+
 		return $foreignEntities;
 	}
 
-	public function checkEntityCreate(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityCreate(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$foreignEntities = $this->getForeignEntities($entity);
 
 		if (empty($foreignEntities)) {
@@ -106,7 +110,8 @@ class ForeignEither implements
 		return false;
 	}
 
-	public function checkEntityRead(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityRead(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$foreignEntities = $this->getForeignEntities($entity);
 
 		if (empty($foreignEntities)) {
@@ -123,7 +128,8 @@ class ForeignEither implements
 		return false;
 	}
 
-	public function checkEntityEdit(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityEdit(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$foreignEntities = $this->getForeignEntities($entity);
 
 		if (empty($foreignEntities)) {
@@ -140,7 +146,8 @@ class ForeignEither implements
 		return false;
 	}
 
-	public function checkEntityDelete(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityDelete(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$foreignEntities = $this->getForeignEntities($entity);
 
 		if (empty($foreignEntities)) {
@@ -161,7 +168,8 @@ class ForeignEither implements
 		return false;
 	}
 
-	public function checkEntityStream(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityStream(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$foreignEntities = $this->getForeignEntities($entity);
 
 		if (empty($foreignEntities)) {

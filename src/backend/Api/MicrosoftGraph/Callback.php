@@ -17,15 +17,18 @@ use Espo\Modules\Outlook\Core\Outlook\Clients\Outlook;
 use Espo\Tools\Email\InboxService;
 use stdClass;
 
-class Callback implements Action {
+class Callback implements Action
+{
 	public function __construct(
 		private readonly Log $log,
 		private readonly EntityManager $entityManager,
 		private readonly ClientManager $clientManager,
 		private readonly InjectableFactory $injectableFactory
-	) {}
+	) {
+	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$em = $this->entityManager;
 		$validationToken = $request->getQueryParam('validationToken');
 
@@ -35,13 +38,13 @@ class Callback implements Action {
 		$body = $request->getParsedBody();
 
 		$this->log->info('Microsoft Graph callback received', [
-		    'body' => $body
+			'body' => $body,
 		]);
-        
+
 		if ($validationToken) {
 			return ResponseComposer::empty()
-			    ->setHeader('Content-Type', 'text/plain')
-			    ->writeBody($validationToken);
+				->setHeader('Content-Type', 'text/plain')
+				->writeBody($validationToken);
 		}
 
 		if (empty($body->value)) {
@@ -52,17 +55,17 @@ class Callback implements Action {
 			try {
 				/** @var stdClass $clientState */
 				$clientState = Json::decode($notification->clientState);
-                
+
 				if (empty($clientState->entityType) || empty($clientState->entityId) || empty($clientState->userId)) {
 					$this->log->warning('Invalid clientState format in Microsoft Graph notification', [
-					    'clientState' => $notification->clientState
+						'clientState' => $notification->clientState,
 					]);
 					continue;
 				}
 
 				// Should be either an EmailAccount or an InboundEmail
 				$entity = $em
-				    ->getEntityById($clientState->entityType, $clientState->entityId);
+					->getEntityById($clientState->entityType, $clientState->entityId);
 
 				if (!$entity) {
 					throw new NotFound("Entity {$clientState->entityType} with id {$clientState->entityId} not found");
@@ -83,7 +86,7 @@ class Callback implements Action {
 
 				if (empty($messageData['internetMessageId'])) {
 					$this->log->warning('No internetMessageId found in Graph message', [
-					    'graphMessageId' => $graphMessageId
+						'graphMessageId' => $graphMessageId,
 					]);
 					continue;
 				}
@@ -91,13 +94,13 @@ class Callback implements Action {
 				// Find our email by Message-ID
 				/** @var Email|null $email */
 				$email = $em
-				    ->getRDBRepository(Email::ENTITY_TYPE)
-				    ->where(['messageId' => $messageData['internetMessageId']])
-				    ->findOne();
+					->getRDBRepository(Email::ENTITY_TYPE)
+					->where(['messageId' => $messageData['internetMessageId']])
+					->findOne();
 
 				if (!$email) {
 					$this->log->debug('Email not found for Microsoft Graph notification', [
-					    'messageId' => $messageData['internetMessageId']
+						'messageId' => $messageData['internetMessageId'],
 					]);
 					continue;
 				}
@@ -105,9 +108,9 @@ class Callback implements Action {
 				// Update email properties based on the notification
 				if (isset($messageData['isRead'])) {
 					$this->log->debug('Updating email read status based on Microsoft Graph notification', [
-					    'emailId' => $email->getId(),
-					    'isRead' => $messageData['isRead'],
-					    'userId' => $clientState->userId
+						'emailId' => $email->getId(),
+						'isRead' => $messageData['isRead'],
+						'userId' => $clientState->userId,
 					]);
 
 					if ($messageData['isRead']) {
@@ -118,8 +121,8 @@ class Callback implements Action {
 				}
 			} catch (\Exception $e) {
 				$this->log->error('Error processing Microsoft Graph notification: ' . $e->getMessage(), [
-				    'notification' => $notification,
-				    'exception' => $e
+					'notification' => $notification,
+					'exception' => $e,
 				]);
 			}
 		}

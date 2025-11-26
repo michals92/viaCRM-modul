@@ -12,7 +12,8 @@ use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Entity;
 use ReflectionClass;
 
-class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
+class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver
+{
 	public function __construct(
 		InjectableFactory $injectableFactory,
 		private readonly Config $config
@@ -26,7 +27,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 		parent::__construct(...$parentConstructorArgs);
 	}
 
-	private function getUser(): User {
+	private function getUser(): User
+	{
 		return ReflectionUtil::getClassProperty(
 			parent::class,
 			$this,
@@ -34,7 +36,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 		);
 	}
 
-	public function process(Entity $entity, SaverParams $params): void {
+	public function process(Entity $entity, SaverParams $params): void
+	{
 		$entityType = $entity->getEntityType();
 
 		if (!$this->hasRemindersField($entityType)) {
@@ -105,7 +108,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 	/**
 	 * @return string[]
 	 */
-	private function getUserIdList(CoreEntity $entity): array {
+	private function getUserIdList(CoreEntity $entity): array
+	{
 		return ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -114,7 +118,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 		);
 	}
 
-	private function hasRemindersField(string $entityType): bool {
+	private function hasRemindersField(string $entityType): bool
+	{
 		return ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -123,7 +128,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 		);
 	}
 
-	private function getDateAttribute(string $entityType): string {
+	private function getDateAttribute(string $entityType): string
+	{
 		return ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -132,7 +138,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 		);
 	}
 
-	private function toRemove(CoreEntity $entity): bool {
+	private function toRemove(CoreEntity $entity): bool
+	{
 		return ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -141,7 +148,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 		);
 	}
 
-	private function deleteAll(CoreEntity $entity): void {
+	private function deleteAll(CoreEntity $entity): void
+	{
 		ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -150,7 +158,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 		);
 	}
 
-	private function toProcess(CoreEntity $entity, string $dateAttribute): bool {
+	private function toProcess(CoreEntity $entity, string $dateAttribute): bool
+	{
 		return ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -163,7 +172,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 	/**
 	 * @return string[]
 	 */
-	private function getTypeList(): array {
+	private function getTypeList(): array
+	{
 		return ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -171,7 +181,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 		);
 	}
 
-	private function onlyRemindersFieldChanged(CoreEntity $entity, string $dateAttribute): bool {
+	private function onlyRemindersFieldChanged(CoreEntity $entity, string $dateAttribute): bool
+	{
 		return ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -181,7 +192,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 		);
 	}
 
-	private function deleteAllForUser(CoreEntity $entity): void {
+	private function deleteAllForUser(CoreEntity $entity): void
+	{
 		ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -190,7 +202,8 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 		);
 	}
 
-	private function getStartString(CoreEntity $entity, string $dateAttribute): ?string {
+	private function getStartString(CoreEntity $entity, string $dateAttribute): ?string
+	{
 		return ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -201,10 +214,12 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 	}
 
 	/**
-	 * @param  string[]                             $typeList
+	 * @param string[] $typeList
+	 *
 	 * @return object{seconds: int, type: string}[]
 	 */
-	private function getPreferencesReminderList(array $typeList, string $userId, string $entityType): array {
+	private function getPreferencesReminderList(array $typeList, string $userId, string $entityType): array
+	{
 		return ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,
@@ -216,10 +231,12 @@ class Saver extends \Espo\Core\FieldProcessing\Reminder\Saver {
 	}
 
 	/**
-	 * @param  string[]                             $typeList
+	 * @param string[] $typeList
+	 *
 	 * @return object{seconds: int, type: string}[]
 	 */
-	private function getReminderList(CoreEntity $entity, array $typeList): array {
+	private function getReminderList(CoreEntity $entity, array $typeList): array
+	{
 		return ReflectionUtil::callClassMethod(
 			parent::class,
 			$this,

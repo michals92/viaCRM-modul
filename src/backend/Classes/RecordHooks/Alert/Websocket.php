@@ -12,16 +12,19 @@ use Espo\ORM\Entity;
 /**
  * @implements UpdateHook<Alert>
  */
-readonly class Websocket implements UpdateHook {
+readonly class Websocket implements UpdateHook
+{
 	public function __construct(
 		private NotificationProvider $notificationProvider,
-		private User                 $user,
-	) {}
+		private User $user,
+	) {
+	}
 
 	/**
 	 * @param Alert $entity
 	 */
-	public function process(Entity $entity, UpdateParams $params): void {
+	public function process(Entity $entity, UpdateParams $params): void
+	{
 		if ($this->user->isSystem()) {
 			return;
 		}

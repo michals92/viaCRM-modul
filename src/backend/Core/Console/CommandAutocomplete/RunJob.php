@@ -6,13 +6,16 @@ use Espo\Core\Job\MetadataProvider;
 use Espo\Core\Utils\ClassFinder;
 use Espo\Modules\Viacrm\Core\Console\CommandAutocomplete;
 
-class RunJob implements CommandAutocomplete {
+class RunJob implements CommandAutocomplete
+{
 	public function __construct(
 		private readonly ClassFinder $classFinder,
 		private readonly MetadataProvider $metadataProvider
-	) {}
+	) {
+	}
 
-	public function getAutocompleteSuggestions(array $inputWords, string $currentWord): array {
+	public function getAutocompleteSuggestions(array $inputWords, string $currentWord): array
+	{
 		$list = array_map(
 			static fn ($item) => ' ' . $item,
 			array_unique(

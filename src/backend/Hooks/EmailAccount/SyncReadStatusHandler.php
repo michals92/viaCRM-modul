@@ -11,14 +11,17 @@ use Espo\ORM\Repository\Option\SaveOptions;
 /**
  * @implements BeforeSave<EmailAccount>
  */
-class SyncReadStatusHandler implements BeforeSave {
+class SyncReadStatusHandler implements BeforeSave
+{
 	public static int $order = 9;
 
 	public function __construct(
 		private readonly Subscriber $subscriber
-	) {}
+	) {
+	}
 
-	public function beforeSave(Entity $entity, SaveOptions $options): void {
+	public function beforeSave(Entity $entity, SaveOptions $options): void
+	{
 		if (!$entity->isAttributeChanged('syncReadStatus')) {
 			return;
 		}
@@ -36,11 +39,13 @@ class SyncReadStatusHandler implements BeforeSave {
 		}
 	}
 
-	private function onSyncReadStatusEnabled(EmailAccount $entity, string $assignedUserId): void {
+	private function onSyncReadStatusEnabled(EmailAccount $entity, string $assignedUserId): void
+	{
 		$this->subscriber->subscribe($entity, $assignedUserId);
 	}
 
-	private function onSyncReadStatusDisabled(EmailAccount $entity): void {
+	private function onSyncReadStatusDisabled(EmailAccount $entity): void
+	{
 		$this->subscriber->unsubscribeAll($entity);
 	}
 }

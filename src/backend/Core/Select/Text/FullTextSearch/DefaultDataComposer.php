@@ -12,7 +12,8 @@ use Espo\ORM\Query\Part\Expression;
 use Espo\ORM\Query\Part\Expression\Util as ExpressionUtil;
 use ReflectionException;
 
-class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultDataComposer {
+class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultDataComposer
+{
 	/** @var array<Mode::*, string> */
 	private array $functionMap = [
 		Mode::BOOLEAN => 'MATCH_BOOLEAN',
@@ -40,7 +41,8 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 	/**
 	 * @throws ReflectionException
 	 */
-	public function compose(string $filter, Params $params): ?\Espo\Core\Select\Text\FullTextSearch\Data {
+	public function compose(string $filter, Params $params): ?\Espo\Core\Select\Text\FullTextSearch\Data
+	{
 		if ($this->config->get('fullTextSearchDisabled')) {
 			return null;
 		}
@@ -97,7 +99,7 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 			// For abbreviations, only remove special chars that aren't dots
 			$preparedFilter = str_replace(['+', '-', '*', '"', '(', ')', '@', '<', '>', '~', ',', ';', ':'], '', $preparedFilter);
 		}
-		
+
 		$mode = Mode::BOOLEAN;
 
 		if (
@@ -109,7 +111,7 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 		) {
 			// Remove punctuation to get the actual token length for mode determination
 			$filterWithoutPunctuation = preg_replace('/[\p{P}]/u', '', $preparedFilter);
-			
+
 			if ($filterWithoutPunctuation === null || mb_strlen($filterWithoutPunctuation) <= $this->ft_min_word_len) {
 				$mode = Mode::LIKE;
 			} else {
@@ -123,7 +125,7 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 			} else {
 				// Split on spaces and major punctuation, but preserve dots within words
 				$tokens = preg_split('/[\s\-,;]+/u', trim($preparedFilter), -1, PREG_SPLIT_NO_EMPTY) ?: [];
-				$allShort = $tokens !== [] && !array_filter($tokens, fn($t) => mb_strlen(preg_replace('/\./u', '', $t) ?? $t) > $this->ft_min_word_len);
+				$allShort = $tokens !== [] && !array_filter($tokens, fn ($t) => mb_strlen(preg_replace('/\./u', '', $t) ?? $t) > $this->ft_min_word_len);
 				if ($allShort) {
 					$mode = Mode::LIKE;
 				}
@@ -143,14 +145,14 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 				if ($words !== false && count($words) > 0) {
 					// Check if all resulting words are single characters
 					// If so, switch to LIKE mode as single-char boolean searches are too broad
-					$allSingleChar = !array_filter($words, fn($w) => mb_strlen($w) > 1);
+					$allSingleChar = !array_filter($words, fn ($w) => mb_strlen($w) > 1);
 					if ($allSingleChar) {
 						$mode = Mode::LIKE;
 					} else {
 						// Add + prefix to require word; add * suffix for partial matching only if word is 2+ chars
 						// Single character searches shouldn't use wildcards as they're too broad
 						$preparedFilter = implode(' ', array_map(
-							fn($word) => mb_strlen($word) > 1 ? '+' . $word . '*' : '+' . $word,
+							fn ($word) => mb_strlen($word) > 1 ? '+' . $word . '*' : '+' . $word,
 							$words
 						));
 					}
@@ -178,7 +180,7 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 			if (count($words) > 1 && $searchMode === 'AllWordsRequired') {
 				// Check if ANY word is very short (1-2 chars)
 				// If so, use phrase search to avoid false positives
-				$hasVeryShortWord = (bool)array_filter($words, fn($w) => mb_strlen($w) <= 2);
+				$hasVeryShortWord = (bool) array_filter($words, fn ($w) => mb_strlen($w) <= 2);
 
 				if ($hasVeryShortWord) {
 					// For queries with all very short tokens (like "MF 7" or "izs s"),
@@ -187,7 +189,7 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 					$phrasePattern = '%' . implode(' ', $words) . '%';
 
 					$likeConditions = array_map(
-						static fn($column) => Expression::like(
+						static fn ($column) => Expression::like(
 							Expression::column($column),
 							Expression::value($phrasePattern)
 						),
@@ -201,7 +203,7 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 
 					foreach ($words as $word) {
 						$columnConditions = array_map(
-							static fn($column) => Expression::like(
+							static fn ($column) => Expression::like(
 								Expression::column($column),
 								Expression::value('%' . $word . '%')
 							),
@@ -217,7 +219,7 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 			} else {
 				// Single word or default mode - original behavior
 				$likeConditions = array_map(
-					static fn($column) => Expression::like(
+					static fn ($column) => Expression::like(
 						Expression::column($column),
 						Expression::value('%' . $preparedFilter . '%')
 					),
@@ -243,7 +245,7 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 		}
 
 		$argumentList = array_merge(
-			array_map(static fn($item) => Expression::column($item), $columnList),
+			array_map(static fn ($item) => Expression::column($item), $columnList),
 			[$preparedFilter]
 		);
 
@@ -261,15 +263,18 @@ class DefaultDataComposer extends \Espo\Core\Select\Text\FullTextSearch\DefaultD
 	/**
 	 * @throws ReflectionException
 	 */
-	private function prepareFilter(string $filter, Params $params): string {
+	private function prepareFilter(string $filter, Params $params): string
+	{
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'prepareFilter', $filter, $params);
 	}
 
 	/**
 	 * @throws ReflectionException
+	 *
 	 * @return string[]
 	 */
-	private function getTextFilterFieldList(): array {
+	private function getTextFilterFieldList(): array
+	{
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'getTextFilterFieldList');
 	}
 }

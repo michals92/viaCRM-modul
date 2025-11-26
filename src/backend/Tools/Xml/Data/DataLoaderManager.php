@@ -8,13 +8,16 @@ use Espo\ORM\Entity;
 use Espo\Tools\Pdf\Data as PdfData;
 use Espo\Tools\Pdf\Params as PdfParams;
 
-class DataLoaderManager {
+class DataLoaderManager
+{
 	public function __construct(
 		private Metadata $metadata,
 		private InjectableFactory $injectableFactory
-	) {}
+	) {
+	}
 
-	public function load(Entity $entity, ?PdfParams $params = null, ?PdfData $data = null): PdfData {
+	public function load(Entity $entity, ?PdfParams $params = null, ?PdfData $data = null): PdfData
+	{
 		if (!$params) {
 			$params = PdfParams::create();
 		}
@@ -40,7 +43,8 @@ class DataLoaderManager {
 	/**
 	 * @param class-string<DataLoader> $className
 	 */
-	private function createLoader(string $className): DataLoader {
+	private function createLoader(string $className): DataLoader
+	{
 		return $this->injectableFactory->create($className);
 	}
 }

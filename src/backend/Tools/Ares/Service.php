@@ -11,22 +11,25 @@ use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Json;
 use stdClass;
 
-class Service {
+class Service
+{
 	private const URL_BY_SIC = 'https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/';
 	private const URL_BY_NAME = 'https://ares.gov.cz/ekonomicke-subjekty-v-be/rest/ekonomicke-subjekty/vyhledat';
 
 	public function __construct(
 		private readonly Config $config,
 		private readonly EntityManager $entityManager,
-	) {}
+	) {
+	}
 
 	/**
-	 * Get company data by the sic code (IČO) from the ARES API
+	 * Get company data by the sic code (IČO) from the ARES API.
 	 *
 	 * @throws Error
 	 * @throws BadRequest
 	 */
-	public function getDataBySicCode(string $sicCode): stdClass {
+	public function getDataBySicCode(string $sicCode): stdClass
+	{
 		if (!preg_match('/^[0-9]{8}$/', $sicCode)) {
 			throw BadRequest::createWithBody(
 				'Invalid SIC code',
@@ -82,25 +85,26 @@ class Service {
 			$account = $this->entityManager->getRDBRepository('Account')->where(['OR' => $conditions])->findOne();
 		}
 
-		return (object)[
+		return (object) [
 			'vatId' => $data->dic ?? null,
 			'name' => $data->obchodniJmeno ?? $account?->get('name'),
 			'id' => $account?->getId(),
 			'billingAddressCity' => $data->sidlo?->nazevObce ?? null,
-			'billingAddressStreet' => $this->getStreet($data->sidlo ?? new stdClass, $includeHouseNumbers),
+			'billingAddressStreet' => $this->getStreet($data->sidlo ?? new stdClass(), $includeHouseNumbers),
 			'billingAddressState' => $data->sidlo?->nazevKraje ?? null,
-			'billingAddressPostalCode' => (string)$data->sidlo?->psc,
+			'billingAddressPostalCode' => (string) $data->sidlo?->psc,
 			'billingAddressCountry' => $data->sidlo?->kodStatu ?? null,
 		];
 	}
 
 	/**
-	 * Get raw company data by the sic code (IČO) from the ARES API without any processing
+	 * Get raw company data by the sic code (IČO) from the ARES API without any processing.
 	 *
 	 * @throws Error
 	 * @throws BadRequest
 	 */
-	public function getRawDataBySicCode(string $sicCode): stdClass {
+	public function getRawDataBySicCode(string $sicCode): stdClass
+	{
 		if (!preg_match('/^[0-9]{8}$/', $sicCode)) {
 			throw BadRequest::createWithBody(
 				'Invalid SIC code',
@@ -145,9 +149,10 @@ class Service {
 	}
 
 	/**
-	 * Get company data by company name from the ARES API
+	 * Get company data by company name from the ARES API.
 	 *
-	 * @param  string     $name Company name to search for
+	 * @param string $name Company name to search for
+	 *
 	 * @throws Error
 	 * @throws BadRequest
 	 *
@@ -200,13 +205,14 @@ class Service {
 	 *         }
 	 *     ]
 	 * }
-	 * @return stdClass The raw API response
 	 *
+	 * @return stdClass The raw API response
 	 */
 	/**
 	 * @return stdClass
 	 */
-	public function getDataByName(string $name): stdClass {
+	public function getDataByName(string $name): stdClass
+	{
 		if (empty($name)) {
 			throw BadRequest::createWithBody(
 				'Invalid company name',
@@ -226,7 +232,7 @@ class Service {
 			'obchodniJmeno' => $name,
 			'pocet' => 10,
 			'start' => 0,
-			'razeni' => []
+			'razeni' => [],
 		];
 
 		$response = $this->curlRequest(self::URL_BY_NAME, $requestData, true);
@@ -256,7 +262,8 @@ class Service {
 		return $data;
 	}
 
-	private function getStreet(stdClass $address, bool $includeHouseNumbers = true): string {
+	private function getStreet(stdClass $address, bool $includeHouseNumbers = true): string
+	{
 		$nazevUlice = $address->nazevUlice ?? null;
 		$cisloDomovni = $address->cisloDomovni ?? null;
 		$cisloOrientacni = $address->cisloOrientacni ?? null;
@@ -297,10 +304,12 @@ class Service {
 	}
 
 	/**
-	 * @param  array<string, mixed>|null $postData
+	 * @param array<string, mixed>|null $postData
+	 *
 	 * @return string
 	 */
-	private function curlRequest(string $url, ?array $postData = null, bool $isJson = false): string {
+	private function curlRequest(string $url, ?array $postData = null, bool $isJson = false): string
+	{
 		$ch = curl_init();
 
 		curl_setopt($ch, CURLOPT_URL, $url);

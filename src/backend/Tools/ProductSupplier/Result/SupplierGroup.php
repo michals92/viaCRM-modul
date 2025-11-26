@@ -9,7 +9,8 @@ use Espo\Modules\Viacrm\Entities\ProductSupplierItem;
  * Class representing a group of products associated with a supplier.
  * Provides structured access to suppliers, their products, and the supplier items.
  */
-class SupplierGroup {
+class SupplierGroup
+{
 	/** @var array<string, array<string, array<string, mixed>>> */
 	private array $groupedProducts = [];
 
@@ -22,15 +23,16 @@ class SupplierGroup {
 	 *
 	 * @return self For method chaining
 	 */
-	public function addProduct(string $supplierId, Product $product, ProductSupplierItem $supplierItem): self {
+	public function addProduct(string $supplierId, Product $product, ProductSupplierItem $supplierItem): self
+	{
 		if (!isset($this->groupedProducts[$supplierId])) {
 			$this->groupedProducts[$supplierId] = [];
 		}
 
 		$productId = $product->getId();
 		$this->groupedProducts[$supplierId][$productId] = [
-		    'product' => $product,
-		    'supplierItem' => $supplierItem,
+			'product' => $product,
+			'supplierItem' => $supplierItem,
 		];
 
 		return $this;
@@ -41,7 +43,8 @@ class SupplierGroup {
 	 *
 	 * @return array<string> Array of supplier IDs
 	 */
-	public function getSupplierIds(): array {
+	public function getSupplierIds(): array
+	{
 		return array_keys($this->groupedProducts);
 	}
 
@@ -52,7 +55,8 @@ class SupplierGroup {
 	 *
 	 * @return array<Product> Array of products
 	 */
-	public function getProducts(string $supplierId): array {
+	public function getProducts(string $supplierId): array
+	{
 		if (!isset($this->groupedProducts[$supplierId])) {
 			return [];
 		}
@@ -71,7 +75,8 @@ class SupplierGroup {
 	 *
 	 * @return ProductSupplierItem|null The supplier item or null if not found
 	 */
-	public function getSupplierItem(string $supplierId, string $productId): ?ProductSupplierItem {
+	public function getSupplierItem(string $supplierId, string $productId): ?ProductSupplierItem
+	{
 		return $this->groupedProducts[$supplierId][$productId]['supplierItem'] ?? null;
 	}
 
@@ -82,7 +87,8 @@ class SupplierGroup {
 	 *
 	 * @return array<ProductSupplierItem> Array of supplier items
 	 */
-	public function getSupplierItems(string $supplierId): array {
+	public function getSupplierItems(string $supplierId): array
+	{
 		if (!isset($this->groupedProducts[$supplierId])) {
 			return [];
 		}
@@ -98,7 +104,8 @@ class SupplierGroup {
 	 *
 	 * @return bool True if the group is empty
 	 */
-	public function isEmpty(): bool {
+	public function isEmpty(): bool
+	{
 		return empty($this->groupedProducts);
 	}
 
@@ -107,7 +114,8 @@ class SupplierGroup {
 	 *
 	 * @return array<string, array<string, array<string, mixed>>> The raw data
 	 */
-	public function getRawData(): array {
+	public function getRawData(): array
+	{
 		return $this->groupedProducts;
 	}
 
@@ -117,7 +125,8 @@ class SupplierGroup {
 	 *
 	 * @return array<string, array<Product>> Products grouped by supplier ID
 	 */
-	public function toArray(): array {
+	public function toArray(): array
+	{
 		$result = [];
 
 		foreach ($this->groupedProducts as $supplierId => $products) {

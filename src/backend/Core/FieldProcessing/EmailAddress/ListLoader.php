@@ -8,7 +8,8 @@ use Espo\Core\Utils\Config;
 use Espo\ORM\Defs as OrmDefs;
 use Espo\ORM\Entity;
 
-class ListLoader extends \Espo\Core\FieldProcessing\EmailAddress\Loader {
+class ListLoader extends \Espo\Core\FieldProcessing\EmailAddress\Loader
+{
 	public function __construct(
 		OrmDefs $ormDefs,
 		EntityManager $entityManager,
@@ -17,7 +18,8 @@ class ListLoader extends \Espo\Core\FieldProcessing\EmailAddress\Loader {
 		parent::__construct($ormDefs, $entityManager);
 	}
 
-	public function process(Entity $entity, LoaderParams $params): void {
+	public function process(Entity $entity, LoaderParams $params): void
+	{
 		$disableAccountLinkToEmail = $this->config->get('disableAccountLinkToEmail', false);
 
 		if ($disableAccountLinkToEmail) {

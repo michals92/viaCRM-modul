@@ -5,19 +5,22 @@ namespace Espo\Modules\Viacrm\Tools\Layout;
 use Espo\Core\InjectableFactory;
 use Espo\Modules\Viacrm\Core\Layout\LikeType;
 
-class SectionBuilder {
-	/** @var array<string, mixed> $section */
+class SectionBuilder
+{
+	/** @var array<string, mixed> */
 	protected array $section;
 
 	public function __construct(
-		protected readonly LayoutBuilder     $layoutBuilder,
+		protected readonly LayoutBuilder $layoutBuilder,
 		protected readonly InjectableFactory $injectableFactory
-	) {}
+	) {
+	}
 
 	/**
 	 * @param array<string, mixed> $section
 	 * */
-	public function &setSection(array &$section): self {
+	public function &setSection(array &$section): self
+	{
 		$this->section = &$section;
 
 		return $this;
@@ -26,9 +29,11 @@ class SectionBuilder {
 	/**
 	 * @param string|null                $tabLabel     @deprecated *DO NOT USE ANYMORE, IN THE PROCESS OF BEING DEPRECATED IN FAVOR OF LABEL*
 	 * @param null|array<string, string> $translations (key - language shortcode, value - translation)
+	 *
 	 * @deprecated
 	 */
-	public function toggleTab(?string $tabLabel = null, ?array $translations = null, ?bool $status = null): self {
+	public function toggleTab(?string $tabLabel = null, ?array $translations = null, ?bool $status = null): self
+	{
 		if ($this->layoutBuilder->getType() !== LikeType::detail) {
 			return $this;
 		}
@@ -51,11 +56,13 @@ class SectionBuilder {
 	/**
 	 * @deprecated
 	 */
-	public function setTab(?string $tabLabel): self {
+	public function setTab(?string $tabLabel): self
+	{
 		return $this->toggleTab($tabLabel, null, true);
 	}
 
-	public function setStyle(string $style = 'info' | 'warning' | 'danger'): self {
+	public function setStyle(string $style = 'info' | 'warning' | 'danger'): self
+	{
 		if ($this->layoutBuilder->getType() !== LikeType::detail) {
 			return $this;
 		}
@@ -67,7 +74,8 @@ class SectionBuilder {
 	/**
 	 * @param null|array<string, string> $translations (key - language shortcode, value - translation)
 	 */
-	public function setNoteText(?string $noteText, ?array $translations = null): self {
+	public function setNoteText(?string $noteText, ?array $translations = null): self
+	{
 		if ($this->layoutBuilder->getType() !== LikeType::detail) {
 			return $this;
 		}
@@ -84,7 +92,8 @@ class SectionBuilder {
 	/**
 	 * @param null|array<string, string> $translations (key - language shortcode, value - translation)
 	 */
-	public function setCustomLabel(string $customLabel, ?array $translations = null): self {
+	public function setCustomLabel(string $customLabel, ?array $translations = null): self
+	{
 		if (!$this->layoutBuilder->getType()->hasCustomLabel()) {
 			return $this;
 		}
@@ -99,13 +108,15 @@ class SectionBuilder {
 	/**
 	 * @return array<array<string, mixed>>
 	 */
-	public function &getRows(): array {
+	public function &getRows(): array
+	{
 		$this->section['rows'] ??= [];
 
 		return $this->section['rows'];
 	}
 
-	public function getRowsGroup(int $index): RowGroupBuilder {
+	public function getRowsGroup(int $index): RowGroupBuilder
+	{
 		$this->getRows()[$index] ??= [];
 
 		return $this->injectableFactory->create(RowGroupBuilder::class)
@@ -118,13 +129,15 @@ class SectionBuilder {
 	 * Inserts a field row at a specific position.
 	 * Automatically checks if fields already exist to prevent duplicates.
 	 *
-	 * @param  int                        $position     The position where to insert the row (0-based index)
-	 * @param  string                     $field1       The name of the first field
-	 * @param  string|null                $field2       The name of the second field (or null for empty)
-	 * @param  array<string, string>|null $translations Optional translations
+	 * @param int                        $position     The position where to insert the row (0-based index)
+	 * @param string                     $field1       The name of the first field
+	 * @param string|null                $field2       The name of the second field (or null for empty)
+	 * @param array<string, string>|null $translations Optional translations
+	 *
 	 * @return self
 	 */
-	public function insertFieldsAt(int $position, string $field1, ?string $field2 = null, ?array $translations = null): self {
+	public function insertFieldsAt(int $position, string $field1, ?string $field2 = null, ?array $translations = null): self
+	{
 		// Check if field1 already exists
 		if ($this->hasField($field1)) {
 			return $this;
@@ -158,12 +171,14 @@ class SectionBuilder {
 	}
 
 	/**
-	 * Checks if section contains a field with given name
+	 * Checks if section contains a field with given name.
 	 *
-	 * @param  string $fieldName Field name to check
+	 * @param string $fieldName Field name to check
+	 *
 	 * @return bool
 	 */
-	public function hasField(string $fieldName): bool {
+	public function hasField(string $fieldName): bool
+	{
 		if (!isset($this->section['rows'])) {
 			return false;
 		}
@@ -193,11 +208,13 @@ class SectionBuilder {
 		return false;
 	}
 
-	public function build(): LayoutBuilder {
+	public function build(): LayoutBuilder
+	{
 		return $this->layoutBuilder;
 	}
 
-	public function getLayoutBuilder(): LayoutBuilder {
+	public function getLayoutBuilder(): LayoutBuilder
+	{
 		return $this->layoutBuilder;
 	}
 }

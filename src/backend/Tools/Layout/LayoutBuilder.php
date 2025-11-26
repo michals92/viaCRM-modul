@@ -8,7 +8,8 @@ use Espo\Core\WebSocket\Submission as WebSocketSubmission;
 use Espo\Entities\User;
 use Espo\Modules\Viacrm\Core\Layout;
 
-class LayoutBuilder {
+class LayoutBuilder
+{
 	protected readonly string $layoutName;
 
 	protected readonly string $scope;
@@ -17,19 +18,19 @@ class LayoutBuilder {
 
 	protected ?RowGroupBuilder $rowGroupBuilder = null;
 
-	/** @var array<array<string, mixed>|bool> $layout */
+	/** @var array<array<string, mixed>|bool> */
 	protected array $layout;
 
-	/** @var array<array<string, mixed>> $translations */
+	/** @var array<array<string, mixed>> */
 	protected array $translations = [];
 
 	public function __construct(
-		string                                 $scope,
-		string                                 $layoutName,
-		protected readonly InjectableFactory   $injectableFactory,
+		string $scope,
+		string $layoutName,
+		protected readonly InjectableFactory $injectableFactory,
 		protected readonly WebSocketSubmission $webSocketSubmission,
-		protected readonly User                $user,
-		protected readonly Language            $language
+		protected readonly User $user,
+		protected readonly Language $language
 	) {
 		$this->layoutName = lcfirst($layoutName);
 		$this->scope = ucfirst($scope);
@@ -38,7 +39,8 @@ class LayoutBuilder {
 	/**
 	 * @param array<array<string, mixed>> $layout
 	 */
-	public function setLayout(array &$layout): void {
+	public function setLayout(array &$layout): void
+	{
 		if (isset($this->layout)) {
 			throw new \LogicException('Layout is already set');
 		}
@@ -50,7 +52,8 @@ class LayoutBuilder {
 	/**
 	 * @param array<array<string, mixed>> $layout
 	 */
-	public function addLayout(array $layout): self {
+	public function addLayout(array $layout): self
+	{
 		$this->assertLayoutType($layout);
 		$this->layout[] = $layout;
 
@@ -60,7 +63,8 @@ class LayoutBuilder {
 	/**
 	 * @param array<array<string, mixed>> $layout
 	 */
-	private function assertLayoutType(array $layout): void {
+	private function assertLayoutType(array $layout): void
+	{
 		$layoutType = Layout\LikeType::fromLayout($layout);
 
 		if ($layoutType === null) {
@@ -74,7 +78,8 @@ class LayoutBuilder {
 		}
 	}
 
-	public function getSection(string $labelName): ?SectionBuilder {
+	public function getSection(string $labelName): ?SectionBuilder
+	{
 		if (!$this->type->hasSections()) {
 			throw new \LogicException('Cannot get section from layout without sections');
 		}
@@ -99,7 +104,7 @@ class LayoutBuilder {
 			}
 
 			$sectionBuilder = $this->injectableFactory->createWith(SectionBuilder::class, [
-				'layoutBuilder' => $this
+				'layoutBuilder' => $this,
 			]);
 
 			return $sectionBuilder->setSection($section);
@@ -111,7 +116,8 @@ class LayoutBuilder {
 	/**
 	 * @param array<string, mixed> $section
 	 */
-	public function addSection(array &$section): SectionBuilder {
+	public function addSection(array &$section): SectionBuilder
+	{
 		if (!$this->type->hasSections()) {
 			throw new \LogicException('Cannot add section to layout without sections');
 		}
@@ -121,12 +127,13 @@ class LayoutBuilder {
 		return $this->injectableFactory->createWith(SectionBuilder::class, ['layoutBuilder' => $this])->setSection($section);
 	}
 
-	public function getOrCreateSection(string $labelName): SectionBuilder {
+	public function getOrCreateSection(string $labelName): SectionBuilder
+	{
 		$section = $this->getSection($labelName);
 		if ($section === null) {
 			$newSection = [
 				'label' => $labelName,
-				'rows' => []
+				'rows' => [],
 			];
 
 			return $this->addSection($newSection);
@@ -135,7 +142,8 @@ class LayoutBuilder {
 		return $section;
 	}
 
-	public function addRow(bool $empty = false): ?RowBuilder {
+	public function addRow(bool $empty = false): ?RowBuilder
+	{
 		$rowGroupBuilder = $this->getRowGroupBuilder();
 
 		if ($rowGroupBuilder === null) {
@@ -149,7 +157,8 @@ class LayoutBuilder {
 		return $this->injectableFactory->createWith(RowBuilder::class, ['rowGroupBuilder' => $rowGroupBuilder])->setRow($row);
 	}
 
-	public function getRowGroupBuilder(): ?RowGroupBuilder {
+	public function getRowGroupBuilder(): ?RowGroupBuilder
+	{
 		if ($this->type->hasGroups()) {
 			return null;
 		}
@@ -158,25 +167,29 @@ class LayoutBuilder {
 		return $this->rowGroupBuilder;
 	}
 
-	public function getLayoutName(): string {
+	public function getLayoutName(): string
+	{
 		return $this->layoutName;
 	}
 
-	public function getScope(): string {
+	public function getScope(): string
+	{
 		return $this->scope;
 	}
 
-	public function getType(): Layout\LikeType {
+	public function getType(): Layout\LikeType
+	{
 		return $this->type;
 	}
 
 	/**
-	 * @param string                     $categoryName - fields, links, tooltips etc.
-	 * @param string                     $name         - warehouse, user etc.
+	 * @param string                     $categoryName - fields, links, tooltips etc
+	 * @param string                     $name         - warehouse, user etc
 	 * @param null|array<string, string> $translations
 	 * @param null|string                $language     - language shortcode, default is $this->language->getLanguage()
 	 */
-	public function addTranslationFromArray(string $categoryName, string $name, ?array $translations = null, string|null $language = null): void {
+	public function addTranslationFromArray(string $categoryName, string $name, ?array $translations = null, string|null $language = null): void
+	{
 		if (empty($translations)) {
 			return;
 		}
@@ -187,18 +200,20 @@ class LayoutBuilder {
 	}
 
 	/**
-	 * @param string      $categoryName - fields, links, tooltips etc.
-	 * @param string      $name         - warehouse, user etc.
-	 * @param string      $value        - sklad, uživatel etc.
+	 * @param string      $categoryName - fields, links, tooltips etc
+	 * @param string      $name         - warehouse, user etc
+	 * @param string      $value        - sklad, uživatel etc
 	 * @param string|null $language     - language shortcode, default is $this->language->getLanguage()
 	 */
-	public function addTranslation(string $categoryName, string $name, string $value, string|null $language = null): void {
+	public function addTranslation(string $categoryName, string $name, string $value, string|null $language = null): void
+	{
 		$language ??= $this->language->getLanguage();
 		$this->translations[$language][$this->getScope()][$categoryName][$name] = $value;
 		$this->language->set($this->getScope(), $categoryName, $name, $value);
 	}
 
-	public function submitTranslationsToFrontend(): void {
+	public function submitTranslationsToFrontend(): void
+	{
 		if (empty($this->translations) || $this->user->isSystem()) {
 			return;
 		}
@@ -208,7 +223,7 @@ class LayoutBuilder {
 			$this->webSocketSubmission->submit(
 				'viacrm.language',
 				$this->user->getId(),
-				(object)[
+				(object) [
 					'data' => $translations,
 				]
 			);
@@ -216,12 +231,14 @@ class LayoutBuilder {
 	}
 
 	/**
-	 * Checks if layout contains a field with given name
+	 * Checks if layout contains a field with given name.
 	 *
-	 * @param  string $fieldName Field name to check
+	 * @param string $fieldName Field name to check
+	 *
 	 * @return bool
 	 */
-	public function hasField(string $fieldName): bool {
+	public function hasField(string $fieldName): bool
+	{
 		switch ($this->type) {
 			case Layout\LikeType::list:
 				return $this->hasFieldInListLayout($fieldName);
@@ -235,9 +252,10 @@ class LayoutBuilder {
 	}
 
 	/**
-	 * Checks if list layout contains a field with given name
+	 * Checks if list layout contains a field with given name.
 	 */
-	private function hasFieldInListLayout(string $fieldName): bool {
+	private function hasFieldInListLayout(string $fieldName): bool
+	{
 		foreach ($this->layout as $field) {
 			if (is_array($field) && isset($field['name']) && $field['name'] === $fieldName) {
 				return true;
@@ -248,9 +266,10 @@ class LayoutBuilder {
 	}
 
 	/**
-	 * Checks if detail layout contains a field with given name
+	 * Checks if detail layout contains a field with given name.
 	 */
-	private function hasFieldInDetailLayout(string $fieldName): bool {
+	private function hasFieldInDetailLayout(string $fieldName): bool
+	{
 		foreach ($this->layout as $section) {
 			if (!is_array($section) || !isset($section['rows'])) {
 				continue;
@@ -271,9 +290,10 @@ class LayoutBuilder {
 	}
 
 	/**
-	 * Checks if bottomsPanel layout contains a field with given name
+	 * Checks if bottomsPanel layout contains a field with given name.
 	 */
-	private function hasFieldInBottomsPanelLayout(string $fieldName): bool {
+	private function hasFieldInBottomsPanelLayout(string $fieldName): bool
+	{
 		// TODO: Implement if needed for bottomsPanel layouts
 		return false;
 	}
@@ -282,10 +302,12 @@ class LayoutBuilder {
 	 * Adds a field to a list layout.
 	 * Automatically prevents duplicates by checking if field already exists.
 	 *
-	 * @param  array<string, mixed> $field Field definition with 'name' and optional properties like 'width'
+	 * @param array<string, mixed> $field Field definition with 'name' and optional properties like 'width'
+	 *
 	 * @return self
 	 */
-	public function addField(array $field): self {
+	public function addField(array $field): self
+	{
 		if ($this->type !== Layout\LikeType::list) {
 			throw new \LogicException('Cannot add field to non-list layout');
 		}
@@ -304,11 +326,13 @@ class LayoutBuilder {
 	 * Inserts a field at a specific position in a list layout.
 	 * Automatically prevents duplicates by checking if field already exists.
 	 *
-	 * @param  array<string, mixed> $field    Field definition with 'name' and optional properties like 'width'
-	 * @param  int                  $position Position where to insert the field (0-based index)
+	 * @param array<string, mixed> $field    Field definition with 'name' and optional properties like 'width'
+	 * @param int                  $position Position where to insert the field (0-based index)
+	 *
 	 * @return self
 	 */
-	public function insertFieldAt(array $field, int $position): self {
+	public function insertFieldAt(array $field, int $position): self
+	{
 		if ($this->type !== Layout\LikeType::list) {
 			throw new \LogicException('Cannot insert field in non-list layout');
 		}
@@ -330,8 +354,9 @@ class LayoutBuilder {
 	/**
 	 * @return array<array<string, mixed>> A cloned layout
 	 */
-	public function build(): array {
-		$result = (array)(clone ((object)$this->layout));
+	public function build(): array
+	{
+		$result = (array) (clone ((object) $this->layout));
 
 		return $result;
 	}

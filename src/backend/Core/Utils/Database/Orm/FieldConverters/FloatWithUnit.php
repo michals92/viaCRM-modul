@@ -8,23 +8,25 @@ use Espo\Core\Utils\Database\Orm\FieldConverter;
 use Espo\ORM\Defs\FieldDefs;
 use Espo\ORM\Type\AttributeType;
 
-class FloatWithUnit implements FieldConverter {
-	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs {
+class FloatWithUnit implements FieldConverter
+{
+	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs
+	{
 		$name = $fieldDefs->getName();
 
 		$amountDefs = AttributeDefs::create($name)
-		    ->withType(AttributeType::FLOAT)
-		    ->withParamsMerged([
-		        'attributeRole' => 'value',
-		        'fieldType' => 'floatWIthUnit',
-		    ]);
+			->withType(AttributeType::FLOAT)
+			->withParamsMerged([
+				'attributeRole' => 'value',
+				'fieldType' => 'floatWIthUnit',
+			]);
 
 		$currencyDefs = AttributeDefs::create($name . 'Unit')
-		    ->withType(AttributeType::VARCHAR)
-		    ->withParamsMerged([
-		        'attributeRole' => 'unit',
-		        'fieldType' => 'floatWIthUnit',
-		    ]);
+			->withType(AttributeType::VARCHAR)
+			->withParamsMerged([
+				'attributeRole' => 'unit',
+				'fieldType' => 'floatWIthUnit',
+			]);
 
 		if ($fieldDefs->isNotStorable()) {
 			$amountDefs = $amountDefs->withNotStorable();
@@ -32,8 +34,8 @@ class FloatWithUnit implements FieldConverter {
 		}
 
 		$entityDefs = EntityDefs::create()
-		    ->withAttribute($amountDefs)
-		    ->withAttribute($currencyDefs);
+			->withAttribute($amountDefs)
+			->withAttribute($currencyDefs);
 
 		return $entityDefs;
 	}

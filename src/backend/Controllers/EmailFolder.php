@@ -8,12 +8,14 @@ use Espo\Core\Exceptions\NotFound;
 use Espo\Modules\Viacrm\Tools\EmailFolder\Service as ViacrmEmailFolderService;
 use stdClass;
 
-class EmailFolder extends \Espo\Controllers\EmailFolder {
+class EmailFolder extends \Espo\Controllers\EmailFolder
+{
 	/**
 	 * @throws Forbidden
 	 * @throws NotFound
 	 */
-	public function getActionListAll(Request $request): stdClass {
+	public function getActionListAll(Request $request): stdClass
+	{
 		$userId = $request->getQueryParam('userId');
 
 		$list = $this->getEmailFolderService()->listAll($userId);
@@ -21,7 +23,8 @@ class EmailFolder extends \Espo\Controllers\EmailFolder {
 		return (object) ['list' => $list];
 	}
 
-	private function getEmailFolderService(): ViacrmEmailFolderService {
+	private function getEmailFolderService(): ViacrmEmailFolderService
+	{
 		return $this->injectableFactory->create(ViacrmEmailFolderService::class);
 	}
 }

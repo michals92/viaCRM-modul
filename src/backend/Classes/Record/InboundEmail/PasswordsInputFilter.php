@@ -13,15 +13,18 @@ use Espo\Core\Utils\Crypt;
  * This filter is appended to the core PasswordsInputFilter, which handles
  * password and smtpPassword fields. We only need to handle ewsPassword.
  */
-class PasswordsInputFilter implements Filter {
+class PasswordsInputFilter implements Filter
+{
 	public function __construct(
 		private Crypt $crypt
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 */
-	public function filter(Data $data): void {
+	public function filter(Data $data): void
+	{
 		$ewsPassword = $data->get('ewsPassword');
 
 		if ($ewsPassword !== null) {

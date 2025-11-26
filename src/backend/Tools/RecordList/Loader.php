@@ -13,13 +13,15 @@ use Espo\ORM\Defs;
 use Espo\ORM\Entity;
 use Espo\ORM\Type\AttributeType;
 
-class Loader {
+class Loader
+{
 	public function __construct(
 		private readonly Service $service,
 		private readonly Defs $defs,
 		private readonly AttributeExtractor $attributeExtractor,
 		private readonly Metadata $metadata,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
@@ -27,7 +29,8 @@ class Loader {
 	 * @throws Error
 	 * @throws NotFound
 	 */
-	public function load(Entity $entity, string $field, bool $forceSelectAllAttributes = false): void {
+	public function load(Entity $entity, string $field, bool $forceSelectAllAttributes = false): void
+	{
 		$entityType = $entity->getEntityType();
 
 		$entityDefs = $this->defs->getEntity($entityType);
@@ -54,11 +57,11 @@ class Loader {
 					throw Error::createWithBody(
 						"Entity {$foreignEntityType} is missing layout {$layout} or layout does not contain valid JSON",
 						Error\Body::create()
-						    ->withMessageTranslation('layoutMissingOrInvalid', 'FieldManager', [
-						        'layout' => $layout,
-						        'entityType' => $foreignEntityType,
-						    ])
-						    ->encode()
+							->withMessageTranslation('layoutMissingOrInvalid', 'FieldManager', [
+								'layout' => $layout,
+								'entityType' => $foreignEntityType,
+							])
+							->encode()
 					);
 				}
 
@@ -70,11 +73,11 @@ class Loader {
 					throw Error::createWithBody(
 						"Entity {$foreignEntityType} is missing '{$orderByField}' order attribute",
 						Error\Body::create()
-						    ->withMessageTranslation('orderAttributeMissing', 'FieldManager', [
-						        'attribute' => $orderByField,
-						        'entityType' => $foreignEntityType,
-						    ])
-						    ->encode()
+							->withMessageTranslation('orderAttributeMissing', 'FieldManager', [
+								'attribute' => $orderByField,
+								'entityType' => $foreignEntityType,
+							])
+							->encode()
 					);
 				}
 
@@ -82,19 +85,19 @@ class Loader {
 					throw Error::createWithBody(
 						"Entity {$foreignEntityType} order attribute '{$orderByField}' must be of type 'int'",
 						Error\Body::create()
-						    ->withMessageTranslation('orderAttributeWrongType', 'FieldManager', [
-						        'attribute' => $orderByField,
-						        'entityType' => $foreignEntityType,
-						    ])
-						    ->encode()
+							->withMessageTranslation('orderAttributeWrongType', 'FieldManager', [
+								'attribute' => $orderByField,
+								'entityType' => $foreignEntityType,
+							])
+							->encode()
 					);
 				}
 
 				$attributeList[] = $orderByField;
 
 				$searchParams = $searchParams
-				    ->withOrderBy($orderByField)
-				    ->withOrder(SearchParams::ORDER_ASC);
+					->withOrderBy($orderByField)
+					->withOrder(SearchParams::ORDER_ASC);
 			}
 
 			if ($attributeList) {

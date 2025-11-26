@@ -4,8 +4,10 @@ namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Pos
 
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 
-class ForeignField implements FunctionConverter {
-	public function convert(string ...$argumentList): string {
+class ForeignField implements FunctionConverter
+{
+	public function convert(string ...$argumentList): string
+	{
 		if (count($argumentList) < 3) {
 			throw new \RuntimeException(
 				'FOREIGN_FIELD: Wrong number of arguments. ' .
@@ -24,7 +26,7 @@ class ForeignField implements FunctionConverter {
 		$tableName = $entityIdParts[0];
 		$columnName = $entityIdParts[1] ?? 'id';
 
-		$idReference = $tableName. '.' . $columnName;
+		$idReference = $tableName . '.' . $columnName;
 
 		return 'COALESCE((
 			SELECT "' . $alias . '"."' . $fieldName . '"
@@ -35,7 +37,8 @@ class ForeignField implements FunctionConverter {
 		), NULL)';
 	}
 
-	private function toLowerCase(string $string): string {
+	private function toLowerCase(string $string): string
+	{
 		return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $string) ?? $string);
 	}
 }

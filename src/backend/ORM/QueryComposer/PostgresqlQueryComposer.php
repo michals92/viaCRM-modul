@@ -9,11 +9,13 @@ use RuntimeException;
 /**
  * Extended PostgreSQL query composer that adds support for expressions in insert queries.
  */
-class PostgresqlQueryComposer extends \Espo\ORM\QueryComposer\PostgresqlQueryComposer {
+class PostgresqlQueryComposer extends \Espo\ORM\QueryComposer\PostgresqlQueryComposer
+{
 	use QueryComposerExtensionTrait;
 
 	// Allows use of Expressions in updateSet
-	public function composeInsert(InsertQuery $query): string {
+	public function composeInsert(InsertQuery $query): string
+	{
 		$params = $query->getRaw();
 		$params = $this->normalizeInsertParams($params);
 
@@ -32,7 +34,8 @@ class PostgresqlQueryComposer extends \Espo\ORM\QueryComposer\PostgresqlQueryCom
 		if ($updatePart) {
 			$uniqueColumns = ReflectionUtil::callClassMethod(parent::class, $this, 'getEntityUniqueColumns', $entityType);
 
-			$updateColumnsPart = implode(', ',
+			$updateColumnsPart = implode(
+				', ',
 				// @phpstan-ignore method.deprecated
 				array_map(fn ($item) => $this->quoteIdentifier($this->toDb($this->sanitize($item))), $uniqueColumns)
 			);
@@ -83,7 +86,7 @@ class PostgresqlQueryComposer extends \Espo\ORM\QueryComposer\PostgresqlQueryCom
 
 	/**
 	 * This function backports 2 fixes, detailed below.
-	 * 
+	 *
 	 * @param string[]             $argumentPartList
 	 * @param array<string, mixed> $params
 	 */
@@ -172,7 +175,7 @@ class PostgresqlQueryComposer extends \Espo\ORM\QueryComposer\PostgresqlQueryCom
 			$field = $argumentPartList[0];
 
 			$pairs = array_map(
-				fn($i) => [$i, $argumentPartList[$i]],
+				fn ($i) => [$i, $argumentPartList[$i]],
 				array_keys($argumentPartList)
 			);
 
@@ -198,9 +201,9 @@ class PostgresqlQueryComposer extends \Espo\ORM\QueryComposer\PostgresqlQueryCom
 				$fiscalFirstMonth = $fiscalShift + 1;
 
 				return
-				    "CASE WHEN EXTRACT(MONTH FROM $part) >= $fiscalFirstMonth THEN ".
-				    "EXTRACT(YEAR FROM $part) ".
-				    "ELSE EXTRACT(YEAR FROM $part) - 1 END";
+					"CASE WHEN EXTRACT(MONTH FROM $part) >= $fiscalFirstMonth THEN " .
+					"EXTRACT(YEAR FROM $part) " .
+					"ELSE EXTRACT(YEAR FROM $part) - 1 END";
 			}
 		}
 
@@ -211,22 +214,22 @@ class PostgresqlQueryComposer extends \Espo\ORM\QueryComposer\PostgresqlQueryCom
 				$fiscalShift = (int) $fiscalShift;
 				$fiscalFirstMonth = $fiscalShift + 1;
 				$fiscalDistractedMonth = $fiscalFirstMonth < 4 ?
-				    12 - $fiscalFirstMonth :
-				    12 - $fiscalFirstMonth + 1;
+					12 - $fiscalFirstMonth :
+					12 - $fiscalFirstMonth + 1;
 
 				return
-				    "CASE WHEN EXTRACT(MONTH FROM $part) >= $fiscalFirstMonth " .
-				    'THEN ' .
-				    'CONCAT(' .
-				    "EXTRACT(YEAR FROM $part), '_', " .
-				    "FLOOR((EXTRACT(MONTH FROM $part) - $fiscalFirstMonth) / 3) + 1" .
-				    ') ' .
-				    'ELSE ' .
-				    'CONCAT(' .
-				    "EXTRACT(YEAR FROM $part) - 1, '_', " .
-				    "CEIL((EXTRACT(MONTH FROM $part) + $fiscalDistractedMonth) / 3)" .
-				    ') ' .
-				    'END';
+					"CASE WHEN EXTRACT(MONTH FROM $part) >= $fiscalFirstMonth " .
+					'THEN ' .
+					'CONCAT(' .
+					"EXTRACT(YEAR FROM $part), '_', " .
+					"FLOOR((EXTRACT(MONTH FROM $part) - $fiscalFirstMonth) / 3) + 1" .
+					') ' .
+					'ELSE ' .
+					'CONCAT(' .
+					"EXTRACT(YEAR FROM $part) - 1, '_', " .
+					"CEIL((EXTRACT(MONTH FROM $part) + $fiscalDistractedMonth) / 3)" .
+					') ' .
+					'END';
 			}
 		}
 

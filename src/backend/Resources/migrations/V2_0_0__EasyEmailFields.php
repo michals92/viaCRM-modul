@@ -2,10 +2,12 @@
 
 namespace Espo\Modules\ViaCrm\Migrations;
 
-class V2_0_0__EasyEmailFields extends \Espo\Core\Migration\Base {
-	public function up(): void {
+class V2_0_0__EasyEmailFields extends \Espo\Core\Migration\Base
+{
+	public function up(): void
+	{
 		$pdo = $this->getEntityManager()->getPDO();
-        
+
 		// Add bodyMjml field to email_template table
 		try {
 			$sql = 'ALTER TABLE `email_template` 
@@ -16,7 +18,7 @@ class V2_0_0__EasyEmailFields extends \Espo\Core\Migration\Base {
 		} catch (\Exception $e) {
 			$this->log->warning('Failed to add fields to email_template: ' . $e->getMessage());
 		}
-        
+
 		// Add bodyMjml field to email table
 		try {
 			$sql = 'ALTER TABLE `email` 
@@ -28,10 +30,11 @@ class V2_0_0__EasyEmailFields extends \Espo\Core\Migration\Base {
 			$this->log->warning('Failed to add fields to email: ' . $e->getMessage());
 		}
 	}
-    
-	public function down(): void {
+
+	public function down(): void
+	{
 		$pdo = $this->getEntityManager()->getPDO();
-        
+
 		// Remove fields from email_template
 		try {
 			$sql = 'ALTER TABLE `email_template` 
@@ -41,7 +44,7 @@ class V2_0_0__EasyEmailFields extends \Espo\Core\Migration\Base {
 		} catch (\Exception $e) {
 			$this->log->warning('Failed to remove fields from email_template: ' . $e->getMessage());
 		}
-        
+
 		// Remove fields from email
 		try {
 			$sql = 'ALTER TABLE `email` 

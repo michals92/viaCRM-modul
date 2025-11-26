@@ -6,13 +6,16 @@ use Espo\Core\Field\EmailAddressGroup;
 use InvalidArgumentException;
 use stdClass;
 
-class EmailAddressGroupAttributeExtractor extends \Espo\Core\Field\EmailAddress\EmailAddressGroupAttributeExtractor {
+class EmailAddressGroupAttributeExtractor extends \Espo\Core\Field\EmailAddress\EmailAddressGroupAttributeExtractor
+{
 	/**
-	 * @param  object   $group (EmailAddressGroup)
-	 * @param  string   $field
+	 * @param object $group (EmailAddressGroup)
+	 * @param string $field
+	 *
 	 * @return stdClass
 	 */
-	public function extract(object $group, string $field): stdClass {
+	public function extract(object $group, string $field): stdClass
+	{
 		if (!$group instanceof EmailAddressGroup) {
 			throw new InvalidArgumentException();
 		}

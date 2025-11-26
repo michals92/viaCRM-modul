@@ -9,15 +9,18 @@ use Espo\Core\Api\ResponseComposer;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Modules\Viacrm\Services\Product as ProductService;
 
-class GetSelectAttributes implements Action {
+class GetSelectAttributes implements Action
+{
 	public function __construct(
 		private readonly ProductService $productService
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$productId = $request->getRouteParam('productId');
 
 		if (!$productId) {
@@ -29,7 +32,7 @@ class GetSelectAttributes implements Action {
 		$attributes = $this->productService->getSelectAttributes($productId, $existingAccountId);
 
 		return ResponseComposer::json([
-		    'attributes' => $attributes,
+			'attributes' => $attributes,
 		]);
 	}
 }

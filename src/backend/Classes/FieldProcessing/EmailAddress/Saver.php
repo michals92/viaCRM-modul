@@ -13,7 +13,8 @@ use Espo\ORM\Entity;
 use Espo\Repositories\EmailAddress as EmailAddressRepository;
 use ReflectionException;
 
-class Saver extends \Espo\Core\FieldProcessing\EmailAddress\Saver {
+class Saver extends \Espo\Core\FieldProcessing\EmailAddress\Saver
+{
 	public function __construct(
 		private EntityManager $entityManager,
 		ApplicationState $applicationState,
@@ -29,7 +30,8 @@ class Saver extends \Espo\Core\FieldProcessing\EmailAddress\Saver {
 	/**
 	 * @throws ReflectionException
 	 */
-	public function process(Entity $entity, SaverParams $params): void {
+	public function process(Entity $entity, SaverParams $params): void
+	{
 		$entityType = $entity->getEntityType();
 
 		$defs = $this->entityManager->getDefs()->getEntity($entityType);
@@ -62,7 +64,8 @@ class Saver extends \Espo\Core\FieldProcessing\EmailAddress\Saver {
 	/**
 	 * @throws ReflectionException
 	 */
-	private function storeData(Entity $entity): void {
+	private function storeData(Entity $entity): void
+	{
 		if (!$entity->has('emailAddressData')) {
 			return;
 		}
@@ -79,7 +82,7 @@ class Saver extends \Espo\Core\FieldProcessing\EmailAddress\Saver {
 			return;
 		}
 
-		$noPrimary = array_filter($emailAddressData, fn($item) => !empty($item->primary)) === [];
+		$noPrimary = array_filter($emailAddressData, fn ($item) => !empty($item->primary)) === [];
 
 		if ($noPrimary && $emailAddressData !== []) {
 			$emailAddressData[0]->primary = true;
@@ -95,8 +98,8 @@ class Saver extends \Espo\Core\FieldProcessing\EmailAddress\Saver {
 			$previousEmailAddressData = $repository->getEmailAddressData($entity);
 		}
 
-		$hash = (object)[];
-		$hashPrevious = (object)[];
+		$hash = (object) [];
+		$hashPrevious = (object) [];
 
 		foreach ($emailAddressData as $row) {
 			$key = trim($row->emailAddress);
@@ -127,9 +130,9 @@ class Saver extends \Espo\Core\FieldProcessing\EmailAddress\Saver {
 			}
 
 			$hashPrevious->$key = [
-				'primary' => (bool)$row->primary,
-				'optOut' => (bool)$row->optOut,
-				'invalid' => (bool)$row->invalid,
+				'primary' => (bool) $row->primary,
+				'optOut' => (bool) $row->optOut,
+				'invalid' => (bool) $row->invalid,
 				'emailAddress' => $row->emailAddress,
 				'accountId' => $row->accountId ?? null,
 				'accountName' => $row->accountName ?? null,

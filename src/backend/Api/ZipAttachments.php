@@ -15,7 +15,8 @@ use Espo\Modules\Viacrm\Tools\ZipStream\Creator as ZipStreamCreator;
 use Espo\Repositories\Attachment as AttachmentRepository;
 use ZipStream\ZipStream;
 
-class ZipAttachments implements Action {
+class ZipAttachments implements Action
+{
 	private AttachmentRepository $attachmentRepository;
 
 	public function __construct(
@@ -27,11 +28,12 @@ class ZipAttachments implements Action {
 
 		/** @var AttachmentRepository $repo */
 		$repo = $this->entityManager->getRepository(Attachment::ENTITY_TYPE);
-        
+
 		$this->attachmentRepository = $repo;
 	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$ids = $request->getQueryParam('ids');
 		$field = $request->getQueryParam('field');
 		$entityType = $request->getQueryParam('entityType');
@@ -57,8 +59,8 @@ class ZipAttachments implements Action {
 		$zipFileName = 'attachments.zip';
 
 		$response = ResponseComposer::empty()
-		    ->setHeader('Content-Type', 'application/zip')
-		    ->setHeader('Content-Disposition', 'attachment; filename="' . $zipFileName . '"');
+			->setHeader('Content-Type', 'application/zip')
+			->setHeader('Content-Disposition', 'attachment; filename="' . $zipFileName . '"');
 
 		$resource = fopen('php://temp', 'r+');
 
@@ -111,11 +113,12 @@ class ZipAttachments implements Action {
 		}
 
 		return $response
-		    ->setHeader('Content-Length', (string) strlen($zipContent))
-		    ->writeBody($zipContent);
+			->setHeader('Content-Length', (string) strlen($zipContent))
+			->writeBody($zipContent);
 	}
 
-	private function addAttachmentToZip(ZipStream $zip, Attachment $attachment): void {
+	private function addAttachmentToZip(ZipStream $zip, Attachment $attachment): void
+	{
 		$contents = $this->attachmentRepository->getContents($attachment);
 		$fileName = $attachment->get('name');
 		$fileName = Util::sanitizeFileName($fileName);

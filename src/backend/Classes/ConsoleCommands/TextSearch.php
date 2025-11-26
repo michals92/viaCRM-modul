@@ -11,14 +11,17 @@ use Espo\Core\Utils\Json;
 use Espo\Core\Utils\Metadata;
 use Espo\Modules\Viacrm\Tools\Layout\AttributeExtractor;
 
-class TextSearch implements Command {
+class TextSearch implements Command
+{
 	public function __construct(
 		private readonly RecordServiceContainer $recordServiceContainer,
 		private readonly Metadata $metadata,
 		private readonly AttributeExtractor $attributeExtractor
-	) {}
+	) {
+	}
 
-	public function run(Params $params, IO $io): void {
+	public function run(Params $params, IO $io): void
+	{
 		$entityType = $params->getArgument(0);
 		$textFilter = $params->getArgument(1);
 
@@ -42,12 +45,12 @@ class TextSearch implements Command {
 		try {
 			// Get attributes from the list layout using AttributeExtractor
 			$selectAttributeList = $this->attributeExtractor->extractAttributesFromLayout($entityType, 'list');
-            
+
 			// Always include id if not already in the list
 			if (!in_array('id', $selectAttributeList)) {
 				array_unshift($selectAttributeList, 'id');
 			}
-            
+
 			// If no attributes found, use a minimal set
 			if (count($selectAttributeList) === 1) {
 				// Just has 'id', add name if it exists
@@ -58,9 +61,9 @@ class TextSearch implements Command {
 
 			// Create search params with text filter
 			$searchParams = SearchParams::create()
-			    ->withTextFilter($textFilter)
-			    ->withSelect($selectAttributeList)
-			    ->withMaxSize(20); // Default list view limit
+				->withTextFilter($textFilter)
+				->withSelect($selectAttributeList)
+				->withMaxSize(20); // Default list view limit
 
 			// Get the record service for the entity type
 			$recordService = $this->recordServiceContainer->get($entityType);
@@ -70,8 +73,8 @@ class TextSearch implements Command {
 
 			// Output the results
 			$result = [
-			    'total' => $recordCollection->getTotal(),
-			    'list' => $recordCollection->getValueMapList()
+				'total' => $recordCollection->getTotal(),
+				'list' => $recordCollection->getValueMapList(),
 			];
 
 			$io->writeLine(Json::encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));

@@ -9,4 +9,6 @@ use Espo\Modules\Viacrm\Entities\ProductCategory as ProductCategoryEntity;
  *
  * @extends \Espo\Core\Templates\Repositories\CategoryTree<ProductCategoryEntity>
  */
-class ProductCategory extends \Espo\Core\Templates\Repositories\CategoryTree {}
+class ProductCategory extends \Espo\Core\Templates\Repositories\CategoryTree
+{
+}

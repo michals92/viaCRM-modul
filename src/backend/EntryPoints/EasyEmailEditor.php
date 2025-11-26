@@ -7,16 +7,18 @@ use Espo\Core\Api\Response;
 use Espo\Core\EntryPoint\EntryPoint;
 use Espo\Core\EntryPoint\Traits\NoAuth;
 
-class EasyEmailEditor implements EntryPoint {
+class EasyEmailEditor implements EntryPoint
+{
 	use NoAuth;
 
-	public function run(Request $request, Response $response): void {
+	public function run(Request $request, Response $response): void
+	{
 		$response->setHeader('Content-Type', 'text/html; charset=utf-8');
-        
+
 		try {
 			$templateId = $request->getQueryParam('templateId') ?? 'new';
 			$timestamp = date('Y-m-d H:i:s');
-            
+
 			// Generate the mighty email editor
 			$html = $this->generateEditorHTML($templateId, $timestamp);
 			$response->writeBody($html);
@@ -29,7 +31,8 @@ class EasyEmailEditor implements EntryPoint {
 		}
 	}
 
-	private function generateEditorHTML($templateId, $timestamp): string {
+	private function generateEditorHTML($templateId, $timestamp): string
+	{
 		$cssStyles = $this->getAdvancedStyles();
 		$htmlStructure = $this->getHTMLStructure($templateId);
 		$javascript = $this->getAdvancedJavaScript($templateId, $timestamp);
@@ -51,7 +54,8 @@ class EasyEmailEditor implements EntryPoint {
 </html>";
 	}
 
-	private function getAdvancedStyles(): string {
+	private function getAdvancedStyles(): string
+	{
 		return '
         :root {
             --primary: #667eea;
@@ -743,7 +747,8 @@ class EasyEmailEditor implements EntryPoint {
         }';
 	}
 
-	private function getHTMLStructure($templateId): string {
+	private function getHTMLStructure($templateId): string
+	{
 		return '
         <div class="legendary-header">
             <div class="header-left">
@@ -957,7 +962,8 @@ class EasyEmailEditor implements EntryPoint {
         </style>';
 	}
 
-	private function getAdvancedJavaScript($templateId, $timestamp): string {
+	private function getAdvancedJavaScript($templateId, $timestamp): string
+	{
 		return '
         // 🚀 LEGENDARY EMAIL EDITOR - ADVANCED JAVASCRIPT ENGINE
         let componentCounter = 0;

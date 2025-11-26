@@ -9,19 +9,22 @@ use Espo\Core\Utils\Language;
 use Espo\Core\Utils\Metadata;
 use Espo\Tools\LayoutManager\LayoutManager;
 
-class Service {
+class Service
+{
 	public function __construct(
-		private readonly Metadata      $metadata,
-		private readonly Language      $language,
-		private readonly DataManager   $dataManager,
+		private readonly Metadata $metadata,
+		private readonly Language $language,
+		private readonly DataManager $dataManager,
 		private readonly LayoutManager $layoutManager,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws Error
 	 * @throws \JsonException
 	 */
-	public function add(string $type, string $scope, string $name, string $label): ?string {
+	public function add(string $type, string $scope, string $name, string $label): ?string
+	{
 		$json = $this->layoutManager->get($scope, $type);
 		$data = $json ? Json::decode($json) : [];
 

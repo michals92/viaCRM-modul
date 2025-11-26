@@ -10,12 +10,15 @@ use Espo\Core\InjectableFactory;
 use Espo\Entities\User;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 
-class DefaultTableFactory extends \Espo\Core\Acl\Table\DefaultTableFactory {
+class DefaultTableFactory extends \Espo\Core\Acl\Table\DefaultTableFactory
+{
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory
-	) {}
+	) {
+	}
 
-	public function create(User $user): Table {
+	public function create(User $user): Table
+	{
 		$childbindingContainer = ReflectionUtil::callClassMethod(parent::class, $this, 'createBindingContainer', $user);
 
 		$bindingData = new BindingData();
@@ -25,8 +28,8 @@ class DefaultTableFactory extends \Espo\Core\Acl\Table\DefaultTableFactory {
 		$binder = new Binder($bindingData);
 
 		$binder
-		    ->for(DefaultTable::class)
-		    ->bindValue('$bindingContainer', $childbindingContainer);
+			->for(DefaultTable::class)
+			->bindValue('$bindingContainer', $childbindingContainer);
 
 		// Have to create with InjectableFactory because of Di trait
 		return $this->injectableFactory->createWithBinding(DefaultTable::class, $bindingContainer);

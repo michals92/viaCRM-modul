@@ -6,11 +6,14 @@ use Espo\Core\Htmlizer\Helper;
 use Espo\Core\Htmlizer\Helper\Data;
 use Espo\Core\Htmlizer\Helper\Result;
 
-class SmartPageBreak implements Helper {
+class SmartPageBreak implements Helper
+{
 	public function __construct(
-	) {}
+	) {
+	}
 
-	public function render(Data $data): Result {
+	public function render(Data $data): Result
+	{
 		$selector = strval($data->getOption('selector'));
 		$threshold = floatval($data->getOption('threshold') ?? 0.5);
 

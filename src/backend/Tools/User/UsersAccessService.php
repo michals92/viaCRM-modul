@@ -21,13 +21,16 @@ ReflectionUtil::createClassIfNotExists(
     PHP
 );
 
-class UsersAccessService extends \Espo\Tools\User\UsersAccessService {
+class UsersAccessService extends \Espo\Tools\User\UsersAccessService
+{
 	/**
 	 * @throws Forbidden
 	 * @throws BadRequest
+	 *
 	 * @return Collection<User>
 	 */
-	public function get(Entity $entity, SearchParams $params): Collection {
+	public function get(Entity $entity, SearchParams $params): Collection
+	{
 		$collection = parent::get($entity, $params);
 
 		foreach ($collection->getCollection() as $user) {
@@ -37,9 +40,10 @@ class UsersAccessService extends \Espo\Tools\User\UsersAccessService {
 		return $collection;
 	}
 
-	private function loadAdditionalRecordAccessLevels(Entity $entity, User $user): void {
+	private function loadAdditionalRecordAccessLevels(Entity $entity, User $user): void
+	{
 		$actions = [
-		    'print'
+			'print',
 		];
 
 		$levels = $user->get('recordAccessLevels');

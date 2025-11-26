@@ -31,7 +31,8 @@ class ForeignParent implements
 	AccessEntityReadChecker,
 	AccessEntityEditChecker,
 	AccessEntityDeleteChecker,
-	AccessEntityStreamChecker {
+	AccessEntityStreamChecker
+{
 	use DefaultAccessCheckerDependency;
 
 	public function __construct(
@@ -46,7 +47,8 @@ class ForeignParent implements
 	 * Get foreign entities related to the entity through the links defined in aclDefs.
 	 * Returns an array of entities, which can be empty if no related entities are found.
 	 */
-	private function getForeignEntity(Entity $entity): ?Entity {
+	private function getForeignEntity(Entity $entity): ?Entity
+	{
 		$entityType = $entity->getEntityType();
 		$link = $this->metadata->get(['aclDefs', $entityType, 'link']);
 
@@ -74,7 +76,8 @@ class ForeignParent implements
 		return $this->entityManager->getRelation($entity, $link)->findOne();
 	}
 
-	public function checkEntityCreate(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityCreate(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$foreign = $this->getForeignEntity($entity);
 
 		if (!$foreign) {
@@ -84,7 +87,8 @@ class ForeignParent implements
 		return $this->defaultAccessChecker->checkEntityCreate($user, $foreign, $data);
 	}
 
-	public function checkEntityRead(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityRead(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$foreign = $this->getForeignEntity($entity);
 
 		if (!$foreign) {
@@ -94,7 +98,8 @@ class ForeignParent implements
 		return $this->defaultAccessChecker->checkEntityRead($user, $foreign, $data);
 	}
 
-	public function checkEntityEdit(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityEdit(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$foreign = $this->getForeignEntity($entity);
 
 		if (!$foreign) {
@@ -104,7 +109,8 @@ class ForeignParent implements
 		return $this->defaultAccessChecker->checkEntityEdit($user, $foreign, $data);
 	}
 
-	public function checkEntityDelete(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityDelete(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$foreign = $this->getForeignEntity($entity);
 
 		if (!$foreign) {
@@ -118,7 +124,8 @@ class ForeignParent implements
 		return $this->defaultAccessChecker->checkEntityDelete($user, $foreign, $data);
 	}
 
-	public function checkEntityStream(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityStream(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$foreign = $this->getForeignEntity($entity);
 
 		if (!$foreign) {

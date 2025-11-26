@@ -11,18 +11,21 @@ use Espo\Core\Exceptions\ErrorSilent;
 use Espo\Core\ORM\EntityManager;
 use stdClass;
 
-readonly class Service {
+readonly class Service
+{
 	private const URL = 'https://www.finstat.sk/';
 
 	public function __construct(
 		private EntityManager $entityManager,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws Error
 	 * @throws BadRequest
 	 */
-	public function getDataBySicCode(string $sicCode): stdClass {
+	public function getDataBySicCode(string $sicCode): stdClass
+	{
 		if (!preg_match('/^[0-9]{8}$/', $sicCode)) {
 			throw BadRequest::createWithBody(
 				'Invalid SIC code',
@@ -45,7 +48,7 @@ readonly class Service {
 
 		if ($responseStatus === 200) {
 			$dom->loadHTML($html);
-		} else if ($responseStatus === 404) {
+		} elseif ($responseStatus === 404) {
 			throw ErrorSilent::createWithBody(
 				'Could not find the company',
 				ErrorBody::create()
@@ -99,7 +102,8 @@ readonly class Service {
 		];
 	}
 
-	private function getVatId(DOMDocument $dom): ?string {
+	private function getVatId(DOMDocument $dom): ?string
+	{
 		$xpath = new DomXPath($dom);
 		$elements = $xpath->query("//li[@class='inline']//strong[text()='DIČ']");
 
@@ -116,7 +120,8 @@ readonly class Service {
 		return trim($elements[0]->nodeValue);
 	}
 
-	private function getSlovakVatId(DOMDocument $dom): ?string {
+	private function getSlovakVatId(DOMDocument $dom): ?string
+	{
 		$xpath = new DomXPath($dom);
 		$elements = $xpath->query("//li[@class='inline']//strong[text()='IČ DPH']");
 
@@ -135,7 +140,8 @@ readonly class Service {
 		return trim($value);
 	}
 
-	private function getName(DOMDocument $dom): string {
+	private function getName(DOMDocument $dom): string
+	{
 		$name = $dom->getElementsByTagName('h1')[0]->nodeValue;
 		$position = strpos($name, '(Historický názov:');
 
@@ -146,7 +152,8 @@ readonly class Service {
 		return trim($name);
 	}
 
-	private function getAddressCity(DOMDocument $dom): ?string {
+	private function getAddressCity(DOMDocument $dom): ?string
+	{
 		$xpath = new DomXPath($dom);
 		$elements = $xpath->query('//strong[text()="Sídlo"]');
 
@@ -168,7 +175,8 @@ readonly class Service {
 		return null;
 	}
 
-	private function getAddressStreet(DOMDocument $dom): string {
+	private function getAddressStreet(DOMDocument $dom): string
+	{
 		$xpath = new DomXPath($dom);
 		$nodes = $xpath->query('//strong[text()="Sídlo"]');
 
@@ -193,7 +201,8 @@ readonly class Service {
 		return trim($addressStreetStr);
 	}
 
-	private function getAddressPostalCode(DOMDocument $dom): ?string {
+	private function getAddressPostalCode(DOMDocument $dom): ?string
+	{
 		$xpath = new DomXPath($dom);
 		$nodes = $xpath->query('//strong[text()="Sídlo"]');
 
@@ -220,7 +229,8 @@ readonly class Service {
 		return null;
 	}
 
-	private function getAddressRegion(DOMDocument $dom): ?string {
+	private function getAddressRegion(DOMDocument $dom): ?string
+	{
 		$xpath = new DomXPath($dom);
 		$nodes = $xpath->query('//div[contains(@class, "detail-menu-related-item")]//a[starts-with(text(), "Databáza firiem v kraji:")]');
 
@@ -240,7 +250,8 @@ readonly class Service {
 	/**
 	 * @return array{status: int|string, body: string}
 	 */
-	private function curlRequest(string $url): array {
+	private function curlRequest(string $url): array
+	{
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -261,7 +272,7 @@ readonly class Service {
 
 		return [
 			'status' => $status_code,
-			'body' => $body === false ? '' : $body
+			'body' => $body === false ? '' : $body,
 		];
 	}
 }

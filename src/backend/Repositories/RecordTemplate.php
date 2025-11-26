@@ -4,12 +4,14 @@ namespace Espo\Modules\Viacrm\Repositories;
 
 use Espo\ORM\Entity;
 
-class RecordTemplate extends \Espo\Core\Templates\Repositories\Base {
-	protected function beforeSave(Entity $entity, array $options = []) {
+class RecordTemplate extends \Espo\Core\Templates\Repositories\Base
+{
+	protected function beforeSave(Entity $entity, array $options = [])
+	{
 		$entityType = $entity->get('entityType');
 		$entityDefs = $this->entityManager->getDefs()->getEntity($entityType);
-		$data       = $entity->get('data');
-		$newData    = [];
+		$data = $entity->get('data');
+		$newData = [];
 
 		foreach ($data as $attribute => $value) {
 			if (!$entityDefs->hasAttribute($attribute)) {

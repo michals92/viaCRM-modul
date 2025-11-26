@@ -21,20 +21,23 @@ use Espo\ORM\Query\Part\Expression as Expr;
 use Espo\ORM\Repository\RDBSelectBuilder;
 use stdClass;
 
-class RelatedLinkLister {
+class RelatedLinkLister
+{
 	public function __construct(
 		protected EntityManager $entityManager,
 		protected Acl $acl,
 		protected SearchParamsFetcher $searchParamsFetcher,
 		protected SelectBuilderFactory $selectBuilderFactory,
 		protected RecordServiceContainer $recordServiceContainer,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 * @throws Forbidden
 	 */
-	public function getActionListRelatedLink(Request $request): object {
+	public function getActionListRelatedLink(Request $request): object
+	{
 		$em = $this->entityManager;
 		$parentScope = $request->getRouteParam('scope');
 		$parentId = $request->getRouteParam('id');
@@ -48,14 +51,14 @@ class RelatedLinkLister {
 		$parentEntity = $em->getEntityById($parentScope, $parentId) ?? throw new NotFound();
 
 		$parentLinkRelation = $em->getDefs()
-		    ->getEntity($parentScope)
-		    ->getRelation($parentLink);
+			->getEntity($parentScope)
+			->getRelation($parentLink);
 
 		$parentLinkScope = $parentLinkRelation->getForeignEntityType();
 
 		$linkRelation = $em->getDefs()
-		    ->getEntity($parentLinkScope)
-		    ->getRelation($link);
+			->getEntity($parentLinkScope)
+			->getRelation($link);
 
 		$linkScope = $linkRelation->getForeignEntityType();
 
@@ -73,7 +76,7 @@ class RelatedLinkLister {
 	}
 
 	/**
-	 * Process the relation based on its type and configuration
+	 * Process the relation based on its type and configuration.
 	 */
 	private function processRelation(
 		Request $request,
@@ -88,24 +91,42 @@ class RelatedLinkLister {
 	): stdClass {
 		if ($linkRelation->getType() === Entity::MANY_MANY && !$linkRelation->hasForeignRelationName()) {
 			return $this->processManyManyWithoutForeignName(
-				$request, $parentEntity, $parentScope, $parentLink, $parentLinkScope, $link, $linkScope, $linkRelation
+				$request,
+				$parentEntity,
+				$parentScope,
+				$parentLink,
+				$parentLinkScope,
+				$link,
+				$linkScope,
+				$linkRelation
 			);
 		}
 
 		if (!$linkRelation->hasForeignRelationName()) {
 			return $this->processWithoutForeignName(
-				$request, $parentEntity, $parentScope, $parentLink, $parentLinkScope, $linkScope
+				$request,
+				$parentEntity,
+				$parentScope,
+				$parentLink,
+				$parentLinkScope,
+				$linkScope
 			);
 		}
 
 		return $this->processWithForeignName(
-			$request, $parentEntity, $parentScope, $parentLink, $parentLinkScope, $linkScope,
-			$linkRelation, $parentLinkRelation
+			$request,
+			$parentEntity,
+			$parentScope,
+			$parentLink,
+			$parentLinkScope,
+			$linkScope,
+			$linkRelation,
+			$parentLinkRelation
 		);
 	}
 
 	/**
-	 * Process many-to-many relation without foreign relation name
+	 * Process many-to-many relation without foreign relation name.
 	 */
 	private function processManyManyWithoutForeignName(
 		Request $request,
@@ -122,8 +143,8 @@ class RelatedLinkLister {
 		}
 
 		$parentRelatedEntities = $this->entityManager
-		    ->getRelation($parentEntity, $parentLink)
-		    ->find();
+			->getRelation($parentEntity, $parentLink)
+			->find();
 
 		$relatedEntityIds = $this->extractEntityIds($parentRelatedEntities);
 
@@ -142,14 +163,14 @@ class RelatedLinkLister {
 
 		$targetEntities = $this->createTargetEntitiesCollection($linkScope, $paginatedTargetIds);
 
-		return (object)[
-		    'total' => $totalCount,
-		    'list' => $targetEntities->getValueMapList()
+		return (object) [
+			'total' => $totalCount,
+			'list' => $targetEntities->getValueMapList(),
 		];
 	}
 
 	/**
-	 * Process relation without foreign relation name
+	 * Process relation without foreign relation name.
 	 */
 	private function processWithoutForeignName(
 		Request $request,
@@ -160,8 +181,8 @@ class RelatedLinkLister {
 		string $linkScope
 	): stdClass {
 		$parentRelatedEntities = $this->entityManager
-		    ->getRelation($parentEntity, $parentLink)
-		    ->find();
+			->getRelation($parentEntity, $parentLink)
+			->find();
 
 		$relatedEntityIds = $this->extractEntityIds($parentRelatedEntities);
 
@@ -187,7 +208,7 @@ class RelatedLinkLister {
 	}
 
 	/**
-	 * Process relation with foreign relation name
+	 * Process relation with foreign relation name.
 	 */
 	private function processWithForeignName(
 		Request $request,
@@ -205,7 +226,7 @@ class RelatedLinkLister {
 
 		$searchParams = $this->getSearchParams($request, $linkScope);
 		$builder = $this->createQueryBuilder($linkScope, $searchParams)
-		    ->join($linkScopeForeignName);
+			->join($linkScopeForeignName);
 
 		if ($linkRelation->getType() === Entity::MANY_MANY || $parentLinkRelation->getType() === Entity::MANY_MANY) {
 			// Get the intermediate IDs (WorkPerformed IDs) first
@@ -216,9 +237,9 @@ class RelatedLinkLister {
 				$collection = $builder->distinct()->find();
 				$resultCount = count($collection->getValueMapList());
 
-				return (object)[
-				    'total' => $resultCount,
-				    'list' => $collection->getValueMapList(),
+				return (object) [
+					'total' => $resultCount,
+					'list' => $collection->getValueMapList(),
 				];
 			}
 
@@ -248,9 +269,9 @@ class RelatedLinkLister {
 				$directResultCount = count($directCollection->getValueMapList());
 
 				if ($directResultCount > 0) {
-					return (object)[
-					    'total' => $directResultCount,
-					    'list' => $directCollection->getValueMapList(),
+					return (object) [
+						'total' => $directResultCount,
+						'list' => $directCollection->getValueMapList(),
 					];
 				}
 
@@ -263,19 +284,21 @@ class RelatedLinkLister {
 		$collection = $builder->distinct()->find();
 		$resultCount = count($collection->getValueMapList());
 
-		return (object)[
-		    'total' => $resultCount,
-		    'list' => $collection->getValueMapList(),
+		return (object) [
+			'total' => $resultCount,
+			'list' => $collection->getValueMapList(),
 		];
 	}
 
 	/**
-	 * Extract entity IDs from a collection
+	 * Extract entity IDs from a collection.
 	 *
-	 * @param  Collection<Entity> $entities
+	 * @param Collection<Entity> $entities
+	 *
 	 * @return string[]
 	 */
-	private function extractEntityIds(Collection $entities): array {
+	private function extractEntityIds(Collection $entities): array
+	{
 		$ids = [];
 		foreach ($entities as $entity) {
 			$ids[] = $entity->getId();
@@ -285,16 +308,18 @@ class RelatedLinkLister {
 	}
 
 	/**
-	 * Return an empty result object
+	 * Return an empty result object.
 	 */
-	private function emptyResult(): stdClass {
-		return (object)['total' => 0, 'list' => []];
+	private function emptyResult(): stdClass
+	{
+		return (object) ['total' => 0, 'list' => []];
 	}
 
 	/**
-	 * Get search parameters for the given scope
+	 * Get search parameters for the given scope.
 	 */
-	private function getSearchParams(Request $request, string $scope): SearchParams {
+	private function getSearchParams(Request $request, string $scope): SearchParams
+	{
 		$searchParams = $this->searchParamsFetcher->fetch($request);
 		$recordService = $this->recordServiceContainer->get($scope);
 
@@ -302,14 +327,16 @@ class RelatedLinkLister {
 	}
 
 	/**
-	 * Collect unique target IDs from related entities
+	 * Collect unique target IDs from related entities.
 	 *
-	 * @param  string   $parentLinkScope
-	 * @param  string[] $relatedEntityIds
-	 * @param  string   $link
+	 * @param string   $parentLinkScope
+	 * @param string[] $relatedEntityIds
+	 * @param string   $link
+	 *
 	 * @return string[]
 	 */
-	private function collectUniqueTargetIds(string $parentLinkScope, array $relatedEntityIds, string $link): array {
+	private function collectUniqueTargetIds(string $parentLinkScope, array $relatedEntityIds, string $link): array
+	{
 		$em = $this->entityManager;
 		$uniqueTargetIds = [];
 
@@ -321,8 +348,8 @@ class RelatedLinkLister {
 			}
 
 			$relatedEntities = $em
-			    ->getRelation($entity, $link)
-			    ->find();
+				->getRelation($entity, $link)
+				->find();
 
 			foreach ($relatedEntities as $relatedEntity) {
 				$targetId = $relatedEntity->getId();
@@ -337,13 +364,15 @@ class RelatedLinkLister {
 	}
 
 	/**
-	 * Create a collection of entities from a list of IDs
+	 * Create a collection of entities from a list of IDs.
 	 *
-	 * @param  string                   $scope
-	 * @param  string[]                 $ids
+	 * @param string   $scope
+	 * @param string[] $ids
+	 *
 	 * @return EntityCollection<Entity>
 	 */
-	private function createTargetEntitiesCollection(string $scope, array $ids): EntityCollection {
+	private function createTargetEntitiesCollection(string $scope, array $ids): EntityCollection
+	{
 		$em = $this->entityManager;
 		/** @var EntityCollection<Entity> $collection */
 		$collection = $em->getCollectionFactory()->create($scope);
@@ -368,11 +397,12 @@ class RelatedLinkLister {
 	}
 
 	/**
-	 * Find an intermediate relation between two scopes
+	 * Find an intermediate relation between two scopes.
 	 *
 	 * @return array{name: string, relation: RelationDefs}|null
 	 */
-	private function findIntermediateRelation(string $parentLinkScope, string $linkScope): ?array {
+	private function findIntermediateRelation(string $parentLinkScope, string $linkScope): ?array
+	{
 		$em = $this->entityManager;
 		$parentLinkScopeEntity = $em->getDefs()->getEntity($parentLinkScope);
 		$relationNames = array_keys($em->getMetadata()->get($parentLinkScope, 'links') ?? []);
@@ -388,8 +418,8 @@ class RelatedLinkLister {
 
 				if ($foreignEntityType === $linkScope) {
 					return [
-					    'name' => $relationName,
-					    'relation' => $relation
+						'name' => $relationName,
+						'relation' => $relation,
 					];
 				}
 			} catch (\Exception $e) {
@@ -401,7 +431,7 @@ class RelatedLinkLister {
 	}
 
 	/**
-	 * Process relation with an intermediate relation
+	 * Process relation with an intermediate relation.
 	 *
 	 * @param string       $relationName
 	 * @param RelationDefs $relation
@@ -418,12 +448,12 @@ class RelatedLinkLister {
 	): stdClass {
 		$selectBuilder = $this->selectBuilderFactory->create();
 		$selectBuilder->from($linkScope)
-		    ->withSearchParams($searchParams)
-		    ->withStrictAccessControl();
+			->withSearchParams($searchParams)
+			->withStrictAccessControl();
 
 		$builder = $this->entityManager->getRDBRepository($linkScope)
-		    ->clone($selectBuilder->build())
-		    ->distinct();
+			->clone($selectBuilder->build())
+			->distinct();
 
 		if ($relation->getType() === Entity::MANY_MANY) {
 			$this->applyManyManyIntermediateConditions($builder, $relation, $relatedEntityIds);
@@ -434,11 +464,11 @@ class RelatedLinkLister {
 		$collection = $builder->find();
 		$count = $builder->count();
 
-		return (object)['total' => $count, 'list' => $collection->getValueMapList()];
+		return (object) ['total' => $count, 'list' => $collection->getValueMapList()];
 	}
 
 	/**
-	 * Apply conditions for many-to-many intermediate relations
+	 * Apply conditions for many-to-many intermediate relations.
 	 *
 	 * @param RDBSelectBuilder<Entity> $builder
 	 * @param RelationDefs             $relation
@@ -453,15 +483,15 @@ class RelatedLinkLister {
 		if ($relationshipName) {
 			$builder->join($relationshipName);
 			$whereConditions = [
-			    $relationshipName . '.' . $relation->getMidKey() . '=' => $relatedEntityIds,
-			    'deleted' => false
+				$relationshipName . '.' . $relation->getMidKey() . '=' => $relatedEntityIds,
+				'deleted' => false,
 			];
 			$builder->where($whereConditions);
 		}
 	}
 
 	/**
-	 * Apply conditions for regular intermediate relations
+	 * Apply conditions for regular intermediate relations.
 	 *
 	 * @param RDBSelectBuilder<Entity> $builder
 	 * @param RelationDefs             $relation
@@ -478,17 +508,18 @@ class RelatedLinkLister {
 		if ($foreignKey) {
 			$builder->join($relationName);
 			$whereConditions = [
-			    $relationName . '.id=' => $relatedEntityIds,
-			    'deleted' => false
+				$relationName . '.id=' => $relatedEntityIds,
+				'deleted' => false,
 			];
 			$builder->where($whereConditions);
 		}
 	}
 
 	/**
-	 * Check access permissions for the entities
+	 * Check access permissions for the entities.
 	 */
-	private function checkAccess(Entity $parentEntity, string $parentLinkScope, string $linkScope): void {
+	private function checkAccess(Entity $parentEntity, string $parentLinkScope, string $linkScope): void
+	{
 		$parentEntityAccess = $this->acl->check($parentEntity);
 		$parentLinkScopeAccess = $this->acl->checkScope($parentLinkScope);
 		$linkScopeAccess = $this->acl->checkScope($linkScope);
@@ -499,38 +530,41 @@ class RelatedLinkLister {
 	}
 
 	/**
-	 * Create a query builder for the given scope and search parameters
+	 * Create a query builder for the given scope and search parameters.
 	 *
-	 * @param  string                   $scope
-	 * @param  SearchParams             $searchParams
+	 * @param string       $scope
+	 * @param SearchParams $searchParams
+	 *
 	 * @return RDBSelectBuilder<Entity>
 	 */
-	private function createQueryBuilder(string $scope, SearchParams $searchParams): RDBSelectBuilder {
+	private function createQueryBuilder(string $scope, SearchParams $searchParams): RDBSelectBuilder
+	{
 		$selectBuilder = $this->selectBuilderFactory->create();
 
 		$selectBuilder->from($scope)
-		    ->withSearchParams($searchParams)
-		    ->withStrictAccessControl();
+			->withSearchParams($searchParams)
+			->withStrictAccessControl();
 
 		return $this->entityManager
-		    ->getRDBRepository($scope)
-		    ->clone($selectBuilder->build());
+			->getRDBRepository($scope)
+			->clone($selectBuilder->build());
 	}
 
 	/**
-	 * Get intermediate entity IDs
+	 * Get intermediate entity IDs.
 	 *
 	 * @return string[]
 	 */
-	private function getIntermediateIds(string $parentScope, Entity $parentEntity, string $parentLink): array {
+	private function getIntermediateIds(string $parentScope, Entity $parentEntity, string $parentLink): array
+	{
 		$intermediateIds = [];
 
 		$intermediateCollection = $this
 			->entityManager
-		    ->getRelation($parentEntity, $parentLink)
-		    ->select(['id'])
-		    ->where(['deleted' => false])
-		    ->find();
+			->getRelation($parentEntity, $parentLink)
+			->select(['id'])
+			->where(['deleted' => false])
+			->find();
 
 		foreach ($intermediateCollection as $item) {
 			$intermediateIds[] = $item->getId();
@@ -540,29 +574,31 @@ class RelatedLinkLister {
 	}
 
 	/**
-	 * Check for direct relation between entities
+	 * Check for direct relation between entities.
 	 *
-	 * @param  string                   $linkScope
-	 * @param  string                   $parentLinkScope
-	 * @param  string[]                 $intermediateIds
+	 * @param string   $linkScope
+	 * @param string   $parentLinkScope
+	 * @param string[] $intermediateIds
+	 *
 	 * @return EntityCollection<Entity>
 	 */
-	private function checkForDirectRelation(string $linkScope, string $parentLinkScope, array $intermediateIds): EntityCollection {
+	private function checkForDirectRelation(string $linkScope, string $parentLinkScope, array $intermediateIds): EntityCollection
+	{
 		/** @var EntityCollection<Entity> $collection */
 		$collection = $this->entityManager
-		    ->getRDBRepository($linkScope)
-		    ->where([
-		        'parentType' => $parentLinkScope,
-		        'parentId=' => $intermediateIds,
-		        'deleted' => false
-		    ])
-		    ->find();
+			->getRDBRepository($linkScope)
+			->where([
+				'parentType' => $parentLinkScope,
+				'parentId=' => $intermediateIds,
+				'deleted' => false,
+			])
+			->find();
 
 		return $collection;
 	}
 
 	/**
-	 * Apply intermediate conditions to the query builder
+	 * Apply intermediate conditions to the query builder.
 	 *
 	 * @param RDBSelectBuilder<Entity> $builder
 	 * @param string                   $linkScopeForeignName
@@ -576,16 +612,16 @@ class RelatedLinkLister {
 		array $intermediateIds
 	): void {
 		$whereConditions = [
-		    $linkScopeForeignName . '.parentType' => $parentLinkScope,
-		    $linkScopeForeignName . '.parentId=' => $intermediateIds,
+			$linkScopeForeignName . '.parentType' => $parentLinkScope,
+			$linkScopeForeignName . '.parentId=' => $intermediateIds,
 		];
 
 		$builder->where($whereConditions);
 	}
 
 	/**
-	 * Get target entity IDs from a many-to-many relationship table
-	 * 
+	 * Get target entity IDs from a many-to-many relationship table.
+	 *
 	 * This method queries a many-to-many relationship table to find target entity IDs
 	 * that are related to the given source IDs. It uses the EspoCRM QueryBuilder with
 	 * Expression and Condition classes to build a proper SQL query.
@@ -600,10 +636,11 @@ class RelatedLinkLister {
 	 * 3. We use Cond::in() to create a proper IN condition for the source IDs
 	 * 4. The query is executed through the EntityManager's QueryExecutor
 	 *
-	 * @param  string   $relationshipName The name of the relationship table (e.g., "operationWorkPerformed")
-	 * @param  string   $sourceKey        The camelCase attribute name for the source entity IDs (e.g., "workPerformedId")
-	 * @param  string   $targetKey        The camelCase attribute name for the target entity IDs (e.g., "productionModelOperationId")
-	 * @param  string[] $sourceIds        The source entity IDs to filter by
+	 * @param string   $relationshipName The name of the relationship table (e.g., "operationWorkPerformed")
+	 * @param string   $sourceKey        The camelCase attribute name for the source entity IDs (e.g., "workPerformedId")
+	 * @param string   $targetKey        The camelCase attribute name for the target entity IDs (e.g., "productionModelOperationId")
+	 * @param string[] $sourceIds        The source entity IDs to filter by
+	 *
 	 * @return string[] The target entity IDs that are related to the source IDs
 	 */
 	private function getTargetIdsFromRelationshipTable(
@@ -617,7 +654,7 @@ class RelatedLinkLister {
 		if (empty($sourceIds)) {
 			return [];
 		}
-        
+
 		// Convert the target key to snake_case for the SQL column name
 		// This is needed because database columns use snake_case
 		$targetColumn = $this->convertToColumnName($targetKey);
@@ -636,39 +673,39 @@ class RelatedLinkLister {
 			//    - This is because Expression::column() expects camelCase attribute names, not snake_case column names
 			//    - Cond::in() creates a proper IN condition for the array of source IDs
 			$query = $queryBuilder
-			    ->select()
-			    ->from(ucfirst($relationshipName))
-			    ->select($targetColumn)
-			    ->distinct()
-			    ->where(
-			    	Cond::in(Expr::column($sourceKey), $sourceIds)
-			    )
-			    ->build();
+				->select()
+				->from(ucfirst($relationshipName))
+				->select($targetColumn)
+				->distinct()
+				->where(
+					Cond::in(Expr::column($sourceKey), $sourceIds)
+				)
+				->build();
 
 			// Get the actual SQL that will be executed for debugging
 			$sql = $em->getQueryComposer()->compose($query);
 			$GLOBALS['log']->debug('RelatedLinkLister: Query SQL', [
-			    'sql' => $sql
+				'sql' => $sql,
 			]);
 
 			// Execute the query and fetch the results as a single column
 			$result = $em
-			    ->getQueryExecutor()
-			    ->execute($query)
-			    ->fetchAll(\PDO::FETCH_COLUMN);
+				->getQueryExecutor()
+				->execute($query)
+				->fetchAll(\PDO::FETCH_COLUMN);
 
 			// Log the query results for debugging
 			$GLOBALS['log']->debug('RelatedLinkLister: Query result', [
-			    'resultCount' => count($result),
-			    'result' => $result
+				'resultCount' => count($result),
+				'result' => $result,
 			]);
 
 			return $result;
 		} catch (\Exception $e) {
 			// Log any errors that occur during query execution
 			$GLOBALS['log']->error('RelatedLinkLister: QueryBuilder approach failed', [
-			    'error' => $e->getMessage(),
-			    'trace' => $e->getTraceAsString()
+				'error' => $e->getMessage(),
+				'trace' => $e->getTraceAsString(),
 			]);
 
 			// Return an empty array if the query fails
@@ -677,9 +714,10 @@ class RelatedLinkLister {
 	}
 
 	/**
-	 * Convert a camelCase property name to a snake_case column name
+	 * Convert a camelCase property name to a snake_case column name.
 	 */
-	private function convertToColumnName(string $propertyName): string {
+	private function convertToColumnName(string $propertyName): string
+	{
 		// Convert camelCase to snake_case
 		$result = preg_replace('/(?<!^)[A-Z]/', '_$0', $propertyName);
 		$columnName = strtolower($result !== null ? $result : $propertyName);

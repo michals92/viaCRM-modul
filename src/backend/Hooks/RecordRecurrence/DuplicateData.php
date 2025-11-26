@@ -18,12 +18,14 @@ use Espo\ORM\Repository\Option\SaveOptions;
 /**
  * @implements BeforeSave<RecordRecurrence>
  */
-class DuplicateData implements BeforeSave {
+class DuplicateData implements BeforeSave
+{
 	public static int $order = 9;
 
 	public function __construct(
 		private RecordServiceContainer $recordServiceContainer,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
@@ -32,7 +34,8 @@ class DuplicateData implements BeforeSave {
 	 * @throws NotFound
 	 * @throws Error
 	 */
-	public function beforeSave(Entity $entity, SaveOptions $options): void {
+	public function beforeSave(Entity $entity, SaveOptions $options): void
+	{
 		if (!$entity->isNew()) {
 			return;
 		}

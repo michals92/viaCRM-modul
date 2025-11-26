@@ -14,15 +14,18 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Metadata;
 use Espo\Entities\Attachment as AttachmentEntity;
 
-class Download implements EntryPoint {
+class Download implements EntryPoint
+{
 	public function __construct(
 		protected FileStorageManager $fileStorageManager,
 		protected Acl $acl,
 		protected EntityManager $entityManager,
 		protected Metadata $metadata
-	) {}
+	) {
+	}
 
-	public function run(Request $request, Response $response): void {
+	public function run(Request $request, Response $response): void
+	{
 		$id = $request->getQueryParam('id');
 
 		if (!$id) {
@@ -56,7 +59,7 @@ class Download implements EntryPoint {
 		$inlineMimeTypeList = $this->metadata->get(['app', 'file', 'inlineMimeTypeList'], []);
 
 		$forceDownload = $request->getQueryParam('forceDownload');
-        
+
 		if (!$forceDownload) {
 			if (in_array($type, $inlineMimeTypeList)) {
 				$disposition = 'inline';
@@ -74,11 +77,11 @@ class Download implements EntryPoint {
 		$size = $stream->getSize() ?? $this->fileStorageManager->getSize($attachment);
 
 		$response
-		    ->setHeader('Content-Disposition', $disposition . ';filename="' . $outputFileName . '"')
-		    ->setHeader('Expires', '0')
-		    ->setHeader('Cache-Control', 'must-revalidate')
-		    ->setHeader('Pragma', 'public')
-		    ->setHeader('Content-Length', (string) $size)
-		    ->setBody($stream);
+			->setHeader('Content-Disposition', $disposition . ';filename="' . $outputFileName . '"')
+			->setHeader('Expires', '0')
+			->setHeader('Cache-Control', 'must-revalidate')
+			->setHeader('Pragma', 'public')
+			->setHeader('Content-Length', (string) $size)
+			->setBody($stream);
 	}
 }

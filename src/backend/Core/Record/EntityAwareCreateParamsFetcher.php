@@ -6,7 +6,8 @@ use Espo\Core\Api\Request;
 use Espo\Core\Record\CreateParams;
 use Espo\Core\Record\CreateParamsFetcher;
 
-class EntityAwareCreateParamsFetcher extends CreateParamsFetcher {
+class EntityAwareCreateParamsFetcher extends CreateParamsFetcher
+{
 	/**
 	 * @use ParamsFetcherTrait<CreateParamsFetcher, CreateParams>
 	 */
@@ -17,7 +18,8 @@ class EntityAwareCreateParamsFetcher extends CreateParamsFetcher {
 	/**
 	 * @throws \Exception
 	 */
-	public function fetch(Request $request): CreateParams {
+	public function fetch(Request $request): CreateParams
+	{
 		/**
 		 * @var CreateParams
 		 */

@@ -10,7 +10,8 @@ use Espo\Core\Utils\Log;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Throwable;
 
-class ErrorOutput extends \Espo\Core\Api\ErrorOutput {
+class ErrorOutput extends \Espo\Core\Api\ErrorOutput
+{
 	public function __construct(
 		private Log $log
 	) {
@@ -61,10 +62,10 @@ class ErrorOutput extends \Espo\Core\Api\ErrorOutput {
 		$level = $this->getLevel($exception);
 
 		$this->log->log($level, $message, [
-		    'exception' => $exception,
-		    /** This is the modified line from the parent */
-		    'trace' => $exception->getTraceAsString(),
-		    'request' => $request,
+			'exception' => $exception,
+			/** This is the modified line from the parent */
+			'trace' => $exception->getTraceAsString(),
+			'request' => $request,
 		]);
 
 		if (!in_array($statusCode, ReflectionUtil::getClassProperty(parent::class, $this, 'allowedStatusCodeList'))) {
@@ -87,8 +88,8 @@ class ErrorOutput extends \Espo\Core\Api\ErrorOutput {
 			$codeDescription = $this->getCodeDescription($statusCode);
 
 			$statusText = isset($codeDescription) ?
-			    $statusCode . ' '. $codeDescription :
-			    'HTTP ' . $statusCode;
+				$statusCode . ' ' . $codeDescription :
+				'HTTP ' . $statusCode;
 
 			if ($message) {
 				$message = htmlspecialchars($message);
@@ -98,31 +99,38 @@ class ErrorOutput extends \Espo\Core\Api\ErrorOutput {
 		}
 	}
 
-	private function exceptionHasBody(Throwable $exception): bool {
+	private function exceptionHasBody(Throwable $exception): bool
+	{
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'exceptionHasBody', $exception);
 	}
 
-	private function getCodeDescription(int $statusCode): ?string {
+	private function getCodeDescription(int $statusCode): ?string
+	{
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'getCodeDescription', $statusCode);
 	}
 
-	private static function generateErrorBody(string $header, string $text): string {
+	private static function generateErrorBody(string $header, string $text): string
+	{
 		return ReflectionUtil::callClassStaticMethod(parent::class, 'generateErrorBody', $header, $text);
 	}
 
-	private function stripInvalidCharactersFromHeaderValue(string $value): string {
+	private function stripInvalidCharactersFromHeaderValue(string $value): string
+	{
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'stripInvalidCharactersFromHeaderValue', $value);
 	}
 
-	private function processRoute(string $route, Request $request, Throwable $exception): void {
+	private function processRoute(string $route, Request $request, Throwable $exception): void
+	{
 		ReflectionUtil::callClassMethod(parent::class, $this, 'processRoute', $route, $request, $exception);
 	}
 
-	private function toPrintExceptionStatusReason(Throwable $exception): bool {
+	private function toPrintExceptionStatusReason(Throwable $exception): bool
+	{
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'toPrintExceptionStatusReason', $exception);
 	}
 
-	private function getLevel(Throwable $exception): string {
+	private function getLevel(Throwable $exception): string
+	{
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'getLevel', $exception);
 	}
 }

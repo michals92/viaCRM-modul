@@ -13,13 +13,16 @@ use Espo\Tools\Email\InboxService;
 /**
  * @implements ReadHook<Email>
  */
-readonly class MarkAsRead implements ReadHook {
+readonly class MarkAsRead implements ReadHook
+{
 	public function __construct(
 		private InboxService $inboxService,
-		private Preferences  $preferences
-	) {}
+		private Preferences $preferences
+	) {
+	}
 
-	public function process(Entity $entity, ReadParams $params): void {
+	public function process(Entity $entity, ReadParams $params): void
+	{
 		if ($entity->isRead()) {
 			return;
 		}

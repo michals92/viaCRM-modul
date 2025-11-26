@@ -14,14 +14,17 @@ use Espo\Core\ORM\Entity as ORMEntity;
 use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Metadata;
 
-class CopyAttachments implements Action {
+class CopyAttachments implements Action
+{
 	public function __construct(
 		private readonly Acl $acl,
 		private readonly EntityManager $entityManager,
 		private readonly Metadata $metadata
-	) {}
+	) {
+	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$em = $this->entityManager;
 		$data = $request->getParsedBody();
 
@@ -105,8 +108,8 @@ class CopyAttachments implements Action {
 		}
 
 		$response = [
-		    $attachmentField . 'Ids' => $copiedAttachments,
-		    $attachmentField . 'Names' => $copiedAttachmentsNames,
+			$attachmentField . 'Ids' => $copiedAttachments,
+			$attachmentField . 'Names' => $copiedAttachmentsNames,
 		];
 
 		return ResponseComposer::json($response);

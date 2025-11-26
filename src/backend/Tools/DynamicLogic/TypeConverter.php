@@ -6,11 +6,13 @@ use Espo\Core\Select\Where\Item\Type as WhereType;
 use Espo\Modules\Viacrm\Tools\DynamicLogic\Type as DynamicLogicType;
 
 /**
- * Helper class to convert between Where\Item\Type and DynamicLogic\Type
+ * Helper class to convert between Where\Item\Type and DynamicLogic\Type.
  */
-class TypeConverter {
+class TypeConverter
+{
 	/**
-	 * Mapping between Where\Item\Type constants and DynamicLogic\Type enum values
+	 * Mapping between Where\Item\Type constants and DynamicLogic\Type enum values.
+	 *
 	 * @var array<string, string>
 	 */
 	private static array $typeMap = [
@@ -40,12 +42,14 @@ class TypeConverter {
 	];
 
 	/**
-	 * Convert Where\Item\Type to DynamicLogic\Type
+	 * Convert Where\Item\Type to DynamicLogic\Type.
 	 *
-	 * @param  string                $whereType The Where\Item\Type constant
+	 * @param string $whereType The Where\Item\Type constant
+	 *
 	 * @return DynamicLogicType|null The corresponding DynamicLogic\Type or null if no mapping exists
 	 */
-	public static function whereToDynamicLogicType(string $whereType): ?DynamicLogicType {
+	public static function whereToDynamicLogicType(string $whereType): ?DynamicLogicType
+	{
 		if (!isset(self::$typeMap[$whereType])) {
 			return null;
 		}
@@ -54,34 +58,40 @@ class TypeConverter {
 	}
 
 	/**
-	 * Convert DynamicLogic\Type to Where\Item\Type
+	 * Convert DynamicLogic\Type to Where\Item\Type.
 	 *
-	 * @param  DynamicLogicType $dynamicLogicType The DynamicLogic\Type enum
-	 * @return string|null      The corresponding Where\Item\Type constant or null if no mapping exists
+	 * @param DynamicLogicType $dynamicLogicType The DynamicLogic\Type enum
+	 *
+	 * @return string|null The corresponding Where\Item\Type constant or null if no mapping exists
 	 */
-	public static function dynamicLogicToWhereType(DynamicLogicType|string $dynamicLogicType): ?string {
+	public static function dynamicLogicToWhereType(DynamicLogicType|string $dynamicLogicType): ?string
+	{
 		$flipped = array_flip(self::$typeMap);
 
 		return $flipped[is_string($dynamicLogicType) ? $dynamicLogicType : $dynamicLogicType->value] ?? null;
 	}
 
 	/**
-	 * Check if a Where\Item\Type can be converted to DynamicLogic\Type
+	 * Check if a Where\Item\Type can be converted to DynamicLogic\Type.
 	 *
-	 * @param  string $whereType The Where\Item\Type constant
-	 * @return bool   True if the type can be converted
+	 * @param string $whereType The Where\Item\Type constant
+	 *
+	 * @return bool True if the type can be converted
 	 */
-	public static function canConvertWhereType(string $whereType): bool {
+	public static function canConvertWhereType(string $whereType): bool
+	{
 		return isset(self::$typeMap[$whereType]);
 	}
 
 	/**
-	 * Check if a DynamicLogic\Type can be converted to Where\Item\Type
+	 * Check if a DynamicLogic\Type can be converted to Where\Item\Type.
 	 *
-	 * @param  DynamicLogicType $dynamicLogicType The DynamicLogic\Type enum
-	 * @return bool             True if the type can be converted
+	 * @param DynamicLogicType $dynamicLogicType The DynamicLogic\Type enum
+	 *
+	 * @return bool True if the type can be converted
 	 */
-	public static function canConvertDynamicLogicType(DynamicLogicType $dynamicLogicType): bool {
+	public static function canConvertDynamicLogicType(DynamicLogicType $dynamicLogicType): bool
+	{
 		$flipped = array_flip(self::$typeMap);
 
 		return isset($flipped[$dynamicLogicType->value]);

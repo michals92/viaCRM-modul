@@ -5,9 +5,10 @@ namespace Espo\Core\Services;
 use Espo\Core\Traits\Injectable;
 
 /**
- * This keeps compatibility with older versions of modules
+ * This keeps compatibility with older versions of modules.
  */
-abstract class Base {
+abstract class Base
+{
 	// @phpstan-ignore traitUse.deprecated
 	use Injectable;
 }

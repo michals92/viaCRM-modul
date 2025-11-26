@@ -12,25 +12,29 @@ use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Viacrm\Core\Di;
 
 /**
- * This is overriden so that we can sync read status to Microsoft Graph
+ * This is overriden so that we can sync read status to Microsoft Graph.
  */
-class InboxService extends \Espo\Tools\Email\InboxService implements Di\ExternalAccountClientManagerAware {
+class InboxService extends \Espo\Tools\Email\InboxService implements Di\ExternalAccountClientManagerAware
+{
 	use Di\ExternalAccountClientManagerSetter;
 
-	public function markAsRead(string $id, ?string $userId = null): void {
+	public function markAsRead(string $id, ?string $userId = null): void
+	{
 		parent::markAsRead($id, $userId);
 		$this->syncToGraph($id, true, $userId);
 	}
 
-	public function markAsNotRead(string $id, ?string $userId = null): void {
+	public function markAsNotRead(string $id, ?string $userId = null): void
+	{
 		parent::markAsNotRead($id, $userId);
 		$this->syncToGraph($id, false, $userId);
 	}
 
-	private function syncToGraph(string $emailId, bool $isRead, ?string $userId = null): void {
+	private function syncToGraph(string $emailId, bool $isRead, ?string $userId = null): void
+	{
 		/** @var EntityManager $entityManager */
 		$entityManager = ReflectionUtil::getClassProperty(parent::class, $this, 'entityManager');
-        
+
 		if (!$userId) {
 			/** @var \Espo\Entities\User $user */
 			$user = ReflectionUtil::getClassProperty(parent::class, $this, 'user');
@@ -46,21 +50,21 @@ class InboxService extends \Espo\Tools\Email\InboxService implements Di\External
 
 		// Get all email accounts linked to this user
 		$emailAccount = $entityManager
-		    ->getRDBRepository(EmailAccount::ENTITY_TYPE)
-		    ->where([
-		        'assignedUserId' => $userId,
-		        'syncReadStatus' => true,
-		    ])
-		    ->findOne();
+			->getRDBRepository(EmailAccount::ENTITY_TYPE)
+			->where([
+				'assignedUserId' => $userId,
+				'syncReadStatus' => true,
+			])
+			->findOne();
 
 		// Get all group email accounts (inbound emails) linked to this user
 		$inboundEmail = $entityManager
-		    ->getRDBRepository(InboundEmail::ENTITY_TYPE)
-		    ->where([
-		        'assignedUserId' => $userId,
-		        'syncReadStatus' => true,
-		    ])
-		    ->findOne();
+			->getRDBRepository(InboundEmail::ENTITY_TYPE)
+			->where([
+				'assignedUserId' => $userId,
+				'syncReadStatus' => true,
+			])
+			->findOne();
 
 		if ($emailAccount || $inboundEmail) {
 			try {
@@ -73,16 +77,16 @@ class InboxService extends \Espo\Tools\Email\InboxService implements Di\External
 
 				// Search for the email in Outlook by Message-ID
 				$searchEndpoint = "https://graph.microsoft.com/v1.0/me/messages?\$filter=internetMessageId%20eq%20'$messageIdPart'";
-                
+
 				$response = $outlookClient->request($searchEndpoint);
-                
+
 				if (empty($response['value'])) {
 					$GLOBALS['log']->debug(
 						'Email not found in Microsoft Graph',
 						[
-						    'emailId' => $emailId,
-						    'userId' => $userId,
-						    'messageId' => $messageId
+							'emailId' => $emailId,
+							'userId' => $userId,
+							'messageId' => $messageId,
 						]
 					);
 
@@ -91,7 +95,7 @@ class InboxService extends \Espo\Tools\Email\InboxService implements Di\External
 
 				$graphMessageId = $response['value'][0]['id'];
 				$updateEndpoint = "https://graph.microsoft.com/v1.0/me/messages/$graphMessageId";
-                
+
 				$outlookClient->request(
 					$updateEndpoint,
 					Json::encode(['isRead' => $isRead]),
@@ -100,19 +104,19 @@ class InboxService extends \Espo\Tools\Email\InboxService implements Di\External
 				);
 
 				$GLOBALS['log']->debug(
-					'Synced email read status to Microsoft Graph', 
+					'Synced email read status to Microsoft Graph',
 					[
-					    'emailId' => $emailId,
-					    'userId' => $userId,
-					    'isRead' => $isRead
+						'emailId' => $emailId,
+						'userId' => $userId,
+						'isRead' => $isRead,
 					]
 				);
 			} catch (\Exception $e) {
 				$GLOBALS['log']->error(
 					'Failed to sync read status to Microsoft Graph: ' . $e->getMessage(),
 					[
-					    'emailId' => $emailId,
-					    'userId' => $userId,
+						'emailId' => $emailId,
+						'userId' => $userId,
 					]
 				);
 			}

@@ -16,7 +16,8 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Metadata;
 use Espo\Entities\Attachment as AttachmentEntity;
 
-class PublicDownload implements EntryPoint {
+class PublicDownload implements EntryPoint
+{
 	use NoAuth;
 
 	public function __construct(
@@ -24,9 +25,11 @@ class PublicDownload implements EntryPoint {
 		protected Acl $acl,
 		protected EntityManager $entityManager,
 		private Metadata $metadata
-	) {}
+	) {
+	}
 
-	public function run(Request $request, Response $response): void {
+	public function run(Request $request, Response $response): void
+	{
 		$id = $request->getQueryParam('id');
 
 		if (!$id) {
@@ -59,10 +62,10 @@ class PublicDownload implements EntryPoint {
 		}
 
 		$publicDownloadToken = $this->entityManager
-		    ->getDefs()
-		    ->getEntity($relatedType)
-		    ->getField($field)
-		    ->getParam('publicDownloadToken');
+			->getDefs()
+			->getEntity($relatedType)
+			->getField($field)
+			->getParam('publicDownloadToken');
 
 		if (!$publicDownloadToken) {
 			throw new ForbiddenSilent('No publicDownloadToken.');
@@ -102,11 +105,11 @@ class PublicDownload implements EntryPoint {
 		$size = $stream->getSize() ?? $this->fileStorageManager->getSize($attachment);
 
 		$response
-		    ->setHeader('Content-Disposition', $disposition . ';filename="' . $outputFileName . '"')
-		    ->setHeader('Expires', '0')
-		    ->setHeader('Cache-Control', 'must-revalidate')
-		    ->setHeader('Pragma', 'public')
-		    ->setHeader('Content-Length', (string) $size)
-		    ->setBody($stream);
+			->setHeader('Content-Disposition', $disposition . ';filename="' . $outputFileName . '"')
+			->setHeader('Expires', '0')
+			->setHeader('Cache-Control', 'must-revalidate')
+			->setHeader('Pragma', 'public')
+			->setHeader('Content-Length', (string) $size)
+			->setBody($stream);
 	}
 }

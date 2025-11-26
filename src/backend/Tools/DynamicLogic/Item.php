@@ -12,25 +12,28 @@ use Espo\ORM\Query\Part\WhereItem as WhereClauseItem;
 use Espo\ORM\Query\SelectBuilder as QueryBuilder;
 use stdClass;
 
-readonly class Item {
-	const DEBUG_MODE = false;
+readonly class Item
+{
+	public const DEBUG_MODE = false;
 
 	/**
 	 * @param array<int, array<string, mixed>> $rawData
 	 */
 	public function __construct(
 		protected array $rawData,
-		public Type     $type,
-		public mixed    $value,
-		public ?string  $attribute = null,
-		public ?string  $subjectType = null,
-		public ?string  $field = null,
-	) {}
+		public Type $type,
+		public mixed $value,
+		public ?string $attribute = null,
+		public ?string $subjectType = null,
+		public ?string $field = null,
+	) {
+	}
 
 	/**
 	 * @param array<int, mixed> $args
 	 */
-	protected function debug(...$args): void {
+	protected function debug(...$args): void
+	{
 		// @phpstan-ignore-next-line
 		if (!self::DEBUG_MODE) {
 			return;
@@ -54,7 +57,7 @@ readonly class Item {
 				return '(null)';
 			}
 			if (!is_string($arg)) {
-				return '(' . gettype($arg) . '): ' . (string)$arg;
+				return '(' . gettype($arg) . '): ' . (string) $arg;
 			}
 
 			return $arg;
@@ -64,16 +67,19 @@ readonly class Item {
 	}
 
 	/**
+	 * @param array<string, mixed> $options
 	 *
-	 * @param  array<string, mixed> $options
 	 * @throws \LogicException
 	 * @throws BadRequest
 	 * @throws \ReflectionException
+	 *
 	 * @todo: fix that when converting the item from raw version the comparator ">=" possibly becomes "="
 	 * for example, dynamic logic amount >= 5000 becomes "AND (supplierInvoice.amount = 5000)"
+	 *
 	 * @todo: backport WhereConverterParams to espo 8.4.2
 	 */
-	public function toWhereItem(QueryBuilder $queryBuilder, array $options = []): WhereClauseItem {
+	public function toWhereItem(QueryBuilder $queryBuilder, array $options = []): WhereClauseItem
+	{
 		$this->debug('toWhereItem called with options', $options);
 
 		if (!class_exists('Espo\Core\Select\Where\Converter\Params')) {
@@ -130,12 +136,14 @@ readonly class Item {
 	}
 
 	/**
-	 * @param  stdClass[]   $rawItems
+	 * @param stdClass[] $rawItems
+	 *
 	 * @throws BadCondition
 	 */
-	public static function fromGroupDefinition(array|stdClass $rawItems): Item {
+	public static function fromGroupDefinition(array|stdClass $rawItems): Item
+	{
 		if (!is_array($rawItems)) {
-			$rawItems = (array)$rawItems;
+			$rawItems = (array) $rawItems;
 		}
 
 		if ($rawItems['conditionGroup']) {
@@ -145,14 +153,15 @@ readonly class Item {
 		return new Item(
 			rawData: $rawItems,
 			type: Type::And,
-			value: array_map(static fn($it) => self::fromItemDefinition((object)$it), $rawItems),
+			value: array_map(static fn ($it) => self::fromItemDefinition((object) $it), $rawItems),
 		);
 	}
 
 	/**
 	 * @throws BadCondition
 	 */
-	public static function fromItemDefinition(stdClass $rawItem): Item {
+	public static function fromItemDefinition(stdClass $rawItem): Item
+	{
 		$type = $rawItem->type ?? null;
 		$attribute = $rawItem->attribute ?? null;
 		$value = $rawItem->value ?? null;
@@ -177,9 +186,9 @@ readonly class Item {
 			}
 
 			return new Item(
-				rawData: [(array)$rawItem],
+				rawData: [(array) $rawItem],
 				type: Type::from($type),
-				value: array_map(static fn($it) => self::fromItemDefinition($it), $value),
+				value: array_map(static fn ($it) => self::fromItemDefinition($it), $value),
 			);
 		}
 
@@ -189,7 +198,7 @@ readonly class Item {
 			}
 
 			return new Item(
-				rawData: [(array)$rawItem],
+				rawData: [(array) $rawItem],
 				type: Type::from($type),
 				value: self::fromItemDefinition($value),
 			);
@@ -206,7 +215,7 @@ readonly class Item {
 		}
 
 		return new Item(
-			rawData: [(array)$rawItem],
+			rawData: [(array) $rawItem],
 			type: Type::from($type),
 			value: $value,
 			attribute: $attribute,

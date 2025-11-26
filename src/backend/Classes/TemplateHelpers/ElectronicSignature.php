@@ -7,12 +7,14 @@ use Espo\Core\Htmlizer\Helper\Data;
 use Espo\Core\Htmlizer\Helper\Result;
 use Espo\Modules\Viacrm\Tools\Html\Composer as HtmlComposer;
 
-class ElectronicSignature implements Helper {
+class ElectronicSignature implements Helper
+{
 	private const DEFAULT_WIDTH = 100;
 
 	private const DEFAULT_HEIGHT = 'auto';
 
-	public function render(Data $data): Result {
+	public function render(Data $data): Result
+	{
 		$base30Str = $data->getArgumentList()[0];
 		$width = $data->getOption('width') ?? self::DEFAULT_WIDTH;
 		$height = $data->getOption('height') ?? self::DEFAULT_HEIGHT;

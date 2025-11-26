@@ -6,7 +6,8 @@ use Espo\Core\Acl\AccessChecker;
 use Espo\Core\Acl\ScopeData;
 use Espo\Entities\User;
 
-interface AccessEntityPrintChecker extends AccessChecker {
+interface AccessEntityPrintChecker extends AccessChecker
+{
 	/**
 	 * Check 'print' access.
 	 */

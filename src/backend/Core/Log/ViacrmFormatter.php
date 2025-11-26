@@ -9,7 +9,8 @@ use Monolog\LogRecord;
 use Throwable;
 
 /** @disregard */
-class ViacrmFormatter extends LineFormatter {
+class ViacrmFormatter extends LineFormatter
+{
 	// This is the only changed line from the original
 	private const LINE_FORMAT = "[%datetime%] %level_name%: %code% %message% %request% %exception% %context% %extra%\n";
 	private const DATE_FORMAT = 'Y-m-d H:i:s';
@@ -26,7 +27,8 @@ class ViacrmFormatter extends LineFormatter {
 	}
 
 	/** @disregard */
-	public function format(LogRecord $record): string {
+	public function format(LogRecord $record): string
+	{
 		$line = parent::format($record);
 
 		$line = $this->interpolate($record, $line);
@@ -38,7 +40,8 @@ class ViacrmFormatter extends LineFormatter {
 	}
 
 	/** @disregard */
-	private function addCode(LogRecord $record, string $line): string {
+	private function addCode(LogRecord $record, string $line): string
+	{
 		$exception = $record->context['exception'] ?? null;
 
 		if (!$exception instanceof Throwable) {
@@ -51,7 +54,8 @@ class ViacrmFormatter extends LineFormatter {
 	}
 
 	/** @disregard */
-	private function addException(LogRecord $record, string $line): string {
+	private function addException(LogRecord $record, string $line): string
+	{
 		$exception = $record->context['exception'] ?? null;
 
 		if (!$exception instanceof Throwable) {
@@ -77,7 +81,8 @@ class ViacrmFormatter extends LineFormatter {
 	}
 
 	/** @disregard */
-	private function addRequest(LogRecord $record, string $line): string {
+	private function addRequest(LogRecord $record, string $line): string
+	{
 		$request = $record->context['request'] ?? null;
 
 		if (!$request instanceof Request) {
@@ -90,7 +95,8 @@ class ViacrmFormatter extends LineFormatter {
 	}
 
 	/** @disregard */
-	private function interpolate(LogRecord $record, mixed $line): string {
+	private function interpolate(LogRecord $record, mixed $line): string
+	{
 		$replace = [];
 
 		foreach ($record->context as $key => $val) {

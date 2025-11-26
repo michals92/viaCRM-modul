@@ -7,16 +7,18 @@ use Espo\Core\Select\Text\FullTextSearch\DataComposer;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use ReflectionException;
 
-class DataComposerFactory extends \Espo\Core\Select\Text\FullTextSearch\DataComposerFactory implements Di\MetadataAware {
+class DataComposerFactory extends \Espo\Core\Select\Text\FullTextSearch\DataComposerFactory implements Di\MetadataAware
+{
 	use Di\MetadataSetter;
 
 	/**
 	 * @throws ReflectionException
 	 */
-	public function create(string $entityType): DataComposer {
+	public function create(string $entityType): DataComposer
+	{
 		$className = $this->getClassName($entityType);
 
-		return ReflectionUtil::getClassProperty(Parent::class, $this, 'injectableFactory')
+		return ReflectionUtil::getClassProperty(parent::class, $this, 'injectableFactory')
 			->createWith($className, [
 				'entityType' => $entityType,
 			]);
@@ -25,9 +27,10 @@ class DataComposerFactory extends \Espo\Core\Select\Text\FullTextSearch\DataComp
 	/**
 	 * @return class-string<DataComposer>
 	 */
-	private function getClassName(string $entityType): string {
+	private function getClassName(string $entityType): string
+	{
 		return $this->metadata->get([
-			'selectDefs', $entityType, 'fullTextSearchDataComposerClassName'
+			'selectDefs', $entityType, 'fullTextSearchDataComposerClassName',
 		]) ?? DefaultDataComposer::class;
 	}
 }

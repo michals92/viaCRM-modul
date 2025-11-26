@@ -9,8 +9,9 @@ use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use ReflectionClass;
 use stdClass;
 
-class DefaultTable extends \Espo\Core\Acl\Table\DefaultTable {
-	const ACTION_PRINT = 'print';
+class DefaultTable extends \Espo\Core\Acl\Table\DefaultTable
+{
+	public const ACTION_PRINT = 'print';
 
 	public function __construct(
 		InjectableFactory $injectableFactory,
@@ -24,7 +25,8 @@ class DefaultTable extends \Espo\Core\Acl\Table\DefaultTable {
 		parent::__construct(...$parentConstructorArgs);
 	}
 
-	protected function applyDefault(stdClass &$table, stdClass &$fieldTable): void {
+	protected function applyDefault(stdClass &$table, stdClass &$fieldTable): void
+	{
 		foreach (get_object_vars($table) as $scope => $scopeData) {
 			if (($table->$scope instanceof stdClass) && isset($table->$scope->{self::ACTION_READ}) && !isset($table->$scope->{self::ACTION_PRINT})) {
 				// Init not-set print permissions to the same level as read, if set
@@ -35,7 +37,8 @@ class DefaultTable extends \Espo\Core\Acl\Table\DefaultTable {
 		parent::applyDefault($table, $fieldTable);
 	}
 
-	public function getFieldData(string $scope, string $field): FieldData {
+	public function getFieldData(string $scope, string $field): FieldData
+	{
 		$fieldType = $this->metadata->get(['entityDefs', $scope, 'fields', $field, 'type'], null);
 
 		return match ($fieldType) {

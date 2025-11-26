@@ -2,4 +2,6 @@
 
 namespace Espo\Modules\Viacrm\Controllers;
 
-class Holiday extends \Espo\Core\Templates\Controllers\Base {}
+class Holiday extends \Espo\Core\Templates\Controllers\Base
+{
+}

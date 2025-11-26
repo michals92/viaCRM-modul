@@ -7,11 +7,13 @@ use Espo\ORM\Query\Part\Order;
 use LogicException;
 use stdClass;
 
-class Email extends \Espo\Entities\Email {
+class Email extends \Espo\Entities\Email
+{
 	public const string ENTITY_TYPE = 'Email';
 	public const string TEMPLATE_TYPE = 'Base';
 
-	public function getBodyForSending(): string {
+	public function getBodyForSending(): string
+	{
 		$body = parent::getBodyForSending();
 
 		if (!empty($body)) {
@@ -33,32 +35,37 @@ class Email extends \Espo\Entities\Email {
 
 	/**
 	 * BC methods
-	 * These methods exist from Espo 9.0.0 onward, but we need them here for code to work in Espo 8
+	 * These methods exist from Espo 9.0.0 onward, but we need them here for code to work in Espo 8.
 	 */
-	public function getUsers(): LinkMultiple {
+	public function getUsers(): LinkMultiple
+	{
 		/** @var LinkMultiple */
 		return $this->getValueObject('users');
 	}
 
-	public function setUserColumnFolderId(string $userId, ?string $folderId): self {
+	public function setUserColumnFolderId(string $userId, ?string $folderId): self
+	{
 		$this->setLinkMultipleColumn('users', self::USERS_COLUMN_FOLDER_ID, $userId, $folderId);
 
 		return $this;
 	}
 
-	public function setUserColumnIsRead(string $userId, bool $isRead): self {
+	public function setUserColumnIsRead(string $userId, bool $isRead): self
+	{
 		$this->setLinkMultipleColumn('users', self::USERS_COLUMN_IS_READ, $userId, $isRead);
 
 		return $this;
 	}
 
-	public function setUserColumnInTrash(string $userId, bool $inTrash): self {
+	public function setUserColumnInTrash(string $userId, bool $inTrash): self
+	{
 		$this->setLinkMultipleColumn('users', self::USERS_COLUMN_IN_TRASH, $userId, $inTrash);
 
 		return $this;
 	}
 
-	public function setUserSkipNotification(string $userId): self {
+	public function setUserSkipNotification(string $userId): self
+	{
 		/** @var stdClass $map */
 		$map = $this->get('skipNotificationMap') ?? (object) [];
 		$map->$userId = true;
@@ -68,9 +75,10 @@ class Email extends \Espo\Entities\Email {
 	}
 
 	/**
-	 * This method exists in 8.4.2, but contains a bug that was fixed in 9.0.0
+	 * This method exists in 8.4.2, but contains a bug that was fixed in 9.0.0.
 	 */
-	public function loadLinkMultipleField(string $field, ?array $columns = null): void {
+	public function loadLinkMultipleField(string $field, ?array $columns = null): void
+	{
 		$em = $this->entityManager;
 		if (!$this->hasLinkMultipleField($field)) {
 			throw new LogicException("Called `loadLinkMultipleField` on non-link-multiple field `$field`.");
@@ -97,8 +105,8 @@ class Email extends \Espo\Entities\Email {
 		}
 
 		$selectBuilder = $em
-		    ->getRelation($this, $field)
-		    ->select($select);
+			->getRelation($this, $field)
+			->select($select);
 
 		$orderBy = null;
 		$order = null;
@@ -189,9 +197,10 @@ class Email extends \Espo\Entities\Email {
 	}
 
 	/**
-     * @return string[]|null
-     */
-	private function getLinkMultipleColumnsFromDefs(string $field): ?array {
+	 * @return string[]|null
+	 */
+	private function getLinkMultipleColumnsFromDefs(string $field): ?array
+	{
 		$em = $this->entityManager;
 		if (!$em) {
 			return null;

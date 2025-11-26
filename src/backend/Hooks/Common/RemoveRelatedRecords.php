@@ -12,19 +12,22 @@ use Espo\ORM\Repository\Option\RemoveOptions;
 /**
  * @implements AfterRemove<Entity>
  */
-class RemoveRelatedRecords implements AfterRemove {
+class RemoveRelatedRecords implements AfterRemove
+{
 	public static int $order = 9;
 
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly Metadata $metadata,
 		private readonly Log $log,
-	) {}
+	) {
+	}
 
-	public function afterRemove(Entity $entity, RemoveOptions $options): void {
+	public function afterRemove(Entity $entity, RemoveOptions $options): void
+	{
 		$entityType = $entity->getEntityType();
 		$entityDefs = $this->metadata->get(['entityDefs', $entityType]) ?? [];
-        
+
 		if (empty($entityDefs['fields'])) {
 			return;
 		}
@@ -42,7 +45,8 @@ class RemoveRelatedRecords implements AfterRemove {
 		}
 	}
 
-	private function removeRelatedRecordsForField(Entity $entity, string $fieldName): void {
+	private function removeRelatedRecordsForField(Entity $entity, string $fieldName): void
+	{
 		$em = $this->entityManager;
 		try {
 			$relatedRecords = $em->getRelation($entity, $fieldName)->find();
@@ -52,10 +56,10 @@ class RemoveRelatedRecords implements AfterRemove {
 			}
 		} catch (\Throwable $e) {
 			$this->log->error('Failed to remove related records', [
-			    'entityType' => $entity->getEntityType(),
-			    'entityId' => $entity->getId(),
-			    'fieldName' => $fieldName,
-			    'error' => $e->getMessage(),
+				'entityType' => $entity->getEntityType(),
+				'entityId' => $entity->getId(),
+				'fieldName' => $fieldName,
+				'error' => $e->getMessage(),
 			]);
 		}
 	}

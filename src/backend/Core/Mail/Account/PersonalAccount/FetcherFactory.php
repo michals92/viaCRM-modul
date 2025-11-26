@@ -16,17 +16,20 @@ use Espo\Modules\Viacrm\Core\Mail\Account\PersonalAccount\Hooks\BeforeFetch as G
 /**
  * @implements Factory<Fetcher>
  */
-class FetcherFactory implements Factory {
+class FetcherFactory implements Factory
+{
 	public function __construct(
 		protected readonly InjectableFactory $injectableFactory
-	) {}
+	) {
+	}
 
-	public function create(): Fetcher {
+	public function create(): Fetcher
+	{
 		$binding = BindingContainerBuilder::create()
-		    ->bindImplementation(BeforeFetch::class, GroupAccountBeforeFetch::class)
-		    ->bindImplementation(AfterFetch::class, GroupAccountAfterFetch::class)
-		    ->bindImplementation(StorageFactory::class, GroupAccountStorageFactory::class)
-		    ->build();
+			->bindImplementation(BeforeFetch::class, GroupAccountBeforeFetch::class)
+			->bindImplementation(AfterFetch::class, GroupAccountAfterFetch::class)
+			->bindImplementation(StorageFactory::class, GroupAccountStorageFactory::class)
+			->build();
 
 		return $this->injectableFactory->createWithBinding(Fetcher::class, $binding);
 	}

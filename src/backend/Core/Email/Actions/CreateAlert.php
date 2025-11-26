@@ -8,12 +8,15 @@ use Espo\Modules\Viacrm\Entities\Alert;
 use Espo\Modules\Viacrm\Entities\Email;
 use Espo\ORM\EntityManager;
 
-class CreateAlert implements EmailAction {
+class CreateAlert implements EmailAction
+{
 	public function __construct(
 		private readonly EntityManager $entityManager
-	) {}
+	) {
+	}
 
-	public function process(Email $email, EmailFilter $filter, ?string $userId = null): void {
+	public function process(Email $email, EmailFilter $filter, ?string $userId = null): void
+	{
 		if ($userId === null) {
 			return;
 		}
@@ -25,7 +28,7 @@ class CreateAlert implements EmailAction {
 		$data = [
 			'status' => Alert::STATUS_ACTIVE,
 			'parentType' => Email::ENTITY_TYPE,
-			'parentId' => $email->getId()
+			'parentId' => $email->getId(),
 		];
 
 		/** @var Alert|null $alert */
@@ -48,13 +51,15 @@ class CreateAlert implements EmailAction {
 	}
 
 	/**
-	 * Replace placeholders in the message with actual values from the email
+	 * Replace placeholders in the message with actual values from the email.
 	 *
-	 * @param  Email       $email
-	 * @param  string|null $message
+	 * @param Email       $email
+	 * @param string|null $message
+	 *
 	 * @return string|null
 	 */
-	private function replacePlaceholders(Email $email, ?string $message): ?string {
+	private function replacePlaceholders(Email $email, ?string $message): ?string
+	{
 		if ($message === null) {
 			return null;
 		}

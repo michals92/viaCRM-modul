@@ -11,20 +11,24 @@ use Espo\Core\Field\Date;
 use Espo\Modules\Viacrm\Classes\Utils\Common\LangCode;
 use Espo\Modules\Viacrm\Classes\Utils\HolidayUtil;
 
-class Get implements Action {
+class Get implements Action
+{
 	private Request $request;
 
 	public function __construct(
 		private HolidayUtil $holidayUtil
-	) {}
+	) {
+	}
 
 	/**
-	 * @param  Request    $request
-	 * @throws BadRequest
-	 * @return Response
+	 * @param Request $request
 	 *
+	 * @throws BadRequest
+	 *
+	 * @return Response
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$this->request = $request;
 		$year = $this->getFormattedRouteParam('year');
 		$month = $this->getFormattedRouteParam('month', false);
@@ -59,7 +63,8 @@ class Get implements Action {
 	/**
 	 * @throws BadRequest
 	 */
-	private function getFormattedRouteParam(string $name, bool $required = true): ?string {
+	private function getFormattedRouteParam(string $name, bool $required = true): ?string
+	{
 		$value = $this->request->getRouteParam($name);
 
 		if ($value === null) {

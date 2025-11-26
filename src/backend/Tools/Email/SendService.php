@@ -27,16 +27,18 @@ use Espo\Tools\Email\TestSendData;
 use Exception;
 
 /**
- * This overrides the default because we need to backport this fix: https://github.com/espocrm/espocrm/commit/1d685dc7723a77e8c6691249a9abba62201ae671 to older versions
+ * This overrides the default because we need to backport this fix: https://github.com/espocrm/espocrm/commit/1d685dc7723a77e8c6691249a9abba62201ae671 to older versions.
  */
-class SendService extends \Espo\Tools\Email\SendService {
+class SendService extends \Espo\Tools\Email\SendService
+{
 	/**
 	 * @throws Forbidden
 	 * @throws Error
 	 * @throws NotFound
 	 * @throws NoSmtp
 	 */
-	public function sendTestEmail(SmtpParams $params, TestSendData $data): void {
+	public function sendTestEmail(SmtpParams $params, TestSendData $data): void
+	{
 		/** @var Log $log */
 		$log = ReflectionUtil::getClassProperty(parent::class, $this, 'log');
 		/** @var EmailSender $emailSender */
@@ -71,8 +73,8 @@ class SendService extends \Espo\Tools\Email\SendService {
 
 		/** @var ?User $user */
 		$user = $userId ?
-		    $entityManager->getRDBRepositoryByClass(User::class)->getById($userId) :
-		    null;
+			$entityManager->getRDBRepositoryByClass(User::class)->getById($userId) :
+			null;
 
 		if ($userId && !$user) {
 			throw new NotFound('User not found.');
@@ -82,9 +84,9 @@ class SendService extends \Espo\Tools\Email\SendService {
 		$email = $entityManager->getNewEntity(Email::ENTITY_TYPE);
 
 		$email
-		    ->setSubject('EspoCRM: Test Email')
-		    ->setIsHtml(false)
-		    ->addToAddress($emailAddress);
+			->setSubject('EspoCRM: Test Email')
+			->setIsHtml(false)
+			->addToAddress($emailAddress);
 
 		$handlerClassName = null;
 
@@ -108,7 +110,7 @@ class SendService extends \Espo\Tools\Email\SendService {
 			$params = $handlerProcessor->handle($handlerClassName, $params, $id);
 		}
 
-		// For bc. The applyUserHandler method was removed in later versions, so we have to check at runtime. 
+		// For bc. The applyUserHandler method was removed in later versions, so we have to check at runtime.
 		if (ReflectionUtil::classMethodExists(\Espo\Tools\Email\SendService::class, 'applyUserHandler')) {
 			if ($user && $fromAddress) {
 				$params = ReflectionUtil::callClassMethod(\Espo\Tools\Email\SendService::class, $this, 'applyUserHandler', $user, $params, $fromAddress);
@@ -117,8 +119,8 @@ class SendService extends \Espo\Tools\Email\SendService {
 
 		try {
 			$emailSender
-			    ->withSmtpParams($params)
-			    ->send($email);
+				->withSmtpParams($params)
+				->send($email);
 		} catch (Exception $e) {
 			$log->warning('Email sending:' . $e->getMessage() . '; ' . $e->getCode());
 
@@ -126,7 +128,7 @@ class SendService extends \Espo\Tools\Email\SendService {
 				throw ErrorSilent::createWithBody(
 					'sendingFail',
 					Error\Body::create()
-					    ->withMessageTranslation($e->getMessage(), Email::ENTITY_TYPE)
+						->withMessageTranslation($e->getMessage(), Email::ENTITY_TYPE)
 				);
 			}
 
@@ -137,11 +139,12 @@ class SendService extends \Espo\Tools\Email\SendService {
 	}
 
 	/**
-     * @throws Forbidden
-     * @throws Error
-     * @throws NoSmtp
-     */
-	private function obtainSendTestEmailPassword(?string $type, ?string $id): ?string {
+	 * @throws Forbidden
+	 * @throws Error
+	 * @throws NoSmtp
+	 */
+	private function obtainSendTestEmailPassword(?string $type, ?string $id): ?string
+	{
 		/** @var Acl $acl */
 		$acl = ReflectionUtil::getClassProperty(parent::class, $this, 'acl');
 		/** @var User $user */
@@ -186,8 +189,8 @@ class SendService extends \Espo\Tools\Email\SendService {
 			}
 
 			$smtpParams = $groupAccountFactory
-			    ->create($id)
-			    ->getSmtpParams();
+				->create($id)
+				->getSmtpParams();
 
 			return $smtpParams?->getPassword();
 		}

@@ -4,8 +4,10 @@ namespace Espo\Modules\Viacrm\Core\ORM\QueryComposer\Part\FunctionConverters\Mys
 
 use Espo\ORM\QueryComposer\Part\FunctionConverter;
 
-class DateSub implements FunctionConverter {
-	public function convert(string ...$argumentList): string {
+class DateSub implements FunctionConverter
+{
+	public function convert(string ...$argumentList): string
+	{
 		if (count($argumentList) !== 3) {
 			throw new \InvalidArgumentException('DateSub function requires exactly three arguments: date, interval value, interval unit.');
 		}
@@ -13,8 +15,8 @@ class DateSub implements FunctionConverter {
 		[$date, $intervalValue, $intervalUnit] = $argumentList;
 
 		$allowedUnits = [
-		    'MICROSECOND', 'MILLISECOND', 'SECOND', 'MINUTE', 'HOUR',
-		    'DAY', 'WEEK', 'MONTH', 'YEAR', 'DECADE', 'CENTURY', 'MILLENNIUM'
+			'MICROSECOND', 'MILLISECOND', 'SECOND', 'MINUTE', 'HOUR',
+			'DAY', 'WEEK', 'MONTH', 'YEAR', 'DECADE', 'CENTURY', 'MILLENNIUM',
 		];
 
 		$intervalUnitUpper = strtoupper(trim($intervalUnit, "'"));

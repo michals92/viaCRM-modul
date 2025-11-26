@@ -9,11 +9,13 @@ use stdClass;
 /**
  * Extends MassActions with custom actions (addition, multiplication) for numeric fields.
  */
-class ValueMapPreparator extends \Espo\Tools\MassUpdate\ValueMapPreparator {
+class ValueMapPreparator extends \Espo\Tools\MassUpdate\ValueMapPreparator
+{
 	public const ACTION_INCREASE = 'increase';
 	public const ACTION_MULTIPLY = 'multiply';
 
-	public function prepare(Entity $entity, Data $data): stdClass {
+	public function prepare(Entity $entity, Data $data): stdClass
+	{
 		$map = parent::prepare($entity, $data);
 
 		foreach ($data->getAttributeList() as $attribute) {
@@ -41,10 +43,10 @@ class ValueMapPreparator extends \Espo\Tools\MassUpdate\ValueMapPreparator {
 				continue;
 			}
 
-			$value = (float)$value;
+			$value = (float) $value;
 
 			$action = $data->getAction($attribute);
-            
+
 			if ($action == self::ACTION_INCREASE) {
 				$map->$attribute = $attributeValue + $value;
 
@@ -61,7 +63,8 @@ class ValueMapPreparator extends \Espo\Tools\MassUpdate\ValueMapPreparator {
 		return $map;
 	}
 
-	private function isTypeNumeric(Entity $entity, string $attribute): bool {
+	private function isTypeNumeric(Entity $entity, string $attribute): bool
+	{
 		$type = $entity->getAttributeType($attribute);
 
 		return in_array($type, ['int', 'float', 'currency'], true);

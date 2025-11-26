@@ -13,18 +13,21 @@ use Espo\Core\Utils\Util;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\Modules\Viacrm\Core\Console\CommandAutocomplete;
 
-class Autocomplete extends \Espo\Core\Console\Commands\Upgrade {
+class Autocomplete extends \Espo\Core\Console\Commands\Upgrade
+{
 	public function __construct(
 		protected readonly CommandManager $commandManager,
 		protected readonly InjectableFactory $injectableFactory,
 		protected readonly Metadata $metadata,
 		protected readonly ClassMap $classMap,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws Error
 	 */
-	public function run(Params $params, IO $io): void {
+	public function run(Params $params, IO $io): void
+	{
 		// Hack so that we have the same command name extraction logic as when running php command.php or bin/command
 		$command = ReflectionUtil::callMethod($this->commandManager, 'getCommandNameFromArgv', [null, ...$params->getArgumentList()]);
 

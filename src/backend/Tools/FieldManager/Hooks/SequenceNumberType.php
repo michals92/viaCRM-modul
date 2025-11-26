@@ -6,23 +6,26 @@ use Espo\Core\Utils\DateTime;
 use Espo\Modules\Viacrm\Entities\NextSequenceNumber;
 use Espo\ORM\EntityManager;
 
-class SequenceNumberType {
+class SequenceNumberType
+{
 	public function __construct(
 		private readonly EntityManager $entityManager
-	) {}
+	) {
+	}
 
 	/**
 	 * @param array<string,mixed> $defs
 	 * @param array<string,mixed> $options
 	 */
-	public function onRead(string $scope, string $name, array &$defs, array $options): void {
+	public function onRead(string $scope, string $name, array &$defs, array $options): void
+	{
 		$number = $this->entityManager
-		    ->getRDBRepository(NextSequenceNumber::ENTITY_TYPE)
-		    ->where([
-		        'entityType' => $scope,
-		        'fieldName' => $name,
-		    ])
-		    ->findOne();
+			->getRDBRepository(NextSequenceNumber::ENTITY_TYPE)
+			->where([
+				'entityType' => $scope,
+				'fieldName' => $name,
+			])
+			->findOne();
 
 		$value = null;
 
@@ -43,18 +46,19 @@ class SequenceNumberType {
 	 * @param array<string,mixed> $defs
 	 * @param array<string,mixed> $options
 	 */
-	public function afterSave(string $scope, string $name, $defs, $options): void {
+	public function afterSave(string $scope, string $name, $defs, $options): void
+	{
 		if (!isset($defs['nextNumber'])) {
 			return;
 		}
 
 		$number = $this->entityManager
-		    ->getRDBRepository(NextSequenceNumber::ENTITY_TYPE)
-		    ->where([
-		        'entityType' => $scope,
-		        'fieldName' => $name,
-		    ])
-		    ->findOne();
+			->getRDBRepository(NextSequenceNumber::ENTITY_TYPE)
+			->where([
+				'entityType' => $scope,
+				'fieldName' => $name,
+			])
+			->findOne();
 
 		if (!$number) {
 			$number = $this->entityManager->getNewEntity(NextSequenceNumber::ENTITY_TYPE);
@@ -73,14 +77,15 @@ class SequenceNumberType {
 	 * @param array<string,mixed> $defs
 	 * @param array<string,mixed> $options
 	 */
-	public function afterRemove(string $scope, string $name, $defs, $options): void {
+	public function afterRemove(string $scope, string $name, $defs, $options): void
+	{
 		$number = $this->entityManager
-		    ->getRDBRepository(NextSequenceNumber::ENTITY_TYPE)
-		    ->where([
-		        'entityType' => $scope,
-		        'fieldName' => $name,
-		    ])
-		    ->findOne();
+			->getRDBRepository(NextSequenceNumber::ENTITY_TYPE)
+			->where([
+				'entityType' => $scope,
+				'fieldName' => $name,
+			])
+			->findOne();
 
 		if (!$number) {
 			return;
@@ -89,4 +94,3 @@ class SequenceNumberType {
 		$this->entityManager->removeEntity($number);
 	}
 }
-

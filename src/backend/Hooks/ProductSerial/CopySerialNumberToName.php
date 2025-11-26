@@ -10,10 +10,12 @@ use Espo\ORM\Repository\Option\SaveOptions;
 /**
  * @implements BeforeSave<ProductSerial>
  */
-class CopySerialNumberToName implements BeforeSave {
+class CopySerialNumberToName implements BeforeSave
+{
 	public static int $order = 9;
 
-	public function beforeSave(Entity $entity, SaveOptions $options): void {
+	public function beforeSave(Entity $entity, SaveOptions $options): void
+	{
 		if ($entity->isAttributeChanged('serialNumber')) {
 			$serialNumber = $entity->get('serialNumber');
 			if ($serialNumber) {

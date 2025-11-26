@@ -4,12 +4,13 @@ namespace Tests\Unit\Metadata;
 
 use Espo\Core\Job\JobDataLess;
 
-class ScheduledJobsTest extends AbstractMetadataTest {
-
+class ScheduledJobsTest extends AbstractMetadataTest
+{
 	/**
-	 * Tests that all job classes in scheduledJobs.json implement JobDataLess interface
+	 * Tests that all job classes in scheduledJobs.json implement JobDataLess interface.
 	 */
-	public function testScheduledJobsImplementInterface(): void {
+	public function testScheduledJobsImplementInterface(): void
+	{
 		/*$this->assertJsonPathClassesImplementInterface(
 			'app/scheduledJobs.json',
 			['*', 'jobClassName'],
@@ -18,5 +19,4 @@ class ScheduledJobsTest extends AbstractMetadataTest {
 			false // No __APPEND__ in this file
 		);*/
 	}
-
 }

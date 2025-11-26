@@ -6,12 +6,15 @@ use Espo\Core\Container\Loader;
 use Espo\Core\InjectableFactory;
 use Espo\Modules\Viacrm\Tools\Layout\UnifiedLayoutProvider as Service;
 
-class UnifiedLayoutProvider implements Loader {
+class UnifiedLayoutProvider implements Loader
+{
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
-	) {}
+	) {
+	}
 
-	public function load(): Service {
+	public function load(): Service
+	{
 		return $this->injectableFactory->create(Service::class);
 	}
 }

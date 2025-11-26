@@ -17,22 +17,27 @@ use Espo\ORM\Repository\Option\SaveOptions;
  * @implements AfterSave<RecordRecurrence>
  * @implements AfterRemove<RecordRecurrence>
  */
-readonly class RemoveScheduledJobs implements AfterSave, AfterRemove {
+readonly class RemoveScheduledJobs implements AfterSave, AfterRemove
+{
 	public function __construct(
 		private EntityManager $entityManager,
-	) {}
+	) {
+	}
 
-	public function afterSave(Entity $entity, SaveOptions $options): void {
+	public function afterSave(Entity $entity, SaveOptions $options): void
+	{
 		if (!$entity->isNew()) {
 			$this->removeEntityScheduledJob($entity);
 		}
 	}
 
-	public function afterRemove(Entity $entity, RemoveOptions $options): void {
+	public function afterRemove(Entity $entity, RemoveOptions $options): void
+	{
 		$this->removeEntityScheduledJob($entity);
 	}
 
-	private function removeEntityScheduledJob(Entity $entity): void {
+	private function removeEntityScheduledJob(Entity $entity): void
+	{
 		$scheduledJob = $this->getScheduledJobEntity();
 
 		if (!$scheduledJob) {
@@ -53,7 +58,8 @@ readonly class RemoveScheduledJobs implements AfterSave, AfterRemove {
 			]);
 	}
 
-	private function getScheduledJobEntity(): ?ScheduledJobEntity {
+	private function getScheduledJobEntity(): ?ScheduledJobEntity
+	{
 		return $this
 			->entityManager
 			->getRDBRepository(ScheduledJobEntity::ENTITY_TYPE)

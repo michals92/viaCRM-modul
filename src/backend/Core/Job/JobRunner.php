@@ -12,11 +12,13 @@ use Throwable;
 /**
  * This class is here so that errors are logged with the full stack trace.
  */
-class JobRunner extends \Espo\Core\Job\JobRunner {
+class JobRunner extends \Espo\Core\Job\JobRunner
+{
 	/**
 	 * Run a job entity. Does not throw exceptions.
 	 */
-	public function run(JobEntity $jobEntity): void {
+	public function run(JobEntity $jobEntity): void
+	{
 		try {
 			$this->runInternal($jobEntity);
 		} catch (Throwable $e) {
@@ -29,14 +31,16 @@ class JobRunner extends \Espo\Core\Job\JobRunner {
 	 *
 	 * @throws Throwable
 	 */
-	public function runThrowingException(JobEntity $jobEntity): void {
+	public function runThrowingException(JobEntity $jobEntity): void
+	{
 		$this->runInternal($jobEntity, true);
 	}
 
 	/**
-     * @throws Throwable
-     */
-	private function runInternal(JobEntity $jobEntity, bool $throwException = false): void {
+	 * @throws Throwable
+	 */
+	private function runInternal(JobEntity $jobEntity, bool $throwException = false): void
+	{
 		$isSuccess = true;
 		$exception = null;
 
@@ -47,11 +51,11 @@ class JobRunner extends \Espo\Core\Job\JobRunner {
 		try {
 			if ($jobEntity->getScheduledJobId()) {
 				ReflectionUtil::callClassMethod(parent::class, $this, 'runScheduledJob', $jobEntity);
-			} else if ($jobEntity->getJob()) {
+			} elseif ($jobEntity->getJob()) {
 				ReflectionUtil::callClassMethod(parent::class, $this, 'runJobNamed', $jobEntity);
-			} else if ($jobEntity->getClassName()) {
+			} elseif ($jobEntity->getClassName()) {
 				ReflectionUtil::callClassMethod(parent::class, $this, 'runJobWithClassName', $jobEntity);
-			} else if ($jobEntity->getServiceName()) {
+			} elseif ($jobEntity->getServiceName()) {
 				ReflectionUtil::callClassMethod(parent::class, $this, 'runService', $jobEntity);
 			} else {
 				$id = $jobEntity->getId();
@@ -64,11 +68,11 @@ class JobRunner extends \Espo\Core\Job\JobRunner {
 			$jobId = $jobEntity->hasId() ? $jobEntity->getId() : null;
 
 			ReflectionUtil::getClassProperty(parent::class, $this, 'log')->critical('Failed job {id}. {message}', [
-			    'exception' => $e,
-			    'message' => $e->getMessage(),
-			    'id' => $jobId,
-			    /** This is the addition over the original */
-			    'trace' => $e->getTraceAsString(),
+				'exception' => $e,
+				'message' => $e->getMessage(),
+				'id' => $jobId,
+				/** This is the addition over the original */
+				'trace' => $e->getTraceAsString(),
 			]);
 
 			if ($throwException) {

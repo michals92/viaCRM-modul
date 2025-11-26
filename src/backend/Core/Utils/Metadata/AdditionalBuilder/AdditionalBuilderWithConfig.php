@@ -10,22 +10,24 @@ use Espo\Core\Utils\Metadata\AdditionalBuilder;
 use stdClass;
 
 /**
- *  To be extended by AdditionalBuilder implementors that need to use the Config class
+ *  To be extended by AdditionalBuilder implementors that need to use the Config class.
  */
-abstract class AdditionalBuilderWithConfig implements AdditionalBuilder {
+abstract class AdditionalBuilderWithConfig implements AdditionalBuilder
+{
 	protected readonly Config $config;
 
 	protected FileManager $fileManager;
 
 	/**
 	 * Cache for custom metadata files to avoid redundant file reads.
-	 * Format: ["{metadataType}:{entityType}" => stdClass|null]
+	 * Format: ["{metadataType}:{entityType}" => stdClass|null].
 	 *
 	 * @var array<string, stdClass|null>
 	 */
 	private array $customMetadataCache = [];
 
-	public function __construct() {
+	public function __construct()
+	{
 		// AdditionalBuilders cannot have constructors with parameters
 		$this->fileManager = new FileManager();
 
@@ -62,11 +64,12 @@ abstract class AdditionalBuilderWithConfig implements AdditionalBuilder {
 	 * );
 	 * ```
 	 *
-	 * @param  string                 $entityType   The entity type (e.g., 'PurchaseOrderItem')
-	 * @param  string                 $metadataType Metadata type (e.g., 'entityDefs', 'clientDefs', 'recordDefs')
-	 * @param  array<int, string|int> $path         Path to the value (e.g., ['links', 'productionOrder', 'foreignName'])
-	 * @param  mixed                  $default      Default value if not found or file doesn't exist
-	 * @return mixed                  The custom value from the file, or $default if not found
+	 * @param string                 $entityType   The entity type (e.g., 'PurchaseOrderItem')
+	 * @param string                 $metadataType Metadata type (e.g., 'entityDefs', 'clientDefs', 'recordDefs')
+	 * @param array<int, string|int> $path         Path to the value (e.g., ['links', 'productionOrder', 'foreignName'])
+	 * @param mixed                  $default      Default value if not found or file doesn't exist
+	 *
+	 * @return mixed The custom value from the file, or $default if not found
 	 */
 	protected function getCustomMetadataValue(
 		string $entityType,
@@ -110,7 +113,7 @@ abstract class AdditionalBuilderWithConfig implements AdditionalBuilder {
 					return $default;
 				}
 				$current = $current->$key;
-			} else if (is_array($current)) {
+			} elseif (is_array($current)) {
 				if (!array_key_exists($key, $current)) {
 					return $default;
 				}
@@ -139,11 +142,12 @@ abstract class AdditionalBuilderWithConfig implements AdditionalBuilder {
 	 * );
 	 * ```
 	 *
-	 * @param  string $entityType The entity type (e.g., 'PurchaseOrderItem')
-	 * @param  string $linkName   The link name (e.g., 'productionOrder')
-	 * @param  string $property   The property name (e.g., 'foreignName', 'audited')
-	 * @param  mixed  $default    Default value if not found
-	 * @return mixed  The custom value or $default
+	 * @param string $entityType The entity type (e.g., 'PurchaseOrderItem')
+	 * @param string $linkName   The link name (e.g., 'productionOrder')
+	 * @param string $property   The property name (e.g., 'foreignName', 'audited')
+	 * @param mixed  $default    Default value if not found
+	 *
+	 * @return mixed The custom value or $default
 	 */
 	protected function getCustomLinkProperty(
 		string $entityType,
@@ -175,11 +179,12 @@ abstract class AdditionalBuilderWithConfig implements AdditionalBuilder {
 	 * );
 	 * ```
 	 *
-	 * @param  string $entityType The entity type (e.g., 'Account')
-	 * @param  string $fieldName  The field name (e.g., 'name')
-	 * @param  string $property   The property name (e.g., 'readOnly', 'required')
-	 * @param  mixed  $default    Default value if not found
-	 * @return mixed  The custom value or $default
+	 * @param string $entityType The entity type (e.g., 'Account')
+	 * @param string $fieldName  The field name (e.g., 'name')
+	 * @param string $property   The property name (e.g., 'readOnly', 'required')
+	 * @param mixed  $default    Default value if not found
+	 *
+	 * @return mixed The custom value or $default
 	 */
 	protected function getCustomFieldProperty(
 		string $entityType,
@@ -221,9 +226,10 @@ abstract class AdditionalBuilderWithConfig implements AdditionalBuilder {
 	 * $data->entityDefs->PurchaseOrderItem->links->productionOrder->entity = 'ProductionOrder';
 	 * ```
 	 *
-	 * @param  stdClass $data       The metadata data object to modify
-	 * @param  string   $entityType The entity type (e.g., 'PurchaseOrderItem')
-	 * @param  string   $linkName   The link name (e.g., 'productionOrder')
+	 * @param stdClass $data       The metadata data object to modify
+	 * @param string   $entityType The entity type (e.g., 'PurchaseOrderItem')
+	 * @param string   $linkName   The link name (e.g., 'productionOrder')
+	 *
 	 * @return void
 	 */
 	protected function applyCustomLinkProperties(
@@ -270,9 +276,10 @@ abstract class AdditionalBuilderWithConfig implements AdditionalBuilder {
 	 * $data->entityDefs->PurchaseOrderItem->fields->productionOrder->type = 'link';
 	 * ```
 	 *
-	 * @param  stdClass $data       The metadata data object to modify
-	 * @param  string   $entityType The entity type (e.g., 'PurchaseOrderItem')
-	 * @param  string   $fieldName  The field name (e.g., 'productionOrder')
+	 * @param stdClass $data       The metadata data object to modify
+	 * @param string   $entityType The entity type (e.g., 'PurchaseOrderItem')
+	 * @param string   $fieldName  The field name (e.g., 'productionOrder')
+	 *
 	 * @return void
 	 */
 	protected function applyCustomFieldProperties(

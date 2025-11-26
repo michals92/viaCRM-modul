@@ -10,12 +10,15 @@ use Espo\ORM\Entity;
 class DefaultAccessChecker extends \Espo\Core\Acl\DefaultAccessChecker implements
 
 	AccessPrintChecker,
-	AccessEntityPrintChecker {
-	public function checkPrint(User $user, ScopeData $data): bool {
+	AccessEntityPrintChecker
+{
+	public function checkPrint(User $user, ScopeData $data): bool
+	{
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'checkScope', $data, 'print');
 	}
 
-	public function checkEntityPrint(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityPrint(User $user, Entity $entity, ScopeData $data): bool
+	{
 		return ReflectionUtil::callClassMethod(parent::class, $this, 'checkEntity', $user, $entity, $data, 'print');
 	}
 }

@@ -10,12 +10,16 @@ use Espo\ORM\Repository\Option\SaveOptions;
 /**
  * @implements AfterSave<Product>
  */
-class PrimarySupplier implements AfterSave {
+class PrimarySupplier implements AfterSave
+{
 	public static int $order = 9;
 
-	public function __construct() {}
+	public function __construct()
+	{
+	}
 
-	public function afterSave(Entity $entity, SaveOptions $options): void {
+	public function afterSave(Entity $entity, SaveOptions $options): void
+	{
 		// needs attention > rn its not possible to have record-list (link-multiple) with primary
 		return;
 		// phpcs:ignore Generic.CodeAnalysis.UnreachableCode.Detected
@@ -28,7 +32,7 @@ class PrimarySupplier implements AfterSave {
 		$fetchedSupplierId = $entity->getFetched('primarySupplierId');
 
 		$relation = $this->entityManager
-		    ->getRelation($entity, 'suppliers');
+			->getRelation($entity, 'suppliers');
 
 		if (!$supplierId) {
 			if ($fetchedSupplierId) {

@@ -17,12 +17,15 @@ use Espo\Modules\Viacrm\Core\Mail\Account\GroupAccount\Hooks\BeforeFetch as Grou
 /**
  * @implements Factory<Fetcher>
  */
-class FetcherFactory implements Factory {
+class FetcherFactory implements Factory
+{
 	public function __construct(
 		protected readonly InjectableFactory $injectableFactory
-	) {}
+	) {
+	}
 
-	public function create(): Fetcher {
+	public function create(): Fetcher
+	{
 		$binding = BindingContainerBuilder::create()
 			->bindImplementation(BeforeFetch::class, GroupAccountBeforeFetch::class)
 			->bindImplementation(AfterFetch::class, GroupAccountAfterFetch::class)

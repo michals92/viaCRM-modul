@@ -12,20 +12,23 @@ use Throwable;
 /**
  * EWS Group Email Account (InboundEmail) fetching service.
  */
-class Service {
+class Service
+{
 	public function __construct(
 		private EntityManager $entityManager,
 		private AccountFactory $accountFactory,
 		private Fetcher $fetcher,
 		private Log $log
-	) {}
+	) {
+	}
 
 	/**
 	 * Fetch emails for a group email account.
 	 *
 	 * @throws Error
 	 */
-	public function fetch(string $id): void {
+	public function fetch(string $id): void
+	{
 		/** @var ?InboundEmail $inboundEmail */
 		$inboundEmail = $this->entityManager->getEntityById(InboundEmail::ENTITY_TYPE, $id);
 

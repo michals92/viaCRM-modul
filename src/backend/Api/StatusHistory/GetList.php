@@ -10,12 +10,15 @@ use Espo\Core\Exceptions\BadRequest;
 use Espo\ORM\EntityManager;
 use stdClass;
 
-class GetList implements Action {
+class GetList implements Action
+{
 	public function __construct(
 		private readonly EntityManager $entityManager
-	) {}
+	) {
+	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$entityType = $request->getQueryParam('entityType');
 		$entityId = $request->getQueryParam('entityId');
 
@@ -34,7 +37,8 @@ class GetList implements Action {
 	/**
 	 * @return array<array{id: string, status: string, updatedAt: string, updatedById: string|null, updatedByName: string|null}>
 	 */
-	private function getStatusHistoryFromNotes(string $entityType, string $entityId): array {
+	private function getStatusHistoryFromNotes(string $entityType, string $entityId): array
+	{
 		// Get old-style Status notes (EspoCRM < 9.1.5)
 		$statusNotes = $this->entityManager
 			->getRDBRepository('Note')

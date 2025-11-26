@@ -2,7 +2,8 @@
 
 namespace Espo\Modules\Viacrm\Core\Select\Text\FullTextSearch;
 
-class Mode {
+class Mode
+{
 	public const NATURAL_LANGUAGE = 'NATURAL_LANGUAGE';
 	public const BOOLEAN = 'BOOLEAN';
 	public const LIKE = 'LIKE';

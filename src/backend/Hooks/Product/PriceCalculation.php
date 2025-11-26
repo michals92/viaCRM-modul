@@ -12,22 +12,26 @@ use Espo\ORM\Repository\Option\SaveOptions;
 /**
  * @implements BeforeSave<Product>
  */
-class PriceCalculation implements BeforeSave {
+class PriceCalculation implements BeforeSave
+{
 	public static int $order = 9;
 
 	public function __construct(
 		protected readonly RecordServiceContainer $recordServiceContainer,
-	) {}
+	) {
+	}
 
 	/**
 	 * @param Product $entity
 	 */
-	public function beforeSave(Entity $entity, SaveOptions $options): void {
+	public function beforeSave(Entity $entity, SaveOptions $options): void
+	{
 		$productService = $this->getRecordService();
 		$productService->calculatePricing($entity, $options->toAssoc());
 	}
 
-	protected function getRecordService(): ProductService {
+	protected function getRecordService(): ProductService
+	{
 		/** @var ProductService */
 		$service = $this->recordServiceContainer->get(Product::ENTITY_TYPE);
 

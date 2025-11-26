@@ -14,15 +14,18 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\Metadata;
 use Espo\Entities\Attachment as AttachmentEntity;
 
-class AttachmentInline implements EntryPoint {
+class AttachmentInline implements EntryPoint
+{
 	public function __construct(
 		protected FileStorageManager $fileStorageManager,
 		protected Acl $acl,
 		protected EntityManager $entityManager,
 		protected Metadata $metadata
-	) {}
+	) {
+	}
 
-	public function run(Request $request, Response $response): void {
+	public function run(Request $request, Response $response): void
+	{
 		$id = $request->getQueryParam('id');
 
 		if (!$id) {
@@ -51,7 +54,7 @@ class AttachmentInline implements EntryPoint {
 		$type = $attachment->getType();
 
 		$disposition = 'inline';
-        
+
 		$response->setHeader('Content-Security-Policy', "default-src 'self'");
 		$response->setHeader('Content-Description', 'File Transfer');
 
@@ -62,11 +65,11 @@ class AttachmentInline implements EntryPoint {
 		$size = $stream->getSize() ?? $this->fileStorageManager->getSize($attachment);
 
 		$response
-		    ->setHeader('Content-Disposition', $disposition . ';filename="' . $outputFileName . '"')
-		    ->setHeader('Expires', '0')
-		    ->setHeader('Cache-Control', 'must-revalidate')
-		    ->setHeader('Pragma', 'public')
-		    ->setHeader('Content-Length', (string) $size)
-		    ->setBody($stream);
+			->setHeader('Content-Disposition', $disposition . ';filename="' . $outputFileName . '"')
+			->setHeader('Expires', '0')
+			->setHeader('Cache-Control', 'must-revalidate')
+			->setHeader('Pragma', 'public')
+			->setHeader('Content-Length', (string) $size)
+			->setBody($stream);
 	}
 }

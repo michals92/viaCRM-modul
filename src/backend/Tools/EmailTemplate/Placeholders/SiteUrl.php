@@ -6,12 +6,15 @@ use Espo\Core\Utils\Config;
 use Espo\Tools\EmailTemplate\Data as EmailTemplateData;
 use Espo\Tools\EmailTemplate\Placeholder;
 
-class SiteUrl implements Placeholder {
+class SiteUrl implements Placeholder
+{
 	public function __construct(
 		private readonly Config $config
-	) {}
+	) {
+	}
 
-	public function get(EmailTemplateData $data): string {
+	public function get(EmailTemplateData $data): string
+	{
 		$siteUrl = $this->config->get('siteUrl');
 
 		if (empty($siteUrl)) {

@@ -4,6 +4,7 @@ namespace Espo\Modules\Viacrm\Classes\EmailPdf;
 
 use stdClass;
 
-interface AttributeProvider {
+interface AttributeProvider
+{
 	public function getAttributes(string $entityType, string $id, string $templateId): stdClass;
 }

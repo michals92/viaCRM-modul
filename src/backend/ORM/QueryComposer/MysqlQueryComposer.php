@@ -5,11 +5,13 @@ namespace Espo\Modules\Viacrm\ORM\QueryComposer;
 /**
  * Extended MySQL query composer that adds support for expressions in insert queries.
  */
-class MysqlQueryComposer extends \Espo\ORM\QueryComposer\MysqlQueryComposer {
+class MysqlQueryComposer extends \Espo\ORM\QueryComposer\MysqlQueryComposer
+{
 	use QueryComposerExtensionTrait;
 
 	// Allows use of Expressions in updateSet
-	protected function createInsertQuery(?array $params): string {
+	protected function createInsertQuery(?array $params): string
+	{
 		$params = $this->normalizeInsertParams($params ?? []);
 
 		$entityType = $params['into'];

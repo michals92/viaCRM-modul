@@ -6,7 +6,8 @@ use Espo\Core\Api\Request;
 use Espo\Core\Record\DeleteParams;
 use Espo\Core\Record\DeleteParamsFetcher;
 
-class EntityAwareDeleteParamsFetcher extends DeleteParamsFetcher {
+class EntityAwareDeleteParamsFetcher extends DeleteParamsFetcher
+{
 	/**
 	 * @use ParamsFetcherTrait<DeleteParamsFetcher, DeleteParams>
 	 */
@@ -17,7 +18,8 @@ class EntityAwareDeleteParamsFetcher extends DeleteParamsFetcher {
 	/**
 	 * @throws \Exception
 	 */
-	public function fetch(Request $request): DeleteParams {
+	public function fetch(Request $request): DeleteParams
+	{
 		/**
 		 * @var DeleteParams
 		 */

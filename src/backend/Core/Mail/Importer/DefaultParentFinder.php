@@ -14,14 +14,15 @@ use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 use Espo\ORM\Entity;
 use Espo\ORM\EntityManager;
 
-class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
+class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder
+{
 	private EmailAddressRepository $emailAddressRepository;
 
 	public function __construct(
-		EntityManager             $entityManager,
+		EntityManager $entityManager,
 		protected readonly Config $config,
-		Metadata                  $metadata,
-		protected readonly Log    $log
+		Metadata $metadata,
+		protected readonly Log $log
 	) {
 		/** @var EmailAddressRepository $emailAddressRepository */
 		$emailAddressRepository = $entityManager->getRepository(EmailAddress::ENTITY_TYPE);
@@ -29,7 +30,8 @@ class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
 		parent::__construct($entityManager, $config, $metadata);
 	}
 
-	public function find(Email $email, Message $message): ?Entity {
+	public function find(Email $email, Message $message): ?Entity
+	{
 		$emailParentFinderOrder = $this->config->get('emailParentFinderOrder', []);
 		if (empty($emailParentFinderOrder) || !is_array($emailParentFinderOrder)) {
 			return parent::find($email, $message);
@@ -56,7 +58,8 @@ class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
 	 * Calls the appropriate parent finder method based on the finder type.
 	 * Uses switch statement for PHPStan static analysis compatibility.
 	 */
-	private function callParentFinderMethod(string $finderType, Email $email, Message $message): ?Entity {
+	private function callParentFinderMethod(string $finderType, Email $email, Message $message): ?Entity
+	{
 		switch ($finderType) {
 			case 'references':
 				return $this->callGetByReferences($message);
@@ -76,9 +79,10 @@ class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
 	}
 
 	/**
-	 * Wrapper for parent::getByReferences() method
+	 * Wrapper for parent::getByReferences() method.
 	 */
-	private function callGetByReferences(Message $message): ?Entity {
+	private function callGetByReferences(Message $message): ?Entity
+	{
 		try {
 			return ReflectionUtil::callClassMethod(parent::class, $this, 'getByReferences', $message);
 		} catch (\ReflectionException $e) {
@@ -89,9 +93,10 @@ class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
 	}
 
 	/**
-	 * Wrapper for parent::getByFromAddress() method
+	 * Wrapper for parent::getByFromAddress() method.
 	 */
-	private function callGetByFromAddress(Email $email): ?Entity {
+	private function callGetByFromAddress(Email $email): ?Entity
+	{
 		try {
 			return ReflectionUtil::callClassMethod(parent::class, $this, 'getByFromAddress', $email);
 		} catch (\ReflectionException $e) {
@@ -102,9 +107,10 @@ class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
 	}
 
 	/**
-	 * Wrapper for parent::getByToAddress() method
+	 * Wrapper for parent::getByToAddress() method.
 	 */
-	private function callGetByToAddress(Email $email): ?Entity {
+	private function callGetByToAddress(Email $email): ?Entity
+	{
 		try {
 			return ReflectionUtil::callClassMethod(parent::class, $this, 'getByToAddress', $email);
 		} catch (\ReflectionException $e) {
@@ -115,9 +121,10 @@ class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
 	}
 
 	/**
-	 * Wrapper for parent::getFromReplied() method
+	 * Wrapper for parent::getFromReplied() method.
 	 */
-	private function callGetFromReplied(Email $email): ?Entity {
+	private function callGetFromReplied(Email $email): ?Entity
+	{
 		try {
 			return ReflectionUtil::callClassMethod(parent::class, $this, 'getFromReplied', $email);
 		} catch (\ReflectionException $e) {
@@ -128,9 +135,10 @@ class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
 	}
 
 	/**
-	 * Wrapper for parent::getByReplyToAddress() method
+	 * Wrapper for parent::getByReplyToAddress() method.
 	 */
-	private function callGetByReplyToAddress(Email $email): ?Entity {
+	private function callGetByReplyToAddress(Email $email): ?Entity
+	{
 		try {
 			return ReflectionUtil::callClassMethod(parent::class, $this, 'getByReplyToAddress', $email);
 		} catch (\ReflectionException $e) {
@@ -140,7 +148,8 @@ class DefaultParentFinder extends \Espo\Core\Mail\Importer\DefaultParentFinder {
 		}
 	}
 
-	public function getByAddress(string $emailAddress): ?Entity {
+	public function getByAddress(string $emailAddress): ?Entity
+	{
 		return $this->emailAddressRepository->getEntityByAddress($emailAddress, Account::ENTITY_TYPE);
 	}
 

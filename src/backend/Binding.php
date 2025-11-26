@@ -33,8 +33,10 @@ use Espo\Tools\GlobalSearch\Service as GlobalSearchService;
 use Espo\Tools\Layout\LayoutProvider;
 use Espo\Tools\User\UsersAccessService;
 
-class Binding implements BindingProcessor {
-	public function process(Binder $binder): void {
+class Binding implements BindingProcessor
+{
+	public function process(Binder $binder): void
+	{
 		// Vanilla Espo Services
 		$this->bindAssignmentProcessor($binder);
 		$this->bindAcl($binder);
@@ -42,7 +44,8 @@ class Binding implements BindingProcessor {
 		$this->bindEmail($binder);
 	}
 
-	private function bindCore(Binder $binder): void {
+	private function bindCore(Binder $binder): void
+	{
 		$binder->bindImplementation(ParentFinder::class, DefaultParentFinder::class);
 
 		// Keep this sorted when inserting new bindings
@@ -84,7 +87,8 @@ class Binding implements BindingProcessor {
 		);
 	}
 
-	private function bindEmail(Binder $binder): void {
+	private function bindEmail(Binder $binder): void
+	{
 		// IMAP Fetcher bindings (override core IMAP with our implementation)
 		$binder
 			->for('Espo\\Core\\Mail\\Account\\PersonalAccount\\Service')
@@ -116,7 +120,8 @@ class Binding implements BindingProcessor {
 			);
 	}
 
-	private function bindAcl(Binder $binder): void {
+	private function bindAcl(Binder $binder): void
+	{
 		$binder->bindImplementation(
 			'Espo\\Core\\Acl\\Table\\TableFactory',
 			DefaultTableFactory::class
@@ -125,7 +130,8 @@ class Binding implements BindingProcessor {
 		$binder->bindService(DataBuilder::class, 'aclDataBuilder');
 	}
 
-	private function bindAssignmentProcessor(Binder $binder): void {
+	private function bindAssignmentProcessor(Binder $binder): void
+	{
 		$binder->for(AssignmentProcessor::class)
 			->bindService(EmailSender::class, 'savingEmailSender');
 	}

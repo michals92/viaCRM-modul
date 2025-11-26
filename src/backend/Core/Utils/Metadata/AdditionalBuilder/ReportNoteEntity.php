@@ -8,11 +8,13 @@ use stdClass;
 /**
  * Removes Note from Report's entityListToIgnore to allow Notes in reports.
  */
-class ReportNoteEntity implements AdditionalBuilder {
-	public function build(stdClass $data): void {
+class ReportNoteEntity implements AdditionalBuilder
+{
+	public function build(stdClass $data): void
+	{
 		// Initialize entityDefs if not exists
-		$data->entityDefs = $data->entityDefs ?? (object)[];
-		$data->entityDefs->Report = $data->entityDefs->Report ?? (object)[];
+		$data->entityDefs = $data->entityDefs ?? (object) [];
+		$data->entityDefs->Report = $data->entityDefs->Report ?? (object) [];
 
 		// Remove 'Note' from entityListToIgnore
 		if (isset($data->entityDefs->Report->entityListToIgnore)) {
@@ -22,7 +24,7 @@ class ReportNoteEntity implements AdditionalBuilder {
 			if (is_array($entityListToIgnore)) {
 				// Remove 'Note' from the list
 				$data->entityDefs->Report->entityListToIgnore = array_values(
-					array_filter($entityListToIgnore, fn($entity) => $entity !== 'Note')
+					array_filter($entityListToIgnore, fn ($entity) => $entity !== 'Note')
 				);
 			}
 		}

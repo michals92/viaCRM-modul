@@ -4,12 +4,14 @@ namespace Espo\Modules\Viacrm\Entities;
 
 use stdClass;
 
-class WorkQueue extends \Espo\Core\Templates\Entities\Base {
+class WorkQueue extends \Espo\Core\Templates\Entities\Base
+{
 	public const string TEMPLATE_TYPE = 'Base';
 
 	public const string ENTITY_TYPE = 'WorkQueue';
 
-	public function getValueMap(): stdClass {
+	public function getValueMap(): stdClass
+	{
 		$map = [];
 
 		if ($this->hasId()) {

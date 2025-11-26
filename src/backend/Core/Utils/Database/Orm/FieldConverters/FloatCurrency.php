@@ -12,7 +12,8 @@ use Espo\ORM\Defs\FieldDefs;
 use Espo\ORM\Query\Part\Expression as Expr;
 use Espo\ORM\Type\AttributeType;
 
-class FloatCurrency implements FieldConverter {
+class FloatCurrency implements FieldConverter
+{
 	// replace with AttributeParam::NOT_STORABLE in espo 9
 	public const NOT_STORABLE = 'notStorable';
 	public const DEFAULT_PRECISION = 13;
@@ -22,9 +23,11 @@ class FloatCurrency implements FieldConverter {
 		private readonly Metadata $metadata,
 		private readonly Config $config,
 		private readonly ConfigDataProvider $configDataProvider
-	) {}
+	) {
+	}
 
-	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs {
+	public function convert(FieldDefs $fieldDefs, string $entityType): EntityDefs
+	{
 		$name = $fieldDefs->getName();
 
 		// Create the main attribute - follow the same pattern as currency converter
@@ -186,26 +189,30 @@ class FloatCurrency implements FieldConverter {
 		return $entityDefs;
 	}
 
-	private function validateLinkName(string $linkName): void {
+	private function validateLinkName(string $linkName): void
+	{
 		if (!preg_match('/^[a-zA-Z][a-zA-Z0-9_]*$/', $linkName)) {
 			throw new \InvalidArgumentException("Invalid link name: {$linkName}");
 		}
 	}
 
-	private function validateFieldName(string $fieldName): void {
+	private function validateFieldName(string $fieldName): void
+	{
 		if (!preg_match('/^[a-zA-Z][a-zA-Z0-9_]*$/', $fieldName)) {
 			throw new \InvalidArgumentException("Invalid field name: {$fieldName}");
 		}
 	}
 
-	private function createAlias(string $linkName): string {
+	private function createAlias(string $linkName): string
+	{
 		// Create safe alias by validating and sanitizing
 		$this->validateLinkName($linkName);
 
 		return $linkName . 'CurrencyJoin';
 	}
 
-	private function getParentEntityType(string $entityType, string $linkName): string {
+	private function getParentEntityType(string $entityType, string $linkName): string
+	{
 		$this->validateLinkName($linkName);
 
 		if ($this->isLinkParent($entityType, $linkName)) {
@@ -221,7 +228,8 @@ class FloatCurrency implements FieldConverter {
 		return ucfirst($linkName);
 	}
 
-	private function isLinkParent(string $entityType, string $linkName): bool {
+	private function isLinkParent(string $entityType, string $linkName): bool
+	{
 		$fieldType = $this->metadata->get(['entityDefs', $entityType, 'fields', $linkName, 'type']);
 
 		return $fieldType === 'linkParent';
@@ -230,7 +238,8 @@ class FloatCurrency implements FieldConverter {
 	/**
 	 * @param string[] $entityList
 	 */
-	private function handleLinkParentCurrency(AttributeDefs &$currencyDefs, string $parentLinkName, array $entityList, string $currencyField, string $entityType): void {
+	private function handleLinkParentCurrency(AttributeDefs &$currencyDefs, string $parentLinkName, array $entityList, string $currencyField, string $entityType): void
+	{
 		$this->validateLinkName($parentLinkName);
 		$this->validateFieldName($currencyField);
 
@@ -284,7 +293,7 @@ class FloatCurrency implements FieldConverter {
 	}
 
 	/**
-	 * Build currency expression for linkParent fields using Expression API
+	 * Build currency expression for linkParent fields using Expression API.
 	 *
 	 * @param array<array{entityType: string, alias: string, currencyField: string}> $conditions
 	 */
@@ -318,9 +327,10 @@ class FloatCurrency implements FieldConverter {
 	}
 
 	/**
-	 * Create the converted attribute for currency conversion
+	 * Create the converted attribute for currency conversion.
 	 */
-	private function createConvertedAttribute(FieldDefs $fieldDefs, ?string $parentLinkName, string $currencyField, string $entityType): AttributeDefs {
+	private function createConvertedAttribute(FieldDefs $fieldDefs, ?string $parentLinkName, string $currencyField, string $entityType): AttributeDefs
+	{
 		if ($this->config->get('currencyNoJoinMode')) {
 			return $this->applyNoJoinMode($fieldDefs);
 		}
@@ -330,9 +340,10 @@ class FloatCurrency implements FieldConverter {
 	}
 
 	/**
-	 * Apply no-join mode for converted attribute (similar to Currency converter)
+	 * Apply no-join mode for converted attribute (similar to Currency converter).
 	 */
-	private function applyNoJoinMode(FieldDefs $fieldDefs): AttributeDefs {
+	private function applyNoJoinMode(FieldDefs $fieldDefs): AttributeDefs
+	{
 		$name = $fieldDefs->getName();
 		$currencyAttribute = $name . 'Currency';
 
@@ -427,26 +438,27 @@ class FloatCurrency implements FieldConverter {
 	}
 
 	/**
-	 * Apply join mode for converted attribute (similar to Currency converter)
+	 * Apply join mode for converted attribute (similar to Currency converter).
 	 */
-	private function applyJoinMode(FieldDefs $fieldDefs, ?string $parentLinkName, string $currencyField, string $entityType): AttributeDefs {
+	private function applyJoinMode(FieldDefs $fieldDefs, ?string $parentLinkName, string $currencyField, string $entityType): AttributeDefs
+	{
 		$name = $fieldDefs->getName();
 
 		$alias = $name . 'CurrencyRate';
 		$leftJoins = [];
-		
+
 		// If currency is from parent, we need to join the parent entity first
 		if ($parentLinkName && !$this->isLinkParent($entityType, $parentLinkName)) {
 			$parentAlias = $this->createAlias($parentLinkName);
 			$parentEntity = $this->getParentEntityType($entityType, $parentLinkName);
-			
+
 			// First join the parent entity
 			$leftJoins[] = [
 				$parentEntity,
 				$parentAlias,
 				[$parentAlias . '.id:' => $parentLinkName . 'Id'],
 			];
-			
+
 			// Then join Currency based on parent's currency field
 			$leftJoins[] = [
 				'Currency',
@@ -527,13 +539,14 @@ class FloatCurrency implements FieldConverter {
 	}
 
 	/**
-	 * Exchange rates (copied from Currency converter)
+	 * Exchange rates (copied from Currency converter).
 	 *
 	 * @param array<string, float> $currencyRates
 	 *
 	 * @return array<string, float>
 	 */
-	private function exchangeRates(string $baseCurrency, string $defaultCurrency, array $currencyRates): array {
+	private function exchangeRates(string $baseCurrency, string $defaultCurrency, array $currencyRates): array
+	{
 		$precision = 5;
 		$defaultCurrencyRate = round(1 / $currencyRates[$defaultCurrency], $precision);
 
@@ -550,11 +563,12 @@ class FloatCurrency implements FieldConverter {
 	}
 
 	/**
-	 * Build expression for currency conversion (copied from Currency converter)
+	 * Build expression for currency conversion (copied from Currency converter).
 	 *
 	 * @param array<string, float> $rates
 	 */
-	private function buildExpression(string $currencyAttribute, array $rates): Expr|float {
+	private function buildExpression(string $currencyAttribute, array $rates): Expr|float
+	{
 		if ($rates === []) {
 			return 0.0;
 		}

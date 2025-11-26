@@ -5,14 +5,16 @@ namespace Espo\Modules\Viacrm\Tools\FieldManager\Hooks;
 use Espo\Core\Di;
 use Espo\Entities\NextNumber;
 
-class MultiIncrementType implements Di\EntityManagerAware {
+class MultiIncrementType implements Di\EntityManagerAware
+{
 	use Di\EntityManagerSetter;
 
 	/**
 	 * @param array<string, mixed> $defs
 	 * @param array<string, mixed> $options
 	 */
-	public function onRead(string $scope, string $name, &$defs, $options): void {
+	public function onRead(string $scope, string $name, &$defs, $options): void
+	{
 		$numbers = $this->entityManager
 			->getRDBRepository(NextNumber::ENTITY_TYPE)
 			->where([
@@ -34,7 +36,8 @@ class MultiIncrementType implements Di\EntityManagerAware {
 	 * @param array<string, mixed> $defs
 	 * @param array<string, mixed> $options
 	 */
-	public function afterSave(string $scope, string $name, array $defs, array $options): void {
+	public function afterSave(string $scope, string $name, array $defs, array $options): void
+	{
 		if (!isset($defs['sequences']) || !is_array($defs['sequences'])) {
 			return;
 		}

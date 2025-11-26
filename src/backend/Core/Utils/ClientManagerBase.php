@@ -6,7 +6,8 @@ use Espo\Core\Di;
 use Espo\Core\Utils\ClientManager;
 use Espo\Modules\Viacrm\Core\Di as ViacrmDi;
 
-class ClientManagerBase extends ClientManager implements Di\ConfigAware, ViacrmDi\ClientHelperAware {
+class ClientManagerBase extends ClientManager implements Di\ConfigAware, ViacrmDi\ClientHelperAware
+{
 	use ViacrmDi\ClientHelperSetter;
 	use Di\ConfigSetter;
 

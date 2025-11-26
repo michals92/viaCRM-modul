@@ -25,41 +25,46 @@ use Exception;
 use LogicException;
 use PDO;
 
-class WorkQueue {
+class WorkQueue
+{
 	public function __construct(
-		private readonly Metadata             $metadata,
-		private readonly EntityManager        $entityManager,
+		private readonly Metadata $metadata,
+		private readonly EntityManager $entityManager,
 		private readonly SelectBuilderFactory $selectBuilderFactory,
-		private readonly Config               $config,
-		private readonly Language             $language,
-		private readonly Acl                  $acl,
-		private readonly User                 $user
-	) {}
+		private readonly Config $config,
+		private readonly Language $language,
+		private readonly Acl $acl,
+		private readonly User $user
+	) {
+	}
 
 	/**
 	 * @throws Error|Exception
 	 */
-	public function getResult(string $userId, SearchParams $searchParams): Result {
+	public function getResult(string $userId, SearchParams $searchParams): Result
+	{
 		$workQueueEntityTypeList = $this->config->get('workQueueEntityTypeList', []);
 
 		return $this->getResultInner($workQueueEntityTypeList, $userId, $searchParams);
 	}
 
 	/**
-	 * @param  string[]    $entityTypeList
-	 * @param  string      $userId
-	 * @param  string      $name
-	 * @param  string|null $label
-	 * @param  string|null $style
+	 * @param string[]    $entityTypeList
+	 * @param string      $userId
+	 * @param string      $name
+	 * @param string|null $label
+	 * @param string|null $style
+	 *
 	 * @throws Error
 	 * @throws Forbidden
 	 * @throws BadRequest
+	 *
 	 * @return GroupItem
 	 */
 	public function fetchGroupWithName(
-		array   $entityTypeList,
-		string  $userId,
-		string  $name,
+		array $entityTypeList,
+		string $userId,
+		string $name,
 		SearchParams $searchParams,
 		?string $label = null,
 		?string $style = null
@@ -75,7 +80,7 @@ class WorkQueue {
 					->encode()
 			);
 		}
-		
+
 		$unionQuery = $this->entityManager->getQueryBuilder()->union();
 
 		$level = $this->acl->getLevel('WorkQueue', 'read');
@@ -111,7 +116,7 @@ class WorkQueue {
 			$kanbanStatusIgnoreList = $this->metadata->get(['scopes', $entityType, 'kanbanStatusIgnoreList'], []);
 
 			/**
-			 * @param \Espo\ORM\Query\SelectBuilder $query The query builder instance.
+			 * @param \Espo\ORM\Query\SelectBuilder $query the query builder instance
 			 *
 			 * @return void
 			 */
@@ -164,7 +169,7 @@ class WorkQueue {
 		if ($searchParams->getOrderBy() && $searchParams->getOrder()) {
 			$unionQuery->order($searchParams->getOrderBy(), $searchParams->getOrder());
 		}
-		
+
 		$result = $this
 			->entityManager
 			->getQueryExecutor()
@@ -193,14 +198,17 @@ class WorkQueue {
 	}
 
 	/**
-	 * @param  string[]   $entityTypeList
-	 * @param  string     $userId
+	 * @param string[] $entityTypeList
+	 * @param string   $userId
+	 *
 	 * @throws BadRequest
 	 * @throws Error
 	 * @throws Forbidden
+	 *
 	 * @return Result
 	 */
-	public function getResultInner(array $entityTypeList, string $userId, SearchParams $searchParams): Result {
+	public function getResultInner(array $entityTypeList, string $userId, SearchParams $searchParams): Result
+	{
 		if (empty($entityTypeList)) {
 			return new Result([], Collection::TOTAL_HAS_NO_MORE);
 		}

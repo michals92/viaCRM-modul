@@ -14,25 +14,28 @@ use Espo\ORM\EntityManager;
 use Espo\ORM\Query\Part\Condition;
 use Espo\ORM\Query\Part\Expression;
 
-readonly class GetSignature implements Action {
+readonly class GetSignature implements Action
+{
 	public function __construct(
 		private EntityManager $entityManager,
-		private User          $user
-	) {}
+		private User $user
+	) {
+	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		// Use EspoCRM's native function to get array of values for emailAddress parameter
 		$emailAddresses = $request->getQueryParams()['emailAddress'] ?? [];
-		
+
 		// Handle both array and single string values
 		if (!is_array($emailAddresses)) {
 			$emailAddresses = [$emailAddresses];
 		}
-		
+
 		if (empty($emailAddresses)) {
 			throw new BadRequest('Missing or invalid emailAddress parameter');
 		}
-		
+
 		$emailAddresses = array_unique($emailAddresses);
 
 		$inboundEmailQuery = $this->entityManager->getQueryBuilder()
@@ -72,7 +75,7 @@ readonly class GetSignature implements Action {
 			->fetchAll(\PDO::FETCH_KEY_PAIR);
 
 		$signatures = [];
-		
+
 		foreach ($result as $emailAddress => $signature) {
 			if (empty($signature)) {
 				$signatures[$emailAddress] = null;
@@ -84,7 +87,8 @@ readonly class GetSignature implements Action {
 		return ResponseComposer::json($signatures);
 	}
 
-	private function processPlaceholders(string $signature): string {
+	private function processPlaceholders(string $signature): string
+	{
 		preg_match_all('/\{([^}]+)}/', $signature, $matches);
 
 		if (!empty($matches[1])) {

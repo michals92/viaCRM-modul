@@ -11,19 +11,23 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Entities\User;
 use Espo\Modules\Viacrm\Entities\Alert;
 
-class ToggleAlert implements Action {
+class ToggleAlert implements Action
+{
 	public function __construct(
-		private readonly User          $user,
+		private readonly User $user,
 		private readonly EntityManager $entityManager
-	) {}
+	) {
+	}
 
 	/**
-	 * @param  Request    $request
-	 * @throws BadRequest
-	 * @return Response
+	 * @param Request $request
 	 *
+	 * @throws BadRequest
+	 *
+	 * @return Response
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$data = $request->getParsedBody();
 
 		if (empty($data->id)) {

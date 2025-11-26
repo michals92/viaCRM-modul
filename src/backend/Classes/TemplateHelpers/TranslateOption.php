@@ -8,12 +8,15 @@ use Espo\Core\Htmlizer\Helper\Result;
 use Espo\Core\InjectableFactory;
 use Espo\Core\Utils\Language;
 
-class TranslateOption implements Helper {
+class TranslateOption implements Helper
+{
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
-	) {}
+	) {
+	}
 
-	public function render(Data $data): Result {
+	public function render(Data $data): Result
+	{
 		$params = $data->getArgumentList();
 
 		if (count($params) !== 3 && count($params) !== 4) {

@@ -10,17 +10,20 @@ use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Error;
 use Espo\Modules\Viacrm\Tools\Ares\Service as AresService;
 
-class GetSuggestData implements Action {
+class GetSuggestData implements Action
+{
 	public function __construct(
 		private readonly AresService $aresService,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 * @throws \JsonException
 	 * @throws Error
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$companyName = $request->getRouteParam('companyName');
 
 		if (empty($companyName)) {
@@ -30,7 +33,7 @@ class GetSuggestData implements Action {
 		try {
 			$data = $this->aresService->getDataByName($companyName);
 		} catch (\Exception $e) {
-			$data = (object)['pocetCelkem' => 0, 'ekonomickeSubjekty' => []];
+			$data = (object) ['pocetCelkem' => 0, 'ekonomickeSubjekty' => []];
 		}
 
 		return ResponseComposer::json($data);

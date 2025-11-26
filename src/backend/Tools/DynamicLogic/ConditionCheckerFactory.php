@@ -13,17 +13,19 @@ use RuntimeException;
 /**
  * @noinspection PhpUnused
  */
-
-readonly class ConditionCheckerFactory {
+readonly class ConditionCheckerFactory
+{
 	public function __construct(
-		private User              $user,
+		private User $user,
 		private ApplicationConfig $applicationConfig,
-	) {}
+	) {
+	}
 
 	/**
-	 * @param Entity $entity An entity to check.
+	 * @param Entity $entity an entity to check
 	 */
-	public function create(Entity $entity, ?User $user = null): ConditionChecker {
+	public function create(Entity $entity, ?User $user = null): ConditionChecker
+	{
 		try {
 			$timezone = new DateTimeZone($this->applicationConfig->getTimeZone());
 		} catch (Exception $e) {

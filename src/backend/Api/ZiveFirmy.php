@@ -11,14 +11,17 @@ use Espo\Core\Utils\Log;
 use Espo\Modules\Viacrm\Tools\ZiveFirmy\IntegrationProxy;
 use Espo\Modules\Viacrm\Tools\ZiveFirmy\Service as ZiveFirmyService;
 
-class ZiveFirmy implements Action {
+class ZiveFirmy implements Action
+{
 	public function __construct(
 		private readonly ZiveFirmyService $ziveFirmyService,
 		private readonly IntegrationProxy $integrationProxy,
 		private readonly Log $log
-	) {}
+	) {
+	}
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$sicCode = $request->getRouteParam('sicCode');
 
 		if (!$sicCode) {
@@ -34,17 +37,17 @@ class ZiveFirmy implements Action {
 			$this->log->error('Error fetching ZiveFirmy info: ' . $e->getMessage());
 
 			$fallbackResponse = [
-			    'ICO' => $sicCode,
-			    'FIRMA' => '',
-			    'PFORMA' => '',
-			    'ADRESA' => '',
-			    'ULICE' => '',
-			    'CISLO' => '',
-			    'CAST_OBCE' => '',
-			    'OBEC' => '',
-			    'PSC' => '',
-			    'Obrat' => [],
-			    'PocetZamestnancu' => []
+				'ICO' => $sicCode,
+				'FIRMA' => '',
+				'PFORMA' => '',
+				'ADRESA' => '',
+				'ULICE' => '',
+				'CISLO' => '',
+				'CAST_OBCE' => '',
+				'OBEC' => '',
+				'PSC' => '',
+				'Obrat' => [],
+				'PocetZamestnancu' => [],
 			];
 
 			return ResponseComposer::json($fallbackResponse);

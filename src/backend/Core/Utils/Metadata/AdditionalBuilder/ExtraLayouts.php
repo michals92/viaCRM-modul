@@ -4,8 +4,10 @@ namespace Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder;
 
 use stdClass;
 
-class ExtraLayouts extends AdditionalBuilderWithConfig {
-	public function build(stdClass $data): void {
+class ExtraLayouts extends AdditionalBuilderWithConfig
+{
+	public function build(stdClass $data): void
+	{
 		if (!isset($data->clientDefs)) {
 			return;
 		}
@@ -26,19 +28,19 @@ class ExtraLayouts extends AdditionalBuilderWithConfig {
 			$data->clientDefs->{$entityType}->additionalLayouts ??= new stdClass();
 
 			if ($gridViewMode) {
-				$data->clientDefs->{$entityType}->additionalLayouts->grid = (object)[
+				$data->clientDefs->{$entityType}->additionalLayouts->grid = (object) [
 					'type' => 'list',
 				];
 			}
 
 			if ($userKanbanViewMode) {
-				$data->clientDefs->{$entityType}->additionalLayouts->userKanban = (object)[
+				$data->clientDefs->{$entityType}->additionalLayouts->userKanban = (object) [
 					'type' => 'list',
 				];
 			}
 
 			if ($calendarLayoutsEnabled && $isCalendar) {
-				$data->clientDefs->{$entityType}->additionalLayouts->calendar = (object)[
+				$data->clientDefs->{$entityType}->additionalLayouts->calendar = (object) [
 					'type' => 'list',
 				];
 			}

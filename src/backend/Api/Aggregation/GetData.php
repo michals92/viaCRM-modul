@@ -11,16 +11,19 @@ use Espo\Core\Exceptions\NotFound;
 use Espo\Modules\Viacrm\Tools\Aggregation\Params as AggregationParams;
 use Espo\Modules\Viacrm\Tools\Aggregation\Service as AggregationService;
 
-class GetData implements Action {
+class GetData implements Action
+{
 	public function __construct(
 		private readonly AggregationService $aggregationService,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 * @throws NotFound
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$scope = $request->getRouteParam('scope');
 		$rawParams = $this->prepareParams($request->getQueryParams());
 
@@ -30,11 +33,14 @@ class GetData implements Action {
 	}
 
 	/**
-	 * @param  array<string, mixed> $requestParams
+	 * @param array<string, mixed> $requestParams
+	 *
 	 * @throws BadRequest
+	 *
 	 * @return array<string, mixed>
 	 */
-	private function prepareParams(array $requestParams): array {
+	private function prepareParams(array $requestParams): array
+	{
 		$select = explode(',', $requestParams['select'] ?? '');
 
 		if ($select === ['']) {
@@ -42,7 +48,7 @@ class GetData implements Action {
 		}
 
 		$params = [
-		    'entries' => [],
+			'entries' => [],
 		];
 
 		foreach ($select as $item) {
@@ -55,9 +61,9 @@ class GetData implements Action {
 			}
 
 			$params['entries'][] = [
-			    'function' => $function,
-			    'field' => $field,
-			    'name' => $item,
+				'function' => $function,
+				'field' => $field,
+				'name' => $item,
 			];
 		}
 

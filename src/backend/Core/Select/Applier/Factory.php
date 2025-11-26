@@ -8,12 +8,13 @@ use Espo\Modules\Viacrm\Core\Select\Text\Applier as TextFilterApplier;
 use ReflectionClass;
 use ReflectionException;
 
-class Factory extends \Espo\Core\Select\Applier\Factory {
+class Factory extends \Espo\Core\Select\Applier\Factory
+{
 	/**
 	 * @var array<string, class-string<object>>
 	 */
 	private array $overrideDefaultClassNameMap = [
-		self::TEXT_FILTER => TextFilterApplier::class
+		self::TEXT_FILTER => TextFilterApplier::class,
 	];
 
 	/**
@@ -25,7 +26,7 @@ class Factory extends \Espo\Core\Select\Applier\Factory {
 		$parentConstructorArgs = ReflectionUtil::callMethod($injectableFactory, 'getConstructorInjectionList', new ReflectionClass(parent::class));
 
 		parent::__construct(...$parentConstructorArgs);
-		
+
 		ReflectionUtil::redefineClassProperty(parent::class, $this, 'defaultClassNameMap', function ($defaultClassNameMap) {
 			return array_merge($defaultClassNameMap ?? [], $this->overrideDefaultClassNameMap);
 		});

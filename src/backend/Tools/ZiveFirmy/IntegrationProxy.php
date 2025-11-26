@@ -6,12 +6,15 @@ use Espo\Core\Exceptions\Error;
 use Espo\Entities\Integration;
 use Espo\ORM\EntityManager;
 
-class IntegrationProxy {
+class IntegrationProxy
+{
 	public function __construct(
 		private EntityManager $entityManager
-	) {}
+	) {
+	}
 
-	public function getToken(): string {
+	public function getToken(): string
+	{
 		$integration = $this->entityManager->getEntityById(Integration::ENTITY_TYPE, 'ZiveFirmy');
 
 		if (!$integration) {

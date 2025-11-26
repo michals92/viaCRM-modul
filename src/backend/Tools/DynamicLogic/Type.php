@@ -2,7 +2,8 @@
 
 namespace Espo\Modules\Viacrm\Tools\DynamicLogic;
 
-enum Type: string {
+enum Type: string
+{
 	case And = 'and';
 	case Or = 'or';
 	case Not = 'not';

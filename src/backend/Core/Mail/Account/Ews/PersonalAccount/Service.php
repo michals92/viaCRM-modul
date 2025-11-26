@@ -12,20 +12,23 @@ use Throwable;
 /**
  * EWS Personal Email Account fetching service.
  */
-class Service {
+class Service
+{
 	public function __construct(
 		private EntityManager $entityManager,
 		private AccountFactory $accountFactory,
 		private Fetcher $fetcher,
 		private Log $log
-	) {}
+	) {
+	}
 
 	/**
 	 * Fetch emails for a personal email account.
 	 *
 	 * @throws Error
 	 */
-	public function fetch(string $id): void {
+	public function fetch(string $id): void
+	{
 		/** @var ?EmailAccount $emailAccount */
 		$emailAccount = $this->entityManager->getEntityById(EmailAccount::ENTITY_TYPE, $id);
 

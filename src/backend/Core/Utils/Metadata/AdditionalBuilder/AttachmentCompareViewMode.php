@@ -8,12 +8,14 @@ use stdClass;
 /**
  * Adds attachmentCompare view mode to entities with the feature enabled.
  */
-class AttachmentCompareViewMode implements AdditionalBuilderInterface {
-	public function build(stdClass $data): void {
-		$data->clientDefs ??= (object)[];
+class AttachmentCompareViewMode implements AdditionalBuilderInterface
+{
+	public function build(stdClass $data): void
+	{
+		$data->clientDefs ??= (object) [];
 
 		// Get all scopes
-		$scopes = get_object_vars($data->scopes ?? (object)[]);
+		$scopes = get_object_vars($data->scopes ?? (object) []);
 
 		foreach ($scopes as $scope => $scopeData) {
 			// Check if this scope has clientDefs
@@ -44,13 +46,13 @@ class AttachmentCompareViewMode implements AdditionalBuilderInterface {
 			}
 
 			// Add recordView for attachmentCompare mode
-			$clientDefs->recordViews ??= (object)[];
+			$clientDefs->recordViews ??= (object) [];
 			$clientDefs->recordViews->attachmentCompare = 'viacrm:views/record/attachment-compare';
 
 			// Add additional layout for attachmentCompare
-			$clientDefs->additionalLayouts ??= (object)[];
-			$clientDefs->additionalLayouts->attachmentCompare = (object)[
-				'type' => 'detail'
+			$clientDefs->additionalLayouts ??= (object) [];
+			$clientDefs->additionalLayouts->attachmentCompare = (object) [
+				'type' => 'detail',
 			];
 		}
 	}

@@ -5,11 +5,13 @@ namespace Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder;
 use Espo\Core\Utils\Metadata\AdditionalBuilder;
 use stdClass;
 
-class ExtenderScript implements AdditionalBuilder {
-	public function build(stdClass $data): void {
+class ExtenderScript implements AdditionalBuilder
+{
+	public function build(stdClass $data): void
+	{
 		// Initialize app.client if not present
-		$data->app ??= (object)[];
-		$data->app->client ??= (object)[];
+		$data->app ??= (object) [];
+		$data->app->client ??= (object) [];
 
 		// Prepend extender.js to scriptList (production mode)
 		$data->app->client->scriptList ??= [];

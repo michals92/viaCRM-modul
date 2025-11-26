@@ -15,18 +15,22 @@ use Espo\ORM\Query\Part\Condition as Cond;
 use Espo\ORM\Query\Part\Expression as Expr;
 use Espo\ORM\Query\Part\WhereItem;
 
-readonly class HolidayUtil {
+readonly class HolidayUtil
+{
 	public function __construct(
 		private EntityManager $entityManager,
-		private Log           $log
-	) {}
+		private Log $log
+	) {
+	}
 
 	/** @deprecated Use isPublicHoliday instead */
-	public function isHoliday(DateTime $dateTime): bool {
+	public function isHoliday(DateTime $dateTime): bool
+	{
 		return $this->isPublicHoliday($dateTime);
 	}
 
-	public function isPublicHoliday(DateTime $dateTime, string $langCode = LangCode::cs_CZ): bool {
+	public function isPublicHoliday(DateTime $dateTime, string $langCode = LangCode::cs_CZ): bool
+	{
 		$date = $dateTime->format('Y-m-d');
 		$year = $dateTime->format('Y');
 
@@ -45,10 +49,12 @@ readonly class HolidayUtil {
 	}
 
 	/**
-	 * @param  WhereItem[]               $options
+	 * @param WhereItem[] $options
+	 *
 	 * @return EntityCollection<Holiday>
 	 */
-	public function fetchHolidays(string $year, ?string $month = null, array $options = [], string $langCode = LangCode::cs_CZ): EntityCollection {
+	public function fetchHolidays(string $year, ?string $month = null, array $options = [], string $langCode = LangCode::cs_CZ): EntityCollection
+	{
 		$existingHolidays = $this->getHolidayCollection($year, $month, $options, $langCode);
 		$expectedHolidaysCount = $month ? 28 : 364;
 
@@ -83,11 +89,11 @@ readonly class HolidayUtil {
 						'name' => $dayEntry['name'],
 						'nominative' => $entryMonth['nominative'],
 						'genitive' => $entryMonth['genitive'],
-						'deleted' => false
+						'deleted' => false,
 					]);
 
 					$mapper = $this->entityManager->getMapper();
-					
+
 					// Build update fields list - only include holidayName if it's not null
 					// This preserves existing holidayName when API returns null
 					$updateFields = [
@@ -96,14 +102,14 @@ readonly class HolidayUtil {
 						'nominative',
 						'genitive',
 					];
-					
+
 					if (($dayEntry['holidayName'] ?? null) !== null) {
 						$updateFields[] = 'holidayName';
 					}
-					
+
 					$mapper->insertOnDuplicateUpdate($holiday, $updateFields);
 
-					if ($month === null || $holiday->getDate()->getMonth() === (int)$month) {
+					if ($month === null || $holiday->getDate()->getMonth() === (int) $month) {
 						$existingHolidays->append($holiday);
 					}
 				}
@@ -119,21 +125,26 @@ readonly class HolidayUtil {
 	}
 
 	/**
-	 * @param  WhereItem[]               $options
+	 * @param WhereItem[] $options
+	 *
 	 * @return EntityCollection<Holiday>
 	 */
-	public function fetchPublicHolidays(string $year, ?string $month = null, array $options = [], string $langCode = LangCode::cs_CZ): EntityCollection {
+	public function fetchPublicHolidays(string $year, ?string $month = null, array $options = [], string $langCode = LangCode::cs_CZ): EntityCollection
+	{
 		$options[] = Cond::notEqual(Expr::column('holidayName'), Expr::value(null));
 
 		return $this->fetchHolidays($year, $month, $options, $langCode);
 	}
 
 	/**
-	 * @param  WhereItem[]               $options
+	 * @param WhereItem[] $options
+	 *
 	 * @return EntityCollection<Holiday>
+	 *
 	 * @internal
 	 */
-	protected function getHolidayCollection(string $year, ?string $month = null, array $options = [], string $langCode = LangCode::cs_CZ): EntityCollection {
+	protected function getHolidayCollection(string $year, ?string $month = null, array $options = [], string $langCode = LangCode::cs_CZ): EntityCollection
+	{
 		/** @var WhereItem[] $conditions */
 		$conditions = [
 			Cond::equal(
@@ -143,7 +154,7 @@ readonly class HolidayUtil {
 			Cond::equal(
 				Expr::column('langCode'),
 				Expr::value($langCode)
-			)
+			),
 		];
 
 		if ($month !== null) {
@@ -162,7 +173,8 @@ readonly class HolidayUtil {
 		return $collection;
 	}
 
-	public function getHoliday(Date $date, string $langCode = LangCode::cs_CZ): Holiday {
+	public function getHoliday(Date $date, string $langCode = LangCode::cs_CZ): Holiday
+	{
 		$dateTime = $date->toDateTime();
 		$dateString = $dateTime->format('Y-m-d');
 		$year = $dateTime->format('Y');
@@ -187,9 +199,11 @@ readonly class HolidayUtil {
 
 	/**
 	 * Fetches an array of holiday dates for a given year.
+	 *
 	 * @return array<int, string>
 	 */
-	public function fetchHolidayDays(string $year): array {
+	public function fetchHolidayDays(string $year): array
+	{
 		$holidays = $this->fetchHolidays($year);
 		$holidayDays = [];
 
@@ -200,7 +214,8 @@ readonly class HolidayUtil {
 		return $holidayDays;
 	}
 
-	public static function getFormattedMonth(string $month): string {
+	public static function getFormattedMonth(string $month): string
+	{
 		if (strlen($month) === 1) {
 			return "0$month";
 		}

@@ -14,7 +14,8 @@ use Espo\Modules\Viacrm\Entities\Holiday;
 use Espo\ORM\EntityCollection;
 use Espo\ORM\EntityManager;
 
-class AfterInstall {
+class AfterInstall
+{
 	private const ID_PREFIX = '35';
 
 	private const TAB_LIST_ENTITIES = [
@@ -31,7 +32,7 @@ class AfterInstall {
 	];
 
 	protected const DEPRECATED_EXTENSIONS = [
-		'RecurringRecords'
+		'RecurringRecords',
 	];
 
 	private const DEFAULT_CONFIG = [
@@ -39,7 +40,7 @@ class AfterInstall {
 			'CZ',
 			'PL',
 			'SK',
-			'DE'
+			'DE',
 		],
 		'adminNotificationsExtensionLicenseDisabled' => true,
 		'adminPanelIframeUrl' => 'https://espocrm.trt.ls',
@@ -72,20 +73,20 @@ class AfterInstall {
 			'kg',
 			'g',
 			'dg',
-			'mg'
+			'mg',
 		],
 		'timeUnitList' => [
 			'h',
 			'min',
 			's',
-			'ms'
+			'ms',
 		],
 		'lengthUnitList' => [
 			'km',
 			'm',
 			'dm',
 			'cm',
-			'mm'
+			'mm',
 		],
 		'areaUnitList' => [
 			'km²',
@@ -94,13 +95,13 @@ class AfterInstall {
 			'm²',
 			'dm²',
 			'cm²',
-			'mm²'
+			'mm²',
 		],
 		'volumeUnitList' => [
 			'mm³',
 			'm³',
 			'l',
-			'ml'
+			'ml',
 		],
 		'quantityUnitList' => [
 			'ks',
@@ -392,14 +393,17 @@ class AfterInstall {
 	private DataManager $dataManager;
 
 	private EntityManager $entityManager;
+
 	protected InjectableFactory $injectableFactory;
 
 	/**
-	 * @param  array<string, mixed>                      $params
+	 * @param array<string, mixed> $params
+	 *
 	 * @throws \Psr\Container\NotFoundExceptionInterface
 	 * @throws \Espo\Core\Exceptions\Error
 	 */
-	public function run(Container $container, array $params = []): void {
+	public function run(Container $container, array $params = []): void
+	{
 		$this->loadDependencies($container);
 
 		if (empty($params['isUpgrade'])) {
@@ -422,13 +426,14 @@ class AfterInstall {
 	/**
 	 * @throws \Espo\Core\Exceptions\Error
 	 */
-	protected function uninstallDeprecatedExtensions(): void {
+	protected function uninstallDeprecatedExtensions(): void
+	{
 		/** @var ActionManager $actionManager */
 		$actionManager = $this->injectableFactory->createWith(ActionManager::class, [
 			'managerName' => 'Extension',
 			'params' => [
-				'scriptNames' => []
-			]
+				'scriptNames' => [],
+			],
 		]);
 		$actionManager->setAction('Uninstall');
 
@@ -451,7 +456,8 @@ class AfterInstall {
 		}
 	}
 
-	private function restartWSS(): void {
+	private function restartWSS(): void
+	{
 		$output = [];
 		$exitCode = 0;
 		exec('crmws restart 2>&1', $output, $exitCode);
@@ -468,7 +474,8 @@ class AfterInstall {
 	/**
 	 * @throws \Psr\Container\NotFoundExceptionInterface
 	 */
-	private function loadDependencies(Container $container): void {
+	private function loadDependencies(Container $container): void
+	{
 		$injectableFactory = $container->getByClass(InjectableFactory::class);
 
 		$this->config = $container->getByClass(Config::class);
@@ -478,7 +485,8 @@ class AfterInstall {
 		$this->injectableFactory = $container->getByClass(InjectableFactory::class);
 	}
 
-	private function defaultConfig(): void {
+	private function defaultConfig(): void
+	{
 		foreach (self::DEFAULT_CONFIG as $key => $value) {
 			if (is_array($value)) {
 				if (!$this->config->has($key) || empty($this->config->get($key))) {
@@ -503,8 +511,8 @@ class AfterInstall {
 				'level' => 'NOTICE',
 				'formatter' => [
 					'className' => 'Espo\\Modules\\Viacrm\\Core\\Log\\ViacrmFormatter',
-				]
-			]
+				],
+			],
 		];
 
 		$this->configWriter->set('logger', $loggerData);
@@ -512,7 +520,8 @@ class AfterInstall {
 		$this->configWriter->save();
 	}
 
-	private function fixRolePrintPermissions(): void {
+	private function fixRolePrintPermissions(): void
+	{
 		/** @var EntityCollection<Role> $roles */
 		$roles = $this
 			->entityManager
@@ -520,7 +529,7 @@ class AfterInstall {
 			->find();
 
 		foreach ($roles as $role) {
-			$rawData = $role->get('data') ?? (object)[];
+			$rawData = $role->get('data') ?? (object) [];
 
 			foreach ($rawData as $scope => $scopeData) {
 				if ($scopeData instanceof stdClass) {
@@ -538,7 +547,8 @@ class AfterInstall {
 		}
 	}
 
-	private function fixExternalAccountGoogleSync(): void {
+	private function fixExternalAccountGoogleSync(): void
+	{
 		$entitiesToRemove = [Alert::ENTITY_TYPE];
 
 		/** @var EntityCollection<ExternalAccount> $externalAccounts */
@@ -567,7 +577,8 @@ class AfterInstall {
 		}
 	}
 
-	private function addEntitiesToTabList(): void {
+	private function addEntitiesToTabList(): void
+	{
 		$tabList = $this->config->get('tabList') ?? [];
 
 		foreach (self::TAB_LIST_ENTITIES as $item) {
@@ -598,7 +609,8 @@ class AfterInstall {
 		$this->configWriter->save();
 	}
 
-	private function clearCache(): void {
+	private function clearCache(): void
+	{
 		try {
 			$this->dataManager->clearCache();
 		} catch (\Exception) {
@@ -619,7 +631,8 @@ class AfterInstall {
 	 * 3. Update systemItems/adminItems arrays
 	 * 4. Restore the values (now they'll be saved to regular config.php)
 	 */
-	private function moveCleanupConfigToAdmin(): void {
+	private function moveCleanupConfigToAdmin(): void
+	{
 		// Parameters to move from system to admin
 		$paramsToMove = ['cleanupAppLog', 'cleanupAppLogPeriod'];
 
@@ -665,15 +678,16 @@ class AfterInstall {
 
 	/**
 	 * Updates existing roles to set allEmailFolderPermission to "yes" if it's currently "not-set"
-	 * This ensures backward compatibility while making the permission allowed by default
+	 * This ensures backward compatibility while making the permission allowed by default.
 	 */
-	private function fixAllEmailFolderPermissions(): void {
+	private function fixAllEmailFolderPermissions(): void
+	{
 		/** @var EntityCollection<Role> $roles */
 		$roles = $this
 			->entityManager
 			->getRDBRepository(Role::ENTITY_TYPE)
 			->where([
-				'allEmailFolderPermission' => 'not-set'
+				'allEmailFolderPermission' => 'not-set',
 			])
 			->find();
 
@@ -695,7 +709,8 @@ class AfterInstall {
 	 * Check if Labor Day (May 1st) is correctly marked as a holiday for the next two years.
 	 * If not, run the PreloadHolidays job to sync holiday data.
 	 */
-	private function checkLaborDayHolidays(): void {
+	private function checkLaborDayHolidays(): void
+	{
 		$currentYear = (int) date('Y');
 		$laborDayMissingCount = 0;
 		$checkedYears = [];
@@ -744,9 +759,10 @@ class AfterInstall {
 	}
 
 	/**
-	 * Run the PreloadHolidays job using console command
+	 * Run the PreloadHolidays job using console command.
 	 */
-	private function runPreloadHolidaysJob(): void {
+	private function runPreloadHolidaysJob(): void
+	{
 		$GLOBALS['log']->info('AfterInstall: Starting PreloadHolidays job execution using console command');
 
 		try {
@@ -754,15 +770,15 @@ class AfterInstall {
 			$output = [];
 			$exitCode = 0;
 			$currentDir = getcwd();
-			
+
 			if ($currentDir === false) {
 				$GLOBALS['log']->error('AfterInstall: Failed to get current working directory');
 
 				return;
 			}
-			
+
 			$command = 'cd ' . escapeshellarg($currentDir) . ' && php command.php run-job PreloadHolidays 2>&1';
-			
+
 			exec($command, $output, $exitCode);
 
 			if ($exitCode === 0) {
@@ -779,7 +795,8 @@ class AfterInstall {
 	/**
 	 * @param array<int, object> $tabList
 	 */
-	private function findExistingGroupIndex(array $tabList, string $groupId): int {
+	private function findExistingGroupIndex(array $tabList, string $groupId): int
+	{
 		foreach ($tabList as $index => $item) {
 			if (isset($item->type, $item->id) &&
 				$item->type === 'group' &&
@@ -794,7 +811,8 @@ class AfterInstall {
 	/**
 	 * @param array<string, mixed> $desired
 	 */
-	private function mergeGroupProperties(object $existing, array $desired): object {
+	private function mergeGroupProperties(object $existing, array $desired): object
+	{
 		$merged = clone $existing;
 
 		// Update missing/null properties

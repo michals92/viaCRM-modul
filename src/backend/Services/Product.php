@@ -10,7 +10,8 @@ use Espo\Modules\Viacrm\Entities\Product as ProductEntity;
 use Espo\Modules\Viacrm\Entities\TaxClass;
 use Espo\Modules\Viacrm\Tools\Error\ErrorFactory;
 
-class Product extends \Espo\Core\Templates\Services\Base {
+class Product extends \Espo\Core\Templates\Services\Base
+{
 	/**
 	 * Get attributes for product selection with optional account auto-fill.
 	 *
@@ -21,7 +22,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	 *
 	 * @return array<string, mixed>
 	 */
-	public function getSelectAttributes(string $productId, ?string $existingAccountId): array {
+	public function getSelectAttributes(string $productId, ?string $existingAccountId): array
+	{
 		$em = $this->entityManager;
 		$product = $em->getEntityById(ProductEntity::ENTITY_TYPE, $productId);
 
@@ -30,8 +32,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 		}
 
 		$attributes = [
-		    'productId' => $product->getId(),
-		    'productName' => $product->get('name'),
+			'productId' => $product->getId(),
+			'productName' => $product->get('name'),
 		];
 
 		// If target record already has accountId set, don't auto-fill
@@ -42,8 +44,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 		// Auto-fill accountId from ProductSupplierItem if there's exactly one
 		/** @var \Espo\ORM\EntityCollection<\Espo\ORM\Entity> $productSupplierItems */
 		$productSupplierItems = $em->getRelation($product, 'productSupplierItems')
-		    ->select(['id', 'accountId', 'accountName'])
-		    ->find();
+			->select(['id', 'accountId', 'accountName'])
+			->find();
 
 		if (count($productSupplierItems) === 1) {
 			$supplierItem = iterator_to_array($productSupplierItems)[0];
@@ -59,7 +61,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	 *
 	 * @param array<string, mixed> $options
 	 */
-	public function calculatePricing(ProductEntity $entity, array $options = []): void {
+	public function calculatePricing(ProductEntity $entity, array $options = []): void
+	{
 		if (!empty($options['skipPriceCalculation'])) {
 			return;
 		}
@@ -68,9 +71,9 @@ class Product extends \Espo\Core\Templates\Services\Base {
 
 		/** @var ?TaxClass $taxClass */
 		$taxClass = $this
-		    ->entityManager
-		    ->getRelation($entity, 'taxClass')
-		    ->findOne();
+			->entityManager
+			->getRelation($entity, 'taxClass')
+			->findOne();
 
 		if ($taxClass) {
 			$entity->setTaxRate($taxClass->getRate());
@@ -108,7 +111,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	 * Convert a currency value to a target currency using Viacrm settings rates if available,
 	 * otherwise fall back to global currency rates. Returns original value if conversion is not needed/possible.
 	 */
-	protected function convertCurrencyTo(?Currency $value, ?string $targetCode): ?Currency {
+	protected function convertCurrencyTo(?Currency $value, ?string $targetCode): ?Currency
+	{
 		if ($value === null || $targetCode === null || $value->getCode() === $targetCode) {
 			return $value;
 		}
@@ -139,7 +143,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Calculate fixed pricing.
 	 */
-	protected function calculateFixedPricing(ProductEntity $entity): void {
+	protected function calculateFixedPricing(ProductEntity $entity): void
+	{
 		$salesPrice = $entity->getSalesPrice();
 		$salesPriceAmount = $salesPrice?->getAmount();
 
@@ -186,7 +191,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Calculate markup pricing.
 	 */
-	protected function calculateMarkupPricing(ProductEntity $entity): void {
+	protected function calculateMarkupPricing(ProductEntity $entity): void
+	{
 		$markup = $entity->getPriceMarkup();
 
 		if ($markup === null) {
@@ -220,7 +226,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Calculate margin pricing.
 	 */
-	protected function calculateMarginPricing(ProductEntity $entity): void {
+	protected function calculateMarginPricing(ProductEntity $entity): void
+	{
 		$margin = $entity->getPriceMargin();
 
 		if ($margin === null) {
@@ -254,7 +261,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Calculate same as cost pricing.
 	 */
-	protected function calculateSameAsCostPricing(ProductEntity $entity): void {
+	protected function calculateSameAsCostPricing(ProductEntity $entity): void
+	{
 		$price = $entity->getCostPrice();
 		if ($price !== null) {
 			$targetCode = $entity->get('salesPriceCurrency') ?? $price->getCode();
@@ -269,7 +277,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Calculate purchasing coefficient pricing.
 	 */
-	protected function calculatePurchasingCoefficientPricing(ProductEntity $entity): void {
+	protected function calculatePurchasingCoefficientPricing(ProductEntity $entity): void
+	{
 		$costPrice = $entity->getCostPrice();
 		$coefficient = $entity->getCoefficient();
 		if ($costPrice !== null && $coefficient !== null) {
@@ -280,7 +289,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Calculate sales coefficient pricing.
 	 */
-	protected function calculateSalesCoefficientPricing(ProductEntity $entity): void {
+	protected function calculateSalesCoefficientPricing(ProductEntity $entity): void
+	{
 		$costPrice = $entity->getCostPrice();
 		$coefficient = $entity->getCoefficient();
 		if ($costPrice !== null && $coefficient !== null) {
@@ -295,7 +305,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Clear pricing values.
 	 */
-	protected function clearPricing(ProductEntity $entity): void {
+	protected function clearPricing(ProductEntity $entity): void
+	{
 		$entity->setSalesPrice(null);
 		$entity->setPriceMarkup(null);
 		$entity->setPriceMargin(null);
@@ -304,7 +315,8 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Calculate tax-inclusive prices.
 	 */
-	protected function calculateTaxPrices(ProductEntity $entity, ?float $taxRate): void {
+	protected function calculateTaxPrices(ProductEntity $entity, ?float $taxRate): void
+	{
 		$taxCoeff = 1 + ($taxRate ?? 0) / 100;
 
 		$entity->setSalesPriceWithTax($entity->getSalesPrice()?->multiply($taxCoeff));
@@ -314,18 +326,20 @@ class Product extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Get default warehouse for the product.
 	 */
-	public function getDefaultWarehouse(ProductEntity $product): ?\Espo\ORM\Entity {
+	public function getDefaultWarehouse(ProductEntity $product): ?\Espo\ORM\Entity
+	{
 		return $this->entityManager
-		    ->getRelation($product, 'defaultWarehouse')
-		    ->findOne();
+			->getRelation($product, 'defaultWarehouse')
+			->findOne();
 	}
 
 	/**
 	 * Get default warehouse position for the product.
 	 */
-	public function getDefaultWarehousePosition(ProductEntity $product): ?\Espo\ORM\Entity {
+	public function getDefaultWarehousePosition(ProductEntity $product): ?\Espo\ORM\Entity
+	{
 		return $this->entityManager
-		    ->getRelation($product, 'defaultWarehousePosition')
-		    ->findOne();
+			->getRelation($product, 'defaultWarehousePosition')
+			->findOne();
 	}
 }

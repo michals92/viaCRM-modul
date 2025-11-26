@@ -16,27 +16,32 @@ use Espo\Core\Record\ReadParams;
 use Espo\Core\Record\ServiceContainer;
 use Espo\Core\Utils\Metadata;
 
-readonly class GetConvertAttributes implements Action {
+readonly class GetConvertAttributes implements Action
+{
 	public function __construct(
-		private Acl              $acl,
-		private EntityManager    $entityManager,
-		private Metadata         $metadata,
+		private Acl $acl,
+		private EntityManager $entityManager,
+		private Metadata $metadata,
 		private ServiceContainer $serviceContainer
-	) {}
+	) {
+	}
 
 	/**
 	 * Processes the GET request to fetch conversion attributes.
 	 *
-	 * @param  Request             $request
+	 * @param Request $request
+	 *
 	 * @throws NotFound
 	 * @throws InternalServerError
 	 * @throws BadRequest
 	 * @throws Error*@throws \JsonException
 	 * @throws Forbidden
 	 * @throws \JsonException
+	 *
 	 * @return Response
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		// Retrieve route parameters
 		$entityType = $request->getRouteParam('entityType');
 		$id = $request->getRouteParam('id');
@@ -62,7 +67,7 @@ readonly class GetConvertAttributes implements Action {
 		$conversionDefs = JSON::decode(JSON::encode($this->metadata->get(['conversionDefs', $entityType])));
 
 		if (!$conversionDefs) {
-			$conversionDefs = $this->metadata->getCustom('conversionDefs', $entityType, (object)[]);
+			$conversionDefs = $this->metadata->getCustom('conversionDefs', $entityType, (object) []);
 			$isCustom = true;
 		}
 
@@ -148,7 +153,7 @@ readonly class GetConvertAttributes implements Action {
 					if (!isset($fieldDef->attributes) || !is_object($fieldDef->attributes)) {
 						throw new InternalServerError("Field '{$fieldName}' of type 'value' must have an 'attributes' array.");
 					}
-					$attributes = array_merge($attributes, (array)$fieldDef->attributes);
+					$attributes = array_merge($attributes, (array) $fieldDef->attributes);
 					break;
 
 					// Add more cases here if there are other subjectTypes

@@ -8,7 +8,8 @@ use Espo\Modules\Viacrm\Entities\ProductSerial as ProductSerialEntity;
 use Espo\Modules\Viacrm\Repositories\ProductSerial as ProductSerialRepository;
 use Espo\ORM\Collection;
 
-class ProductSerial extends \Espo\Core\Templates\Services\Base {
+class ProductSerial extends \Espo\Core\Templates\Services\Base
+{
 	/**
 	 * Create batch of serial numbers for a product.
 	 *
@@ -16,7 +17,8 @@ class ProductSerial extends \Espo\Core\Templates\Services\Base {
 	 *
 	 * @return array<int, ProductSerialEntity>
 	 */
-	public function createBatch(string $productId, int $quantity, array $data = []): array {
+	public function createBatch(string $productId, int $quantity, array $data = []): array
+	{
 		$em = $this->entityManager;
 		$product = $em->getEntityById('Product', $productId) ?? throw new NotFound('Product not found');
 
@@ -28,8 +30,8 @@ class ProductSerial extends \Espo\Core\Templates\Services\Base {
 		try {
 			for ($i = 0; $i < $quantity; $i++) {
 				$serialData = array_merge($data, [
-				    'productId' => $product->getId(),
-				    'status' => 'Active',
+					'productId' => $product->getId(),
+					'status' => 'Active',
 				]);
 
 				// Remove empty values
@@ -56,7 +58,8 @@ class ProductSerial extends \Espo\Core\Templates\Services\Base {
 	 *
 	 * @param array<string, mixed> $data
 	 */
-	public function changeStatus(string $serialId, string $newStatus, array $data = []): void {
+	public function changeStatus(string $serialId, string $newStatus, array $data = []): void
+	{
 		$em = $this->entityManager;
 		/** @var ?ProductSerialEntity $serial */
 		$serial = $em->getEntityById('ProductSerial', $serialId);
@@ -79,7 +82,8 @@ class ProductSerial extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Find serial by serial number.
 	 */
-	public function findBySerialNumber(string $serialNumber): ?ProductSerialEntity {
+	public function findBySerialNumber(string $serialNumber): ?ProductSerialEntity
+	{
 		/** @var ProductSerialRepository $repo */
 		$repo = $this->getRepository();
 
@@ -93,7 +97,8 @@ class ProductSerial extends \Espo\Core\Templates\Services\Base {
 	 *
 	 * @return Collection<ProductSerialEntity>
 	 */
-	public function findByProduct(string $productId, array $params = []): Collection {
+	public function findByProduct(string $productId, array $params = []): Collection
+	{
 		/** @var ProductSerialRepository $repo */
 		$repo = $this->getRepository();
 
@@ -105,7 +110,8 @@ class ProductSerial extends \Espo\Core\Templates\Services\Base {
 	 *
 	 * @return array{total: int, byStatus: array<string, int>, underWarranty: int}
 	 */
-	public function getProductStatistics(string $productId): array {
+	public function getProductStatistics(string $productId): array
+	{
 		$repository = $this->getRepository();
 
 		$total = $repository->where(['productId' => $productId])->count();
@@ -115,29 +121,30 @@ class ProductSerial extends \Espo\Core\Templates\Services\Base {
 
 		foreach ($statuses as $status) {
 			$count = $repository->where([
-			    'productId' => $productId,
-			    'status' => $status,
+				'productId' => $productId,
+				'status' => $status,
 			])->count();
 
 			$statusStats[$status] = $count;
 		}
 
 		$underWarranty = $repository->where([
-		    'productId' => $productId,
-		    'warrantyUntil>' => date('Y-m-d'),
+			'productId' => $productId,
+			'warrantyUntil>' => date('Y-m-d'),
 		])->count();
 
 		return [
-		    'total' => $total,
-		    'byStatus' => $statusStats,
-		    'underWarranty' => $underWarranty,
+			'total' => $total,
+			'byStatus' => $statusStats,
+			'underWarranty' => $underWarranty,
 		];
 	}
 
 	/**
 	 * Transfer ownership of serial.
 	 */
-	public function transferOwnership(string $serialId, string $newOwnerId, ?string $reason = null): void {
+	public function transferOwnership(string $serialId, string $newOwnerId, ?string $reason = null): void
+	{
 		$em = $this->entityManager;
 		/** @var ?ProductSerialEntity $serial */
 		$serial = $em->getEntityById('ProductSerial', $serialId);
@@ -154,8 +161,8 @@ class ProductSerial extends \Espo\Core\Templates\Services\Base {
 
 		$oldOwnerId = $serial->get('currentOwnerId');
 		$oldOwnerName = $oldOwnerId ?
-		    $em->getEntityById('Account', $oldOwnerId)?->get('name') :
-		    'None';
+			$em->getEntityById('Account', $oldOwnerId)?->get('name') :
+			'None';
 
 		$serial->set('currentOwnerId', $newOwnerId);
 
@@ -172,7 +179,8 @@ class ProductSerial extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * Set warranty period for serial.
 	 */
-	public function setWarranty(string $serialId, string $warrantyUntil): void {
+	public function setWarranty(string $serialId, string $warrantyUntil): void
+	{
 		$em = $this->entityManager;
 		/** @var ?ProductSerialEntity $serial */
 		$serial = $em->getEntityById('ProductSerial', $serialId);

@@ -9,7 +9,8 @@ use Espo\Core\Exceptions\Error;
 use Espo\Core\Exceptions\Forbidden;
 use Espo\Modules\Viacrm\Tools\Layout\Service as LayoutService;
 
-class Layout extends \Espo\Controllers\Layout implements Di\UserAware, Di\InjectableFactoryAware {
+class Layout extends \Espo\Controllers\Layout implements Di\UserAware, Di\InjectableFactoryAware
+{
 	use Di\UserSetter;
 	use Di\InjectableFactorySetter;
 
@@ -21,7 +22,8 @@ class Layout extends \Espo\Controllers\Layout implements Di\UserAware, Di\Inject
 	 * @throws Error
 	 * @throws \JsonException
 	 */
-	public function postActionAdd(Request $request): ?string {
+	public function postActionAdd(Request $request): ?string
+	{
 		if (!$this->user->isAdmin()) {
 			throw new Forbidden();
 		}
@@ -43,11 +45,13 @@ class Layout extends \Espo\Controllers\Layout implements Di\UserAware, Di\Inject
 		return $this->getService()->add($type, $sanitizedScope, $sanitizedName, $label);
 	}
 
-	protected function sanitizeInput(string $name): ?string {
+	protected function sanitizeInput(string $name): ?string
+	{
 		return preg_replace("([\.]{2,})", '', $name);
 	}
 
-	private function getService(): LayoutService {
+	private function getService(): LayoutService
+	{
 		return $this->service ??= $this->injectableFactory->create(LayoutService::class);
 	}
 }

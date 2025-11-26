@@ -4,8 +4,9 @@ namespace Espo\Modules\Viacrm\Tools\Layout;
 
 use Espo\Core\InjectableFactory;
 
-class RowGroupBuilder {
-	/** @var array<array<string, mixed>|bool> $rows */
+class RowGroupBuilder
+{
+	/** @var array<array<string, mixed>|bool> */
 	protected array $rows;
 
 	protected int $index;
@@ -16,15 +17,18 @@ class RowGroupBuilder {
 
 	public function __construct(
 		protected readonly InjectableFactory $injectableFactory
-	) {}
+	) {
+	}
 
-	public function withLayoutBuilder(LayoutBuilder $layoutBuilder): self {
+	public function withLayoutBuilder(LayoutBuilder $layoutBuilder): self
+	{
 		$this->layoutBuilder ??= $layoutBuilder;
 
 		return $this;
 	}
 
-	public function withSectionBuilder(SectionBuilder $sectionBuilder): self {
+	public function withSectionBuilder(SectionBuilder $sectionBuilder): self
+	{
 		$this->sectionBuilder ??= $sectionBuilder;
 		$this->withLayoutBuilder($this->sectionBuilder->getLayoutBuilder());
 
@@ -34,19 +38,22 @@ class RowGroupBuilder {
 	/**
 	 * @param array<array<string, mixed>|bool> $rows
 	 */
-	public function &setRows(array &$rows): self {
+	public function &setRows(array &$rows): self
+	{
 		$this->rows = &$rows;
 
 		return $this;
 	}
 
-	public function setIndex(int $index): self {
+	public function setIndex(int $index): self
+	{
 		$this->index = $index;
 
 		return $this;
 	}
 
-	public function build(): SectionBuilder|LayoutBuilder {
+	public function build(): SectionBuilder|LayoutBuilder
+	{
 		if ($this->sectionBuilder !== null) {
 			return $this->sectionBuilder;
 		}
@@ -54,11 +61,13 @@ class RowGroupBuilder {
 		return $this->getLayoutBuilder();
 	}
 
-	public function isFull(): bool {
+	public function isFull(): bool
+	{
 		return count($this->rows) >= 4 && $this->getLayoutBuilder()->getType()->hasGroups();
 	}
 
-	public function addRow(bool $empty = false): RowBuilder {
+	public function addRow(bool $empty = false): RowBuilder
+	{
 		$row = $empty ? false : [];
 
 		if ($this->sectionBuilder && $this->isFull()) {
@@ -70,7 +79,8 @@ class RowGroupBuilder {
 		return $this->injectableFactory->createWith(RowBuilder::class, ['rowGroupBuilder' => $this])->setRow($row);
 	}
 
-	public function getLayoutBuilder(): LayoutBuilder {
+	public function getLayoutBuilder(): LayoutBuilder
+	{
 		if ($this->sectionBuilder) {
 			return $this->sectionBuilder->getLayoutBuilder();
 		}

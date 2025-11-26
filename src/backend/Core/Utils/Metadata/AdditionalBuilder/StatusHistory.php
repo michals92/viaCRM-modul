@@ -8,9 +8,11 @@ use stdClass;
 /**
  * Automatically adds status-history panel to entities that have a statusField defined in scopes.
  */
-class StatusHistory implements AdditionalBuilder {
-	public function build(stdClass $data): void {
-		$data->clientDefs = $data->clientDefs ?? (object)[];
+class StatusHistory implements AdditionalBuilder
+{
+	public function build(stdClass $data): void
+	{
+		$data->clientDefs = $data->clientDefs ?? (object) [];
 
 		// Get all scopes from the $data object itself
 		if (!isset($data->scopes)) {
@@ -26,8 +28,8 @@ class StatusHistory implements AdditionalBuilder {
 			}
 
 			// Initialize clientDefs for this entity if not exists
-			$data->clientDefs->$entityType ??= (object)[];
-			$data->clientDefs->$entityType->bottomPanels ??= (object)[];
+			$data->clientDefs->$entityType ??= (object) [];
+			$data->clientDefs->$entityType->bottomPanels ??= (object) [];
 			$data->clientDefs->$entityType->bottomPanels->detail ??= [];
 
 			// Check if status-history panel is not already defined
@@ -42,12 +44,12 @@ class StatusHistory implements AdditionalBuilder {
 
 			// Add status-history panel to the detail array if not already defined
 			if (!$panelExists) {
-				$data->clientDefs->$entityType->bottomPanels->detail[] = (object)[
+				$data->clientDefs->$entityType->bottomPanels->detail[] = (object) [
 					'name' => 'statusHistory',
 					'label' => 'Status History',
 					'view' => 'viacrm:views/record/panels/status-history',
 					'order' => 4,
-					'disabled' => true
+					'disabled' => true,
 				];
 			}
 		}

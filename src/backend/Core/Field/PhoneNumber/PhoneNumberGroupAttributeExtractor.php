@@ -6,13 +6,16 @@ use Espo\Core\Field\PhoneNumberGroup;
 use InvalidArgumentException;
 use stdClass;
 
-class PhoneNumberGroupAttributeExtractor extends \Espo\Core\Field\PhoneNumber\PhoneNumberGroupAttributeExtractor {
+class PhoneNumberGroupAttributeExtractor extends \Espo\Core\Field\PhoneNumber\PhoneNumberGroupAttributeExtractor
+{
 	/**
-	 * @param  object   $group (PhoneNumberGroup)
-	 * @param  string   $field
+	 * @param object $group (PhoneNumberGroup)
+	 * @param string $field
+	 *
 	 * @return stdClass
 	 */
-	public function extract(object $group, string $field): stdClass {
+	public function extract(object $group, string $field): stdClass
+	{
 		if (!$group instanceof PhoneNumberGroup) {
 			throw new InvalidArgumentException();
 		}
@@ -23,20 +26,20 @@ class PhoneNumberGroupAttributeExtractor extends \Espo\Core\Field\PhoneNumber\Ph
 
 		foreach ($group->getList() as $phoneNumber) {
 			$dataList[] = (object) [
-			    'phoneNumber' => $phoneNumber->getNumber(),
-			    'type' => $phoneNumber->getType(),
-			    'primary' => $primaryNumber && $phoneNumber->getNumber() === $primaryNumber,
-			    'optOut' => $phoneNumber->isOptedOut(),
-			    'invalid' => $phoneNumber->isInvalid(),
-			    'accountId' => $phoneNumber instanceof \Espo\Modules\Viacrm\Core\Field\PhoneNumber
-			        ? $phoneNumber->getAccountId()
-			        : null,
+				'phoneNumber' => $phoneNumber->getNumber(),
+				'type' => $phoneNumber->getType(),
+				'primary' => $primaryNumber && $phoneNumber->getNumber() === $primaryNumber,
+				'optOut' => $phoneNumber->isOptedOut(),
+				'invalid' => $phoneNumber->isInvalid(),
+				'accountId' => $phoneNumber instanceof \Espo\Modules\Viacrm\Core\Field\PhoneNumber
+					? $phoneNumber->getAccountId()
+					: null,
 			];
 		}
 
 		return (object) [
-		    $field => $primaryNumber,
-		    $field . 'Data' => $dataList,
+			$field => $primaryNumber,
+			$field . 'Data' => $dataList,
 		];
 	}
 }

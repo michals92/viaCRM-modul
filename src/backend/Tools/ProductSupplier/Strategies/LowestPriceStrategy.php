@@ -11,7 +11,8 @@ use Espo\Modules\Viacrm\Tools\ProductSupplier\Abstract\ProductSupplierStrategy;
  * Strategy for selecting supplier items based on the lowest price.
  * This strategy simply chooses the supplier item with the lowest cost price.
  */
-class LowestPriceStrategy extends ProductSupplierStrategy {
+class LowestPriceStrategy extends ProductSupplierStrategy
+{
 	/**
 	 * Get the supplier item with the lowest price for a product.
 	 *
@@ -21,7 +22,8 @@ class LowestPriceStrategy extends ProductSupplierStrategy {
 	 *
 	 * @return ProductSupplierItem|null The supplier item with lowest price or null if none found
 	 */
-	public function getProductSupplierItem(Product $product): ?ProductSupplierItem {
+	public function getProductSupplierItem(Product $product): ?ProductSupplierItem
+	{
 		$supplierItems = $this->getProductSupplierItems($product);
 
 		if (empty($supplierItems)) {

@@ -5,12 +5,15 @@ namespace Espo\Modules\Viacrm\Classes\VariableCss\Sources;
 use Espo\Core\Utils\Config;
 use Espo\Modules\Viacrm\Classes\VariableCss\Source as VariableCssSource;
 
-class StickyHeader implements VariableCssSource {
+class StickyHeader implements VariableCssSource
+{
 	public function __construct(
 		private readonly Config $config
-	) {}
+	) {
+	}
 
-	public function get(): string {
+	public function get(): string
+	{
 		if ($this->config->get('stickyHeader')) {
 			/** @lang CSS */
 			return <<<'CSS'

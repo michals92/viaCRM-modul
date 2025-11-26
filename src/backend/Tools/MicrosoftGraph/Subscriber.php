@@ -16,18 +16,21 @@ use Espo\Modules\Viacrm\Entities\MicrosoftGraphSubscription;
 use Espo\ORM\Entity;
 use Exception;
 
-class Subscriber {
+class Subscriber
+{
 	public function __construct(
 		private readonly ClientManager $clientManager,
 		private readonly Config $config,
 		private readonly EntityManager $entityManager,
 		private readonly Log $log
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws Error
 	 */
-	public function subscribe(Entity $entity, string $userId): MicrosoftGraphSubscription {
+	public function subscribe(Entity $entity, string $userId): MicrosoftGraphSubscription
+	{
 		try {
 			/** @var Outlook $outlookClient */
 			$outlookClient = $this->clientManager->create('Outlook', $userId);
@@ -46,12 +49,12 @@ class Subscriber {
 
 		// Check for existing subscription
 		$existingSubscription = $this->entityManager
-		    ->getRDBRepository('MicrosoftGraphSubscription')
-		    ->where([
-		        'entityId' => $entity->getId(),
-		        'entityType' => $entity->getEntityType(),
-		    ])
-		    ->findOne();
+			->getRDBRepository('MicrosoftGraphSubscription')
+			->where([
+				'entityId' => $entity->getId(),
+				'entityType' => $entity->getEntityType(),
+			])
+			->findOne();
 
 		if ($existingSubscription) {
 			return $existingSubscription;
@@ -60,18 +63,18 @@ class Subscriber {
 		$subscriptionEndpoint = 'https://graph.microsoft.com/v1.0/subscriptions';
 
 		$expiration = DateTime::createNow()
-		    ->modify('+6 days');
+			->modify('+6 days');
 
 		$body = [
-		    'changeType' => 'updated',
-		    'notificationUrl' => $this->config->get('siteUrl') . '/api/v1/MicrosoftGraph/callback',
-		    'resource' => "me/mailFolders('Inbox')/messages",
-		    'expirationDateTime' => $expiration->toDateTime()->format('Y-m-d\TH:i:s.u\Z'),
-		    'clientState' => Json::encode([
-		        'entityType' => $entity->getEntityType(),
-		        'entityId' => $entity->getId(),
-		        'userId' => $userId,
-		    ])
+			'changeType' => 'updated',
+			'notificationUrl' => $this->config->get('siteUrl') . '/api/v1/MicrosoftGraph/callback',
+			'resource' => "me/mailFolders('Inbox')/messages",
+			'expirationDateTime' => $expiration->toDateTime()->format('Y-m-d\TH:i:s.u\Z'),
+			'clientState' => Json::encode([
+				'entityType' => $entity->getEntityType(),
+				'entityId' => $entity->getId(),
+				'userId' => $userId,
+			]),
 		];
 
 		try {
@@ -83,7 +86,7 @@ class Subscriber {
 			);
 		} catch (Exception $e) {
 			$error = 'Error creating subscription: ' . $e->getMessage();
-            
+
 			if (method_exists($outlookClient, 'getLastCurlErrorInfo')) {
 				/** @disregard */
 				$error .= "\nCurl error details: " . $outlookClient->getLastCurlErrorInfo();
@@ -97,15 +100,16 @@ class Subscriber {
 		}
 
 		$this->log->debug('Subscribed to Microsoft Graph', [
-		    'subscriptionId' => $subscriptionResponse['id'],
-		    'entityId' => $entity->getId(),
-		    'entityType' => $entity->getEntityType(),
-		    'expirationDate' => $subscriptionResponse['expirationDateTime']
-		]); 
+			'subscriptionId' => $subscriptionResponse['id'],
+			'entityId' => $entity->getId(),
+			'entityType' => $entity->getEntityType(),
+			'expirationDate' => $subscriptionResponse['expirationDateTime'],
+		]);
 
 		$dateTime = \DateTime::createFromFormat(
 			'Y-m-d\TH:i:s\Z',
-			$subscriptionResponse['expirationDateTime']);
+			$subscriptionResponse['expirationDateTime']
+		);
 
 		if (!$dateTime) {
 			throw new Error('Failed to parse expiration date');
@@ -113,32 +117,33 @@ class Subscriber {
 
 		// Create new subscription entity
 		$subscription = $this->entityManager->createEntity('MicrosoftGraphSubscription', [
-		    'name' => $entity->get('name') ?? $entity->getId(),
-		    'subscriptionId' => $subscriptionResponse['id'],
-		    'expirationDate' => DateTime::fromDateTime($dateTime)->toString(),
-		    'entityId' => $entity->getId(),
-		    'entityType' => $entity->getEntityType(),
-		    'assignedUserId' => $userId,
+			'name' => $entity->get('name') ?? $entity->getId(),
+			'subscriptionId' => $subscriptionResponse['id'],
+			'expirationDate' => DateTime::fromDateTime($dateTime)->toString(),
+			'entityId' => $entity->getId(),
+			'entityType' => $entity->getEntityType(),
+			'assignedUserId' => $userId,
 		]);
 
 		return $subscription;
 	}
 
-	public function unsubscribeAll(Entity $entity): void {
+	public function unsubscribeAll(Entity $entity): void
+	{
 		// Find all subscriptions for this entity
 		$subscriptions = $this->entityManager
-		    ->getRDBRepository('MicrosoftGraphSubscription')
-		    ->where([
-		        'entityId' => $entity->getId(),
-		        'entityType' => $entity->getEntityType(),
-		    ])
-		    ->find();
+			->getRDBRepository('MicrosoftGraphSubscription')
+			->where([
+				'entityId' => $entity->getId(),
+				'entityType' => $entity->getEntityType(),
+			])
+			->find();
 
 		foreach ($subscriptions as $subscription) {
 			try {
 				// Get the user ID from the subscription data
 				$userId = $subscription->get('assignedUserId');
-                
+
 				if (!$userId) {
 					continue;
 				}
@@ -147,15 +152,15 @@ class Subscriber {
 				$outlookClient = $this->clientManager->create('Outlook', $userId);
 
 				// Delete subscription in Microsoft Graph
-				$subscriptionEndpoint = 'https://graph.microsoft.com/v1.0/subscriptions/' . 
-				    $subscription->get('subscriptionId');
+				$subscriptionEndpoint = 'https://graph.microsoft.com/v1.0/subscriptions/' .
+					$subscription->get('subscriptionId');
 
 				$this->log->debug('Unsubscribing from Microsoft Graph', [
-				    'subscriptionId' => $subscription->get('subscriptionId'),
-				    'entityId' => $subscription->get('entityId'),
-				    'entityType' => $subscription->get('entityType'),
+					'subscriptionId' => $subscription->get('subscriptionId'),
+					'entityId' => $subscription->get('entityId'),
+					'entityType' => $subscription->get('entityType'),
 				]);
-                
+
 				$outlookClient->request($subscriptionEndpoint, null, 'DELETE');
 
 				// Delete subscription entity

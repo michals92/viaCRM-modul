@@ -6,10 +6,12 @@ use Espo\Core\Api\Request;
 use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Templates\Controllers\Base;
 
-class Absence extends Base {
-	public function actionApprove(Request $request): \stdClass {
+class Absence extends Base
+{
+	public function actionApprove(Request $request): \stdClass
+	{
 		$id = $request->getRouteParam('id');
-        
+
 		if (!$id) {
 			throw new BadRequest('ID is required');
 		}
@@ -20,9 +22,10 @@ class Absence extends Base {
 		return $this->getRecordService()->approve($id, $comment);
 	}
 
-	public function actionReject(Request $request): \stdClass {
+	public function actionReject(Request $request): \stdClass
+	{
 		$id = $request->getRouteParam('id');
-        
+
 		if (!$id) {
 			throw new BadRequest('ID is required');
 		}
@@ -37,9 +40,10 @@ class Absence extends Base {
 		return $this->getRecordService()->reject($id, $comment);
 	}
 
-	public function actionCancel(Request $request): \stdClass {
+	public function actionCancel(Request $request): \stdClass
+	{
 		$id = $request->getRouteParam('id');
-        
+
 		if (!$id) {
 			throw new BadRequest('ID is required');
 		}
@@ -47,21 +51,24 @@ class Absence extends Base {
 		return $this->getRecordService()->cancel($id);
 	}
 
-	public function actionMyRequests(Request $request): \stdClass {
+	public function actionMyRequests(Request $request): \stdClass
+	{
 		$searchParams = $this->fetchSearchParamsFromRequest($request);
-        
+
 		return $this->getRecordService()->getMyRequests($searchParams);
 	}
 
-	public function actionPendingApprovals(Request $request): \stdClass {
+	public function actionPendingApprovals(Request $request): \stdClass
+	{
 		$searchParams = $this->fetchSearchParamsFromRequest($request);
-        
+
 		return $this->getRecordService()->getPendingApprovals($searchParams);
 	}
 
-	public function actionCalculateDays(Request $request): \stdClass {
+	public function actionCalculateDays(Request $request): \stdClass
+	{
 		$data = $request->getParsedBody();
-        
+
 		if (!isset($data->startDate) || !isset($data->endDate)) {
 			throw new BadRequest('Start date and end date are required');
 		}

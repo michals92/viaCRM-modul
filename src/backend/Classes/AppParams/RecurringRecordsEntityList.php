@@ -9,18 +9,22 @@ use Espo\Modules\Viacrm\Entities\RecordRecurrence;
 use Espo\ORM\EntityManager;
 use Espo\Tools\App\AppParam;
 
-readonly class RecurringRecordsEntityList implements AppParam {
+readonly class RecurringRecordsEntityList implements AppParam
+{
 	public function __construct(
 		private SelectBuilderFactory $selectBuilderFactory,
 		private EntityManager $entityManager,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 * @throws Forbidden
+	 *
 	 * @return string[]
 	 */
-	public function get(): array {
+	public function get(): array
+	{
 		$list = [];
 
 		$query = $this

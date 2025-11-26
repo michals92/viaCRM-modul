@@ -11,14 +11,17 @@ use Espo\Modules\Viacrm\Classes\Utils\Common\LangCode;
 use Espo\Modules\Viacrm\Classes\Utils\HolidayUtil;
 use Espo\Modules\Viacrm\Entities\Holiday;
 
-class PreloadHolidays implements Job {
+class PreloadHolidays implements Job
+{
 	public function __construct(
 		private HolidayUtil $holidayUtil,
 		private EntityManager $entityManager,
 		private Log $log
-	) {}
+	) {
+	}
 
-	public function run(JobData $data): void {
+	public function run(JobData $data): void
+	{
 		$this->log->info('PreloadHolidays: Starting public holiday synchronization job');
 
 		$currentYear = (int) date('Y');
@@ -35,7 +38,7 @@ class PreloadHolidays implements Job {
 		// First ensure base data exists from svatkyapi.cz (lazy loading)
 		for ($i = 0; $i <= $yearsToPreload; $i++) {
 			$year = $currentYear + $i;
-			
+
 			try {
 				$this->log->info("PreloadHolidays: Ensuring base data exists for year $year");
 				$this->holidayUtil->fetchHolidays((string) $year, null, [], $langCode);
@@ -47,28 +50,28 @@ class PreloadHolidays implements Job {
 		// Now fetch and sync official public holidays from Nager.Date API
 		for ($i = 0; $i <= $yearsToPreload; $i++) {
 			$year = $currentYear + $i;
-			
+
 			try {
 				$this->log->info("PreloadHolidays: Fetching official public holidays for year $year from Nager.Date API");
-				
+
 				$url = "https://date.nager.at/api/v3/PublicHolidays/$year/CZ";
 				$json = @file_get_contents($url);
-				
+
 				if ($json === false) {
 					throw new \RuntimeException('Failed to fetch holiday data from: ' . $url);
 				}
-				
+
 				$publicHolidays = Json::decode($json, true);
 				$this->log->info('PreloadHolidays: Received ' . count($publicHolidays) . " public holidays for $year");
-				
+
 				foreach ($publicHolidays as $publicHoliday) {
 					$totalHolidaysProcessed++;
-					
+
 					$date = $publicHoliday['date'];
 					$localName = $publicHoliday['localName'];
-					
+
 					$this->log->info("PreloadHolidays: Processing holiday - Date: $date, Name: $localName");
-					
+
 					// Check if record exists for this date
 					$existingHoliday = $this->entityManager
 						->getRDBRepository(Holiday::ENTITY_TYPE)
@@ -77,14 +80,14 @@ class PreloadHolidays implements Job {
 							'langCode' => $langCode,
 						])
 						->findOne();
-					
+
 					if ($existingHoliday) {
 						// Update existing record if holidayName is missing or different
 						$currentHolidayName = $existingHoliday->get('holidayName');
-						
+
 						if ($currentHolidayName !== $localName) {
 							$this->log->info("PreloadHolidays: Updating holiday record for $date - Old: '$currentHolidayName', New: '$localName'");
-							
+
 							$existingHoliday->set('holidayName', $localName);
 							$this->entityManager->saveEntity($existingHoliday);
 							$totalUpdated++;
@@ -94,13 +97,13 @@ class PreloadHolidays implements Job {
 					} else {
 						// Create new holiday record
 						$this->log->info("PreloadHolidays: Creating new holiday record for $date");
-						
+
 						$dateObj = new \DateTime($date);
 						$monthNum = $dateObj->format('n');
-						
+
 						// Get Czech month names from existing records or use defaults
 						$monthNames = $this->getMonthNames($year, (int) $monthNum, $langCode);
-						
+
 						$newHoliday = $this->entityManager->getNewEntity(Holiday::ENTITY_TYPE);
 						$newHoliday->setMultiple([
 							'langCode' => $langCode,
@@ -110,12 +113,12 @@ class PreloadHolidays implements Job {
 							'nominative' => $monthNames['nominative'],
 							'genitive' => $monthNames['genitive'],
 						]);
-						
+
 						$this->entityManager->saveEntity($newHoliday);
 						$totalCreated++;
 					}
 				}
-				
+
 				$this->log->info("PreloadHolidays: Successfully synchronized public holidays for year $year");
 			} catch (\Exception $e) {
 				$this->log->error("PreloadHolidays: Failed to sync public holidays for $year: " . $e->getMessage());
@@ -132,7 +135,8 @@ class PreloadHolidays implements Job {
 	/**
 	 * @return array<string, string>
 	 */
-	private function getMonthNames(int $year, int $month, string $langCode): array {
+	private function getMonthNames(int $year, int $month, string $langCode): array
+	{
 		// Try to get month names from existing records
 		$existingRecord = $this->entityManager
 			->getRDBRepository(Holiday::ENTITY_TYPE)
@@ -143,14 +147,14 @@ class PreloadHolidays implements Job {
 				'nominative!=' => null,
 			])
 			->findOne();
-		
+
 		if ($existingRecord) {
 			return [
 				'nominative' => $existingRecord->get('nominative'),
 				'genitive' => $existingRecord->get('genitive'),
 			];
 		}
-		
+
 		// Fallback to Czech month names
 		$czechMonths = [
 			1 => ['nominative' => 'leden', 'genitive' => 'ledna'],
@@ -166,7 +170,7 @@ class PreloadHolidays implements Job {
 			11 => ['nominative' => 'listopad', 'genitive' => 'listopadu'],
 			12 => ['nominative' => 'prosinec', 'genitive' => 'prosince'],
 		];
-		
+
 		return $czechMonths[$month] ?? ['nominative' => '', 'genitive' => ''];
 	}
 }

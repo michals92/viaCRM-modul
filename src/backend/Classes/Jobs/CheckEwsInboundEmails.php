@@ -11,12 +11,15 @@ use Throwable;
 /**
  * Checks EWS group email accounts (InboundEmail) for new messages.
  */
-class CheckEwsInboundEmails implements Job {
+class CheckEwsInboundEmails implements Job
+{
 	public function __construct(
 		private Service $service
-	) {}
+	) {
+	}
 
-	public function run(JobData $data): void {
+	public function run(JobData $data): void
+	{
 		$targetId = $data->getTargetId();
 
 		if (!$targetId) {

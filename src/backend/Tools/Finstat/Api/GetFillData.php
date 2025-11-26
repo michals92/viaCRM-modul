@@ -10,17 +10,20 @@ use Espo\Core\Exceptions\BadRequest;
 use Espo\Core\Exceptions\Error;
 use Espo\Modules\Viacrm\Tools\Finstat\Service as FinstatService;
 
-readonly class GetFillData implements Action {
+readonly class GetFillData implements Action
+{
 	public function __construct(
 		private FinstatService $finstatService,
-	) {}
+	) {
+	}
 
 	/**
 	 * @throws BadRequest
 	 * @throws \JsonException
 	 * @throws Error
 	 */
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$sicCode = $request->getRouteParam('sicCode');
 
 		if (empty($sicCode)) {

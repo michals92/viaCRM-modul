@@ -7,7 +7,8 @@ use Espo\Core\Utils\Config;
 use Espo\Core\Utils\Config\ConfigWriter;
 use Espo\Modules\Viacrm\Core\Log\ViacrmFormatter;
 
-class AfterUninstall {
+class AfterUninstall
+{
 	private Config $config;
 
 	private ConfigWriter $configWriter;
@@ -17,7 +18,8 @@ class AfterUninstall {
 	/**
 	 * @param array<string, mixed> $params
 	 */
-	public function run(Container $container, array $params = []): void {
+	public function run(Container $container, array $params = []): void
+	{
 		$this->loadDependencies($container);
 
 		$this->removeCustomFormatter();
@@ -25,7 +27,8 @@ class AfterUninstall {
 		$this->clearCache();
 	}
 
-	private function loadDependencies(Container $container): void {
+	private function loadDependencies(Container $container): void
+	{
 		$injectableFactory = $container->getByClass(InjectableFactory::class);
 
 		$this->config = $container->getByClass(Config::class);
@@ -34,7 +37,8 @@ class AfterUninstall {
 		$this->dataManager = $container->getByClass(DataManager::class);
 	}
 
-	private function removeCustomFormatter(): void {
+	private function removeCustomFormatter(): void
+	{
 		$loggerData = $this->config->get('logger', []);
 
 		$handlerList = $loggerData['handlerList'];
@@ -52,7 +56,8 @@ class AfterUninstall {
 		$this->configWriter->save();
 	}
 
-	private function clearCache(): void {
+	private function clearCache(): void
+	{
 		try {
 			$this->dataManager->clearCache();
 		} catch (\Exception) {

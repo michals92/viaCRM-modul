@@ -2,12 +2,14 @@
 
 namespace Espo\Modules\Viacrm\Core\Layout;
 
-enum LikeType {
+enum LikeType
+{
 	case detail;
 	case list;
 	case bottomsPanel;
 
-	public function toString(): string {
+	public function toString(): string
+	{
 		return match ($this) {
 			self::detail => 'detail',
 			self::list => 'list',
@@ -18,7 +20,8 @@ enum LikeType {
 	/**
 	 * @param array<array<string, mixed>> $layout
 	 */
-	public static function fromLayout(array $layout): ?self {
+	public static function fromLayout(array $layout): ?self
+	{
 		if (empty($layout)) {
 			return null;
 		}
@@ -37,7 +40,8 @@ enum LikeType {
 	/**
 	 * @param array<array<string, mixed>> $layout
 	 */
-	public static function hasAnyRows(array $layout): bool {
+	public static function hasAnyRows(array $layout): bool
+	{
 		// Iterate through each item in the array
 		foreach ($layout as $item) {
 			// Check if 'rows' key exists and is not empty
@@ -55,19 +59,23 @@ enum LikeType {
 		return false;
 	}
 
-	public function hasCustomLabel(): bool {
+	public function hasCustomLabel(): bool
+	{
 		return $this === self::detail;
 	}
 
-	public function hasSections(): bool {
+	public function hasSections(): bool
+	{
 		return $this === self::detail;
 	}
 
-	public function hasGroups(): bool {
+	public function hasGroups(): bool
+	{
 		return $this !== self::list;
 	}
 
-	public function hasRows(): bool {
+	public function hasRows(): bool
+	{
 		return $this === self::list;
 	}
 }

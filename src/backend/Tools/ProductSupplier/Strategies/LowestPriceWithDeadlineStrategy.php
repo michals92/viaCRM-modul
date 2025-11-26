@@ -13,7 +13,8 @@ use Espo\Modules\Viacrm\Tools\ProductSupplier\Abstract\ProductSupplierStrategyDa
  * This strategy chooses the supplier item with the lowest price that can deliver
  * within the deadline specified by the related entity.
  */
-class LowestPriceWithDeadlineStrategy extends ProductSupplierStrategy {
+class LowestPriceWithDeadlineStrategy extends ProductSupplierStrategy
+{
 	/**
 	 * Get the supplier item with the lowest price that can deliver before the deadline.
 	 *
@@ -23,7 +24,8 @@ class LowestPriceWithDeadlineStrategy extends ProductSupplierStrategy {
 	 *
 	 * @return ProductSupplierItem|null The best supplier item or null if none found
 	 */
-	public function getProductSupplierItem(Product $product): ?ProductSupplierItem {
+	public function getProductSupplierItem(Product $product): ?ProductSupplierItem
+	{
 		$supplierItems = $this->getProductSupplierItems($product);
 
 		if (empty($supplierItems)) {
@@ -86,7 +88,8 @@ class LowestPriceWithDeadlineStrategy extends ProductSupplierStrategy {
 	 *
 	 * @return ProductSupplierItem|null The supplier with shortest delivery time or null if none found
 	 */
-	private function getSupplierWithShortestDeliveryTime(array $supplierItems): ?ProductSupplierItem {
+	private function getSupplierWithShortestDeliveryTime(array $supplierItems): ?ProductSupplierItem
+	{
 		$bestItem = null;
 		$shortestDeliveryTime = PHP_INT_MAX;
 
@@ -114,7 +117,8 @@ class LowestPriceWithDeadlineStrategy extends ProductSupplierStrategy {
 	 *
 	 * @return string The deadline date in string format
 	 */
-	private function getDeadline(): string {
+	private function getDeadline(): string
+	{
 		// First check if related entity exists
 		if ($this->relatedEntity === null) {
 			if ($this->data[ProductSupplierStrategyData::DEADLINE] !== null) {
@@ -123,11 +127,11 @@ class LowestPriceWithDeadlineStrategy extends ProductSupplierStrategy {
 			throw Error::createWithBody(
 				'No related entity provided for deadline calculation',
 				Error\Body::create()
-				    ->withMessageTranslation(
-				    	'noRelatedEntityProvided',
-				    	Product::ENTITY_TYPE,
-				    	[]
-				    )
+					->withMessageTranslation(
+						'noRelatedEntityProvided',
+						Product::ENTITY_TYPE,
+						[]
+					)
 			);
 		}
 
@@ -143,11 +147,11 @@ class LowestPriceWithDeadlineStrategy extends ProductSupplierStrategy {
 		throw Error::createWithBody(
 			'No deadline is specified',
 			Error\Body::create()
-			    ->withMessageTranslation(
-			    	'noDeadlineSpecified',
-			    	Product::ENTITY_TYPE,
-			    	['relatedEntityId' => $relatedEntityId]
-			    )
+				->withMessageTranslation(
+					'noDeadlineSpecified',
+					Product::ENTITY_TYPE,
+					['relatedEntityId' => $relatedEntityId]
+				)
 		);
 	}
 }

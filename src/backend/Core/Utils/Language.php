@@ -12,7 +12,8 @@ use Espo\Core\Utils\Util;
 use Espo\Entities\Preferences;
 use RuntimeException;
 
-class Language extends \Espo\Core\Utils\Language {
+class Language extends \Espo\Core\Utils\Language
+{
 	/** @var array<string, array<string, mixed>> */
 	private array $data = [];
 
@@ -34,22 +35,24 @@ class Language extends \Espo\Core\Utils\Language {
 	private string $resourcePath = 'i18n/{language}';
 
 	public function __construct(
-		?string                         $language,
-		private readonly FileManager    $fileManager,
+		?string $language,
+		private readonly FileManager $fileManager,
 		private readonly ResourceReader $resourceReader,
-		private readonly DataCache      $dataCache,
-		private readonly Metadata       $metadata,
-		protected bool                  $useCache = false,
-		protected bool                  $noCustom = false
+		private readonly DataCache $dataCache,
+		private readonly Metadata $metadata,
+		protected bool $useCache = false,
+		protected bool $noCustom = false
 	) {
 		$this->currentLanguage = $language ?? $this->defaultLanguage;
 	}
 
-	public function getLanguage(): string {
+	public function getLanguage(): string
+	{
 		return $this->currentLanguage;
 	}
 
-	public static function detectLanguage(Config $config, ?Preferences $preferences = null): ?string {
+	public static function detectLanguage(Config $config, ?Preferences $preferences = null): ?string
+	{
 		$language = $preferences?->get('language');
 
 		if (!$language) {
@@ -62,23 +65,27 @@ class Language extends \Espo\Core\Utils\Language {
 	/**
 	 * @deprecated As of v7.4. Not to be used.
 	 */
-	public function setLanguage(string $language): void {
+	public function setLanguage(string $language): void
+	{
 		$this->currentLanguage = $language;
 	}
 
-	private function getCacheKey(?string $language = null): string {
+	private function getCacheKey(?string $language = null): string
+	{
 		return 'languages/' . ($language ?? $this->currentLanguage);
 	}
 
 	/**
 	 * Translate a label.
 	 *
-	 * @param  string $label
-	 * @param  string $category
-	 * @param  string $scope
+	 * @param string $label
+	 * @param string $category
+	 * @param string $scope
+	 *
 	 * @return string
 	 */
-	public function translateLabel(string $label, string $category = 'labels', string $scope = 'Global'): string {
+	public function translateLabel(string $label, string $category = 'labels', string $scope = 'Global'): string
+	{
 		$translated = $this->translate($label, $category, $scope);
 
 		if (is_array($translated)) {
@@ -91,13 +98,14 @@ class Language extends \Espo\Core\Utils\Language {
 	/**
 	 * Translate label or labels.
 	 *
-	 * @param  string|string[]                       $label           A name of label.
-	 * @param  string                                $category        A category.
-	 * @param  string                                $scope           A scope.
-	 * @param  string[]|null                         $requiredOptions A list of required options.
-	 *                                                                Ex., $requiredOptions = ['en_US', 'de_DE']
-	 *                                                                "language" option has only ['en_US' => 'English (United States)']
-	 *                                                                Result will be ['en_US' => 'English (United States)', 'de_DE' => 'de_DE'].
+	 * @param string|string[] $label           a name of label
+	 * @param string          $category        a category
+	 * @param string          $scope           a scope
+	 * @param string[]|null   $requiredOptions A list of required options.
+	 *                                         Ex., $requiredOptions = ['en_US', 'de_DE']
+	 *                                         "language" option has only ['en_US' => 'English (United States)']
+	 *                                         Result will be ['en_US' => 'English (United States)', 'de_DE' => 'de_DE'].
+	 *
 	 * @return string|string[]|array<string, string>
 	 */
 	public function translate(
@@ -141,12 +149,14 @@ class Language extends \Espo\Core\Utils\Language {
 	}
 
 	/**
-	 * @param  int|string $value
-	 * @param  string     $field
-	 * @param  string     $scope
+	 * @param int|string $value
+	 * @param string     $field
+	 * @param string     $scope
+	 *
 	 * @return string
 	 */
-	public function translateOption($value, string $field, string $scope = 'Global'): string {
+	public function translateOption($value, string $field, string $scope = 'Global'): string
+	{
 		$options = $this->get($scope . '.options.' . $field);
 
 		if (is_array($options) && array_key_exists($value, $options)) {
@@ -161,16 +171,17 @@ class Language extends \Espo\Core\Utils\Language {
 			}
 		}
 
-		return (string)$value;
+		return (string) $value;
 	}
 
 	/**
+	 * @param string|string[]|null $key
+	 * @param mixed                $returns
 	 *
-	 * @param  string|string[]|null $key
-	 * @param  mixed                $returns
 	 * @return mixed
 	 */
-	public function get($key = null, $returns = null): mixed {
+	public function get($key = null, $returns = null): mixed
+	{
 		$data = $this->getData();
 
 		if (!isset($data)) {
@@ -183,7 +194,8 @@ class Language extends \Espo\Core\Utils\Language {
 	/**
 	 * Save changes.
 	 */
-	public function save(): bool {
+	public function save(): bool
+	{
 		$path = str_replace('{language}', $this->currentLanguage, $this->customPath);
 
 		$result = true;
@@ -210,13 +222,14 @@ class Language extends \Espo\Core\Utils\Language {
 
 		$this->clearChanges();
 
-		return (bool)$result;
+		return (bool) $result;
 	}
 
 	/**
 	 * Clear unsaved changes.
 	 */
-	public function clearChanges(): void {
+	public function clearChanges(): void
+	{
 		$this->changedData = [];
 		$this->deletedData = [];
 
@@ -226,7 +239,8 @@ class Language extends \Espo\Core\Utils\Language {
 	/**
 	 * @return ?array<string, mixed>
 	 */
-	private function getData(): ?array {
+	private function getData(): ?array
+	{
 		$currentLanguage = $this->currentLanguage;
 
 		if (!isset($this->data[$currentLanguage])) {
@@ -242,7 +256,8 @@ class Language extends \Espo\Core\Utils\Language {
 	 * @param string|array<string, string> $name
 	 * @param mixed                        $value
 	 */
-	public function set(string $scope, string $category, $name, $value): void {
+	public function set(string $scope, string $category, $name, $value): void
+	{
 		if (is_array($name)) {
 			foreach ($name as $rowLabel => $rowValue) {
 				$this->set($scope, $category, $rowLabel, $rowValue);
@@ -271,7 +286,8 @@ class Language extends \Espo\Core\Utils\Language {
 	 * @param string          $category
 	 * @param string|string[] $name
 	 */
-	public function delete(string $scope, string $category, $name): void {
+	public function delete(string $scope, string $category, $name): void
+	{
 		if (is_array($name)) {
 			foreach ($name as $rowLabel) {
 				$this->delete($scope, $category, $rowLabel);
@@ -297,7 +313,8 @@ class Language extends \Espo\Core\Utils\Language {
 		}
 	}
 
-	private function undelete(string $scope, string $category, string $name): void {
+	private function undelete(string $scope, string $category, string $name): void
+	{
 		if (isset($this->deletedData[$scope][$category])) {
 			foreach ($this->deletedData[$scope][$category] as $key => $labelName) {
 				if ($name === $labelName) {
@@ -307,21 +324,24 @@ class Language extends \Espo\Core\Utils\Language {
 		}
 	}
 
-	private function init(bool $reload = false): void {
+	private function init(bool $reload = false): void
+	{
 		$this->data[$this->currentLanguage] = $this->getLanguageData($this->currentLanguage, $reload);
 	}
 
 	/**
 	 * @return array<string, mixed>
 	 */
-	private function getDefaultLanguageData(bool $reload = false): array {
+	private function getDefaultLanguageData(bool $reload = false): array
+	{
 		return $this->getLanguageData($this->defaultLanguage, $reload);
 	}
 
 	/**
 	 * @return array<string, mixed>
 	 */
-	private function getLanguageData(string $language, bool $reload = false): array {
+	private function getLanguageData(string $language, bool $reload = false): array
+	{
 		if (!$reload && isset($this->data[$language])) {
 			return $this->data[$language];
 		}
@@ -329,8 +349,7 @@ class Language extends \Espo\Core\Utils\Language {
 		$cacheKey = $this->getCacheKey($language);
 
 		if ($reload || !$this->useCache || !$this->dataCache->has($cacheKey)) {
-			$readerParams = ResourceReaderParams
-				::create()
+			$readerParams = ResourceReaderParams::create()
 				->withNoCustom($this->noCustom);
 
 			$path = str_replace('{language}', $language, $this->resourcePath);
@@ -366,7 +385,8 @@ class Language extends \Espo\Core\Utils\Language {
 	/**
 	 * @param array<string, array<string, mixed>> $data
 	 */
-	private function translateTranslationKey(array &$data, string $scope, string $categoryName, string $keyName, string $translationKey): void {
+	private function translateTranslationKey(array &$data, string $scope, string $categoryName, string $keyName, string $translationKey): void
+	{
 		$array = explode('.', $translationKey);
 		$value = $data;
 		foreach ($array as $key) {
@@ -386,7 +406,8 @@ class Language extends \Espo\Core\Utils\Language {
 	/**
 	 * @return array<string, array<string, array<string, string>>>
 	 */
-	public function getTranslationKeysEntries(): array {
+	public function getTranslationKeysEntries(): array
+	{
 		if ($this->translationKeys) {
 			return $this->translationKeys;
 		}
@@ -413,7 +434,8 @@ class Language extends \Espo\Core\Utils\Language {
 		return $this->translationKeys = $translationKeys;
 	}
 
-	public function iterateTranslationKeys(): \Generator {
+	public function iterateTranslationKeys(): \Generator
+	{
 		foreach ($this->getTranslationKeysEntries() as $entityType => $categories) {
 			foreach ($categories as $categoryName => $categoryData) {
 				foreach ($categoryData as $fieldName => $translationKey) {
@@ -421,7 +443,7 @@ class Language extends \Espo\Core\Utils\Language {
 						$entityType,
 						$categoryName,
 						$fieldName,
-						$translationKey
+						$translationKey,
 					];
 				}
 			}

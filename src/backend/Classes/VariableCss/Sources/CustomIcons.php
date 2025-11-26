@@ -7,23 +7,26 @@ use Espo\Modules\Viacrm\Classes\VariableCss\Source as VariableCssSource;
 use Espo\ORM\Query\SelectBuilder;
 use PDO;
 
-class CustomIcons implements VariableCssSource {
+class CustomIcons implements VariableCssSource
+{
 	public function __construct(
 		private readonly EntityManager $entityManager,
-	) {}
+	) {
+	}
 
-	public function get(): string {
+	public function get(): string
+	{
 		$ids = $this
-		    ->entityManager
-		    ->getQueryExecutor()
-		    ->execute(
-		    	SelectBuilder::create()
-		    	    ->select('id')
-		    	    ->from('CustomIcon')
-		    	    ->where('deleted', false)
-		    	    ->build()
-		    )
-		    ->fetchAll(PDO::FETCH_COLUMN);
+			->entityManager
+			->getQueryExecutor()
+			->execute(
+				SelectBuilder::create()
+					->select('id')
+					->from('CustomIcon')
+					->where('deleted', false)
+					->build()
+			)
+			->fetchAll(PDO::FETCH_COLUMN);
 
 		$styles = '';
 

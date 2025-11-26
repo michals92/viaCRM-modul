@@ -9,13 +9,16 @@ use Espo\ORM\EntityManager;
 /**
  * Factory for creating EWS PersonalAccount Account wrappers.
  */
-class AccountFactory {
+class AccountFactory
+{
 	public function __construct(
 		private EntityManager $entityManager,
 		private Crypt $crypt
-	) {}
+	) {
+	}
 
-	public function create(EmailAccount $entity): Account {
+	public function create(EmailAccount $entity): Account
+	{
 		return new Account($entity, $this->entityManager, $this->crypt);
 	}
 }

@@ -18,7 +18,8 @@ use Espo\ORM\EntityManager;
  *
  * @template TEntity of Entity
  */
-class CollectionHelper {
+class CollectionHelper
+{
 	public const NAME = 'job';
 	public const CLASS_NAME = 'className';
 	public const SERVICE_NAME = 'serviceName';
@@ -34,12 +35,14 @@ class CollectionHelper {
 
 	public function __construct(
 		protected readonly EntityManager $entityManager
-	) {}
+	) {
+	}
 
 	/**
 	 * @return self<TEntity>
 	 */
-	public function withMaxConcurrentRunningWithSameTarget(int $maxConcurrentRunningWithSameTarget): self {
+	public function withMaxConcurrentRunningWithSameTarget(int $maxConcurrentRunningWithSameTarget): self
+	{
 		$this->maxConcurrentRunningWithSameTarget = $maxConcurrentRunningWithSameTarget;
 
 		return $this;
@@ -48,19 +51,22 @@ class CollectionHelper {
 	/**
 	 * @return self<TEntity>
 	 */
-	public function withMaxPendingWithSameTarget(int $maxPendingWithSameTarget): self {
+	public function withMaxPendingWithSameTarget(int $maxPendingWithSameTarget): self
+	{
 		$this->maxPendingWithSameTarget = $maxPendingWithSameTarget;
 
 		return $this;
 	}
 
 	/**
-	 * @param  Collection<TEntity>       $collection
-	 * @param  Data|array<string, mixed> $data
-	 * @param  DateTimeImmutable         $executeTime
+	 * @param Collection<TEntity>       $collection
+	 * @param Data|array<string, mixed> $data
+	 * @param DateTimeImmutable         $executeTime
+	 *
 	 * @return EntityCollection<Job>
 	 */
-	public function prepare(Collection $collection, Data|array $data, DateTimeImmutable $executeTime = new \DateTimeImmutable()): EntityCollection {
+	public function prepare(Collection $collection, Data|array $data, DateTimeImmutable $executeTime = new \DateTimeImmutable()): EntityCollection
+	{
 		/** @var EntityCollection<Job> $jobsCollection */
 		$jobsCollection = $this->entityManager
 			->getCollectionFactory()
@@ -75,12 +81,14 @@ class CollectionHelper {
 	}
 
 	/**
-	 * @param  TEntity&Entity            $entity
-	 * @param  Data|array<string, mixed> $data
-	 * @param  DateTimeImmutable         $executeTime
+	 * @param TEntity&Entity            $entity
+	 * @param Data|array<string, mixed> $data
+	 * @param DateTimeImmutable         $executeTime
+	 *
 	 * @return Job|null
 	 */
-	private function prepareItem(Entity $entity, Data|array $data, DateTimeImmutable $executeTime): ?Job {
+	private function prepareItem(Entity $entity, Data|array $data, DateTimeImmutable $executeTime): ?Job
+	{
 		$whereClause = [
 			'status' => [
 				Status::RUNNING,
@@ -138,7 +146,8 @@ class CollectionHelper {
 	 * @param array<string, mixed>      $whereClause
 	 * @param Data|array<string, mixed> $data
 	 */
-	protected function prepareWhereClause(array &$whereClause, Data|array $data): void {
+	protected function prepareWhereClause(array &$whereClause, Data|array $data): void
+	{
 		if (is_array($data)) {
 			foreach ($data as $key => $value) {
 				if (!in_array($key, self::ALLOWED_TYPES, true)) {
@@ -161,13 +170,14 @@ class CollectionHelper {
 	 * @param array<string, mixed>      $jobData
 	 * @param Data|array<string, mixed> $data
 	 */
-	protected function prepareJobData(array &$jobData, Data|array $data): void {
+	protected function prepareJobData(array &$jobData, Data|array $data): void
+	{
 		if (is_array($data)) {
 			foreach ($data as $key => $value) {
 				if (!in_array($key, self::ALLOWED_TYPES, true)) {
 					continue;
 				}
-				
+
 				$jobData[$key] = $value;
 			}
 

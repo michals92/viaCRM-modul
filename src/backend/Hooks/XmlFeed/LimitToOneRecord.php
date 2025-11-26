@@ -13,24 +13,27 @@ use Espo\ORM\Repository\Option\SaveOptions;
 /**
  * @implements BeforeSave<XmlFeed>
  */
-class LimitToOneRecord implements BeforeSave {
+class LimitToOneRecord implements BeforeSave
+{
 	public function __construct(
 		private readonly EntityManager $entityManager
-	) {}
+	) {
+	}
 
 	/**
 	 * @param Entity      $entity  The XmlFeed entity
 	 * @param SaveOptions $options
 	 */
-	public function beforeSave(Entity $entity, SaveOptions $options): void {
+	public function beforeSave(Entity $entity, SaveOptions $options): void
+	{
 		if (!$entity->isNew()) {
 			return;
 		}
 
 		$count = $this->entityManager
-		    ->getRDBRepository(XmlFeed::ENTITY_TYPE)
-		    ->where(['deleted' => false])
-		    ->count();
+			->getRDBRepository(XmlFeed::ENTITY_TYPE)
+			->where(['deleted' => false])
+			->count();
 
 		if ($count > 0) {
 			throw Forbidden::createWithBody(

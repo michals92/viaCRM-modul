@@ -10,10 +10,12 @@ use Espo\Core\Exceptions\NotFound;
 use Espo\Core\Utils\Util;
 use Espo\Modules\Viacrm\Classes\Utils\ReflectionUtil;
 
-class Pdf extends \Espo\EntryPoints\Pdf implements Di\MetadataAware {
+class Pdf extends \Espo\EntryPoints\Pdf implements Di\MetadataAware
+{
 	use Di\MetadataSetter;
 
-	public function run(Request $request, Response $response): void {
+	public function run(Request $request, Response $response): void
+	{
 		$entityId = $request->getQueryParam('entityId');
 		$entityType = $request->getQueryParam('entityType');
 

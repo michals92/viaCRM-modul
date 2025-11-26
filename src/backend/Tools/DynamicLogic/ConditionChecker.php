@@ -15,23 +15,26 @@ use Espo\Modules\Viacrm\Tools\DynamicLogic\Exceptions\BadCondition;
 use Exception;
 use RuntimeException;
 
-class ConditionChecker {
-	const DEBUG_MODE = false;
+class ConditionChecker
+{
+	public const DEBUG_MODE = false;
 
 	/**
 	 * Use `ConditionCheckerFactory` instead.
 	 */
 	public function __construct(
-		private readonly Entity      $entity,
-		private readonly ?User       $user = null,
-		private readonly Options     $options = new Options(),
+		private readonly Entity $entity,
+		private readonly ?User $user = null,
+		private readonly Options $options = new Options(),
 		private readonly SystemClock $clock = new SystemClock(),
-	) {}
+	) {
+	}
 
 	/**
 	 * @param array<int, mixed> $args
 	 */
-	protected function debug(...$args): void {
+	protected function debug(...$args): void
+	{
 		// @phpstan-ignore-next-line
 		if (!self::DEBUG_MODE) {
 			return;
@@ -55,7 +58,7 @@ class ConditionChecker {
 				return '(null)';
 			}
 			if (!is_string($arg)) {
-				return '(' . gettype($arg) . '): ' . (string)$arg;
+				return '(' . gettype($arg) . '): ' . (string) $arg;
 			}
 
 			return $arg;
@@ -67,7 +70,8 @@ class ConditionChecker {
 	/**
 	 * @throws BadCondition
 	 */
-	public function check(Item $item): bool {
+	public function check(Item $item): bool
+	{
 		$type = $item->type;
 		$value = $item->value;
 		$subjectType = $item->subjectType ?? null;
@@ -177,9 +181,9 @@ class ConditionChecker {
 		}
 
 		if ($type === Type::IsTrue) {
-			$this->debug('Checking condition (Type::IsTrue) =>', (bool)$setValue);
+			$this->debug('Checking condition (Type::IsTrue) =>', (bool) $setValue);
 
-			return (bool)$setValue;
+			return (bool) $setValue;
 		}
 
 		if ($type === Type::IsFalse) {
@@ -286,7 +290,7 @@ class ConditionChecker {
 
 		if ($type === Type::Matches) {
 			if (is_string($setValue) && is_string($value)) {
-				$result = (bool)preg_match($value, $setValue);
+				$result = (bool) preg_match($value, $setValue);
 				$this->debug('Checking condition (Type::Matches) =>', $result);
 
 				return $result;
@@ -407,10 +411,10 @@ class ConditionChecker {
 		throw new BadCondition("Unimplemented type '$type->value'.");
 	}
 
-	private function getAttributeValue(string|null $attribute): mixed { //todo: implement viacrm customs: $settings, $installedExensions
-		if (is_null($attribute)) {
-			return null;
-		}
+	private function getAttributeValue(string|null $attribute): mixed //todo: implement viacrm customs: $settings, $installedExensions
+	{if (is_null($attribute)) {
+		return null;
+	}
 		if (str_starts_with($attribute, '$user')) {
 			if (!$this->user) {
 				return null;
@@ -432,11 +436,13 @@ class ConditionChecker {
 		return $this->entity->get($attribute);
 	}
 
-	private function getTimeZone(): DateTimeZone {
+	private function getTimeZone(): DateTimeZone
+	{
 		return $this->options->timezone;
 	}
 
-	private function createDateTime(string $value): DateTimeImmutable {
+	private function createDateTime(string $value): DateTimeImmutable
+	{
 		try {
 			$setDateTime = new DateTimeImmutable($value, $this->getTimeZone());
 		} catch (Exception $e) {
@@ -446,11 +452,13 @@ class ConditionChecker {
 		return $setDateTime;
 	}
 
-	private function createNow(): DateTime {
+	private function createNow(): DateTime
+	{
 		return DateTime::fromDateTime($this->clock->now());
 	}
 
-	private function createToday(): Date {
+	private function createToday(): Date
+	{
 		$dateTime = $this->clock
 			->now()
 			->setTimezone($this->getTimeZone());

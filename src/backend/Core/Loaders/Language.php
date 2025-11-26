@@ -9,14 +9,17 @@ use Espo\Core\Utils\Metadata as MetadataService;
 use Espo\Entities\Preferences;
 use Espo\Modules\Viacrm\Core\Utils\Language as LanguageService;
 
-class Language implements Loader {
+class Language implements Loader
+{
 	public function __construct(
 		private readonly InjectableFactory $injectableFactory,
-		private readonly Config            $config,
-		private readonly Preferences       $preferences
-	) {}
+		private readonly Config $config,
+		private readonly Preferences $preferences
+	) {
+	}
 
-	public function load(): LanguageService {
+	public function load(): LanguageService
+	{
 		$metadata = $this->injectableFactory->createWith(MetadataService::class, [
 			'useCache' => $this->config->get('useCache') ?? false,
 		]);

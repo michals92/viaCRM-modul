@@ -8,13 +8,16 @@ use Espo\Core\Utils\Config;
 use Espo\Modules\Viacrm\Core\Utils\ClientManagerNew;
 use Espo\Modules\Viacrm\Core\Utils\ClientManagerOld;
 
-class ClientManager implements Loader {
+class ClientManager implements Loader
+{
 	public function __construct(
 		private readonly Config $config,
 		private readonly InjectableFactory $injectableFactory,
-	) {}
+	) {
+	}
 
-	public function load() {
+	public function load()
+	{
 		$version = $this->config->get('version');
 
 		// The signature of the 'render' method is changed from 9.0.0 onwards

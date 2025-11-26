@@ -15,7 +15,8 @@ use Espo\ORM\Entity;
 /**
  * @implements AccessEntityCREDSChecker<RecordTemplate>
  */
-class AccessChecker implements AccessEntityCREDSChecker {
+class AccessChecker implements AccessEntityCREDSChecker
+{
 	use DefaultAccessCheckerDependency;
 
 	public function __construct(
@@ -25,7 +26,8 @@ class AccessChecker implements AccessEntityCREDSChecker {
 		$this->defaultAccessChecker = $defaultAccessChecker;
 	}
 
-	public function checkEntityRead(User $user, Entity $entity, ScopeData $data): bool {
+	public function checkEntityRead(User $user, Entity $entity, ScopeData $data): bool
+	{
 		$scope = $entity->get('entityType');
 
 		return !$scope || $this->aclManager->checkScope($user, $scope, TABLE::ACTION_READ);

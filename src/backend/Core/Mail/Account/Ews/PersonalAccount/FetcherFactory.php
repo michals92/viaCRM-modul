@@ -12,12 +12,15 @@ use Espo\Modules\Viacrm\Core\Mail\Account\Ews\Fetcher;
  *
  * @implements Factory<Fetcher>
  */
-class FetcherFactory implements Factory {
+class FetcherFactory implements Factory
+{
 	public function __construct(
 		private InjectableFactory $injectableFactory
-	) {}
+	) {
+	}
 
-	public function create(): Fetcher {
+	public function create(): Fetcher
+	{
 		$binding = BindingContainerBuilder::create()->build();
 
 		return $this->injectableFactory->createWithBinding(Fetcher::class, $binding);

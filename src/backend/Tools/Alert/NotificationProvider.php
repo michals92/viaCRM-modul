@@ -5,12 +5,15 @@ namespace Espo\Modules\Viacrm\Tools\Alert;
 use Espo\Entities\User;
 use Espo\Modules\Viacrm\Entities\Alert;
 
-class NotificationProvider implements \Espo\Tools\PopupNotification\Provider {
+class NotificationProvider implements \Espo\Tools\PopupNotification\Provider
+{
 	public function __construct(
 		private readonly AlertManager $alertManager,
-	) {}
+	) {
+	}
 
-	public function get(User $user): array {
+	public function get(User $user): array
+	{
 		$userId = $user->getId();
 		$alerts = $this->alertManager->getActive($userId);
 		$resultList = [];

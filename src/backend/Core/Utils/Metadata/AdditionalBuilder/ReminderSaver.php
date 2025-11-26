@@ -5,8 +5,10 @@ namespace Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder;
 use Espo\Core\Utils\Metadata\AdditionalBuilder;
 use stdClass;
 
-class ReminderSaver implements AdditionalBuilder {
-	public function build(stdClass $data): void {
+class ReminderSaver implements AdditionalBuilder
+{
+	public function build(stdClass $data): void
+	{
 		$entitiesToModify = ['Task', 'Meeting', 'Call'];
 		$originalClass = 'Espo\\Core\\FieldProcessing\\Reminder\\Saver';
 		$replaceWithClass = 'Espo\\Modules\\Viacrm\\Core\\FieldProcessing\\Reminder\\Saver';

@@ -11,18 +11,22 @@ use Espo\Modules\Viacrm\Tools\RecordList\Service as RecordListService;
 use Espo\ORM\Defs;
 use Espo\ORM\Entity;
 
-class Loader {
+class Loader
+{
 	public function __construct(
 		private readonly RecordListService $recordListService,
 		private readonly Defs $defs
-	) {}
+	) {
+	}
 
 	/**
-	 * @param  string[]           $attributeList
+	 * @param string[] $attributeList
+	 *
 	 * @throws BadRequest
 	 * @throws Forbidden
 	 * @throws Error
 	 * @throws NotFound
+	 *
 	 * @return array<int, object>
 	 */
 	private function getRecords(
@@ -40,14 +44,16 @@ class Loader {
 	}
 
 	/**
-	 * @param  Entity     $entity
-	 * @param  string     $field
+	 * @param Entity $entity
+	 * @param string $field
+	 *
 	 * @throws BadRequest
 	 * @throws Error
 	 * @throws Forbidden
 	 * @throws NotFound
 	 */
-	public function load(Entity $entity, string $field): void {
+	public function load(Entity $entity, string $field): void
+	{
 		$entityType = $entity->getEntityType();
 		$entityDefs = $this->defs->getEntity($entityType);
 		$fieldDefs = $entityDefs->getField($field);
@@ -114,7 +120,8 @@ class Loader {
 	 * @param array<int, object>               $childEntities
 	 * @param array<string, string>            $columns
 	 */
-	private function appendRecordsToArray(array &$records, ?object $parentEntity, array $childEntities, array $columns): void {
+	private function appendRecordsToArray(array &$records, ?object $parentEntity, array $childEntities, array $columns): void
+	{
 		foreach ($childEntities as $childEntity) {
 			$record = [
 				'id' => $childEntity->id ?? null,
@@ -122,9 +129,9 @@ class Loader {
 				'parentEntityId' => $parentEntity?->id ?? null,
 				'parentEntityName' => $parentEntity?->name ?? null,
 				'columns' => array_intersect_key(
-					(array)$childEntity,
+					(array) $childEntity,
 					array_flip($columns)
-				)
+				),
 			];
 			$records[] = $record;
 		}

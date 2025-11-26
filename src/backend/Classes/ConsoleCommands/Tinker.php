@@ -12,15 +12,18 @@ use Espo\ORM\EntityManager;
 use Psy\Configuration;
 use Psy\Shell;
 
-class Tinker implements Command {
+class Tinker implements Command
+{
 	public function __construct(
 		private Container $container,
 		private Config $config,
 		private Metadata $metadata,
 		private EntityManager $entityManager
-	) {}
+	) {
+	}
 
-	public function run(Params $params, IO $io): void {
+	public function run(Params $params, IO $io): void
+	{
 		$configFile = $this->getConfigFile();
 		$config = new Configuration($configFile ? include $configFile : []);
 		$shell = new Shell($config);
@@ -38,19 +41,21 @@ class Tinker implements Command {
 	/**
 	 * @return array<string, object>
 	 */
-	private function getBaseVariables(): array {
+	private function getBaseVariables(): array
+	{
 		return [
-		    'container' => $this->container,
-		    'entityManager' => $this->entityManager,
-		    'config' => $this->config,
-		    'metadata' => $this->metadata,
+			'container' => $this->container,
+			'entityManager' => $this->entityManager,
+			'config' => $this->config,
+			'metadata' => $this->metadata,
 		];
 	}
 
-	private function getConfigFile(): ?string {
+	private function getConfigFile(): ?string
+	{
 		$configPaths = [
-		    __DIR__ . '/TinkerConfig.php',
-		    ($_SERVER['HOME'] ?? null) ? $_SERVER['HOME'] . '/.psysh.php' : null,
+			__DIR__ . '/TinkerConfig.php',
+			($_SERVER['HOME'] ?? null) ? $_SERVER['HOME'] . '/.psysh.php' : null,
 		];
 
 		foreach ($configPaths as $path) {

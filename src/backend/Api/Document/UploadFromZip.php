@@ -12,15 +12,18 @@ use Espo\Entities\Attachment;
 use Espo\Modules\Crm\Entities\Document;
 use Espo\Modules\Crm\Entities\DocumentFolder;
 
-class UploadFromZip implements Action {
+class UploadFromZip implements Action
+{
 	public function __construct(
 		private readonly EntityManager $entityManager,
-	) {}
-    
+	) {
+	}
+
 	/** @var array<string, array<string, string>> */
 	private array $folderCache = [];
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		$body = $request->getBodyContents();
 
 		if ($body === null) {
@@ -30,8 +33,8 @@ class UploadFromZip implements Action {
 		$categoryId = $request->getRouteParam('categoryId');
 
 		$base64Data = str_replace([
-		    'data:application/zip;base64,', /* Linux */
-		    'data:application/x-zip-compressed;base64,' /* Windows */
+			'data:application/zip;base64,', /* Linux */
+			'data:application/x-zip-compressed;base64,', /* Windows */
 		], '', $body);
 
 		$tempFile = tempnam(sys_get_temp_dir(), 'zip');
@@ -80,7 +83,8 @@ class UploadFromZip implements Action {
 		return ResponseComposer::json(['numFiles' => $numFiles]);
 	}
 
-	private function lookupFolder(string $path, ?string $parentId): ?DocumentFolder {
+	private function lookupFolder(string $path, ?string $parentId): ?DocumentFolder
+	{
 		$em = $this->entityManager;
 		$segments = explode('/', trim($path, '/'));
 		$currentParentId = $parentId;
@@ -100,9 +104,9 @@ class UploadFromZip implements Action {
 			}
 
 			$folder = $em
-			    ->getRDBRepository(DocumentFolder::ENTITY_TYPE)
-			    ->where(['name' => $segment, 'parentId' => $currentParentId])
-			    ->findOne();
+				->getRDBRepository(DocumentFolder::ENTITY_TYPE)
+				->where(['name' => $segment, 'parentId' => $currentParentId])
+				->findOne();
 
 			if (!$folder) {
 				return null;
@@ -120,7 +124,8 @@ class UploadFromZip implements Action {
 		return $em->getEntityById(DocumentFolder::ENTITY_TYPE, $currentParentId);
 	}
 
-	private function lookupOrCreateFolder(string $path, ?string $categoryId): ?DocumentFolder {
+	private function lookupOrCreateFolder(string $path, ?string $categoryId): ?DocumentFolder
+	{
 		$segments = explode('/', trim($path, '/'));
 		$currentParentId = $categoryId;
 		$parentFolder = $categoryId ? $this->lookupFolderById($categoryId) : null;
@@ -138,8 +143,8 @@ class UploadFromZip implements Action {
 
 			if (!$folder) {
 				$folder = $this->entityManager->createEntity(DocumentFolder::ENTITY_TYPE, [
-				    'name' => $segment,
-				    'parentId' => $currentParentId,
+					'name' => $segment,
+					'parentId' => $currentParentId,
 				]);
 				$this->folderCache[$currentParentId][$segment] = $folder->getId();
 			}
@@ -151,29 +156,32 @@ class UploadFromZip implements Action {
 		return $parentFolder;
 	}
 
-	private function lookupFolderById(string $id): ?DocumentFolder {
+	private function lookupFolderById(string $id): ?DocumentFolder
+	{
 		/** @var DocumentFolder|null */
 		return $this->entityManager->getEntityById(DocumentFolder::ENTITY_TYPE, $id);
 	}
 
-	private function createDocument(\ZipArchive $zip, string $path, int $index, ?string $categoryId): void {
+	private function createDocument(\ZipArchive $zip, string $path, int $index, ?string $categoryId): void
+	{
 		$em = $this->entityManager;
 		$folderPath = dirname($path);
 		$folder = $this->lookupOrCreateFolder($folderPath, $categoryId);
 
 		$attachment = $em->createEntity(Attachment::ENTITY_TYPE, [
-		    'name' => basename($path),
-		    'contents' => $zip->getFromIndex($index),
+			'name' => basename($path),
+			'contents' => $zip->getFromIndex($index),
 		]);
 
 		$em->createEntity(Document::ENTITY_TYPE, [
-		    'name' => basename($path),
-		    'fileId' => $attachment->getId(),
-		    'folderId' => $folder?->getId()
+			'name' => basename($path),
+			'fileId' => $attachment->getId(),
+			'folderId' => $folder?->getId(),
 		]);
 	}
 
-	private function getParentFolderId(?string $currentParentId): ?string {
+	private function getParentFolderId(?string $currentParentId): ?string
+	{
 		if (!$currentParentId) {
 			return null;
 		}

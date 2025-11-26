@@ -14,7 +14,8 @@ use stdClass;
 /**
  * @implements SaverInterface<Entity>
  */
-class LinkMultipleSaver implements SaverInterface {
+class LinkMultipleSaver implements SaverInterface
+{
 	public const TRIGGERED_BY_RECORD_LIST = 'triggeredByRecordList';
 
 	/**
@@ -24,10 +25,12 @@ class LinkMultipleSaver implements SaverInterface {
 
 	public function __construct(
 		protected readonly EntityManager $entityManager,
-		protected readonly Log           $log,
-	) {}
+		protected readonly Log $log,
+	) {
+	}
 
-	public function process(Entity $entity, SaverParams $params): void {
+	public function process(Entity $entity, SaverParams $params): void
+	{
 		$recordListOptions = $params->getOption('recordListOptions') ?? [];
 
 		foreach ($this->getFieldList($entity->getEntityType()) as $field) {
@@ -35,7 +38,7 @@ class LinkMultipleSaver implements SaverInterface {
 				->entityManager
 				->getTransactionManager()
 				->run(
-					fn() => $this->processItem($entity, $field, $recordListOptions)
+					fn () => $this->processItem($entity, $field, $recordListOptions)
 				);
 		}
 	}
@@ -43,7 +46,8 @@ class LinkMultipleSaver implements SaverInterface {
 	/**
 	 * @return string[]
 	 */
-	private function getFieldList(string $entityType): array {
+	private function getFieldList(string $entityType): array
+	{
 		if (array_key_exists($entityType, $this->fieldListMapCache)) {
 			return $this->fieldListMapCache[$entityType];
 		}
@@ -77,7 +81,8 @@ class LinkMultipleSaver implements SaverInterface {
 		return $list;
 	}
 
-	private function processColumnList(Entity $entity, string $name): void {
+	private function processColumnList(Entity $entity, string $name): void
+	{
 		$em = $this->entityManager;
 		$columnListField = $name . 'ColumnList';
 
@@ -92,7 +97,6 @@ class LinkMultipleSaver implements SaverInterface {
 		}
 
 		/** @var array<stdClass> $columnList */
-
 		$entityDefs = $em->getDefs()->getEntity($entity->getEntityType());
 		$fieldDefs = $entityDefs->getField($name);
 		$relationDefs = $entityDefs->getRelation($name);
@@ -124,7 +128,7 @@ class LinkMultipleSaver implements SaverInterface {
 			$newIds[] = $linkedEntity->id;
 
 			if (!empty($linkedEntity->columns)) {
-				$columnsData = array_intersect_key((array)$linkedEntity->columns, $allowedColumns);
+				$columnsData = array_intersect_key((array) $linkedEntity->columns, $allowedColumns);
 				$targetEntityId = $linkedEntity->parentEntityId ?? $entity->getId();
 
 				if (
@@ -160,7 +164,7 @@ class LinkMultipleSaver implements SaverInterface {
 			}
 
 			if ($parentEntityId = $relatedEntityData->parentEntityId) {
-				if ($parentEntity = $em->getEntityById($parentEntityType ,$parentEntityId)) {
+				if ($parentEntity = $em->getEntityById($parentEntityType, $parentEntityId)) {
 					$relation = $em->getRelation($parentEntity, $name);
 				}
 			}
@@ -180,7 +184,8 @@ class LinkMultipleSaver implements SaverInterface {
 	/**
 	 * @param array<string, mixed> $options
 	 */
-	private function processItem(Entity $entity, string $name, array $options = []): void {
+	private function processItem(Entity $entity, string $name, array $options = []): void
+	{
 		// Lock row
 		$em = $this->entityManager;
 		$em
@@ -210,7 +215,8 @@ class LinkMultipleSaver implements SaverInterface {
 	/**
 	 * @param array<string, mixed> $options
 	 */
-	private function processRecordList(Entity $entity, string $name, array $options): void {
+	private function processRecordList(Entity $entity, string $name, array $options): void
+	{
 		$em = $this->entityManager;
 		$fieldName = $name . 'RecordList';
 
@@ -273,7 +279,7 @@ class LinkMultipleSaver implements SaverInterface {
 			$data = [];
 			$columnsData = [];
 
-			foreach ((array)$recordData as $attribute => $value) {
+			foreach ((array) $recordData as $attribute => $value) {
 				$column = $columns[$attribute] ?? null;
 
 				if ($column) {

@@ -8,7 +8,8 @@ use Espo\Core\Utils\Metadata;
 use Espo\Core\Utils\Resource\FileReader;
 use Espo\Modules\Viacrm\Tools\Layout\UnifiedLayoutProvider;
 
-class LayoutProvider extends \Espo\Tools\Layout\LayoutProvider {
+class LayoutProvider extends \Espo\Tools\Layout\LayoutProvider
+{
 	public function __construct(
 		private readonly UnifiedLayoutProvider $unifiedLayoutProvider,
 		FileManager $fileManager,
@@ -22,8 +23,9 @@ class LayoutProvider extends \Espo\Tools\Layout\LayoutProvider {
 	/**
 	 * @throws \JsonException
 	 */
-	public function get(string $scope, string $name): ?string {
+	public function get(string $scope, string $name): ?string
+	{
 		return $this->unifiedLayoutProvider
-		    ->get($scope, $name) ?? parent::get($scope, $name);
+			->get($scope, $name) ?? parent::get($scope, $name);
 	}
 }

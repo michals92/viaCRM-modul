@@ -7,16 +7,19 @@ use Espo\Core\Select\SearchParams;
 use Espo\Entities\User;
 use Espo\Tools\Kanban\Result;
 
-class Service {
+class Service
+{
 	public function __construct(
 		private readonly WorkQueue $workQueue,
-		private readonly User      $user,
-	) {}
+		private readonly User $user,
+	) {
+	}
 
 	/**
 	 * @throws Error
 	 */
-	public function getData(SearchParams $searchParams): Result {
+	public function getData(SearchParams $searchParams): Result
+	{
 		return $this->workQueue
 			->getResult(
 				$this->user->getId(),

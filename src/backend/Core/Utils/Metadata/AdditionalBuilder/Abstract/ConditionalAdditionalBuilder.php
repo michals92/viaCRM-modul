@@ -9,33 +9,38 @@ use Espo\Modules\Viacrm\Core\Utils\Metadata\AdditionalBuilder\AdditionalBuilderW
 use stdClass;
 
 /**
- *  To be extended by AdditionalBuilder implementors that need to be called dynamically
+ *  To be extended by AdditionalBuilder implementors that need to be called dynamically.
  */
-abstract class ConditionalAdditionalBuilder extends AdditionalBuilderWithConfig {
+abstract class ConditionalAdditionalBuilder extends AdditionalBuilderWithConfig
+{
 	use ConditionalExtension;
 
 	protected readonly ExtensionUtil $extensionUtil;
 
 	/**
-	 * @var array<string, string> Key is module name, value is module version.
+	 * @var array<string, string> key is module name, value is module version
 	 */
 	protected array $installedExtensions;
 
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct();
 
 		$this->extensionUtil = ExtensionUtil::fromConfig($this->config);
 		$this->installedExtensions = $this->extensionUtil->getInstalledExtensions();
 	}
 
-	public function allPresentBuild(stdClass $data): void {}
+	public function allPresentBuild(stdClass $data): void
+	{
+	}
 
 	/** @internal */
-	public function build(stdClass $data): void {
+	public function build(stdClass $data): void
+	{
 		$allPresent = true;
 
 		foreach ($this->requiredExtensions as $extensionName => $requiredVersion) {
-			$extensionName = (string)$extensionName;
+			$extensionName = (string) $extensionName;
 
 			if (!isset($this->installedExtensions[$extensionName])) {
 				$allPresent = false;

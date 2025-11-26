@@ -10,13 +10,15 @@ use Espo\Tools\EmailTemplate\Data as EmailTemplateData;
 use Espo\Tools\EmailTemplate\Params as EmailTemplateParams;
 use Espo\Tools\EmailTemplate\Result;
 
-class Processor extends \Espo\Tools\EmailTemplate\Processor implements Di\EntityManagerAware, Di\InjectableFactoryAware {
+class Processor extends \Espo\Tools\EmailTemplate\Processor implements Di\EntityManagerAware, Di\InjectableFactoryAware
+{
 	use Di\EntityManagerSetter;
 	use Di\InjectableFactorySetter;
 
 	private ?ViewInBrowserProcessor $viewInBrowserProcess = null;
 
-	public function process(EmailTemplate $template, EmailTemplateParams $params, EmailTemplateData $data): Result {
+	public function process(EmailTemplate $template, EmailTemplateParams $params, EmailTemplateData $data): Result
+	{
 		$result = parent::process($template, $params, $data);
 
 		$parent = $data->getParent();
@@ -28,9 +30,9 @@ class Processor extends \Espo\Tools\EmailTemplate\Processor implements Di\Entity
 		}
 
 		$data = ViewInBrowserData::create()
-		    ->withEmailTemplateId($template->getId())
-		    ->withParentId($parentId)
-		    ->withParentType($parentType);
+			->withEmailTemplateId($template->getId())
+			->withParentId($parentId)
+			->withParentType($parentType);
 
 		$body = $this->getViewInBrowserProcessor()->process($result->getBody(), $data);
 
@@ -42,7 +44,8 @@ class Processor extends \Espo\Tools\EmailTemplate\Processor implements Di\Entity
 		);
 	}
 
-	private function getViewInBrowserProcessor(): ViewInBrowserProcessor {
+	private function getViewInBrowserProcessor(): ViewInBrowserProcessor
+	{
 		return $this->viewInBrowserProcess ??= $this->injectableFactory->create(ViewInBrowserProcessor::class);
 	}
 }

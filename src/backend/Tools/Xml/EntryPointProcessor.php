@@ -13,14 +13,17 @@ use Espo\Core\Utils\Json;
 use Espo\Modules\Viacrm\Entities\XmlFeed as XmlFeedEntity;
 use Espo\Modules\Viacrm\Entities\XmlTemplate;
 
-class EntryPointProcessor {
+class EntryPointProcessor
+{
 	public function __construct(
 		private readonly EntityManager $entityManager,
 		private readonly SelectBuilderFactory $selectBuilderFactory,
 		private readonly Service $service
-	) {}
+	) {
+	}
 
-	public function process(Request $request, Response $response, bool $publicAccess): void {
+	public function process(Request $request, Response $response, bool $publicAccess): void
+	{
 		$feedId = $request->getQueryParam('id') ?? throw new BadRequest();
 
 		/** @var XmlFeedEntity $feed */
@@ -32,33 +35,33 @@ class EntryPointProcessor {
 
 		/** @var XmlTemplate $template */
 		$template = $this->entityManager
-		    ->getRelation($feed, 'template')
-		    ->findOne() ?? throw new NotFound();
+			->getRelation($feed, 'template')
+			->findOne() ?? throw new NotFound();
 
 		$filters = $feed->get('filtersProcessed') ?? [];
 
 		$filters = Json::decode(Json::encode($filters), true);
 
-		$searchParams = SearchParams::fromRaw(['where' => (array)$filters]);
+		$searchParams = SearchParams::fromRaw(['where' => (array) $filters]);
 
 		$query = $this
-		    ->selectBuilderFactory
-		    ->create()
-		    ->from($template->getTargetEntityType())
-		    ->withSearchParams($searchParams)
-		    ->build();
+			->selectBuilderFactory
+			->create()
+			->from($template->getTargetEntityType())
+			->withSearchParams($searchParams)
+			->build();
 
 		$collection = $this
-		    ->entityManager
-		    ->getRDBRepository($template->getTargetEntityType())
-		    ->clone($query)
-		    ->sth()
-		    ->find();
+			->entityManager
+			->getRDBRepository($template->getTargetEntityType())
+			->clone($query)
+			->sth()
+			->find();
 
 		// Get the custom tag from the feed or use "Root" as default
 		$rootTag = $feed->get('customTag') ?: 'Root';
 		$rootTag = htmlspecialchars($rootTag);
-        
+
 		$response->writeBody('<?xml version="1.0" encoding="UTF-8"?><' . $rootTag . '>');
 
 		// Initialize $contents to null
@@ -71,7 +74,7 @@ class EntryPointProcessor {
 				->entityManager
 				->getRelation($feed, 'replaceEntries')
 				->find();
-			
+
 			$body = $contents->getString();
 
 			foreach ($replaceEntries as $replaceEntry) {
@@ -84,11 +87,11 @@ class EntryPointProcessor {
 		$response->writeBody('</' . $rootTag . '>');
 
 		$response
-		    ->setHeader('Content-Type', 'application/xml')
-		    ->setHeader('Cache-Control', 'private, must-revalidate, post-check=0, pre-check=0, max-age=1')
-		    ->setHeader('Pragma', 'public')
-		    ->setHeader('Expires', 'Sat, 26 Jul 1997 05:00:00 GMT')
-		    ->setHeader('Last-Modified', gmdate('D, d M Y H:i:s') . ' GMT')
-		    ->setHeader('Content-Disposition', 'inline; filename="' . 'feed.xml' . '"');
+			->setHeader('Content-Type', 'application/xml')
+			->setHeader('Cache-Control', 'private, must-revalidate, post-check=0, pre-check=0, max-age=1')
+			->setHeader('Pragma', 'public')
+			->setHeader('Expires', 'Sat, 26 Jul 1997 05:00:00 GMT')
+			->setHeader('Last-Modified', gmdate('D, d M Y H:i:s') . ' GMT')
+			->setHeader('Content-Disposition', 'inline; filename="' . 'feed.xml' . '"');
 	}
 }

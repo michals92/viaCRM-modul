@@ -9,13 +9,16 @@ use Espo\Core\ORM\EntityManager;
 use Espo\Core\Utils\PasswordHash;
 use Espo\Entities\User;
 
-class SetPasswordNonInteractive implements Command {
+class SetPasswordNonInteractive implements Command
+{
 	public function __construct(
 		private EntityManager $entityManager,
 		private PasswordHash $passwordHash
-	) {}
+	) {
+	}
 
-	public function run(Params $params, IO $io): void {
+	public function run(Params $params, IO $io): void
+	{
 		$userName = $params->getArgument(0);
 		$password = $params->getOption('password');
 
@@ -36,8 +39,8 @@ class SetPasswordNonInteractive implements Command {
 		$em = $this->entityManager;
 
 		$user = $em->getRDBRepositoryByClass(User::class)
-		    ->where(['userName' => $userName])
-		    ->findOne();
+			->where(['userName' => $userName])
+			->findOne();
 
 		if (!$user) {
 			$io->writeLine("User '$userName' not found.");
@@ -49,10 +52,10 @@ class SetPasswordNonInteractive implements Command {
 		$userType = $user->getType();
 
 		$allowedTypes = [
-		    User::TYPE_ADMIN,
-		    User::TYPE_SUPER_ADMIN,
-		    User::TYPE_PORTAL,
-		    User::TYPE_REGULAR,
+			User::TYPE_ADMIN,
+			User::TYPE_SUPER_ADMIN,
+			User::TYPE_PORTAL,
+			User::TYPE_REGULAR,
 		];
 
 		if (!in_array($userType, $allowedTypes)) {

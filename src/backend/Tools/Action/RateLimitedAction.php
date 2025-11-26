@@ -22,16 +22,18 @@ use Espo\Core\Utils\DataCache;
  * - `X-RateLimit-Remaining`: The number of requests remaining in the current window.
  * - `X-RateLimit-Reset`: The Unix timestamp when the rate limit window resets.
  */
-abstract class RateLimitedAction implements Action, Di\DataCacheAware {
+abstract class RateLimitedAction implements Action, Di\DataCacheAware
+{
 	use Di\DataCacheSetter;
 
 	protected int $maxCount = 3;
 
 	protected int $window = 60;
 
-	abstract function rateLimitedProcess(Request $request): Response;
+	abstract public function rateLimitedProcess(Request $request): Response;
 
-	public function process(Request $request): Response {
+	public function process(Request $request): Response
+	{
 		[$allowed, $headers] = $this->rateLimit($request, $this->dataCache);
 
 		if (!$allowed) {
@@ -51,7 +53,8 @@ abstract class RateLimitedAction implements Action, Di\DataCacheAware {
 	/**
 	 * @return array{0: bool, 1: object{limit: string, remaining: string, reset: string}}
 	 */
-	private function rateLimit(Request $request, DataCache $cache): array {
+	private function rateLimit(Request $request, DataCache $cache): array
+	{
 		$ip = $request->getServerParam('REMOTE_ADDR') ?: $request->getHeader('X-Forwarded-For');
 		if (!$ip) {
 			throw new Forbidden('Could not determine client IP address for rate limiting.');
@@ -66,7 +69,7 @@ abstract class RateLimitedAction implements Action, Di\DataCacheAware {
 		if (!$cache->has($key)) {
 			$cache->store($key, (object) [
 				'count' => 1,
-				'timestamp' => $currentTime
+				'timestamp' => $currentTime,
 			]);
 
 			return [
@@ -74,8 +77,8 @@ abstract class RateLimitedAction implements Action, Di\DataCacheAware {
 				(object) [
 					'limit' => (string) $this->maxCount,
 					'remaining' => (string) ($this->maxCount - 1),
-					'reset' => (string) ($currentTime + $this->window)
-				]
+					'reset' => (string) ($currentTime + $this->window),
+				],
 			];
 		}
 
@@ -91,8 +94,8 @@ abstract class RateLimitedAction implements Action, Di\DataCacheAware {
 				(object) [
 					'limit' => (string) $this->maxCount,
 					'remaining' => (string) ($this->maxCount - 1),
-					'reset' => (string) ($currentTime + $this->window)
-				]
+					'reset' => (string) ($currentTime + $this->window),
+				],
 			];
 		}
 
@@ -105,8 +108,8 @@ abstract class RateLimitedAction implements Action, Di\DataCacheAware {
 				(object) [
 					'limit' => (string) $this->maxCount,
 					'remaining' => '0',
-					'reset' => (string) $resetTimestamp
-				]
+					'reset' => (string) $resetTimestamp,
+				],
 			];
 		}
 
@@ -118,8 +121,8 @@ abstract class RateLimitedAction implements Action, Di\DataCacheAware {
 			(object) [
 				'limit' => (string) $this->maxCount,
 				'remaining' => (string) ($this->maxCount - $data->count),
-				'reset' => (string) ($data->timestamp + $this->window)
-			]
+				'reset' => (string) ($data->timestamp + $this->window),
+			],
 		];
 	}
 }

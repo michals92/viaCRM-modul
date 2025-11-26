@@ -20,12 +20,14 @@ use Espo\ORM\Entity;
 use Exception;
 use RuntimeException;
 
-class RecordRecurrence extends \Espo\Core\Templates\Services\Base {
+class RecordRecurrence extends \Espo\Core\Templates\Services\Base
+{
 	/**
 	 * @throws Error
 	 * @throws Exception
 	 */
-	public function processRecurringRecords(RecordRecurrenceEntity $recordRecurrence): void {
+	public function processRecurringRecords(RecordRecurrenceEntity $recordRecurrence): void
+	{
 		$now = new DateTimeImmutable();
 
 		$timezoneStr = $this->config->get('timeZone') ?? 'UTC';
@@ -168,7 +170,8 @@ class RecordRecurrence extends \Espo\Core\Templates\Services\Base {
 	/**
 	 * @throws Exception
 	 */
-	public function isAboveBatchSizeLimit(RecordRecurrenceEntity $recordRecurrence): bool {
+	public function isAboveBatchSizeLimit(RecordRecurrenceEntity $recordRecurrence): bool
+	{
 		$timezoneStr = $this->config->get('timeZone') ?? 'UTC';
 		$runLimit = $this->config->get('recurrenceBatchSizeLimit');
 
@@ -204,7 +207,8 @@ class RecordRecurrence extends \Espo\Core\Templates\Services\Base {
 	 * @throws Forbidden
 	 * @throws Exception
 	 */
-	protected function beforeCreateEntity(Entity $entity, $data): void {
+	protected function beforeCreateEntity(Entity $entity, $data): void
+	{
 		assert($entity instanceof RecordRecurrenceEntity);
 
 		if (!CronExpression::isValidExpression($entity->get('scheduling'))) {
@@ -234,7 +238,8 @@ class RecordRecurrence extends \Espo\Core\Templates\Services\Base {
 		parent::beforeCreateEntity($entity, $data);
 	}
 
-	private function isValidDateField(object|null $orgValue): bool {
+	private function isValidDateField(object|null $orgValue): bool
+	{
 		return $orgValue instanceof DateTime || $orgValue instanceof DateTimeOptional || $orgValue instanceof Date;
 	}
 }

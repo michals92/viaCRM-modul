@@ -19,7 +19,8 @@ use Espo\ORM\EntityManager;
 /**
  * EWS Personal Email Account wrapper.
  */
-class Account {
+class Account
+{
 	private const PORTION_LIMIT = 10;
 
 	private User $user;
@@ -47,41 +48,49 @@ class Account {
 		$this->user = $user;
 	}
 
-	public function updateFetchData(FetchData $fetchData): void {
+	public function updateFetchData(FetchData $fetchData): void
+	{
 		$this->entity->set('fetchData', $fetchData->getRaw());
 
 		$this->entityManager->saveEntity($this->entity, [SaveOption::SILENT => true]);
 	}
 
-	public function updateConnectedAt(): void {
+	public function updateConnectedAt(): void
+	{
 		$this->entity->set('connectedAt', DateTime::createNow()->toString());
 
 		$this->entityManager->saveEntity($this->entity, [SaveOption::SILENT => true]);
 	}
 
-	public function relateEmail(Email $email): void {
+	public function relateEmail(Email $email): void
+	{
 		$this->entityManager
-		    ->getRelation($this->entity, 'emails')
-		    ->relate($email);
+			->getRelation($this->entity, 'emails')
+			->relate($email);
 	}
 
-	public function getEntity(): EmailAccount {
+	public function getEntity(): EmailAccount
+	{
 		return $this->entity;
 	}
 
-	public function getPortionLimit(): int {
+	public function getPortionLimit(): int
+	{
 		return self::PORTION_LIMIT;
 	}
 
-	public function isAvailableForFetching(): bool {
+	public function isAvailableForFetching(): bool
+	{
 		return $this->entity->isActive();
 	}
 
-	public function getEmailAddress(): ?string {
+	public function getEmailAddress(): ?string
+	{
 		return $this->entity->getEmailAddress();
 	}
 
-	public function getUser(): Link {
+	public function getUser(): Link
+	{
 		$userLink = $this->entity->getAssignedUser();
 
 		if (!$userLink) {
@@ -91,17 +100,20 @@ class Account {
 		return $userLink;
 	}
 
-	public function getUsers(): LinkMultiple {
+	public function getUsers(): LinkMultiple
+	{
 		return LinkMultiple::create()->withAdded(
 			LinkMultipleItem::create($this->user->getId())
 		);
 	}
 
-	public function getAssignedUser(): ?Link {
+	public function getAssignedUser(): ?Link
+	{
 		return $this->entity->getAssignedUser();
 	}
 
-	public function getTeams(): LinkMultiple {
+	public function getTeams(): LinkMultiple
+	{
 		$teams = $this->entity->getTeams();
 
 		if (count($teams->getIdList())) {
@@ -112,17 +124,19 @@ class Account {
 
 		return LinkMultiple::create(
 			array_map(
-				fn(string $id) => LinkMultipleItem::create($id),
+				fn (string $id) => LinkMultipleItem::create($id),
 				$userTeams->getIdList()
 			)
 		);
 	}
 
-	public function keepFetchedEmailsUnread(): bool {
+	public function keepFetchedEmailsUnread(): bool
+	{
 		return (bool) $this->entity->get('keepFetchedEmailsUnread');
 	}
 
-	public function getFetchData(): FetchData {
+	public function getFetchData(): FetchData
+	{
 		$raw = $this->entity->get('fetchData');
 
 		if (!$raw instanceof \stdClass) {
@@ -132,31 +146,38 @@ class Account {
 		return FetchData::fromRaw($raw);
 	}
 
-	public function getFetchSince(): ?Date {
+	public function getFetchSince(): ?Date
+	{
 		return $this->entity->getFetchSince();
 	}
 
-	public function getEmailFolder(): ?Link {
+	public function getEmailFolder(): ?Link
+	{
 		return $this->entity->getEmailFolder();
 	}
 
-	public function getId(): ?string {
+	public function getId(): ?string
+	{
 		return $this->entity->getId();
 	}
 
-	public function getEntityType(): string {
+	public function getEntityType(): string
+	{
 		return EmailAccount::ENTITY_TYPE;
 	}
 
-	public function getEwsServerUrl(): ?string {
+	public function getEwsServerUrl(): ?string
+	{
 		return $this->entity->get('ewsServerUrl');
 	}
 
-	public function getEwsUserName(): ?string {
+	public function getEwsUserName(): ?string
+	{
 		return $this->entity->get('ewsUserName');
 	}
 
-	public function getEwsPassword(): ?string {
+	public function getEwsPassword(): ?string
+	{
 		$password = $this->entity->get('ewsPassword');
 
 		if ($password === null) {

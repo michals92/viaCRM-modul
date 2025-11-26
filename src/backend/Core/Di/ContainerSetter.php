@@ -4,10 +4,12 @@ namespace Espo\Modules\Viacrm\Core\Di;
 
 use Espo\Core\Container\Container;
 
-trait ContainerSetter {
+trait ContainerSetter
+{
 	protected Container $container;
 
-	public function setContainer(Container $container): void {
+	public function setContainer(Container $container): void
+	{
 		$this->container = $container;
 	}
 }

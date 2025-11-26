@@ -6,7 +6,8 @@ use Espo\Core\Record\Collection;
 use Espo\ORM\Entity;
 use stdClass;
 
-class GroupItem extends \Espo\Tools\Kanban\GroupItem {
+class GroupItem extends \Espo\Tools\Kanban\GroupItem
+{
 	/**
 	 * @param Collection<Entity> $collection
 	 */
@@ -15,12 +16,13 @@ class GroupItem extends \Espo\Tools\Kanban\GroupItem {
 		Collection $collection,
 		?string $label = null,
 		?string $style = null,
-		readonly public ?string $color = null,
+		public readonly ?string $color = null,
 	) {
 		parent::__construct($name, $collection, $label, $style);
 	}
 
-	public function toRaw(): stdClass {
+	public function toRaw(): stdClass
+	{
 		$raw = parent::toRaw();
 
 		$raw->color = $this->color;
