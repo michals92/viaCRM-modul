@@ -18,7 +18,7 @@ define(['action-handler'], Dep => class extends Dep<DetailView> {
 			ids = [modelId];
 		}
 
-		return this.view.createView('modal', 'autocrm:views/abstract/modal/hour-selector', {
+		return this.view.createView('modal', 'viacrm:views/abstract/modal/hour-selector', {
 			headerText: this.view.translate('Resync Imap', 'labels', 'Email'),
 			endpointName,
 			ids

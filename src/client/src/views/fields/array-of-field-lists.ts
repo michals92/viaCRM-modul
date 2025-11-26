@@ -1,4 +1,4 @@
-define(['autocrm:views/fields/array-of-arrays'], (Dep) => class extends Dep {
+define(['viacrm:views/fields/array-of-arrays'], (Dep) => class extends Dep {
 	setup() {
 		super.setup();
 		this.targetEntityType = this.options?.targetEntityType || this.params?.targetEntityType || this.targetEntityType;

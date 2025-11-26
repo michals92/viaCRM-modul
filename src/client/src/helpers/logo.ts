@@ -41,7 +41,7 @@ define(() => class {
 			if (themeLogo && !['client/img/logo.svg', 'client/img/logo-light.svg'].includes(themeLogo)) {
 				return basePath + themeLogo;
 			} else {
-				return basePath + 'client/modules/autocrm/img/autoerp-logo.png';
+				return basePath + 'client/modules/viacrm/img/autoerp-logo.png';
 			}
 		}
 

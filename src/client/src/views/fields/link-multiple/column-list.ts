@@ -1,7 +1,107 @@
+type ColumnDef = {
+	type: string;
+	field: string;
+	scope: string;
+	view?: string;
+	required?: boolean;
+	default?: unknown;
+	options?: string[];
+	[key: string]: unknown;
+};
+
+type LinkDefs = {
+	entity: string;
+	[key: string]: unknown;
+};
+
+type FieldDefs = {
+	columnListLink?: string;
+	columnListForeign?: string;
+	columns?: Record<string, string>;
+	[key: string]: unknown;
+};
+
+type ColumnRecord = {
+	id: string;
+	name: string;
+	parentEntityId?: string | null;
+	parentEntityName?: string | null;
+	columns: Record<string, unknown>;
+	[key: string]: unknown;
+};
+
+type FieldView = {
+	model: {
+		attributes: Record<string, unknown>;
+		get(attr: string): unknown;
+		set(attr: string | Record<string, unknown>, value?: unknown): void;
+	};
+	name: string;
+	autoNumericOptions?: unknown;
+	render(): Promise<void>;
+	validate?(): boolean;
+	validations?: string[];
+};
+
+type LinkMultipleFieldView = {
+	name: string;
+	model: {
+		name: string;
+		get(attribute: string): unknown;
+		set(attributes: Record<string, unknown>, options?: { silent?: boolean }): void;
+		trigger(event: string): void;
+	};
+	scope: string;
+	foreignScope: string;
+	parentScope?: string;
+	mode: string;
+	ids: string[];
+	nameHash: Record<string, string>;
+	columns: ColumnRecord[];
+	idsName: string;
+	nameHashName: string;
+	_autocompleteList?: Array<{ dispose(): void }>;
+	$el: JQuery;
+	isSearchMode(): boolean;
+	isEditMode(): boolean;
+	isDetailMode(): boolean;
+	isRequired(): boolean;
+	getSearchParamsData(): { nameHash?: Record<string, string>; idList?: string[] };
+	searchParams: { nameHash?: Record<string, string>; value?: string[] };
+	getMetadata(): { get(path: string[]): unknown };
+	getLanguage(): { translateOption(value: string, field: string, scope: string): string; translate(...args: unknown[]): string };
+	getHelper(): { numberUtil: { formatFloat(value: number, decimals: number): string; formatInt(value: number, decimals: number): string }; escapeString(value: string): string };
+	getModelFactory(): { create(type: string): Promise<{ name: string; entityType: string; defs: unknown; attributes: Record<string, unknown>; set(attrs: Record<string, unknown>): void; get(attr: string): unknown }> };
+	addActionHandler(action: string, handler: (e: JQuery.TriggeredEvent) => void): void;
+	listenTo(target: unknown, event: string, handler: (...args: unknown[]) => void): void;
+	on(event: string, handler: (...args: unknown[]) => void, context: unknown): void;
+	once(event: string, handler: () => void, context?: unknown): void;
+	trigger(event: string, ...args: unknown[]): void;
+	actionSelect(): void;
+	deleteLinkHtml(id: string): void;
+	afterDeleteLink(id: string): void;
+	afterAddLink(id: string): void;
+	reRender(): void;
+	hasView(key: string): boolean;
+	getView(key: string): { model: { get(attr: string): unknown }; name: string; validate?(): boolean; validations?: string[] } | undefined;
+	clearView(key: string): void;
+	createView(key: string, viewName: string, options: Record<string, unknown>): Promise<{
+		model: { attributes: Record<string, unknown>; get(attr: string): unknown; set(attr: string, value: unknown): void };
+		name: string;
+		autoNumericOptions?: unknown;
+		render(): Promise<void>;
+	}>;
+	showValidationMessage(msg: string): void;
+	getLabelText(): string;
+	translate(...args: unknown[]): string;
+	getIconHtml(id: string): string;
+	events: Record<string, (e: JQuery.TriggeredEvent) => void>;
+};
+
 define(['ui/autocomplete'], Autocomplete => class {
-	linkMultiple;
+	linkMultiple: LinkMultipleFieldView;
 	columnsName: string = 'columnList';
-	columnsDefs: any = {};
+	columnsDefs: Record<string, ColumnDef> = {};
 
 	/** @const */
 	COLUMN_TYPE_VARCHAR = ['varchar', 'text'];
@@ -14,7 +114,7 @@ define(['ui/autocomplete'], Autocomplete => class {
 	/** @const */
 	COLUMN_TYPE_FLOAT = ['float', 'currency'];
 
-	constructor(linkMultiple: any) {
+	constructor(linkMultiple: LinkMultipleFieldView) {
 		this.linkMultiple = linkMultiple;
 	}
 
@@ -36,10 +136,10 @@ define(['ui/autocomplete'], Autocomplete => class {
 
 		const fieldDefs = this.linkMultiple
 			.getMetadata()
-			.get(['entityDefs', this.linkMultiple.model.name, 'fields', this.linkMultiple.name]);
+			.get(['entityDefs', this.linkMultiple.model.name, 'fields', this.linkMultiple.name]) as FieldDefs | undefined;
 		const linkDefs = this.linkMultiple
 			.getMetadata()
-			.get(['entityDefs', this.linkMultiple.model.name, 'links', this.linkMultiple.name]);
+			.get(['entityDefs', this.linkMultiple.model.name, 'links', this.linkMultiple.name]) as LinkDefs;
 		this.linkMultiple.foreignScope = linkDefs.entity;
 
 		const columnListLink = fieldDefs?.columnListLink;
@@ -49,9 +149,9 @@ define(['ui/autocomplete'], Autocomplete => class {
 			linkedEntity: {
 				type: 'link',
 				field: 'linkedEntity',
-				scope: this.linkMultiple
+				scope: (this.linkMultiple
 					.getMetadata()
-					.get(['entityDefs', this.linkMultiple.model.name, 'links', this.linkMultiple.name, 'entity']),
+					.get(['entityDefs', this.linkMultiple.model.name, 'links', this.linkMultiple.name, 'entity']) as string) || '',
 				view: 'views/fields/link',
 			},
 		};
@@ -59,21 +159,21 @@ define(['ui/autocomplete'], Autocomplete => class {
 		if (columnListLink && columnListForeign) {
 			const parentLinkDefs = this.linkMultiple
 				.getMetadata()
-				.get(['entityDefs', this.linkMultiple.model.name, 'links', columnListLink]);
+				.get(['entityDefs', this.linkMultiple.model.name, 'links', columnListLink]) as LinkDefs;
 			const parentEntityType = parentLinkDefs.entity;
 			const targetLinkDefs = this.linkMultiple
 				.getMetadata()
-				.get(['entityDefs', parentEntityType, 'links', columnListForeign]);
+				.get(['entityDefs', parentEntityType, 'links', columnListForeign]) as LinkDefs;
 
 			this.linkMultiple.parentScope = parentEntityType;
 			this.linkMultiple.scope = targetLinkDefs.entity;
 
 			const parentFieldDefs = this.linkMultiple
 				.getMetadata()
-				.get(['entityDefs', parentEntityType, 'fields', columnListForeign]);
+				.get(['entityDefs', parentEntityType, 'fields', columnListForeign]) as FieldDefs | undefined;
 
 			if (parentFieldDefs?.columns) {
-				const additionalColumns = {
+				const additionalColumns: Record<string, ColumnDef> = {
 					parentEntity: {
 						type: 'link',
 						field: 'parentEntity',
@@ -84,12 +184,12 @@ define(['ui/autocomplete'], Autocomplete => class {
 				Object.entries(parentFieldDefs.columns).forEach(([columnName, columnField]) => {
 					const fieldDef = this.linkMultiple
 						.getMetadata()
-						.get(['entityDefs', this.linkMultiple.scope, 'fields', columnField]);
+						.get(['entityDefs', this.linkMultiple.scope, 'fields', columnField]) as (ColumnDef & { field?: string }) | undefined;
 
 					if (fieldDef) {
 						additionalColumns[columnName] = {
-							...fieldDef,
-							field: columnField,
+							...(fieldDef as ColumnDef),
+							field: columnField as string,
 							scope: this.linkMultiple.scope,
 						};
 					}
@@ -100,16 +200,16 @@ define(['ui/autocomplete'], Autocomplete => class {
 			this.linkMultiple.scope = this.linkMultiple.foreignScope;
 
 			if (fieldDefs?.columns) {
-				const additionalColumns = {};
+				const additionalColumns: Record<string, ColumnDef> = {};
 				Object.entries(fieldDefs.columns).forEach(([columnName, columnField]) => {
 					const fieldDef = this.linkMultiple
 						.getMetadata()
-						.get(['entityDefs', this.linkMultiple.scope, 'fields', columnField]);
+						.get(['entityDefs', this.linkMultiple.scope, 'fields', columnField]) as (ColumnDef & { field?: string }) | undefined;
 
 					if (fieldDef) {
 						additionalColumns[columnName] = {
-							...fieldDef,
-							field: columnField,
+							...(fieldDef as ColumnDef),
+							field: columnField as string,
 							scope: this.linkMultiple.scope,
 						};
 					}
@@ -123,8 +223,8 @@ define(['ui/autocomplete'], Autocomplete => class {
 					this.linkMultiple.getSearchParamsData().nameHash || this.linkMultiple.searchParams.nameHash || {};
 			const idList =
 					this.linkMultiple.getSearchParamsData().idList || this.linkMultiple.searchParams.value || [];
-			this.linkMultiple.nameHash = Espo.Utils.clone(nameHash);
-			this.linkMultiple.ids = Espo.Utils.clone(idList);
+			this.linkMultiple.nameHash = (window as any).Espo.Utils.clone(nameHash);
+			this.linkMultiple.ids = (window as any).Espo.Utils.clone(idList);
 		} else {
 			this.copyValuesFromModel();
 		}
@@ -146,13 +246,13 @@ define(['ui/autocomplete'], Autocomplete => class {
 	}
 
 	copyValuesFromModel() {
-		const currentColumns = this.linkMultiple.model.get(this.columnsName) || [];
+		const currentColumns = (this.linkMultiple.model.get(this.columnsName) as ColumnRecord[]) || [];
 
 		this.linkMultiple.ids = [];
 		this.linkMultiple.nameHash = {};
 		this.linkMultiple.columns = [];
 
-		currentColumns.forEach((record: any) => {
+		currentColumns.forEach((record: ColumnRecord) => {
 			if (record.id) {
 				this.linkMultiple.ids.push(record.id);
 				this.linkMultiple.nameHash[record.id] = record.name;
@@ -188,9 +288,12 @@ define(['ui/autocomplete'], Autocomplete => class {
 		}
 
 		if (this.COLUMN_TYPE_ENUM.includes(type)) {
-			return this.linkMultiple
-				.getLanguage()
-				.translateOption(value, this.columnsDefs[column].field, this.columnsDefs[column].scope);
+			const columnDef = this.columnsDefs[column];
+			if (columnDef) {
+				return this.linkMultiple
+					.getLanguage()
+					.translateOption(value, columnDef.field, columnDef.scope);
+			}
 		}
 
 		return value;
@@ -263,7 +366,7 @@ define(['ui/autocomplete'], Autocomplete => class {
 		Object.keys(this.columnsDefs).forEach(column => {
 			const columnDef = this.columnsDefs[column];
 
-			if (!this.COLUMN_TYPE_VARCHAR.includes(columnDef.type)) {
+			if (!columnDef || !this.COLUMN_TYPE_VARCHAR.includes(columnDef.type)) {
 				return;
 			}
 
@@ -277,7 +380,12 @@ define(['ui/autocomplete'], Autocomplete => class {
 				return;
 			}
 
-			const autocomplete = new Autocomplete($element.get(0), {
+			const element = $element.get(0) as HTMLInputElement | undefined;
+			if (!element) {
+				return;
+			}
+
+			const autocomplete = new Autocomplete(element, {
 				name: this.linkMultiple.name + 'Column' + id,
 				triggerSelectOnValidInput: true,
 				autoSelectFirst: true,
@@ -290,7 +398,7 @@ define(['ui/autocomplete'], Autocomplete => class {
 				lookup: options,
 			});
 
-			this.linkMultiple._autocompleteList.push(autocomplete);
+			this.linkMultiple._autocompleteList?.push(autocomplete);
 			this.linkMultiple.once('delete-link:' + id, () => autocomplete.dispose());
 		});
 	}
@@ -320,9 +428,9 @@ define(['ui/autocomplete'], Autocomplete => class {
 
 		// Then validate all field views
 		this.linkMultiple.ids.forEach(id => {
-			Object.entries(this.columnsDefs).forEach(([column]: [string, any]) => {
+			Object.entries(this.columnsDefs).forEach(([column]) => {
 				const view = this.linkMultiple.getView(column + '-' + id);
-				if (view) {
+				if (view && view.validate) {
 					// Call validate on the field view
 					const validationError = view.validate();
 					if (validationError) {
@@ -412,6 +520,14 @@ define(['ui/autocomplete'], Autocomplete => class {
 		data[this.columnsName] = this.linkMultiple.ids.map((id: string) => {
 			const record = currentRecords.find(r => r.id === id);
 
+			if (!record) {
+				return {
+					id,
+					name: this.linkMultiple.nameHash[id] || '',
+					columns: {},
+				};
+			}
+
 			Object.keys(this.columnsDefs).forEach(columnName => {
 				if (columnName.startsWith('parent') || columnName.startsWith('linkedEntity')) {
 					delete record.columns[columnName];
@@ -444,13 +560,13 @@ define(['ui/autocomplete'], Autocomplete => class {
 				columns: {},
 			};
 
-			Object.entries(this.columnsDefs).forEach(([column, def]: [string, any]) => {
+			Object.entries(this.columnsDefs).forEach(([column, def]) => {
 				let defaultValue = def.default;
 
 				if (defaultValue === undefined) {
 					const fieldMeta = this.linkMultiple
 						.getMetadata()
-						.get(['entityDefs', def.scope, 'fields', def.field]);
+						.get(['entityDefs', def.scope, 'fields', def.field]) as ColumnDef | undefined;
 					defaultValue = fieldMeta?.default;
 				}
 
@@ -476,7 +592,7 @@ define(['ui/autocomplete'], Autocomplete => class {
 			$container.append($('<table>').addClass('table list-row-table').append($('<tbody>')));
 		}
 
-		const record = this.linkMultiple.columns.find((record: any) => record.id === id);
+		const record = this.linkMultiple.columns.find((record: ColumnRecord) => record.id === id);
 		if (record) {
 			const $row = $('<tr>').addClass('list-row link-' + id);
 
@@ -511,11 +627,11 @@ define(['ui/autocomplete'], Autocomplete => class {
 		}
 	}
 
-	data(data: any) {
+	data(data: Record<string, unknown>) {
 		data.columnListEnabled = true;
 		data.columnHeaders = Object.keys(this.columnsDefs).map((columnName: string) => {
-			let query = [columnName, 'fields', this.linkMultiple.scope];
-			if (columnName === 'parentEntity') {
+			let query: string[] = [columnName, 'fields', this.linkMultiple.scope];
+			if (columnName === 'parentEntity' && this.linkMultiple.parentScope) {
 				query = [this.linkMultiple.parentScope, 'scopeNamesPlural', 'Global'];
 			} else if (columnName === 'linkedEntity') {
 				query = [this.linkMultiple.scope, 'scopeNamesPlural', 'Global'];
@@ -528,23 +644,27 @@ define(['ui/autocomplete'], Autocomplete => class {
 		});
 
 		data.hasLinks = this.linkMultiple.ids && this.linkMultiple.ids.length > 0;
-		data.itemDataList = [];
+		const itemDataList: unknown[] = [];
+		data.itemDataList = itemDataList;
 
 		if (this.linkMultiple.ids) {
-			const records = this.linkMultiple.model.get(this.columnsName) || [];
+			const records = (this.linkMultiple.model.get(this.columnsName) as ColumnRecord[]) || [];
 
 			records.forEach(record => {
-				const columnData = {};
+				const columnData: Record<string, unknown> = {};
 
 				Object.keys(this.columnsDefs).forEach(column => {
-					columnData[column] = {
-						name: column,
-						value: record.columns?.[column],
-						type: this.columnsDefs[column].type,
-					};
+					const columnDef = this.columnsDefs[column];
+					if (columnDef) {
+						columnData[column] = {
+							name: column,
+							value: record.columns?.[column],
+							type: columnDef.type,
+						};
+					}
 				});
 
-				data.itemDataList.push({
+				itemDataList.push({
 					id: record.id,
 					name: record.name,
 					parentEntityId: record.parentEntityId,
@@ -560,7 +680,7 @@ define(['ui/autocomplete'], Autocomplete => class {
 
 	afterRender() {
 		if (this.linkMultiple.ids) {
-			const records = this.linkMultiple.model.get(this.columnsName) || [];
+			const records = (this.linkMultiple.model.get(this.columnsName) as ColumnRecord[]) || [];
 			records.forEach(record => {
 				Object.keys(this.columnsDefs).forEach(columnName => {
 					const value = record.columns?.[columnName];
@@ -572,7 +692,7 @@ define(['ui/autocomplete'], Autocomplete => class {
 					if ($field.length) {
 						$field.attr('id', fieldId);
 						this.getFieldView(columnName, record)
-							.then((view: any) => {
+							.then(view => {
 								if (value !== null && value !== undefined) {
 									view.model.set(view.name, value);
 								}
@@ -588,8 +708,12 @@ define(['ui/autocomplete'], Autocomplete => class {
 		}
 	}
 
-	async getFieldView(columnName, record) {
+	async getFieldView(columnName: string, record: ColumnRecord): Promise<FieldView> {
 		const columnDef = this.columnsDefs[columnName];
+
+		if (!columnDef) {
+			throw new Error(`Column definition not found for: ${columnName}`);
+		}
 		const fieldId = `${columnName}-${record.id}`;
 		const model = await this.linkMultiple.getModelFactory().create('Model');
 		model.name = columnDef.scope;
@@ -607,17 +731,17 @@ define(['ui/autocomplete'], Autocomplete => class {
 			});
 		}
 
+		const { type, ...columnDefRest } = columnDef;
 		model.defs = {
 			fields: {
 				[columnDef.field]: {
 					type: columnDef.type,
-					...columnDef,
+					...columnDefRest,
 				},
 			},
 		};
 
-		const viewName =
-				this.linkMultiple.getMetadata().get(['fields', columnDef.type, 'view']) ||
+		const viewName = (this.linkMultiple.getMetadata().get(['fields', columnDef.type, 'view']) as string | undefined) ||
 				'views/fields/' + columnDef.type;
 
 		const viewOptions = {
@@ -639,41 +763,45 @@ define(['ui/autocomplete'], Autocomplete => class {
 			type: columnDef.type,
 		};
 
-		return new Promise((resolve, reject) => {
+		return new Promise<FieldView>((resolve, reject) => {
 			this.linkMultiple
 				.createView(`${columnName}-${record.id}`, viewName, viewOptions)
 				.then(view => {
 					delete view.autoNumericOptions;
 					if (this.linkMultiple.isEditMode()) {
 						this.linkMultiple.listenTo(view, 'change', () => {
-							const currentColumns = this.linkMultiple.model.get(this.columnsName) || [];
+							const currentColumns = (this.linkMultiple.model.get(this.columnsName) as ColumnRecord[]) || [];
 							const recordIndex = currentColumns.findIndex(col => col.id === record.id);
 							if (recordIndex === -1) {
 								return;
 							}
 							const updatedColumns = [...currentColumns];
+							const currentRecord = updatedColumns[recordIndex];
+							if (!currentRecord) {
+								return;
+							}
 							Object.entries(view.model.attributes).forEach(([attributeName, attributeValue]) => {
 								if (attributeName.startsWith('parentEntity')) {
-									updatedColumns[recordIndex][attributeName] = attributeValue;
+									currentRecord[attributeName] = attributeValue;
 								} else {
-									if (!updatedColumns[recordIndex].columns) {
-										updatedColumns[recordIndex].columns = {};
+									if (!currentRecord.columns) {
+										currentRecord.columns = {};
 									}
-									updatedColumns[recordIndex].columns[attributeName] = attributeValue;
+									currentRecord.columns[attributeName] = attributeValue;
 								}
 							});
-							this.linkMultiple.model.set(this.columnsName, updatedColumns, { silent: true });
+							this.linkMultiple.model.set({ [this.columnsName]: updatedColumns });
 							this.linkMultiple.columns = updatedColumns;
 							this.linkMultiple.model.trigger('change:' + this.columnsName);
 						});
 					}
-					resolve(view);
+					resolve(view as FieldView);
 				})
 				.catch(reject);
 		});
 	}
 
-	getColumnInput(columnName: string, record: any) {
+	getColumnInput(columnName: string, record: ColumnRecord) {
 		const fieldId = `${columnName}-${record.id}`;
 		const value = record.columns[columnName];
 		const $cell = $('<div>')
@@ -682,8 +810,8 @@ define(['ui/autocomplete'], Autocomplete => class {
 			.attr('data-id', record.id)
 			.attr('id', fieldId);
 
-		this.getFieldView(columnName, record.id)
-			.then(async (view: any) => {
+		this.getFieldView(columnName, record)
+			.then(async view => {
 				if (value !== null && value !== undefined) {
 					view.model.set(view.name, value);
 				}

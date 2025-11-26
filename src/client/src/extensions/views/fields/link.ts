@@ -1,6 +1,15 @@
-extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
-	editTemplate: string = 'viacrm:fields/link/edit';
-	listLinkTemplate: string = 'viacrm:fields/link/list-link';
+import type Model from 'espocrm/src/model';
+
+import type LinkFieldView from 'espocrm/src/views/fields/link';
+
+type AutoPopulateConfig = {
+	mapping?: Record<string, string>;
+	conditionGroup?: unknown[];
+};
+
+extend<LinkFieldView>(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
+	override editTemplate = 'viacrm:fields/link/edit';
+	override listLinkTemplate = 'viacrm:fields/link/list-link';
 
 
 	getSelectFilters() {
@@ -9,7 +18,7 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 			: {};
 	}
 
-	afterRender() {
+	override afterRender() {
 		const minChars = this.params.autocompleteMinChars;
 
 		if (minChars !== undefined && minChars !== null) {
@@ -32,7 +41,7 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 	/**
 	 * Override select method to add auto-populate functionality.
 	 */
-	select(model: any): Promise<void> | void {
+	select(model: Model): Promise<void> | void {
 		const result = super.select(model);
 
 		// Get autoPopulate configuration from metadata
@@ -65,7 +74,7 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 	 * Get autoPopulate configuration from metadata.
 	 * Checks both entityDefs and fieldDefs.
 	 */
-	private getAutoPopulateConfig(): any {
+	private getAutoPopulateConfig(): AutoPopulateConfig | null {
 		// Try entityDefs first
 		let config = this.getMetadata().get([
 			'entityDefs',
@@ -86,8 +95,8 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 	/**
 	 * Apply auto-populate mapping from selected model to current model.
 	 */
-	private applyAutoPopulate(selectedModel: any, mapping: Record<string, string>): void {
-		const attributes: Record<string, any> = {};
+	private applyAutoPopulate(selectedModel: Model, mapping: Record<string, string>): void {
+		const attributes: Record<string, unknown> = {};
 
 		Object.entries(mapping).forEach(([sourceField, targetField]) => {
 			const value = selectedModel.get(sourceField);
@@ -106,7 +115,7 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 	 * Check conditions using DynamicLogic.
 	 * Supports parent.* attribute notation for testing parent model.
 	 */
-	private checkConditions(conditionGroup: any[]): boolean {
+	private checkConditions(conditionGroup: unknown[]): boolean {
 		if (!Array.isArray(conditionGroup)) {
 			return true;
 		}

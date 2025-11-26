@@ -16,7 +16,7 @@ define(['views/modal', 'model'], (Dep, Model) => class extends Dep {
 
 		this.createView(
 			'field',
-			'autocrm:views/admin/layouts/fields/select-related-attribute',
+			'viacrm:views/admin/layouts/fields/select-related-attribute',
 			{
 				el: this.getSelector() + ' .field',
 				model,

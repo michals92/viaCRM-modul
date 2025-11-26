@@ -1,5 +1,5 @@
 define(['views/modal'], Dep => class extends Dep {
-	override template = 'autocrm:email-template/modals/create';
+	override template = 'viacrm:email-template/modals/create';
 
 	override setup() {
 		this.buttonList = [

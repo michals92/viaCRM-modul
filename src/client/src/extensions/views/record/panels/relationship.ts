@@ -1,5 +1,7 @@
-extend(['viacrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
-	template = 'viacrm:record/panels/relationship';
+import type RelationshipPanelView from 'espocrm/src/views/record/panels/relationship';
+
+extend<RelationshipPanelView>(['viacrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
+	override template = 'viacrm:record/panels/relationship';
 
 	searchView = 'views/record/search';
 
@@ -20,7 +22,7 @@ extend(['viacrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
 		return defaultSearchData;
 	}
 
-	setup() {
+	override setup() {
 		this.filtersEnabled = this.defs.filtersEnabled || false;
 
 		super.setup();

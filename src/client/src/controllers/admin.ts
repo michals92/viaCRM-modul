@@ -1,5 +1,13 @@
+import type {
+	LayoutsActionOptions,
+	LinkManagerActionOptions,
+	ConversionsActionOptions,
+	ColorizationActionOptions,
+	EntityManagerActionOptions,
+} from 'viacrm/types';
+
 define(['controllers/admin'], Dep => class extends Dep {
-	override actionLayouts(options: any) {
+	override actionLayouts(options: LayoutsActionOptions) {
 		const scope = options.scope || null;
 		const type = options.type || null;
 		const em = options.em || false;
@@ -11,7 +19,7 @@ define(['controllers/admin'], Dep => class extends Dep {
 		});
 	}
 
-	override actionLinkManager(options: any) {
+	override actionLinkManager(options: LinkManagerActionOptions) {
 		const scope = options.scope || null;
 
 		this.main('viacrm:views/admin/link-manager/index', {
@@ -19,7 +27,7 @@ define(['controllers/admin'], Dep => class extends Dep {
 		});
 	}
 
-	actionConversions(options: any) {
+	actionConversions(options: ConversionsActionOptions) {
 		const scope = options.scope || null;
 
 		this.main('viacrm:views/admin/conversions', {
@@ -27,7 +35,7 @@ define(['controllers/admin'], Dep => class extends Dep {
 		});
 	}
 
-	actionColorization(options: any) {
+	actionColorization(options: ColorizationActionOptions) {
 		const scope = options.scope;
 
 		if (!scope) {
@@ -60,7 +68,7 @@ define(['controllers/admin'], Dep => class extends Dep {
 			});
 	}
 
-	override actionEntityManager(options: any) {
+	override actionEntityManager(options: EntityManagerActionOptions) {
 		if (options.clone && options.fromScope) {
 			this.main('viacrm:views/admin/entity-manager/clone', { fromScope: options.fromScope });
 		}

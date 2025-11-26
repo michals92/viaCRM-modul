@@ -1,7 +1,8 @@
 import type ListView from "espocrm/src/views/list";
+import type { ListScheduledRecurrencesActionData } from 'viacrm/types';
 
 define(['action-handler'], Dep => class extends Dep<ListView> {
-	actionListScheduledRecurrences(_data: Record<string, any>, e: any) {
+	actionListScheduledRecurrences(_data: ListScheduledRecurrencesActionData, e: MouseEvent) {
 		const url = '#RecordRecurrence/list/entityType=' + this.view.scope;
 
 		if (e.button === 1) {

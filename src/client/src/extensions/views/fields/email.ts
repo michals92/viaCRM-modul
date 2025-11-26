@@ -1,13 +1,27 @@
+import type EmailFieldView from 'espocrm/src/views/fields/email';
+
 import type Model from "espocrm/src/model";
 import type SelectRecordsView from "espocrm/src/views/modals/select-records";
+import type { BaseFieldData } from 'viacrm/types';
 
-extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
-	listTemplate = 'autocrm:fields/email/list';
-	detailTemplate = 'autocrm:fields/email/detail';
-	editTemplate = 'autocrm:fields/email/edit';
+type EmailAddressData = {
+	emailAddress: string;
+	primary?: boolean;
+	optOut?: boolean;
+	invalid?: boolean;
+	lower?: string;
+	accountId?: string;
+	accountName?: string;
+	[key: string]: unknown;
+};
 
-	setMode(mode) {
-		super.setMode(mode);
+extend<EmailFieldView>(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
+	override listTemplate = 'viacrm:fields/email/list';
+	override detailTemplate = 'viacrm:fields/email/detail';
+	override editTemplate = 'viacrm:fields/email/edit';
+
+	override setMode(mode: string): Promise<void> {
+		const result = super.setMode(mode);
 
 		if (this.isDetailMode() || this.isListMode()) {
 			if (this.params.copyToClipboard) {
@@ -26,9 +40,11 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 				this.clearAccount(index);
 			};
 		}
+
+		return result;
 	}
 
-	data(): Record<string, any> {
+	override data(): BaseFieldData {
 		const accountLinkEnabled = this.getConfig().get('disableAccountLinkToEmail') !== true;
 			
 		const data = {
@@ -46,7 +62,7 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 		};
 	}
 
-	addEmailAddress(): void {
+	override addEmailAddress(): void {
 		// Fetch all current values including unsaved ones
 		const currentData = this.fetchEmailAddressData();
 		const emailAddressData = this.model.get(this.dataFieldName) || [];
@@ -80,7 +96,7 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 		});
 	}
 
-	removeEmailAddressBlock($block) {
+	override removeEmailAddressBlock($block) {
 		// Find the index of the block to remove
 		const index = this.$el.find('div.email-address-block').index($block);
 
@@ -144,7 +160,7 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 		this.reRender();
 	}
 
-	copyToClipboard(index?: number): void {
+	override copyToClipboard(index?: number): void {
 		const emailAddressData = this.model.get(this.dataFieldName);
 		const emailAddress = this.model.get(this.name);
 		const value =
@@ -161,7 +177,7 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 		}
 	}
 
-	fetch(): Record<string, any> {
+	override fetch(): Record<string, any> {
 		const data = super.fetch();
 		const emailAddressData = this.model.get('emailAddressData') || [];
 		return {
@@ -170,8 +186,8 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 		};
 	}
 
-	fetchEmailAddressData(): any[] {
-		const data: any[] = [];
+	override fetchEmailAddressData(): EmailAddressData[] {
+		const data: EmailAddressData[] = [];
 
 		const $list = this.$el.find('div.email-address-block') as JQuery;
 		const emailAddressData = this.model.get(this.dataFieldName) || [];
@@ -200,7 +216,7 @@ extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
 		return data;
 	}
 
-	afterRender() {
+	override afterRender() {
 		const minChars = this.params.autocompleteMinChars;
 
 		if (minChars !== undefined && minChars !== null) {

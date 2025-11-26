@@ -1,5 +1,5 @@
 define(['views/record/edit-small'], Dep => class extends Dep {
-	override template = 'autocrm:attribute-mapping/record/edit';
+	override template = 'viacrm:attribute-mapping/record/edit';
 
 	override detailLayout = [
 		{
@@ -7,7 +7,7 @@ define(['views/record/edit-small'], Dep => class extends Dep {
 				[
 					{
 						name: 'attributeMapping',
-						view: 'autocrm:views/attribute-mapping/fields/attribute-mapping',
+						view: 'viacrm:views/attribute-mapping/fields/attribute-mapping',
 					},
 				]
 			],

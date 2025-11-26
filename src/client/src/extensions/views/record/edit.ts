@@ -1,7 +1,9 @@
 import type EditRecordView from 'espocrm/src/views/record/edit';
 
-extend((Dep: typeof EditRecordView) => class extends Dep {
-	template = 'autocrm:record/edit';
+import type EditRecordView from 'espocrm/src/views/record/edit';
+
+extend<EditRecordView>((Dep: typeof EditRecordView) => class extends Dep {
+	override template = 'viacrm:record/edit';
 
 	override afterNotValid() {
 		super.afterNotValid();
@@ -66,7 +68,7 @@ extend((Dep: typeof EditRecordView) => class extends Dep {
 		setTimeout(() => $field.removeClass('highlight-error'), 2000);
 	}
 
-	convertDetailLayout(simplifiedLayout) {
+	override convertDetailLayout(simplifiedLayout) {
 		const layout = super.convertDetailLayout(simplifiedLayout);
 
 		this.middlePanelDefsList = [];

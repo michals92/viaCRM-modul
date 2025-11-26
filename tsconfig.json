@@ -28,7 +28,8 @@
 		"types": ["@viacrm/types-espocrm"],
 
 		"paths": {
-			"espocrm/src/*": ["./node_modules/@viacrm/types-espocrm/src/*"]
+			"espocrm/src/*": ["./node_modules/@viacrm/types-espocrm/src/*"],
+			"viacrm/*": ["./node_modules/@viacrm/types-espocrm/modules/viacrm/*"]
 		},
 
 		"noPropertyAccessFromIndexSignature": false,

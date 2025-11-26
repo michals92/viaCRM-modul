@@ -1,11 +1,13 @@
-extend(Dep => class extends Dep {
+import type EmailListView from 'espocrm/src/views/email/list';
+
+extend<EmailListView>(Dep => class extends Dep {
 	lastMove: {
             ids: string[];
             fromFolder: string;
             toFolder: string;
         } | null = null;
 
-	setup() {
+	override setup() {
 		super.setup();
 
 		// Add CTRL+Z handler
@@ -16,14 +18,14 @@ extend(Dep => class extends Dep {
 		});
 	}
 
-	createListRecordView(fetch) {
+	override createListRecordView(fetch) {
 		return super.createListRecordView(fetch).then(view => {
 			this.listenTo(view, 'after:render', () => this.initDraggable(null));
 			this.listenTo(view, 'after:show-more', fromIndex => this.initDraggable(fromIndex));
 		});
 	}
 
-	onDrop(folderId: string, id: string | true): void {
+	override onDrop(folderId: string, id: string | true): void {
 		const recordView = this.getEmailRecordView();
 		if (folderId === this.FOLDER_IMPORTANT) {
 			setTimeout(() => {
@@ -55,7 +57,7 @@ extend(Dep => class extends Dep {
 		this.moveToFolder(folderId, id);
 	}
 
-	initDraggable(fromIndex: number | null) {
+	override initDraggable(fromIndex: number | null) {
 		fromIndex = fromIndex || 0;
 
 		if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
@@ -122,7 +124,7 @@ extend(Dep => class extends Dep {
 		});
 	}
 
-	initDroppable() {
+	override initDroppable() {
 		this.$el.find('.folders-container .list-group > .list-group-item.droppable').droppable({
 			accept: '.list-row',
 			tolerance: 'pointer',
@@ -217,12 +219,12 @@ extend(Dep => class extends Dep {
 		}
 	}
 
-	setupReuse(params) {
+	override setupReuse(params) {
 		super.setupReuse(params);
 		this.initDroppable();
 	}
 
-	afterRender() {
+	override afterRender() {
 		super.afterRender();
 		this.initDroppable();
 	}

@@ -1,16 +1,18 @@
 import type BoolFieldView from 'espocrm/src/views/fields/bool';
 
-extend((Dep: typeof BoolFieldView) => class extends Dep {
-	override editTemplate = 'autocrm:fields/bool/edit';
-	override detailTemplate = 'autocrm:fields/bool/detail';
-	override listTemplate = 'autocrm:fields/bool/list';
+import type BoolFieldView from 'espocrm/src/views/fields/bool';
+
+extend<BoolFieldView>((Dep: typeof BoolFieldView) => class extends Dep {
+	override editTemplate = 'viacrm:fields/bool/edit';
+	override detailTemplate = 'viacrm:fields/bool/detail';
+	override listTemplate = 'viacrm:fields/bool/list';
 
 	forcedEdit: boolean = false;
 
 	override setup() {
 		super.setup();
 
-		const params: any = this.params;
+		const params = this.params as Record<string, unknown>;
 
 		if (params.directEdit && !params.readOnly && !this.readOnly) {
 			this.forcedEdit = true;

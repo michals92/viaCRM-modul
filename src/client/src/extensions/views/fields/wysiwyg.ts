@@ -1,5 +1,7 @@
-extend(Dep => class extends Dep {
-	setup() {
+import type WysiwygFieldView from 'espocrm/src/views/fields/wysiwyg';
+
+extend<WysiwygFieldView>(Dep => class extends Dep {
+	override setup() {
 		super.setup();
 
 		this.once('after:render', this.initializeDragAndDrop.bind(this));

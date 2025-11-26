@@ -1,5 +1,7 @@
+import type { EmailTemplateCreateActionOptions } from 'viacrm/types';
+
 define(['controllers/record'], Dep => class extends Dep {
-	override create(options: any) {
+	override create(options: EmailTemplateCreateActionOptions) {
 		options = options || {};
 		options.attributes = options.attributes || {};
 

@@ -2,7 +2,7 @@ import type ModalView from 'espocrm/src/views/modal';
 
 define(['views/email-template/list'], Dep => class extends Dep {
 	override actionCreate() {
-		this.createView('createModal', 'autocrm:views/email-template/modals/create', {}, (view: ModalView) => {
+		this.createView('createModal', 'viacrm:views/email-template/modals/create', {}, (view: ModalView) => {
 			view.render();
 
 			this.listenToOnce(view, 'create', (data: any) => {

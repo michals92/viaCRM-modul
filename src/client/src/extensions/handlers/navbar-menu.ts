@@ -1,6 +1,6 @@
 import type NavbarMenuHandler from 'espocrm/src/handlers/navbar-menu';
 
-extend((Dep: typeof NavbarMenuHandler) => class extends Dep {
+extend<NavbarMenuHandler>((Dep: typeof NavbarMenuHandler) => class extends Dep {
 	override logout() {
 		if (!this.isViewingAs()) {
 			super.logout();

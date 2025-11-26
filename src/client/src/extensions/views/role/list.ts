@@ -1,6 +1,8 @@
 import type ListView from 'espocrm/src/views/list';
 
-extend((Dep: typeof ListView) => class extends Dep {
+import type _default from 'espocrm/src/views/role/list';
+
+extend<_default>((Dep: typeof ListView) => class extends Dep {
 	override setup() {
 		super.setup();
 

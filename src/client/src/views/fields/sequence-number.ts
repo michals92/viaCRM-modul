@@ -1,6 +1,6 @@
 define(['views/fields/varchar'], Dep =>
 	class extends Dep {
-		override editTemplate = 'autocrm:fields/sequence-number/edit';
+		override editTemplate = 'viacrm:fields/sequence-number/edit';
 
 		override type = 'sequenceNumber';
 		allowCustomValue = false;

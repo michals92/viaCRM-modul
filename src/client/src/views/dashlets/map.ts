@@ -13,8 +13,8 @@ interface AddressData {
 	country?: string;
 }
 
-define(['views/dashlets/abstract/base', 'autocrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
-	override template = 'autocrm:dashlets/map';
+define(['views/dashlets/abstract/base', 'viacrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
+	override template = 'viacrm:dashlets/map';
 
 	entityType: string | null = null;
 

@@ -1,8 +1,10 @@
-extend(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
-	editTemplate = 'viacrm:fields/link-parent/edit';
-	listLinkTemplate = 'viacrm:fields/link-parent/list-link';
+import type LinkParentFieldView from 'espocrm/src/views/fields/link-parent';
 
-	afterRender() {
+extend<LinkParentFieldView>(['ui/autocomplete'], (Dep, Autocomplete) => class extends Dep {
+	override editTemplate = 'viacrm:fields/link-parent/edit';
+	override listLinkTemplate = 'viacrm:fields/link-parent/list-link';
+
+	override afterRender() {
 		const minChars = this.params.autocompleteMinChars;
 
 		if (minChars !== undefined && minChars !== null) {

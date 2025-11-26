@@ -1,9 +1,9 @@
 define(['views/fields/base', 'lib!jsignature'], Dep => class extends Dep {
-	override detailTemplate = 'autocrm:fields/electronic-signature/detail';
+	override detailTemplate = 'viacrm:fields/electronic-signature/detail';
 
-	override editTemplate = 'autocrm:fields/electronic-signature/edit';
+	override editTemplate = 'viacrm:fields/electronic-signature/edit';
 
-	override listTemplate = 'autocrm:fields/electronic-signature/detail';
+	override listTemplate = 'viacrm:fields/electronic-signature/detail';
 
 	override type = 'electronicSignature';
 

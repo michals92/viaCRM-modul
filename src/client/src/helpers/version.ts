@@ -7,7 +7,7 @@ import type Storage from 'espocrm/src/storage';
 
 define(['search-manager'], (SearchMan) => {
 	/**
-	 * @memberOf module:autocrm:helpers/version
+	 * @memberOf module:viacrm:helpers/version
 	 */
 	class VersionHelper {
 		currentVersion: string;
@@ -98,7 +98,7 @@ define(['search-manager'], (SearchMan) => {
 		 * @param {Record<string, any>} installedExtensions Object with installed extension info
 		 * @returns {boolean} True if condition is met
 		 */
-		static checkExtensionVersion(versionSpec: string, installedExtensions: Record<string, any> | Array<{name: string, version: string}>): boolean {
+		static checkExtensionVersion(versionSpec: string, installedExtensions: Record<string, {name: string, version: string}> | Array<{name: string, version: string}>): boolean {
 			// Parse the version specification (e.g., "Approval>=0.0.3")
 			const versionRegex = /^([A-Za-z][A-Za-z0-9_-]*)(>=|<=|>|<|=)(.+)$/;
 			const match = versionSpec.match(versionRegex);
@@ -115,9 +115,9 @@ define(['search-manager'], (SearchMan) => {
 			}
 			
 			// Handle both array and object formats
-			let moduleInfo: any;
+			let moduleInfo: {name: string, version: string} | undefined;
 			if (Array.isArray(installedExtensions)) {
-				moduleInfo = installedExtensions.find((ext: any) => ext.name === moduleName);
+				moduleInfo = installedExtensions.find(ext => ext.name === moduleName);
 			} else {
 				moduleInfo = installedExtensions[moduleName];
 			}

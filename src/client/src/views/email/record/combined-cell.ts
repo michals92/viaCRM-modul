@@ -1,5 +1,5 @@
 define(['views/base'], Dep => class extends Dep {
-	override template = 'autocrm:email/record/combined-cell';
+	override template = 'viacrm:email/record/combined-cell';
 
 	override data() {
 		return {

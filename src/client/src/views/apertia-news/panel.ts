@@ -1,5 +1,5 @@
 define(['view'], (Dep) => class extends Dep {
-	override template = 'autocrm:apertia-news/panel';
+	override template = 'viacrm:apertia-news/panel';
 
 	override data() {
 		return {

@@ -52,7 +52,7 @@ define([], () => class {
 
 	showZipAttachmentsModal(ids: string[], entityType: string) {
 		this.view
-			.createView('modal', 'autocrm:views/modals/zip-attachments', {
+			.createView('modal', 'viacrm:views/modals/zip-attachments', {
 				entityType: entityType,
 			})
 			.then(view => {

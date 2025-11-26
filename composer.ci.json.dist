@@ -1,10 +1,10 @@
 {
-    "name": "apertia/autocrm",
-    "description": "The base module for all AutoCRM modules",
+    "name": "viaelement/viacrm",
+    "description": "The base module for all ViaCRM modules",
     "type": "espocrm-module",
     "autoload": {
         "psr-4": {
-            "Espo\\Modules\\Autocrm\\": "src/backend",
+            "Espo\\Modules\\Viacrm\\": "src/backend",
             "Espo\\": "/usr/src/espocrm/application/Espo/",
             "Espo\\Custom\\": "/usr/src/espocrm/custom/Espo/Custom/",
             "Espo\\Modules\\": "/usr/src/espocrm/custom/Espo/Modules/",
@@ -16,8 +16,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "AutocrmDev\\PHPStan\\Extensions\\": "phpstan/extensions/",
-            "Apertia\\PhpCsFixer\\": "php-cs-fixer/",
+            "ViacrmDev\\PHPStan\\Extensions\\": "phpstan/extensions/",
+            "ViaElement\\PhpCsFixer\\": "php-cs-fixer/",
             "Tests\\": "tests/"
         }
     },

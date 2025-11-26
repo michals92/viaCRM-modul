@@ -1,8 +1,14 @@
 import type Collection from 'espocrm/src/collection';
 import type SearchManager from 'espocrm/src/search-manager';
+import type MainView from 'espocrm/src/views/main';
+import type VersionHelperType from 'viacrm/helpers/version';
 
-define(['views/main', 'autocrm:helpers/version'], (Dep, VersionHelper) => class extends Dep {
-	override template = 'autocrm:work-queue';
+define(['views/main', 'viacrm:helpers/version'], (Dep, VersionHelperDep) => {
+	const Base = Dep as typeof MainView;
+	const VersionHelper = VersionHelperDep as typeof VersionHelperType;
+
+	return class extends Base {
+	override template = 'viacrm:work-queue';
 
 	// @ts-ignore oof
 	collection: Collection;
@@ -121,7 +127,7 @@ define(['views/main', 'autocrm:helpers/version'], (Dep, VersionHelper) => class 
 	createListRecordView(fetch: boolean) {
 		this.createView(
 			'list',
-			'autocrm:views/work-queue/record/list',
+			'viacrm:views/work-queue/record/list',
 			{
 				selector: '.list-container',
 				forceDisplayTopBar: false,
@@ -162,4 +168,5 @@ define(['views/main', 'autocrm:helpers/version'], (Dep, VersionHelper) => class 
 
 		return this.buildHeaderHtml([$root]);
 	}
+	};
 });

@@ -1,14 +1,16 @@
-extend(Dep => class extends Dep {
-	listTemplate = 'viacrm:fields/phone/list';
-	detailTemplate = 'viacrm:fields/phone/detail';
-	editTemplate = 'viacrm:fields/phone/edit';
+import type PhoneFieldView from 'espocrm/src/views/fields/phone';
 
-	setup() {
+extend<PhoneFieldView>(Dep => class extends Dep {
+	override listTemplate = 'viacrm:fields/phone/list';
+	override detailTemplate = 'viacrm:fields/phone/detail';
+	override editTemplate = 'viacrm:fields/phone/edit';
+
+	override setup() {
 		super.setup();
 	}
 
-	setMode(mode) {
-		super.setMode(mode);
+	override setMode(mode: string): Promise<void> {
+		const result = super.setMode(mode);
 
 		if (this.isDetailMode() || this.isListMode()) {
 			if (this.params.copyToClipboard) {
@@ -27,9 +29,11 @@ extend(Dep => class extends Dep {
 				this.clearAccount(index);
 			};
 		}
+
+		return result;
 	}
 
-	data(): Record<string, any> {
+	override data(): Record<string, any> {
 		const accountLinkEnabled = this.getConfig().get('disableAccountLinkToPhone') !== true;
 		const data = {
 			...super.data(),
@@ -47,7 +51,7 @@ extend(Dep => class extends Dep {
 	}
 
 	/** Backports https://github.com/espocrm/espocrm/pull/3427 */
-	addPhoneNumber(): void {
+	override addPhoneNumber(): void {
 		const data = Espo.Utils.cloneDeep(this.fetchPhoneNumberData());
 
 		const o = {
@@ -68,7 +72,7 @@ extend(Dep => class extends Dep {
 		this.model.trigger('add:phoneNumberData');
 	}
 
-	selectAccount(index): void {
+	selectAccount(index: number): void {
 		const viewOptions = {
 			primaryFilterName: 'active',
 			createButton: false,
@@ -101,7 +105,7 @@ extend(Dep => class extends Dep {
 		});
 	}
 
-	clearAccount(index) {
+	clearAccount(index: number): void {
 		const phoneNumberData = this.model.get(this.dataFieldName) || [];
 
 		if (phoneNumberData[index]) {
@@ -117,7 +121,7 @@ extend(Dep => class extends Dep {
 		}
 	}
 
-	copyToClipboard(index) {
+	override copyToClipboard(index?: number): void {
 		const phoneNumberData = this.model.get(this.dataFieldName);
 		const phoneNumber = this.model.get(this.name);
 		const value =
@@ -134,7 +138,7 @@ extend(Dep => class extends Dep {
 		}
 	}
 
-	fetchPhoneNumberData() {
+	override fetchPhoneNumberData() {
 		const data = super.fetchPhoneNumberData();
 		// Preserve account data during fetch
 		const currentData = this.model.get(this.dataFieldName) || [];
@@ -149,7 +153,7 @@ extend(Dep => class extends Dep {
 		});
 	}
 
-	fetch() {
+	override fetch() {
 		const data = super.fetch();
 		const phoneNumberData = this.fetchPhoneNumberData();
 		return {

@@ -1,6 +1,8 @@
 import type RecordView from 'espocrm/src/views/record/base';
 
-extend(
+import type ComposeEmailModalView from 'espocrm/src/views/modals/compose-email';
+
+extend<ComposeEmailModalView>(
 	Dep =>
 		class extends Dep {
 			_getUnresolvedPlaceholderTokens(): string[] {
@@ -29,7 +31,7 @@ extend(
 				return Array.from(tokens) as string[];
 			}
 
-			actionSend() {
+			override actionSend() {
 				const tokens = this._getUnresolvedPlaceholderTokens();
 				if (!tokens.length) {
 					return super.actionSend();

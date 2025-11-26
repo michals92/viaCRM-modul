@@ -1,5 +1,7 @@
+import type { ViewInBrowserActionOptions } from 'viacrm/types';
+
 define(['controller'], Dep => class extends Dep {
-	actionViewEmail(options: any) {
+	actionViewEmail(options: ViewInBrowserActionOptions) {
 		options = options || {};
 
 		if (!options.emailBody) {
